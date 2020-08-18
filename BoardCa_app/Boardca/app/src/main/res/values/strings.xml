@@ -18,7 +18,10 @@
     <string name="signout_fail">Signout fail</string>
     <string name="signout_fail_null">Please enter your email and password</string>
     <string name="signin_easy">간편로그인</string>
-    <string name="main_text">건전한 음주문화는 보드카에서!</string>
+    <string name="main_text">BoardCa는 건전한 음주문화를 지향합니다.</string>
+
+    <!-- Toll bar-->
+    <string name = "myAppName">BoardCa</string>
 
     <!-- Bottom Navigation View -->
     <string name="home">home</string>
