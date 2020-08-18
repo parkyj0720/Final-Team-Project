@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!doctype html>
 <html class="no-js " lang="en">
 <head>
@@ -9,14 +11,20 @@
 <title>:: Aero Bootstrap4 Admin ::</title>
 <link rel="icon" href="favicon.ico" type="image/x-icon">
 <!-- Favicon-->
-<link rel="stylesheet" href="assets/plugins/bootstrap/css/bootstrap.min.css">
-<link rel="stylesheet" href="assets/css/style.min.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/stylesheet/assets/plugins/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/stylesheet/assets/css/style.min.css">
+
+<style>
+	.col-md-13 {
+		width:443px;
+		height:66px;
+	}
+</style>
 </head>
 
 <body class="theme-blush">
 
 <section class="content">
-    <div class="body_scroll">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
@@ -30,7 +38,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="table-responsive">
+                    <div class="table-responsive" style="width:443px; height:510px;">
                         <table class="table table-hover mb-0 c_table search_page">
                             <tbody>
                                 <tr>
@@ -73,8 +81,8 @@
                     </div>
                 </div>
 
-                <div class="col-md-12">
-                    <ul class="pagination pagination-primary m-t-20">
+                <div class="col-md-13">
+                    <ul class="pagination pagination-primary m-t-20" style="width:443px; height:30px;">
                         <li class="page-item"><a class="page-link" href="javascript:void(0);">Previous</a></li>
                         <li class="page-item active"><a class="page-link" href="javascript:void(0);">1</a></li>
                         <li class="page-item"><a class="page-link" href="javascript:void(0);">2</a></li>
@@ -84,12 +92,11 @@
                 </div>
             </div>
         </div>
-    </div>
 </section>
 <!-- Jquery Core Js --> 
-<script src="assets/bundles/libscripts.bundle.js"></script> <!-- Lib Scripts Plugin Js --> 
-<script src="assets/bundles/vendorscripts.bundle.js"></script> <!-- Lib Scripts Plugin Js --> 
+<script src="${pageContext.request.contextPath}/stylesheet/assets/bundles/libscripts.bundle.js"></script> <!-- Lib Scripts Plugin Js --> 
+<script src="${pageContext.request.contextPath}/stylesheet/assets/bundles/vendorscripts.bundle.js"></script> <!-- Lib Scripts Plugin Js --> 
 
-<script src="assets/bundles/mainscripts.bundle.js"></script><!-- Custom Js --> 
+<script src="${pageContext.request.contextPath}/stylesheet/assets/bundles/mainscripts.bundle.js"></script><!-- Custom Js --> 
 </body>
 </html>

@@ -1,0 +1,104 @@
+*{box-sizing:border-box;}
+html, body{font-family:'Roboto', sans-serif;-webkit-font-smoothing:antialiased;}
+body{background-color: #fbfbfb;}
+.cf:before,.cf:after{content:"";display:table;}
+.cf:after{clear:both;}
+.cf{zoom:1;/* For IE 6/7 (trigger hasLayout) */}
+
+/*  */
+h1, h2, h3, h4, h5, h6{font-weight:400;}
+h1{font-size:62px;line-height:72px;}
+h2{font-size:52px;line-height:52px;margin-bottom:64px;}
+h3{font-size:32px;line-height:38px;font-weight:300;margin-bottom:25px;}
+h4{font-size:26px;line-height:34px;font-weight:300;margin-bottom:25px;}
+p.subtitle{font-size:13px;letter-spacing:0.1em;margin-bottom:5px;color:#267df4;}
+p{font-size:18px;line-height:28px;color:#67757c;}
+
+a{color:#267df4;text-decoration:underline;}
+a:focus{outline:none;}
+
+ul{padding-left:0px;}
+ul > li{list-style:none;}
+ul.list-disc{margin-left: 15px; padding-left: 15px;}
+ul.list-disc > li{list-style: disc; margin-bottom: 5px;}
+
+/******************************************************** Buttons ********************************************************/
+.btn{font-size:14px;padding:8px 25px;text-decoration:none;color:#26272d;border:1px solid rgba(38, 39, 45, 0.1);border-radius:30px;text-transform:uppercase;-moz-border-radius:30px;-webkit-border-radius:30px;}
+.btn:active,
+.btn:focus{outline:none;box-shadow:none;}
+.btn-blue{background-color:#267df4;color:white;}
+.btn-green{background-color:#6fc754;color:white;}
+.btn-dark{background-color:#131315;color:white;}
+.btn-blue:hover,
+.btn-blue:focus,
+.btn-green:hover,
+.btn-green:focus,
+.btn-dark:hover,
+.btn-dark:focus{color:#ffffff;}
+
+/******************************************************** Inputs ********************************************************/
+input[type="text"],
+input[type="email"]{width:502px;height:50px;max-width:100%;border:1px solid rgba(38, 39, 45, 0.2);padding:16px 26px;font-size:16px;background-color:transparent;padding-right:148px;border-radius:30px;-moz-border-radius:30px;-webkit-border-radius:30px;}
+input[type="text"]:focus,
+input[type="email"]:focus{outline:none;color:#26272d;}
+
+/* Header */
+.main-header{padding: 25px;position: fixed;left: 0;top: 0;z-index: 8;width: 100%;background-color: #f1f1f1;border-bottom: 1px solid #cccccc;}
+.main-header h2{font-size: 25px; line-height: 39px; color: #26272d; font-weight: bold; margin-bottom: 0;}
+
+/* Content Area */
+.content{padding: 120px 25px 25px 25px;}
+
+.extra-col{position: relative; z-index: -1;}
+
+.left-sidebar{position: fixed; top: 120px; left: 40px; width: calc(25% - 40px);}
+.left-sidebar h3{font-size: 16px; line-height: 25px; color: #26272d; font-weight: 500; margin: 0 0 10px;}
+.left-sidebar ul li{margin-bottom: 10px;}
+.left-sidebar ul li a{text-decoration: none; position: relative; padding-left: 20px; display: block; font-size: 14px; line-height: 20px; color: #333333;}
+.left-sidebar ul li a i{position: absolute; left: 0; top: 3px;}
+
+.card{margin-bottom: 30px;}
+.card h2{font-size: 18px; line-height: 25px; color: #26272d; font-weight: 500; margin: 0 0 10px;}
+.card p,
+.card ul > li{font-size: 15px; line-height: 25px; color: #26272d; font-weight: 400; margin: 0 0 15px;}
+.card ul > li{font-size: 15px; line-height: 20px; color: #26272d; font-weight: 400; margin: 0 0 10px;}
+
+
+
+/* Color */
+.col-red{color:#ec3b57 !important}
+.col-pink{color:#E91E63 !important}
+.col-purple{color:#9744be !important}
+.col-deep-purple{color:#673AB7 !important}
+.col-blue{color:#60bafd !important}
+.col-cyan{color:#49c5b6 !important}
+.col-green{color:#50d38a !important}
+.col-light-green{color:#8BC34A !important}
+.col-yellow{color:#ffe821 !important}
+.col-orange{color:#ffc323 !important}
+.col-deep-orange{color:#f83600 !important}
+.col-grey{color:#9E9E9E !important}
+.col-blue-grey{color:#607D8B !important}
+.col-indigo{color:#3F51B5 !important}
+.col-light-blue{color:#03A9F4 !important}
+.col-teal{color:#009688 !important}
+.col-lime{color:#CDDC39 !important}
+.col-amber{color:#FFC107 !important}
+.col-brown{color:#795548 !important}
+.col-blush{color:#ff758e !important}
+.col-black{color:#000 !important}
+.col-white{color:#fff !important}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
