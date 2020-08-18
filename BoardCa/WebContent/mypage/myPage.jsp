@@ -69,7 +69,8 @@
 					<div class="col-lg-12 col-md-12">
 						<div class="card mcard_3">
 							<div class="body">
-								<a href="profile.html"><img src="imgs/01.jpg"
+								<a href="myPage.do"><img
+									src="imgs/01.jpg"
 									class="rounded-circle shadow " alt="profile-image"
 									style="width: 20%; height: 20%;"></a>
 								<h4 class="m-t-10">Michael Dorsey</h4>
