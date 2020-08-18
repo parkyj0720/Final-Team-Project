@@ -24,8 +24,7 @@
             <div class="col-lg-4 col-sm-12">
                 <form class="card auth_form">
                     <div class="header">
-                        <img class="logo" src="assets/images/logo.svg" alt="">
-                        <h5>Log in</h5>
+                        <img src="${pageContext.request.contextPath}/imgs/logo1.png" alt="logo"/>
                     </div>
                     <div class="body">
                         <div class="input-group mb-3">
@@ -53,17 +52,17 @@
                         </div>
                     </div>
                 </form>
-                <div class="copyright text-center">
+                <!-- <div class="copyright text-center">
                     &copy;
                     <script>document.write(new Date().getFullYear())</script>,
                     <span>Designed by <a href="https://thememakker.com/" target="_blank">ThemeMakker</a></span>
-                </div>
+                </div> -->
             </div>
-            <div class="col-lg-8 col-sm-12">
+            <%-- <div class="col-lg-8 col-sm-12">
                 <div class="card">
-                    <img src="assets/images/signin.svg" alt="Sign In"/>
+                    <img src="${pageContext.request.contextPath}/imgs/logo1.png" alt="Sign In"/>
                 </div>
-            </div>
+            </div> --%>
         </div>
     </div>
 </div>
