@@ -15,4 +15,9 @@ public class MypageController {
 		mv.setViewName("/mypage/myPage.jsp");
 		return mv;
 	}
+	@RequestMapping("/myPageEdit.do")
+	public ModelAndView myPageEdit() {
+		mv.setViewName("/mypage/myPageEdit.jsp");
+		return mv;
+	}
 }
