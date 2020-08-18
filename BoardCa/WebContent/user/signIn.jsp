@@ -21,7 +21,7 @@
 <div class="authentication">
     <div class="container">
         <div class="row">
-            <div class="col-lg-4 col-sm-12">
+            <div class="col-lg-12 col-sm-12">
                 <form class="card auth_form">
                     <div class="header">
                         <img src="${pageContext.request.contextPath}/imgs/logo1.png" alt="logo"/>
@@ -58,17 +58,13 @@
                     <span>Designed by <a href="https://thememakker.com/" target="_blank">ThemeMakker</a></span>
                 </div> -->
             </div>
-            <%-- <div class="col-lg-8 col-sm-12">
-                <div class="card">
-                    <img src="${pageContext.request.contextPath}/imgs/logo1.png" alt="Sign In"/>
-                </div>
-            </div> --%>
+            
         </div>
     </div>
 </div>
 
 <!-- Jquery Core Js -->
-<script src="assets/bundles/libscripts.bundle.js"></script>
-<script src="assets/bundles/vendorscripts.bundle.js"></script> <!-- Lib Scripts Plugin Js -->
+<script src="${pageContext.request.contextPath}/stylesheet/assets/bundles/libscripts.bundle.js"></script>
+<script src="${pageContext.request.contextPath}/stylesheet/assets/bundles/vendorscripts.bundle.js"></script> <!-- Lib Scripts Plugin Js -->
 </body>
 </html>
