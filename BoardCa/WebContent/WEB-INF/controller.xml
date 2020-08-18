@@ -31,18 +31,6 @@
 	
 	
 	<bean id="ModelAndView" class="org.springframework.web.servlet.ModelAndView"/>
-	
-	<bean id="sqlMapClient" class="org.springframework.orm.ibatis.SqlMapClientFactoryBean">
-		<property name="configLocation" value="/WEB-INF/sqlMapConfig.xml"/>	
-	</bean>
-
-	<bean id="SqlMapClientTemplate"
-			class="org.springframework.orm.ibatis.SqlMapClientTemplate">
-		<property name="sqlMapClient" ref="sqlMapClient"/>
-		<property name="dataSource" ref="dataSource"/>
-	</bean>
-
-	<!--DB 정보 입력 해야함  -->
 
 
 </beans>
