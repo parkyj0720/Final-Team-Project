@@ -43,7 +43,7 @@
                             <input id="remember_me" type="checkbox">
                             <label for="remember_me">Remember Me</label>
                         </div>
-                        <a href="signUp.jsp" class="btn btn-primary btn-block waves-effect waves-light">JOIN</a> 
+                        <a href="${pageContext.request.contextPath}/user/signUp.jsp" class="btn btn-primary btn-block waves-effect waves-light">JOIN</a> 
                         <a href="index.html" class="btn btn-primary btn-block waves-effect waves-light">SIGN IN</a>                        
                         <div class="signin_with mt-3">
                             <p class="mb-0">or Sign Up using</p>
