@@ -8,7 +8,7 @@
 <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 <meta name="description" content="Responsive Bootstrap 4 and web Application ui kit.">
 
-<title>:: Aero Bootstrap4 Admin :: Sign In</title>
+<title>:: BoardCa :: Sign In</title>
 <!-- Favicon-->
 <link rel="icon" href="favicon.ico" type="image/x-icon">
 <!-- Custom Css -->
@@ -43,6 +43,7 @@
                             <input id="remember_me" type="checkbox">
                             <label for="remember_me">Remember Me</label>
                         </div>
+                        <a href="${pageContext.request.contextPath}/user/signUp.jsp" class="btn btn-primary btn-block waves-effect waves-light">JOIN</a> 
                         <a href="index.html" class="btn btn-primary btn-block waves-effect waves-light">SIGN IN</a>                        
                         <div class="signin_with mt-3">
                             <p class="mb-0">or Sign Up using</p>

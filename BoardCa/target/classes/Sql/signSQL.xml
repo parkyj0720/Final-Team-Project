@@ -8,4 +8,3 @@
 	<sqlMap resource="/sql/signSQL.xml"/>
 	
 </sqlMapConfig>
-
