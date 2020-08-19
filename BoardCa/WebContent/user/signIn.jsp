@@ -22,19 +22,19 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12 col-sm-12">
-                <form class="card auth_form">
+                <form class="card auth_form" action="signPro.do" method="post" name="userinput">
                     <div class="header">
                         <img src="${pageContext.request.contextPath}/imgs/logo1.png" alt="logo"/>
                     </div>
                     <div class="body">
                         <div class="input-group mb-3">
-                            <input type="text" class="form-control" placeholder="Username">
+                            <input type="text" class="form-control" placeholder="UserId" name="userId">
                             <div class="input-group-append">
                                 <span class="input-group-text"><i class="zmdi zmdi-account-circle"></i></span>
                             </div>
                         </div>
                         <div class="input-group mb-3">
-                            <input type="text" class="form-control" placeholder="Password">
+                            <input type="text" class="form-control" placeholder="Password" name="userPw">
                             <div class="input-group-append">                                
                                 <span class="input-group-text"><a href="forgot-password.html" class="forgot" title="Forgot Password"><i class="zmdi zmdi-lock"></i></a></span>
                             </div>                            
@@ -44,7 +44,7 @@
                             <label for="remember_me">Remember Me</label>
                         </div>
                         <a href="${pageContext.request.contextPath}/user/signUp.jsp" class="btn btn-primary btn-block waves-effect waves-light">JOIN</a> 
-                        <a href="index.html" class="btn btn-primary btn-block waves-effect waves-light">SIGN IN</a>                        
+                        <a href="${pageContext.request.contextPath}/WEB-INF/views/Main.jsp" class="btn btn-primary btn-block waves-effect waves-light" type="submit" >SIGN IN</a>                        
                         <div class="signin_with mt-3">
                             <p class="mb-0">or Sign Up using</p>
                             <button class="btn btn-primary btn-icon btn-icon-mini btn-round facebook"><i class="zmdi zmdi-facebook"></i></button>
