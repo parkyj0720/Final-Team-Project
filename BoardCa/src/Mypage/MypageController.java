@@ -20,4 +20,9 @@ public class MypageController {
 		mv.setViewName("/mypage/myPageEdit.jsp");
 		return mv;
 	}
+	@RequestMapping("/myWriteList.do")
+	public ModelAndView myWriteList() {
+		mv.setViewName("/mypage/writedPage.jsp");
+		return mv;
+	}
 }
