@@ -19,7 +19,7 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 @Controller
-public class SingInController {
+public class SignInController {
 
 	
 	@Autowired

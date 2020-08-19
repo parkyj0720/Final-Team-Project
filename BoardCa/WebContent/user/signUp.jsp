@@ -24,6 +24,21 @@
 .checkBtn {
 	margin: 0;
 }
+.inputForm{
+    width: 70%;
+    height: auto;
+    padding: .375rem .75rem;
+    margin-right: 5%;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    transition: border-color .15s;
+    font-size: 14px;
+    background: rgba(0,0,0,0);
+}
+
 </style>
 
 
@@ -42,17 +57,16 @@
 						</div>
 						<div class="body">
 							<div>
-								<div class="input-group mb-3" style="display: inline-block;">
-									<div class="input-group-append" style="display: inline-block;">
-										<span class="input-group-text" style="display: inline-block;">
-										<i class="zmdi zmdi-account-circle" style="display: inline-block;"></i></span>
+								<div class="input-group mb-3" >
+									<div class="input-group-append" >
+										<span class="input-group-text" >
+										<i class="zmdi zmdi-account-circle" ></i></span>
 									</div>
-									<input type="text" class="form-control" placeholder="아이디" style="display: inline-block;">
-									<div class="input-group-append" style="display: inline-block;">
-										<button class="btn btn-primary btn-block waves-effect waves-light checkBtn" style="display: inline-block;">중복확인</button>
+									<input type="text" class="inputForm" placeholder="아이디" style="display: inline-block;">
+									<div>
+									<button class="btn btn-primary btn-block waves-effect waves-light checkBtn" style="display: inline-block;">중복확인</button>
 									</div>
-								</div>
-								<div style="display: inline-block;">가나다라마바사</div>
+								</div>								
 							</div>
 
 							<div class="input-group mb-3">
@@ -60,9 +74,9 @@
 									<span class="input-group-text"><i
 										class="zmdi zmdi-account-circle"></i></span>
 								</div>
-								<input type="text" class="form-control" placeholder="닉네임">
-								<div class="input-group-append">
-									<p>사용가능한 닉네임 입니다. / 이미 사용중인 닉네임 입니다.</p>
+								<input type="text" class="inputForm" placeholder="닉네임">
+								<div style="display: inline-block;">
+									사용가능한 닉네임 입니다. / 이미 사용중인 닉네임 입니다.
 								</div>
 							</div>
 
@@ -70,14 +84,14 @@
 								<div class="input-group-append">
 									<span class="input-group-text"><i class="zmdi zmdi-lock"></i></span>
 								</div>
-								<input type="text" class="form-control" placeholder="비밀번호">
+								<input type="text" class="inputForm" placeholder="비밀번호">
 							</div>
 
 							<div class="input-group mb-3">
 								<div class="input-group-append">
 									<span class="input-group-text"><i class="zmdi zmdi-lock"></i></span>
 								</div>
-								<input type="text" class="form-control" placeholder="비밀번호 확인">
+								<input type="text" class="inputForm" placeholder="비밀번호 확인">
 							</div>
 
 							<div class="input-group mb-3">
@@ -85,7 +99,7 @@
 									<span class="input-group-text"><i
 										class="zmdi zmdi-account-circle"></i></span>
 								</div>
-								<input type="text" class="form-control" placeholder="이름">
+								<input type="text" class="inputForm" placeholder="이름">
 							</div>
 
 							<div class="input-group mb-3">
@@ -93,20 +107,20 @@
 									<span class="input-group-text"><i
 										class="zmdi zmdi-email"></i></span>
 								</div>
-								<input type="text" class="form-control" placeholder="이메일">
+								<input type="text" class="inputForm" placeholder="이메일">
 							</div>
 							<div class="input-group mb-3">
 								<div class="input-group-append">
 									<span class="input-group-text"><i class="zmdi zmdi-lock"></i></span>
 								</div>
-								<input type="text" class="form-control" placeholder="핸드폰 번호">
+								<input type="text" class="inputForm" placeholder="핸드폰 번호">
 							</div>
 							<div class="checkbox">
 								<input id="remember_me" type="checkbox"> <label
 									for="remember_me">I read and agree to the <a
 									href="javascript:void(0);">terms of usage</a></label>
 							</div>
-							<a href="index.html"
+							<a href="${pageContext.request.contextPath}/signUpPro.do"
 								class="btn btn-primary btn-block waves-effect waves-light">SIGN
 								UP</a>
 							<div class="signin_with mt-3">

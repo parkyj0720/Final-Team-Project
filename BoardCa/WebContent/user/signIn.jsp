@@ -80,7 +80,7 @@
 								<input id="remember_me" type="checkbox"> <label
 									for="remember_me">Remember Me</label>
 							</div>
-							<a href="${pageContext.request.contextPath}/user/signUp.jsp"
+							<a href="${pageContext.request.contextPath}/signUp.do"
 								class="btn btn-primary btn-block waves-effect waves-light">JOIN</a>
 							<%-- <a href="${pageContext.request.contextPath}/signPro.do" class="btn btn-primary btn-block waves-effect waves-light" type="submit" >SIGN IN</a>     --%>
 							<input class="btn btn-primary btn-block waves-effect waves-light"
