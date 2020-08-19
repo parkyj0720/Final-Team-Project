@@ -12,3 +12,4 @@
 /captures
 .externalNativeBuild
 target/*
+pom.properties
