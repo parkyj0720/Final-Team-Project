@@ -1,6 +1,7 @@
 package Sign;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -31,7 +32,7 @@ public class SingInController {
 		return mv;
 	}
 	
-	@RequestMapping()
+	@RequestMapping("/signPro.do")
 	public ModelAndView signPro(MemberDto dto,SessionDto sedto, HttpSession session,HttpServletRequest req)
 			throws SAXException, IOException, ParserConfigurationException {
 		
@@ -63,9 +64,12 @@ public class SingInController {
 		//settingDto 에 나라 코드를 넣는다.
 		sedto.setPlace(country);
 		
-		System.out.println(dto.getId());
+		String id = req.getParameter("userId");
 		
+		System.out.println(id);
 		
+		mv.addObject("id",id);
+		mv.setViewName("/main/main.jsp");
 		
 		
 		
