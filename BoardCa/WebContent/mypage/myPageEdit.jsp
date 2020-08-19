@@ -25,7 +25,7 @@
 
 <body class="theme-blush">
 
-	<!-- Page Loader -->
+	<!-- Loding Page -->
 	<div class="page-loader-wrapper">
 		<div class="loader">
 			<div class="m-t-30">
@@ -36,12 +36,8 @@
 		</div>
 	</div>
 
-	<!-- Overlay For Sidebars -->
-
-
-
-
-	<section class="content"style="margin: 5% 10%;">
+	<!-- Main Content  -->
+	<section class="content" style="margin: 5% 10%;">
 		<div class="body_scroll">
 			<div class="block-header">
 				<div class="row">
@@ -55,11 +51,12 @@
 							<li class="breadcrumb-item active">Edit</li>
 						</ul>
 					</div>
-						<div class="col-lg-5 col-md-6 ">
+					<div class="col-lg-5 col-md-6 ">
 
-							<a href="${pageContext.request.contextPath}/myPage.do" class="btn btn-info btn-icon float-right"><i
-								class="zmdi zmdi-check"></i></a>
-						</div>
+						<a href="${pageContext.request.contextPath}/myPage.do"
+							class="btn btn-info btn-icon float-right"><i
+							class="zmdi zmdi-check"></i></a>
+					</div>
 				</div>
 			</div>
 			<div class="container-fluid">
@@ -117,43 +114,73 @@
 												placeholder="Last Name">
 										</div>
 									</div>
-									<div class="col-lg-4 col-md-12">
-										<div class="form-group">
-											<input type="text" class="form-control" placeholder="City">
+									<!-- Select -->
+									<!--  -->
+									<div class="row clearfix">
+										<div class="col-lg-12 col-md-12 col-sm-12">
+											<div class="card">
+												<div class="header">
+													<h2>
+														<strong>City</strong>
+													</h2>
+													<div class="body">
+														<div class="row clearfix">
+															<div class="col-sm-6">
+																<select class="form-control show-tick">
+																	<option value="">-- 도/광역시·특별시 --</option>
+																	<option value="10">10</option>
+																	<option value="20">20</option>
+																	<option value="30">30</option>
+																	<option value="40">40</option>
+																	<option value="50">50</option>
+																</select>
+															</div>
+															<div class="col-sm-6">
+																<select class="form-control show-tick" id="City">
+																	<option value="">-- 시/군/구 --</option>
+																	<option value="부천시 소사구">경기도 부천시 소사구</option>
+																	<option value="20">20</option>
+																	<option value="30">30</option>
+																	<option value="40">40</option>
+																	<option value="50">50</option>
+																</select>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
 										</div>
-									</div>
-									<div class="col-lg-4 col-md-12">
-										<div class="form-group">
-											<input type="text" class="form-control" placeholder="E-mail">
+										<div class="col-lg-4 col-md-12">
+											<div class="form-group">
+												<input type="text" class="form-control" placeholder="E-mail">
+											</div>
 										</div>
-									</div>
-									<div class="col-lg-4 col-md-12">
-										<div class="form-group">
-											<input type="text" class="form-control" placeholder="Country">
+										<div class="col-lg-4 col-md-12">
+											<div></div>
 										</div>
-									</div>
-									<div class="col-md-12">
-										<div class="form-group">
-											<textarea rows="4" class="form-control no-resize"
-												placeholder="Address Line 1"></textarea>
+										<div class="col-md-12">
+											<div class="form-group">
+												<textarea rows="4" class="form-control no-resize"
+													placeholder="Address Line 1"></textarea>
+											</div>
 										</div>
-									</div>
-									<div class="col-md-12">
-										<div class="checkbox">
-											<input id="procheck1" type="checkbox" checked> <label
-												for="procheck1">Profile Visibility For Everyone</label>
+										<div class="col-md-12">
+											<div class="checkbox">
+												<input id="procheck1" type="checkbox" checked> <label
+													for="procheck1">Profile Visibility For Everyone</label>
+											</div>
+											<div class="checkbox">
+												<input id="procheck2" type="checkbox"> <label
+													for="procheck2">New task notifications</label>
+											</div>
+											<div class="checkbox">
+												<input id="procheck3" type="checkbox"> <label
+													for="procheck3">New friend request notifications</label>
+											</div>
 										</div>
-										<div class="checkbox">
-											<input id="procheck2" type="checkbox"> <label
-												for="procheck2">New task notifications</label>
+										<div class="col-md-12">
+											<button class="btn btn-primary">Save Changes</button>
 										</div>
-										<div class="checkbox">
-											<input id="procheck3" type="checkbox"> <label
-												for="procheck3">New friend request notifications</label>
-										</div>
-									</div>
-									<div class="col-md-12">
-										<button class="btn btn-primary">Save Changes</button>
 									</div>
 								</div>
 							</div>
@@ -161,7 +188,6 @@
 					</div>
 				</div>
 			</div>
-		</div>
 	</section>
 	<!-- Jquery Core Js -->
 	<script

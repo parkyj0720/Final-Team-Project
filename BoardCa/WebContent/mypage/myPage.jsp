@@ -32,7 +32,7 @@
 
 <body class="theme-blush">
 
-	<!-- Page Loader -->
+	<!-- Loding Page -->
 	<div class="page-loader-wrapper">
 		<div class="loader">
 			<div class="m-t-30">
@@ -42,7 +42,7 @@
 			<p>Please wait...</p>
 		</div>
 	</div>
-
+	<!-- Main Content  -->
 	<section class="content" style="margin: 5% 10%;">
 		<div class="body_scroll">
 			<div class="block-header">
@@ -73,7 +73,9 @@
 									src="${pageContext.request.contextPath}/mypage/imgs/01.jpg"
 									class="rounded-circle shadow " alt="profile-image"
 									style="width: 20%; height: 20%;"></a>
-								<h4 class="m-t-10">Michael Dorsey</h4>
+								<h4 class="m-t-10">UserName</h4>
+								/
+								<h4 class="m-t-10">NickName</h4>
 								<div class="row">
 									<div class="col-lg-12 col-md-12">
 										<ul class="social-links list-unstyled">
@@ -84,21 +86,11 @@
 											<li><a title="instagram" href="javascript:void(0);"><i
 													class="zmdi zmdi-instagram"></i></a></li>
 										</ul>
-										<p class="text-muted">795 Folsom Ave, Suite 600 San
-											Francisco, CADGE 94107</p>
+										<p class="text-muted">address</p>
 									</div>
-									<div class="col-4">
-										<small>Following</small>
-										<h5>852</h5>
-									</div>
-									<div class="col-4">
-										<small>Followers</small>
-										<h5>13k</h5>
-									</div>
-									<div class="col-4">
-										<small>Post</small>
-										<h5>234</h5>
-									</div>
+									<div class="col-4">a</div>
+									<div class="col-4">b</div>
+									<div class="col-4">c</div>
 								</div>
 							</div>
 						</div>
@@ -114,10 +106,37 @@
 
 								<div class="card">
 									<div class="header">
-										<h2>
-											<strong>Media</strong> Gallery
-										</h2>
+										<div class="body">
+											<p>내 게시물</p>
+											<div class="list-unstyled row clearfix">
+												<div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 m-b-30">
+													<a href="${pageContext.request.contextPath}/myPage.do">게시글1</a>
+												</div>
+												<div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 m-b-30">
+													<a>게시글1</a>
+												</div>
+												<div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 m-b-30">
+													<a>게시글1</a>
+												</div>
+												<div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 m-b-30">
+													<a>게시글1</a>
+												</div>
+												<div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 m-b-30">
+													<a>게시글1</a>
+												</div>
+												<div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 m-b-30">
+													<a>게시글1</a>
+												</div>
+												<div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 m-b-30">
+													<a>게시글1</a>
+												</div>
+												<div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 m-b-30">
+													<a>게시글1</a>
+												</div>
+											</div>
+										</div>
 									</div>
+
 								</div>
 							</div>
 						</div>
