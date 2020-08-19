@@ -44,7 +44,7 @@
                             <label for="remember_me">Remember Me</label>
                         </div>
                         <a href="${pageContext.request.contextPath}/user/signUp.jsp" class="btn btn-primary btn-block waves-effect waves-light">JOIN</a> 
-                        <a href="${pageContext.request.contextPath}/WEB-INF/views/Main.jsp" class="btn btn-primary btn-block waves-effect waves-light" type="submit" >SIGN IN</a>                        
+                        <a href="${pageContext.request.contextPath}/main/main.jsp" class="btn btn-primary btn-block waves-effect waves-light" type="submit" >SIGN IN</a>                        
                         <div class="signin_with mt-3">
                             <p class="mb-0">or Sign Up using</p>
                             <button class="btn btn-primary btn-icon btn-icon-mini btn-round facebook"><i class="zmdi zmdi-facebook"></i></button>
