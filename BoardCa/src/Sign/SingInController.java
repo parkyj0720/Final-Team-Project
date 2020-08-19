@@ -65,8 +65,12 @@ public class SingInController {
 		sedto.setPlace(country);
 		
 		String id = req.getParameter("userId");
+		String pw = req.getParameter("userPw");
 		
-		System.out.println(id);
+		dto.setId(id);
+		dto.setPw(pw);
+		
+		
 		
 		mv.addObject("id",id);
 		mv.setViewName("/main/main.jsp");
