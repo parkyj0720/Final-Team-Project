@@ -1,8 +1,10 @@
 package com.example.boardca_app.ui.share;
 
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.ViewModel;
+import android.webkit.WebView;
+
+        import androidx.lifecycle.LiveData;
+        import androidx.lifecycle.MutableLiveData;
+        import androidx.lifecycle.ViewModel;
 
 public class ShareViewModel extends ViewModel {
 
