@@ -18,12 +18,18 @@ import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
+import Member.MemberDao;
+import Member.MemberDto;
+
 @Controller
 public class SignInController {
 
 	
 	@Autowired
 	private ModelAndView mv;
+	private MemberDao memDao;
+	
+	
 	
 	@RequestMapping("/signIn.do")
 	public ModelAndView signIn() {
@@ -31,6 +37,7 @@ public class SignInController {
 		mv.setViewName("/sign/signIn.jsp");
 		return mv;
 	}
+	
 	
 	@RequestMapping("/signPro.do")
 	public ModelAndView signPro(MemberDto dto,SessionDto sedto, HttpSession session,HttpServletRequest req)
@@ -64,17 +71,25 @@ public class SignInController {
 		//settingDto 에 나라 코드를 넣는다.
 		sedto.setPlace(country);
 		
-		String id = req.getParameter("userId");
-		String pw = req.getParameter("userPw");
+		String userId = req.getParameter("userId");
+		String userPw = req.getParameter("userPw");
 		
-		dto.setId(id);
-		dto.setPw(pw);
+		dto.setMem_id(userId);
+		dto.setMem_pw(userPw);
+		
+		System.out.println(dto.getMem_id());
+		System.out.println(dto.getMem_pw());
 		
 		
-		
-		mv.addObject("id",id);
-		mv.setViewName("/main/main.jsp");
-		
+		String dbPw = memDao.signIn(userId);
+		if(userPw.equals(dbPw)) {
+			sedto.setMove("로그인(성공)");
+			session.setAttribute("userId", userId);
+			mv.setViewName("/main/main.jsp");
+		}else {
+			sedto.setMove("로그인(실패)");
+			mv.setViewName("/sign/signError.jsp");
+		}
 		
 		
 		
