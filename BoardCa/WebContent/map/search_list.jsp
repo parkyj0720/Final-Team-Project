@@ -49,13 +49,13 @@
 #placesList .item .marker_12 {background-position: 0 -516px; }
 #placesList .item .marker_13 {background-position: 0 -562px; }
 #placesList .item .marker_14 {background-position: 0 -608px; }
-#placesList .item .marker_15 {background-position: 0 -654px; }
+#placesList .item .marker_15 {background-position: 0 -654px; } 
 #pagination {margin:10px auto;text-align: center;}
 #pagination a {display:inline-block;margin-right:10px;}
 #pagination .on {font-weight: bold; cursor: default;color:#777;}
 .content {width:1250px; height: 720px;}
 
-<%--선 css --%>
+<%-- 선 css --%>
 .dot {overflow:hidden;float:left;width:12px;height:12px;background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/mini_circle.png');}    
 .dotOverlay {position:relative;bottom:10px;border-radius:6px;border: 1px solid #ccc;border-bottom:2px solid #ddd;float:left;font-size:12px;padding:5px;background:#fff;}
 .dotOverlay:nth-of-type(n) {border:0; box-shadow:0px 1px 2px #888;}    
@@ -90,6 +90,7 @@
 
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=7be0492e9a9dc8262e242b9d862de462&libraries=services"></script>
 <script>
+
 // 마커를 담을 배열입니다
 var markers = [];
 
@@ -344,14 +345,14 @@ function getTimeHTML(distance) {
  walkMin = '<span class="number">' + walkkTime % 60 + '</span>분'
 
  // 자전거의 평균 시속은 16km/h 이고 이것을 기준으로 자전거의 분속은 267m/min입니다
- var bycicleTime = distance / 227 | 0;
- var bycicleHour = '', bycicleMin = '';
+ //var bycicleTime = distance / 227 | 0;
+ //var bycicleHour = '', bycicleMin = '';
 
  // 계산한 자전거 시간이 60분 보다 크면 시간으로 표출합니다
- if (bycicleTime > 60) {
-     bycicleHour = '<span class="number">' + Math.floor(bycicleTime / 60) + '</span>시간 '
- }
- bycicleMin = '<span class="number">' + bycicleTime % 60 + '</span>분'
+ //if (bycicleTime > 60) {
+    // bycicleHour = '<span class="number">' + Math.floor(bycicleTime / 60) + '</span>시간 '
+ //}
+ //bycicleMin = '<span class="number">' + bycicleTime % 60 + '</span>분'
 
  // 거리와 도보 시간, 자전거 시간을 가지고 HTML Content를 만들어 리턴합니다
  var content = '<ul class="dotOverlay distanceInfo">';
@@ -362,8 +363,8 @@ function getTimeHTML(distance) {
  content += '        <span class="label">도보</span>' + walkHour + walkMin;
  content += '    </li>';
  content += '    <li>';
- content += '        <span class="label">자전거</span>' + bycicleHour + bycicleMin;
- content += '    </li>';
+ //content += '        <span class="label">자전거</span>' + bycicleHour + bycicleMin;
+ //content += '    </li>';
  content += '</ul>'
 
  return content;
@@ -419,7 +420,7 @@ function placesSearchCB(data, status, pagination) {
 
 // 검색 결과 목록과 마커를 표출하는 함수입니다
 function displayPlaces(places) {
-
+    
     var listEl = document.getElementById('placesList'), 
     menuEl = document.getElementById('menu_wrap'),
     fragment = document.createDocumentFragment(), 
@@ -438,27 +439,29 @@ function displayPlaces(places) {
         var placePosition = new kakao.maps.LatLng(places[i].y, places[i].x),
             marker = addMarker(placePosition, i), 
             itemEl = getListItem(i, places[i]); // 검색 결과 항목 Element를 생성합니다
-
+            
         // 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해
         // LatLngBounds 객체에 좌표를 추가합니다
         bounds.extend(placePosition);
-
+		
         // 마커와 검색결과 항목에 mouseover 했을때
         // 해당 장소에 인포윈도우에 장소명을 표시합니다
         // mouseout 했을 때는 인포윈도우를 닫습니다
         (function(marker, title) {
             kakao.maps.event.addListener(marker, 'mouseover', function() {
-                displayInfowindow(marker, title);
+                displayInfowindow(marker, title);                
             });
-
+            
             kakao.maps.event.addListener(marker, 'mouseout', function() {
                 infowindow.close();
             });
 
-            itemEl.onmouseover =  function () {
-                displayInfowindow(marker, title);
+            itemEl.onclick = function() {
+            	displayInfowindow(marker, title);
+            	// itemEl 목록 클릭시 해당 마커의 위치를 지도의 중심으로 이동시킨다 
+            	map.setCenter(marker.getPosition());           
             };
-
+            
             itemEl.onmouseout =  function () {
                 infowindow.close();
             };
@@ -574,7 +577,7 @@ function removeAllChildNods(el) {
         el.removeChild (el.lastChild);
     }
 }
- 
+
 </script>
 </section>
 
