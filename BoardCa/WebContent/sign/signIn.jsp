@@ -22,6 +22,7 @@
 	href="${pageContext.request.contextPath}/stylesheet/assets/css/style.min.css"
 	type="text/css">
 <script src="http://code.jquery.com/jquery.js"></script>
+<script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
 <script>
 	$(function() {
 		$('#submitBtn').click(function() {
@@ -41,6 +42,45 @@
 			}
 		})
 	})
+	
+	$(function() {
+		//발급받은 JavaScript Key
+		Kakao.init( "ba17cff478a4c1a7991132264b4d34bf" );
+		
+		// 카카오 로그인 버튼을 생성
+	   	Kakao.Auth.createLoginButton({
+	   		container: '#kakao-login-btn',
+	    	success: function(authObj) {
+	    		// 로그인 성공시, API를 호출합니다.
+		        Kakao.API.request({
+			         url: '/v2/user/me',
+			         success: function(res) {
+				          console.log(res);
+				          
+				          var userID = res.id;      //유저의 카카오톡 고유 id
+				          var userGender = res.kakao_account.gender;   //유저의 성별
+				          var userAgeRange = res.kakao_account.age_range; //유저의 연령대
+				          var joinDate = res.connected_at;
+				          
+				          console.log(userID);
+				          console.log(userGender);
+				          console.log(userAgeRange);
+				          console.log(joinDate);
+				          
+			         },
+			         fail: function(error) {
+			          alert(JSON.stringify(error));
+			         }
+		        });
+	       },
+	       fail: function(err) {
+	    	   alert(JSON.stringify(err));
+	       }
+	   	})
+	})
+	
+	
+	
 </script>
 </head>
 
@@ -87,18 +127,15 @@
 								type="submit" value="SIGN IN" id="submitBtn">
 							<div class="signin_with mt-3">
 								<p class="mb-0">or Sign Up using</p>
-								<button
+								<!-- <button
 									class="btn btn-primary btn-icon btn-icon-mini btn-round facebook">
 									<i class="zmdi zmdi-facebook"></i>
-								</button>
-								<button
-									class="btn btn-primary btn-icon btn-icon-mini btn-round twitter">
-									<i class="zmdi zmdi-twitter"></i>
-								</button>
-								<button
-									class="btn btn-primary btn-icon btn-icon-mini btn-round google">
-									<i class="zmdi zmdi-google-plus"></i>
-								</button>
+								</button> -->
+								<div class="btn btn-primary btn-icon btn-icon-mini btn-round"
+									style="background-color: whitesmoke">
+									<img id="kakao-login-btn" alt="kakaoSignImg"
+										src="${pageContext.request.contextPath}/sign/imgs/kakaoSign.png">
+								</div>
 							</div>
 						</div>
 					</form>

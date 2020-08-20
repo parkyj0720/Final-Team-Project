@@ -13,13 +13,13 @@ public class SignUpController {
 	
 	@RequestMapping("signUp.do")
 	public ModelAndView signUp() {
-		mv.setViewName("/user/signUp.jsp");
+		mv.setViewName("/sign/signUp.jsp");
 		return mv;
 	}
 	
 	@RequestMapping("signUpPro.do")
 	public ModelAndView signUpPro() {
-		mv.setViewName("/user/signUpPro.jsp");
+		mv.setViewName("/sign/signUpPro.jsp");
 		return mv;
 	}
 	
