@@ -66,17 +66,7 @@
 			<p>Please wait...</p>
 		</div>
 	</div>
-	<!-- Loding Page -->
-	<div class="page-loader-wrapper">
-		<div class="loader">
-			<div class="m-t-30">
-				<img class="zmdi-hc-spin"
-					src="${pageContext.request.contextPath}/stylesheet/assets/images/loader.svg"
-					style="width: 48px; height: 48px; alt: Aero;">
-			</div>
-			<p>Please wait...</p>
-		</div>
-	</div>
+
 	<!-- Overlay For Sidebars -->
 	<div class="overlay"></div>
 	<!-- Left Sidebar -->
