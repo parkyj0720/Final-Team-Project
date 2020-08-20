@@ -32,6 +32,10 @@
                 android:id="@+id/nav_send"
                 android:icon="@drawable/ic_menu_send"
                 android:title="@string/menu_send" />
+            <item
+                android:id="@+id/nav_webview"
+                android:icon="@drawable/ic_menu_send"
+                android:title="웹으로보기" />
         </menu>
     </item>
 
