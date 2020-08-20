@@ -11,5 +11,5 @@
 /build
 /captures
 .externalNativeBuild
-target/*
+*/target/*
 pom.properties
