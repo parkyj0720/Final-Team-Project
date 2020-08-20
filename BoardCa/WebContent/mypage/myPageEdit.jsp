@@ -35,6 +35,37 @@
 			<p>Please wait...</p>
 		</div>
 	</div>
+		<!-- Overlay For Sidebars -->
+	<div class="overlay"></div>
+	<!-- Left Sidebar -->
+	<aside id="leftsidebar" class="sidebar">
+		<div class="navbar-brand" style="border-bottom: 0px;">
+			<button class="btn-menu ls-toggle-btn" type="button">
+				<i class="zmdi zmdi-menu"></i>
+			</button>
+			<a href="index.html"><img src="assets/images/logo.svg" width="25"
+				alt="Aero"><span class="m-l-10">Aero</span></a>
+		</div>
+		<div class="menu">
+			<ul class="list">
+				<li>
+					<div class="user-info" style="border-bottom: 0px;">
+						<a class="image" href="${pageContext.request.contextPath}/myPage.do"><img
+							src="${pageContext.request.contextPath}/mypage/imgs/02.jpg"
+							alt="User"></a>
+						<div class="detail">
+							<h4>Michael</h4>
+							<small>Super Admin</small>
+						</div>
+					</div>
+				</li>
+				<li><a href="index.html"><i class="zmdi zmdi-home"></i><span>Dashboard</span></a></li>
+				<li><a href="my-profile.html"><i class="zmdi zmdi-account"></i><span>Our
+							Profile</span></a></li>
+
+			</ul>
+		</div>
+	</aside>
 
 	<!-- Main Content  -->
 	<section class="content" style="margin: 5% 10%;">
@@ -114,80 +145,80 @@
 												placeholder="Last Name">
 										</div>
 									</div>
-									<!-- Select -->
-									<!--  -->
-									<div class="row clearfix">
-										<div class="col-lg-12 col-md-12 col-sm-12">
+									<div class="row clearfix" style="width: 100%;">
+										<div class="col-lg-12 col-md-12 col-sm-12"
+											style="padding-right: 0px;">
 											<div class="card">
 												<div class="header">
 													<h2>
 														<strong>City</strong>
 													</h2>
-													<div class="body">
-														<div class="row clearfix">
-															<div class="col-sm-6">
-																<select class="form-control show-tick">
-																	<option value="">-- 도/광역시·특별시 --</option>
-																	<option value="10">10</option>
-																	<option value="20">20</option>
-																	<option value="30">30</option>
-																	<option value="40">40</option>
-																	<option value="50">50</option>
-																</select>
+												</div>
+												<div class="body"
+													style="padding-left: 0px; padding-right: 0px;">
+													<div class="row clearfix">
+														<div class="col-sm-6">
+															<select class="form-control show-tick">
+																<option value="">-- Please select --</option>
+																<option value="10">10</option>
+																<option value="20">20</option>
+																<option value="30">30</option>
+																<option value="40">40</option>
+																<option value="50">50</option>
+															</select>
+														</div>
+														<div class="col-sm-6">
+															<select class="form-control show-tick">
+																<option value="">-- Please select --</option>
+																<option value="10">10</option>
+																<option value="20">20</option>
+																<option value="30">30</option>
+																<option value="40">40</option>
+																<option value="50">50</option>
+															</select>
+														</div>
+														<div class="col-lg-12 col-md-12">
+															<div class="header">
+																<h2>
+																	<strong>Email</strong>
+																</h2>
+																<input type="text" class="form-control"
+																	placeholder="E-mail">
 															</div>
-															<div class="col-sm-6">
-																<select class="form-control show-tick" id="City">
-																	<option value="">-- 시/군/구 --</option>
-																	<option value="부천시 소사구">경기도 부천시 소사구</option>
-																	<option value="20">20</option>
-																	<option value="30">30</option>
-																	<option value="40">40</option>
-																	<option value="50">50</option>
-																</select>
+															<div class="header">
+																<h2>
+																	<strong>Phone</strong>
+																</h2>
+																<input type="text" class="form-control"
+																	placeholder="Phone">
 															</div>
+														</div>
+														<!--  -->
+														<div class="col-md-12">
+															<div class="checkbox">
+																<input id="procheck1" type="checkbox" checked> <label
+																	for="procheck1">Profile Visibility For Everyone</label>
+															</div>
+															<div class="checkbox">
+																<input id="procheck2" type="checkbox"> <label
+																	for="procheck2">New task notifications</label>
+															</div>
+															<div class="checkbox">
+																<input id="procheck3" type="checkbox"> <label
+																	for="procheck3">New friend request
+																	notifications</label>
+															</div>
+														</div>
+														<div class="col-md-12">
+															<button class="btn btn-primary">Save Changes</button>
 														</div>
 													</div>
 												</div>
 											</div>
 										</div>
-										<div class="col-lg-4 col-md-12">
-											<div class="form-group">
-												<input type="text" class="form-control" placeholder="E-mail">
-											</div>
-										</div>
-										<div class="col-lg-4 col-md-12">
-											<div></div>
-										</div>
-										<div class="col-md-12">
-											<div class="form-group">
-												<textarea rows="4" class="form-control no-resize"
-													placeholder="Address Line 1"></textarea>
-											</div>
-										</div>
-										<div class="col-md-12">
-											<div class="checkbox">
-												<input id="procheck1" type="checkbox" checked> <label
-													for="procheck1">Profile Visibility For Everyone</label>
-											</div>
-											<div class="checkbox">
-												<input id="procheck2" type="checkbox"> <label
-													for="procheck2">New task notifications</label>
-											</div>
-											<div class="checkbox">
-												<input id="procheck3" type="checkbox"> <label
-													for="procheck3">New friend request notifications</label>
-											</div>
-										</div>
-										<div class="col-md-12">
-											<button class="btn btn-primary">Save Changes</button>
-										</div>
 									</div>
 								</div>
 							</div>
-						</div>
-					</div>
-				</div>
-			</div>
 	</section>
 	<!-- Jquery Core Js -->
 	<script

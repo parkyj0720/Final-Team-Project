@@ -19,7 +19,7 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 @Controller
-public class SingInController {
+public class SignInController {
 
 	
 	@Autowired
@@ -28,7 +28,7 @@ public class SingInController {
 	@RequestMapping("/signIn.do")
 	public ModelAndView signIn() {
 		
-		mv.setViewName("/user/signIn.jsp");
+		mv.setViewName("/sign/signIn.jsp");
 		return mv;
 	}
 	
@@ -65,8 +65,12 @@ public class SingInController {
 		sedto.setPlace(country);
 		
 		String id = req.getParameter("userId");
+		String pw = req.getParameter("userPw");
 		
-		System.out.println(id);
+		dto.setId(id);
+		dto.setPw(pw);
+		
+		
 		
 		mv.addObject("id",id);
 		mv.setViewName("/main/main.jsp");
@@ -76,7 +80,8 @@ public class SingInController {
 		
 		return mv;
 	}
-	
+
+
 	
 	
 	

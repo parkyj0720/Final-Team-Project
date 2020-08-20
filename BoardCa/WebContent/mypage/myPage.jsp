@@ -42,7 +42,38 @@
 			<p>Please wait...</p>
 		</div>
 	</div>
-	<!-- Main Content  -->
+	<!-- Overlay For Sidebars -->
+	<div class="overlay"></div>
+	<!-- Left Sidebar -->
+	<aside id="leftsidebar" class="sidebar">
+		<div class="navbar-brand" style="border-bottom: 0px;">
+			<button class="btn-menu ls-toggle-btn" type="button">
+				<i class="zmdi zmdi-menu"></i>
+			</button>
+			<a href="index.html"><img src="assets/images/logo.svg" width="25"
+				alt="Aero"><span class="m-l-10">Aero</span></a>
+		</div>
+		<div class="menu">
+			<ul class="list">
+				<li>
+					<div class="user-info" style="border-bottom: 0px;">
+						<a class="image" href="${pageContext.request.contextPath}/myPage.do"><img
+							src="${pageContext.request.contextPath}/mypage/imgs/02.jpg"
+							alt="User"></a>
+						<div class="detail">
+							<h4>Michael</h4>
+							<small>Super Admin</small>
+						</div>
+					</div>
+				</li>
+				<li><a href="${pageContext.request.contextPath}/myWriteList.do"><i class="zmdi zmdi-home"></i><span>Dashboard</span></a></li>
+				<li><a href="my-profile.html"><i class="zmdi zmdi-account"></i><span>Our
+							Profile</span></a></li>
+
+			</ul>
+		</div>
+	</aside>
+	<!-- Main1 Content  -->
 	<section class="content" style="margin: 5% 10%;">
 		<div class="body_scroll">
 			<div class="block-header">
@@ -64,6 +95,8 @@
 					</div>
 				</div>
 			</div>
+
+			<!-- Main2 Content  -->
 			<div class="container-fluid">
 				<div class="row clearfix">
 					<div class="col-lg-12 col-md-12">
@@ -73,9 +106,7 @@
 									src="${pageContext.request.contextPath}/mypage/imgs/01.jpg"
 									class="rounded-circle shadow " alt="profile-image"
 									style="width: 20%; height: 20%;"></a>
-								<h4 class="m-t-10">UserName</h4>
-								/
-								<h4 class="m-t-10">NickName</h4>
+								<h4 class="m-t-10">UserName/NickName</h4>
 								<div class="row">
 									<div class="col-lg-12 col-md-12">
 										<ul class="social-links list-unstyled">
@@ -86,64 +117,84 @@
 											<li><a title="instagram" href="javascript:void(0);"><i
 													class="zmdi zmdi-instagram"></i></a></li>
 										</ul>
-										<p class="text-muted">address</p>
 									</div>
-									<div class="col-4">a</div>
-									<div class="col-4">b</div>
-									<div class="col-4">c</div>
 								</div>
 							</div>
 						</div>
 						<div class="card">
 							<div class="body">
+								<small class="text-muted">gender: </small>
+								<p>male/female</p>
+								<hr>
+								<small class="text-muted">Address: </small>
+								<p>Address</p>
+								<hr>
 								<small class="text-muted">Email address: </small>
 								<p>michael_dorsey@gmail.com</p>
 								<hr>
 								<small class="text-muted">Phone: </small>
 								<p>+ 202-555-0191</p>
 								<hr>
-
-
-								<div class="card">
-									<div class="header">
-										<div class="body">
-											<p>내 게시물</p>
-											<div class="list-unstyled row clearfix">
-												<div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 m-b-30">
-													<a href="${pageContext.request.contextPath}/myPage.do">게시글1</a>
-												</div>
-												<div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 m-b-30">
-													<a>게시글1</a>
-												</div>
-												<div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 m-b-30">
-													<a>게시글1</a>
-												</div>
-												<div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 m-b-30">
-													<a>게시글1</a>
-												</div>
-												<div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 m-b-30">
-													<a>게시글1</a>
-												</div>
-												<div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 m-b-30">
-													<a>게시글1</a>
-												</div>
-												<div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 m-b-30">
-													<a>게시글1</a>
-												</div>
-												<div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 m-b-30">
-													<a>게시글1</a>
+								<div class="col-lg-12 col-md-12 col-sm-12">
+									<div class="card">
+										<div class="header">
+											<h2>
+												<strong>내가 쓴글</strong>
+											</h2>
+											<div class="body">
+												<div class="table-responsive">
+													<table class="table table-hover">
+														<thead>
+															<tr>
+																<th>#</th>
+																<th>FIRST NAME</th>
+																<th>LAST NAME</th>
+																<th>USERNAME</th>
+															</tr>
+														</thead>
+														<tbody>
+															<tr>
+																<th scope="row">1</th>
+																<td>Mark</td>
+																<td>Otto</td>
+																<td>@mdo</td>
+															</tr>
+															<tr>
+																<th scope="row">2</th>
+																<td>Jacob</td>
+																<td>Thornton</td>
+																<td>@fat</td>
+															</tr>
+															<tr>
+																<th scope="row">3</th>
+																<td>Larry</td>
+																<td>the Bird</td>
+																<td>@twitter</td>
+															</tr>
+															<tr>
+																<th scope="row">4</th>
+																<td>Larry</td>
+																<td>Jellybean</td>
+																<td>@lajelly</td>
+															</tr>
+															<tr>
+																<th scope="row">5</th>
+																<td>Larry</td>
+																<td>Kikat</td>
+																<td>@lakitkat</td>
+															</tr>
+														</tbody>
+													</table>
 												</div>
 											</div>
 										</div>
 									</div>
-
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-		</div>
 	</section>
 	<!-- Jquery Core Js -->
 	<script
