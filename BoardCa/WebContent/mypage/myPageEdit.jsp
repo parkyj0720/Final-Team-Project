@@ -55,7 +55,7 @@
 							<li class="breadcrumb-item active">Edit</li>
 						</ul>
 					</div>
-						<div class="col-lg-5 col-md-6 col-sm-12">
+						<div class="col-lg-5 col-md-6">
 
 							<a href="${pageContext.request.contextPath}/myPage.do" class="btn btn-info btn-icon float-right"><i
 								class="zmdi zmdi-check"></i></a>
