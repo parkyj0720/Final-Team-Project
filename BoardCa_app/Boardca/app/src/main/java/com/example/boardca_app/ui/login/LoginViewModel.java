@@ -1,15 +1,15 @@
 package com.example.boardca_app.ui.login;
 
+import android.util.Patterns;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import android.util.Patterns;
-
+import com.example.boardca_app.R;
 import com.example.boardca_app.data.LoginRepository;
 import com.example.boardca_app.data.Result;
 import com.example.boardca_app.data.model.LoggedInUser;
-import com.example.boardca_app.R;
 
 public class LoginViewModel extends ViewModel {
 

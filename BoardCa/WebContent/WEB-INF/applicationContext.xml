@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:context="http://www.springframework.org/schema/context"
+  xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+  xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
+  xsi:schemaLocation="http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-4.3.xsd
+		http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+  
+  <context:annotation-config />
+
+  <context:component-scan base-package="com.javaex">
+    <context:include-filter type="annotation" expression="org.springframework.stereotype.Repository" />
+    <context:include-filter type="annotation" expression="org.springframework.stereotype.Service" />
+    <context:include-filter type="annotation" expression="org.springframework.stereotype.Component" />
+  </context:component-scan>
+
+  <!-- oracle datasource -->
+  <bean id="oracleDatasource" class="oracle.jdbc.pool.OracleDataSource"
+    destroy-method="close">
+    <property name="URL" value="jdbc:oracle:thin:@localhost:1521:xe" />
+    <property name="user" value="hr" />
+    <property name="password" value="hr" />
+    <property name="connectionCachingEnabled" value="true" />
+    <qualifier value="main-db" />
+  </bean>
+
+
+  <!-- MyBatis SqlSessionFactoryBean -->
+  <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+    <property name="dataSource" ref="oracleDatasource" />
+    <property name="configLocation" value="classpath:mybatis/configuration.xml" />
+  </bean>
+
+  <!-- MyBatis SqlSessionTemplate -->
+  <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+    <constructor-arg index="0" ref="sqlSessionFactory" />
+  </bean>
+
+</beans>
