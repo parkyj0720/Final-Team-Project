@@ -11,6 +11,8 @@ import com.example.boardca_app.R;
 
 public class Web_Fragment extends AppCompatActivity {
 
+
+
     private WebView webView; //웹뷰선언
     private WebSettings webSettings; //웹뷰세팅
 
@@ -43,7 +45,7 @@ public class Web_Fragment extends AppCompatActivity {
         webView.setWebChromeClient(new WebChromeClient());
 
         // 웹뷰 띄우기. 앱에서 표시할 url 입력
-        webView.loadUrl("https://m.naver.com");
+        webView.loadUrl("https://192.168.219.126:8088/BoardCa/signIn.do");
     }
 
     //폰의 뒤로가기 버튼의 동작 입력
