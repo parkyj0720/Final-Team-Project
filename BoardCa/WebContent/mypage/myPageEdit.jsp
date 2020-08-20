@@ -38,7 +38,7 @@
 
 	<!-- Overlay For Sidebars -->
 	<div class="overlay"></div>
-	
+
 	<!-- Left Sidebar -->
 	<aside id="leftsidebar" class="sidebar">
 		<div class="navbar-brand" style="border-bottom: 0px;">
@@ -64,13 +64,14 @@
 						</div>
 					</div>
 				</li>
-						<li><a href="${pageContext.request.contextPath}/myWriteList.do"><i
+				<li><a href="${pageContext.request.contextPath}/myWriteList.do"><i
 						class="zmdi zmdi-hc-fw ti-write"></i><span>내가 쓴 글</span></a></li>
-				<li><a href="${pageContext.request.contextPath}/myFavorite.do"><i
+				<li><a href="${pageContext.request.contextPath}/myFAQ.do"><i
 						class="zmdi zmdi-hc-fw ti-comments"></i><span>FAQ/1:1 문의</span> </a></li>
 				<li><a href="${pageContext.request.contextPath}/myFavorite.do"><i
-						class="zmdi zmdi-hc-fw ti-thumb-up"></i><span>관심글 (상품  / 게시글)</span> </a></li>
-				<li><a href="${pageContext.request.contextPath}/myFavorite.do"><i
+						class="zmdi zmdi-hc-fw ti-thumb-up"></i><span>관심글 (상품 /
+							게시글)</span> </a></li>
+				<li><a href="${pageContext.request.contextPath}/myCoupon.do"><i
 						class="zmdi zmdi-hc-fw ti-stamp"></i><span>Coupon</span> </a></li>
 			</ul>
 			<div class="slimScrollBar"
@@ -80,7 +81,7 @@
 		</div>
 	</aside>
 
-	<section class="content"style="margin: 5% 10%;">
+	<section class="content" style="margin: 5% 10%;">
 		<div class="body_scroll">
 			<div class="block-header">
 				<div class="row">
@@ -89,16 +90,17 @@
 						<ul class="breadcrumb">
 							<li class="breadcrumb-item"><a href="index.html"><i
 									class="zmdi zmdi-home"></i> Aero</a></li>
-							<li class="breadcrumb-item">Pages</li>
-							<li class="breadcrumb-item">Profile</li>
+							<li class="breadcrumb-item">
+							<a href="${pageContext.request.contextPath}/myPage.do">myPage</a></li>
 							<li class="breadcrumb-item active">Edit</li>
 						</ul>
 					</div>
-						<div class="col-lg-5 col-md-6">
+					<div class="col-lg-5 col-md-6">
 
-							<a href="${pageContext.request.contextPath}/myPage.do" class="btn btn-info btn-icon float-right"><i
-								class="zmdi zmdi-check"></i></a>
-						</div>
+						<a href="${pageContext.request.contextPath}/myPage.do"
+							class="btn btn-info btn-icon float-right"><i
+							class="zmdi zmdi-check"></i></a>
+					</div>
 				</div>
 			</div>
 			<div class="container-fluid">
@@ -131,7 +133,7 @@
 										</div>
 									</div>
 									<div class="col-12">
-										<button class="btn btn-info">Save Changes</button>
+										<button class="btn btn-info bg-orange">Save Changes</button>
 									</div>
 								</div>
 							</div>
@@ -192,7 +194,7 @@
 										</div>
 									</div>
 									<div class="col-md-12">
-										<button class="btn btn-primary">Save Changes</button>
+										<button class="btn btn-primary bg-orange">Save Changes</button>
 									</div>
 								</div>
 							</div>

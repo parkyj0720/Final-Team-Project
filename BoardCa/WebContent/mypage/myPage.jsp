@@ -47,7 +47,7 @@
 	<!-- Overlay For Sidebars -->
 	<div class="overlay"></div>
 	<!-- Left Sidebar -->
-	<aside id="leftsidebar" class="sidebar" >
+	<aside id="leftsidebar" class="sidebar">
 		<div class="navbar-brand" style="border-bottom: 0px;">
 			<button class="btn-menu ls-toggle-btn" type="button">
 				<i class="zmdi zmdi-menu"></i>
@@ -73,11 +73,12 @@
 				</li>
 				<li><a href="${pageContext.request.contextPath}/myWriteList.do"><i
 						class="zmdi zmdi-hc-fw ti-write"></i><span>내가 쓴 글</span></a></li>
-				<li><a href="${pageContext.request.contextPath}/myFavorite.do"><i
+				<li><a href="${pageContext.request.contextPath}/myFAQ.do"><i
 						class="zmdi zmdi-hc-fw ti-comments"></i><span>FAQ/1:1 문의</span> </a></li>
 				<li><a href="${pageContext.request.contextPath}/myFavorite.do"><i
-						class="zmdi zmdi-hc-fw ti-thumb-up"></i><span>관심글 (상품  / 게시글)</span> </a></li>
-				<li><a href="${pageContext.request.contextPath}/myFavorite.do"><i
+						class="zmdi zmdi-hc-fw ti-thumb-up"></i><span>관심글 (상품 /
+							게시글)</span> </a></li>
+				<li><a href="${pageContext.request.contextPath}/myCoupon.do"><i
 						class="zmdi zmdi-hc-fw ti-stamp"></i><span>Coupon</span> </a></li>
 			</ul>
 			<div class="slimScrollBar"
@@ -97,7 +98,8 @@
 						<ul class="breadcrumb">
 							<li class="breadcrumb-item"><a href="index.html"><i
 									class="zmdi zmdi-home"></i> Aero</a></li>
-							<li class="breadcrumb-item">Pages</li>
+							<li class="breadcrumb-item"><a
+								href="${pageContext.request.contextPath}/myPage.do">myPage</a></li>
 							<li class="breadcrumb-item active">Profile</li>
 						</ul>
 					</div>
