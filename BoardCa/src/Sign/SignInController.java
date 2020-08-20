@@ -28,7 +28,7 @@ public class SignInController {
 	@RequestMapping("/signIn.do")
 	public ModelAndView signIn() {
 		
-		mv.setViewName("/user/signIn.jsp");
+		mv.setViewName("/sign/signIn.jsp");
 		return mv;
 	}
 	
@@ -80,7 +80,8 @@ public class SignInController {
 		
 		return mv;
 	}
-	
+
+
 	
 	
 	
