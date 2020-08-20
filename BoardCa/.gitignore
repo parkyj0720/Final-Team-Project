@@ -12,4 +12,4 @@
 /captures
 .externalNativeBuild
 */target/*
-*/pom.properties
+pom.properties
