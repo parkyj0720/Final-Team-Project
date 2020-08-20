@@ -55,30 +55,20 @@
 			<div class="container-fluid">
 				<div class="row clearfix">
 					<div class="col-lg-12">
-						<div class="card">
-							<div class="table-responsive" style="overflow-x: hidden;">
+						<div class="card"">
+							<div class="table-responsive" style="overflow-x: visible">
 								<table
-									class="table table-hover product_item_list c_table theme-color mb-0 footable footable-1 footable-paging footable-paging-center breakpoint-lg"
+									class="table table-hover product_item_list c_table theme-color mb-0" style="width: 100%;"
 									>
-									<colgroup>
-										<col style="width: 10%" />
-										<col style="width: 10%" />
-										<col style="width: 40%;" />
-										<col style="width: 10%" />
-										<col style="width: 10%" />
-										<col style="width: 10%" />
-										<col style="width: 10%" />
-									</colgroup>
 									<tbody>
-										<tr >
-											<td class="text-muted" align="center">1</td>
-											<td class="text-muted" align="center">정태진</td>
-											<td class="text-muted" align="center">가나다라마바사아자차카타파하</td>
-											<td class="text-muted" align="center">date</td>
-											<td class="text-muted" align="center">100</td>
-											<td class="text-muted" align="center"><span
-												class="col-green">10</span></td>
-											<td class="text-muted" align="center"><i
+										<tr style="box-sizing: content-box;">
+											<td width="10%" height="auto" align="center" style="white-space: normal;">1</td>
+											<td width="10%" height="auto" align="center" style="white-space: normal;">정태진</td>
+											<td width="40%" height="auto" align="center" style="white-space: normal;">가나다라마바사아자차카타파하rrrrrrrrrrrr</td>
+											<td width="10%" height="auto" align="center" style="white-space: normal;">date</td>
+											<td width="10%" height="auto" align="center" style="white-space: normal;">100</td>
+											<td width="10%" height="auto" align="center" style="white-space: normal;">10</td>
+											<td width="10%" height="auto" align="center" style="white-space: normal;"><i
 												class="zmdi zmdi-hc-fw"></i></td>
 										</tr>
 									</tbody>
