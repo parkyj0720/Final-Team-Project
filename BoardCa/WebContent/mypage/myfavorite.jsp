@@ -84,6 +84,10 @@
 
 
 	<section class="content">
+		<!-- header -->
+
+
+		<!-- body -->
 		<div class="body_scroll">
 			<div class="block-header">
 				<div class="row">
@@ -92,7 +96,8 @@
 						<ul class="breadcrumb">
 							<li class="breadcrumb-item"><a href="index.html"><i
 									class="zmdi zmdi-home"></i> Aero</a></li>
-							<li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/myPage.do">myPage</a></li>
+							<li class="breadcrumb-item"><a
+								href="${pageContext.request.contextPath}/myPage.do">myPage</a></li>
 							<li class="breadcrumb-item active">myFavorite</li>
 						</ul>
 						<button class="btn btn-primary btn-icon mobile_menu" type="button">
@@ -111,7 +116,7 @@
 									class="table table-hover product_item_list c_table theme-color mb-0">
 									<thead>
 										<tr>
-											
+
 											<th>Product Name</th>
 
 										</tr>

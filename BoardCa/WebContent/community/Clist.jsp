@@ -42,7 +42,7 @@
 			<div class="block-header">
 				<div class="row">
 					<div class="col-lg-7 col-md-6 col-sm-12">
-						<h2>Product List</h2>
+						<h2>(수정예정)</h2>
 						<ul class="breadcrumb">
 							<li class="breadcrumb-item"><a href="index.html"><i
 									class="zmdi zmdi-home"></i> BoardCa</a></li>
