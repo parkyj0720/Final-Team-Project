@@ -10,7 +10,7 @@
   </typeAliases>
   
   <mappers>
-    <mapper resource="src/Sql/signSql.xml" />
+    <mapper resource="src/Sql/signSql.xml"/>
     
     
     
