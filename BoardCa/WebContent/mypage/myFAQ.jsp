@@ -71,7 +71,8 @@
 				<li><a href="${pageContext.request.contextPath}/myFAQ.do"><i
 						class="zmdi zmdi-hc-fw ti-comments"></i><span>FAQ/1:1 문의</span> </a></li>
 				<li><a href="${pageContext.request.contextPath}/myFavorite.do"><i
-						class="zmdi zmdi-hc-fw ti-thumb-up"></i><span>관심글 (상품  / 게시글)</span> </a></li>
+						class="zmdi zmdi-hc-fw ti-thumb-up"></i><span>관심글 (상품 /
+							게시글)</span> </a></li>
 				<li><a href="${pageContext.request.contextPath}/myCoupon.do"><i
 						class="zmdi zmdi-hc-fw ti-stamp"></i><span>Coupon</span> </a></li>
 			</ul>
@@ -83,6 +84,10 @@
 	</aside>
 
 	<section class="content blog-page">
+		<!-- header -->
+
+
+		<!-- body -->
 		<div class="body_scroll">
 			<div class="block-header">
 				<div class="row">
@@ -91,7 +96,8 @@
 						<ul class="breadcrumb">
 							<li class="breadcrumb-item"><a href="index.html"><i
 									class="zmdi zmdi-home"></i> Aero</a></li>
-							<li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/myPage.do">myPage</a></li>
+							<li class="breadcrumb-item"><a
+								href="${pageContext.request.contextPath}/myPage.do">myPage</a></li>
 							<li class="breadcrumb-item active">문의</li>
 						</ul>
 						<button class="btn btn-primary btn-icon mobile_menu" type="button">
@@ -137,7 +143,8 @@
 										Please try <b>paste some texts</b> here
 									</p>
 								</div>
-								<button type="button" class="btn btn-info waves-effect m-t-20 bg-orange">POST</button>
+								<button type="button"
+									class="btn btn-info waves-effect m-t-20 bg-orange">POST</button>
 							</div>
 						</div>
 					</div>

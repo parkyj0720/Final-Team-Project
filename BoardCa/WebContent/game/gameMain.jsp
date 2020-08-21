@@ -53,6 +53,10 @@
 
 
 	<section class="content file_manager" style="margin: auto;">
+	<!-- header -->
+	
+	
+	<!-- body -->
 		<div class="body_scroll">
 			<div class="block-header">
 				<div class="row">

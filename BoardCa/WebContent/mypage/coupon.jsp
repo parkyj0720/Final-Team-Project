@@ -14,11 +14,15 @@
 <title>:: Aero Bootstrap4 Admin :: Profile</title>
 <link rel="icon" href="favicon.ico" type="image/x-icon">
 <!-- Favicon-->
-<link rel="stylesheet" href="${pageContext.request.contextPath}/stylesheet/assets/plugins/bootstrap/css/bootstrap.min.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/stylesheet/assets/plugins/footable-bootstrap/css/footable.bootstrap.min.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/stylesheet/assets/plugins/footable-bootstrap/css/footable.standalone.min.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/stylesheet/assets/plugins/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/stylesheet/assets/plugins/footable-bootstrap/css/footable.bootstrap.min.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/stylesheet/assets/plugins/footable-bootstrap/css/footable.standalone.min.css">
 <!-- Custom Css -->
-<link rel="stylesheet" href="${pageContext.request.contextPath}/stylesheet/assets/css/style.min.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/stylesheet/assets/css/style.min.css">
 </head>
 
 <body class="ls-closed ls-toggle-menu theme-orange">
@@ -80,88 +84,106 @@
 	</aside>
 
 
-<section class="content">
-    <div class="body_scroll">
-        <div class="block-header">
-            <div class="row">
-                <div class="col-lg-7 col-md-6 col-sm-12">
-                    <h2>COUPON</h2>
-                    <ul class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="index.html"><i class="zmdi zmdi-home"></i> Aero</a></li>
-                        <li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/myPage.do">myPage</a></li>
-                        <li class="breadcrumb-item active">myCoupon</li>
-                    </ul>
-                    <button class="btn btn-primary btn-icon mobile_menu" type="button"><i class="zmdi zmdi-sort-amount-desc"></i></button>
-                </div>
-            </div>
-        </div>
+	<section class="content">
+		<!-- header -->
 
-        <div class="container-fluid">
-            <!-- Basic Table -->
-            <div class="row clearfix">
-                <div class="col-lg-12 col-md-12 col-sm-12">
-                    <div class="card">
-                        <div class="body">
-                            <div class="table-responsive">
-                                <table class="table table-striped m-b-0">
-                                    <thead>
-                                        <tr>
-                                            <th>쿠폰명</th>
-                                            <th data-breakpoints="xs">내 용</th>
-                                            <th>유효기간 날짜</th>
-                                        </tr>
-                                    </thead>
-                                        <tbody>
-                                        <tr>
-                                            <td>Tiger Nixon</td>
-                                            <td>System Architect</td>
-                                            <td>Edinburgh</td>
 
-                                        </tr>
-                                        <tr>
-                                            <td>Garrett</td>
-                                            <td>Accountant</td>
-                                            <td>Tokyo</td>
+		<!-- body -->
+		<div class="body_scroll">
+			<div class="block-header">
+				<div class="row">
+					<div class="col-lg-7 col-md-6 col-sm-12">
+						<h2>COUPON</h2>
+						<ul class="breadcrumb">
+							<li class="breadcrumb-item"><a href="index.html"><i
+									class="zmdi zmdi-home"></i> Aero</a></li>
+							<li class="breadcrumb-item"><a
+								href="${pageContext.request.contextPath}/myPage.do">myPage</a></li>
+							<li class="breadcrumb-item active">myCoupon</li>
+						</ul>
+						<button class="btn btn-primary btn-icon mobile_menu" type="button">
+							<i class="zmdi zmdi-sort-amount-desc"></i>
+						</button>
+					</div>
+				</div>
+			</div>
 
-                                        </tr>
-                                        <tr>
-                                            <td>Cox</td>
-                                            <td>Author</td>
-                                            <td>San</td>
-                                           
-                                        </tr>
-                                        <tr>
-                                            <td>Kelly</td>
-                                            <td>Brielle</td>
-                                            <td>Edinburgh</td>
-                                            
-                                        </tr>
-                                        <tr>
-                                            <td>Airi Satou</td>
-                                            <td>Accountant</td>
-                                            <td>Tokyo</td>
-                                            
-                                        </tr>
+			<div class="container-fluid">
+				<!-- Basic Table -->
+				<div class="row clearfix">
+					<div class="col-lg-12 col-md-12 col-sm-12">
+						<div class="card">
+							<div class="body">
+								<div class="table-responsive">
+									<table class="table table-striped m-b-0">
+										<thead>
+											<tr>
+												<th>쿠폰명</th>
+												<th data-breakpoints="xs">내 용</th>
+												<th>유효기간 날짜</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>Tiger Nixon</td>
+												<td>System Architect</td>
+												<td>Edinburgh</td>
 
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+											</tr>
+											<tr>
+												<td>Garrett</td>
+												<td>Accountant</td>
+												<td>Tokyo</td>
 
-<!-- Jquery Core Js --> 
-<script src="${pageContext.request.contextPath}/stylesheet/assets/bundles/libscripts.bundle.js"></script> <!-- Lib Scripts Plugin Js --> 
-<script src="${pageContext.request.contextPath}/stylesheet/assets/bundles/vendorscripts.bundle.js"></script> <!-- Lib Scripts Plugin Js -->
+											</tr>
+											<tr>
+												<td>Cox</td>
+												<td>Author</td>
+												<td>San</td>
 
-<script src="${pageContext.request.contextPath}/stylesheet/assets/bundles/footable.bundle.js"></script> <!-- Lib Scripts Plugin Js -->
+											</tr>
+											<tr>
+												<td>Kelly</td>
+												<td>Brielle</td>
+												<td>Edinburgh</td>
 
-<script src="${pageContext.request.contextPath}/stylesheet/assets/bundles/mainscripts.bundle.js"></script><!-- Custom Js -->
-<script src="${pageContext.request.contextPath}/stylesheet/assets/js/pages/tables/footable.js"></script><!-- Custom Js --> 
+											</tr>
+											<tr>
+												<td>Airi Satou</td>
+												<td>Accountant</td>
+												<td>Tokyo</td>
+
+											</tr>
+
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Jquery Core Js -->
+	<script
+		src="${pageContext.request.contextPath}/stylesheet/assets/bundles/libscripts.bundle.js"></script>
+	<!-- Lib Scripts Plugin Js -->
+	<script
+		src="${pageContext.request.contextPath}/stylesheet/assets/bundles/vendorscripts.bundle.js"></script>
+	<!-- Lib Scripts Plugin Js -->
+
+	<script
+		src="${pageContext.request.contextPath}/stylesheet/assets/bundles/footable.bundle.js"></script>
+	<!-- Lib Scripts Plugin Js -->
+
+	<script
+		src="${pageContext.request.contextPath}/stylesheet/assets/bundles/mainscripts.bundle.js"></script>
+	<!-- Custom Js -->
+	<script
+		src="${pageContext.request.contextPath}/stylesheet/assets/js/pages/tables/footable.js"></script>
+	<!-- Custom Js -->
 
 </body>
 </html>
