@@ -1,10 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE sqlMapConfig PUBLIC "-//ibatis.apache.org//DTD SQL Map Config 2.0//EN"
-	"http://ibatis.apache.org/dtd/sql-map-config-2.dtd">
-<sqlMapConfig>
+<!DOCTYPE mapper 
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-	<settings  useStatementNamespaces="true" />
+<mapper namespace="signXml">
+
+<select id="signCheck" resultType="String" parameterType="Member.MemberDto">
+	select mem_pw
+	from member
+	where mem_id=#{userId}
+</select>
+
+<select id="sessionInput" parameterType="SessionDto">
 	
-	<sqlMap resource="/sql/signSQL.xml"/>
-	
-</sqlMapConfig>
+</select>
+
+
+
+
+
+
+</mapper>

@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/stylesheet/assets/css/style.min.css" type="text/css">    
 </head>
 <body>
-<section class="content blog-page" style="margin-left: auto; margin-right: auto; padding-left: 20%; padding-right: 20%;">
+<section class="content blog-page" style="margin-left: auto; margin-right: auto; padding-left: 10%; padding-right: 10%;">
     <div class="body_scroll">
         <div class="block-header">
             <div class="row">

@@ -84,5 +84,6 @@
     <string name="menu_tools">커뮤니티</string>
     <string name="menu_share">지도</string>
     <string name="menu_send">Send</string>
+    <string name="menu_web">Web</string>
     <string name="title_activity_web__fragment">Web_Fragment</string>
 </resources>

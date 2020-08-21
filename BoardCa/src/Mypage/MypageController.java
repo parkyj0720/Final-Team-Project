@@ -22,7 +22,22 @@ public class MypageController {
 	}
 	@RequestMapping("/myWriteList.do")
 	public ModelAndView myWriteList() {
-		mv.setViewName("/mypage/writedPage.jsp");
+		mv.setViewName("/mypage/writeList.jsp");
+		return mv;
+	}
+	@RequestMapping("/myFAQ.do")
+	public ModelAndView myFAQ() {
+		mv.setViewName("/mypage/myFAQ.jsp");
+		return mv;
+	}
+	@RequestMapping("/myFavorite.do")
+	public ModelAndView myFavoriteList() {
+		mv.setViewName("/mypage/myfavorite.jsp");
+		return mv;
+	}
+	@RequestMapping("/myCoupon.do")
+	public ModelAndView myCoupon() {
+		mv.setViewName("/mypage/coupon.jsp");
 		return mv;
 	}
 }

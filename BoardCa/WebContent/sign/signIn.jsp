@@ -57,15 +57,17 @@
 					success : function(res) {
 						console.log(res);
 
-						userID = res.id; //유저의 카카오톡 고유 id
+						userId = res.id; //유저의 카카오톡 고유 id
 						var userGender = res.kakao_account.gender; //유저의 성별
 						var userAgeRange = res.kakao_account.age_range; //유저의 연령대
 						var joinDate = res.connected_at;
 
-						console.log(userID);
+						console.log(userId);
 						console.log(userGender);
 						console.log(userAgeRange);
 						console.log(joinDate);
+						
+						
 
 					},
 					fail : function(error) {
@@ -77,7 +79,7 @@
 				alert(JSON.stringify(err));
 			}
 		})
-		$("#kakao-login-btn").on(
+		/* $("#kakao-login-btn").on(
 				"click",
 				function() {
 					$.post(
@@ -85,7 +87,8 @@
 								userId : userID
 							})
 
-				})
+				}
+		) */
 	})
 </script>
 </head>
