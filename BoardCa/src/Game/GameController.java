@@ -16,4 +16,9 @@ public class GameController {
 		mv.setViewName("/game/gameMain.jsp");
 		return mv;
 	}
+	@RequestMapping("/gameDtail.do")
+	public ModelAndView gameDtail() {
+		mv.setViewName("/game/gameDtail.jsp");
+		return mv;
+	}
 }
