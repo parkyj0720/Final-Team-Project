@@ -12,13 +12,13 @@
         android:orientation="vertical"
         android:layout_marginTop="30dp">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="가\n입"
-        android:textSize="25sp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginBottom="30dp"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="가\n입"
+            android:textSize="25sp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginBottom="30dp"/>
 
     </LinearLayout>
 
@@ -141,31 +141,31 @@
             android:text="기본 정보 입력(필수)"
             android:layout_marginLeft="20dp"/>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginRight="20dp"
-        android:layout_marginLeft="20dp">
-        <EditText
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="아이디"
-            android:textSize="15dp"/>
-    </com.google.android.material.textfield.TextInputLayout>
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp">
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="아이디"
+                android:textSize="15dp"/>
+        </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginRight="20dp"
-        android:layout_marginLeft="20dp"
-        app:passwordToggleEnabled="true">
-        <EditText android:id="@+id/password"
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/password"
-            android:textSize="15dp"
-            android:layout_gravity="center"/>
-    </com.google.android.material.textfield.TextInputLayout>
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
+            app:passwordToggleEnabled="true">
+            <EditText android:id="@+id/password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/password"
+                android:textSize="15dp"
+                android:layout_gravity="center"/>
+        </com.google.android.material.textfield.TextInputLayout>
     </LinearLayout>
 
 </RelativeLayout>

@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
@@ -31,6 +32,10 @@ public class LoginActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.hide();
+
         loginViewModel = ViewModelProviders.of(this, new LoginViewModelFactory())
                 .get(LoginViewModel.class);
 
@@ -38,6 +43,19 @@ public class LoginActivity extends AppCompatActivity {
         final EditText passwordEditText = findViewById(R.id.password);
         final Button loginButton = findViewById(R.id.login);
         final ProgressBar loadingProgressBar = findViewById(R.id.loading);
+
+        //ID창 엔터방지.
+        usernameEditText.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                // TODO Auto-generated method stub
+                if(keyCode == event.KEYCODE_ENTER)
+                {
+                    return true;
+                }
+                return false;
+            }
+        });
 
         loginViewModel.getLoginFormState().observe(this, new Observer<LoginFormState>() {
             @Override
@@ -72,6 +90,7 @@ public class LoginActivity extends AppCompatActivity {
 
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(intent);
+                overridePendingTransition(0,0);
 
                 //Complete and destroy login activity once successful
                 finish();

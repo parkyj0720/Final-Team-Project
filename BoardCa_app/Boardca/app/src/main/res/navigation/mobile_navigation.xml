@@ -40,4 +40,13 @@
         android:name="com.example.boardca_app.ui.send.SendFragment"
         android:label="@string/menu_send"
         tools:layout="@layout/fragment_send" />
+
+    <fragment
+        android:id="@+id/nav_webview"
+        android:name="com.example.boardca_app.ui.web_view.Web_Fragment"
+        android:label="@string/menu_web"
+        tools:layout="@layout/activity_web" />
+
+
+
 </navigation>

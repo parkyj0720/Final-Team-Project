@@ -66,17 +66,7 @@
 			<p>Please wait...</p>
 		</div>
 	</div>
-	<!-- Loding Page -->
-	<div class="page-loader-wrapper">
-		<div class="loader">
-			<div class="m-t-30">
-				<img class="zmdi-hc-spin"
-					src="${pageContext.request.contextPath}/stylesheet/assets/images/loader.svg"
-					style="width: 48px; height: 48px; alt: Aero;">
-			</div>
-			<p>Please wait...</p>
-		</div>
-	</div>
+
 	<!-- Overlay For Sidebars -->
 	<div class="overlay"></div>
 	<!-- Left Sidebar -->
@@ -104,13 +94,14 @@
 						</div>
 					</div>
 				</li>
-						<li><a href="${pageContext.request.contextPath}/myWriteList.do"><i
+				<li><a href="${pageContext.request.contextPath}/myWriteList.do"><i
 						class="zmdi zmdi-hc-fw ti-write"></i><span>내가 쓴 글</span></a></li>
-				<li><a href="${pageContext.request.contextPath}/myFavorite.do"><i
+				<li><a href="${pageContext.request.contextPath}/myFAQ.do"><i
 						class="zmdi zmdi-hc-fw ti-comments"></i><span>FAQ/1:1 문의</span> </a></li>
 				<li><a href="${pageContext.request.contextPath}/myFavorite.do"><i
-						class="zmdi zmdi-hc-fw ti-thumb-up"></i><span>관심글 (상품  / 게시글)</span> </a></li>
-				<li><a href="${pageContext.request.contextPath}/myFavorite.do"><i
+						class="zmdi zmdi-hc-fw ti-thumb-up"></i><span>관심글 (상품 /
+							게시글)</span> </a></li>
+				<li><a href="${pageContext.request.contextPath}/myCoupon.do"><i
 						class="zmdi zmdi-hc-fw ti-stamp"></i><span>Coupon</span> </a></li>
 			</ul>
 			<div class="slimScrollBar"
@@ -121,7 +112,11 @@
 	</aside>
 
 	<!-- mainContent -->
-	<section class="content" >
+	<section class="content">
+		<!-- header -->
+
+
+		<!-- body -->
 		<div class="body_scroll">
 			<div class="block-header">
 				<div class="row">
@@ -134,7 +129,8 @@
 							<li class="breadcrumb-item"><a href="index.html"> <i
 									class="zmdi zmdi-home"></i> Aero
 							</a></li>
-							<li class="breadcrumb-item">myPages</li>
+							<li class="breadcrumb-item"><a
+								href="${pageContext.request.contextPath}/myPage.do">myPage</a></li>
 							<li class="breadcrumb-item active">목록</li>
 						</ul>
 					</div>
@@ -160,7 +156,7 @@
 									<div class="body">
 										<div class="table-responsive">
 											<table id="example-table-1"
-												class="bg-orange table table-bordered table-striped js-basic-example dataTable ">
+												class="table table-bordered table-striped js-basic-example dataTable ">
 												<thead>
 													<tr>
 														<th>no</th>
@@ -170,7 +166,7 @@
 													</tr>
 												</thead>
 												<tbody>
-													<tr class="clickBtn">
+													<tr class="clickBtn ">
 
 														<td>1</td>
 														<td>2020/08/20</td>
@@ -190,7 +186,7 @@
 											<div class="col-lg-12" id="ex1_Result1"></div>
 
 										</div>
-										<a href="${pageContext.request.contextPath}/myFavorite.do"
+										<a href="${pageContext.request.contextPath}//myFAQ.do"
 											class="btn btn-primary btn-lg bg-orange waves-effect waves-light">
 											1:1문의하기</a>
 									</div>

@@ -53,7 +53,7 @@
 					<form class="card auth_form">
 						<div class="header">
 							<img src="${pageContext.request.contextPath}/imgs/logo1.png"
-								alt="logo" />
+								alt="logo"  style="width:50%"/>
 						</div>
 						<div class="body">
 							<div>
@@ -62,7 +62,7 @@
 										<span class="input-group-text" >
 										<i class="zmdi zmdi-account-circle" ></i></span>
 									</div>
-									<input type="text" class="inputForm" placeholder="아이디" style="display: inline-block;">
+									<input type="text" class="inputForm" placeholder="아이디" style="display: inline-block;" value="${userId}">
 									<div>
 									<button class="btn btn-primary btn-block waves-effect waves-light checkBtn" style="display: inline-block;">중복확인</button>
 									</div>

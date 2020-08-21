@@ -9,9 +9,8 @@ import android.widget.ImageButton;
 
 import com.example.boardca_app.R;
 
-//2번
 public class CertifiedActivity extends AppCompatActivity {
-
+//1
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,3 +28,4 @@ public class CertifiedActivity extends AppCompatActivity {
         });
     }
 }
+
