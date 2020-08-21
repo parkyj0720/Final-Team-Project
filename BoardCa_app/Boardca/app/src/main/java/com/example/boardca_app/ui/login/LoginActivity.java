@@ -19,7 +19,6 @@ import androidx.annotation.StringRes;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
-
 import com.example.boardca_app.MainActivity;
 import com.example.boardca_app.R;
 
