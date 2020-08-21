@@ -67,6 +67,37 @@
 						console.log(userAgeRange);
 						console.log(joinDate);
 						
+						var form = document.createElement("form");
+						form.setAttribute('method', 'post');
+						form.setAttribute('action', '${pageContext.request.contextPath}/signUp.do');
+						
+						var hiddenField = document.createElement("input");
+						hiddenField.setAttribute("type", "hidden");
+						hiddenField.setAttribute("name", "userId");
+						hiddenField.setAttribute("value", userId);
+						form.appendChild(hiddenField);
+						
+						hiddenField = document.createElement("input");
+						hiddenField.setAttribute("type", "hidden");
+						hiddenField.setAttribute("name", "userGender");
+						hiddenField.setAttribute("value", userGender);
+						form.appendChild(hiddenField);
+						
+						hiddenField = document.createElement("input");
+						hiddenField.setAttribute("type", "hidden");
+						hiddenField.setAttribute("name", "userAgeRange");
+						hiddenField.setAttribute("value", userAgeRange);
+						form.appendChild(hiddenField);
+						
+						hiddenField = document.createElement("input");
+						hiddenField.setAttribute("type", "hidden");
+						hiddenField.setAttribute("name", "joinDate");
+						hiddenField.setAttribute("value", joinDate);
+						form.appendChild(hiddenField);
+						
+						document.body.appendChild(form);
+						alert("추가정보를 입력해주세요");
+						form.submit();
 						
 
 					},
@@ -103,9 +134,9 @@
 					<form class="card auth_form"
 						action="${pageContext.request.contextPath}/signPro.do"
 						method="post" name="userinput">
-						<div class="header">
+						<div class="header" >
 							<img src="${pageContext.request.contextPath}/imgs/logo1.png"
-								alt="logo" />
+								alt="logo" style="width:50%"/>
 						</div>
 						<div class="body">
 							<div class="input-group mb-3">
