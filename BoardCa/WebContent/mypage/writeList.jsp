@@ -150,7 +150,7 @@
 									<div class="body">
 										<div class="table-responsive">
 											<table id="example-table-1"
-												class="bg-orange table table-bordered table-striped js-basic-example dataTable ">
+												class="table table-bordered table-striped js-basic-example dataTable ">
 												<thead>
 													<tr>
 														<th>no</th>
@@ -160,7 +160,7 @@
 													</tr>
 												</thead>
 												<tbody>
-													<tr class="clickBtn">
+													<tr class="clickBtn ">
 
 														<td>1</td>
 														<td>2020/08/20</td>
@@ -180,7 +180,7 @@
 											<div class="col-lg-12" id="ex1_Result1"></div>
 
 										</div>
-										<a href="${pageContext.request.contextPath}/myFavorite.do"
+										<a href="${pageContext.request.contextPath}//myFAQ.do"
 											class="btn btn-primary btn-lg bg-orange waves-effect waves-light">
 											1:1문의하기</a>
 									</div>
