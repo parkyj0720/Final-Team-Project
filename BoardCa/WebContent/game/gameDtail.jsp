@@ -50,6 +50,10 @@
 
 
 	<section class="content file_manager" style="margin: auto;">
+		<!-- header -->
+
+
+		<!-- body -->
 		<div class="body_scroll">
 			<div class="block-header">
 				<div class="row">
@@ -156,7 +160,7 @@
 								<div class="text-box">
 									<h5>Kareem Todd</h5>
 									<span class="comment-date">Wednesday, October 17, 2018
-										at 4:00PM.</span> 
+										at 4:00PM.</span>
 									<p>There are many variations of passages of Lorem Ipsum
 										available, but the majority have suffered alteration in some
 										form, by injected humour.</p>
@@ -170,7 +174,7 @@
 								<div class="text-box">
 									<h5>Stillnot david</h5>
 									<span class="comment-date">Wednesday, October 17, 2018
-										at 4:00PM.</span> 
+										at 4:00PM.</span>
 									<p>Lorem Ipsum is simply dummy text of the printing and
 										typesetting industry. Lorem Ipsum has been the industry's
 										standard dummy.</p>

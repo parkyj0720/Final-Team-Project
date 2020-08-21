@@ -94,12 +94,13 @@
 						</div>
 					</div>
 				</li>
-						<li><a href="${pageContext.request.contextPath}/myWriteList.do"><i
+				<li><a href="${pageContext.request.contextPath}/myWriteList.do"><i
 						class="zmdi zmdi-hc-fw ti-write"></i><span>내가 쓴 글</span></a></li>
 				<li><a href="${pageContext.request.contextPath}/myFAQ.do"><i
 						class="zmdi zmdi-hc-fw ti-comments"></i><span>FAQ/1:1 문의</span> </a></li>
 				<li><a href="${pageContext.request.contextPath}/myFavorite.do"><i
-						class="zmdi zmdi-hc-fw ti-thumb-up"></i><span>관심글 (상품  / 게시글)</span> </a></li>
+						class="zmdi zmdi-hc-fw ti-thumb-up"></i><span>관심글 (상품 /
+							게시글)</span> </a></li>
 				<li><a href="${pageContext.request.contextPath}/myCoupon.do"><i
 						class="zmdi zmdi-hc-fw ti-stamp"></i><span>Coupon</span> </a></li>
 			</ul>
@@ -111,7 +112,11 @@
 	</aside>
 
 	<!-- mainContent -->
-	<section class="content" >
+	<section class="content">
+		<!-- header -->
+
+
+		<!-- body -->
 		<div class="body_scroll">
 			<div class="block-header">
 				<div class="row">
@@ -124,7 +129,8 @@
 							<li class="breadcrumb-item"><a href="index.html"> <i
 									class="zmdi zmdi-home"></i> Aero
 							</a></li>
-							<li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/myPage.do">myPage</a></li>
+							<li class="breadcrumb-item"><a
+								href="${pageContext.request.contextPath}/myPage.do">myPage</a></li>
 							<li class="breadcrumb-item active">목록</li>
 						</ul>
 					</div>
