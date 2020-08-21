@@ -10,8 +10,12 @@ public class MemberDao {
 	@Autowired
 	private SqlSession sqlSession;
 	
-	public String signIn(String userId) {
-		
+	public int idCheck(String userId) {		
+		System.out.println(userId);
+		return sqlSession.selectOne("signXml.idCheck",userId);
+	}	
+	
+	public String signIn(String userId) {		
 		System.out.println(userId);
 		return sqlSession.selectOne("signXml.signCheck",userId);
 	}
