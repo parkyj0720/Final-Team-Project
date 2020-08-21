@@ -34,6 +34,7 @@ public class SignInController {
 	@RequestMapping("/signIn.do")
 	public ModelAndView signIn() {
 		
+		
 		mv.setViewName("/sign/signIn.jsp");
 		return mv;
 	}
@@ -81,21 +82,26 @@ public class SignInController {
 		System.out.println(dto.getMem_pw());
 		
 		
-		String dbPw = memDao.signIn(userId);
-		if(userPw.equals(dbPw)) {
-			sedto.setMove("로그인(성공)");
-			session.setAttribute("userId", userId);
-			mv.setViewName("/main/main.jsp");
+		int idCheck = memDao.idCheck(userId);
+		if(idCheck == 1) {
+			String dbPw = memDao.signIn(userId);
+			if(userPw.equals(dbPw)) {
+				sedto.setMove("로그인(성공)");
+				session.setAttribute("userId", userId);
+				mv.setViewName("/main/main.jsp");
+			}else {
+				sedto.setMove("로그인(실패)");
+				mv.setViewName("/sign/signError.jsp");
+			}			
 		}else {
-			sedto.setMove("로그인(실패)");
 			mv.setViewName("/sign/signError.jsp");
 		}
-		
 		
 		
 		return mv;
 	}
 
+	
 
 	
 	
