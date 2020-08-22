@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html class="no-js " lang="en">
+<html lang="UTF-8">
 <head>
-<meta charset="utf-8">
+<meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=Edge">
 <meta
 	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
@@ -25,7 +25,7 @@
 	href="${pageContext.request.contextPath}/stylesheet/assets/css/style.min.css">
 </head>
 
-<body class="ls-closed ls-toggle-menu theme-orange">
+<body class="ls-closed ls-toggle-menu ">
 
 	<!-- Loding Page -->
 	<div class="page-loader-wrapper">
@@ -39,8 +39,10 @@
 		</div>
 	</div>
 
+
 	<!-- Overlay For Sidebars -->
 	<div class="overlay"></div>
+
 	<!-- Left Sidebar -->
 	<aside id="leftsidebar" class="sidebar">
 		<div class="navbar-brand" style="border-bottom: 0px;">
@@ -83,13 +85,12 @@
 		</div>
 	</aside>
 
-
 	<section class="content">
 		<!-- header -->
 
-
 		<!-- body -->
 		<div class="body_scroll">
+
 			<div class="block-header">
 				<div class="row">
 					<div class="col-lg-7 col-md-6 col-sm-12">

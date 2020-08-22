@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!Doctype html>
-<html class="no-js " lang="en">
+<!DOCTYPE html>
+<html lang="UTF-8">
 <head>
-<meta charset="utf-8">
+<meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=Edge">
 <meta
 	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
@@ -29,11 +29,14 @@
 	$('#like').text();
 	var count = 0;
 	$(function() {
-		$('#heart').click(function() {
-			count++;
-			console.log(count)
-			$('#like').html('<small class="bg-orange" id="like">'+count+'</small>')
-			})
+		$('#heart').click(
+				function() {
+					count++;
+					console.log(count)
+					$('#like').html(
+							'<small class="bg-orange" id="like">' + count
+									+ '</small>')
+				})
 	})
 </script>
 <body class="ls-closed ls-toggle-menu theme-orange">
@@ -50,13 +53,30 @@
 			<p>Please wait...</p>
 		</div>
 	</div>
+	<div  class="navbar-right user-info" >
+		<ul class="navbar-nav">
+			<li class="dropdown mobile_menu"><a class="ropdown-toggle image waves-effect waves-orange" 
+				data-toggle="dropdown" role="button"><img
+					src="${pageContext.request.contextPath}/mypage/imgs/01.jpg"
+					alt="User"></a>
 
+
+				<ul class="dropdown-menu slideUp2 ">
+					<li class="header">App Sortcute</li>
+					<li class="body">
+						<ul class="menu app_sortcut list-unstyled ">
+
+						</ul>
+					</li>
+				</ul></li>
+		</ul>
+	</div>
 
 	<section class="content file_manager" style="margin: auto;">
-	<!-- header -->
+		<!-- header -->
+
 	
-	
-	<!-- body -->
+		<!-- body -->
 		<div class="body_scroll">
 			<div class="block-header">
 				<div class="row">
@@ -86,14 +106,15 @@
 											<div class="card">
 												<div class="file">
 													<div class="icon">
-														<a href="${pageContext.request.contextPath}/game/gameDtail.jsp"><img
+														<a
+															href="${pageContext.request.contextPath}/game/gameDtail.jsp"><img
 															src="${pageContext.request.contextPath}/game/img/01.PNG"></a>
 													</div>
 													<div align="right">
 														<button id="heart"
 															class="bg-orange btn btn-primary btn-round">
 															<i class="zmdi zmdi-favorite-outline6 ti-heart"><br>
-															<small class="bg-orange" id="like">0</small></i>
+																<small class="bg-orange" id="like">0</small></i>
 														</button>
 													</div>
 												</div>

@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html class="no-js " lang="en">
+<html lang="UTF-8">
 <head>
-<meta charset="utf-8">
+<meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=Edge">
 <meta
 	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
@@ -24,7 +24,7 @@
 	type="text/css">
 </head>
 
-<body class="ls-closed ls-toggle-menu theme-orange">
+<body class="ls-closed ls-toggle-menu">
 
 	<!-- Loding Page -->
 	<div class="page-loader-wrapper">

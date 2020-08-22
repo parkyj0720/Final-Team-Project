@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!Doctype html>
-<html class="no-js " lang="en">
+<!DOCTYPE html>
+<html lang="UTF-8">
 <head>
-<meta charset="utf-8">
+<meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=Edge">
 <meta
 	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
@@ -35,7 +35,8 @@
 				})
 	})
 </script>
-<body>
+
+<body class="ls-closed ls-toggle-menu ">
 	<!-- Loding Page -->
 	<div class="page-loader-wrapper">
 		<div class="loader">
@@ -48,6 +49,24 @@
 		</div>
 	</div>
 
+	<div  class="navbar-right user-info " >
+		<ul class="navbar-nav">
+			<li class="dropdown mobile_menu"><a class="ropdown-toggle image waves-effect waves-orange" 
+				data-toggle="dropdown" role="button"><img
+					src="${pageContext.request.contextPath}/mypage/imgs/01.jpg"
+					alt="User"></a>
+
+
+				<ul class="dropdown-menu slideUp2 ">
+					<li class="header">App Sortcute</li>
+					<li class="body">
+						<ul class="menu app_sortcut list-unstyled ">
+
+						</ul>
+					</li>
+				</ul></li>
+		</ul>
+	</div>
 
 	<section class="content file_manager" style="margin: auto;">
 		<!-- header -->

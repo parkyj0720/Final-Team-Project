@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!doctype html>
-<html class="no-js " lang="en">
+<!DOCTYPE html>
+<html lang="UTF-8">
 <head>
-<meta charset="utf-8">
+<meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=Edge">
 <meta
 	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
@@ -21,9 +21,11 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/stylesheet/assets/css/style.min.css"
 	type="text/css">
-</head>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
+<body class="ls-closed ls-toggle-menu ">
 
-<body class="theme-blush">
 	<!-- Loding Page -->
 	<div class="page-loader-wrapper">
 		<div class="loader">
@@ -81,7 +83,7 @@
 		</div>
 	</aside>
 
-	<section class="content" style="margin: 5% 10%;">
+	<section class="content">
 		<div class="body_scroll">
 			<div class="block-header">
 				<div class="row">
@@ -90,111 +92,122 @@
 						<ul class="breadcrumb">
 							<li class="breadcrumb-item"><a href="index.html"><i
 									class="zmdi zmdi-home"></i> Aero</a></li>
-							<li class="breadcrumb-item">
-							<a href="${pageContext.request.contextPath}/myPage.do">myPage</a></li>
+							<li class="breadcrumb-item"><a
+								href="${pageContext.request.contextPath}/myPage.do">myPage</a></li>
 							<li class="breadcrumb-item active">Edit</li>
 						</ul>
 					</div>
-					<div class="col-lg-5 col-md-6">
-
+					<div class="col-lg-12 col-md-12 ">
+						<button class="btn btn-primary btn-icon mobile_menu" type="button">
+							<i class="zmdi zmdi-sort-amount-desc"></i>
+						</button>
 						<a href="${pageContext.request.contextPath}/myPage.do"
 							class="btn btn-info btn-icon float-right"><i
-							class="zmdi zmdi-check"></i></a>
+							class="zmdi zmdi-edit"></i></a>
 					</div>
 				</div>
-			</div>
-			<div class="container-fluid">
-				<div class="row clearfix">
-					<div class="col-md-12">
-						<div class="card">
-							<div class="header">
-								<h2>
-									<strong>Security</strong> Settings
-								</h2>
-							</div>
-							<div class="body">
-								<div class="row">
-									<div class="col-lg-4 col-md-12">
-										<div class="form-group">
-											<input type="text" class="form-control"
-												placeholder="Username">
+				<div class="container-fluid">
+					<div class="row clearfix">
+						<div class="col-md-12">
+							<div class="card">
+								<div class="header">
+									<h2>
+										<strong>Security</strong> Settings
+									</h2>
+								</div>
+								<div class="body">
+									<div class="row">
+										<div class="col-lg-4 col-md-12">
+											<div class="form-group">
+												<input type="text" class="form-control"
+													placeholder="Username">
+											</div>
 										</div>
-									</div>
-									<div class="col-lg-4 col-md-12">
-										<div class="form-group">
-											<input type="password" class="form-control"
-												placeholder="Current Password">
+										<div class="col-lg-4 col-md-12">
+											<div class="form-group">
+												<input type="password" class="form-control"
+													placeholder="Current Password">
+											</div>
 										</div>
-									</div>
-									<div class="col-lg-4 col-md-12">
-										<div class="form-group">
-											<input type="password" class="form-control"
-												placeholder="New Password">
+										<div class="col-lg-4 col-md-12">
+											<div class="form-group">
+												<input type="password" class="form-control"
+													placeholder="New Password">
+											</div>
 										</div>
-									</div>
-									<div class="col-12">
-										<button class="btn btn-info bg-orange">Save Changes</button>
+										<div class="col-12">
+											<button class="btn btn-info bg-orange">Save Changes</button>
+										</div>
 									</div>
 								</div>
 							</div>
-						</div>
-						<div class="card">
-							<div class="header">
-								<h2>
-									<strong>Account</strong> Settings
-								</h2>
-							</div>
-							<div class="body">
-								<div class="row clearfix">
-									<div class="col-lg-6 col-md-12">
-										<div class="form-group">
-											<input type="text" class="form-control"
-												placeholder="First Name">
+							<div class="card">
+								<div class="header">
+									<h2>
+										<strong>Account</strong> Settings
+									</h2>
+								</div>
+								<div class="body">
+									<div class="row clearfix">
+										<div class="col-lg-6 col-md-12">
+											<div class="form-group">
+												<input type="text" class="form-control"
+													placeholder="First Name">
+											</div>
 										</div>
-									</div>
-									<div class="col-lg-6 col-md-12">
-										<div class="form-group">
-											<input type="text" class="form-control"
-												placeholder="Last Name">
+										<div class="col-lg-6 col-md-12">
+											<div class="form-group">
+												<input type="text" class="form-control"
+													placeholder="Last Name">
+											</div>
 										</div>
-									</div>
-									<div class="col-lg-4 col-md-12">
-										<div class="form-group">
-											<input type="text" class="form-control" placeholder="City">
+										<div class="col-md-12">
+											<div class="form-group">
+												<input type="text" class="form-control" placeholder="E-mail">
+											</div>
 										</div>
-									</div>
-									<div class="col-lg-4 col-md-12">
-										<div class="form-group">
-											<input type="text" class="form-control" placeholder="E-mail">
+
+										<div class="col-lg-6 col-md-12">
+											<select class="form-control show-tick" tabindex="-98">
+												<option value="">-- Please select --</option>
+												<option value="10">10</option>
+												<option value="20">20</option>
+												<option value="30">30</option>
+												<option value="40">40</option>
+												<option value="50">50</option>
+											</select>
 										</div>
-									</div>
-									<div class="col-lg-4 col-md-12">
-										<div class="form-group">
-											<input type="text" class="form-control" placeholder="Country">
+
+
+										<div class="col-lg-6 col-md-12"style="hide">
+											<select class="form-control show-tick" tabindex="-98">
+												<option value="">-- Please select --</option>
+												<option value="10">10</option>
+												<option value="20">20</option>
+												<option value="30">30</option>
+												<option value="40">40</option>
+												<option value="50">50</option>
+											</select>
 										</div>
-									</div>
-									<div class="col-md-12">
-										<div class="form-group">
-											<textarea rows="4" class="form-control no-resize"
-												placeholder="Address Line 1"></textarea>
+
+										<div class="col-md-12">
+											<div class="checkbox">
+												<input id="procheck1" type="checkbox" checked> <label
+													for="procheck1">Profile Visibility For Everyone</label>
+											</div>
+											<div class="checkbox">
+												<input id="procheck2" type="checkbox"> <label
+													for="procheck2">New task notifications</label>
+											</div>
+											<div class="checkbox">
+												<input id="procheck3" type="checkbox"> <label
+													for="procheck3">New friend request notifications</label>
+											</div>
 										</div>
-									</div>
-									<div class="col-md-12">
-										<div class="checkbox">
-											<input id="procheck1" type="checkbox" checked> <label
-												for="procheck1">Profile Visibility For Everyone</label>
+										<div class="col-md-12">
+											<button class="btn btn-primary bg-orange">Save
+												Changes</button>
 										</div>
-										<div class="checkbox">
-											<input id="procheck2" type="checkbox"> <label
-												for="procheck2">New task notifications</label>
-										</div>
-										<div class="checkbox">
-											<input id="procheck3" type="checkbox"> <label
-												for="procheck3">New friend request notifications</label>
-										</div>
-									</div>
-									<div class="col-md-12">
-										<button class="btn btn-primary bg-orange">Save Changes</button>
 									</div>
 								</div>
 							</div>
@@ -204,6 +217,16 @@
 			</div>
 		</div>
 	</section>
+
+
+	<!-- Latest compiled and minified JavaScript -->
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
+
+	<!-- (Optional) Latest compiled and minified JavaScript translation files -->
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/i18n/defaults-*.min.js"></script>
+
 	<!-- Jquery Core Js -->
 	<script
 		src="${pageContext.request.contextPath}/stylesheet/assets/bundles/libscripts.bundle.js"></script>
