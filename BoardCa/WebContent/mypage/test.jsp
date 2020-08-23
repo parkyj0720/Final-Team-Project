@@ -23,77 +23,82 @@
 </style>
 </head>
 <body>
-<section class="content" style="margin-left: auto; margin-right: auto; padding-left: 10%; padding-right: 10%;">
-		<div class="row">
-			<div>
-				<img src="${pageContext.request.contextPath}/imgs/logo1.png"
-					height="250em" />
-			</div>
-		</div>
-		<div class=" col-md-12 alert alert-warning" id="menu" role="alert col-md-12"  >
-			<ul
-				style="list-style: none; padding: 0; margin: 0; overflow: hidden;">
-				<li class="col-md-4" >안주 레시피</li>
-				<li  class="col-md-4">술게임</li>
-				<li style="width: 25%; float: left; text-align: center;">커뮤니티</li>
-				<li style="width: 25%; float: left; text-align: center;">근처 술집</li>
-			</ul>
-		</div>
-		<div class="body_scroll">
-			<div class="block-header">
-				<div class="row">
-					<div class="col-lg-7 col-md-6 col-sm-12">
-						<h2>Product List</h2>
-						<ul class="breadcrumb">
-							<li class="breadcrumb-item"><a href="index.html"><i
-									class="zmdi zmdi-home"></i> BoardCa</a></li>
-							<li class="breadcrumb-item">Community</li>
-							<li class="breadcrumb-item active">(수정예정)</li>
+		<div class="navbar-right user-info">
+		<ul class="navbar-nav">
+			<li class="dropdown mobile_menu"><a
+				class="ropdown-toggle image waves-effect waves-orange"
+				data-toggle="dropdown" role="button"><img
+					src="${pageContext.request.contextPath}/mypage/imgs/01.jpg"
+					alt="User"></a>
+				<ul class="dropdown-menu slideUp2 " x-placement="bottom-start"
+					style="position: fixed; will-change: transform; top: 0px; left: 0px; transform: translate3d(-110px, 50px, 0px);">
+					<li class="header" style="text-align: right;">내 정보</li>
+					<li class="body" style="width: auto; height: 330px;">
+						<ul class="menu app_sortcut list-unstyled ">
+
+							<li><a href="${pageContext.request.contextPath}/myPage.do">
+									<div class="icon-circle bg-orange">
+										<i class="zmdi zmdi-account"></i>
+									</div>
+									<div class="menu-info">
+
+										<p>myPage</p>
+									</div>
+							</a></li>
+							<li><a href="${pageContext.request.contextPath}/myPageEdit.do">
+									<div class="icon-circle bg-orange">
+										<i class="zmdi zmdi-account"></i>
+									</div>
+									<div class="menu-info">
+
+										<p>Edit</p>
+									</div>
+							</a></li>
+							<li><a href="${pageContext.request.contextPath}/myFAQ.do">
+									<div class="icon-circle bg-orange">
+										<i class="zmdi zmdi-account"></i>
+									</div>
+									<div class="menu-info">
+
+										<p>1:1문의</p>
+									</div>
+							</a></li>
+							<li><a href="${pageContext.request.contextPath}/myPage.do">
+									<div class="icon-circle bg-orange">
+										<i class="zmdi zmdi-account"></i>
+									</div>
+									<div class="menu-info">
+
+										<p>LogOut</p>
+									</div>
+							</a></li>
 						</ul>
-					</div>
-				</div>
-			</div>
-        <div class="container-fluid">
-            <div class="row clearfix">
-                <div class="col-lg-6">
-                    <div class="card">
-                        <div class="header" align="center">
-                            <h2><a href="Clist.jsp">숙취게시판</a></h2>
-                        </div>
-                        <div class="body" style="height: 30em">
-                            
-                        </div>
-                    </div>                    
-                    <div class="card">
-                        <div class="header" align="center">
-                            <h2><a href="Clist.jsp">정보공유</a></h2>
-                        </div>
-                        <div class="body" style="height: 30em">
-                            
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-md-12">
-                    <div class="card">
-                        <div class="header" align="center">
-                            <h2><a href="Clist.jsp">QnA</a></h2>
-                        </div>
-                        <div class="body" style="height: 30em">
-                            
-                        </div>
-                    </div>                    
-                    <div class="card">
-                        <div class="header" align="center">
-                            <h2><a href="Clist.jsp">신고하기</a></h2>
-                        </div>
-                        <div class="body" style="height: 30em">
-                            
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+					</li>
+				</ul></li>
+		</ul>
+
+
+		<div class="slimScrollBar"
+			style="background: rgba(0, 0, 0, 0.2); width: 3px; position: absolute; top: 0px; opacity: 0.4; display: none; border-radius: 3px; z-index: 99; right: 1px; height: 330px;"></div>
+		<div class="slimScrollRail"
+			style="width: 3px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 0px; background: rgb(51, 51, 51); opacity: 0.2; z-index: 90; right: 1px;"></div>
+	</div>
+<section class="content" style="margin-left: auto; margin-right: auto; padding-left: 10%; padding-right: 10%;">
+
 </section>
+
+
+
+
+
+
+
+	<script
+		src="${pageContext.request.contextPath}/stylesheet/assets/bundles/libscripts.bundle.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/stylesheet/assets/bundles/vendorscripts.bundle.js"></script>
+
+	<script
+		src="${pageContext.request.contextPath}/stylesheet/assets/bundles/mainscripts.bundle.js"></script>
 </body>
 </html>
