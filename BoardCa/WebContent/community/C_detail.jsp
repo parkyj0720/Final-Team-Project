@@ -31,7 +31,7 @@
 					<li style="width: 25%; float: left; text-align: center;">안주
 						레시피</li>
 					<li style="width: 25%; float: left; text-align: center;">술게임</li>
-					<li style="width: 25%; float: left; text-align: center;">커뮤니티</li>
+					<li style="width: 25%; float: left; text-align: center;"><a href="<%=request.getContextPath()%>/Community?action=C_main">커뮤니티</a></li>
 					<li style="width: 25%; float: left; text-align: center;">근처 술집</li>
 				</ul>
 			</div>
@@ -41,8 +41,8 @@
 					<ul class="breadcrumb">
 						<li class="breadcrumb-item"><a href="index.html"><i
 								class="zmdi zmdi-home"></i> BoardCa</a></li>
-						<li class="breadcrumb-item"><a href="blog-dashboard.html">Community</a></li>
-						<li class="breadcrumb-item active">(수정예정)</li>
+						<li class="breadcrumb-item"><a href="<%=request.getContextPath()%>/Community?action=C_main">Community</a></li>
+						<li class="breadcrumb-item active"><a href="<%=request.getContextPath()%>/Community?action=C_list">(수정예정)</a></li>
 						<li class="breadcrumb-item active">detail</li>
 					</ul>
 					<button class="btn btn-primary btn-icon mobile_menu" type="button">
