@@ -35,7 +35,7 @@
     <string name="myAppName">BoardCa</string>
 
     <!-- Bottom Navigation View -->
-    <string name="home">Home</string>
+    <string name="home">Recipe</string>
     <string name="game">Game</string>
     <string name="search">Search</string>
     <string name="gallery">Gallery</string>
@@ -80,10 +80,10 @@
     <string name="action_settings">설정</string>
 
     <string name="menu_home">Home</string>
-    <string name="menu_gallery">레시피</string>
-    <string name="menu_slideshow">술게임</string>
-    <string name="menu_tools">커뮤니티</string>
-    <string name="menu_share">지도</string>
+    <string name="menu_recipe">레시피</string>
+    <string name="menu_game">game</string>
+    <string name="menu_community">커뮤니티</string>
+    <string name="menu_map">지도</string>
     <string name="menu_send">Send</string>
     <string name="menu_web">Web</string>
     <string name="title_activity_web__fragment">Web_Fragment</string>

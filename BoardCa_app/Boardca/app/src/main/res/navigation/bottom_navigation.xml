@@ -2,50 +2,39 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/nav_home">
+    android:id="@+id/bottom_navigation"
+    app:startDestination="@+id/nav_home"
+    tools:ignore="UnusedNavigation">
 
     <fragment
-        android:id="@+id/nav_home"
+        android:id="@+id/bottm_nav_home"
         android:name="com.example.boardca_app.ui.home.HomeFragment"
         android:label="@string/menu_home"
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/nav_recipe"
+        android:id="@+id/bottm_nav_recipe"
         android:name="com.example.boardca_app.ui.recipe.RecipeFragment"
         android:label="@string/menu_recipe"
         tools:layout="@layout/fragment_recipe" />
 
     <fragment
-        android:id="@+id/nav_game"
+        android:id="@+id/bottm_nav_game"
         android:name="com.example.boardca_app.ui.game.GameFragment"
         android:label="@string/menu_game"
         tools:layout="@layout/fragment_game" />
 
     <fragment
-        android:id="@+id/nav_community"
+        android:id="@+id/bottm_nav_community"
         android:name="com.example.boardca_app.ui.community.CommunityFragment"
         android:label="@string/menu_community"
         tools:layout="@layout/fragment_community" />
 
     <fragment
-        android:id="@+id/nav_map"
+        android:id="@+id/bottm_nav_map"
         android:name="com.example.boardca_app.ui.share.MapFragment"
         android:label="@string/menu_map"
         tools:layout="@layout/fragment_map" />
-
-    <fragment
-        android:id="@+id/nav_send"
-        android:name="com.example.boardca_app.ui.send.SendFragment"
-        android:label="@string/menu_send"
-        tools:layout="@layout/fragment_send" />
-
-    <fragment
-        android:id="@+id/nav_webview"
-        android:name="com.example.boardca_app.ui.web_view.Web_Fragment"
-        android:label="@string/menu_web"
-        tools:layout="@layout/activity_web" />
 
 
 </navigation>

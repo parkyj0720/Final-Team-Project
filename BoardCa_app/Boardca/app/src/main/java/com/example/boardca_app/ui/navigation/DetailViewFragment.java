@@ -9,13 +9,16 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-public class DerailViewFragment extends Fragment {
+import com.example.boardca_app.R;
+
+public class DetailViewFragment extends Fragment {
 
     @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-      //View view = LayoutInflater.from(getActivity().)
+    public View onCreateView(@NonNull LayoutInflater inflater,
+                             @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
+        //View view = inflater.inflate(R.layout.fragment_recipe, container, false);
 
         return super.onCreateView(inflater, container, savedInstanceState);
     }

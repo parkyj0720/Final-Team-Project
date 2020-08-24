@@ -9,11 +9,12 @@
 
     <include layout="@layout/content_main" />
 
+    <!-- 상단바 -->
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:theme="@style/AppTheme.PopupOverlay">
+        android:theme="@style/Theme.AppCompat.Light.DarkActionBar">
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -31,11 +32,7 @@
         android:layout_width="match_parent"
         android:layout_height="1dp">
     </LinearLayout>
-    <FrameLayout
-        android:id="@+id/main_content"
-        android:layout_below="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"></FrameLayout>
+
     <LinearLayout
         android:id="@+id/nav_division"
         android:background="@color/colorDivision"
@@ -45,15 +42,28 @@
         android:layout_height="1dp">
     </LinearLayout>
 
+    <!-- 프레임 -->
+    <FrameLayout
+        android:id="@+id/main_content"
+        android:layout_below="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </FrameLayout>
+
+    <!-- 하단바 -->
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:layout_alignParentBottom="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginEnd="0dp"
+        android:theme="@style/Theme.AppCompat.Light.DarkActionBar"
         app:itemBackground="@color/colorWhite"
         app:menu="@menu/bottom_navigation_main"
         app:labelVisibilityMode="labeled">
     </com.google.android.material.bottomnavigation.BottomNavigationView>
+
 
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
