@@ -11,7 +11,7 @@ public class CDto {
 	String r_difficult;
 	String r_ingredient;
 	String r_cooking_order;
-	
+	 
 	public int getR_board_no() {
 		return r_board_no;
 	}

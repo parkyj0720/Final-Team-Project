@@ -41,7 +41,7 @@ public class MemberDto {
 		return mem_sysdate;
 	}
 
-	public void setMem_sysdate(String mem_sysdate) {
+	public void setMem_sysdate(String mem_sysdate) { 
 		this.mem_sysdate = mem_sysdate;
 	}
 

@@ -6,7 +6,7 @@
 <mapper namespace="cXml">
 <!-- r_crawling_addr, r_main_thumbs, r_title -->
 <select id="cListAll" resultType="Food.CDto">
-	select r_crawling_addr, r_main_thumbs, r_title
+	select r_crawling_addr, r_main_thumbs, r_title 
 	from recipe
 </select>
 

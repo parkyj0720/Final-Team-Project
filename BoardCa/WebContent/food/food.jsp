@@ -77,7 +77,7 @@
                                 <div class="row clearfix">
                                 <% for(int i=0;i<list.size();i++) { 
                                 	CDto dto = list.get(i);
-                                %>
+                                %> 
                                     <div class="col-lg-3 col-md-4 col-sm-12">
                                         <div class="card">
                                             <div class="file">

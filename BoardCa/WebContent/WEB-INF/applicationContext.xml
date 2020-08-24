@@ -52,7 +52,7 @@
 	<context:component-scan base-package="Mypage" />
 	<context:component-scan base-package="Sign" />
 	
-	
+	 
 	<bean id="ModelAndView" class="org.springframework.web.servlet.ModelAndView"/>
 	<bean id="MemberDao" class="Member.MemberDao"/>
 

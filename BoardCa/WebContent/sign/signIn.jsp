@@ -32,7 +32,7 @@
 				alert("아이디를 입력해주세요");
 				$("#userId").focus();
 				return;
-			}
+			} 
 
 			if (!$("#userPw").val()) {
 				event.preventDefault();

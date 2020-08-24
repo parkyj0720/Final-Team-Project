@@ -11,7 +11,7 @@ public class CDao {
 
 	@Autowired
 	private SqlSession sqlSession;
-	
+	 
 	public List<CDto> getList(){
 	    System.out.println("----> cXml.cListAll()");
 	    List<CDto> list = sqlSession.selectList("cXml.cListAll");

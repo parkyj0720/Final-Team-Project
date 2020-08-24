@@ -150,7 +150,7 @@ for food in list:
     co = co.replace('\n', '')
     co1 = co1.replace('\n', '')
     co2 = co2.replace('\n', '')
-
+ 
     sql = "insert into recipe values(seq_board_no.nextval,'" \
           + r_crawling_addr + "', '" + r_main_thumbs + "', '" \
           + r_title + "', '" + r_explain + "', '" + r_standard + "', '" \

@@ -12,7 +12,7 @@ public class MemberDao {
 	
 	public int idCheck(String userId) {		
 		System.out.println("DaoIDCheck "+userId);
-		int dto = sqlSession.selectOne("signXml.idCheck", userId);
+		int dto = sqlSession.selectOne("signXml.idCheck", userId); 
 		return dto;
 	}	
 	

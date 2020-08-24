@@ -84,7 +84,7 @@ public class SignInController {
 		System.out.println(dto.getMem_pw());
 		
 		
-		int idCheck = memDao.idCheck(userId);
+		int idCheck = memDao.idCheck(userId); 
 		if(idCheck==1) {
 			String dbPw = memDao.signIn(userId);
 			if(userPw.equals(dbPw)) {

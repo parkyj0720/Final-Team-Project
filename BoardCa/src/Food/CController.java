@@ -9,7 +9,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class CController {
 	@Autowired
 	private ModelAndView mv;
-	
+	 
 	@Autowired
 	private CDao dao;
 	

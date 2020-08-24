@@ -6,7 +6,7 @@
 <mapper namespace="signXml">
 
 <select id="idCheck" resultType="int" parameterType="String">
-	select count(*)
+	select count(*) 
 	from member 
 	where mem_id=#{userId}
 </select>
