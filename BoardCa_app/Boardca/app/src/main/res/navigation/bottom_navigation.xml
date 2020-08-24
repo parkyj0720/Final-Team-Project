@@ -1,40 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+<DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/bottom_navigation"
     app:startDestination="@+id/nav_home"
     tools:ignore="UnusedNavigation">
 
-    <fragment
-        android:id="@+id/bottm_nav_home"
-        android:name="com.example.boardca_app.ui.home.HomeFragment"
-        android:label="@string/menu_home"
-        tools:layout="@layout/fragment_home" />
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation2"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginEnd="0dp"
+        android:theme="@style/Theme.AppCompat.Light.DarkActionBar"
+        app:itemBackground="@color/colorWhite"
+        app:menu="@menu/bottom_navigation_main"
+        app:labelVisibilityMode="labeled">
+    </com.google.android.material.bottomnavigation.BottomNavigationView>
 
-    <fragment
-        android:id="@+id/bottm_nav_recipe"
-        android:name="com.example.boardca_app.ui.recipe.RecipeFragment"
-        android:label="@string/menu_recipe"
-        tools:layout="@layout/fragment_recipe" />
-
-    <fragment
-        android:id="@+id/bottm_nav_game"
-        android:name="com.example.boardca_app.ui.game.GameFragment"
-        android:label="@string/menu_game"
-        tools:layout="@layout/fragment_game" />
-
-    <fragment
-        android:id="@+id/bottm_nav_community"
-        android:name="com.example.boardca_app.ui.community.CommunityFragment"
-        android:label="@string/menu_community"
-        tools:layout="@layout/fragment_community" />
-
-    <fragment
-        android:id="@+id/bottm_nav_map"
-        android:name="com.example.boardca_app.ui.share.MapFragment"
-        android:label="@string/menu_map"
-        tools:layout="@layout/fragment_map" />
-
-
-</navigation>
+</DrawerLayout>

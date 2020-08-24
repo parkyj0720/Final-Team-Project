@@ -1,19 +1,99 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/text_community"
+    <!-- 검색창 -->
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:layout_centerHorizontal="true">
+        <EditText
+            android:id="@+id/search_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="80dp"
+            android:hint="@string/search_bar"
+            android:drawableRight="@drawable/serch" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <!-- 1번째 -->
+    <!-- NO / TITLE / CONTENT / NAME / SYSDATE / COUNT /HEART  -->
+    <LinearLayout
+        android:id="@+id/comm_written"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="75dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp">
+
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="70dp"
+                android:background="@color/colorPrimaryDark"
+                android:layout_marginLeft="10dp"
+                android:radius="30dp" />
+            <LinearLayout
+                android:layout_width="220dp"
+                android:layout_height="80dp"
+                android:orientation="vertical"
+                android:layout_marginLeft="10dp">
+                <TextView
+                    android:layout_width="220dp"
+                    android:layout_height="25dp"
+                    android:textStyle="bold"
+                    android:textSize="7pt"
+                    android:text="제목 - 블라블라블라블라"/>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="70dp"
+                        android:layout_height="20dp"
+                        android:text="글쓴이닉네임"
+                        android:textSize="5pt" />
+                    <TextView
+                        android:layout_width="100dp"
+                        android:layout_height="20dp"
+                        android:gravity="center"
+                        android:text=" 2020. 08. 25"
+                        android:textSize="5pt" />
+                    <TextView
+                        android:layout_width="100dp"
+                        android:layout_height="20dp"
+                        android:text="조회 123"
+                        android:textSize="5pt" />
+                </LinearLayout>
+            </LinearLayout>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_gravity="bottom"
+                android:src="@drawable/map"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_gravity="bottom"
+                android:text="123"
+                android:textSize="5pt" />
+        </LinearLayout>
+    </LinearLayout>
+
+
+
+
+
+    <!-- 버튼 -->
+
+
+
+</RelativeLayout>

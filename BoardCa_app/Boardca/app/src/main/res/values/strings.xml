@@ -67,6 +67,7 @@
 
     <!-- Toolbar -->
     <string name="back">Back</string>
+    <string name="search_bar">   search</string>
 
     <!-- etc -->
     <item name="visible" type="id" />
