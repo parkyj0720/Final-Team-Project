@@ -6,11 +6,11 @@ import android.webkit.WebView;
         import androidx.lifecycle.MutableLiveData;
         import androidx.lifecycle.ViewModel;
 
-public class ShareViewModel extends ViewModel {
+public class MapViewModel extends ViewModel {
 
     private MutableLiveData<String> mText;
 
-    public ShareViewModel() {
+    public MapViewModel() {
         mText = new MutableLiveData<>();
         mText.setValue("This is share fragment");
     }
