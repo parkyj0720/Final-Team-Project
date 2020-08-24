@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -35,14 +36,7 @@ public class MainActivity extends AppCompatActivity {
     private AppBarConfiguration mAppBarConfiguration;
 
     //바텀 네비게이션
-    protected BottomNavigationView bottomNavigationView;
-    Fragment home_fragment;
-    Fragment recipe_fragment;
-    Fragment game_fragment;
-    Fragment community_fragment;
-    Fragment map_fragment;
-
-
+    BottomNavigationView bottomNavigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,14 +58,13 @@ public class MainActivity extends AppCompatActivity {
 
         //바텀 네비게이션 아이템 셀렉트문
         bottomNavigationView = findViewById(R.id.bottom_navigation);
-        //bottomNavigationView.setOnNavigationItemSelectedListener(this);
 
         //프래그먼트 생성
-        home_fragment = new HomeFragment();
-        recipe_fragment = new RecipeFragment();
-        game_fragment= new GameFragment();
-        community_fragment = new CommunityFragment();
-        map_fragment = new MapFragment();
+        final Fragment home_fragment = new HomeFragment();
+        final Fragment recipe_fragment = new RecipeFragment();
+        final Fragment game_fragment= new GameFragment();
+        final Fragment community_fragment = new CommunityFragment();
+        final Fragment map_fragment = new MapFragment();
 
         //제일 처음 띄워줄 뷰 셋팅. commit까지 완료 해주기.
         getSupportFragmentManager().beginTransaction().replace(R.id.bottom_navigation, home_fragment).commitAllowingStateLoss();
@@ -79,38 +72,39 @@ public class MainActivity extends AppCompatActivity {
         //바텀 네이베이션의 프래그먼트 선택 리스너
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
 
+
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                Log.v("dm","스위치 접속");
                 switch (item.getItemId()) {
                     //menu.xml에 저장해뒀던 아이디 값을 받아와 swich문으로 선택 프래그먼트에 각자 다른 이벤트를 발생
                     case R.id.action_recipe: {
                         try {
-                            Log.e("err","err");
-                            getSupportFragmentManager().beginTransaction().replace(R.id.bottom_navigation, recipe_fragment).commitAllowingStateLoss();
-                            Log.v("dm","레시ㅣ피 탭 클릭");
+                            System.out.println("정상작동! 레시피탭!");
+                            getSupportFragmentManager().beginTransaction().replace(R.id.main_content, recipe_fragment).commitAllowingStateLoss();
                             return true;
-
                         }catch (Exception e){
                             e.printStackTrace();
                         }
                     }
                     case R.id.action_game: {
-                        Log.v("dm","게임탭 클릭");
-                        getSupportFragmentManager().beginTransaction()
-                                .replace(R.id.bottom_navigation, game_fragment).commitAllowingStateLoss();
-                        return true;
+                        try {
+                            System.out.println("정상작동! 술게임탭!");
+                            getSupportFragmentManager().beginTransaction().replace(R.id.main_content, game_fragment).commitAllowingStateLoss();
+                            return true;
+                        }catch (Exception e){
+                            e.printStackTrace();
+
+                        }
                     }
                     case R.id.action_community: {
-                        Log.v("dm","커뮤니티 탭 클릭");
-                        getSupportFragmentManager().beginTransaction()
-                                .replace(R.id.bottom_navigation, community_fragment).commitAllowingStateLoss();
+                        System.out.println("정상작동! 커뮤니티탭!");
+                        getSupportFragmentManager().beginTransaction().replace(R.id.main_content, community_fragment).commitAllowingStateLoss();
                         return true;
                     }
                     case R.id.action_map: {
                         Log.v("dm","맵 탭 클릭");
-                        getSupportFragmentManager().beginTransaction()
-                                .replace(R.id.bottom_navigation, map_fragment).commitAllowingStateLoss();
+                        getSupportFragmentManager().beginTransaction().replace(R.id.main_content, map_fragment).commitAllowingStateLoss();
+                        System.out.println("으4");
                         return true;
                     }
                     default:return false;
@@ -132,7 +126,6 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
-        System.out.print("네비");
 
     }
 
