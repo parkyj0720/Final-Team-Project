@@ -35,7 +35,7 @@
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
 			<param-value>
-				/WEB-INF/controller.xml
+				/WEB-INF/applicationContext.xml
 			</param-value>
 		</init-param>
 	</servlet>

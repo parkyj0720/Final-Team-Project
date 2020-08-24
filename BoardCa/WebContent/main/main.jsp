@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>메인입니다.${id}</h1>
+<h1>메인입니다.${userId}</h1>
 </body>
 </html>

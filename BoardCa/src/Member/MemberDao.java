@@ -11,12 +11,13 @@ public class MemberDao {
 	private SqlSession sqlSession;
 	
 	public int idCheck(String userId) {		
-		System.out.println(userId);
-		return sqlSession.selectOne("signXml.idCheck",userId);
+		System.out.println("DaoIDCheck "+userId);
+		int dto = sqlSession.selectOne("signXml.idCheck", userId);
+		return dto;
 	}	
 	
 	public String signIn(String userId) {		
-		System.out.println(userId);
+		System.out.println("DaoSignIn "+userId);
 		return sqlSession.selectOne("signXml.signCheck",userId);
 	}
 	public void sessionInput() {

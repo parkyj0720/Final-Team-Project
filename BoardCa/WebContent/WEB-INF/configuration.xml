@@ -6,11 +6,13 @@
 <configuration>
 
   <typeAliases>
-    <typeAlias alias="MemberDto" type="src.Member.MemberDto"></typeAlias>
+    <typeAlias alias="MemberDto" type="Member.MemberDto"></typeAlias>
+    <typeAlias alias="CDto" type="Food.CDto"></typeAlias>
   </typeAliases>
   
   <mappers>
-    <mapper resource="src/Sql/signSql.xml"/>
+    <mapper resource="Sql/signSQL.xml"/>
+    <mapper resource="Sql/cSQL.xml"/>
     
     
     

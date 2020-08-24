@@ -26,10 +26,6 @@
 	<context:component-scan base-package="Sign" />
 	
 	
-	
-	
-	
-	
 	<bean id="ModelAndView" class="org.springframework.web.servlet.ModelAndView"/>
 
 

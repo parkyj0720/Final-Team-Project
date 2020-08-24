@@ -11,7 +11,7 @@
   
   <context:annotation-config />
 
-  <context:component-scan base-package="com.javaex">
+  <context:component-scan base-package="a">
     <context:include-filter type="annotation" expression="org.springframework.stereotype.Repository" />
     <context:include-filter type="annotation" expression="org.springframework.stereotype.Service" />
     <context:include-filter type="annotation" expression="org.springframework.stereotype.Component" />
@@ -20,9 +20,9 @@
   <!-- oracle datasource -->
   <bean id="oracleDatasource" class="oracle.jdbc.pool.OracleDataSource"
     destroy-method="close">
-    <property name="URL" value="jdbc:oracle:thin:@localhost:1521:xe" />
-    <property name="user" value="hr" />
-    <property name="password" value="hr" />
+    <property name="URL" value="jdbc:oracle:thin:@192.168.219.142:1521:xe" />
+    <property name="user" value="test" />
+    <property name="password" value="test" />
     <property name="connectionCachingEnabled" value="true" />
     <qualifier value="main-db" />
   </bean>
@@ -31,12 +31,29 @@
   <!-- MyBatis SqlSessionFactoryBean -->
   <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
     <property name="dataSource" ref="oracleDatasource" />
-    <property name="configLocation" value="classpath:mybatis/configuration.xml" />
+    <property name="configLocation" value="WEB-INF/configuration.xml" />
   </bean>
 
   <!-- MyBatis SqlSessionTemplate -->
   <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
     <constructor-arg index="0" ref="sqlSessionFactory" />
   </bean>
+  
+  <context:component-scan base-package="Admin" />
+	<context:component-scan base-package="Board1" />
+	<context:component-scan base-package="Board2" />
+	<context:component-scan base-package="Board3" />
+	<context:component-scan base-package="Board4" />
+	<context:component-scan base-package="Community" />
+	<context:component-scan base-package="Food" />
+	<context:component-scan base-package="Game" />
+	<context:component-scan base-package="Main" />
+	<context:component-scan base-package="Map" />
+	<context:component-scan base-package="Mypage" />
+	<context:component-scan base-package="Sign" />
+	
+	
+	<bean id="ModelAndView" class="org.springframework.web.servlet.ModelAndView"/>
+	<bean id="MemberDao" class="Member.MemberDao"/>
 
 </beans>

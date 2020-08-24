@@ -44,9 +44,11 @@ public class MemberDto {
 	public void setMem_sysdate(String mem_sysdate) {
 		this.mem_sysdate = mem_sysdate;
 	}
-	
-	
-	
-	
+
+	@Override
+	public String toString() {
+		return "MemberDto [mem_no=" + mem_no + ", mem_id=" + mem_id + ", mem_pw=" + mem_pw + ", mem_sysdate="
+				+ mem_sysdate + "]";
+	}
 	
 }

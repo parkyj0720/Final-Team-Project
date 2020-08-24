@@ -27,6 +27,8 @@ public class SignInController {
 	
 	@Autowired
 	private ModelAndView mv;
+	
+	@Autowired
 	private MemberDao memDao;
 	
 	
@@ -43,7 +45,7 @@ public class SignInController {
 	@RequestMapping("/signPro.do")
 	public ModelAndView signPro(MemberDto dto,SessionDto sedto, HttpSession session,HttpServletRequest req)
 			throws SAXException, IOException, ParserConfigurationException {
-		
+		//memDao = new MemberDao();
 		String ip = req.getHeader("X-FORWARDED-FOR");
 		if(ip == null) {
 			ip = req.getRemoteAddr();
@@ -83,7 +85,7 @@ public class SignInController {
 		
 		
 		int idCheck = memDao.idCheck(userId);
-		if(idCheck == 1) {
+		if(idCheck==1) {
 			String dbPw = memDao.signIn(userId);
 			if(userPw.equals(dbPw)) {
 				sedto.setMove("로그인(성공)");

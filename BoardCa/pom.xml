@@ -53,7 +53,41 @@
 	        <artifactId>ojdbc6</artifactId>
 	        <version>11.2.0.4</version>
     	</dependency>
-
+		
+		<dependency>
+	   	 	<groupId>org.apache.commons</groupId>
+	   	 	<artifactId>commons-pool2</artifactId>
+	    	<version>2.6.2</version>
+		</dependency>
+		
+		<!-- sring-jdbc -->
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-jdbc</artifactId>
+      <version>${org.springframework-version}</version>
+    </dependency>
+    
+    <!-- sring-dbcp -->
+    <dependency>
+      <groupId>commons-dbcp</groupId>
+      <artifactId>commons-dbcp</artifactId>
+      <version>1.4</version>
+    </dependency>
+    
+    <!-- sring-test -->
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-test</artifactId>
+      <version>4.3.3.RELEASE</version>
+      <scope>test</scope>
+    </dependency>
+    
+    <!-- log4jdbc-log4j2-jdbc4 -->
+    <dependency>
+      <groupId>org.bgee.log4jdbc-log4j2</groupId>
+      <artifactId>log4jdbc-log4j2-jdbc4</artifactId>
+      <version>1.16</version>
+    </dependency>
 	</dependencies>
 
 
