@@ -20,6 +20,7 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/stylesheet/assets/css/style.min.css">
 <script src="http://code.jquery.com/jquery.js"></script>
+
 </head>
 <script>
 	$('#like').text();
@@ -57,12 +58,13 @@
 					src="${pageContext.request.contextPath}/mypage/imgs/01.jpg"
 					alt="User"></a>
 				<ul class="dropdown-menu slideUp2 " x-placement="bottom-start"
-					style="position: fixed; will-change: transform; top: 0px; left: 0px; transform: translate3d(-110px, 50px, 0px);">
-					<li class="header" style="text-align: right;">내 정보</li>
+					style="position: fixed; will-change: transform; top: 0px; left: 0px; transform: translate3d(-110px, 50px, 0px); width: 230px;">
+					<li class="header" style="min-width: 230px;">내 정보</li>
 					<li class="body" style="width: auto; height: 330px;">
 						<ul class="menu app_sortcut list-unstyled ">
 
-							<li><a href="${pageContext.request.contextPath}/myPage.do">
+							<li style="width: 90px;"><a
+								href="${pageContext.request.contextPath}/myPage.do">
 									<div class="icon-circle bg-orange">
 										<i class="zmdi zmdi-account"></i>
 									</div>
@@ -71,7 +73,8 @@
 										<p>myPage</p>
 									</div>
 							</a></li>
-							<li><a href="${pageContext.request.contextPath}/myPageEdit.do">
+							<li style="width: 90px;"><a
+								href="${pageContext.request.contextPath}/myPageEdit.do">
 									<div class="icon-circle bg-orange">
 										<i class="zmdi zmdi-account"></i>
 									</div>
@@ -80,7 +83,8 @@
 										<p>Edit</p>
 									</div>
 							</a></li>
-							<li><a href="${pageContext.request.contextPath}/myFAQ.do">
+							<li style="width: 90px;"><a
+								href="${pageContext.request.contextPath}/myFAQ.do">
 									<div class="icon-circle bg-orange">
 										<i class="zmdi zmdi-account"></i>
 									</div>
@@ -89,7 +93,8 @@
 										<p>1:1문의</p>
 									</div>
 							</a></li>
-							<li><a href="${pageContext.request.contextPath}/myPage.do">
+							<li style="width: 90px;"><a
+								href="${pageContext.request.contextPath}/signIn.do">
 									<div class="icon-circle bg-orange">
 										<i class="zmdi zmdi-account"></i>
 									</div>
@@ -110,145 +115,180 @@
 			style="width: 3px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 0px; background: rgb(51, 51, 51); opacity: 0.2; z-index: 90; right: 1px;"></div>
 	</div>
 
-
 	<section class="content file_manager" style="margin: auto;">
-		<!-- header -->
-
-
-		<!-- body -->
 		<div class="body_scroll">
 			<div class="block-header">
 				<div class="row">
 					<div class="col-lg-7 col-md-6 col-sm-12">
-						<h2>Media</h2>
+						<h2>Product Detail</h2>
 						<ul class="breadcrumb">
 							<li class="breadcrumb-item"><a href="index.html"><i
 									class="zmdi zmdi-home"></i> Aero</a></li>
-							<li class="breadcrumb-item"><a href="file-dashboard.html">File
-									Manager</a></li>
-							<li class="breadcrumb-item active">Media</li>
-						</ul>
-					</div>
-
-					<div class="col-lg-12 col-md-12">
-						<button id="heart"
-							class="bg-orange btn btn-primary btn-round float-right">
-							<i class="zmdi zmdi-favorite-outline6 ti-heart"><br> <small
-								class="bg-orange" id="like">0</small></i>
-						</button>
-					</div>
-					<div class="col-lg-8 col-md-12">
-						<div class="card">
-							<div class="blogitem mb-5">
-								<div class="blogitem-image">
-									<a href="blog-details.html"><img
-										src="${pageContext.request.contextPath}/game/img/01.PNG"></a>
-
-								</div>
-								<div class="blogitem-content">
-									<div class="blogitem-header">
-										<div class="blogitem-meta">
-											<span><i class="zmdi zmdi-account"></i>By <a
-												href="javascript:void(0);">Michael</a></span> <span><i
-												class="zmdi zmdi-comments"></i><a href="blog-details.html">Comments(3)</a></span>
-										</div>
-									</div>
-									<h5>
-										<a href="blog-details.html">The Most Advance Business Plan</a>
-									</h5>
-									<p>It is a long established fact that a reader will be
-										distracted by the readable content of a page when looking at
-										its layout. The point of using Lorem of letters, as opposed to
-										using 'Content here, content here', making it look like
-										readable English. There are many variations of passages of
-										Lorem Ipsum available, but the majority have suffered
-										alteration in some form, by injected humour.</p>
-									<blockquote class="blockquote">
-										<p>Lorem ipsum dolor sit amet consectetur adipiscing elit.
-											Aliquam vulputate tortor nec commodo ultricies lectus nisl
-											facilisis enim trpis.</p>
-										<footer>
-											by <a href="blog.html">ThemeMakker</a>
-										</footer>
-									</blockquote>
-									<p>The point of using Lorem of letters, as opposed to using
-										'Content here, content here', making it look like readable
-										English.</p>
-									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-										sed do eiusmod tempor incdidunt ut labore et dolore magna
-										aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-										ullaco laboris nisi ut aliquip ex ea commodo consequat. Duis
-										aute irure dolor in reprehenderit in voluptate velit esse
-										cillum dolore eu fugiat nulla pariatur. Excepteur sint occaeca
-										cupidatat non proident.</p>
-								</div>
-							</div>
-						</div>
-						<div class="card">
-							<div class="header">
-								<h2>
-									<strong>Leave</strong> a Comment
-								</h2>
-							</div>
-							<div class="">
-								<small>Your email address will not be published.
-									Required fields are marked*</small>
-								<form class="row comment-form mt-2">
-									<div class="col-sm-12">
-										<div class="form-group">
-											<textarea rows="4" class="form-control no-resize"
-												placeholder="Please type what you want..."></textarea>
-										</div>
-										<button type="submit" class="btn btn btn-primary bg-orange">작성</button>
-									</div>
-								</form>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="card">
-					<div class="header">
-						<h2>
-							<strong>Comments</strong> (2)
-						</h2>
-					</div>
-					<div class="">
-						<ul class="comment-reply list-unstyled">
-							<li>
-								<div class="icon-box">
-									<img class="img-fluid img-thumbnail"
-										src="assets/images/sm/avatar2.jpg" alt="Awesome Image">
-								</div>
-								<div class="text-box">
-									<h5>Kareem Todd</h5>
-									<span class="comment-date">Wednesday, October 17, 2018
-										at 4:00PM.</span>
-									<p>There are many variations of passages of Lorem Ipsum
-										available, but the majority have suffered alteration in some
-										form, by injected humour.</p>
-								</div>
-							</li>
-							<li>
-								<div class="icon-box">
-									<img class="img-fluid img-thumbnail"
-										src="assets/images/sm/avatar1.jpg" alt="Awesome Image">
-								</div>
-								<div class="text-box">
-									<h5>Stillnot david</h5>
-									<span class="comment-date">Wednesday, October 17, 2018
-										at 4:00PM.</span>
-									<p>Lorem Ipsum is simply dummy text of the printing and
-										typesetting industry. Lorem Ipsum has been the industry's
-										standard dummy.</p>
-								</div>
-							</li>
+							<li class="breadcrumb-item">eCommerce</li>
+							<li class="breadcrumb-item active">Product Detail</li>
 						</ul>
 					</div>
 				</div>
 			</div>
+			<div class="container-fluid">
+				<div class="row clearfix">
+					<div class="col-lg-12">
+						<div class="card">
+							<div class="body">
+								<div class="row">
+									<div class="col-xl-12 col-lg-12	col-md-12">
+										<div class="preview preview-pic tab-content">
+											<div class="tab-pane active" id="product_1">
+												<img 
+													src="${pageContext.request.contextPath}/mypage/imgs/01.jpg"
+													class="img-fluid" alt="">
+												<div>
+													<h1>오렌지 게임</h1>
 
+												</div>
+											</div>
+										</div>
+									</div>
+
+									<div class="product details">
+										<p>오렌지 오렌지 오렌지</p>
+									</div>
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+				<div class="card">
+					<div class="body">
+						<div class="row">
+							<div class="col-xl-12 col-lg-12	col-md-12">
+								<div class="tab-pane active" id="description">
+									<p>Lorem Ipsum is simply dummy text of the printing and
+										typesetting industry. Lorem Ipsum has been the industry's
+										standard dummy text ever since the 1500s, when an unknown
+										printer took a galley of type and scrambled it to make a type
+										specimen book.</p>
+									<p>There are many variations of passages of Lorem Ipsum
+										available, but the majority have suffered alteration in some
+										form, by injected humour, or randomised words which don't look
+										even slightly believable.</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="card">
+					<div class="body">
+						<div class="row">
+							<div class="col-xl-12 col-lg-12	col-md-12">
+
+								<ul class="preview thumbnail nav nav-tabs">
+									<li class="nav-item"><a class="nav-link active"
+										data-toggle="tab" href="#product_1"><img
+											src="${pageContext.request.contextPath}/mypage/imgs/01.jpg" alt=""></a></li>
+									<li class="nav-item"><a class="nav-link" data-toggle="tab"
+										href="#product_2"><img src="${pageContext.request.contextPath}/mypage/imgs/01.jpg"
+											alt=""></a></li>
+									<li class="nav-item"><a class="nav-link" data-toggle="tab"
+										href="#product_3"><img src="${pageContext.request.contextPath}/mypage/imgs/01.jpg"
+											alt=""></a></li>
+									<li class="nav-item"><a class="nav-link" data-toggle="tab"
+										href="#product_4"><img src="${pageContext.request.contextPath}/mypage/imgs/01.jpg"
+											alt=""></a></li>
+								</ul>
+
+
+							</div>
+						</div>
+					</div>
+
+
+
+					<div class="card">
+						<div class="body">
+							<div class="row">
+								<div class="col-xl-12 col-lg-12	col-md-12">
+
+
+									<div class="tab-content">
+										<small>Your email address will not be published.
+											Required fields are marked*</small>
+										<form class="row comment-form mt-2">
+											<div class="col-xl-6 col-lg-6	col-md-6">
+												<div class="form-group">
+													<input type="text" class="form-control"
+														placeholder="Your Name">
+												</div>
+											</div>
+											<div class="col-xl-6 col-lg-6	col-md-6">
+												<div class="form-group">
+													<input type="text" class="form-control"
+														placeholder="Email Address">
+												</div>
+											</div>
+
+											<div class="col-xl-12 col-lg-12	col-md-12">
+												<div class="form-group">
+													<textarea rows="4" class="form-control no-resize"
+														placeholder="Please type what you want..."></textarea>
+												</div>
+												<button type="submit" class="btn btn btn-primary">SUBMIT</button>
+											</div>
+										</form>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+
+					<div class="card">
+						<div class="header">
+							<div class="body">
+								<div class="row">
+									<div class="col-xl-12 col-lg-12	col-md-12">
+										<h2>
+											<strong>Comments</strong> (2)
+										</h2>
+									</div>
+									<div class="col-xl-12 col-lg-12	col-md-12">
+										<ul class="comment-reply ">
+											<li>
+												<div class="text-box " style="width: auto;">
+													<h5>Kareem Todd</h5>
+													<span class="comment-date">Wednesday, October 17,
+														2018 at 4:00PM.</span> 
+													<p>There are many variations of passages of Lorem Ipsum
+														available, but the majority have suffered alteration in
+														some form, by injected humour.</p>
+												</div>
+											</li>
+											<li>
+
+												<div class="text-box " style="width: auto;">
+													<h5>Stillnot david</h5>
+													<span class="comment-date">Wednesday, October 17,
+														2018 at 4:00PM.</span> 
+													<p>Lorem Ipsum is simply dummy text of the printing and
+														typesetting industry. Lorem Ipsum has been the industry's
+														standard dummy.</p>
+												</div>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+
+				</div>
+			</div>
 		</div>
 	</section>
+
 
 
 

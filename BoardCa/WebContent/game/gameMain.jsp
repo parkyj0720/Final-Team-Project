@@ -40,8 +40,6 @@
 	})
 </script>
 <body class="ls-closed ls-toggle-menu ">
-
-
 	<!-- Loding Page -->
 	<div class="page-loader-wrapper">
 		<div class="loader">
@@ -53,6 +51,7 @@
 			<p>Please wait...</p>
 		</div>
 	</div>
+
 	<div class="navbar-right user-info">
 		<ul class="navbar-nav">
 			<li class="dropdown mobile_menu"><a
@@ -61,12 +60,13 @@
 					src="${pageContext.request.contextPath}/mypage/imgs/01.jpg"
 					alt="User"></a>
 				<ul class="dropdown-menu slideUp2 " x-placement="bottom-start"
-					style="position: fixed; will-change: transform; top: 0px; left: 0px; transform: translate3d(-110px, 50px, 0px);">
-					<li class="header" style="text-align: right;">내 정보</li>
+					style="position: fixed; will-change: transform; top: 0px; left: 0px; transform: translate3d(-110px, 50px, 0px); width: 230px;">
+					<li class="header" style="min-width: 230px;">내 정보</li>
 					<li class="body" style="width: auto; height: 330px;">
 						<ul class="menu app_sortcut list-unstyled ">
 
-							<li><a href="${pageContext.request.contextPath}/myPage.do">
+							<li style="width: 90px;"><a
+								href="${pageContext.request.contextPath}/myPage.do">
 									<div class="icon-circle bg-orange">
 										<i class="zmdi zmdi-account"></i>
 									</div>
@@ -75,7 +75,7 @@
 										<p>myPage</p>
 									</div>
 							</a></li>
-							<li><a
+							<li style="width: 90px;"><a
 								href="${pageContext.request.contextPath}/myPageEdit.do">
 									<div class="icon-circle bg-orange">
 										<i class="zmdi zmdi-account"></i>
@@ -85,7 +85,8 @@
 										<p>Edit</p>
 									</div>
 							</a></li>
-							<li><a href="${pageContext.request.contextPath}/myFAQ.do">
+							<li style="width: 90px;"><a
+								href="${pageContext.request.contextPath}/myFAQ.do">
 									<div class="icon-circle bg-orange">
 										<i class="zmdi zmdi-account"></i>
 									</div>
@@ -94,7 +95,8 @@
 										<p>1:1문의</p>
 									</div>
 							</a></li>
-							<li><a href="${pageContext.request.contextPath}/myPage.do">
+							<li style="width: 90px;"><a
+								href="${pageContext.request.contextPath}/signIn.do">
 									<div class="icon-circle bg-orange">
 										<i class="zmdi zmdi-account"></i>
 									</div>
@@ -118,7 +120,7 @@
 	<section class="content file_manager" style="margin: auto;">
 		<!-- header -->
 
-	
+
 		<!-- body -->
 		<div class="body_scroll">
 			<div class="block-header">
@@ -138,6 +140,7 @@
 				</div>
 			</div>
 
+
 			<div class="container-fluid">
 				<div class="row clearfix">
 					<div class="col-lg-12">
@@ -146,104 +149,38 @@
 								<div class="tab-pane active" id="2019">
 									<div class="row clearfix">
 										<div class="col-lg-3 col-md-4 col-sm-12">
-											<div class="card">
-												<div class="file">
-													<div class="icon">
-														<a
-															href="${pageContext.request.contextPath}/game/gameDtail.jsp"><img
-															src="${pageContext.request.contextPath}/game/img/01.PNG"></a>
-													</div>
-													<div align="right">
+											<div class="card" style="width: 280px; height: 400px;">
+												<a href="${pageContext.request.contextPath}/gameDtail.do"
+													class="file">
+													<div class="hover">
 														<button id="heart"
 															class="bg-orange btn btn-primary btn-round">
 															<i class="zmdi zmdi-favorite-outline6 ti-heart"><br>
 																<small class="bg-orange" id="like">0</small></i>
 														</button>
-													</div>
+
+													</div> <img class="img-fluid img-thumbnail"
+													src="${pageContext.request.contextPath}/mypage/imgs/01.jpg"
+													alt="Awesome Image">
+												</a>
+												<div class="card" style="width: 280px; height: 400px;">
+													<a href="${pageContext.request.contextPath}/gameDtail.do"
+														class="file">
+														<div class="hover">
+															<button id="heart"
+																class="bg-orange btn btn-primary btn-round">
+																<i class="zmdi zmdi-favorite-outline6 ti-heart"><br>
+																	<small class="bg-orange" id="like">0</small></i>
+															</button>
+
+														</div> <img class="img-fluid img-thumbnail"
+														src="${pageContext.request.contextPath}/mypage/imgs/02.jpg"
+														alt="Awesome Image">
+													</a>
+
 												</div>
 											</div>
 										</div>
-										
-										<div class="col-lg-3 col-md-4 col-sm-12">
-											<div class="card">
-												<div class="file">
-													<div class="icon">
-														<a
-															href="${pageContext.request.contextPath}/game/gameDtail.jsp"><img
-															src="${pageContext.request.contextPath}/game/img/01.PNG"></a>
-													</div>
-													<div align="right">
-														<button id="heart"
-															class="bg-orange btn btn-primary btn-round">
-															<i class="zmdi zmdi-favorite-outline6 ti-heart"><br>
-																<small class="bg-orange" id="like">0</small></i>
-														</button>
-													</div>
-												</div>
-											</div>
-										</div>
-										
-																				
-										<div class="col-lg-3 col-md-4 col-sm-12">
-											<div class="card">
-												<div class="file">
-													<div class="icon">
-														<a
-															href="${pageContext.request.contextPath}/game/gameDtail.jsp"><img
-															src="${pageContext.request.contextPath}/game/img/01.PNG"></a>
-													</div>
-													<div align="right">
-														<button id="heart"
-															class="bg-orange btn btn-primary btn-round">
-															<i class="zmdi zmdi-favorite-outline6 ti-heart"><br>
-																<small class="bg-orange" id="like">0</small></i>
-														</button>
-													</div>
-												</div>
-											</div>
-										</div>
-										
-																				
-										<div class="col-lg-3 col-md-4 col-sm-12">
-											<div class="card">
-												<div class="file">
-													<div class="icon">
-														<a
-															href="${pageContext.request.contextPath}/game/gameDtail.jsp"><img
-															src="${pageContext.request.contextPath}/game/img/01.PNG"></a>
-													</div>
-													<div align="right">
-														<button id="heart"
-															class="bg-orange btn btn-primary btn-round">
-															<i class="zmdi zmdi-favorite-outline6 ti-heart"><br>
-																<small class="bg-orange" id="like">0</small></i>
-														</button>
-													</div>
-												</div>
-											</div>
-										</div>
-										
-																				
-										<div class="col-lg-3 col-md-4 col-sm-12">
-											<div class="card">
-												<div class="file">
-													<div class="icon">
-														<a
-															href="${pageContext.request.contextPath}/game/gameDtail.jsp"><img
-															src="${pageContext.request.contextPath}/game/img/01.PNG"></a>
-													</div>
-													<div align="right">
-														<button id="heart"
-															class="bg-orange btn btn-primary btn-round">
-															<i class="zmdi zmdi-favorite-outline6 ti-heart"><br>
-																<small class="bg-orange" id="like">0</small></i>
-														</button>
-													</div>
-												</div>
-											</div>
-										</div>
-										
-										
 									</div>
 								</div>
 							</div>
@@ -251,7 +188,6 @@
 					</div>
 				</div>
 			</div>
-		</div>
 	</section>
 	<!-- Jquery Core Js -->
 	<script
