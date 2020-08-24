@@ -30,9 +30,9 @@
     <item android:title="버그 보내기">
         <menu>
             <item
-                android:id="@+id/nav_send"
+                android:id="@+id/nav_signup"
                 android:icon="@drawable/ic_menu_send"
-                android:title="@string/menu_send" />
+                android:title="@string/menu_signup" />
             <item
                 android:id="@+id/nav_webview"
                 android:icon="@drawable/ic_menu_send"

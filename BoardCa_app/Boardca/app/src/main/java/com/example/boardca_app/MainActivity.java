@@ -2,6 +2,7 @@ package com.example.boardca_app;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -67,7 +68,8 @@ public class MainActivity extends AppCompatActivity {
         final Fragment map_fragment = new MapFragment();
 
         //제일 처음 띄워줄 뷰 셋팅. commit까지 완료 해주기.
-        getSupportFragmentManager().beginTransaction().replace(R.id.bottom_navigation, home_fragment).commitAllowingStateLoss();
+        getSupportFragmentManager().beginTransaction().replace(R.id.bottom_navigation, home_fragment);
+
 
         //바텀 네이베이션의 프래그먼트 선택 리스너
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -120,7 +122,7 @@ public class MainActivity extends AppCompatActivity {
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.nav_home, R.id.nav_recipe, R.id.nav_game,
-                R.id.nav_community, R.id.nav_map, R.id.nav_send, R.id.nav_webview)
+                R.id.nav_community, R.id.nav_map, R.id.nav_signup, R.id.nav_webview)
                 .setDrawerLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);

@@ -36,9 +36,9 @@
         tools:layout="@layout/fragment_map" />
 
     <fragment
-        android:id="@+id/nav_send"
+        android:id="@+id/nav_signup"
         android:name="com.example.boardca_app.ui.send.SendFragment"
-        android:label="@string/menu_send"
+        android:label="@string/menu_signup"
         tools:layout="@layout/fragment_send" />
 
     <fragment
