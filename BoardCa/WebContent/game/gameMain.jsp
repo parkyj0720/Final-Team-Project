@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!doctype html>
-<html class="no-js " lang="en">
+<!DOCTYPE html>
+<html lang="UTF-8">
 <head>
-<meta charset="utf-8">
+<meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=Edge">
 <meta
 	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
@@ -17,20 +17,30 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/stylesheet/assets/plugins/bootstrap/css/bootstrap.min.css"
 	type="text/css">
-<!-- Light Gallery Plugin Css -->
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/stylesheet/assets/plugins/light-gallery/css/lightgallery.css"
-	type="text/css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/stylesheet/assets/plugins/fullcalendar/fullcalendar.min.css"
-	type="text/css">
+
 <!-- Custom Css -->
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/stylesheet/assets/css/style.min.css"
 	type="text/css">
+<script src="http://code.jquery.com/jquery.js"></script>
 </head>
 
-<body class="ls-closed ls-toggle-menu theme-orange">
+<script>
+	$('#like').text();
+	var count = 0;
+	$(function() {
+		$('#heart').click(
+				function() {
+					count++;
+					console.log(count)
+					$('#like').html(
+							'<small class="bg-orange" id="like">' + count
+									+ '</small>')
+				})
+	})
+</script>
+<body class="ls-closed ls-toggle-menu ">
+
 
 	<!-- Loding Page -->
 	<div class="page-loader-wrapper">
@@ -43,160 +53,213 @@
 			<p>Please wait...</p>
 		</div>
 	</div>
+	<div class="navbar-right user-info">
+		<ul class="navbar-nav">
+			<li class="dropdown mobile_menu"><a
+				class="ropdown-toggle image waves-effect waves-orange"
+				data-toggle="dropdown" role="button"><img
+					src="${pageContext.request.contextPath}/mypage/imgs/01.jpg"
+					alt="User"></a>
+				<ul class="dropdown-menu slideUp2 " x-placement="bottom-start"
+					style="position: fixed; will-change: transform; top: 0px; left: 0px; transform: translate3d(-110px, 50px, 0px);">
+					<li class="header" style="text-align: right;">내 정보</li>
+					<li class="body" style="width: auto; height: 330px;">
+						<ul class="menu app_sortcut list-unstyled ">
+
+							<li><a href="${pageContext.request.contextPath}/myPage.do">
+									<div class="icon-circle bg-orange">
+										<i class="zmdi zmdi-account"></i>
+									</div>
+									<div class="menu-info">
+
+										<p>myPage</p>
+									</div>
+							</a></li>
+							<li><a
+								href="${pageContext.request.contextPath}/myPageEdit.do">
+									<div class="icon-circle bg-orange">
+										<i class="zmdi zmdi-account"></i>
+									</div>
+									<div class="menu-info">
+
+										<p>Edit</p>
+									</div>
+							</a></li>
+							<li><a href="${pageContext.request.contextPath}/myFAQ.do">
+									<div class="icon-circle bg-orange">
+										<i class="zmdi zmdi-account"></i>
+									</div>
+									<div class="menu-info">
+
+										<p>1:1문의</p>
+									</div>
+							</a></li>
+							<li><a href="${pageContext.request.contextPath}/myPage.do">
+									<div class="icon-circle bg-orange">
+										<i class="zmdi zmdi-account"></i>
+									</div>
+									<div class="menu-info">
+
+										<p>LogOut</p>
+									</div>
+							</a></li>
+						</ul>
+					</li>
+				</ul></li>
+		</ul>
+
+
+		<div class="slimScrollBar"
+			style="background: rgba(0, 0, 0, 0.2); width: 3px; position: absolute; top: 0px; opacity: 0.4; display: none; border-radius: 3px; z-index: 99; right: 1px; height: 330px;"></div>
+		<div class="slimScrollRail"
+			style="width: 3px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 0px; background: rgb(51, 51, 51); opacity: 0.2; z-index: 90; right: 1px;"></div>
+	</div>
+
+	<section class="content file_manager" style="margin: auto;">
+		<!-- header -->
 
 	
-<section class="content file_manager"style="margin: auto;">
-    <div class="body_scroll">
-        <div class="block-header">
-            <div class="row">
-                <div class="col-lg-7 col-md-6 col-sm-12">
-                    <h2>Media</h2>
-                    <ul class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="index.html"><i class="zmdi zmdi-home"></i> Aero</a></li>
-                        <li class="breadcrumb-item"><a href="file-dashboard.html">File Manager</a></li>
-                        <li class="breadcrumb-item active">Media</li>
-                    </ul>
-                    
-                </div>
+		<!-- body -->
+		<div class="body_scroll">
+			<div class="block-header">
+				<div class="row">
+					<div class="col-lg-7 col-md-6 col-sm-12">
+						<h2>Media</h2>
+						<ul class="breadcrumb">
+							<li class="breadcrumb-item"><a href="index.html"><i
+									class="zmdi zmdi-home"></i> Aero</a></li>
+							<li class="breadcrumb-item"><a href="file-dashboard.html">File
+									Manager</a></li>
+							<li class="breadcrumb-item active">Media</li>
+						</ul>
 
-            </div>
-        </div>
+					</div>
 
-        <div class="container-fluid">
-            <div class="row clearfix">
-                <div class="col-lg-12">
-                    <div class="card">
-                        <div class="tab-content">
-                            <div class="tab-pane active" id="2019">
-                                <div class="row clearfix">
-                                    <div class="col-lg-3 col-md-4 col-sm-12">
-                                        <div class="card">
-                                            <div class="file">
-                                                <a href="javascript:void(0);">
-                                                    <div class="hover">
-                                                        <button type="button" class="bg-orange btn btn-icon btn-icon-mini btn-round bg-orange">
-                                                            <i class="ti-heart"></i>
-                                                        </button>
-                                                    </div>
-                                                    <div class="icon">
-                                                        <i class="zmdi zmdi-collection-video"></i>
-                                                    </div>
-                                                    <div class="file-name">
-                                                        <p class="m-b-5 text-muted">Jee Le Zara Song.mpg4</p>
-                                                       
-                                                    </div>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-3 col-md-4 col-sm-12">
-                                        <div class="card">
-                                            <div class="file">
-                                                <a href="javascript:void(0);">
-                                                    <div class="hover">
-                                                        <button type="button" class="bg-orange btn btn-icon btn-icon-mini btn-round bg-orange">
-                                                            <i class="ti-heart"></i>
-                                                        </button>
-                                                    </div>
-                                                    <div class="icon">
-                                                        <i class="zmdi zmdi-collection-video"></i>
-                                                    </div>
-                                                    <div class="file-name">
-                                                        <p class="m-b-5 text-muted">Jee Le Zara Song.mpg4</p>
-                                                       
-                                                    </div>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-3 col-md-4 col-sm-12">
-                                        <div class="card">
-                                            <div class="file">
-                                                <a href="javascript:void(0);">
-                                                    <div class="hover">
-                                                        <button type="button" class="bg-orange btn btn-icon btn-icon-mini btn-round bg-orange">
-                                                            <i class="ti-heart"></i>
-                                                        </button>
-                                                    </div>
-                                                    <div class="icon">
-                                                        <i class="zmdi zmdi-collection-video"></i>
-                                                    </div>
-                                                    <div class="file-name">
-                                                        <p class="m-b-5 text-muted">Jee Le Zara Song.mpg4</p>
-                                                       
-                                                    </div>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-3 col-md-4 col-sm-12">
-                                        <div class="card">
-                                            <div class="file">
-                                                <a href="javascript:void(0);">
-                                                    <div class="hover">
-                                                        <button type="button" class="bg-orange btn btn-icon btn-icon-mini btn-round bg-orange">
-                                                            <i class="ti-heart"></i>
-                                                        </button>
-                                                    </div>
-                                                    <div class="icon">
-                                                        <i class="zmdi zmdi-collection-video"></i>
-                                                    </div>
-                                                    <div class="file-name">
-                                                        <p class="m-b-5 text-muted">Jee Le Zara Song.mpg4</p>
-                                                       
-                                                    </div>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="col-lg-3 col-md-4 col-sm-12">
-                                        <div class="card">
-                                            <div class="file">
-                                                <a href="javascript:void(0);">
-                                                    <div class="hover">
-                                                        <button type="button" class="bg-orange btn btn-icon btn-icon-mini btn-round bg-orange">
-                                                            <i class="ti-heart"></i>
-                                                        </button>
-                                                    </div>
-                                                    <div class="icon">
-                                                        <i class="zmdi zmdi-collection-video"></i>
-                                                    </div>
-                                                    <div class="file-name">
-                                                        <p class="m-b-5 text-muted">Jee Le Zara Song.mpg4</p>
-                                                       
-                                                    </div>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>     
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+				</div>
+			</div>
 
+			<div class="container-fluid">
+				<div class="row clearfix">
+					<div class="col-lg-12">
+						<div class="card">
+							<div class="tab-content">
+								<div class="tab-pane active" id="2019">
+									<div class="row clearfix">
+										<div class="col-lg-3 col-md-4 col-sm-12">
+											<div class="card">
+												<div class="file">
+													<div class="icon">
+														<a
+															href="${pageContext.request.contextPath}/game/gameDtail.jsp"><img
+															src="${pageContext.request.contextPath}/game/img/01.PNG"></a>
+													</div>
+													<div align="right">
+														<button id="heart"
+															class="bg-orange btn btn-primary btn-round">
+															<i class="zmdi zmdi-favorite-outline6 ti-heart"><br>
+																<small class="bg-orange" id="like">0</small></i>
+														</button>
+													</div>
+												</div>
+											</div>
+										</div>
+										
+										<div class="col-lg-3 col-md-4 col-sm-12">
+											<div class="card">
+												<div class="file">
+													<div class="icon">
+														<a
+															href="${pageContext.request.contextPath}/game/gameDtail.jsp"><img
+															src="${pageContext.request.contextPath}/game/img/01.PNG"></a>
+													</div>
+													<div align="right">
+														<button id="heart"
+															class="bg-orange btn btn-primary btn-round">
+															<i class="zmdi zmdi-favorite-outline6 ti-heart"><br>
+																<small class="bg-orange" id="like">0</small></i>
+														</button>
+													</div>
+												</div>
+											</div>
+										</div>
+										
+																				
+										<div class="col-lg-3 col-md-4 col-sm-12">
+											<div class="card">
+												<div class="file">
+													<div class="icon">
+														<a
+															href="${pageContext.request.contextPath}/game/gameDtail.jsp"><img
+															src="${pageContext.request.contextPath}/game/img/01.PNG"></a>
+													</div>
+													<div align="right">
+														<button id="heart"
+															class="bg-orange btn btn-primary btn-round">
+															<i class="zmdi zmdi-favorite-outline6 ti-heart"><br>
+																<small class="bg-orange" id="like">0</small></i>
+														</button>
+													</div>
+												</div>
+											</div>
+										</div>
+										
+																				
+										<div class="col-lg-3 col-md-4 col-sm-12">
+											<div class="card">
+												<div class="file">
+													<div class="icon">
+														<a
+															href="${pageContext.request.contextPath}/game/gameDtail.jsp"><img
+															src="${pageContext.request.contextPath}/game/img/01.PNG"></a>
+													</div>
+													<div align="right">
+														<button id="heart"
+															class="bg-orange btn btn-primary btn-round">
+															<i class="zmdi zmdi-favorite-outline6 ti-heart"><br>
+																<small class="bg-orange" id="like">0</small></i>
+														</button>
+													</div>
+												</div>
+											</div>
+										</div>
+										
+																				
+										<div class="col-lg-3 col-md-4 col-sm-12">
+											<div class="card">
+												<div class="file">
+													<div class="icon">
+														<a
+															href="${pageContext.request.contextPath}/game/gameDtail.jsp"><img
+															src="${pageContext.request.contextPath}/game/img/01.PNG"></a>
+													</div>
+													<div align="right">
+														<button id="heart"
+															class="bg-orange btn btn-primary btn-round">
+															<i class="zmdi zmdi-favorite-outline6 ti-heart"><br>
+																<small class="bg-orange" id="like">0</small></i>
+														</button>
+													</div>
+												</div>
+											</div>
+										</div>
+										
+										
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
 	<!-- Jquery Core Js -->
 	<script
 		src="${pageContext.request.contextPath}/stylesheet/assets/bundles/libscripts.bundle.js"></script>
-	<!-- Lib Scripts Plugin Js -->
 	<script
 		src="${pageContext.request.contextPath}/stylesheet/assets/bundles/vendorscripts.bundle.js"></script>
-	<!-- Lib Scripts Plugin Js -->
-
-	<script
-		src="${pageContext.request.contextPath}/stylesheet/assets/plugins/light-gallery/js/lightgallery-all.min.js"></script>
-	<!-- Light Gallery Plugin Js -->
-
 
 	<script
 		src="${pageContext.request.contextPath}/stylesheet/assets/bundles/mainscripts.bundle.js"></script>
-	<!-- Custom Js -->
-	<script
-		src="${pageContext.request.contextPath}/stylesheet/assets/js/pages/medias/image-gallery.js"></script>
 </body>
 </html>

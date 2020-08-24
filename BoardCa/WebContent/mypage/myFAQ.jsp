@@ -1,15 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!doctype html>
-<html class="no-js " lang="en">
+<!DOCTYPE html>
+<html lang="UTF-8">
 <head>
-<meta charset="utf-8">
+<meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=Edge">
 <meta
 	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
 	name="viewport">
 <meta name="description"
 	content="Responsive Bootstrap 4 and web Application ui kit.">
+
 
 <title>:: Aero Bootstrap4 Admin ::</title>
 <link rel="icon" href="favicon.ico" type="image/x-icon">
@@ -25,7 +26,7 @@
 	href="${pageContext.request.contextPath}/stylesheet/assets/css/style.min.css">
 </head>
 
-<body class="ls-closed ls-toggle-menu theme-orange">
+<body class="ls-closed ls-toggle-menu ">
 
 	<!-- Loding Page -->
 	<div class="page-loader-wrapper">
@@ -71,7 +72,8 @@
 				<li><a href="${pageContext.request.contextPath}/myFAQ.do"><i
 						class="zmdi zmdi-hc-fw ti-comments"></i><span>FAQ/1:1 문의</span> </a></li>
 				<li><a href="${pageContext.request.contextPath}/myFavorite.do"><i
-						class="zmdi zmdi-hc-fw ti-thumb-up"></i><span>관심글 (상품  / 게시글)</span> </a></li>
+						class="zmdi zmdi-hc-fw ti-thumb-up"></i><span>관심글 (상품 /
+							게시글)</span> </a></li>
 				<li><a href="${pageContext.request.contextPath}/myCoupon.do"><i
 						class="zmdi zmdi-hc-fw ti-stamp"></i><span>Coupon</span> </a></li>
 			</ul>
@@ -81,8 +83,75 @@
 				style="width: 1px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 0px; background: rgb(51, 51, 51); opacity: 0.2; z-index: 90; right: 1px;"></div>
 		</div>
 	</aside>
+	
+	
+	<div class="navbar-right user-info">
+		<ul class="navbar-nav">
+			<li class="dropdown mobile_menu"><a
+				class="ropdown-toggle image waves-effect waves-orange"
+				data-toggle="dropdown" role="button"><img
+					src="${pageContext.request.contextPath}/mypage/imgs/01.jpg"
+					alt="User"></a>
+				<ul class="dropdown-menu slideUp2 " x-placement="bottom-start"
+					style="position: fixed; will-change: transform; top: 0px; left: 0px; transform: translate3d(-110px, 50px, 0px);">
+					<li class="header" style="text-align: right;">내 정보</li>
+					<li class="body" style="width: auto; height: 330px;">
+						<ul class="menu app_sortcut list-unstyled ">
+
+							<li><a href="${pageContext.request.contextPath}/myPage.do">
+									<div class="icon-circle bg-orange">
+										<i class="zmdi zmdi-account"></i>
+									</div>
+									<div class="menu-info">
+
+										<p>myPage</p>
+									</div>
+							</a></li>
+							<li><a
+								href="${pageContext.request.contextPath}/myPageEdit.do">
+									<div class="icon-circle bg-orange">
+										<i class="zmdi zmdi-account"></i>
+									</div>
+									<div class="menu-info">
+
+										<p>Edit</p>
+									</div>
+							</a></li>
+							<li><a href="${pageContext.request.contextPath}/myFAQ.do">
+									<div class="icon-circle bg-orange">
+										<i class="zmdi zmdi-account"></i>
+									</div>
+									<div class="menu-info">
+
+										<p>1:1문의</p>
+									</div>
+							</a></li>
+							<li><a href="${pageContext.request.contextPath}/myPage.do">
+									<div class="icon-circle bg-orange">
+										<i class="zmdi zmdi-account"></i>
+									</div>
+									<div class="menu-info">
+
+										<p>LogOut</p>
+									</div>
+							</a></li>
+						</ul>
+					</li>
+				</ul></li>
+		</ul>
+
+
+		<div class="slimScrollBar"
+			style="background: rgba(0, 0, 0, 0.2); width: 3px; position: absolute; top: 0px; opacity: 0.4; display: none; border-radius: 3px; z-index: 99; right: 1px; height: 330px;"></div>
+		<div class="slimScrollRail"
+			style="width: 3px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 0px; background: rgb(51, 51, 51); opacity: 0.2; z-index: 90; right: 1px;"></div>
+	</div>
 
 	<section class="content blog-page">
+		<!-- header -->
+
+
+		<!-- body -->
 		<div class="body_scroll">
 			<div class="block-header">
 				<div class="row">
@@ -91,7 +160,8 @@
 						<ul class="breadcrumb">
 							<li class="breadcrumb-item"><a href="index.html"><i
 									class="zmdi zmdi-home"></i> Aero</a></li>
-							<li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/myPage.do">myPage</a></li>
+							<li class="breadcrumb-item"><a
+								href="${pageContext.request.contextPath}/myPage.do">myPage</a></li>
 							<li class="breadcrumb-item active">문의</li>
 						</ul>
 						<button class="btn btn-primary btn-icon mobile_menu" type="button">
@@ -137,7 +207,8 @@
 										Please try <b>paste some texts</b> here
 									</p>
 								</div>
-								<button type="button" class="btn btn-info waves-effect m-t-20 bg-orange">POST</button>
+								<button type="button"
+									class="btn btn-info waves-effect m-t-20 bg-orange">POST</button>
 							</div>
 						</div>
 					</div>

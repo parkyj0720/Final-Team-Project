@@ -437,7 +437,8 @@ function displayPlaces(places) {
 
         // 마커를 생성하고 지도에 표시합니다
         var placePosition = new kakao.maps.LatLng(places[i].y, places[i].x),
-            marker = addMarker(placePosition, i), 
+        	//overMarker = addMarker(placePosition, i),
+            marker = addMarker(placePosition, i),
             itemEl = getListItem(i, places[i]); // 검색 결과 항목 Element를 생성합니다
             
         // 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해
@@ -446,14 +447,14 @@ function displayPlaces(places) {
 		
         // 마커와 검색결과 항목에 mouseover 했을때
         // 해당 장소에 인포윈도우에 장소명을 표시합니다
-        // mouseout 했을 때는 인포윈도우를 닫습니다
+        // mouseout 했을 때는 인포윈도우를 닫습니다 
         (function(marker, title) {
             kakao.maps.event.addListener(marker, 'mouseover', function() {
-                displayInfowindow(marker, title);                
+                displayInfowindow(marker, title); 
             });
             
             kakao.maps.event.addListener(marker, 'mouseout', function() {
-                infowindow.close();
+                infowindow.close(); 	
             });
 
             itemEl.onclick = function() {
@@ -462,8 +463,13 @@ function displayPlaces(places) {
             	map.setCenter(marker.getPosition());           
             };
             
+            itemEl.onmouseover = function() {
+            	marker.setImage(overMarkerImage);
+            };
+            
             itemEl.onmouseout =  function () {
-                infowindow.close();
+            	infowindow.close();
+            	//marker.setImage(markerImage);
             };
             
         })(marker, places[i].place_name);
@@ -516,11 +522,26 @@ function addMarker(position, idx, title) {
             position: position, // 마커의 위치
             image: markerImage 
         });
-
+    
+    	/* overImageSrc = 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_number_blue.png',
+    	overImageSize = new kakao.maps.Size(36, 37),
+    	overImgOptions = {
+    			spriteSize : new kakao.maps.Size(44, 691),
+    			spriteOrigin : new kakao.maps.Point(0, (idx*46)+10),
+    			offset: new kakao.maps.Point(15, 37)
+    	}
+    	
+    	overMarkerImage = new kakao.maps.MarkerImage(overImageSrc, overImageSize, overImgOptions),
+    		overMarker = new kakao.maps.Marker({
+    		position : position,
+    		image : overMarkerImage
+    	}); */    
+   
     marker.setMap(map); // 지도 위에 마커를 표출합니다
     markers.push(marker);  // 배열에 생성된 마커를 추가합니다
-
+    
     return marker;
+    
 }
 
 // 지도 위에 표시되고 있는 마커를 모두 제거합니다

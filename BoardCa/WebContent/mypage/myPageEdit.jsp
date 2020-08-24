@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!doctype html>
-<html class="no-js " lang="en">
+<!DOCTYPE html>
+<html lang="UTF-8">
 <head>
-<meta charset="utf-8">
+<meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=Edge">
 <meta
 	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
@@ -21,9 +21,11 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/stylesheet/assets/css/style.min.css"
 	type="text/css">
-</head>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
+<body class="ls-closed ls-toggle-menu ">
 
-<body class="theme-blush">
 	<!-- Loding Page -->
 	<div class="page-loader-wrapper">
 		<div class="loader">
@@ -80,8 +82,71 @@
 				style="width: 1px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 0px; background: rgb(51, 51, 51); opacity: 0.2; z-index: 90; right: 1px;"></div>
 		</div>
 	</aside>
+	
+	
+	<div class="navbar-right user-info">
+		<ul class="navbar-nav">
+			<li class="dropdown mobile_menu"><a
+				class="ropdown-toggle image waves-effect waves-orange"
+				data-toggle="dropdown" role="button"><img
+					src="${pageContext.request.contextPath}/mypage/imgs/01.jpg"
+					alt="User"></a>
+				<ul class="dropdown-menu slideUp2 " x-placement="bottom-start"
+					style="position: fixed; will-change: transform; top: 0px; left: 0px; transform: translate3d(-110px, 50px, 0px);">
+					<li class="header" style="text-align: right;">내 정보</li>
+					<li class="body" style="width: auto; height: 330px;">
+						<ul class="menu app_sortcut list-unstyled ">
 
-	<section class="content" style="margin: 5% 10%;">
+							<li><a href="${pageContext.request.contextPath}/myPage.do">
+									<div class="icon-circle bg-orange">
+										<i class="zmdi zmdi-account"></i>
+									</div>
+									<div class="menu-info">
+
+										<p>myPage</p>
+									</div>
+							</a></li>
+							<li><a
+								href="${pageContext.request.contextPath}/myPageEdit.do">
+									<div class="icon-circle bg-orange">
+										<i class="zmdi zmdi-account"></i>
+									</div>
+									<div class="menu-info">
+
+										<p>Edit</p>
+									</div>
+							</a></li>
+							<li><a href="${pageContext.request.contextPath}/myFAQ.do">
+									<div class="icon-circle bg-orange">
+										<i class="zmdi zmdi-account"></i>
+									</div>
+									<div class="menu-info">
+
+										<p>1:1문의</p>
+									</div>
+							</a></li>
+							<li><a href="${pageContext.request.contextPath}/myPage.do">
+									<div class="icon-circle bg-orange">
+										<i class="zmdi zmdi-account"></i>
+									</div>
+									<div class="menu-info">
+
+										<p>LogOut</p>
+									</div>
+							</a></li>
+						</ul>
+					</li>
+				</ul></li>
+		</ul>
+
+
+		<div class="slimScrollBar"
+			style="background: rgba(0, 0, 0, 0.2); width: 3px; position: absolute; top: 0px; opacity: 0.4; display: none; border-radius: 3px; z-index: 99; right: 1px; height: 330px;"></div>
+		<div class="slimScrollRail"
+			style="width: 3px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 0px; background: rgb(51, 51, 51); opacity: 0.2; z-index: 90; right: 1px;"></div>
+	</div>
+
+	<section class="content">
 		<div class="body_scroll">
 			<div class="block-header">
 				<div class="row">
@@ -90,111 +155,122 @@
 						<ul class="breadcrumb">
 							<li class="breadcrumb-item"><a href="index.html"><i
 									class="zmdi zmdi-home"></i> Aero</a></li>
-							<li class="breadcrumb-item">
-							<a href="${pageContext.request.contextPath}/myPage.do">myPage</a></li>
+							<li class="breadcrumb-item"><a
+								href="${pageContext.request.contextPath}/myPage.do">myPage</a></li>
 							<li class="breadcrumb-item active">Edit</li>
 						</ul>
 					</div>
-					<div class="col-lg-5 col-md-6">
-
+					<div class="col-lg-12 col-md-12 ">
+						<button class="btn btn-primary btn-icon mobile_menu" type="button">
+							<i class="zmdi zmdi-sort-amount-desc"></i>
+						</button>
 						<a href="${pageContext.request.contextPath}/myPage.do"
 							class="btn btn-info btn-icon float-right"><i
-							class="zmdi zmdi-check"></i></a>
+							class="zmdi zmdi-edit"></i></a>
 					</div>
 				</div>
-			</div>
-			<div class="container-fluid">
-				<div class="row clearfix">
-					<div class="col-md-12">
-						<div class="card">
-							<div class="header">
-								<h2>
-									<strong>Security</strong> Settings
-								</h2>
-							</div>
-							<div class="body">
-								<div class="row">
-									<div class="col-lg-4 col-md-12">
-										<div class="form-group">
-											<input type="text" class="form-control"
-												placeholder="Username">
+				<div class="container-fluid">
+					<div class="row clearfix">
+						<div class="col-md-12">
+							<div class="card">
+								<div class="header">
+									<h2>
+										<strong>Security</strong> Settings
+									</h2>
+								</div>
+								<div class="body">
+									<div class="row">
+										<div class="col-lg-4 col-md-12">
+											<div class="form-group">
+												<input type="text" class="form-control"
+													placeholder="Username">
+											</div>
 										</div>
-									</div>
-									<div class="col-lg-4 col-md-12">
-										<div class="form-group">
-											<input type="password" class="form-control"
-												placeholder="Current Password">
+										<div class="col-lg-4 col-md-12">
+											<div class="form-group">
+												<input type="password" class="form-control"
+													placeholder="Current Password">
+											</div>
 										</div>
-									</div>
-									<div class="col-lg-4 col-md-12">
-										<div class="form-group">
-											<input type="password" class="form-control"
-												placeholder="New Password">
+										<div class="col-lg-4 col-md-12">
+											<div class="form-group">
+												<input type="password" class="form-control"
+													placeholder="New Password">
+											</div>
 										</div>
-									</div>
-									<div class="col-12">
-										<button class="btn btn-info bg-orange">Save Changes</button>
+										<div class="col-12">
+											<button class="btn btn-info bg-orange">Save Changes</button>
+										</div>
 									</div>
 								</div>
 							</div>
-						</div>
-						<div class="card">
-							<div class="header">
-								<h2>
-									<strong>Account</strong> Settings
-								</h2>
-							</div>
-							<div class="body">
-								<div class="row clearfix">
-									<div class="col-lg-6 col-md-12">
-										<div class="form-group">
-											<input type="text" class="form-control"
-												placeholder="First Name">
+							<div class="card">
+								<div class="header">
+									<h2>
+										<strong>Account</strong> Settings
+									</h2>
+								</div>
+								<div class="body">
+									<div class="row clearfix">
+										<div class="col-lg-6 col-md-12">
+											<div class="form-group">
+												<input type="text" class="form-control"
+													placeholder="First Name">
+											</div>
 										</div>
-									</div>
-									<div class="col-lg-6 col-md-12">
-										<div class="form-group">
-											<input type="text" class="form-control"
-												placeholder="Last Name">
+										<div class="col-lg-6 col-md-12">
+											<div class="form-group">
+												<input type="text" class="form-control"
+													placeholder="Last Name">
+											</div>
 										</div>
-									</div>
-									<div class="col-lg-4 col-md-12">
-										<div class="form-group">
-											<input type="text" class="form-control" placeholder="City">
+										<div class="col-md-12">
+											<div class="form-group">
+												<input type="text" class="form-control" placeholder="E-mail">
+											</div>
 										</div>
-									</div>
-									<div class="col-lg-4 col-md-12">
-										<div class="form-group">
-											<input type="text" class="form-control" placeholder="E-mail">
+
+										<div class="col-lg-6 col-md-12">
+											<select class="form-control show-tick" tabindex="-98">
+												<option value="">-- Please select --</option>
+												<option value="10">10</option>
+												<option value="20">20</option>
+												<option value="30">30</option>
+												<option value="40">40</option>
+												<option value="50">50</option>
+											</select>
 										</div>
-									</div>
-									<div class="col-lg-4 col-md-12">
-										<div class="form-group">
-											<input type="text" class="form-control" placeholder="Country">
+
+
+										<div class="col-lg-6 col-md-12"style="hide">
+											<select class="form-control show-tick" tabindex="-98">
+												<option value="">-- Please select --</option>
+												<option value="10">10</option>
+												<option value="20">20</option>
+												<option value="30">30</option>
+												<option value="40">40</option>
+												<option value="50">50</option>
+											</select>
 										</div>
-									</div>
-									<div class="col-md-12">
-										<div class="form-group">
-											<textarea rows="4" class="form-control no-resize"
-												placeholder="Address Line 1"></textarea>
+
+										<div class="col-md-12">
+											<div class="checkbox">
+												<input id="procheck1" type="checkbox" checked> <label
+													for="procheck1">Profile Visibility For Everyone</label>
+											</div>
+											<div class="checkbox">
+												<input id="procheck2" type="checkbox"> <label
+													for="procheck2">New task notifications</label>
+											</div>
+											<div class="checkbox">
+												<input id="procheck3" type="checkbox"> <label
+													for="procheck3">New friend request notifications</label>
+											</div>
 										</div>
-									</div>
-									<div class="col-md-12">
-										<div class="checkbox">
-											<input id="procheck1" type="checkbox" checked> <label
-												for="procheck1">Profile Visibility For Everyone</label>
+										<div class="col-md-12">
+											<button class="btn btn-primary bg-orange">Save
+												Changes</button>
 										</div>
-										<div class="checkbox">
-											<input id="procheck2" type="checkbox"> <label
-												for="procheck2">New task notifications</label>
-										</div>
-										<div class="checkbox">
-											<input id="procheck3" type="checkbox"> <label
-												for="procheck3">New friend request notifications</label>
-										</div>
-									</div>
-									<div class="col-md-12">
-										<button class="btn btn-primary bg-orange">Save Changes</button>
 									</div>
 								</div>
 							</div>
@@ -204,6 +280,16 @@
 			</div>
 		</div>
 	</section>
+
+
+	<!-- Latest compiled and minified JavaScript -->
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
+
+	<!-- (Optional) Latest compiled and minified JavaScript translation files -->
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/i18n/defaults-*.min.js"></script>
+
 	<!-- Jquery Core Js -->
 	<script
 		src="${pageContext.request.contextPath}/stylesheet/assets/bundles/libscripts.bundle.js"></script>
