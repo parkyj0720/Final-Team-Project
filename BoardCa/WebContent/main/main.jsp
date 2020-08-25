@@ -9,6 +9,6 @@
 <body>
 <jsp:include page="/WEB-INF/header.jsp"/>
 
-<%-- <jsp:include page="/WEB-INF/footer.jsp"/> --%>
+<jsp:include page="/WEB-INF/footer.jsp"/>
 </body>
 </html>
