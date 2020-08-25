@@ -27,7 +27,6 @@
 		<p>Copyright &copy; BoardCa 2020</p>
 	</div>
 </footer>
-</section>
 
 
 <!-- Jquery Core Js -->
