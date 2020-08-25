@@ -1,105 +1,80 @@
 package CommunityModel;
 
 public class CommunityDto {
-	int Community_num;
-	String Community_id;
-	String Community_title;
-	String Community_userId;
-	String Community_date;
-	String Community_content;
-	int Community_views;
-	int Community_like;
-	
+	int num;
+	String title;
+	String writer_id;
+	String written_date;
+	String content;
+	int heart;
+	int views;
+	int comment_num;
 	public CommunityDto() {
-		this(0,"","","","","",0);
+		this(0,"","","","",0,0,0);
 	}
-
-	public CommunityDto(int Community_num, String Community_id, String Community_title, String Community_userId, String Community_date, String Community_content, int Community_like) {
-		this.Community_num = Community_num;
-		this.Community_id = Community_id;
-		this.Community_title = Community_title;
-		this.Community_userId = Community_userId;
-		this.Community_date = Community_date;
-		this.Community_content = Community_content;
-		this.Community_like = Community_views;
-		this.Community_like = Community_like;
+	public CommunityDto(int num, String title, String writer_id, String written_date, String content, int heart, int views, int comment_num) {
+		this.num = num;
+		this.title = title;
+		this.writer_id = writer_id;
+		this.written_date = written_date;
+		this.content = content;
+		this.heart = heart;
+		this.views = views;
+		this.comment_num = comment_num;
 	}
-
-	public String getCommunity_id() {
-		return Community_id;
+	public int getNum() {
+		return num;
 	}
-
-	public void setCommunity_id(String community_id) {
-		Community_id = community_id;
+	public void setNum(int num) {
+		this.num = num;
 	}
-
-	public String getCommunity_title() {
-		return Community_title;
+	public String getTitle() {
+		return title;
 	}
-
-	public void setCommunity_title(String community_title) {
-		Community_title = community_title;
+	public void setTitle(String title) {
+		this.title = title;
 	}
-
-	public String getCommunity_userId() {
-		return Community_userId;
+	public String getWriter_id() {
+		return writer_id;
 	}
-
-	public void setCommunity_userId(String community_userId) {
-		Community_userId = community_userId;
+	public void setWriter_id(String writer_id) {
+		this.writer_id = writer_id;
 	}
-
-	public String getCommunity_date() {
-		return Community_date;
+	public String getWritten_date() {
+		return written_date;
 	}
-
-	public void setCommunity_date(String community_date) {
-		Community_date = community_date;
+	public void setWritten_date(String written_date) {
+		this.written_date = written_date;
 	}
-
-	public String getCommunity_content() {
-		return Community_content;
+	public String getContent() {
+		return content;
 	}
-
-	public void setCommunity_content(String community_content) {
-		Community_content = community_content;
+	public void setContent(String content) {
+		this.content = content;
 	}
-
-	public int getCommunity_like() {
-		return Community_like;
+	public int getHeart() {
+		return heart;
 	}
-
-	public void setCommunity_like(int community_like) {
-		Community_like = community_like;
+	public void setHeart(int heart) {
+		this.heart = heart;
 	}
-
-	public int getCommunity_num() {
-		return Community_num;
+	public int getViews() {
+		return views;
 	}
-
-	public void setCommunity_num(int community_num) {
-		Community_num = community_num;
+	public void setViews(int views) {
+		this.views = views;
 	}
-
-	public int getCommunity_views() {
-		return Community_views;
+	public int getComment_num() {
+		return comment_num;
 	}
-
-	public void setCommunity_views(int community_views) {
-		Community_views = community_views;
+	public void setComment_num(int comment_num) {
+		this.comment_num = comment_num;
 	}
-
 	@Override
 	public String toString() {
-		return "CommunityDto [Community_num=" + Community_num + ", Community_id=" + Community_id + ", Community_title="
-				+ Community_title + ", Community_userId=" + Community_userId + ", Community_date=" + Community_date
-				+ ", Community_content=" + Community_content + ", Community_views=" + Community_views
-				+ ", Community_like=" + Community_like + "]";
+		return "CommunityDto [num=" + num + ", title=" + title + ", writer_id=" + writer_id + ", written_date="
+				+ written_date + ", content=" + content + ", heart=" + heart + ", views=" + views + ", comment_num="
+				+ comment_num + "]";
 	}
-
-
-
-	
-
 
 }

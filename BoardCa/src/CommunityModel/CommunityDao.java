@@ -18,10 +18,11 @@ public class CommunityDao {
 		}
 		return instance;
 	}
-	String main_board1 = "select * from (select * from community where community_id=숙취게시판)where rownum<=5";
-	String main_board2 = "select * from (select * from community where community_id=정보공유)where rownum<=5";
-	String main_board3 = "select * from (select * from community where community_id=QnA)where rownum<=5";
-	String main_board4 = "select * from (select * from community where community_id=신고하기)where rownum<=5";
+
+	String main1 = "select * from board1";
+	String main2 = "select * from board2";
+	String main3 = "select * from board3";
+	String main4 = "select * from board4";
 	
 	ArrayList<CommunityDto> list1;
 	ArrayList<CommunityDto> list2;
@@ -40,17 +41,18 @@ public class CommunityDao {
 		try {
 			conn = DriverManager.getConnection(url, user, pass);
 			Class.forName("oracle.jdbc.driver.OracleDriver");
-			pstmt = conn.prepareStatement(main_board1);
+			pstmt = conn.prepareStatement((main1));
 			rs = pstmt.executeQuery();
 			while(rs.next()){
-				int Community_num = rs.getInt("community_num");
-				String Community_id = rs.getNString("community_id");
-				String Community_title = rs.getString("community_title");
-				String Community_userId = rs.getString("community_userid");
-				String Community_date = rs.getString("community_date");
-				String Community_content = rs.getString("community_content");
-				int Community_like = rs.getInt("community_like");
-				list1.add(new CommunityDto(Community_num, Community_id, Community_title, Community_userId, Community_date, Community_content, Community_like));
+				int num = rs.getInt("num");
+				String title = rs.getNString("title");
+				String writer_id = rs.getString("writer_id");
+				String written_date = rs.getString("written_date");
+				String content = rs.getString("content");
+				int heart = rs.getInt("heart");
+				int views = rs.getInt("views");
+				int comment_num = rs.getInt("comment_num");
+				list1.add(new CommunityDto(num, title, writer_id, written_date, content, heart, views, comment_num));
 			}
 			
 		}catch (Exception e) {
@@ -84,21 +86,22 @@ public class CommunityDao {
 		return list1;
 	}
 	public ArrayList<CommunityDto> Main2(){
-		ArrayList<CommunityDto> list2 = new ArrayList<CommunityDto>();
+		ArrayList<CommunityDto> list1 = new ArrayList<CommunityDto>();
 		try {
 			conn = DriverManager.getConnection(url, user, pass);
 			Class.forName("oracle.jdbc.driver.OracleDriver");
-			pstmt = conn.prepareStatement(main_board2);
+			pstmt = conn.prepareStatement((main1));
 			rs = pstmt.executeQuery();
 			while(rs.next()){
-				int Community_num = rs.getInt("community_num");
-				String Community_id = rs.getNString("community_id");
-				String Community_title = rs.getString("community_title");
-				String Community_userId = rs.getString("community_userid");
-				String Community_date = rs.getString("community_date");
-				String Community_content = rs.getString("community_content");
-				int Community_like = rs.getInt("community_like");
-				list2.add(new CommunityDto(Community_num, Community_id, Community_title, Community_userId, Community_date, Community_content, Community_like));
+				int num = rs.getInt("num");
+				String title = rs.getNString("title");
+				String writer_id = rs.getString("writer_id");
+				String written_date = rs.getString("written_date");
+				String content = rs.getString("content");
+				int heart = rs.getInt("heart");
+				int views = rs.getInt("views");
+				int comment_num = rs.getInt("comment_num");
+				list1.add(new CommunityDto(num, title, writer_id, written_date, content, heart, views, comment_num));
 			}
 			
 		}catch (Exception e) {
@@ -129,24 +132,25 @@ public class CommunityDao {
 				}
 			}
 		}
-		return list2;
+		return list1;
 	}
 	public ArrayList<CommunityDto> Main3(){
-		ArrayList<CommunityDto> list3 = new ArrayList<CommunityDto>();
+		ArrayList<CommunityDto> list1 = new ArrayList<CommunityDto>();
 		try {
 			conn = DriverManager.getConnection(url, user, pass);
 			Class.forName("oracle.jdbc.driver.OracleDriver");
-			pstmt = conn.prepareStatement(main_board3);
+			pstmt = conn.prepareStatement((main1));
 			rs = pstmt.executeQuery();
 			while(rs.next()){
-				int Community_num = rs.getInt("community_num");
-				String Community_id = rs.getNString("community_id");
-				String Community_title = rs.getString("community_title");
-				String Community_userId = rs.getString("community_userid");
-				String Community_date = rs.getString("community_date");
-				String Community_content = rs.getString("community_content");
-				int Community_like = rs.getInt("community_like");
-				list3.add(new CommunityDto(Community_num, Community_id, Community_title, Community_userId, Community_date, Community_content, Community_like));
+				int num = rs.getInt("num");
+				String title = rs.getNString("title");
+				String writer_id = rs.getString("writer_id");
+				String written_date = rs.getString("written_date");
+				String content = rs.getString("content");
+				int heart = rs.getInt("heart");
+				int views = rs.getInt("views");
+				int comment_num = rs.getInt("comment_num");
+				list1.add(new CommunityDto(num, title, writer_id, written_date, content, heart, views, comment_num));
 			}
 			
 		}catch (Exception e) {
@@ -177,24 +181,25 @@ public class CommunityDao {
 				}
 			}
 		}
-		return list3;
+		return list1;
 	}
 	public ArrayList<CommunityDto> Main4(){
-		ArrayList<CommunityDto> list4 = new ArrayList<CommunityDto>();
+		ArrayList<CommunityDto> list1 = new ArrayList<CommunityDto>();
 		try {
 			conn = DriverManager.getConnection(url, user, pass);
 			Class.forName("oracle.jdbc.driver.OracleDriver");
-			pstmt = conn.prepareStatement(main_board4);
+			pstmt = conn.prepareStatement((main1));
 			rs = pstmt.executeQuery();
 			while(rs.next()){
-				int Community_num = rs.getInt("community_num");
-				String Community_id = rs.getNString("community_id");
-				String Community_title = rs.getString("community_title");
-				String Community_userId = rs.getString("community_userid");
-				String Community_date = rs.getString("community_date");
-				String Community_content = rs.getString("community_content");
-				int Community_like = rs.getInt("community_like");
-				list4.add(new CommunityDto(Community_num, Community_id, Community_title, Community_userId, Community_date, Community_content, Community_like));
+				int num = rs.getInt("num");
+				String title = rs.getNString("title");
+				String writer_id = rs.getString("writer_id");
+				String written_date = rs.getString("written_date");
+				String content = rs.getString("content");
+				int heart = rs.getInt("heart");
+				int views = rs.getInt("views");
+				int comment_num = rs.getInt("comment_num");
+				list1.add(new CommunityDto(num, title, writer_id, written_date, content, heart, views, comment_num));
 			}
 			
 		}catch (Exception e) {
@@ -225,8 +230,7 @@ public class CommunityDao {
 				}
 			}
 		}
-		return list4;
+		return list1;
 	}
-
 	
 }
