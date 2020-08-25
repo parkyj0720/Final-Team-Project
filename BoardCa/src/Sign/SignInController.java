@@ -31,17 +31,11 @@ public class SignInController {
 	@Autowired
 	private MemberDao memDao;
 	
-	
-	
 	@RequestMapping("/signIn.do")
 	public ModelAndView signIn() {
-		
-		
 		mv.setViewName("/sign/signIn.jsp");
 		return mv;
 	}
-	
-	
 	@RequestMapping("/signPro.do")
 	public ModelAndView signPro(MemberDto dto,SessionDto sedto, HttpSession session,HttpServletRequest req)
 			throws SAXException, IOException, ParserConfigurationException {

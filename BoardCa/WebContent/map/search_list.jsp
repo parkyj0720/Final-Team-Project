@@ -69,7 +69,6 @@
 
 <body class="theme-blush">
 
-<section class="content">
         <div class="map_wrap">
     <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
 
@@ -600,12 +599,3 @@ function removeAllChildNods(el) {
 }
 
 </script>
-</section>
-
-<%-- Jquery Core Js --%> 
-<script src="${pageContext.request.contextPath}/stylesheet/assets/bundles/libscripts.bundle.js"></script> <!-- Lib Scripts Plugin Js --> 
-<script src="${pageContext.request.contextPath}/stylesheet/assets/bundles/vendorscripts.bundle.js"></script> <!-- Lib Scripts Plugin Js --> 
-
-<script src="${pageContext.request.contextPath}/stylesheet/assets/bundles/mainscripts.bundle.js"></script><!-- Custom Js -->
-</body>
-</html>
