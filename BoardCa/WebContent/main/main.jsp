@@ -7,6 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>메인입니다.${userId}</h1> 
+<jsp:include page="/WEB-INF/header.jsp"/>
+
+<%-- <jsp:include page="/WEB-INF/footer.jsp"/> --%>
 </body>
 </html>

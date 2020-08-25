@@ -59,7 +59,7 @@ public class SignInController {
 		DocumentBuilder builder = fatory.newDocumentBuilder();
 		//3.생성된 빌더를 통해서 xml문서를 Document객체로 파싱해서 가져온다.
         //Document org에서 가져온다!!!
-		Document doc = builder.parse("http://whois.kisa.or.kr/openapi/ipascc.jsp?query=121.66.252.156&key=2020081914462601995405&answer=xml");
+		Document doc = builder.parse("http://whois.kisa.or.kr/openapi/ipascc.jsp?query=192.168.219.111&key=2020081914462601995405&answer=xml");
 		NodeList list = doc.getElementsByTagName("countryCode");
 		
 		int i = 0;
@@ -79,10 +79,6 @@ public class SignInController {
 		
 		dto.setMem_id(userId);
 		dto.setMem_pw(userPw);
-		
-		System.out.println(dto.getMem_id());
-		System.out.println(dto.getMem_pw());
-		
 		
 		int idCheck = memDao.idCheck(userId); 
 		if(idCheck==1) {
