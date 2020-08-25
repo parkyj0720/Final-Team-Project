@@ -22,19 +22,16 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/stylesheet/assets/css/style.min.css">
 <style type="text/css">
-.nav-item {
-	margin: 10px 5px 0 0;
-}
 </style>
 
 <script>
-	$(function() {
+/* 	$(function() {
 		$('.tab-pane').click(function() {
 			var activeTab = $(this).attr('data-tab');
 			$.ajax({
 				type : 'GET', // get 방식으로 통신
 				url : activeTab + ".do", // 탭의 data-tab속성의 값으로된 html파일로 통신
-				dataType : "html", // html 형식으로 값 읽기
+				dataType : "jsp", // html 형식으로 값 읽기
 				error : function() { // 통신실패시 안내창
 					alert('통신실패');
 				},
@@ -45,7 +42,7 @@
 		});
 		$('#default').click();
 
-	});
+	}); */
 </script>
 </head>
 
@@ -84,33 +81,62 @@
 											<li><a href="javascript:void(0);">정보수정</a></li>
 											<li><a href="javascript:void(0);">1:1문의</a></li>
 											<li><a href="javascript:void(0);">로그아웃</a></li>
-										</ul></li>
+										</ul>
+									</li>
 								</ul>
 							</div>
-							<div class="tab-content">
+							<div>
 								<!-- Nav tabs -->
-								<!-- data-tab에 탭경로 주기 -->
-								<ul class="nav nav-tabs p-0 mb-3 nav-tabs-success"
-									role="tabpanel">
-									<li data-tab="main" class="tab-pane in active" style="width: 10%;" id="default">
-										<a	class="nav-link active" data-toggle="tab" href="#" style="padding: 0;"> 
-											<img alt="logo"	src="${pageContext.request.contextPath}/imgs/logo2.png">
+
+								<ul class="nav col-md-12 col-xs-12 nav-tabs">
+									<li class="nav-item col-md-12 col-xs-1" role="presentation" class="active">
+										<a	href="${pageContext.request.contextPath}/main.do"> 
+											<img alt="logo" src="${pageContext.request.contextPath}/imgs/logo2.png">
 										</a>
 									</li>
-									<li data-tab="cListAll"  class="tab-pane"><a class="nav-item" data-toggle="tab"
-										href="#"> 안주레시피 </a></li>
-									<li data-tab="gameMain"  class="tab-pane"><a class="nav-item" data-toggle="tab"
-										href="#">술게임 </a></li>
-									<li data-tab="" class="tab-pane"><a class="nav-item" data-toggle="tab"
-										href="#">커뮤니티 </a></li>
-									<li data-tab="search_list" class="tab-pane"><a href="#">근처 술집 </a></li>
+									<li class="nav-item col-md-3" role="presentation">
+										<a href="${pageContext.request.contextPath}/cListAll.do">
+											<i class="zmdi zmdi-email"></i>안주레시피
+										</a>
+									</li>
+									<li class="nav-item col-md-3" role="presentation">
+										<a href="${pageContext.request.contextPath}/gameMain.do">
+										<i class="zmdi zmdi-email"></i>술게임</a>
+									</li>
+									<li class="nav-item col-md-3" role="presentation">
+										<a href="">
+										<i class="zmdi zmdi-email"></i>커뮤니티</a>
+									</li>
+									<li class="nav-item col-md-3" role="presentation">
+										<a href="${pageContext.request.contextPath}/search_list.do">
+										<i class="zmdi zmdi-email"></i>술집찾기</a>
+									</li>									
 								</ul>
+
+								<!-- Tab panes -->
+								<!-- <div class="tab-content">
+									<div role="tabpanel" class="tab-pane in active"
+										id="home_with_icon_title">
+										<b>Home Content</b>
+										<p></p>
+									</div>
+									<div role="tabpanel" class="tab-pane"
+										id="profile_with_icon_title">
+										<b>Profile Content</b>
+										<p></p>
+									</div>
+									<div role="tabpanel" class="tab-pane"
+										id="messages_with_icon_title">
+										<b>Message Content</b>
+										<p></p>
+									</div>
+									<div role="tabpanel" class="tab-pane"
+										id="settings_with_icon_title">
+										<b>Settings Content</b>
+										<p></p>
+									</div>
+								</div> -->
 							</div>
-							
-						
-							<div id="tabContent"></div>
-							
-							
 						</div>
 					</div>
 				</div>

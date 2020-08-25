@@ -44,10 +44,10 @@
 								<!-- data-tab에 탭경로 주기 -->
 								<ul class="nav nav-tabs p-0 md-12 nav-tabs-success"
 									role="tablist">
-									<li class="nav-item col-md-3"><a href="cListAll.do"> 안주레시피 </a></li>
-									<li class="nav-item col-md-3"><a href="gameMain.do">술게임 </a></li>
-									<li class="nav-item col-md-3"><a href="">커뮤니티 </a></li>
-									<li class="nav-item col-md-3"><a href="search_list.do">근처 술집 </a></li>
+									<li class="nav-item col-md-3"><a href="${pageContext.request.contextPath}/cListAll.do"> 안주레시피 </a></li>
+									<li class="nav-item col-md-3"><a href="${pageContext.request.contextPath}/gameMain.do">술게임 </a></li>
+									<li class="nav-item col-md-3"><a href="${pageContext.request.contextPath}/main/test.jsp">커뮤니티 </a></li>
+									<li class="nav-item col-md-3"><a href="${pageContext.request.contextPath}/search_list.do">근처 술집 </a></li>
 								</ul>
 							</div>
 						</div>
