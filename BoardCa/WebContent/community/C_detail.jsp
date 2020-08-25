@@ -31,7 +31,7 @@
 					<li style="width: 25%; float: left; text-align: center;">안주
 						레시피</li>
 					<li style="width: 25%; float: left; text-align: center;">술게임</li>
-					<li style="width: 25%; float: left; text-align: center;"><a href="<%=request.getContextPath()%>/Community?action=C_main">커뮤니티</a></li>
+					<li style="width: 25%; float: left; text-align: center;"><a href="${pageContext.request.contextPath}/Community_main.do">커뮤니티</a></li>
 					<li style="width: 25%; float: left; text-align: center;">근처 술집</li>
 				</ul>
 			</div>
@@ -41,9 +41,9 @@
 					<ul class="breadcrumb">
 						<li class="breadcrumb-item"><a href="index.html"><i
 								class="zmdi zmdi-home"></i> BoardCa</a></li>
-						<li class="breadcrumb-item"><a href="<%=request.getContextPath()%>/Community?action=C_main">Community</a></li>
-						<li class="breadcrumb-item active"><a href="<%=request.getContextPath()%>/Community?action=C_list">(수정예정)</a></li>
-						<li class="breadcrumb-item active">detail</li>
+						<li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/Community_main.do">Community</a></li>
+						<li class="breadcrumb-item active"><a href="${pageContext.request.contextPath}/Community_list.do">(수정예정)</a></li>
+						<li class="breadcrumb-item active"><a href="${pageContext.request.contextPath}/Community_detail.do">detail</li>
 					</ul>
 					<button class="btn btn-primary btn-icon mobile_menu" type="button">
 						<i class="zmdi zmdi-sort-amount-desc"></i>
@@ -54,30 +54,10 @@
 			<div class="col-lg-8 col-md-12" style="max-width: none;">
 				<div class="card">
 					<div class="blogitem mb-5">
-
 						<div class="blogitem-content">
-							<div class="blogitem-header">
-								<div class="blogitem-share">
-									<ul class="list-unstyled mb-0">
-										<li><a href="javascript:void(0);"><i
-												class="zmdi zmdi-facebook-box"></i></a></li>
-										<li><a href="javascript:void(0);"><i
-												class="zmdi zmdi-instagram"></i></a></li>
-										<li><a href="javascript:void(0);"><i
-												class="zmdi zmdi-twitter-box"></i></a></li>
-										<li><a href="javascript:void(0);"><i
-												class="zmdi zmdi-linkedin-box"></i></a></li>
-									</ul>
-								</div>
-							</div>
-							<h5>
-								<a href="blog-details.html">(제목)
-									<div class="blogitem-meta" style="float: right;">
-										<span><i class="zmdi zmdi-account"></i><a
-											href="javascript:void(0);">작성자</a></span> <span><i
-											class="zmdi zmdi-comments"></i><a href="blog-details.html">Comments(3)</a></span>
+							<h5>(제목)<div class="blogitem-meta" style="float: right;"><span><i class="zmdi zmdi-account"></i><a
+											href="javascript:void(0);">작성자</a></span>
 									</div>
-								</a>
 							</h5>
 							(내용)
 						</div>
@@ -86,7 +66,7 @@
 				<div class="card">
 					<div class="header">
 						<h2>
-							<strong>댓글</strong> (2)
+							<i class="zmdi zmdi-comments"></i><strong>댓글</strong> (2)
 						</h2>
 					</div>
 					<div class="card">
