@@ -1,3 +1,5 @@
+<%@page import="CommunityModel.CommunityDto"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -21,6 +23,9 @@
 	type="text/css">
 </head>
 <body>
+<%
+	ArrayList<CommunityDto> list = (ArrayList<CommunityDto>) request.getAttribute("list");
+%>
 	<section class="content"
 		style="margin-left: auto; margin-right: auto; padding-left: 10%; padding-right: 10%;">
 		<div class="row">
@@ -66,22 +71,25 @@
 									class="table table-hover product_item_list c_table theme-color mb-0"
 									style="width: 100%;">
 									<tbody>
+									<%for(int i = 0; i<list.size(); i++){ 
+									CommunityDto dto = list.get(i);%>
 										<tr style="box-sizing: content-box;">
 											<td width="10%" height="auto" align="center"
-												style="white-space: normal;">1</td>
+												style="white-space: normal;"><%=dto.getNum()%></td>
 											<td width="10%" height="auto" align="center"
-												style="white-space: normal;">정태진</td>
+												style="white-space: normal;"><%=dto.getWriter_id()%></td>
 											<td width="40%" height="auto" align="center"
-												style="white-space: normal;"><a href="${pageContext.request.contextPath}/Community_detail.do">가나다라마바사아자차카타파하rrrrrrrrrrrr</a></td>
+												style="white-space: normal;"><a href="${pageContext.request.contextPath}/Community_detail.do"><%=dto.getContent()%></a></td>
 											<td width="10%" height="auto" align="center"
-												style="white-space: normal;">date</td>
+												style="white-space: normal;"><%=dto.getWritten_date()%></td>
 											<td width="10%" height="auto" align="center"
-												style="white-space: normal;">100</td>
+												style="white-space: normal;"><%=dto.getViews()%></td>
 											<td width="10%" height="auto" align="center"
-												style="white-space: normal;">10</td>
+												style="white-space: normal;"><%=dto.getHeart()%></td>
 											<td width="10%" height="auto" align="center"
 												style="white-space: normal;"><i class="zmdi zmdi-hc-fw"></i></td>
 										</tr>
+										<%} %>
 									</tbody>
 								</table>
 							</div>
