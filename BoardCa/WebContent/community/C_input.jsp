@@ -16,33 +16,18 @@
 	type="text/css">
 </head>
 <body>
+<%-- <jsp:include page="/WEB-INF/header.jsp"/> --%>
 	<section class="content blog-page"
 		style="margin-left: auto; margin-right: auto; padding-left: 10%; padding-right: 10%;">
 		<div class="body_scroll">
-			<div class="row">
-				<div>
-					<img src="${pageContext.request.contextPath}/imgs/logo1.png"
-						height="250em" />
-				</div>
-			</div>
-			<div class="alert alert-warning" id="menu" role="alert">
-				<ul
-					style="list-style: none; padding: 0; margin: 0; overflow: hidden;">
-					<li style="width: 25%; float: left; text-align: center;">안주
-						레시피</li>
-					<li style="width: 25%; float: left; text-align: center;">술게임</li>
-					<li style="width: 25%; float: left; text-align: center;"><a href="<%=request.getContextPath()%>/Community?action=C_main">커뮤니티</a></li>
-					<li style="width: 25%; float: left; text-align: center;">근처 술집</li>
-				</ul>
-			</div>
 			<div class="block-header">
 				<div class="col-lg-7 col-md-6 col-sm-12">
 					<h2>글쓰기</h2>
 					<ul class="breadcrumb">
 						<li class="breadcrumb-item"><a href="index.html"><i
 								class="zmdi zmdi-home"></i> BoardCa</a></li>
-						<li class="breadcrumb-item"><a href="<%=request.getContextPath()%>/Community?action=C_main">Community</a></li>
-						<li class="breadcrumb-item active"><a href="<%=request.getContextPath()%>/Community?action=C_list">(수정예정)</a></li>
+						<li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/Community_main.do">Community</a></li>
+						<li class="breadcrumb-item active"><a href="${pageContext.request.contextPath}/Community_list">(수정예정)</a></li>
 						<li class="breadcrumb-item active">글올리기</li>
 					</ul>
 					<button class="btn btn-primary btn-icon mobile_menu" type="button">
@@ -57,7 +42,7 @@
 						<div class="card">
 							<div class="body">
 								<div class="form-group">
-									<input type="text" class="form-control" placeholder="제목" />
+									<input type="text" class="form-control" placeholder="제목" id="title" />
 								</div>
 								<select class="form-control show-tick">
 									<option>Select Option</option>
@@ -71,9 +56,9 @@
 						<div class="card">
 							<div class="body">
 								<div class="summernote">
-									<textarea name="ourtext" class="form-control" rows=30></textarea>
+									<textarea name="ourtext" class="form-control" rows=30 id="content"></textarea>
 								</div>
-								<button type="button" class="btn btn-info waves-effect m-t-20">POST</button>
+								<button type="button" class="btn btn-info waves-effect m-t-20" id="submit">글올리기</button>
 							</div>
 						</div>
 					</div>
@@ -81,5 +66,15 @@
 			</div>
 		</div>
 	</section>
+	<%-- <jsp:include page="/WEB-INF/footer.jsp"/> --%>
+	<script>
+		var submit = document.getElementById("submit");
+		var title = document.getElementById("title");
+		var content = document.getElementById("content");
+		
+		submit.onclick = function(){
+			
+		}
+	</script>
 </body>
 </html>

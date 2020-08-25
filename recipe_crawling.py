@@ -6,7 +6,8 @@ import cx_Oracle
 os.chdir('C:\\instantclient-basic-nt-11.2.0.4.0\\instantclient_11_2')
 os.putenv('NLS_LANG', 'AMERICAN_AMERICA.UTF8')
 
-db = cx_Oracle.connect('test', 'test', '192.168.219.139:1521/xe')
+# db접속 id, pw, 자신 아이피로 변경
+db = cx_Oracle.connect('test', 'test', '192.168.219.142:1521/xe')
 
 uri = "https://www.10000recipe.com/recipe/list.html?q=&query=&cat1=&cat2=19&cat3=&cat4=&fct=&order=date&lastcate=order&dsearch=&copyshot=&scrap=&degree=&portion=&time=&niresource="
 

@@ -34,19 +34,22 @@
 				style="list-style: none; padding: 0; margin: 0; overflow: hidden;">
 				<li style="width: 25%; float: left; text-align: center;">안주 레시피</li>
 				<li style="width: 25%; float: left; text-align: center;">술게임</li>
-				<li style="width: 25%; float: left; text-align: center;"><a href="<%=request.getContextPath()%>/Community?action=C_main">커뮤니티</a></li>
+				<li style="width: 25%; float: left; text-align: center;"><a
+					href="${pageContext.request.contextPath}/Community_main.do">커뮤니티</a></li>
 				<li style="width: 25%; float: left; text-align: center;">근처 술집</li>
 			</ul>
 		</div>
 		<div class="body_scroll">
-						<div class="block-header">
+			<div class="block-header">
 				<div class="col-lg-7 col-md-6 col-sm-12">
 					<h2>List</h2>
 					<ul class="breadcrumb">
 						<li class="breadcrumb-item"><a href="index.html"><i
 								class="zmdi zmdi-home"></i> BoardCa</a></li>
-						<li class="breadcrumb-item"><a href="<%=request.getContextPath()%>/Community?action=C_main">Community</a></li>
-						<li class="breadcrumb-item active"><a href="<%=request.getContextPath()%>/Community?action=C_list">(수정예정)</a></li>
+						<li class="breadcrumb-item"><a
+							href="${pageContext.request.contextPath}/Community_main.do">Community</a></li>
+						<li class="breadcrumb-item active"><a
+							href="${pageContext.request.contextPath}/Community_list.do">(수정예정)</a></li>
 					</ul>
 					<button class="btn btn-primary btn-icon mobile_menu" type="button">
 						<i class="zmdi zmdi-sort-amount-desc"></i>
@@ -60,18 +63,24 @@
 						<div class="card"">
 							<div class="table-responsive" style="overflow-x: visible">
 								<table
-									class="table table-hover product_item_list c_table theme-color mb-0" style="width: 100%;"
-									>
+									class="table table-hover product_item_list c_table theme-color mb-0"
+									style="width: 100%;">
 									<tbody>
 										<tr style="box-sizing: content-box;">
-											<td width="10%" height="auto" align="center" style="white-space: normal;">1</td>
-											<td width="10%" height="auto" align="center" style="white-space: normal;">정태진</td>
-											<td width="40%" height="auto" align="center" style="white-space: normal;">가나다라마바사아자차카타파하rrrrrrrrrrrr</td>
-											<td width="10%" height="auto" align="center" style="white-space: normal;">date</td>
-											<td width="10%" height="auto" align="center" style="white-space: normal;">100</td>
-											<td width="10%" height="auto" align="center" style="white-space: normal;">10</td>
-											<td width="10%" height="auto" align="center" style="white-space: normal;"><i
-												class="zmdi zmdi-hc-fw"></i></td>
+											<td width="10%" height="auto" align="center"
+												style="white-space: normal;">1</td>
+											<td width="10%" height="auto" align="center"
+												style="white-space: normal;">정태진</td>
+											<td width="40%" height="auto" align="center"
+												style="white-space: normal;"><a href="${pageContext.request.contextPath}/Community_detail.do">가나다라마바사아자차카타파하rrrrrrrrrrrr</a></td>
+											<td width="10%" height="auto" align="center"
+												style="white-space: normal;">date</td>
+											<td width="10%" height="auto" align="center"
+												style="white-space: normal;">100</td>
+											<td width="10%" height="auto" align="center"
+												style="white-space: normal;">10</td>
+											<td width="10%" height="auto" align="center"
+												style="white-space: normal;"><i class="zmdi zmdi-hc-fw"></i></td>
 										</tr>
 									</tbody>
 								</table>
@@ -94,11 +103,12 @@
 										href="javascript:void(0);"><i
 											class="zmdi zmdi-arrow-right"></i></a></li>
 									<div style="width: 100%">
-										<button
-											class="btn btn-primary float-right right_icon_toggle_btn"
-											type="button" onclick="location.href='<%=request.getContextPath()%>/Community?action=C_Input'">
-											<i class="zmdi zmdi-hc-fw"></i>
-										</button>
+										<a
+											href="${pageContext.request.contextPath}/Community_input.do"><button
+												class="btn btn-primary float-right right_icon_toggle_btn"
+												type="button">
+												<i class="zmdi zmdi-hc-fw"></i>
+											</button></a>
 									</div>
 								</ul>
 							</div>
