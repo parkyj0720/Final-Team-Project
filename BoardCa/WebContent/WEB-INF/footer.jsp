@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <!-- Footer -->
 <footer>
-
+	<hr>
 	<div class="col-lg-12 ">
 		<ul class="list-inline bottom-font  ">
 			<li><a href="manager_introduction.do" type="button">회사소개</a></li>
@@ -12,7 +12,6 @@
 			<li><a href="help.do" type="button">도움말</a></li>
 			<li><a href="notice.do" type="button">공지사항</a></li>
 		</ul>
-
 	</div>
 	<hr>
 
@@ -25,11 +24,8 @@
 			1544-1234 (오전10시- 오후6시)<br> <i class="fa fa-fax"
 				aria-hidden="true"></i> 1544-1234 (팩스번호)<br>
 		</address>
+		<p>Copyright &copy; BoardCa 2020</p>
 	</div>
-
-	<p>Copyright &copy; BoardCa 2020</p>
-
-
 </footer>
 </section>
 
