@@ -22,9 +22,7 @@ import Member.MemberDao;
 import Member.MemberDto;
 
 @Controller
-public class SignInController {
-
-	
+public class SignInController {	
 	@Autowired
 	private ModelAndView mv;
 	
