@@ -17,9 +17,13 @@ public class CController {
 	
 	@RequestMapping("/cListAll.do")
 	public ModelAndView getList(HttpServletRequest req) {
-		String page="1";
+		int page= 1;
 		if(req.getParameter("page") != null)
-			page = req.getParameter("page");
+		{
+			page = Integer.parseInt(req.getParameter("page"));
+			if(page<=0)
+				page = 1;
+		}
 		
 		mv.addObject("cList",dao.getList());
 		mv.setViewName("/food/food.jsp?page="+page);
