@@ -1,27 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="UTF-8">
 <head>
 <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=Edge">
-<meta
-	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
-	name="viewport">
-<meta name="description"
-	content="Responsive Bootstrap 4 and web Application ui kit.">
 
-<title>:: Aero Bootstrap4 Admin :: Profile</title>
-<link rel="icon" href="favicon.ico" type="image/x-icon">
+<title></title>
+<link rel="icon" href="/BoardCa/stylesheet/favicon.ico"
+	type="image/x-icon">
 <!-- Favicon-->
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/stylesheet/assets/plugins/bootstrap/css/bootstrap.min.css"
-	type="text/css">
-
+	href="/BoardCa/stylesheet/assets/plugins/bootstrap/css/bootstrap.min.css">
 <!-- Custom Css -->
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/stylesheet/assets/css/style.min.css"
-	type="text/css">
+	href="/BoardCa/stylesheet/assets/css/style.min.css">
+
 <script src="http://code.jquery.com/jquery.js"></script>
 </head>
 
@@ -39,163 +31,289 @@
 				})
 	})
 </script>
+${pageContext.request.contextPath}/mypage/imgs/01
+
 <body class="ls-closed ls-toggle-menu ">
-	<!-- Loding Page -->
-	<div class="page-loader-wrapper">
-		<div class="loader">
-			<div class="m-t-30">
-				<img class="zmdi-hc-spin"
-					src="${pageContext.request.contextPath}/stylesheet/assets/images/loader.svg"
-					style="width: 48px; height: 48px; alt: Aero;">
-			</div>
-			<p>Please wait...</p>
-		</div>
-	</div>
-
-	<div class="navbar-right user-info">
-		<ul class="navbar-nav">
-			<li class="dropdown mobile_menu"><a
-				class="ropdown-toggle image waves-effect waves-orange"
-				data-toggle="dropdown" role="button"><img
-					src="${pageContext.request.contextPath}/mypage/imgs/01.jpg"
-					alt="User"></a>
-				<ul class="dropdown-menu slideUp2 " x-placement="bottom-start"
-					style="position: fixed; will-change: transform; top: 0px; left: 0px; transform: translate3d(-110px, 50px, 0px); width: 230px;">
-					<li class="header" style="min-width: 230px;">내 정보</li>
-					<li class="body" style="width: auto; height: 330px;">
-						<ul class="menu app_sortcut list-unstyled ">
-
-							<li style="width: 90px;"><a
-								href="${pageContext.request.contextPath}/myPage.do">
-									<div class="icon-circle bg-orange">
-										<i class="zmdi zmdi-account"></i>
-									</div>
-									<div class="menu-info">
-
-										<p>myPage</p>
-									</div>
-							</a></li>
-							<li style="width: 90px;"><a
-								href="${pageContext.request.contextPath}/myPageEdit.do">
-									<div class="icon-circle bg-orange">
-										<i class="zmdi zmdi-account"></i>
-									</div>
-									<div class="menu-info">
-
-										<p>Edit</p>
-									</div>
-							</a></li>
-							<li style="width: 90px;"><a
-								href="${pageContext.request.contextPath}/myFAQ.do">
-									<div class="icon-circle bg-orange">
-										<i class="zmdi zmdi-account"></i>
-									</div>
-									<div class="menu-info">
-
-										<p>1:1문의</p>
-									</div>
-							</a></li>
-							<li style="width: 90px;"><a
-								href="${pageContext.request.contextPath}/signIn.do">
-									<div class="icon-circle bg-orange">
-										<i class="zmdi zmdi-account"></i>
-									</div>
-									<div class="menu-info">
-
-										<p>LogOut</p>
-									</div>
-							</a></li>
-						</ul>
-					</li>
-				</ul></li>
-		</ul>
-
-
-		<div class="slimScrollBar"
-			style="background: rgba(0, 0, 0, 0.2); width: 3px; position: absolute; top: 0px; opacity: 0.4; display: none; border-radius: 3px; z-index: 99; right: 1px; height: 330px;"></div>
-		<div class="slimScrollRail"
-			style="width: 3px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 0px; background: rgb(51, 51, 51); opacity: 0.2; z-index: 90; right: 1px;"></div>
-	</div>
-
-	<section class="content file_manager" style="margin: auto;">
-		<!-- header -->
+<jsp:include page="/WEB-INF/header.jsp"></jsp:include>
 
 
 		<!-- body -->
-		<div class="body_scroll">
-			<div class="block-header">
-				<div class="row">
-					<div class="col-lg-7 col-md-6 col-sm-12">
-						<h2>Media</h2>
-						<ul class="breadcrumb">
-							<li class="breadcrumb-item"><a href="index.html"><i
-									class="zmdi zmdi-home"></i> Aero</a></li>
-							<li class="breadcrumb-item"><a href="file-dashboard.html">File
-									Manager</a></li>
-							<li class="breadcrumb-item active">Media</li>
-						</ul>
+		<div class="row">
+			<div class="col-lg-6 col-md-12">
+				<div class="card">
+					<div class="blogitem mb-5">
+						<div class="icon">
+							<a href="blog-details.html"><img
+								src="" alt="blog image"></a>
 
-					</div>
-
-				</div>
-			</div>
-
-
-			<div class="container-fluid">
-				<div class="row clearfix">
-					<div class="col-lg-12">
-						<div class="card">
-							<div class="tab-content">
-								<div class="tab-pane active" id="2019">
-									<div class="row clearfix">
-										<div class="col-lg-3 col-md-4 col-sm-12">
-											<div class="card" style="width: 280px; height: 400px;">
-												<a href="${pageContext.request.contextPath}/gameDtail.do"
-													class="file">
-													<div class="hover">
-														<button id="heart"
-															class="bg-orange btn btn-primary btn-round">
-															<i class="zmdi zmdi-favorite-outline6 ti-heart"><br>
-																<small class="bg-orange" id="like">0</small></i>
-														</button>
-
-													</div> <img class="img-fluid img-thumbnail"
-													src="${pageContext.request.contextPath}/mypage/imgs/01.jpg"
-													alt="Awesome Image">
-												</a>
-												<div class="card" style="width: 280px; height: 400px;">
-													<a href="${pageContext.request.contextPath}/gameDtail.do"
-														class="file">
-														<div class="hover">
-															<button id="heart"
-																class="bg-orange btn btn-primary btn-round">
-																<i class="zmdi zmdi-favorite-outline6 ti-heart"><br>
-																	<small class="bg-orange" id="like">0</small></i>
-															</button>
-
-														</div> <img class="img-fluid img-thumbnail"
-														src="${pageContext.request.contextPath}/mypage/imgs/02.jpg"
-														alt="Awesome Image">
-													</a>
-
-												</div>
-											</div>
-										</div>
-									</div>
+						</div>
+						<div class="blogitem-content">
+							<div class="blogitem-header">
+								<div class="blogitem-meta">
+									<span><i class="zmdi zmdi-account"></i>By <a
+										href="javascript:void(0);">Michael</a></span> <span><i
+										class="zmdi zmdi-comments"></i><a href="blog-details.html">Comments(3)</a></span>
+								</div>
+								<div class="blogitem-share">
+									<ul class="list-unstyled mb-0">
+										<li><a href="javascript:void(0);"><i
+												class="zmdi zmdi-facebook-box"></i></a></li>
+										<li><a href="javascript:void(0);"><i
+												class="zmdi zmdi-instagram"></i></a></li>
+										<li><a href="javascript:void(0);"><i
+												class="zmdi zmdi-twitter-box"></i></a></li>
+										<li><a href="javascript:void(0);"><i
+												class="zmdi zmdi-linkedin-box"></i></a></li>
+									</ul>
 								</div>
 							</div>
+							<h5>
+								<a href="blog-details.html">The Most Advance Business Plan</a>
+							</h5>
+							<p>It is a long established fact that a reader will be
+								distracted by the readable content of a page when looking at its
+								layout. The point of using Lorem of letters, as opposed to using
+								'Content here, content here', making it look like readable
+								English.</p>
+							<a href="blog-details.html" class="btn btn-info">Read More</a>
+						</div>
+					</div>
+					<div class="blogitem mb-5">
+						<div class="blogitem-image icon">
+							<a href="blog-details.html"><img
+								src="" alt="blog image"></a>
+
+						</div>
+						<div class="blogitem-content">
+							<div class="blogitem-header">
+								<div class="blogitem-meta">
+									<span><i class="zmdi zmdi-account"></i>By <a
+										href="javascript:void(0);">Michael</a></span> <span><i
+										class="zmdi zmdi-comments"></i><a href="blog-details.html">Comments(3)</a></span>
+								</div>
+								<div class="blogitem-share">
+									<ul class="list-unstyled mb-0">
+										<li><a href="javascript:void(0);"><i
+												class="zmdi zmdi-facebook-box"></i></a></li>
+										<li><a href="javascript:void(0);"><i
+												class="zmdi zmdi-instagram"></i></a></li>
+										<li><a href="javascript:void(0);"><i
+												class="zmdi zmdi-twitter-box"></i></a></li>
+										<li><a href="javascript:void(0);"><i
+												class="zmdi zmdi-linkedin-box"></i></a></li>
+									</ul>
+								</div>
+							</div>
+							<h5>
+								<a href="blog-details.html">WTCR from 2018: new rules, more
+									cars, more races</a>
+							</h5>
+							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+								sed do eiusmod tempor incdidunt ut labore et dolore magna
+								aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+								ullaco laboris nisi ut aliquip ex ea commodo consequat.</p>
+							<a href="blog-details.html" class="btn btn-info">Read More</a>
+						</div>
+					</div>
+					<div class="blogitem mb-5">
+						<div class="blogitem-image">
+							<a href="blog-details.html"><img
+								src="assets/images/image-gallery/8.jpg" alt="blog image"></a>
+
+						</div>
+						<div class="blogitem-content">
+							<div class="blogitem-header">
+								<div class="blogitem-meta">
+									<span><i class="zmdi zmdi-account"></i>By <a
+										href="javascript:void(0);">Michael</a></span> <span><i
+										class="zmdi zmdi-comments"></i><a href="blog-details.html">Comments(13)</a></span>
+								</div>
+								<div class="blogitem-share">
+									<ul class="list-unstyled mb-0">
+										<li><a href="javascript:void(0);"><i
+												class="zmdi zmdi-facebook-box"></i></a></li>
+										<li><a href="javascript:void(0);"><i
+												class="zmdi zmdi-instagram"></i></a></li>
+										<li><a href="javascript:void(0);"><i
+												class="zmdi zmdi-twitter-box"></i></a></li>
+										<li><a href="javascript:void(0);"><i
+												class="zmdi zmdi-linkedin-box"></i></a></li>
+									</ul>
+								</div>
+							</div>
+							<h5>
+								<a href="blog-details.html">All photographs are accurate.
+									None of them is the truth</a>
+							</h5>
+							<p>Contrary to popular belief, Lorem Ipsum is not simply
+								random text. It has roots in a piece of classical Latin
+								literature from 45 BC, making it over 2000 years old. Richard
+								McClintock.</p>
+							<a href="blog-details.html" class="btn btn-info">Read More</a>
 						</div>
 					</div>
 				</div>
 			</div>
-	</section>
-	<!-- Jquery Core Js -->
+
+
+
+			<div class="col-lg-6 col-md-12">
+				<div class="card">
+					<div class="blogitem mb-5">
+						<div class="blogitem-image">
+							<a href="blog-details.html"><img
+								src="assets/images/image-gallery/1.jpg" alt="blog image"></a>
+
+						</div>
+						<div class="blogitem-content">
+							<div class="blogitem-header">
+								<div class="blogitem-meta">
+									<span><i class="zmdi zmdi-account"></i>By <a
+										href="javascript:void(0);">Michael</a></span> <span><i
+										class="zmdi zmdi-comments"></i><a href="blog-details.html">Comments(3)</a></span>
+								</div>
+								<div class="blogitem-share">
+									<ul class="list-unstyled mb-0">
+										<li><a href="javascript:void(0);"><i
+												class="zmdi zmdi-facebook-box"></i></a></li>
+										<li><a href="javascript:void(0);"><i
+												class="zmdi zmdi-instagram"></i></a></li>
+										<li><a href="javascript:void(0);"><i
+												class="zmdi zmdi-twitter-box"></i></a></li>
+										<li><a href="javascript:void(0);"><i
+												class="zmdi zmdi-linkedin-box"></i></a></li>
+									</ul>
+								</div>
+							</div>
+							<h5>
+								<a href="blog-details.html">The Most Advance Business Plan</a>
+							</h5>
+							<p>It is a long established fact that a reader will be
+								distracted by the readable content of a page when looking at its
+								layout. The point of using Lorem of letters, as opposed to using
+								'Content here, content here', making it look like readable
+								English.</p>
+							<a href="blog-details.html" class="btn btn-info">Read More</a>
+						</div>
+					</div>
+					<div class="blogitem mb-5">
+						<div class="blogitem-image">
+							<a href="blog-details.html"><img
+								src="assets/images/image-gallery/10.jpg" alt="blog image"></a>
+
+						</div>
+						<div class="blogitem-content">
+							<div class="blogitem-header">
+								<div class="blogitem-meta">
+									<span><i class="zmdi zmdi-account"></i>By <a
+										href="javascript:void(0);">Michael</a></span> <span><i
+										class="zmdi zmdi-comments"></i><a href="blog-details.html">Comments(3)</a></span>
+								</div>
+								<div class="blogitem-share">
+									<ul class="list-unstyled mb-0">
+										<li><a href="javascript:void(0);"><i
+												class="zmdi zmdi-facebook-box"></i></a></li>
+										<li><a href="javascript:void(0);"><i
+												class="zmdi zmdi-instagram"></i></a></li>
+										<li><a href="javascript:void(0);"><i
+												class="zmdi zmdi-twitter-box"></i></a></li>
+										<li><a href="javascript:void(0);"><i
+												class="zmdi zmdi-linkedin-box"></i></a></li>
+									</ul>
+								</div>
+							</div>
+							<h5>
+								<a href="blog-details.html">WTCR from 2018: new rules, more
+									cars, more races</a>
+							</h5>
+							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+								sed do eiusmod tempor incdidunt ut labore et dolore magna
+								aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+								ullaco laboris nisi ut aliquip ex ea commodo consequat.</p>
+							<a href="blog-details.html" class="btn btn-info">Read More</a>
+						</div>
+					</div>
+					<div class="blogitem mb-5">
+						<div class="blogitem-image">
+							<a href="blog-details.html"><img
+								src="assets/images/image-gallery/2.jpg" alt="blog image"></a>
+
+						</div>
+						<div class="blogitem-content">
+							<div class="blogitem-header">
+								<div class="blogitem-meta">
+									<span><i class="zmdi zmdi-account"></i>By <a
+										href="javascript:void(0);">Michael</a></span> <span><i
+										class="zmdi zmdi-comments"></i><a href="blog-details.html">Comments(13)</a></span>
+								</div>
+								<div class="blogitem-share">
+									<ul class="list-unstyled mb-0">
+										<li><a href="javascript:void(0);"><i
+												class="zmdi zmdi-facebook-box"></i></a></li>
+										<li><a href="javascript:void(0);"><i
+												class="zmdi zmdi-instagram"></i></a></li>
+										<li><a href="javascript:void(0);"><i
+												class="zmdi zmdi-twitter-box"></i></a></li>
+										<li><a href="javascript:void(0);"><i
+												class="zmdi zmdi-linkedin-box"></i></a></li>
+									</ul>
+								</div>
+							</div>
+							<h5>
+								<a href="blog-details.html">All photographs are accurate.
+									None of them is the truth</a>
+							</h5>
+							<p>Contrary to popular belief, Lorem Ipsum is not simply
+								random text. It has roots in a piece of classical Latin
+								literature from 45 BC, making it over 2000 years old. Richard
+								McClintock.</p>
+							<a href="blog-details.html" class="btn btn-info">Read More</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		
+			<div class="body"align="center">
+				<div class>
+					<ul class="pagination pagination-primary">
+						<li class="page-item arrow-left"><a class="page-link"
+							href="javascript:void(0);" aria-label="Previous"> <span
+								aria-hidden="true"><i class="zmdi zmdi-chevron-left"
+									aria-hidden="true"></i></span>
+						</a></li>
+						<li class="page-item active"><a class="page-link"
+							href="javascript:void(0);">1</a></li>
+						<li class="page-item"><a class="page-link"
+							href="javascript:void(0);">2</a></li>
+						<li class="page-item "><a class="page-link"
+							href="javascript:void(0);">3</a></li>
+						<li class="page-item"><a class="page-link"
+							href="javascript:void(0);">4</a></li>
+						<li class="page-item"><a class="page-link"
+							href="javascript:void(0);">5</a></li>
+							
+							
+						<li class="page-item arrow-left"><a class="page-link"
+							href="javascript:void(0);" aria-label="Next"><span
+								aria-hidden="true"><i class="zmdi zmdi-chevron-right"
+									aria-hidden="true"></i></span>
+						</a></li>
+					</ul>
+				</div>
+			</div>
+		
+		<!-- Jquery Core Js -->
 	<script
 		src="${pageContext.request.contextPath}/stylesheet/assets/bundles/libscripts.bundle.js"></script>
+	<!-- Lib Scripts Plugin Js -->
 	<script
 		src="${pageContext.request.contextPath}/stylesheet/assets/bundles/vendorscripts.bundle.js"></script>
+	<!-- Lib Scripts Plugin Js -->
 
 	<script
 		src="${pageContext.request.contextPath}/stylesheet/assets/bundles/mainscripts.bundle.js"></script>
-</body>
-</html>
+	<!-- Custom Js -->
+		
+	<jsp:include page="/WEB-INF/footer.jsp"></jsp:include>

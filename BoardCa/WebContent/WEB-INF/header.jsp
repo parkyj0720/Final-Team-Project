@@ -58,9 +58,9 @@ System.out.println(userId);
 											<p><%=userId %>님반갑습니다.</p>
 									</a>
 										<ul class="dropdown-menu dropdown-menu-right">
-											<li><a href="javascript:void(0);">마이페이지</a></li>
-											<li><a href="javascript:void(0);">정보수정</a></li>
-											<li><a href="javascript:void(0);">1:1문의</a></li>
+											<li><a href="${pageContext.request.contextPath}/myPage.do">마이페이지</a></li>
+											<li><a href="${pageContext.request.contextPath}/myPageEdit.do">정보수정</a></li>
+											<li><a href="${pageContext.request.contextPath}/myFAQ.do">1:1문의</a></li>
 											<li><a href="javascript:void(0);">로그아웃</a></li>
 										</ul>
 									</li>

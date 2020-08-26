@@ -20,7 +20,12 @@
 <!-- Custom Css -->
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/stylesheet/assets/css/style.min.css">
-
+<style>
+.img-fluid {
+	  max-width: 100%; 
+    height: auto; 
+}
+</style>
 </head>
 <body class="theme-blush">
 
@@ -57,10 +62,10 @@
 						<div class="card">
 							<div class="body">
 								<div class="row">
-									<div class="col-xl-3 col-lg-4 col-md-12">
+									<div class="col-xl-12 col-lg-12 col-md-12">
 										<div class="preview preview-pic tab-content">
 											<div class="tab-pane active" id="product_1">
-												<img src="assets/images/ecommerce/1.png" class="img-fluid"
+												<img src="${pageContext.request.contextPath}/mypage/imgs/01.jpg" class="img-fluid"
 													alt="">
 											</div>
 										</div>
@@ -81,7 +86,7 @@
 				<div class="card">
 					<div class="body">
 						<div class="row">
-							<div class="col-xl-3 col-lg-4 col-md-12">
+							<div class="col-xl-12 col-lg-12 col-md-12">
 
 								<ul class="preview thumbnail nav nav-tabs">
 									<li class="nav-item"><a class="nav-link active"
@@ -106,7 +111,7 @@
 					<div class="card">
 						<div class="body">
 							<div class="row">
-								<div class="col-xl-3 col-lg-4 col-md-12">
+								<div class="col-xl-12 col-lg-12 col-md-12">
 
 									<div class="tab-pane active" id="description">
 										<p>Lorem Ipsum is simply dummy text of the printing and
@@ -128,7 +133,7 @@
 					<div class="card">
 						<div class="body">
 							<div class="row">
-								<div class="col-xl-3 col-lg-4 col-md-12">
+								<div class="col-xl-12 col-lg-12 col-md-12">
 
 
 									<div class="tab-content">

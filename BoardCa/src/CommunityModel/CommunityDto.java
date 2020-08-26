@@ -1,5 +1,7 @@
 package CommunityModel;
 
+import java.util.Date;
+
 public class CommunityDto {
 	int num;
 	String title;
@@ -10,7 +12,7 @@ public class CommunityDto {
 	int views;
 	int comment_num;
 	public CommunityDto() {
-		this(0,"","","","",0,0,0);
+		this(0,"","",null,"",0,0,0);
 	}
 	public CommunityDto(int num, String title, String writer_id, String written_date, String content, int heart, int views, int comment_num) {
 		this.num = num;

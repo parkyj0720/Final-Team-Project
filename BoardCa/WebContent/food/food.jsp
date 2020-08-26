@@ -30,6 +30,13 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/stylesheet/assets/css/style.min.css"
 	type="text/css">
+<style>
+.num_btn_div{
+width: 230px;
+margin: 0 auto;
+font-size: 20pt;
+}
+</style>
 </head>
 
 <% List<CDto> list = (List<CDto>)request.getAttribute("cList");
@@ -37,7 +44,10 @@
 %>
 
 <body class="ls-closed ls-toggle-menu theme-orange">
-
+	<header class="body_header">
+		<jsp:include page="/WEB-INF/header.jsp"></jsp:include>
+	</header>
+	</script>
 	<!-- Loding Page -->
 	<div class="page-loader-wrapper">
 		<div class="loader">
@@ -53,21 +63,6 @@
 	
 <section class="content file_manager"style="margin: auto;">
     <div class="body_scroll">
-        <div class="block-header">
-            <div class="row">
-                <div class="col-lg-7 col-md-6 col-sm-12">
-                    <h2>Media</h2>
-                    <ul class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="index.html"><i class="zmdi zmdi-home"></i> Aero</a></li>
-                        <li class="breadcrumb-item"><a href="file-dashboard.html">File Manager</a></li>
-                        <li class="breadcrumb-item active">Media</li>
-                    </ul>
-                    
-                </div>
-
-            </div>
-        </div>
-
         <div class="container-fluid">
             <div class="row clearfix">
                 <div class="col-lg-12">
@@ -88,9 +83,9 @@
                                                         </button>
                                                     </div>
                                                     <div class="icon" >
-                                                        <img src="<%=dto.getR_main_thumbs()%>" width="100%" >
+                                                        <img src="<%=dto.getR_main_thumbs()%>" height="150" >
                                                     </div>
-                                                    <div class="file-name">
+                                                    <div class="file-name" style="height:100px">
                                                         <p class="m-b-5 text-muted"><%=dto.getR_title() %></p>
                                                        
                                                     </div>
@@ -105,10 +100,22 @@
                     </div>
                 </div>
             </div>
+            <div class="num_btn_div">
+            	<ul class="pagination pagination-primary m-b-0">
+                     <li class="page-item"><a class="page-link" href="javascript:void(0);"><i class="zmdi zmdi-arrow-left"></i></a></li>
+                     <li class="page-item active"><a class="page-link" href="javascript:void(0);">1</a></li>
+                     <li class="page-item"><a class="page-link" href="javascript:void(0);">2</a></li>
+                     <li class="page-item"><a class="page-link" href="javascript:void(0);">3</a></li>
+                     <li class="page-item"><a class="page-link" href="javascript:void(0);">4</a></li>
+                     <li class="page-item"><a class="page-link" href="javascript:void(0);"><i class="zmdi zmdi-arrow-right"></i></a></li>
+                  </ul>
+            </div>
         </div>
     </div>
 </section>
-
+<footer>
+	<jsp:include page="/WEB-INF/footer.jsp"></jsp:include>
+</footer>
 	<!-- Jquery Core Js -->
 	<script
 		src="${pageContext.request.contextPath}/stylesheet/assets/bundles/libscripts.bundle.js"></script>
