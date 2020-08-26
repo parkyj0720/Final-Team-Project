@@ -21,9 +21,8 @@ import com.example.boardca_app.ui.community.CommunityFragment;
 import com.example.boardca_app.ui.game.GameFragment;
 import com.example.boardca_app.ui.home.HomeFragment;
 import com.example.boardca_app.ui.recipe.RecipeFragment;
-import com.example.boardca_app.ui.share.MapFragment;
+import com.example.boardca_app.ui.Map.MapFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
 
 
@@ -113,10 +112,8 @@ public class MainActivity extends AppCompatActivity {
 
         this.replaceFragment(home_fragment);
         this.createNavi();
+
     }
-
-
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -133,8 +130,7 @@ public class MainActivity extends AppCompatActivity {
                 || super.onSupportNavigateUp();
     }
 
-
-    //테스트용. 하단 뷰야 제발 사라져..!
+    //테스트용.
     @Override
     protected void onDestroy() {
         super.onDestroy();
