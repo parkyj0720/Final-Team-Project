@@ -28,6 +28,7 @@
 </script>
 </head>
 <body>
+
 	<div class="container">
 		<img alt="logo"
 			src="${pageContext.request.contextPath}/imgs/logo1.png"
