@@ -39,12 +39,15 @@ margin: 0 auto;
 </style>
 </head>
 
-<% List<CDto> list = (List<CDto>)request.getAttribute("cList");
+<%
+	List<CDto> list = (List<CDto>)request.getAttribute("cList");
+	int pageCount = 0;
 	System.out.println(list.size());
 	int listCount = list.size()/20 +1;
 	int startList = listCount/10 + 1;
 	int endList = listCount/10 + 10;
-	int pageCount = (Integer.parseInt((String)request.getParameter("page")) -1) * 20;
+	if(request.getParameter("page") != null)
+		pageCount = (Integer.parseInt((String)request.getParameter("page")) -1) * 20;
 %>
 
 <script>
@@ -82,6 +85,8 @@ request.getParameter("test");
 	<script>
 		var request = new Request();
 		var page = request.getParameter("page");
+		if(page == 0)
+			page = 1;
 		$('document').ready(function(){
 			$('.page-item').eq(page).addClass('active');
 		});

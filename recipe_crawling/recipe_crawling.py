@@ -14,6 +14,9 @@ uri = "https://www.10000recipe.com/recipe/list.html?q=&query=&cat1=&cat2=19&cat3
 # 최신순
 # uri = "https://www.10000recipe.com/recipe/list.html?q=&query=&cat1=&cat2=19&cat3=&cat4=&fct=&order=date&lastcate=order&dsearch=&copyshot=&scrap=&degree=&portion=&time=&niresource="
 
+# 크롤링 개수
+testCount = 20
+
 req = Request(uri)
 resp = urlopen(req)
 html = resp.read()
@@ -26,7 +29,7 @@ print(bs.title)
 print(bs.title.name)
 # 이쁘게 표현하자 print(bs.prettify()[:1024])
 print()
-testCount = 20
+
 list = bs.select(".common_sp_list_ul.ea4>li")
 for food in list:
     # 전체 레시피 목록
