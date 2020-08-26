@@ -56,8 +56,8 @@
 								class="zmdi zmdi-home"></i> BoardCa</a></li>
 						<li class="breadcrumb-item"><a
 							href="${pageContext.request.contextPath}/Community_main.do">Community</a></li>
-						<li class="breadcrumb-item active"><a
-							href="${pageContext.request.contextPath}<%=viewname %>"><%=listname %></a></li>
+						<li id="listname" class="breadcrumb-item active"><a
+							href="${pageContext.request.contextPath}<%=viewname %>"><%=listname%></a></li>
 					</ul>
 					<button class="btn btn-primary btn-icon mobile_menu" type="button">
 						<i class="zmdi zmdi-sort-amount-desc"></i>
@@ -76,13 +76,13 @@
 									<tbody>
 									<%for(int i = 0; i<list.size(); i++){ 
 									CommunityDto dto = list.get(i);%>
-										<tr style="box-sizing: content-box;">
-											<td width="10%" height="auto" align="center"
+										<tr class="list" style="box-sizing: content-box;">
+											<td class="Ctd" width="10%" height="auto" align="center"
 												style="white-space: normal;"><%=dto.getNum()%></td>
 											<td width="10%" height="auto" align="center"
 												style="white-space: normal;"><%=dto.getWriter_id()%></td>
 											<td width="40%" height="auto" align="center"
-												style="white-space: normal;"><a href="${pageContext.request.contextPath}/Community_detail.do"><%=dto.getContent()%></a></td>
+												style="white-space: normal;"><%=dto.getTitle()%></td>
 											<td width="10%" height="auto" align="center"
 												style="white-space: normal;"><%=dto.getWritten_date()%></td>
 											<td width="10%" height="auto" align="center"
@@ -114,10 +114,9 @@
 										href="javascript:void(0);"><i
 											class="zmdi zmdi-arrow-right"></i></a></li>
 									<div style="width: 100%">
-										<a
-											href="${pageContext.request.contextPath}/Community_input.do"><button
+										<button
 												class="btn btn-primary float-right right_icon_toggle_btn"
-												type="button">
+												type="button" onclick="location.href='${pageContext.request.contextPath}/Community_input.do'">
 												<i class="zmdi zmdi-hc-fw"></i>
 											</button></a>
 									</div>
@@ -129,6 +128,16 @@
 			</div>
 		</div>
 	</section>
-
+<script src="http://code.jquery.com/jquery.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('.list').click(function() {
+                var num = $(this).children(0).eq(0).text();
+                var viewname = $('#listname').text();
+                $(location).attr('href', '${pageContext.request.contextPath}/Community_detail.do?list='+viewname+'&num='+num);
+                
+            });
+        });
+    </script>
 </body>
 </html>

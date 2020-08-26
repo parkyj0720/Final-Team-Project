@@ -1,5 +1,8 @@
 package Community;
 
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -62,7 +65,9 @@ public class CommunityController{
 	
 	// detail
 	@RequestMapping("/Community_detail.do")
-	public ModelAndView community_detail() {
+	public ModelAndView community_detail(HttpServletRequest request) {
+		String board = request.getParameter("list");
+		int num = Integer.parseInt(request.getParameter("num"));
 		mv.setViewName("community/C_detail.jsp");
 		return mv;
 	}
