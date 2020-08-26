@@ -3,19 +3,27 @@
 <!DOCTYPE html>
 <head>
 <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta
+	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+	name="viewport">
+<meta name="description"
+	content="Responsive Bootstrap 4 and web Application ui kit.">
 
 <title></title>
-<link rel="icon" href="/BoardCa/stylesheet/favicon.ico"
+<link rel="icon"
+	href="${pageContext.request.contextPath}/stylesheet/favicon.ico"
 	type="image/x-icon">
 <!-- Favicon-->
 <link rel="stylesheet"
-	href="/BoardCa/stylesheet/assets/plugins/bootstrap/css/bootstrap.min.css">
+	href="${pageContext.request.contextPath}/stylesheet/assets/plugins/bootstrap/css/bootstrap.min.css">
 <!-- Custom Css -->
 <link rel="stylesheet"
-	href="/BoardCa/stylesheet/assets/css/style.min.css">
+	href="${pageContext.request.contextPath}/stylesheet/assets/css/style.min.css">
 <!-- JQuery DataTable Css -->
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/stylesheet/assets/plugins/jquery-datatable/dataTables.bootstrap4.min.css">
+
 
 <script src="http://code.jquery.com/jquery.js"></script>
 </head>
@@ -43,7 +51,7 @@
 			var title = td.eq(2).text();
 			var reply = td.eq(3).text();
 
-			$("#ex1_Result1").html(" * 클릭한 Row의 모든 데이터 = " + tr.text());
+			$("#ex1_Result1").html("<p>" + tr.text() + "<p>");
 
 		})
 	});
@@ -59,13 +67,7 @@
 			<div class="row">
 				<div class="card">
 					<div class="col-lg-12 col-md-12 col-sm-12">
-						<h2>
-							myFavorite
-							<button class="btn btn-primary btn-icon float-right "
-								type="button">
-								<i class="zmdi zmdi-sort-amount-desc"></i>
-							</button>
-						</h2>
+						<h2>myFavorite</h2>
 						<ul class="breadcrumb">
 							<li class="breadcrumb-item"><a href="index.html"><i
 									class="zmdi zmdi-home"></i> Aero</a></li>
@@ -85,53 +87,170 @@
 
 				<div class="container-fluid">
 					<!-- Basic Examples -->
-					<div>
-						<div class="row clearfix">
-							<div class="col-lg-12">
-								<div class="card">
-									<div class="header">
-										<h2>
-											<strong>내가 쓴 글</strong>
-										</h2>
-									</div>
-									<div class="body">
-										<div class="table-responsive">
-											<table id="example-table-1"
-												class="table table-bordered table-striped js-basic-example dataTable ">
-												<thead>
-													<tr>
-														<th>no</th>
-														<th>date</th>
-														<th>title</th>
-														<th>reply</th>
-													</tr>
-												</thead>
-												<tbody>
-													<tr class="clickBtn ">
-
-														<td>1</td>
-														<td>2020/08/20</td>
-														<td>하이</td>
-														<td>답변대기</td>
-
-													</tr>
-
-													<tr>
-														<td>2</td>
-														<td>2020/08/21</td>
-														<td>가나다</td>
-														<td>답변완료</td>
-													</tr>
-												</tbody>
-											</table>
-											<div class="col-lg-12" id="ex1_Result1"></div>
-
+					<div class="card">
+						<div class="body">
+							<div class="row clearfix">
+								<div class="col-md-12">
+									<div class="d-flex">
+										<div class="mobile-left">
+											<a class="btn btn-info btn-icon toggle-email-nav collapsed"
+												data-toggle="collapse" href="#mypage-nav" role="button"
+												aria-expanded="false" aria-controls="email-nav"> <span
+												class="btn-label"><i class="zmdi zmdi-more"></i></span>
+											</a>
 										</div>
-										<a href="${pageContext.request.contextPath}//myFAQ.do"
-											class="btn btn-primary btn-lg bg-orange waves-effect waves-light">
-											1:1문의하기</a>
+										<div class="inbox left collapse" id="mypage-nav" style="">
+											<div class="mail-side">
+												<h5>마이페이지</h5>
+												<ul class="nav">
+													<li><a
+														href="${pageContext.request.contextPath}/myWriteList.do"><i
+															class="zmdi zmdi-edit"></i>Writted</a></li>
+													<li><a
+														href="${pageContext.request.contextPath}/myFAQ.do"><i
+															class="zmdi zmdi-comments"></i>FAQ</a></li>
+													<li><a
+														href="${pageContext.request.contextPath}/myFavorite.do"><i
+															class="zmdi zmdi-favorite"></i>Favorite</a></li>
+													<li><a
+														href="${pageContext.request.contextPath}/myCoupon.do"><i
+															class="zmdi zmdi-ticket-star"></i>COUPON</a></li>
+
+												</ul>
+											</div>
+										</div>
+										<div class=" inbox right">
+											<div class="header">
+												<h2>
+													<strong>내가 쓴 글</strong>
+												</h2>
+											</div>
+											<div class="table">
+												<div id="DataTables_Table_0_wrapper"
+													class="dataTables_wrapper dt-bootstrap4">
+
+													<div class="col-sm-12 col-md-12">
+														<div id="DataTables_Table_0_filter"
+															class="dataTables_filter">
+															<label>Search:<input type="search"
+																class="form-control form-control-sm" placeholder=""
+																aria-controls="DataTables_Table_0"></label>
+														</div>
+													</div>
+												</div>
+												<div class="row">
+													<div class="col-lg-12 col-md-12 col-sm-12">
+														<table
+															class="table table-bordered table-striped table-hover js-basic-example dataTable"
+															id="DataTables_Table_0" role="grid"
+															aria-describedby="DataTables_Table_0_info">
+															<thead>
+																<tr role="row">
+																	<th class="sorting_asc" tabindex="0"
+																		aria-controls="DataTables_Table_0" rowspan="1"
+																		colspan="1" aria-sort="ascending"
+																		aria-label="Name: activate to sort column descending"
+																		style="width: 20px;">No</th>
+																	<th class="sorting" tabindex="0"
+																		aria-controls="DataTables_Table_0" rowspan="1"
+																		colspan="1"
+																		aria-label="Position: activate to sort column ascending"
+																		style="width: 150px;">Date</th>
+																	<th class="sorting" tabindex="0"
+																		aria-controls="DataTables_Table_0" rowspan="1"
+																		colspan="1"
+																		aria-label="Office: activate to sort column ascending"
+																		style="width: 80px;">Title</th>
+																	<th class="sorting" tabindex="0"
+																		aria-controls="DataTables_Table_0" rowspan="1"
+																		colspan="1"
+																		aria-label="Office: activate to sort column ascending"
+																		style="width: 80px;">Answer</th>
+
+																</tr>
+															</thead>
+
+															<tbody>
+																<tr class="clickBtn ">
+
+																	<td>1</td>
+																	<td>2020/08/20</td>
+																	<td>하이</td>
+																	<td>답변대기</td>
+
+																</tr>
+																<tr>
+																	<td>2</td>
+																	<td>2020/08/21</td>
+																	<td>가나다</td>
+																	<td>답변완료</td>
+																</tr>
+																
+
+															</tbody>
+														</table>
+
+
+
+														<div class="container-fluid">
+															<div class="row clearfix">
+																<div class="col-lg-12">
+																	<div class="card">
+																		<div class="header">
+																			<h5 style="color: orange">선택한 글</h5>
+																		</div>
+																		<div class="body" id="ex1_Result1">
+																			<p>선택한 글이 보여집니다!</p>
+																		</div>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+												<div class="row">
+													<div class="col-lg-12 col-md-12 col-sm-12">
+														<div class="dataTables_paginate paging_simple_numbers"
+															id="DataTables_Table_0_paginate">
+															<ul class="pagination">
+																<li class="paginate_button page-item previous disabled"
+																	id="DataTables_Table_0_previous"><a href="#"
+																	aria-controls="DataTables_Table_0" data-dt-idx="0"
+																	tabindex="0" class="page-link">Previous</a></li>
+																<li class="paginate_button page-item active"><a
+																	href="#" aria-controls="DataTables_Table_0"
+																	data-dt-idx="1" tabindex="0" class="page-link">1</a></li>
+																<li class="paginate_button page-item "><a href="#"
+																	aria-controls="DataTables_Table_0" data-dt-idx="2"
+																	tabindex="0" class="page-link">2</a></li>
+																<li class="paginate_button page-item "><a href="#"
+																	aria-controls="DataTables_Table_0" data-dt-idx="3"
+																	tabindex="0" class="page-link">3</a></li>
+																<li class="paginate_button page-item "><a href="#"
+																	aria-controls="DataTables_Table_0" data-dt-idx="4"
+																	tabindex="0" class="page-link">4</a></li>
+																<li class="paginate_button page-item "><a href="#"
+																	aria-controls="DataTables_Table_0" data-dt-idx="5"
+																	tabindex="0" class="page-link">5</a></li>
+																<li class="paginate_button page-item "><a href="#"
+																	aria-controls="DataTables_Table_0" data-dt-idx="6"
+																	tabindex="0" class="page-link">6</a></li>
+																<li class="paginate_button page-item next"
+																	id="DataTables_Table_0_next"><a href="#"
+																	aria-controls="DataTables_Table_0" data-dt-idx="7"
+																	tabindex="0" class="page-link">Next</a></li>
+															</ul>
+															<a href="${pageContext.request.contextPath}/myFAQ.do"
+																class="btn btn-primary btn-lg bg-orange waves-effect waves-light float-right">
+																1:1문의하기</a>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
 									</div>
 								</div>
+
 							</div>
 						</div>
 					</div>
@@ -139,7 +258,7 @@
 			</div>
 		</div>
 	</div>
-
+	
 
 	<!-- Jquery DataTable Plugin Js -->
 	<script
