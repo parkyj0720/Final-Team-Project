@@ -47,7 +47,7 @@
 									role="tablist">
 									<li class="nav-item col-md-3"><a href="${pageContext.request.contextPath}/cListAll.do"> 안주레시피 </a></li>
 									<li class="nav-item col-md-3"><a href="${pageContext.request.contextPath}/gameMain.do">술게임 </a></li>
-									<li class="nav-item col-md-3"><a href="${pageContext.request.contextPath}/main/test.jsp">커뮤니티 </a></li>
+									<li class="nav-item col-md-3"><a href="${pageContext.request.contextPath}/Community_main.do">커뮤니티 </a></li>
 									<li class="nav-item col-md-3"><a href="${pageContext.request.contextPath}/search_list.do">근처 술집 </a></li>
 								</ul>
 							</div>

@@ -86,37 +86,14 @@ System.out.println(userId);
 										class="zmdi zmdi-email"></i>술게임
 								</a></li>
 								<li class="nav-item col-md-3" role="presentation"><a
-									href=""> <i class="zmdi zmdi-email"></i>커뮤니티
+									href="${pageContext.request.contextPath}/Community_main.do"> <i 
+									class="zmdi zmdi-email"></i>커뮤니티
 								</a></li>
 								<li class="nav-item col-md-3" role="presentation"><a
 									href="${pageContext.request.contextPath}/search_list.do"> <i
 										class="zmdi zmdi-email"></i>술집찾기
 								</a></li>
 							</ul>
-
-							<!-- Tab panes -->
-							<!-- <div class="tab-content">
-									<div role="tabpanel" class="tab-pane in active"
-										id="home_with_icon_title">
-										<b>Home Content</b>
-										<p></p>
-									</div>
-									<div role="tabpanel" class="tab-pane"
-										id="profile_with_icon_title">
-										<b>Profile Content</b>
-										<p></p>
-									</div>
-									<div role="tabpanel" class="tab-pane"
-										id="messages_with_icon_title">
-										<b>Message Content</b>
-										<p></p>
-									</div>
-									<div role="tabpanel" class="tab-pane"
-										id="settings_with_icon_title">
-										<b>Settings Content</b>
-										<p></p>
-									</div>
-								</div> -->
 						</div>
 					</div>
 				</div>
