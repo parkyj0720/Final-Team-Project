@@ -21,29 +21,9 @@
 <!-- Custom Css -->
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/stylesheet/assets/css/style.min.css">
-<style type="text/css">
-</style>
 
-<script>
-/* 	$(function() {
-		$('.tab-pane').click(function() {
-			var activeTab = $(this).attr('data-tab');
-			$.ajax({
-				type : 'GET', // get 방식으로 통신
-				url : activeTab + ".do", // 탭의 data-tab속성의 값으로된 html파일로 통신
-				dataType : "jsp", // html 형식으로 값 읽기
-				error : function() { // 통신실패시 안내창
-					alert('통신실패');
-				},
-				success : function(data) { // 통신 성공시 탭 내용의 div 가져오기
-					$('#tabContent').html(data);
-				}
-			});
-		});
-		$('#default').click();
 
-	}); */
-</script>
+
 </head>
 
 <body class="theme-blush">
@@ -59,9 +39,10 @@
 		</div>
 	</div>
 
-	<!-- Overlay For Sidebars -->
-	<div class="overlay"></div>
-
+<%
+String userId = (String)session.getAttribute("userId"); 
+System.out.println(userId);
+%>
 	<section class="content" style="margin: auto;">
 		<div class="body_scroll">
 			<div class="container-fluid">
@@ -74,7 +55,7 @@
 									<li class="dropdown"><a href="javascript:void(0);"
 										class="dropdown-toggle" data-toggle="dropdown" role="button"
 										aria-haspopup="true" aria-expanded="false">
-											<p>${userId}님반갑습니다.</p>
+											<p><%=userId %>님반갑습니다.</p>
 									</a>
 										<ul class="dropdown-menu dropdown-menu-right">
 											<li><a href="${pageContext.request.contextPath}/myPage.do">마이페이지</a></li>
@@ -85,60 +66,38 @@
 									</li>
 								</ul>
 							</div>
-							<div>
-								<!-- Nav tabs -->
+						</div>
+						<div>
+							<!-- Nav tabs -->
 
-								<ul class="nav col-md-12 col-xs-12 nav-tabs">
-									<li class="nav-item col-md-12 col-xs-1" role="presentation" class="active">
-										<a	href="${pageContext.request.contextPath}/main.do"> 
-											<img alt="logo" src="${pageContext.request.contextPath}/imgs/logo2.png">
-										</a>
-									</li>
-									<li class="nav-item col-md-3" role="presentation">
-										<a href="${pageContext.request.contextPath}/cListAll.do">
-											<i class="zmdi zmdi-email"></i>안주레시피
-										</a>
-									</li>
-									<li class="nav-item col-md-3" role="presentation">
-										<a href="${pageContext.request.contextPath}/gameMain.do">
-										<i class="zmdi zmdi-email"></i>술게임</a>
-									</li>
-									<li class="nav-item col-md-3" role="presentation">
-										<a href="">
-										<i class="zmdi zmdi-email"></i>커뮤니티</a>
-									</li>
-									<li class="nav-item col-md-3" role="presentation">
-										<a href="${pageContext.request.contextPath}/search_list.do">
-										<i class="zmdi zmdi-email"></i>술집찾기</a>
-									</li>									
-								</ul>
-
-								<!-- Tab panes -->
-								<!-- <div class="tab-content">
-									<div role="tabpanel" class="tab-pane in active"
-										id="home_with_icon_title">
-										<b>Home Content</b>
-										<p></p>
-									</div>
-									<div role="tabpanel" class="tab-pane"
-										id="profile_with_icon_title">
-										<b>Profile Content</b>
-										<p></p>
-									</div>
-									<div role="tabpanel" class="tab-pane"
-										id="messages_with_icon_title">
-										<b>Message Content</b>
-										<p></p>
-									</div>
-									<div role="tabpanel" class="tab-pane"
-										id="settings_with_icon_title">
-										<b>Settings Content</b>
-										<p></p>
-									</div>
-								</div> -->
-							</div>
+							<ul class="nav col-md-12 col-xs-12 nav-tabs">
+								<li class="nav-item col-md-12 col-xs-1" role="presentation"
+									class="active"><a
+									href="${pageContext.request.contextPath}/main.do"> <img
+										alt="logo"
+										src="${pageContext.request.contextPath}/imgs/logo2.png">
+								</a></li>
+								<li class="nav-item col-md-3" role="presentation"><a
+									href="${pageContext.request.contextPath}/cListAll.do"> <i
+										class="zmdi zmdi-email"></i>안주레시피
+								</a></li>
+								<li class="nav-item col-md-3" role="presentation"><a
+									href="${pageContext.request.contextPath}/gameMain.do"> <i
+										class="zmdi zmdi-email"></i>술게임
+								</a></li>
+								<li class="nav-item col-md-3" role="presentation"><a
+									href="${pageContext.request.contextPath}/Community_main.do"> <i 
+									class="zmdi zmdi-email"></i>커뮤니티
+								</a></li>
+								<li class="nav-item col-md-3" role="presentation"><a
+									href="${pageContext.request.contextPath}/search_list.do"> <i
+										class="zmdi zmdi-email"></i>술집찾기
+								</a></li>
+							</ul>
 						</div>
 					</div>
 				</div>
 			</div>
-		</div>
+		
+		</div> <!-- end of body_scroll -->
+		

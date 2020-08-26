@@ -1,5 +1,7 @@
 package Food;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,9 +16,17 @@ public class CController {
 	private CDao dao;
 	
 	@RequestMapping("/cListAll.do")
-	public ModelAndView getList() {
-		mv.setViewName("/food/food.jsp");
+	public ModelAndView getList(HttpServletRequest req) {
+		int page= 1;
+		if(req.getParameter("page") != null)
+		{
+			page = Integer.parseInt(req.getParameter("page"));
+			if(page<=0)
+				page = 1;
+		}
+		
 		mv.addObject("cList",dao.getList());
+		mv.setViewName("/food/food.jsp?page="+page);
 		return mv;
 	}
 }

@@ -6,10 +6,16 @@ import cx_Oracle
 os.chdir('C:\\instantclient-basic-nt-11.2.0.4.0\\instantclient_11_2')
 os.putenv('NLS_LANG', 'AMERICAN_AMERICA.UTF8')
 
-# db접속 id, pw, 자신 아이피로 변경
 db = cx_Oracle.connect('test', 'test', '192.168.219.142:1521/xe')
 
-uri = "https://www.10000recipe.com/recipe/list.html?q=&query=&cat1=&cat2=19&cat3=&cat4=&fct=&order=date&lastcate=order&dsearch=&copyshot=&scrap=&degree=&portion=&time=&niresource="
+# 추천순
+uri = "https://www.10000recipe.com/recipe/list.html?q=&query=&cat1=&cat2=19&cat3=&cat4=&fct=&order=reco&lastcate=order&dsearch=&copyshot=&scrap=&degree=&portion=&time=&niresource=";
+
+# 최신순
+# uri = "https://www.10000recipe.com/recipe/list.html?q=&query=&cat1=&cat2=19&cat3=&cat4=&fct=&order=date&lastcate=order&dsearch=&copyshot=&scrap=&degree=&portion=&time=&niresource="
+
+# 크롤링 개수
+testCount = 20
 
 req = Request(uri)
 resp = urlopen(req)
@@ -23,7 +29,7 @@ print(bs.title)
 print(bs.title.name)
 # 이쁘게 표현하자 print(bs.prettify()[:1024])
 print()
-testCount = 0
+
 list = bs.select(".common_sp_list_ul.ea4>li")
 for food in list:
     # 전체 레시피 목록
@@ -70,22 +76,27 @@ for food in list:
 
             view_title = container.select(".view2_summary>h3")
             r_title = view_title[0].text
+            r_title = r_title.replace('\'', "\"")
             print('제목: ' + view_title[0].text)
 
             view_explain = container.select(".view2_summary_in")
             r_explain = view_explain[0].text.strip()
+            r_explain = r_explain.replace('\'', "\"")
             print('설명: ' + view_explain[0].text.strip())
 
             info1 = container.select(".view2_summary_info1")
             r_standard = info1[0].text
+            r_standard = r_standard.replace('\'', "\"")
             print("기준인원: " + info1[0].text)
 
             info2 = container.select(".view2_summary_info2")
             r_cooking_time = info2[0].text
+            r_cooking_time = r_cooking_time.replace('\'', "\"")
             print("조리시간: " + info2[0].text)
 
             info3 = container.select(".view2_summary_info3")
             r_difficult = info3[0].text
+            r_difficult = r_difficult.replace('\'', "\"")
             print("난이도: " + info3[0].text)
 
             # 재료
@@ -97,6 +108,7 @@ for food in list:
                 dlTag = i2.select("dd")
                 str2 = dlTag[0].text.replace(" ", "")
                 str2 = str2.replace(",", "&")
+                str2 = str2.replace('\'', "\"")
                 ingre += str2 + '&'
                 print(str2, end=' ')
 
@@ -113,6 +125,7 @@ for food in list:
                     # 재료 목록
                     str1 = i2.text.replace(" ", "")
                     str1 = str1.replace('\n', "")
+                    str1 = str1.replace('\'', "\"")
                     ingre += str1 + '&'
                     print(str1, end='&')
                 # print('&')
@@ -144,21 +157,38 @@ for food in list:
                     print(r[0]['src'])
                 except:
                     print("")
+                # 문자열이 너무 길어서 co, co1, co2로 나눠서 to_clob을 이용해 저장
                 cnt += 1
-                if cnt % 7 == 0:
+                if cnt % 14 == 0:
                     clobCnt += 1
         print()
     co = co.replace('\n', '')
     co1 = co1.replace('\n', '')
     co2 = co2.replace('\n', '')
- 
+    co = co.replace('\'', "\"")
+    co1 = co.replace('\'', "\"")
+    co2 = co.replace('\'', "\"")
+
     sql = "insert into recipe values(seq_board_no.nextval,'" \
           + r_crawling_addr + "', '" + r_main_thumbs + "', '" \
           + r_title + "', '" + r_explain + "', '" + r_standard + "', '" \
           + r_cooking_time + "', '" + r_difficult + "', '"+ingre+"',to_clob('" + co + "')||to_clob('" + co1 + "')||to_clob('" + co2 + "'))"
-    cursor = db.cursor()
-    cursor.execute(sql)
-    db.commit()
-    testCount += 1
-    if testCount >= 3:
+    print("sql: " + sql);
+    sql1 = "select * from recipe where r_crawling_addr='"+r_crawling_addr+"'"
+    
+    # DB에 데이터가 있는지 확인
+    cursor1 = db.cursor()
+    cursor1.execute(sql1)
+    curCount = 0;
+    for a in cursor1:
+        curCount += 1
+
+    # DB에 데이터가 없으면 추가
+    if curCount == 0:
+        cursor = db.cursor()
+        cursor.execute(sql)
+        db.commit()
+
+    testCount -= 1
+    if testCount <= 0:
         break

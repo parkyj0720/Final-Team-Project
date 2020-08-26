@@ -7,9 +7,6 @@
     android:fitsSystemWindows="true"
     >
 
-    <!-- -->
-    <include layout="@layout/content_main"/>
-
     <!-- 프레임 -->
     <FrameLayout
         android:id="@+id/main_content"
@@ -55,9 +52,7 @@
     </LinearLayout>
 
 
-
     <!-- 하단바 -->
-
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
         android:layout_width="match_parent"
