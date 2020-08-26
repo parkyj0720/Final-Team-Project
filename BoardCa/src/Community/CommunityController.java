@@ -13,7 +13,8 @@ public class CommunityController{
 	@Autowired
 	private ModelAndView mv;
 	
-	@RequestMapping("/Community_main.do")
+	// Main
+	@RequestMapping("/Community_main.do") 
 	public ModelAndView community_main() {
 		mv.addObject("list1", dao.Main1());
 		mv.addObject("list2", dao.Main2());
@@ -24,35 +25,42 @@ public class CommunityController{
 	}
 	
 	
-	
+	// List
 	@RequestMapping("/Community_list_sook.do")
-	
 	public ModelAndView community_list_sook() {
+		mv.addObject("listname", "숙취게시판");
+		mv.addObject("viewname", "/Community_list_sook.do");
 		mv.addObject("list", dao.list1());
 		mv.setViewName("community/C_list.jsp");
 		return mv;
 	}
 	@RequestMapping("/Community_list_jeong.do")
 	public ModelAndView community_list_jeong() {
+		mv.addObject("listname", "정보공유");
+		mv.addObject("viewname", "/Community_list_jeong.do");
 		mv.addObject("list", dao.list2());
 		mv.setViewName("community/C_list.jsp");
 		return mv;
 	}
 	@RequestMapping("/Community_list_Q.do")
 	public ModelAndView community_list_Q() {
+		mv.addObject("listname", "QnA");
+		mv.addObject("viewname", "/Community_list_Q.do");
 		mv.addObject("list", dao.list3());
 		mv.setViewName("community/C_list.jsp");
 		return mv;
 	}
 	@RequestMapping("/Community_list_shin.do")
 	public ModelAndView community_list_sin() {
+		mv.addObject("listname", "신고합니다");
+		mv.addObject("viewname", "/Community_list_shin.do");
 		mv.addObject("list", dao.list4());
 		mv.setViewName("community/C_list.jsp");
 		return mv;
 	}
 	
 	
-	
+	// detail
 	@RequestMapping("/Community_detail.do")
 	public ModelAndView community_detail() {
 		mv.setViewName("community/C_detail.jsp");

@@ -21,10 +21,10 @@ public class CommunityDao {
 		return instance;
 	}
 
-	String main1 = "select * from board1 where rownum<=5";
-	String main2 = "select * from board2 where rownum<=max ORDER BY num DESC";
-	String main3 = "select * from board3 where rownum<=5 ORDER BY num DESC";
-	String main4 = "select * from board4 where rownum<=5 ORDER BY num DESC";
+	String main1 = "select * from board1 ORDER BY num DESC";
+	String main2 = "select * from board2 ORDER BY num DESC";
+	String main3 = "select * from board3 ORDER BY num DESC";
+	String main4 = "select * from board4 ORDER BY num DESC";
 	
 	String C_list1 = "select * from board1";
 	String C_list2 = "select * from board2";
@@ -303,7 +303,6 @@ public class CommunityDao {
 				int views = rs.getInt("views");
 				int comment_num = rs.getInt("comment_num");
 				list1.add(new CommunityDto(num, title, writer_id, written_date, content, heart, views, comment_num));
-				System.out.println(list1.get(0).toString());
 			}
 			
 		}catch (Exception e) {

@@ -1,3 +1,4 @@
+<%@page import="org.springframework.web.servlet.ModelAndView"%>
 <%@page import="CommunityModel.CommunityDto"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -25,6 +26,8 @@
 <body>
 <%
 	ArrayList<CommunityDto> list = (ArrayList<CommunityDto>) request.getAttribute("list");
+	String listname = (String) request.getAttribute("listname");
+	String viewname = (String) request.getAttribute("viewname");
 %>
 	<section class="content"
 		style="margin-left: auto; margin-right: auto; padding-left: 10%; padding-right: 10%;">
@@ -54,7 +57,7 @@
 						<li class="breadcrumb-item"><a
 							href="${pageContext.request.contextPath}/Community_main.do">Community</a></li>
 						<li class="breadcrumb-item active"><a
-							href="${pageContext.request.contextPath}/Community_list.do">(수정예정)</a></li>
+							href="${pageContext.request.contextPath}<%=viewname %>"><%=listname %></a></li>
 					</ul>
 					<button class="btn btn-primary btn-icon mobile_menu" type="button">
 						<i class="zmdi zmdi-sort-amount-desc"></i>
