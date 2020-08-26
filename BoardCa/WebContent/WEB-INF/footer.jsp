@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+
 <!-- Footer -->
 <footer>
 	<hr>
@@ -27,18 +28,14 @@
 		<p>Copyright &copy; BoardCa 2020</p>
 	</div>
 </footer>
-
-
-<!-- Jquery Core Js -->
-<script
-	src="${pageContext.request.contextPath}/stylesheet/assets/bundles/libscripts.bundle.js"></script>
+</section>
+<!-- footer include 하고나서 jsp에 스크립트 추가 해주기 !!!!!  -->
+<script	src="${pageContext.request.contextPath}/stylesheet/assets/bundles/libscripts.bundle.js"></script>
 <!-- Lib Scripts Plugin Js -->
-<script
-	src="${pageContext.request.contextPath}/stylesheet/assets/bundles/vendorscripts.bundle.js"></script>
+<script	src="${pageContext.request.contextPath}/stylesheet/assets/bundles/vendorscripts.bundle.js"></script>
 <!-- Lib Scripts Plugin Js -->
 
-<script
-	src="${pageContext.request.contextPath}/stylesheet/assets/bundles/mainscripts.bundle.js"></script>
-<!-- Custom Js -->
+<script	src="${pageContext.request.contextPath}/stylesheet/assets/bundles/mainscripts.bundle.js"></script>
+
 </body>
 </html>

@@ -19,7 +19,12 @@
 </style>
 </head>
 <body>
-
+<%
+	ArrayList<CommunityDto> list1 = (ArrayList<CommunityDto>)request.getAttribute("list1");
+	ArrayList<CommunityDto> list2 = (ArrayList<CommunityDto>)request.getAttribute("list2");
+	ArrayList<CommunityDto> list3 = (ArrayList<CommunityDto>)request.getAttribute("list3");
+	ArrayList<CommunityDto> list4 = (ArrayList<CommunityDto>)request.getAttribute("list4");
+%>
 <section class="content" style="margin-left: auto; margin-right: auto; padding-left: 10%; padding-right: 10%;">
 		<div class="row">
 			<div>
@@ -54,33 +59,41 @@
                 <div class="col-lg-6">
                     <div class="card">
                         <div class="header" align="center">
-                            <a href="${pageContext.request.contextPath}/Community_list.do"><h2>숙취게시판</h2></a>
+                            <a href="${pageContext.request.contextPath}/Community_list_sook.do"><h2>숙취게시판</h2></a>
                         </div>
                         <div class="body" style="height: 30em">
                             <table>
+                            <%for(int i = 0; i<list1.size();i++){
+                            	CommunityDto dto = list1.get(i); %>
+                            
                             	<tr>
-                            		<td></td>
-                            		<td></td>
-                            		<td></td>
-                            		<td></td>
-                            		<td></td>
+                            		<td><%=dto.getNum() %></td>
+                            		<td><%=dto.getWriter_id() %></td>
+                            		<td><%=dto.getTitle() %></td>
+                            		<td><%=dto.getViews() %></td>
+                            		<td><%=dto.getHeart() %></td>
                             	</tr>
+                            	<%} %>
                             </table>
                         </div>
                     </div>                    
                     <div class="card">
                         <div class="header" align="center">
-                            <a href="${pageContext.request.contextPath}/Community_list.do"><h2>정보공유</h2></a>
+                            <a href="${pageContext.request.contextPath}/Community_list_jeong.do"><h2>정보공유</h2></a>
                         </div>
                         <div class="body" style="height: 30em">
                             <table>
+                            	<%for(int i = 0; i<list2.size();i++){
+                            	CommunityDto dto = list2.get(i); %>
+                            
                             	<tr>
-                            		<td></td>
-                            		<td></td>
-                            		<td></td>
-                            		<td></td>
-                            		<td></td>
+                            		<td><%=dto.getNum() %></td>
+                            		<td><%=dto.getWriter_id() %></td>
+                            		<td><%=dto.getTitle() %></td>
+                            		<td><%=dto.getViews() %></td>
+                            		<td><%=dto.getHeart() %></td>
                             	</tr>
+                            	<%} %>
                             </table>
                         </div>
                     </div>
@@ -88,33 +101,41 @@
                 <div class="col-lg-6 col-md-12">
                     <div class="card">
                         <div class="header" align="center">
-                            <a href="${pageContext.request.contextPath}/Community_list.do"><h2>QnA</h2></a>
+                            <a href="${pageContext.request.contextPath}/Community_list_Q.do"><h2>QnA</h2></a>
                         </div>
                         <div class="body" style="height: 30em">
                             <table>
+                            	<%for(int i = 0; i<list3.size();i++){
+                            	CommunityDto dto = list3.get(i); %>
+                            
                             	<tr>
-                            		<td></td>
-                            		<td></td>
-                            		<td></td>
-                            		<td></td>
-                            		<td></td>
+                            		<td><%=dto.getNum() %></td>
+                            		<td><%=dto.getWriter_id() %></td>
+                            		<td><%=dto.getTitle() %></td>
+                            		<td><%=dto.getViews() %></td>
+                            		<td><%=dto.getHeart() %></td>
                             	</tr>
+                            	<%} %>
                             </table>
                         </div>
                     </div>                    
                     <div class="card">
                         <div class="header" align="center">
-                            <a href="${pageContext.request.contextPath}/Community_list.do"><h2>신고하기</h2>
+                            <a href="${pageContext.request.contextPath}/Community_list_shin.do"><h2>신고하기</h2>
                         </div>
                         <div class="body" style="height: 30em">
                             <table>
+                            	<%for(int i = 0; i<list4.size();i++){
+                            	CommunityDto dto = list4.get(i); %>
+                            
                             	<tr>
-                            		<td></td>
-                            		<td></td>
-                            		<td></td>
-                            		<td></td>
-                            		<td></td>
+                            		<td><%=dto.getNum() %></td>
+                            		<td><%=dto.getWriter_id() %></td>
+                            		<td><%=dto.getTitle() %></td>
+                            		<td><%=dto.getViews() %></td>
+                            		<td><%=dto.getHeart() %></td>
                             	</tr>
+                            	<%} %>
                             </table>
                         </div>
                     </div>
