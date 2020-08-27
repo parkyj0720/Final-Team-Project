@@ -15,18 +15,21 @@
 	type="image/x-icon">
 <!-- Favicon-->
 <link rel="stylesheet"
-	href="/BoardCa/stylesheet/assets/plugins/bootstrap/css/bootstrap.min.css">
+	href="${pageContext.request.contextPath}/stylesheet/assets/plugins/bootstrap/css/bootstrap.min.css">
 <!-- Custom Css -->
 <link rel="stylesheet"
-	href="/BoardCa/stylesheet/assets/css/style.min.css">
+	href="${pageContext.request.contextPath}/stylesheet/assets/css/style.min.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/stylesheet/assets/plugins/sweetalert/sweetalert.css">
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
 </head>
 <body class="ls-closed ls-toggle-menu ">
+	<!-- header -->
 	<jsp:include page="/WEB-INF/header.jsp"></jsp:include>
 
-
+	<!-- body -->
 	<div class="body_scroll">
 		<div class="block-header">
 			<div class="row">
@@ -57,14 +60,14 @@
 						<div class="d-flex">
 							<div class="mobile-left">
 								<a class="btn btn-info btn-icon toggle-email-nav collapsed"
-									data-toggle="collapse" href="mypage-nav" role="button"
+									data-toggle="collapse" href="#mypage-nav" role="button"
 									aria-expanded="false" aria-controls="email-nav"> <span
-									class="btn-label"><i class="zmdi zmdi-more"></i></span>
+									class="btn-label"><i class="zmdi zmdi-account"></i></span>
 								</a>
 							</div>
 							<div class="inbox left collapse" id="mypage-nav" style="">
 								<div class="mail-side">
-									<h5>마이페이지</h5>
+									<a href="${pageContext.request.contextPath}/myPage.do"><h5>마이페이지</h5></a>
 									<ul class="nav">
 										<li><a
 											href="${pageContext.request.contextPath}/myWriteList.do"><i
@@ -78,9 +81,7 @@
 											href="${pageContext.request.contextPath}/myCoupon.do"><i
 												class="zmdi zmdi-ticket-star"></i>COUPON</a></li>
 
-
 									</ul>
-
 								</div>
 							</div>
 							<div class="col-lg-11 col-md-11 col-sm-11 inbox right">
@@ -179,6 +180,7 @@
 
 
 
+	<jsp:include page="/WEB-INF/footer.jsp"></jsp:include>
 	<!-- Latest compiled and minified JavaScript -->
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
@@ -199,4 +201,5 @@
 	<!-- Custom Js -->
 
 
-	<jsp:include page="/WEB-INF/footer.jsp"></jsp:include>
+</body>
+</html>

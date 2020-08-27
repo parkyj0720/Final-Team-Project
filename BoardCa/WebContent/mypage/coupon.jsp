@@ -11,27 +11,26 @@
 	content="Responsive Bootstrap 4 and web Application ui kit.">
 
 <title></title>
-<link rel="icon" href="/BoardCa/stylesheet/favicon.ico"
-	type="image/x-icon">
+
+<link rel="icon" href="favicon.ico" type="image/x-icon">
 <!-- Favicon-->
 <link rel="stylesheet"
-	href="/BoardCa/stylesheet/assets/plugins/bootstrap/css/bootstrap.min.css">
+	href="${pageContext.request.contextPath}/stylesheet/assets/plugins/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/stylesheet/assets/plugins/footable-bootstrap/css/footable.bootstrap.min.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/stylesheet/assets/plugins/footable-bootstrap/css/footable.standalone.min.css">
 <!-- Custom Css -->
 <link rel="stylesheet"
-	href="/BoardCa/stylesheet/assets/css/style.min.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+	href="${pageContext.request.contextPath}/stylesheet/assets/css/style.min.css">
+
 
 </head>
 
 
 
 
-<body class="theme-blush ls-toggle-menu ls-closed ">
+<body class="ls-closed ls-toggle-menu ">
 
 	<jsp:include page="/WEB-INF/header.jsp"></jsp:include>
 
@@ -63,19 +62,18 @@
 							<div class="d-flex">
 								<div class="mobile-left">
 									<a class="btn btn-info btn-icon toggle-email-nav collapsed"
-										data-toggle="collapse" href="mypage-nav" role="button"
+										data-toggle="collapse" href="#mypage-nav" role="button"
 										aria-expanded="false" aria-controls="email-nav"> <span
-										class="btn-label"><i class="zmdi zmdi-more"></i></span>
+										class="btn-label"><i class="zmdi zmdi-account"></i></span>
 									</a>
 								</div>
-								<div class="inbox left" id="mypage-nav">
-
+								<div class="inbox left collapse" id="mypage-nav" style="">
 									<div class="mail-side">
-										<h5>마이페이지</h5>
+										<a href="${pageContext.request.contextPath}/myPage.do"><h5>마이페이지</h5></a>
 										<ul class="nav">
 											<li><a
 												href="${pageContext.request.contextPath}/myWriteList.do"><i
-													class="zmdi zmdi-edit"></i> Writted</a></li>
+													class="zmdi zmdi-edit"></i>Writted</a></li>
 											<li><a
 												href="${pageContext.request.contextPath}/myFAQ.do"><i
 													class="zmdi zmdi-comments"></i>FAQ</a></li>
@@ -87,7 +85,6 @@
 													class="zmdi zmdi-ticket-star"></i>COUPON</a></li>
 
 										</ul>
-
 									</div>
 								</div>
 								<div
@@ -139,10 +136,8 @@
 															</tbody>
 															<tfoot>
 																<tr class="footable-paging">
-																	<td colspan="5"><ul class="pagination">
-																			<li class="footable-page-nav disabled"
-																				data-page="first"><a class="footable-page-link"
-																				href="#">«</a></li>
+																	<td colspan="2"><ul class="pagination">
+
 																			<li class="footable-page-nav disabled"
 																				data-page="prev"><a class="footable-page-link"
 																				href="#">‹</a></li>
@@ -153,8 +148,7 @@
 																				class="footable-page-link" href="#">2</a></li>
 																			<li class="footable-page-nav" data-page="next"><a
 																				class="footable-page-link" href="#">›</a></li>
-																			<li class="footable-page-nav" data-page="last"><a
-																				class="footable-page-link" href="#">»</a></li>
+
 																		</ul>
 																		<div class="divider"></div> <span
 																		class="label label-default">1 of 2</span></td>
@@ -173,22 +167,24 @@
 				</div>
 			</div>
 		</div>
+	</div>
+	<jsp:include page="/WEB-INF/footer.jsp"></jsp:include>
 
-		<!-- Jquery Core Js -->
-		<script
-			src="${pageContext.request.contextPath}/stylesheet/assets/bundles/libscripts.bundle.js"></script>
-		<!-- Lib Scripts Plugin Js -->
-		<script
-			src="${pageContext.request.contextPath}/stylesheet/assets/bundles/vendorscripts.bundle.js"></script>
-		<!-- Lib Scripts Plugin Js -->
+	<!-- Jquery Core Js -->
+	<script
+		src="${pageContext.request.contextPath}/stylesheet/assets/bundles/libscripts.bundle.js"></script>
+	<!-- Lib Scripts Plugin Js -->
+	<script
+		src="${pageContext.request.contextPath}/stylesheet/assets/bundles/vendorscripts.bundle.js"></script>
+	<!-- Lib Scripts Plugin Js -->
 
-		<script
-			src="${pageContext.request.contextPath}/stylesheet/assets/bundles/mainscripts.bundle.js"></script>
-		<!-- Custom Js -->
+	<script
+		src="${pageContext.request.contextPath}/stylesheet/assets/bundles/mainscripts.bundle.js"></script>
+	<!-- Custom Js -->
+	<script
+		src="${pageContext.request.contextPath}/stylesheet/assets/bundles/footable.bundle.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/stylesheet/assets/js/pages/tables/footable.js"></script>
 
-		<jsp:include page="/WEB-INF/footer.jsp"></jsp:include>
-
-		<script
-			src="${pageContext.request.contextPath}/stylesheet/assets/bundles/footable.bundle.js"></script>
-		<script
-			src="${pageContext.request.contextPath}/stylesheet/assets/js/pages/tables/footable.js"></script>
+</body>
+</html>
