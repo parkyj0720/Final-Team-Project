@@ -10,5 +10,10 @@
 	from recipe
 </select>
 
+<select id="cSearchList" resultType="Food.CDto" parameterType="String">
+	select r_crawling_addr, r_main_thumbs, r_title 
+	from recipe 
+	where r_title like '%'||#{search}||'%'
+</select>
 
 </mapper>

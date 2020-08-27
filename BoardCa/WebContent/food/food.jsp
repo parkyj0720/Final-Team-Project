@@ -36,10 +36,22 @@
 width: 230px;
 margin: 0 auto;
 }
+.search_div{
+margin-top: 10px;
+margin-left: 15px;
+margin-bottom: 20px;
+white-space: nowrap;
+}
 </style>
 </head>
 
 <%
+	String search = "";
+	// 검색 했는지 체크
+	if(request.getParameter("inputSearch") != null){
+		search = request.getParameter("inputSearch");
+	}
+
 	// 최대 보일 리스트 개수
 	int maxList = 10;
 	request.setAttribute("maxList", maxList);
@@ -65,7 +77,7 @@ margin: 0 auto;
 	}
 	
 	// 리스트 개수
-	int listCount = list.size()/listNum;
+	int listCount = (list.size()%listNum==0 && list.size()!=0)?list.size()/listNum:list.size()/listNum+1;
 	
 	// 시작 페이지
 	int startList = now_page/(maxList+1) * maxList + 1;
@@ -148,6 +160,12 @@ request.getParameter("test");
 
 	
 <section class="content file_manager"style="margin: auto;">
+	<div class="search_div">
+	<form action="${pageContext.request.contextPath}/cSearch.do" method="POST">
+		<input type="text" size="34" name="inputSearch">
+		<input type="submit" value="검색" name="inputSearchButton" style="margin-left:-15px">	
+	</form>
+	</div>
     <div class="body_scroll">
         <div class="container-fluid">
             <div class="row clearfix">
@@ -190,15 +208,15 @@ request.getParameter("test");
             </div>
             <div class="num_btn_div">
             	<ul class="pagination pagination-primary m-b-0">
-                     <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/cListAll.do?page=<%=(startList-10>0)?startList-10:1 %>"><i class="zmdi zmdi-arrow-left"></i></a></li>
+                     <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/<%=(search.equals(""))?"cListAll":"cSearch"%>.do?page=<%=(startList-10>0)?startList-10:1 %>&inputSearch=<%=search%>"><i class="zmdi zmdi-arrow-left"></i></a></li>
                      <!-- class = "active" -->
-                     <% for(int i=startList;i<=endList;i++){ 
+                     <% for(int i=startList;i<=endList;i++){
                      	if(i>listCount)
                      		break;
                      %>
-                     <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/cListAll.do?page=<%=i%>"><%=i %></a></li>
+                     <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/<%=(search.equals(""))?"cListAll":"cSearch"%>.do?page=<%=i%>&inputSearch=<%=search%>"><%=i %></a></li>
                      <%} %>
-                     <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/cListAll.do?page=<%=endList+1%>"><i class="zmdi zmdi-arrow-right"></i></a></li>
+                     <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/<%=(search.equals(""))?"cListAll":"cSearch"%>.do?page=<%=(endList+1>listCount)?listCount:endList+1%>&inputSearch=<%=search%>"><i class="zmdi zmdi-arrow-right"></i></a></li>
                   </ul>
             </div>
         </div>
