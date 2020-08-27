@@ -57,7 +57,7 @@ white-space: nowrap;
 	request.setAttribute("maxList", maxList);
 
 	// 페이지당 리스트 개수
-	int listNum = 20;
+	int listNum = 12;
 	
 	int now_page = 1;
 
@@ -80,10 +80,12 @@ white-space: nowrap;
 	int listCount = (list.size()%listNum==0 && list.size()!=0)?list.size()/listNum:list.size()/listNum+1;
 	
 	// 시작 페이지
-	int startList = now_page/(maxList+1) * maxList + 1;
-	
+	int startList = (now_page%maxList==0)?((now_page/maxList)-1):(now_page/maxList);
+	startList = startList * maxList + 1;
+
 	// 최대 페이지
-	int endList = now_page/(maxList+1) * maxList + maxList;
+	int endList = (now_page%maxList==0)?((now_page/maxList)-1):(now_page/maxList);
+	endList = endList * maxList + maxList;
 	
 %>
 
@@ -127,8 +129,11 @@ request.getParameter("test");
 			if(page <= 0)
 				page = 1;
 			if(page >= maxList+1)
-			page = page % maxList + 2;
-			
+			{
+				page = page % maxList;
+				if(page == 0)
+					page = 10;
+			}
 			// 목록 버튼 사이즈 조절 
 			var wd = 0;
 			if($('.page-item').length >= maxList+2)
