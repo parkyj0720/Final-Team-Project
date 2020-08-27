@@ -6,7 +6,7 @@ import cx_Oracle
 os.chdir('C:\\instantclient-basic-nt-11.2.0.4.0\\instantclient_11_2')
 os.putenv('NLS_LANG', 'AMERICAN_AMERICA.UTF8')
 
-db = cx_Oracle.connect('test', 'test', '192.168.219.142:1521/xe')
+db = cx_Oracle.connect('boardca', '12345', '192.168.219.149:1521/xe')
 
 # 추천순
 uri = "https://www.10000recipe.com/recipe/list.html?q=&query=&cat1=&cat2=19&cat3=&cat4=&fct=&order=reco&lastcate=order&dsearch=&copyshot=&scrap=&degree=&portion=&time=&niresource=";
