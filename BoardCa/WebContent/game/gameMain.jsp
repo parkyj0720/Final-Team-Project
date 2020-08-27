@@ -15,6 +15,9 @@
 	href="/BoardCa/stylesheet/assets/css/style.min.css">
 
 <script src="http://code.jquery.com/jquery.js"></script>
+
+<style>
+</style>
 </head>
 
 <script>
@@ -31,7 +34,7 @@
 				})
 	})
 </script>
-${pageContext.request.contextPath}/mypage/imgs/01
+
 
 <body class="ls-closed ls-toggle-menu ">
 	<jsp:include page="/WEB-INF/header.jsp"></jsp:include>
@@ -41,13 +44,11 @@ ${pageContext.request.contextPath}/mypage/imgs/01
 
 	<div class="col-xl-12 col-lg-12 col-md-12">
 		<div class="row clearfix">
-			<div class="col-md-6 col-sm-12">
+			<div class="col-md-3 col-sm-12">
 				<div class="card">
 					<div class="body">
-						<a
-							href="https://themeforest.net/item/arrowlite-responsive-admin-dashboard-template/23656497">
-							<img class="img-fluid img-thumbnail"
-							src="http://www.wrraptheme.com//templates/preview/arrowlite.png"
+						<a> <img class="img-fluid img-thumbnail"
+							src="${pageContext.request.contextPath}/mypage/imgs/01.jpg"
 							alt="">
 						</a>
 						<h5 class="mt-3">Arrowlite - Responsive Admin Dashboard
@@ -129,7 +130,177 @@ ${pageContext.request.contextPath}/mypage/imgs/01
 			</div>
 
 
-			<div class="col-md-6 col-sm-12">
+			<div class="col-md-3 col-sm-12">
+				<div class="card">
+					<div class="body">
+						<a
+							href="https://themeforest.net/item/nexa-bootstrap4-material-design-premium-admin-dashboard/21122489">
+							<img class="img-fluid img-thumbnail"
+							src="http://www.wrraptheme.com//templates/preview/nexa.png"
+							alt="">
+						</a>
+						<h5 class="mt-3">Nexa - Bootstrap4 Material Design Premium
+							Admin Dashboard</h5>
+						<p>Nexa Admin is Material Design premium admin dashboard
+							theme. It’s builded on popular Twitter Bootstrap 4 framework.</p>
+						<div class="d-flex justify-content-between">
+							<a href="http://www.wrraptheme.com/templates/nexa/marketing/"
+								class="btn btn-info">Preview</a> <a
+								href="https://themeforest.net/item/nexa-bootstrap4-material-design-premium-admin-dashboard/21122489"
+								class="btn btn-danger">Download Now</a>
+						</div>
+					</div>
+				</div>
+				<div class="card">
+					<div class="body">
+						<a
+							href="https://themeforest.net/item/hexabit-bootstrap-4x-admin-template-ui-kit/22611789">
+							<img class="img-fluid img-thumbnail"
+							src="http://www.wrraptheme.com//templates/preview/hexabit.png"
+							alt="">
+						</a>
+						<h5 class="mt-3">HexaBit - Bootstrap 4x Admin Template ui kit</h5>
+						<p>Easy and elegant interface which gives you an outstanding
+							experience. Take a stab at HexaBit demos and find it out by
+							yourself.</p>
+						<div class="d-flex justify-content-between">
+							<a
+								href="https://themeforest.net/item/hexabit-bootstrap-4x-admin-template-ui-kit/22611789"
+								class="btn btn-info">Preview</a> <a
+								href="https://themeforest.net/item/hexabit-bootstrap-4x-admin-template-ui-kit/22611789"
+								class="btn btn-danger">Download Now</a>
+						</div>
+					</div>
+				</div>
+				<div class="card">
+					<div class="body">
+						<a
+							href="https://themeforest.net/item/lucid-hr-and-project-management-admin-template/22308861">
+							<img class="img-fluid img-thumbnail"
+							src="http://www.wrraptheme.com//templates/preview/lucid-hr.png"
+							alt="">
+						</a>
+						<h5 class="mt-3">Lucid - HR and Project Management Admin
+							Template</h5>
+						<p>It comes with extensive profiles for candidates, agents,
+							teams of agents, jobs, professionals &amp; companies.</p>
+						<div class="d-flex justify-content-between">
+							<a
+								href="https://themeforest.net/item/lucid-hr-and-project-management-admin-template/22308861"
+								class="btn btn-info">Preview</a> <a
+								href="https://themeforest.net/item/lucid-hr-and-project-management-admin-template/22308861"
+								class="btn btn-danger">Download Now</a>
+						</div>
+					</div>
+				</div>
+				<div class="card">
+					<div class="body">
+						<a
+							href="https://themeforest.net/item/square-the-ultimate-bootstrap-4-angular-5-admin-dashboard-ui-kit/21322297">
+							<img class="img-fluid img-thumbnail"
+							src="http://www.wrraptheme.com//templates/preview/square.png"
+							alt="">
+						</a>
+						<h5 class="mt-3">sQuare - Bootstrap 4 Admin Dashboard
+							Template</h5>
+						<p>sQuare Admin is Material Design premium admin dashboard
+							theme. It’s builded on popular Twitter Bootstrap4 framework.</p>
+						<div class="d-flex justify-content-between">
+							<a href="http://www.wrraptheme.com/templates/square/landing/"
+								class="btn btn-info">Preview</a> <a
+								href="https://themeforest.net/item/square-the-ultimate-bootstrap-4-angular-5-admin-dashboard-ui-kit/21322297"
+								class="btn btn-danger">Download Now</a>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-md-3 col-sm-12">
+				<div class="card">
+					<div class="body">
+						<a
+							href="https://themeforest.net/item/nexa-bootstrap4-material-design-premium-admin-dashboard/21122489">
+							<img class="img-fluid img-thumbnail"
+							src="http://www.wrraptheme.com//templates/preview/nexa.png"
+							alt="">
+						</a>
+						<h5 class="mt-3">Nexa - Bootstrap4 Material Design Premium
+							Admin Dashboard</h5>
+						<p>Nexa Admin is Material Design premium admin dashboard
+							theme. It’s builded on popular Twitter Bootstrap 4 framework.</p>
+						<div class="d-flex justify-content-between">
+							<a href="http://www.wrraptheme.com/templates/nexa/marketing/"
+								class="btn btn-info">Preview</a> <a
+								href="https://themeforest.net/item/nexa-bootstrap4-material-design-premium-admin-dashboard/21122489"
+								class="btn btn-danger">Download Now</a>
+						</div>
+					</div>
+				</div>
+				<div class="card">
+					<div class="body">
+						<a
+							href="https://themeforest.net/item/hexabit-bootstrap-4x-admin-template-ui-kit/22611789">
+							<img class="img-fluid img-thumbnail"
+							src="http://www.wrraptheme.com//templates/preview/hexabit.png"
+							alt="">
+						</a>
+						<h5 class="mt-3">HexaBit - Bootstrap 4x Admin Template ui kit</h5>
+						<p>Easy and elegant interface which gives you an outstanding
+							experience. Take a stab at HexaBit demos and find it out by
+							yourself.</p>
+						<div class="d-flex justify-content-between">
+							<a
+								href="https://themeforest.net/item/hexabit-bootstrap-4x-admin-template-ui-kit/22611789"
+								class="btn btn-info">Preview</a> <a
+								href="https://themeforest.net/item/hexabit-bootstrap-4x-admin-template-ui-kit/22611789"
+								class="btn btn-danger">Download Now</a>
+						</div>
+					</div>
+				</div>
+				<div class="card">
+					<div class="body">
+						<a
+							href="https://themeforest.net/item/lucid-hr-and-project-management-admin-template/22308861">
+							<img class="img-fluid img-thumbnail"
+							src="http://www.wrraptheme.com//templates/preview/lucid-hr.png"
+							alt="">
+						</a>
+						<h5 class="mt-3">Lucid - HR and Project Management Admin
+							Template</h5>
+						<p>It comes with extensive profiles for candidates, agents,
+							teams of agents, jobs, professionals &amp; companies.</p>
+						<div class="d-flex justify-content-between">
+							<a
+								href="https://themeforest.net/item/lucid-hr-and-project-management-admin-template/22308861"
+								class="btn btn-info">Preview</a> <a
+								href="https://themeforest.net/item/lucid-hr-and-project-management-admin-template/22308861"
+								class="btn btn-danger">Download Now</a>
+						</div>
+					</div>
+				</div>
+				<div class="card">
+					<div class="body">
+						<a
+							href="https://themeforest.net/item/square-the-ultimate-bootstrap-4-angular-5-admin-dashboard-ui-kit/21322297">
+							<img class="img-fluid img-thumbnail"
+							src="http://www.wrraptheme.com//templates/preview/square.png"
+							alt="">
+						</a>
+						<h5 class="mt-3">sQuare - Bootstrap 4 Admin Dashboard
+							Template</h5>
+						<p>sQuare Admin is Material Design premium admin dashboard
+							theme. It’s builded on popular Twitter Bootstrap4 framework.</p>
+						<div class="d-flex justify-content-between">
+							<a href="http://www.wrraptheme.com/templates/square/landing/"
+								class="btn btn-info">Preview</a> <a
+								href="https://themeforest.net/item/square-the-ultimate-bootstrap-4-angular-5-admin-dashboard-ui-kit/21322297"
+								class="btn btn-danger">Download Now</a>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-md-3 col-sm-12">
 				<div class="card">
 					<div class="body">
 						<a
@@ -228,6 +399,7 @@ ${pageContext.request.contextPath}/mypage/imgs/01
 		</div>
 	</div>
 
+	<jsp:include page="/WEB-INF/footer.jsp"></jsp:include>
 	<!-- Jquery Core Js -->
 	<script
 		src="${pageContext.request.contextPath}/stylesheet/assets/bundles/libscripts.bundle.js"></script>
@@ -239,5 +411,5 @@ ${pageContext.request.contextPath}/mypage/imgs/01
 	<script
 		src="${pageContext.request.contextPath}/stylesheet/assets/bundles/mainscripts.bundle.js"></script>
 	<!-- Custom Js -->
-
-	<jsp:include page="/WEB-INF/footer.jsp"></jsp:include>
+</body>
+</html>

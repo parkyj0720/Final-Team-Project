@@ -10,27 +10,28 @@
 <meta name="description"
 	content="Responsive Bootstrap 4 and web Application ui kit.">
 
-<link rel="icon" href="favicon.ico" type="image/x-icon">
-<!-- Favicon-->
+<link rel="icon" href="/BoardCa/stylesheet/favicon.ico"
+	type="image/x-icon">
 <!-- Favicon-->
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/stylesheet/assets/plugins/bootstrap/css/bootstrap.min.css"
-	type="text/css">
-
+	href="/BoardCa/stylesheet/assets/plugins/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/stylesheet/assets/plugins/sweetalert/sweetalert.css">
 <!-- Custom Css -->
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/stylesheet/assets/css/style.min.css"
-	type="text/css">
+	href="/BoardCa/stylesheet/assets/css/style.min.css">
+
 
 </head>
 
 
 
-<!-- body -->
 
 <body class="theme-blush ls-closed ls-toggle-menu ">
+	<!-- header -->
 	<jsp:include page="/WEB-INF/header.jsp"></jsp:include>
 
+	<!-- body -->
 	<div class="body_scroll">
 		<div class="block-header">
 			<div class="row">
@@ -59,18 +60,18 @@
 								<div class="d-flex">
 									<div class="mobile-left">
 										<a class="btn btn-info btn-icon toggle-email-nav collapsed"
-											data-toggle="collapse" href="mypage-nav" role="button"
+											data-toggle="collapse" href="#mypage-nav" role="button"
 											aria-expanded="false" aria-controls="email-nav"> <span
-											class="btn-label"><i class="zmdi zmdi-more"></i></span>
+											class="btn-label"><i class="zmdi zmdi-account"></i></span>
 										</a>
 									</div>
 									<div class="inbox left collapse" id="mypage-nav" style="">
 										<div class="mail-side">
-											<h5>마이페이지</h5>
+											<a href="${pageContext.request.contextPath}/myPage.do"><h5>마이페이지</h5></a>
 											<ul class="nav">
 												<li><a
 													href="${pageContext.request.contextPath}/myWriteList.do"><i
-														class="zmdi zmdi-edit"></i> Writted</a></li>
+														class="zmdi zmdi-edit"></i>Writted</a></li>
 												<li><a
 													href="${pageContext.request.contextPath}/myFAQ.do"><i
 														class="zmdi zmdi-comments"></i>FAQ</a></li>
@@ -81,9 +82,7 @@
 													href="${pageContext.request.contextPath}/myCoupon.do"><i
 														class="zmdi zmdi-ticket-star"></i>COUPON</a></li>
 
-
 											</ul>
-
 										</div>
 									</div>
 									<div class="col-lg-11 col-md-12 col-sm-11 inbox right">
@@ -158,17 +157,31 @@
 					</div>
 				</div>
 			</div>
+		</div>
+	</div>
+	<jsp:include page="/WEB-INF/footer.jsp"></jsp:include>
 
-			<!-- Jquery Core Js -->
-			<script
-				src="${pageContext.request.contextPath}/stylesheet/assets/bundles/libscripts.bundle.js"></script>
-			<!-- Lib Scripts Plugin Js -->
-			<script
-				src="${pageContext.request.contextPath}/stylesheet/assets/bundles/vendorscripts.bundle.js"></script>
-			<!-- Lib Scripts Plugin Js -->
+	<!-- Jquery Core Js -->
+	<script
+		src="${pageContext.request.contextPath}/stylesheet/assets/bundles/libscripts.bundle.js"></script>
+	<!-- Lib Scripts Plugin Js -->
 
-			<script
-				src="${pageContext.request.contextPath}/stylesheet/assets/bundles/mainscripts.bundle.js"></script>
-			<!-- Custom Js -->
+	<script
+		src="/BoardCa/stylesheet/assets/bundles/vendorscripts.bundle.js"></script>
+	<!-- Lib Scripts Plugin Js -->
+	<script
+		src="${pageContext.request.contextPath}/stylesheet/assets/bundles/footable.bundle.js"></script>
+	<!-- Lib Scripts Plugin Js -->
 
-			<jsp:include page="/WEB-INF/footer.jsp"></jsp:include>
+	<script
+		src="${pageContext.request.contextPath}/stylesheet/assets/bundles/mainscripts.bundle.js"></script>
+	<!-- Custom Js -->
+	<script
+		src="${pageContext.request.contextPath}/stylesheet/assets/js/pages/tables/footable.js"></script>
+	<!-- Custom Js -->
+	<script src="/BoardCa/stylesheet/assets/bundles/mainscripts.bundle.js"></script>
+	<!-- Custom Js -->
+
+
+</body>
+</html>
