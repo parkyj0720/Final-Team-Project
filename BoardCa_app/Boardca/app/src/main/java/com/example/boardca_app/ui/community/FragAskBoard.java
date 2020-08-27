@@ -11,21 +11,20 @@ import androidx.fragment.app.Fragment;
 
 import com.example.boardca_app.R;
 
-public class FragtipBoard extends Fragment {
+public class FragAskBoard extends Fragment {
 
-    private View view;
+    private ViewGroup viewGroup;
 
-    public static FragtipBoard newInstance(){
-        FragtipBoard fragtipBoard= new FragtipBoard();
-        return fragtipBoard;
+    public static FragAskBoard newInstance(){
+        FragAskBoard fragAskBoard = new FragAskBoard();
+        return fragAskBoard;
     }
-
-
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.comm_tipboard, container, false);
-        return view;
+        viewGroup = (ViewGroup) inflater.inflate(R.layout.comm_askboard, container, false);
+
+        return viewGroup;
     }
 }

@@ -20,8 +20,6 @@ public class FragmainBoard extends Fragment {
         return fragmainBoard;
     }
 
-
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

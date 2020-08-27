@@ -31,9 +31,11 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
+import androidx.viewpager.widget.ViewPager;
 
 import com.example.boardca_app.ui.Map.GpsTracker;
 import com.example.boardca_app.ui.community.CommunityFragment;
+import com.example.boardca_app.ui.community.ViewPagerAdapter;
 import com.example.boardca_app.ui.game.GameFragment;
 import com.example.boardca_app.ui.home.HomeFragment;
 import com.example.boardca_app.ui.recipe.RecipeFragment;
@@ -146,7 +148,6 @@ public class MainActivity extends AppCompatActivity {
 
             checkRunTimePermission();
         }
-
 
 
 
