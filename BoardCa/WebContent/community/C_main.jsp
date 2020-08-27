@@ -69,11 +69,11 @@
 								<a
 									href="${pageContext.request.contextPath}/Community_list_sook.do"><h2>숙취게시판</h2></a>
 							</div>
-							<div class="body" style="height: 30em;">
+							<div class="body" style="height: 35em;">
 								<table
 									class="table-hover product_item_list c_table theme-color mb-0" style="height: 100%;">
 									<%
-										for (int i = 0; i < 10; i++) {
+										for (int i = 0; i < 7; i++) {
 										CommunityDto dto = list1.get(i);
 										String title = dto.getTitle();
 										int endidx = title.length();
@@ -108,11 +108,11 @@
 								<a
 									href="${pageContext.request.contextPath}/Community_list_jeong.do"><h2>정보공유</h2></a>
 							</div>
-							<div class="body" style="height: 30em;">
+							<div class="body" style="height: 35em;">
 								<table
 									class="table-hover product_item_list c_table theme-color mb-0" style="height: 100%;">
 									<%
-										for (int i = 0; i < 10; i++) {
+										for (int i = 0; i < 7; i++) {
 										CommunityDto dto = list2.get(i);
 										String title = dto.getTitle();
 										int endidx = title.length();
@@ -148,11 +148,11 @@
 							<div class="header" align="center">
 								<a href="${pageContext.request.contextPath}/Community_list_Q.do"><h2>QnA</h2></a>
 							</div>
-							<div class="body" style="height: 30em;">
+							<div class="body" style="height: 35em;">
 								<table
 									class="table-hover product_item_list c_table theme-color mb-0" style="height: 100%;">
 									<%
-										for (int i = 0; i < 10; i++) {
+										for (int i = 0; i < 7; i++) {
 										CommunityDto dto = list3.get(i);
 										String title = dto.getTitle();
 										int endidx = title.length();
@@ -187,11 +187,11 @@
 								<a
 									href="${pageContext.request.contextPath}/Community_list_shin.do"><h2>신고하기</h2></a>
 							</div>
-							<div class="body" style="height: 30em;">
+							<div class="body" style="height: 35em;">
 								<table
 									class="table-hover product_item_list c_table theme-color mb-0" style="height: 100%;">
 									<%
-										for (int i = 0; i < 10; i++) {
+										for (int i = 0; i < 7; i++) {
 										CommunityDto dto = list4.get(i);
 										String title = dto.getTitle();
 										int endidx = title.length();

@@ -29,4 +29,20 @@ public class CController {
 		mv.setViewName("/food/food.jsp?page="+page);
 		return mv;
 	}
+	
+	@RequestMapping("/cSearch.do")
+	public ModelAndView search(HttpServletRequest req) {
+		int page= 1;
+		if(req.getParameter("page") != null)
+		{
+			page = Integer.parseInt(req.getParameter("page"));
+			if(page<=0)
+				page = 1;
+		}
+		String search = req.getParameter("inputSearch");
+		mv.addObject("cList",dao.getSearchList(search));
+		mv.addObject("inputSearch",search);
+		mv.setViewName("/food/food.jsp?page="+page);
+		return mv;
+	}
 }

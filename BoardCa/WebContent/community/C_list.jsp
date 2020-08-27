@@ -69,10 +69,10 @@
 				<div class="row clearfix">
 					<div class="col-lg-12">
 						<div class="card"">
-							<div class="table-responsive" style="overflow-x: visible">
+							<div class="table-responsive" style="overflow: scroll;">
 								<table
 									class="table table-hover product_item_list c_table theme-color mb-0"
-									style="width: 100%;">
+									style="width: 100%; ">
 									<tbody>
 									<%for(int i = 0; i<list.size(); i++){ 
 									CommunityDto dto = list.get(i);%>

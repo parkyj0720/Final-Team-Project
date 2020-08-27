@@ -49,8 +49,13 @@
 	background: rgba(0, 0, 0, 0);
 }
 </style>
+<script src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">
-	
+	$(function() {
+		$('').click(function() {
+			
+		})
+	})
 </script>
 
 </head>
@@ -72,6 +77,7 @@
 					<div class="" style="display: inline-block;">
 						<a class="btn btn-raised btn-primary waves-effect checkBtn"
 							href="${pageContext.request.contextPath}/idOverlapCheck.do">중복확인</a>
+						
 					</div>
 
 					<div class="form-group form-float col-sm-6"

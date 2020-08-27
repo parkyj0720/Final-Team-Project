@@ -7,10 +7,10 @@ public class Comment {
 	String comment_date;
 	
 	public Comment() {
-		this(0,"","");
+		this(0,"","","");
 	}
 	
-	public Comment(int num, String comment_id, String comment_content) {
+	public Comment(int num, String comment_id, String comment_content, String comment_date) {
 		this.num = num;
 		this.comment_id = comment_id;
 		this.comment_content = comment_content;
