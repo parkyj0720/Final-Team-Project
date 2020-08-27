@@ -25,11 +25,13 @@ public class SignUpController {
 		String inputId = req.getParameter("inputId");
 		System.out.println(inputId);
 		
-		int idCheck = memDao.idCheck(inputId);
-		
-		if(idCheck != 0) {
-			
-		}
+		/*
+		 * int idCheck = memDao.idCheck(inputId);
+		 * 
+		 * if(idCheck != 0) {
+		 * 
+		 * }
+		 */
 		return mv;
 	}
 	
