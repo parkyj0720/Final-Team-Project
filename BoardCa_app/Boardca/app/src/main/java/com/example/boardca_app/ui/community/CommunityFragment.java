@@ -13,7 +13,8 @@ import com.example.boardca_app.R;
 
 public class CommunityFragment extends Fragment {
 
-    ViewGroup viewGroup;
+    private ViewGroup viewGroup;
+
 
     @Nullable
     @Override
@@ -22,9 +23,7 @@ public class CommunityFragment extends Fragment {
 
         viewGroup = (ViewGroup) inflater.inflate(R.layout.fragment_community, container, false);
 
-        for(int i=0; i<10; i++){
 
-        }
 
         return viewGroup;
     }
