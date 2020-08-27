@@ -25,7 +25,7 @@ public class FragReportBoard extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.comm_askboard, container, false);
+        view = inflater.inflate(R.layout.comm_reportboard, container, false);
 
         return view;
     }

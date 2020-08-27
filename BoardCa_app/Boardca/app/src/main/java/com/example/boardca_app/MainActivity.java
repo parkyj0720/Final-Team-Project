@@ -149,13 +149,10 @@ public class MainActivity extends AppCompatActivity {
             checkRunTimePermission();
         }
 
-
-
         gpsTracker = new GpsTracker(MainActivity.this);
 
         latitude = gpsTracker.getLatitude();
         longitude = gpsTracker.getLongitude();
-
 
         String address = getCurrentAddress(latitude, longitude);
 

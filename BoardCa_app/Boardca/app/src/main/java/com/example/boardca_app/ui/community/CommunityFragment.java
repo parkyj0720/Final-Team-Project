@@ -22,6 +22,7 @@ public class CommunityFragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+
         //뷰페이저 세팅
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getChildFragmentManager());
         viewPager = viewGroup.findViewById(R.id.viewPager);

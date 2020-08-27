@@ -21,6 +21,9 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
     public Fragment getItem(int position) {
         Fragment fragment = new CommunityFragment();
 
+//        Bundle args = new Bundle();
+//        args.putInt(CommunityFragment.args, position+1);
+
         switch (position){
             case 0:
                 return FragmainBoard.newInstance();
