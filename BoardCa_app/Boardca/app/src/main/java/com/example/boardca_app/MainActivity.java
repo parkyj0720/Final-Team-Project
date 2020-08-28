@@ -42,6 +42,7 @@ import com.example.boardca_app.ui.recipe.RecipeFragment;
 import com.example.boardca_app.ui.Map.MapFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.android.material.tabs.TabLayout;
 
 import java.io.IOException;
 import java.util.List;
@@ -157,6 +158,7 @@ public class MainActivity extends AppCompatActivity {
         String address = getCurrentAddress(latitude, longitude);
 
         Log.v("확인",address);
+
 
     }
 

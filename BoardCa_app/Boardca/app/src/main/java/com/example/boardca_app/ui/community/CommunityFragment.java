@@ -20,6 +20,15 @@ public class CommunityFragment extends Fragment {
     private ViewPager viewPager;
     private FragmentPagerAdapter fragmentPagerAdapter;
 
+//    public static CommunityFragment newInstance(){
+//
+//        CommunityFragment CommunityFragment = new CommunityFragment();
+//        Bundle bundle = new Bundle();
+//        bundle.putSerializable();
+//
+//        return CommunityFragment;
+//    }
+
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 
@@ -40,6 +49,5 @@ public class CommunityFragment extends Fragment {
         viewGroup = (ViewGroup) inflater.inflate(R.layout.fragment_community, container, false);
         return viewGroup;
     }
-
 
 }
