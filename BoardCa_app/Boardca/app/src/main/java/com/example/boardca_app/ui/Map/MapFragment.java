@@ -27,6 +27,8 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
     private GoogleMap mMap;
     private MapView mapView;
 
+    MapsActivity mapsActivity;
+
     double latitude = 0;
     double longitude = 0;
 
