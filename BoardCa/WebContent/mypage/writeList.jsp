@@ -87,8 +87,7 @@
 
 				<div class="container-fluid">
 					<!-- Basic Examples -->
-					<div class="card">
-						<div class="body">
+					
 							<div class="row clearfix">
 								<div class="col-md-12">
 									<div class="d-flex">

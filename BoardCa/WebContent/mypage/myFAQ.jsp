@@ -50,8 +50,7 @@
 
 				<div class="container-fluid">
 					<div class="row clearfix">
-						<div class="card">
-							<div class="body">
+				
 								<div class="col-lg-12 col-md-12 col-sm-12">
 									<div class="d-flex">
 										<div class="mobile-left">

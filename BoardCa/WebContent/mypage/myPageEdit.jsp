@@ -24,7 +24,14 @@
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
+<script>
+var citybox = new Array{서욽특별시,}
+
+
+</script>
 </head>
+
+
 <body class="ls-closed ls-toggle-menu ">
 	<!-- header -->
 	<jsp:include page="/WEB-INF/header.jsp"></jsp:include>
@@ -54,8 +61,7 @@
 	</div>
 	<div class="container-fluid">
 		<div class="row clearfix">
-			<div class="card">
-				<div class="body">
+			
 					<div class="col-md-12">
 						<div class="d-flex">
 							<div class="mobile-left">
