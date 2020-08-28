@@ -3,19 +3,29 @@
 <!DOCTYPE html>
 <head>
 <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta
+	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+	name="viewport">
+<meta name="description"
+	content="Responsive Bootstrap 4 and web Application ui kit.">
 
 <title></title>
-<link rel="icon" href="/BoardCa/stylesheet/favicon.ico"
+<link rel="icon"
+	href="${pageContext.request.contextPath}/stylesheet/favicon.ico"
 	type="image/x-icon">
 <!-- Favicon-->
 <link rel="stylesheet"
-	href="/BoardCa/stylesheet/assets/plugins/bootstrap/css/bootstrap.min.css">
+	href="${pageContext.request.contextPath}/stylesheet/assets/plugins/bootstrap/css/bootstrap.min.css">
 <!-- Custom Css -->
 <link rel="stylesheet"
-	href="/BoardCa/stylesheet/assets/css/style.min.css">
+	href="${pageContext.request.contextPath}/stylesheet/assets/css/style.min.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/stylesheet/assets/plugins/sweetalert/sweetalert.css">
 <!-- JQuery DataTable Css -->
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/stylesheet/assets/plugins/jquery-datatable/dataTables.bootstrap4.min.css">
+
 
 <script src="http://code.jquery.com/jquery.js"></script>
 </head>
@@ -43,29 +53,21 @@
 			var title = td.eq(2).text();
 			var reply = td.eq(3).text();
 
-			$("#ex1_Result1").html(" * 클릭한 Row의 모든 데이터 = " + tr.text());
+			$("#ex1_Result1").html("<p>" + tr.text() + "<p>");
 
 		})
 	});
 </script>
 <body class="ls-toggle-menu ls-closed ">
+	<!-- header -->
 	<jsp:include page="/WEB-INF/header.jsp"></jsp:include>
-
-
-
 	<!-- body -->
 	<div class="body_scroll">
 		<div class="block-header">
 			<div class="row">
 				<div class="card">
 					<div class="col-lg-12 col-md-12 col-sm-12">
-						<h2>
-							myFavorite
-							<button class="btn btn-primary btn-icon float-right "
-								type="button">
-								<i class="zmdi zmdi-sort-amount-desc"></i>
-							</button>
-						</h2>
+						<h2>myFavorite</h2>
 						<ul class="breadcrumb">
 							<li class="breadcrumb-item"><a href="index.html"><i
 									class="zmdi zmdi-home"></i> Aero</a></li>
@@ -85,54 +87,148 @@
 
 				<div class="container-fluid">
 					<!-- Basic Examples -->
-					<div>
-						<div class="row clearfix">
-							<div class="col-lg-12">
-								<div class="card">
-									<div class="header">
-										<h2>
-											<strong>내가 쓴 글</strong>
-										</h2>
-									</div>
-									<div class="body">
-										<div class="table-responsive">
-											<table id="example-table-1"
-												class="table table-bordered table-striped js-basic-example dataTable ">
-												<thead>
-													<tr>
-														<th>no</th>
-														<th>date</th>
-														<th>title</th>
-														<th>reply</th>
-													</tr>
-												</thead>
-												<tbody>
-													<tr class="clickBtn ">
-
-														<td>1</td>
-														<td>2020/08/20</td>
-														<td>하이</td>
-														<td>답변대기</td>
-
-													</tr>
-
-													<tr>
-														<td>2</td>
-														<td>2020/08/21</td>
-														<td>가나다</td>
-														<td>답변완료</td>
-													</tr>
-												</tbody>
-											</table>
-											<div class="col-lg-12" id="ex1_Result1"></div>
-
+					<div class="card">
+						<div class="body">
+							<div class="row clearfix">
+								<div class="col-md-12">
+									<div class="d-flex">
+										<div class="mobile-left">
+											<a class="btn btn-info btn-icon toggle-email-nav collapsed"
+												data-toggle="collapse" href="#mypage-nav" role="button"
+												aria-expanded="false" aria-controls="email-nav"> <span
+												class="btn-label"><i class="zmdi zmdi-account"></i></span>
+											</a>
 										</div>
-										<a href="${pageContext.request.contextPath}//myFAQ.do"
-											class="btn btn-primary btn-lg bg-orange waves-effect waves-light">
-											1:1문의하기</a>
+										<div class="inbox left collapse" id="mypage-nav" style="">
+											<div class="mail-side">
+												<a href="${pageContext.request.contextPath}/myPage.do"><h5>마이페이지</h5></a>
+												<ul class="nav">
+													<li><a
+														href="${pageContext.request.contextPath}/myWriteList.do"><i
+															class="zmdi zmdi-edit"></i>Writted</a></li>
+													<li><a
+														href="${pageContext.request.contextPath}/myFAQ.do"><i
+															class="zmdi zmdi-comments"></i>FAQ</a></li>
+													<li><a
+														href="${pageContext.request.contextPath}/myFavorite.do"><i
+															class="zmdi zmdi-favorite"></i>Favorite</a></li>
+													<li><a
+														href="${pageContext.request.contextPath}/myCoupon.do"><i
+															class="zmdi zmdi-ticket-star"></i>COUPON</a></li>
+
+												</ul>
+											</div>
+										</div>
+										<div class=" inbox right">
+											<div class="header">
+												<h2>
+													<strong>내가 쓴 글</strong>
+												</h2>
+											</div>
+
+											<div class="table-responsive">
+												<div id="DataTables_Table_0_wrapper"
+													class="dataTables_wrapper dt-bootstrap4">
+
+													<div class="row">
+														<div class="col-sm-12">
+															<table
+																class="table table-bordered table-striped table-hover js-basic-example dataTable"
+																id="DataTables_Table_0" role="grid"
+																aria-describedby="DataTables_Table_0_info">
+																<thead>
+																	<tr role="row">
+																		<th class="sorting" tabindex="0"
+																			aria-controls="DataTables_Table_0" rowspan="1"
+																			colspan="1"
+																			aria-label="Name: activate to sort column ascending"
+																			style="width: 61px;">No</th>
+																		<th class="sorting" tabindex="0"
+																			aria-controls="DataTables_Table_0" rowspan="1"
+																			colspan="1"
+																			aria-label="Position: activate to sort column ascending"
+																			style="width: 83px;">Date</th>
+																		<th class="sorting" tabindex="0"
+																			aria-controls="DataTables_Table_0" rowspan="1"
+																			colspan="1"
+																			aria-label="Office: activate to sort column ascending"
+																			style="width: 60px;">Title</th>
+																		<th class="sorting" tabindex="0"
+																			aria-controls="DataTables_Table_0" rowspan="1"
+																			colspan="1"
+																			aria-label="Age: activate to sort column ascending"
+																			style="width: 28px;">reply</th>
+
+																	</tr>
+																</thead>
+
+																<tbody>
+																	<tr class="clickBtn ">
+
+																		<td>1</td>
+																		<td>2020/08/20</td>
+																		<td>하이</td>
+																		<td>답변대기</td>
+
+																	</tr>
+																	<tr>
+																		<td>2</td>
+																		<td>2020/08/21</td>
+																		<td>가나다</td>
+																		<td>답변완료</td>
+																	</tr>
+																	<tr>
+																		<td>3</td>
+																		<td>2020/08/23</td>
+																		<td>가나다</td>
+																		<td>답변완료</td>
+																	</tr>
+																	<tr>
+																		<td>4</td>
+																		<td>2020/08/24</td>
+																		<td>가나다</td>
+																		<td>답변완료</td>
+																	</tr>
+																	<tr>
+																		<td>5</td>
+																		<td>2020/08/25</td>
+																		<td>가나다</td>
+																		<td>답변완료</td>
+																	</tr>
+																	<tr>
+																		<td>6</td>
+																		<td>2020/08/21</td>
+																		<td>가나다</td>
+																		<td>답변완료</td>
+																	</tr>
+																</tbody>
+															</table>
+														</div>
+													</div>
+													<div class="container-fluid">
+														<div class="row clearfix">
+															<div class="col-lg-12">
+																<div class="card">
+																	<div class="header">
+																		<h5 style="color: orange">선택한 글</h5>
+																	</div>
+																	<div class="body" id="ex1_Result1">
+																		<p>선택한 글이 보여집니다!</p>
+																	</div>
+																	<a href="${pageContext.request.contextPath}/myFAQ.do"
+																		class="btn btn-primary btn-lg bg-orange waves-effect waves-light float-right">
+																		1:1문의하기</a>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
 									</div>
 								</div>
 							</div>
+
 						</div>
 					</div>
 				</div>
@@ -141,33 +237,36 @@
 	</div>
 
 
+	<jsp:include page="/WEB-INF/footer.jsp"></jsp:include>
+
+	<!-- Jquery Core Js -->
+
+	<script src="/BoardCa/stylesheet/assets/bundles/libscripts.bundle.js"></script>
+	<!-- Lib Scripts Plugin Js -->
+	<script
+		src="/BoardCa/stylesheet/assets/bundles/vendorscripts.bundle.js"></script>
+	<!-- Lib Scripts Plugin Js -->
+
 	<!-- Jquery DataTable Plugin Js -->
 	<script
-		src="${pageContext.request.contextPath}/stylesheet/assets/bundles/datatablescripts.bundle.js"></script>
+		src="/BoardCa/stylesheet/assets/bundles/datatablescripts.bundle.js"></script>
 	<script
-		src="${pageContext.request.contextPath}/stylesheet/assets/plugins/jquery-datatable/buttons/dataTables.buttons.min.js"></script>
+		src="/BoardCa/stylesheet/assets/plugins/jquery-datatable/buttons/dataTables.buttons.min.js"></script>
 	<script
-		src="${pageContext.request.contextPath}/stylesheet/assets/plugins/jquery-datatable/buttons/buttons.bootstrap4.min.js"></script>
+		src="/BoardCa/stylesheet/assets/plugins/jquery-datatable/buttons/buttons.bootstrap4.min.js"></script>
 	<script
-		src="${pageContext.request.contextPath}/stylesheet/assets/plugins/jquery-datatable/buttons/buttons.colVis.min.js"></script>
+		src="/BoardCa/stylesheet/assets/plugins/jquery-datatable/buttons/buttons.colVis.min.js"></script>
 	<script
-		src="${pageContext.request.contextPath}/stylesheet/assets/plugins/jquery-datatable/buttons/buttons.flash.min.js"></script>
+		src="/BoardCa/stylesheet/assets/plugins/jquery-datatable/buttons/buttons.flash.min.js"></script>
 	<script
-		src="${pageContext.request.contextPath}/stylesheet/assets/plugins/jquery-datatable/buttons/buttons.html5.min.js"></script>
+		src="/BoardCa/stylesheet/assets/plugins/jquery-datatable/buttons/buttons.html5.min.js"></script>
 	<script
-		src="${pageContext.request.contextPath}/stylesheet/assets/plugins/jquery-datatable/buttons/buttons.print.min.js"></script>
-	<!-- Jquery Core Js -->
-	<script
-		src="${pageContext.request.contextPath}/stylesheet/assets/bundles/libscripts.bundle.js"></script>
-	<!-- Lib Scripts Plugin Js -->
-	<script
-		src="${pageContext.request.contextPath}/stylesheet/assets/bundles/vendorscripts.bundle.js"></script>
-	<!-- Lib Scripts Plugin Js -->
+		src="/BoardCa/stylesheet/assets/plugins/jquery-datatable/buttons/buttons.print.min.js"></script>
 
-	<script
-		src="${pageContext.request.contextPath}/stylesheet/assets/bundles/mainscripts.bundle.js"></script>
+	<script src="/BoardCa/stylesheet/assets/bundles/mainscripts.bundle.js"></script>
 	<!-- Custom Js -->
 	<script
-		src="${pageContext.request.contextPath}/stylesheet/assets/js/pages/tables/jquery-datatable.js"></script>
+		src="/BoardCa/stylesheet/assets/js/pages/tables/jquery-datatable.js"></script>
 
-	<jsp:include page="/WEB-INF/footer.jsp"></jsp:include>
+</body>
+</html>

@@ -1,3 +1,4 @@
+<%@page import="org.springframework.web.servlet.ModelAndView"%>
 <%@page import="CommunityModel.CommunityDto"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -25,6 +26,8 @@
 <body>
 <%
 	ArrayList<CommunityDto> list = (ArrayList<CommunityDto>) request.getAttribute("list");
+	String listname = (String) request.getAttribute("listname");
+	String viewname = (String) request.getAttribute("viewname");
 %>
 	<section class="content"
 		style="margin-left: auto; margin-right: auto; padding-left: 10%; padding-right: 10%;">
@@ -53,8 +56,8 @@
 								class="zmdi zmdi-home"></i> BoardCa</a></li>
 						<li class="breadcrumb-item"><a
 							href="${pageContext.request.contextPath}/Community_main.do">Community</a></li>
-						<li class="breadcrumb-item active"><a
-							href="${pageContext.request.contextPath}/Community_list.do">(수정예정)</a></li>
+						<li id="listname" class="breadcrumb-item active"><a
+							href="${pageContext.request.contextPath}<%=viewname %>"><%=listname%></a></li>
 					</ul>
 					<button class="btn btn-primary btn-icon mobile_menu" type="button">
 						<i class="zmdi zmdi-sort-amount-desc"></i>
@@ -66,20 +69,20 @@
 				<div class="row clearfix">
 					<div class="col-lg-12">
 						<div class="card"">
-							<div class="table-responsive" style="overflow-x: visible">
+							<div class="table-responsive" style="overflow: scroll;">
 								<table
 									class="table table-hover product_item_list c_table theme-color mb-0"
-									style="width: 100%;">
+									style="width: 100%; ">
 									<tbody>
 									<%for(int i = 0; i<list.size(); i++){ 
 									CommunityDto dto = list.get(i);%>
-										<tr style="box-sizing: content-box;">
-											<td width="10%" height="auto" align="center"
+										<tr class="list" style="box-sizing: content-box;">
+											<td class="Ctd" width="10%" height="auto" align="center"
 												style="white-space: normal;"><%=dto.getNum()%></td>
 											<td width="10%" height="auto" align="center"
 												style="white-space: normal;"><%=dto.getWriter_id()%></td>
 											<td width="40%" height="auto" align="center"
-												style="white-space: normal;"><a href="${pageContext.request.contextPath}/Community_detail.do"><%=dto.getContent()%></a></td>
+												style="white-space: normal;"><%=dto.getTitle()%></td>
 											<td width="10%" height="auto" align="center"
 												style="white-space: normal;"><%=dto.getWritten_date()%></td>
 											<td width="10%" height="auto" align="center"
@@ -111,10 +114,9 @@
 										href="javascript:void(0);"><i
 											class="zmdi zmdi-arrow-right"></i></a></li>
 									<div style="width: 100%">
-										<a
-											href="${pageContext.request.contextPath}/Community_input.do"><button
+										<button
 												class="btn btn-primary float-right right_icon_toggle_btn"
-												type="button">
+												type="button" onclick="location.href='${pageContext.request.contextPath}/Community_input.do'">
 												<i class="zmdi zmdi-hc-fw"></i>
 											</button></a>
 									</div>
@@ -126,6 +128,16 @@
 			</div>
 		</div>
 	</section>
-
+<script src="http://code.jquery.com/jquery.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('.list').click(function() {
+                var num = $(this).children(0).eq(0).text();
+                var viewname = $('#listname').text();
+                $(location).attr('href', '${pageContext.request.contextPath}/Community_detail.do?list='+viewname+'&num='+num);
+                
+            });
+        });
+    </script>
 </body>
 </html>

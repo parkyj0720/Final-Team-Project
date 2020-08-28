@@ -110,16 +110,6 @@
 				alert(JSON.stringify(err));
 			}
 		})
-		/* $("#kakao-login-btn").on(
-				"click",
-				function() {
-					$.post(
-							"${pageContext.request.contextPath}/signUp.do", {
-								userId : userID
-							})
-
-				}
-		) */
 	})
 </script>
 </head>

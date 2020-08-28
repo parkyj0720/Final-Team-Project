@@ -20,4 +20,14 @@ public class CDao {
 	    }
 	    return list;
 	  }
+	
+	public List<CDto> getSearchList(String search){
+	    System.out.println("----> cXml.cSearchList()");
+	    List<CDto> list = sqlSession.selectList("cXml.cSearchList",search);
+	    for (CDto dto : list) {
+	    	System.out.println(dto);
+	    }
+	    return list;
+	  }
+	
 }

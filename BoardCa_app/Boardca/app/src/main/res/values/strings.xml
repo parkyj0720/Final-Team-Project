@@ -85,11 +85,19 @@
     <string name="menu_recipe">레시피</string>
     <string name="menu_game">game</string>
     <string name="menu_community">커뮤니티</string>
+    <string name="menu_community_sub1">숙취 게시판</string>
+    <string name="menu_community_sub2">정보 공유</string>
+    <string name="menu_community_sub3">신고 하기</string>
     <string name="menu_map">지도</string>
     <string name="menu_signup">회원가입</string>
     <string name="menu_web">Web</string>
     <string name="title_activity_web__fragment">Web_Fragment</string>
 
+    <string-array name="comm_arr">
+        <item>닉네임</item>
+        <item>제목</item>
+        <item>내용</item>
+    </string-array>
 
     <string name="terms_conditions"><![CDATA[
         제 1 장 환영합니다!
@@ -213,6 +221,7 @@
         * 휴대폰으로 성인 인증을 하시면 다음 화면으로 이동합니다.\n
         * 만 19세 미만은 보드카 회원가입이 불가능합니다.
     </string>
+    <string name="title_activity_maps">Map</string>
 
 
 </resources>
