@@ -31,8 +31,8 @@
 
 
 <body class="ls-closed ls-toggle-menu ">
+<jsp:include page="/WEB-INF/header.jsp"></jsp:include>
 
-	<jsp:include page="/WEB-INF/header.jsp"></jsp:include>
 
 	<!-- body -->
 	<div class="body_scroll">
@@ -56,8 +56,7 @@
 
 		<div class="container-fluid">
 			<div class="row clearfix">
-				<div class="card">
-					<div class="body">
+
 						<div class="col-md-12">
 							<div class="d-flex">
 								<div class="mobile-left">
@@ -166,8 +165,7 @@
 					</div>
 				</div>
 			</div>
-		</div>
-	</div>
+
 	<jsp:include page="/WEB-INF/footer.jsp"></jsp:include>
 
 	<!-- Jquery Core Js -->

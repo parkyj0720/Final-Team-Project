@@ -73,11 +73,7 @@
 
 #menu_wrap .option button {margin-left: 5px;}
 
-#menu_wrap .option input {width: 260px; height: 30px;}
-
-#keyword {border-color: #0064FF; border-radius: 2px;}
-
-#submit {width: 45px; height: 30px; position: absolute; left: 230px;}
+#menu_wrap .option input {width: 240px; height: 40px;}
 
 #placesList li {list-style: none;}
 
@@ -194,6 +190,10 @@
 
 .s_white {background: rgba(255, 255, 255, 0.7);}
 
+#submit {background: none; border-style: none; width: 50px; height: 40px; position: absolute; left: 210px; top: 26px;}
+
+#keyword {border-color: #0064FF; border-radius: 2px; font-size: 15px;}
+
 <%-- 선 css --%>
 
 .dot {
@@ -273,7 +273,7 @@
 
 .wrap * {padding: 0;margin: 0;}
 
-.wrap .info {
+.wrap .information {
 	width: 286px;
 	height: 120px;
 	border-radius: 5px;
@@ -283,9 +283,9 @@
 	background: #fff;
 }
 
-.wrap .info:nth-child(1) {border: 0; box-shadow: 0px 1px 2px #888;}
+.wrap .information:nth-child(1) {border: 0; box-shadow: 0px 1px 2px #888;}
 
-.info .title {
+.information .title {
 	padding: 5px 0 0 10px;
 	height: 30px;
 	background: #eee;
@@ -294,22 +294,9 @@
 	font-weight: bold;
 }
 
-.info .close {
-	position: absolute;
-	top: 10px;
-	right: 10px;
-	color: #888;
-	width: 17px;
-	height: 17px;
-	background:
-		url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/overlay_close.png');
-}
+.information .body {position: relative; overflow: hidden;}
 
-.info .close:hover {cursor: pointer;}
-
-.info .body {position: relative; overflow: hidden;}
-
-.info .desc {
+.information .desc {
 	position: relative;
 	margin: 13px 0 0 20px;
 	height: 75px;
@@ -327,19 +314,7 @@
 	margin-top: -2px;
 }
 
-.info:after {
-	content: '';
-	position: absolute;
-	margin-left: -12px;
-	left: 50%;
-	bottom: 0;
-	width: 22px;
-	height: 12px;
-	background:
-		url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png')
-}
-
-.info .link {color: #5085BB;}
+.information:after {content: '';position: absolute;margin-left: -12px;left: 50%;bottom: 0;width: 22px;height: 12px;background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png')}
 </style>
 
 <script>
@@ -373,9 +348,10 @@
 				<div class="option">
 					<div>
 						<form onsubmit="searchPlaces(); return false;">
-							<input type="text" placeholder="키워드를 입력하세요" id="keyword"
-								size="15">
-							<button type="submit" id="submit">검색</button>
+							<input type="text" placeholder="키워드를 입력하세요" id="keyword" size="15">
+							<div class="input-group-prepend">
+                            	<button type="submit" id="submit"><i class="zmdi zmdi-search"></i></button>
+                            </div>
 						</form>
 					</div>
 				</div>
@@ -384,6 +360,7 @@
 				<ul id="placesList"></ul>
 				<div id="pagination"></div>
 			</div>
+			<script botId="B1yjvo" src="https://www.closer.ai/js/webchat.min.js"> </script>
 		</div>
 	<jsp:include page="/WEB-INF/footer.jsp"></jsp:include>
 </body>
@@ -402,7 +379,7 @@
 	// 지도를 생성합니다    
 	var map = new kakao.maps.Map(mapContainer, mapOption);
 	
-<%-- 선 그리기 --%>
+	<%-- 선 그리기 --%>
 
 	var drawingFlag = false; // 선이 그려지고 있는 상태를 가지고 있을 변수입니다
 	var moveLine; // 선이 그려지고 있을때 마우스 움직임에 따라 그려질 선 객체 입니다
@@ -467,14 +444,12 @@
 			var distance = Math.round(clickLine.getLength());
 			displayCircleDot(clickPosition, distance);
 		}
-	});
+	}); 
 
 	//지도에 마우스무브 이벤트를 등록합니다
 	//선을 그리고있는 상태에서 마우스무브 이벤트가 발생하면 그려질 선의 위치를 동적으로 보여주도록 합니다
 	kakao.maps.event
-			.addListener(
-					map,
-					'mousemove',
+			.addListener(map,'mousemove',
 					function(mouseEvent) {
 
 						// 지도 마우스무브 이벤트가 발생했는데 선을 그리고있는 상태이면
@@ -753,32 +728,85 @@
 		for (var i = 0; i < places.length; i++) {
 
 			// 마커를 생성하고 지도에 표시합니다
-			var placePosition = new kakao.maps.LatLng(places[i].y, places[i].x), marker = addMarker(
-					placePosition, i), itemEl = getListItem(i, places[i]); // 검색 결과 항목 Element를 생성합니다
+			var placePosition = 
+				new kakao.maps.LatLng(places[i].y, places[i].x), 
+				marker = addMarker(placePosition, i), 
+				itemEl = getListItem(i, places[i]); // 검색 결과 항목 Element를 생성합니다
 					
-			
-			content = '<div class="wrap">'
-					+ '<div class="info">'
-					+ '<div class="title">'
-					+ places[i].place_name
-					+ '<div class="close" onclick="closeOverlay()" title="닫기"></div>'
-					+ '</div>' + '<div class="body">'
-					+ '<div class="desc">'
-					+ '<div class="ellipsis">'
-					+ places[i].road_address_name + '</div>'
-					+ '<div class="jibun ellipsis">'
-					+ places[i].address_name + '</div>'
-					+ '<div class="tell">' + places[i].phone
-					+ '</div>' + '</div>' + '</div>'
-					+ '    </div>' + '</div>';
-									
-					marker.content = content
-					
-					console.dir(marker)
-
 			var CustomOverlay = new kakao.maps.CustomOverlay({
-				position : marker.getPosition()
-			});
+					position : marker.getPosition()
+				});
+			
+				content = '<div class="wrap">'
+				+ '<div class="information">'
+				+ '<div class="title">'
+				+ places[i].place_name
+				//+ '<div class="close" onclick="closeOverlay()" title="닫기"></div>'
+				+ '</div>' 
+				+ '<div class="body">'
+				+ '<div class="desc">'
+				+ '<div class="ellipsis">'
+				+ places[i].road_address_name 
+				+ '</div>'
+				+ '<div class="jibun ellipsis">'
+				+ places[i].address_name 
+				+ '</div>'
+				+ '<div class="tell">' 
+				+ places[i].phone
+				+ '</div>' 
+				+ '</div>' 
+				+ '</div>'
+				+ '</div>' 
+				+ '</div>';	  
+				
+			/* var content = document.createElement('div');
+			content.className = 'wrap';
+			
+			var wrap = document.createElement('div');
+			wrap.className = 'information';
+			content.appendChild(wrap);
+			
+			var info = document.createElement('div');
+			info.className = 'title';
+			content.appendChild(info);
+			
+			var title = document.createElement('div');
+			title.className = 'close';
+			title.appendChild(document.createTextNode(places[i].place_name));
+			content.appendChild(title);
+			
+			var closeBtn = document.createElement('button');
+			closeBtn.className = 'body';
+			closeBtn.appendChild(document.createTextNode('닫기'));
+			closeBtn.onclick = function() { customOverlay.setMap(null); };
+			content.appendChild(closeBtn);
+			
+			var body = document.createElement('div');
+			body.className = 'desc';
+			content.appendChild(body);
+			
+			var desc = document.createElement('div');
+			desc.className = 'ellipsis';
+			content.appendChild(desc);
+			
+			var ellipsis = document.createElement('div');
+			ellipsis.className = 'ellipsis';
+			ellipsis.appendChild(document.createTextNode(places[i].road_address_name));
+			content.appendChild(ellipsis);
+			
+			var jibun = document.createElement('div');
+			jibun.className = 'jibun';
+			jibun.appendChild(document.createTextNode(places[i].address_name));
+			content.appendChild(jibun);
+			
+			var tell = document.createElement('div');
+			tell.className = 'tell';
+			tell.appendChild(document.createTextNode(places[i].phone));
+			content.appendChild(tell);  */
+											
+			marker.content = content
+					
+			console.dir(marker)
 
 			// 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해
 			// LatLngBounds 객체에 좌표를 추가합니다
@@ -799,10 +827,22 @@
 				}); */
 
 				//마커를 클릭했을 때 커스텀 오버레이를 표시합니다
+				/* kakao.maps.event.addListener(marker, 'click', function() {
+					CustomOverlay.setPosition(marker.getPosition());
+					CustomOverlay.setContent(marker.content);
+					CustomOverlay.setMap(map);
+				}); */
+				
+				//마커를 마우스오버 했을 때 커스텀 오버레이를 표시합니다
 				kakao.maps.event.addListener(marker, 'click', function() {
 					CustomOverlay.setPosition(marker.getPosition());
 					CustomOverlay.setContent(marker.content);
 					CustomOverlay.setMap(map);
+				});
+				
+				//마커를 마우스아웃 했을 때 커스텀 오버레이 표시를 없앱니다
+				kakao.maps.event.addListener(marker, 'mouseout', function() {
+					CustomOverlay.setMap(null);
 				});
 
 				itemEl.onclick = function() {
@@ -871,7 +911,7 @@
 			image : markerImage
 		});
 
-		/* overImageSrc = 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_number_blue.png',
+		overImageSrc = 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_number_blue.png',
 		overImageSize = new kakao.maps.Size(36, 37),
 		overImgOptions = {
 				spriteSize : new kakao.maps.Size(44, 691),
@@ -883,7 +923,7 @@
 			overMarker = new kakao.maps.Marker({
 			position : position,
 			image : overMarkerImage
-		}); */
+		}); 
 
 		marker.setMap(map); // 지도 위에 마커를 표출합니다
 		markers.push(marker); // 배열에 생성된 마커를 추가합니다

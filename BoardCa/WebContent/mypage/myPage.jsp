@@ -57,8 +57,7 @@
 
 
 	<div class="row clearfix">
-		<div class="card">
-			<div class="body">
+
 				<div class="col-md-12">
 					<div class="d-flex">
 						<div class="mobile-left">
