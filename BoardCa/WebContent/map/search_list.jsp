@@ -5,18 +5,13 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=Edge">
-<meta
-	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
-	name="viewport">
-<meta name="description"
-	content="Responsive Bootstrap 4 and web Application ui kit.">
+<metacontent="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"name="viewport">
+<meta name="description"content="Responsive Bootstrap 4 and web Application ui kit.">
 <title>BoardCa 근처술집검색</title>
 <link rel="icon" href="favicon.ico" type="image/x-icon">
 <!-- Favicon -->
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/stylesheet/assets/plugins/bootstrap/css/bootstrap.min.css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/stylesheet/assets/css/style.min.css">
+<link rel="stylesheet"href="${pageContext.request.contextPath}/stylesheet/assets/plugins/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet"href="${pageContext.request.contextPath}/stylesheet/assets/css/style.min.css">
 <style>
 
 <%--map css --%>
@@ -27,7 +22,7 @@
 
 .map_wrap {position: relative;width: 100%;height: 969px;}
 
-#menu_wrap {position: absolute;top: -10px;left: -10px;bottom: 0;width: 350px;height: 969px;margin: 10px 0 30px 10px;padding: 5px;overflow-y: auto;background: rgba(255, 255, 255, 1);z-index: 1;font-size: 12px;border-radius: 5px;}
+#menu_wrap {position: absolute;top: -10px;left: -10px;bottom: 0;width: 350px;height: 969px;margin: 10px 0 30px 10px;padding: 5px;overflow-y: auto;background: rgba(255, 255, 255, 1);z-index: 1;font-size: 12px;}
 
 .bg_white {background: #fff;}
 
@@ -89,119 +84,43 @@
 
 #placesList .item .marker_15 {background-position: 0 -654px;}
 
-#pagination {margin: 10px auto;text-align: center;}
+#pagination {position: relative; top: 1600px; margin: 10px auto;text-align: center;}
 
 #pagination a {display: inline-block;margin-right: 10px;}
 
 #pagination .on {font-weight: bold;cursor: default;color: #777;}
 
-#hide {
-	width: 20px;
-	height: 50px;
-	text-align: center;
-	padding-top: 15px;
-	display: relative;
-	position: absolute;
-	left: 350px;
-	top: 450px;
-	background: rgba(255, 255, 255, 1);
-	z-index: 1;
-	font-size: 12px;
-	border-radius: 2px;
-}
+#hide {width: 20px;height: 50px;text-align: center;padding-top: 15px;display: relative;position: absolute;left: 350px;top: 450px;background: rgba(255, 255, 255, 1);z-index: 1;font-size: 12px;border-radius: 2px;}
 
-#show {
-	width: 20px;
-	height: 50px;
-	text-align: center;
-	padding-top: 15px;
-	display: relative;
-	position: absolute;
-	left: 0px;
-	top: 450px;
-	background: rgba(255, 255, 255, 1);
-	z-index: 1;
-	font-size: 12px;
-	border-radius: 2px;
-}
+#show {width: 20px;height: 50px;text-align: center;padding-top: 15px;display: relative;position: absolute;left: 0px;top: 450px;background: rgba(255, 255, 255, 1);z-index: 1;font-size: 12px;border-radius: 2px;}
 
 .h_white {background: rgba(255, 255, 255, 1);}
 
 .s_white {background: rgba(255, 255, 255, 1);}
 
-#submit {
-	background: none;
-	width: 45px;
-	height: 37px;
-	position: absolute;
-	left: 275px;
-	top: 72px;
-}
+#submit {background: none;width: 45px;height: 37px;position: absolute;left: 275px;top: 72px;}
 
-#keyword {
-	border-style: none;
-	border-radius: 2px;
-	font-size: 15px;
-}
+#keyword {border-style: none;border-radius: 2px;font-size: 15px;}
 
-#BoardCa_title {
-	font-weight: bold;
-	font-size: 20px;
-	position: absolute;
-	top: 25px;
-	left: 25px;
-	color: white;
-}
+#BoardCa_title {font-weight: bold;font-size: 20px;position: absolute;top: 25px;left: 25px;color: white;}
 
-#map_title {
-	width: 400px;
-	height: 150px;
-	background-color: #0099FF;
-	position: absolute;
-	left: -10px;
-	top: -10px;
-}
+#map_title {width: 350px;height: 150px;background-color: #0099FF;position: absolute;left: 0px;top: -10px;} 
+
+#placesList {position:absolute; top: 150px; width: 320px;} 
 
 .zmdi zmdi-search {width: 30px; height: 30px; position: absolute;}
 
 <%--커스텀 오버레이 --%>
 
-.wrap {
-	position: absolute;
-	left: 0;
-	bottom: 40px;
-	width: 288px;
-	height: 132px;
-	margin-left: -144px;
-	text-align: left;
-	overflow: hidden;
-	font-size: 12px;
-	font-family: 'Malgun Gothic', dotum, '돋움', sans-serif;
-	line-height: 1.5;
-}
+.wrap {position: absolute;left: 0;bottom: 40px;width: 288px;height: 132px;margin-left: -144px;text-align: left;overflow: hidden;font-size: 12px;font-family: 'Malgun Gothic', dotum, '돋움', sans-serif;line-height: 1.5;}
 
 .wrap * {padding: 0;margin: 0;}
 
-.wrap .information {
-	width: 286px;
-	height: 120px;
-	border-radius: 5px;
-	border-bottom: 2px solid #ccc;
-	border-right: 1px solid #ccc;
-	overflow: hidden;
-	background: #fff;
-}
+.wrap .information {width: 286px;height: 120px;border-radius: 5px;border-bottom: 2px solid #ccc;border-right: 1px solid #ccc;overflow: hidden;background: #fff;}
 
 .wrap .information:nth-child(1) {border: 0;box-shadow: 0px 1px 2px #888;}
 
-.information .title {
-	padding: 5px 0 0 10px;
-	height: 30px;
-	background: #eee;
-	border-bottom: 1px solid #ddd;
-	font-size: 18px;
-	font-weight: bold;
-}
+.information .title {padding: 5px 0 0 10px;height: 30px;background: #eee;border-bottom: 1px solid #ddd;font-size: 18px;font-weight: bold;}
 
 .information .body {position: relative;overflow: hidden;}
 
@@ -211,14 +130,7 @@
 
 .desc .jibun {font-size: 11px;color: #888;margin-top: -2px;}
 
-.information:after {
-	content: '';
-	position: absolute;
-	margin-left: -12px;
-	left: 50%;
-	bottom: 0;
-	width: 22px;
-	height: 12px;
+.information:after {content: '';position: absolute;margin-left: -12px;left: 50%;bottom: 0;width: 22px;height: 12px;
 	background:url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png')
 }
 
@@ -265,7 +177,7 @@
 		<div id="hide" class="h_white">◀</div>
 		<div id="show" class="s_white">▶</div>
 		<div id="menu_wrap" class="bg_white">
-			<div id="map_title">
+			<div id="map_title"> 
 				<h1 id="BoardCa_title">BoardCa Map</h1>
 				<div class="option">
 					<div>
@@ -277,15 +189,13 @@
 						</form>
 					</div>
 				</div>
-			</div>
-			<hr>
+			</div> 
 			<ul id="placesList"></ul>
 			<div id="pagination"></div>
 		</div>
 		<script botId="B1yjvo" src="https://www.closer.ai/js/webchat.min.js">		
 		</script>
 	</div>
-
 <script type="text/javascript"src="//dapi.kakao.com/v2/maps/sdk.js?appkey=7be0492e9a9dc8262e242b9d862de462&libraries=services"></script>
 <script>
 	// 마커를 담을 배열입니다
@@ -293,7 +203,7 @@
 
 	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 	mapOption = {
-		center : new kakao.maps.LatLng(37.566826, 126.9786567), // 지도의 중심좌표
+		center : new kakao.maps.LatLng(37.479130, 126.878909), // 지도의 중심좌표
 		level : 3 // 지도의 확대 레벨
 	};
 
