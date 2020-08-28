@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<html>
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=Edge">
@@ -58,113 +59,113 @@
 
 	<div class="row clearfix">
 
-				<div class="col-md-12">
-					<div class="d-flex">
-						<div class="mobile-left">
-							<a class="btn btn-info btn-icon toggle-email-nav collapsed"
-								data-toggle="collapse" href="#mypage-nav" role="button"
-								aria-expanded="false" aria-controls="email-nav"> <span
-								class="btn-label"><i class="zmdi zmdi-account"></i></span>
-							</a>
-						</div>
-						<div class="inbox left collapse" id="mypage-nav" style="">
-							<div class="mail-side">
-								<a href="${pageContext.request.contextPath}/myPage.do"><h5>마이페이지</h5></a>
-								<ul class="nav">
-									<li><a
-										href="${pageContext.request.contextPath}/myWriteList.do"><i
-											class="zmdi zmdi-edit"></i>Writted</a></li>
-									<li><a href="${pageContext.request.contextPath}/myFAQ.do"><i
-											class="zmdi zmdi-comments"></i>FAQ</a></li>
-									<li><a
-										href="${pageContext.request.contextPath}/myFavorite.do"><i
-											class="zmdi zmdi-favorite"></i>Favorite</a></li>
-									<li><a
-										href="${pageContext.request.contextPath}/myCoupon.do"><i
-											class="zmdi zmdi-ticket-star"></i>COUPON</a></li>
+		<div class="col-md-12">
+			<div class="d-flex">
+				<div class="mobile-left">
+					<a class="btn btn-info btn-icon toggle-email-nav collapsed"
+						data-toggle="collapse" href="#mypage-nav" role="button"
+						aria-expanded="false" aria-controls="email-nav"> <span
+						class="btn-label"><i class="zmdi zmdi-account"></i></span>
+					</a>
+				</div>
+				<div class="inbox left collapse" id="mypage-nav" style="">
+					<div class="mail-side">
+						<a href="${pageContext.request.contextPath}/myPage.do"><h5>마이페이지</h5></a>
+						<ul class="nav">
+							<li><a
+								href="${pageContext.request.contextPath}/myPageEdit.do"><i
+									class="zmdi zmdi-edit"></i>Edit</a></li>
+							<li><a
+								href="${pageContext.request.contextPath}/myWriteList.do"><i
+									class="zmdi zmdi-file"></i>Writted</a></li>
+							<li><a href="${pageContext.request.contextPath}/myFAQ.do"><i
+									class="zmdi zmdi-comments"></i>FAQ</a></li>
+							<li><a
+								href="${pageContext.request.contextPath}/myFavorite.do"><i
+									class="zmdi zmdi-favorite"></i>Favorite</a></li>
+							<li><a href="${pageContext.request.contextPath}/myCoupon.do"><i
+									class="zmdi zmdi-ticket-star"></i>COUPON</a></li>
 
-								</ul>
-							</div>
-						</div>
-						<div class="col-lg-11 col-md-12 col-sm-11 inbox right">
-							<div class="card mcard_3">
-								<div class="body">
-									<h4 class="m-t-10">UserName</h4>
-									<a href="${pageContext.request.contextPath}/myPage.do"><img
-										src="${pageContext.request.contextPath}/mypage/imgs/01.jpg"
-										class="rounded-circle shadow " alt="profile-image"
-										style="width: 20%; height: 20%;"></a>
-									<h4 class="m-t-10">NickName</h4>
+						</ul>
+					</div>
+				</div>
+				<div class="col-lg-11 col-md-12 col-sm-11 inbox right">
+					<div class="card mcard_3">
+						<div class="body">
+							<h4 class="m-t-10">UserName</h4>
+							<a href="${pageContext.request.contextPath}/myPage.do"><img
+								src="${pageContext.request.contextPath}/mypage/imgs/01.jpg"
+								class="rounded-circle shadow " alt="profile-image"
+								style="width: 20%; height: 20%;"></a>
+							<h4 class="m-t-10">NickName</h4>
 
-								</div>
-							</div>
-							<div class="card">
-								<div class="body">
-									<small class="text-muted">gender: </small>
-									<p>male/female</p>
-									<hr>
-									<small class="text-muted">Address: </small>
-									<p>Address</p>
-									<hr>
-									<small class="text-muted">Email address: </small>
-									<p>michael_dorsey@gmail.com</p>
-									<hr>
-									<small class="text-muted">Phone: </small>
-									<p>+ 202-555-0191</p>
-									<hr>
-									<div class="col-lg-12 col-md-12 col-sm-12">
-										<div class="card">
-											<div class="header">
-												<h2>
-													<strong>내가 쓴글</strong>
-												</h2>
-												<div class="body">
-													<div>
-														<div class="table-responsive">
-															<table class="table table-hover">
-																<thead>
-																	<tr>
-																		<th>No</th>
-																		<th>Date</th>
-																		<th>Title</th>
-																		<th>reply</th>
-																	</tr>
-																</thead>
-																<tbody>
-																	<tr>
-																		<th scope="row">1</th>
-																		<td>Mark</td>
-																		<td>Otto</td>
-																		<td>@mdo</td>
-																	</tr>
-																	<tr>
-																		<th scope="row">2</th>
-																		<td>Jacob</td>
-																		<td>Thornton</td>
-																		<td>@fat</td>
-																	</tr>
-																	<tr>
-																		<th scope="row">3</th>
-																		<td>Larry</td>
-																		<td>the Bird</td>
-																		<td>@twitter</td>
-																	</tr>
-																	<tr>
-																		<th scope="row">4</th>
-																		<td>Larry</td>
-																		<td>Jellybean</td>
-																		<td>@lajelly</td>
-																	</tr>
-																	<tr>
-																		<th scope="row">5</th>
-																		<td>Larry</td>
-																		<td>Kikat</td>
-																		<td>@lakitkat</td>
-																	</tr>
-																</tbody>
-															</table>
-														</div>
-													</div>
+						</div>
+					</div>
+					<div class="card">
+						<div class="body">
+							<small class="text-muted">gender: </small>
+							<p>male/female</p>
+							<hr>
+							<small class="text-muted">Address: </small>
+							<p>Address</p>
+							<hr>
+							<small class="text-muted">Email address: </small>
+							<p>michael_dorsey@gmail.com</p>
+							<hr>
+							<small class="text-muted">Phone: </small>
+							<p>+ 202-555-0191</p>
+							<hr>
+							<div class="col-lg-12 col-md-12 col-sm-12">
+								<div class="card">
+									<div class="header">
+										<h2>
+											<strong>내가 쓴글</strong>
+										</h2>
+										<div class="body">
+											<div>
+												<div class="table-responsive">
+													<table class="table table-hover">
+														<thead>
+															<tr>
+																<th>No</th>
+																<th>Date</th>
+																<th>Title</th>
+																<th>reply</th>
+															</tr>
+														</thead>
+														<tbody>
+															<tr>
+																<th scope="row">1</th>
+																<td>Mark</td>
+																<td>Otto</td>
+																<td>@mdo</td>
+															</tr>
+															<tr>
+																<th scope="row">2</th>
+																<td>Jacob</td>
+																<td>Thornton</td>
+																<td>@fat</td>
+															</tr>
+															<tr>
+																<th scope="row">3</th>
+																<td>Larry</td>
+																<td>the Bird</td>
+																<td>@twitter</td>
+															</tr>
+															<tr>
+																<th scope="row">4</th>
+																<td>Larry</td>
+																<td>Jellybean</td>
+																<td>@lajelly</td>
+															</tr>
+															<tr>
+																<th scope="row">5</th>
+																<td>Larry</td>
+																<td>Kikat</td>
+																<td>@lakitkat</td>
+															</tr>
+														</tbody>
+													</table>
 												</div>
 											</div>
 										</div>
@@ -176,6 +177,8 @@
 				</div>
 			</div>
 		</div>
+	</div>
+	</div>
 	</div>
 
 
