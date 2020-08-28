@@ -25,11 +25,7 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/stylesheet/assets/css/style.min.css">
 
-
 </head>
-
-x
-
 
 <body class="ls-closed ls-toggle-menu ">
 	<jsp:include page="/WEB-INF/header.jsp"></jsp:include>

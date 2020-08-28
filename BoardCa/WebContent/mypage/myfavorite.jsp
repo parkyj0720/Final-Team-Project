@@ -159,8 +159,7 @@
 			</div>
 		</div>
 	</div>
-	</div>
-	</div>
+	
 	<jsp:include page="/WEB-INF/footer.jsp"></jsp:include>
 
 	<!-- Jquery Core Js -->
