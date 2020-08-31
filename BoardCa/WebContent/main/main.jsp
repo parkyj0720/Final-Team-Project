@@ -24,38 +24,46 @@
 <!-- Custom Css -->
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/stylesheet/assets/css/style.min.css">
-<script>
 
-</script>
+<style>
+.bor {
+	padding: 1%;
+	text-align: center;
+    background-color: #deb8fb70;
+}
+.right-mar{
+	margin-right: 1%
+}
+.font-col{
+	color:#915def;
+}
+</style>
+
+
 </head>
 <body>
 
-	<div class="container">
-		<img alt="logo"
-			src="${pageContext.request.contextPath}/imgs/logo1.png"
-			style="width: 30%">
-		<h2>BoardCa는 건전한 음주문화를 지향합니다.</h2>
+	<div class="container" style="padding: 15%;">
+		<div class="logoImg" style="width: 80%; margin:auto">
+			<img alt="logo"
+				src="${pageContext.request.contextPath}/imgs/logo1.png" style="">
+		</div>
+		<h2 style="text-align: center;">BoardCa는 건전한 음주문화를 지향합니다.</h2>
 		<div class="body_scroll">
-			<div class="container-fluid">
-				<!-- Tabs With Icon Title -->
-				<div class="row clearfix">
-					<div class="col-sm-12">
-						<div class="card">
-							<div class="body">
-								<!-- Nav tabs -->
-								<!-- data-tab에 탭경로 주기 -->
-								<ul class="nav nav-tabs p-0 md-12 nav-tabs-success"
-									role="tablist">
-									<li class="nav-item col-md-3"><a href="${pageContext.request.contextPath}/cListAll.do"> 안주레시피 </a></li>
-									<li class="nav-item col-md-3"><a href="${pageContext.request.contextPath}/gameMain.do">술게임 </a></li>
-									<li class="nav-item col-md-3"><a href="${pageContext.request.contextPath}/Community_main.do">커뮤니티 </a></li>
-									<li class="nav-item col-md-3"><a href="${pageContext.request.contextPath}/search_list.do">근처 술집 </a></li>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
+				<!-- Nav tabs -->
+				<!-- data-tab에 탭경로 주기 -->
+				<ul class="nav nav-tabs nav-tabs-success" role="tablist" style="place-content: center;">
+					<li class="nav-item col-md-2 bor right-mar"><a
+						href="${pageContext.request.contextPath}/cListAll.do" class="font-col"> 안주레시피 </a></li>
+					<li class="nav-item col-md-2 bor right-mar"><a
+						href="${pageContext.request.contextPath}/gameMain.do" class="font-col">술게임 </a></li>
+					<li class="nav-item col-md-2 bor right-mar"><a
+						href="${pageContext.request.contextPath}/Community_main.do" class="font-col">커뮤니티
+					</a></li>
+					<li class="nav-item col-md-2 bor"><a
+						href="${pageContext.request.contextPath}/search_list.do" class="font-col">근처 술집
+					</a></li>
+				</ul>
 		</div>
 	</div>
 </body>
