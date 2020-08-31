@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,9 +15,9 @@
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 <title>BoardCa :: main</title>
-<link rel="icon"
-	href="${pageContext.request.contextPath}/stylesheet/favicon.ico"
-	type="image/x-icon">
+<%-- <link rel="icon"
+	href="${pageContext.request.contextPath}/imgs/logo2.png"
+	type="image/x-icon"> --%>
 <!-- Favicon-->
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/stylesheet/assets/plugins/bootstrap/css/bootstrap.min.css">

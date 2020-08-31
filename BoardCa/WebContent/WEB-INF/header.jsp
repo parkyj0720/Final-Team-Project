@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <link rel="icon" href="favicon.ico" type="image/x-icon">
 <!-- Favicon-->
@@ -19,16 +21,12 @@
 <div class="page-loader-wrapper">
 	<!-- 	<div class="loader"> -->
 	<div class="m-t-30">
-		<img class="zmdi-hc-spin" src="assets/images/loader.svg" width="48"
-			height="48" alt="Aero">
+		<img class="zmdi-hc-spin"
+			src="${pageContext.request.contextPath}/imgs/logo2.png" width="48"
+			height="48" alt="BoardCa">
 	</div>
 	<p>Please wait...</p>
 </div>
-
-<%
-	String userId = (String) session.getAttribute("userId");
-System.out.println(userId);
-%>
 <section class="content" style="margin: auto;">
 	<div class="body_scroll">
 		<div class="container-fluid">
@@ -38,16 +36,14 @@ System.out.println(userId);
 					<div class="card">
 						<div class="header">
 							<ul class="header-dropdown">
-								<li class="dropdown">
-									<a href="javascript:void(0);"
-										class="dropdown-toggle" title="Notifications"
-										data-toggle="dropdown" role="button">
-										<i class="zmdi zmdi-notifications"></i>
+								<li class="dropdown"><a href="javascript:void(0);"
+									class="dropdown-toggle" title="Notifications"
+									data-toggle="dropdown" role="button"> <i
+										class="zmdi zmdi-notifications"></i>
 										<div class="notify">
 											<span class="heartbit"></span><span class="point"></span>
-										</div> 
-									</a>
-									<!-- 알림페이지 안에 목록 list -->
+										</div>
+								</a> <!-- 알림페이지 안에 목록 list -->
 									<ul class="dropdown-menu slideUp2">
 										<li class="header">Notifications</li>
 										<li class="body">
@@ -141,23 +137,29 @@ System.out.println(userId);
 										</li>
 										<li class="footer"><a href="javascript:void(0);">View
 												All Notifications</a></li>
-									</ul>
-								</li>
-								<li class="dropdown">
-									<a href="javascript:void(0);"
-										class="dropdown-toggle" data-toggle="dropdown" role="button"
-										aria-haspopup="true" aria-expanded="false">
-											<p><%=userId%>님반갑습니다.</p>
-									</a>
-									<ul class="dropdown-menu dropdown-menu-right">
-										<li><a
-											href="${pageContext.request.contextPath}/myPage.do">마이페이지</a></li>
-										<li><a
-											href="${pageContext.request.contextPath}/myPageEdit.do">정보수정</a></li>
-										<li><a href="${pageContext.request.contextPath}/myFAQ.do">1:1문의</a></li>
-										<li><a href="javascript:void(0);">로그아웃</a></li>
-									</ul>
-								</li>
+									</ul></li>
+								<c:choose>
+									<c:when test="${userId == null}">
+										<li><a href="signIn.do">로그인</a></li>
+									</c:when>
+									<c:otherwise>
+										<li class="dropdown"><a href="javascript:void(0);"
+											class="dropdown-toggle" data-toggle="dropdown" role="button"
+											aria-haspopup="true" aria-expanded="false">
+												<p>${userId}님반갑습니다.
+												</p>
+										</a>
+											<ul class="dropdown-menu dropdown-menu-right">
+												<li><a
+													href="${pageContext.request.contextPath}/myPage.do">마이페이지</a></li>
+												<li><a
+													href="${pageContext.request.contextPath}/myPageEdit.do">정보수정</a></li>
+												<li><a
+													href="${pageContext.request.contextPath}/myFAQ.do">1:1문의</a></li>
+												<li><a href="${pageContext.request.contextPath}/logout.do">로그아웃</a></li>
+											</ul></li>
+									</c:otherwise>
+								</c:choose>
 							</ul>
 						</div>
 					</div>
