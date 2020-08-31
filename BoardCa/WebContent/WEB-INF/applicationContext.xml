@@ -20,7 +20,7 @@
   <!-- oracle datasource -->
   <bean id="oracleDatasource" class="oracle.jdbc.pool.OracleDataSource"
     destroy-method="close">
-    <property name="URL" value="jdbc:oracle:thin:@192.168.219.107:1521:xe" />
+    <property name="URL" value="jdbc:oracle:thin:@192.168.219.108:1521:xe" />
     <property name="user" value="hr" />
     <property name="password" value="hr" />
     <property name="connectionCachingEnabled" value="true" />

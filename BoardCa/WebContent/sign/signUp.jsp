@@ -56,6 +56,9 @@
 	/* 비밀번호 일치하는지 확인 하는 함수 */
 	function checkPwd(){
 		$("#checkPwd").show();
+		
+		var pw1 = $("#inputPw").value;
+		var pw2 = $("#inputPwCk").value;		
 			
 		if(pw1 != pw2){
 			document.getElementById("checkPwd").innerHTML = "<font color=red>비밀번호를 확인해주세요.</font>";		
@@ -63,6 +66,7 @@
 			document.getElementById("checkPwd").innerHTML = "<font color=green>비밀번호가 동일합니다.</font>";
 		}
 	}
+	
 	/* ID 중복 체크  */
 	function checkId(){
 		$.ajax({
@@ -77,9 +81,10 @@
 			error : function error(){ 
 				alert("error"); 
 			}
-		});
-		
+		});		
 	}
+	
+	
 </script>
 </head>
 
@@ -118,14 +123,12 @@
 					<div class="form-group form-float col-sm-6"
 						style="display: inline-flex;">
 						<input type="text" class="form-control" placeholder="이메일"
-							style="display: inline-block;" value="" name="inputEmail"
-							>
+							style="display: inline-block;" value="" name="inputEmail">
 					</div>
 					<div class="form-group form-float col-sm-6"
 						style="display: inline-flex;">
 						<input type="text" class="form-control" placeholder="핸드폰번호"
-							style="display: inline-block;" value="" name="inputPhone"
-							>
+							style="display: inline-block;" value="" name="inputPhone">
 					</div>
 
 					<!-- 성별 체크 라디오 버튼  -->
