@@ -39,8 +39,9 @@
 						<h2>myFavorite</h2>
 
 						<ul class="breadcrumb">
-							<li class="breadcrumb-item"><a href="index.html"><i
-									class="zmdi zmdi-home"></i> Aero</a></li>
+							<li class="breadcrumb-item"><a
+								href="${pageContext.request.contextPath}/main/main.jsp"><i
+									class="zmdi zmdi-home"></i> BoardCa</a></li>
 							<li class="breadcrumb-item"><a
 								href="${pageContext.request.contextPath}/myPage.do">myPage</a></li>
 							<li class="breadcrumb-item active">FAQ</li>
@@ -77,6 +78,9 @@
 											<li><a
 												href="${pageContext.request.contextPath}/myFavorite.do"><i
 													class="zmdi zmdi-favorite"></i>Favorite</a></li>
+											<li><a
+												href="${pageContext.request.contextPath}/mySaved.do"><i
+													class="zmdi zmdi-folder-star"></i>Saved</a></li>
 											<li><a
 												href="${pageContext.request.contextPath}/myCoupon.do"><i
 													class="zmdi zmdi-ticket-star"></i>COUPON</a></li>
@@ -122,7 +126,7 @@
 			</div>
 		</div>
 	</div>
-	
+
 
 
 	<jsp:include page="/WEB-INF/footer.jsp"></jsp:include>

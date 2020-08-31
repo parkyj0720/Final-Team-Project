@@ -20,7 +20,9 @@
 <!-- Custom Css -->
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/stylesheet/assets/css/style.min.css">
-	<link href="${pageContext.request.contextPath}/stylesheet/assets/plugins/bootstrap-select/css/bootstrap-select.css" rel="stylesheet">
+<link
+	href="${pageContext.request.contextPath}/stylesheet/assets/plugins/bootstrap-select/css/bootstrap-select.css"
+	rel="stylesheet">
 <script src="http://code.jquery.com/jquery.js"></script>
 <script>
 	$('document')
@@ -147,11 +149,12 @@
 					<div class="col-lg-12 col-md-12 col-sm-12">
 						<h2>myFavorite</h2>
 						<ul class="breadcrumb">
-							<li class="breadcrumb-item"><a href="index.html"><i
-									class="zmdi zmdi-home"></i> Aero</a></li>
+							<li class="breadcrumb-item"><a
+								href="${pageContext.request.contextPath}/main/main.jsp"><i
+									class="zmdi zmdi-home"></i> BoardCa</a></li>
 							<li class="breadcrumb-item"><a
 								href="${pageContext.request.contextPath}/myPage.do">myPage</a></li>
-							<li class="breadcrumb-item active">myFavorite</li>
+							<li class="breadcrumb-item active">Edit</li>
 						</ul>
 						<a href="${pageContext.request.contextPath}/myPage.do"
 							class="btn btn-info btn-icon float-right"><i
@@ -179,13 +182,18 @@
 							<a href="${pageContext.request.contextPath}/myPage.do"><h5>마이페이지</h5></a>
 							<ul class="nav">
 								<li><a
+									href="${pageContext.request.contextPath}/myPageEdit.do"><i
+										class="zmdi zmdi-edit"></i>Edit</a></li>
+								<li><a
 									href="${pageContext.request.contextPath}/myWriteList.do"><i
-										class="zmdi zmdi-edit"></i>Writted</a></li>
+										class="zmdi zmdi-file"></i>Writted</a></li>
 								<li><a href="${pageContext.request.contextPath}/myFAQ.do"><i
 										class="zmdi zmdi-comments"></i>FAQ</a></li>
 								<li><a
 									href="${pageContext.request.contextPath}/myFavorite.do"><i
 										class="zmdi zmdi-favorite"></i>Favorite</a></li>
+								<li><a href="${pageContext.request.contextPath}/mySaved.do"><i
+										class="zmdi zmdi-folder-star"></i>Saved</a></li>
 								<li><a
 									href="${pageContext.request.contextPath}/myCoupon.do"><i
 										class="zmdi zmdi-ticket-star"></i>COUPON</a></li>
@@ -193,6 +201,7 @@
 							</ul>
 						</div>
 					</div>
+
 					<div class="col-lg-11 col-md-11 col-sm-11 inbox right">
 						<div class="card">
 							<div class="header">

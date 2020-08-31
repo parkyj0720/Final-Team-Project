@@ -39,8 +39,8 @@
 					<div class="col-lg-12 col-md-12 col-sm-12 ">
 						<h2>myFavorite</h2>
 						<ul class="breadcrumb">
-							<li class="breadcrumb-item"><a href="index.html"><i
-									class="zmdi zmdi-home"></i> Aero</a></li>
+							<li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/main/main.jsp"><i
+									class="zmdi zmdi-home"></i> BoardCa</a></li>
 							<li class="breadcrumb-item"><a
 								href="${pageContext.request.contextPath}/myPage.do">myPage</a></li>
 							<li class="breadcrumb-item active">COUPON</li>
@@ -79,12 +79,16 @@
 										href="${pageContext.request.contextPath}/myFavorite.do"><i
 											class="zmdi zmdi-favorite"></i>Favorite</a></li>
 									<li><a
+										href="${pageContext.request.contextPath}/mySavedText.do"><i
+											class="zmdi zmdi-folder-star"></i>Saved</a></li>
+									<li><a
 										href="${pageContext.request.contextPath}/myCoupon.do"><i
 											class="zmdi zmdi-ticket-star"></i>COUPON</a></li>
 
 								</ul>
 							</div>
 						</div>
+
 						<div
 							class="container-fluid col-lg-11 col-md-12 col-sm-11 inbox right">
 							<div class="row clearfix">

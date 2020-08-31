@@ -49,12 +49,26 @@
 
 
 	<!-- body -->
+	<div class="body_scroll">
+		<div class="block-header">
+			<div class="row">
+				<div class="col-lg-7 col-md-6 col-sm-12">
+					<h2>GameDetail</h2>
+					<ul class="breadcrumb">
+						<li class="breadcrumb-item"><a
+							href="${pageContext.request.contextPath}/main.do"><i
+								class="zmdi zmdi-home"></i> BoardCa</a></li>
+						<li class="breadcrumb-item">GameMain</li>
+						
+					</ul>
+				</div>
+			</div>
+		</div>
 
-	<div class="col-xl-12 col-lg-12 col-md-12">
-		<div class="row clearfix">
-
-			<div class="container">
+		<div class="container-fluid">
+			<div class="row clearfix">
 				<div class="row">
+
 					<!-- Team Member 1 -->
 					<div class="col-xl-3 col-md-3 col-mb-3">
 						<div class="card border-0 shadow">
@@ -118,7 +132,7 @@
 			</div>
 		</div>
 	</div>
-	</div>
+
 
 
 	<jsp:include page="/WEB-INF/footer.jsp"></jsp:include>

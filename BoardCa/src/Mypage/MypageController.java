@@ -25,19 +25,28 @@ public class MypageController {
 		mv.setViewName("/mypage/writeList.jsp");
 		return mv;
 	}
+	
 	@RequestMapping("/myFAQ.do")
 	public ModelAndView myFAQ() {
 		mv.setViewName("/mypage/myFAQ.jsp");
 		return mv;
 	}
+	
 	@RequestMapping("/myFavorite.do")
 	public ModelAndView myFavoriteList() {
 		mv.setViewName("/mypage/myfavorite.jsp");
 		return mv;
 	}
+	
 	@RequestMapping("/myCoupon.do")
 	public ModelAndView myCoupon() {
 		mv.setViewName("/mypage/coupon.jsp");
 		return mv;
 	}
+	@RequestMapping("/mySaved.do")
+	public ModelAndView mySaved() {
+		mv.setViewName("/mypage/mySaved.jsp");
+		return mv;
+	}
+	
 }
