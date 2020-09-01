@@ -28,6 +28,7 @@ public class CommunityController {
 		mv.addObject("list3", dao.Main3());
 		mv.addObject("list4", dao.Main4());
 		mv.setViewName("community/C_main.jsp");
+		System.out.println("메인");
 		return mv;
 	}
 

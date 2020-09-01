@@ -73,6 +73,7 @@
 								<table
 									class="table-hover product_item_list c_table theme-color mb-0" style="height: 100%;">
 									<%
+									if(list1.size()>=7){
 										for (int i = 0; i < 7; i++) {
 										CommunityDto dto = list1.get(i);
 										String title = dto.getTitle();
@@ -99,6 +100,7 @@
 									</tr>
 									<%
 										}
+									}
 									%>
 								</table>
 							</div>
@@ -112,6 +114,7 @@
 								<table
 									class="table-hover product_item_list c_table theme-color mb-0" style="height: 100%;">
 									<%
+									if(list2.size()>=7){
 										for (int i = 0; i < 7; i++) {
 										CommunityDto dto = list2.get(i);
 										String title = dto.getTitle();
@@ -138,6 +141,7 @@
 									</tr>
 									<%
 										}
+									}
 									%>
 								</table>
 							</div>
@@ -152,6 +156,7 @@
 								<table
 									class="table-hover product_item_list c_table theme-color mb-0" style="height: 100%;">
 									<%
+									if(list1.size()>=7){
 										for (int i = 0; i < 7; i++) {
 										CommunityDto dto = list3.get(i);
 										String title = dto.getTitle();
@@ -178,6 +183,7 @@
 									</tr>
 									<%
 										}
+									}
 									%>
 								</table>
 							</div>
@@ -191,6 +197,7 @@
 								<table
 									class="table-hover product_item_list c_table theme-color mb-0" style="height: 100%;">
 									<%
+									if(list1.size()>=7){
 										for (int i = 0; i < 7; i++) {
 										CommunityDto dto = list4.get(i);
 										String title = dto.getTitle();
@@ -217,6 +224,7 @@
 									</tr>
 									<%
 										}
+									}
 									%>
 
 								</table>
