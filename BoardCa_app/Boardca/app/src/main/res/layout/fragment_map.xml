@@ -9,71 +9,69 @@
     <com.google.android.gms.maps.MapView
         android:id="@+id/map"
         android="http://schemas.android.com/apk/res/android"
-        xmlns:map="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        map:layout_constraintBottom_toBottomOf="parent"
+        map:layout_constraintEnd_toEndOf="parent"
+        map:layout_constraintStart_toStartOf="parent"
+        map:layout_constraintTop_toTopOf="parent" />
 
     <!-- GPS 버튼 -->
     <Button
         android:id="@+id/button3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
-        android:layout_marginRight="30dp"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="370dp"
+        android:layout_marginLeft="370dp"
+        android:layout_marginTop="70dp"
+        android:background="@drawable/ic_gps_not_fixed_black"
         android:onClick="onLastLocationButtonClicked"
-        android:text="GPS"
-        map:layout_constraintEnd_toEndOf="parent"
-        map:layout_constraintTop_toTopOf="parent" />
+        map:layout_constraintBottom_toTopOf="@+id/map"
+        map:layout_constraintEnd_toStartOf="@+id/map"
+        map:layout_constraintHorizontal_bias="0.0"
+        map:layout_constraintStart_toStartOf="parent"
+        map:layout_constraintTop_toTopOf="parent"
+        map:layout_constraintVertical_bias="0.0"
+        tools:ignore="MissingConstraints" />
 
+    <!-- 검색창 -->
 
-
-    <!-- 뒤로 버튼 -->
-    <Button
-        android:id="@+id/button5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginBottom="8dp"
-        android:onClick="moveMainActivity"
-        android:text="돌아가기"
-        map:layout_constraintBottom_toBottomOf="parent"
-        map:layout_constraintStart_toStartOf="parent" />
-
-    <com.google.android.material.textfield.TextInputLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        tools:ignore="MissingConstraints">
+        android:layout_height="50dp"
+        android:background="@color/colorWhite"
+        map:layout_constraintBottom_toTopOf="@+id/map"
+        map:layout_constraintEnd_toEndOf="parent"
+        map:layout_constraintStart_toStartOf="parent"
+        map:layout_constraintTop_toTopOf="parent"
+        map:layout_constraintVertical_bias="0.0">
 
-        <!-- 검색창 -->
+        <!-- 뒤로 가기 -->
+        <Button
+            android:id="@+id/button5"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/ic_arrow_back_black"
+            android:onClick="moveMainActivity" />
+
+
         <EditText
             android:id="@+id/editPlace"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_width="300dp"
+            android:layout_height="match_parent"
             android:ems="12"
-            android:background="#ffffff"
-            android:hint="찾는 장소"
-            map:layout_constraintStart_toStartOf="parent"
-            map:layout_constraintTop_toTopOf="parent" />
+            android:hint="@string/map_search"
+            android:layout_marginLeft="20dp"/>
 
-        <!-- 검색 버튼 -->
+        <!-- 음성 -->
         <Button
-            android:id="@+id/button6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:onClick="searchButtonClicked"
-            android:drawableRight="@drawable/serch"
-            map:layout_constraintEnd_toEndOf="parent"
-            map:layout_constraintStart_toEndOf="@+id/editPlace"
-            map:layout_constraintTop_toTopOf="parent" />
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/ic_mic_none_black"/>
 
-    </com.google.android.material.textfield.TextInputLayout>
 
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -6,15 +6,6 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     >
-
-    <!-- 프레임 -->
-    <FrameLayout
-        android:id="@+id/main_content"
-        android:layout_below="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-    </FrameLayout>
-
     <!-- 상단바 -->
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
@@ -40,6 +31,16 @@
         android:layout_width="match_parent"
         android:layout_height="1dp">
     </LinearLayout>
+
+
+    <!-- 프레임 -->
+    <FrameLayout
+        android:id="@+id/main_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/bottom_navigation"
+        android:layout_below="@+id/toolbar_division"/>
+
 
     <!-- 하단바 아래 구분선 -->
     <LinearLayout
