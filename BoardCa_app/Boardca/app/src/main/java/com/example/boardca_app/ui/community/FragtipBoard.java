@@ -15,12 +15,6 @@ public class FragtipBoard extends Fragment {
 
     private View view;
 
-    public static FragtipBoard newInstance(){
-        FragtipBoard fragtipBoard= new FragtipBoard();
-        return fragtipBoard;
-    }
-
-
 
     @Nullable
     @Override

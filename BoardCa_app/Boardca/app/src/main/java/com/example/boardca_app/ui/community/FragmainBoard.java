@@ -15,11 +15,6 @@ public class FragmainBoard extends Fragment {
 
     private View view;
 
-    public static FragmainBoard newInstance(){
-        FragmainBoard fragmainBoard = new FragmainBoard();
-        return fragmainBoard;
-    }
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
