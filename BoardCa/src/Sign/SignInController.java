@@ -22,79 +22,80 @@ import Member.MemberDao;
 import Member.MemberDto;
 
 @Controller
-public class SignInController {	
+public class SignInController {
 	@Autowired
 	private ModelAndView mv;
-	
+
 	@Autowired
 	private MemberDao memDao;
-	
+
 	@RequestMapping("/signIn.do")
 	public ModelAndView signIn() {
 		mv.setViewName("/sign/signIn.jsp");
 		return mv;
 	}
+
 	@RequestMapping("/signPro.do")
-	public ModelAndView signPro(MemberDto dto,SessionDto sedto, HttpSession session,HttpServletRequest req)
+	public ModelAndView signPro(MemberDto dto, SessionDto sedto, HttpSession session, HttpServletRequest req)
 			throws SAXException, IOException, ParserConfigurationException {
-		//memDao = new MemberDao();
+		// memDao = new MemberDao();
 		String ip = req.getHeader("X-FORWARDED-FOR");
-		if(ip == null) {
+		if (ip == null) {
 			ip = req.getRemoteAddr();
-			
+
 			sedto.setIp(ip);
 		}
-		
-		//1.문서를 읽기위한 공장을 만들어야 한다.
+
+		// 1.문서를 읽기위한 공장을 만들어야 한다.
 		DocumentBuilderFactory fatory = DocumentBuilderFactory.newInstance();
-		//2.빌더를 생성
+		// 2.빌더를 생성
 		DocumentBuilder builder = fatory.newDocumentBuilder();
-		//3.생성된 빌더를 통해서 xml문서를 Document객체로 파싱해서 가져온다.
-        //Document org에서 가져온다!!!
-		Document doc = builder.parse("http://whois.kisa.or.kr/openapi/ipascc.jsp?query=192.168.219.111&key=2020081914462601995405&answer=xml");
+		// 3.생성된 빌더를 통해서 xml문서를 Document객체로 파싱해서 가져온다.
+		// Document org에서 가져온다!!!
+		Document doc = builder.parse(
+				"http://whois.kisa.or.kr/openapi/ipascc.jsp?query=192.168.219.111&key=2020081914462601995405&answer=xml");
 		NodeList list = doc.getElementsByTagName("countryCode");
-		
+
 		int i = 0;
 		Element element;
 		String country = null;
-		
-		while(list.item(i) != null){
+
+		while (list.item(i) != null) {
 			element = (Element) list.item(i);
 			country = element.getTextContent();
 			i++;
 		}
-		//settingDto 에 나라 코드를 넣는다.
+		// settingDto 에 나라 코드를 넣는다.
 		sedto.setPlace(country);
-		
+
 		String userId = req.getParameter("userId");
 		String userPw = req.getParameter("userPw");
-		
+
 		dto.setMem_id(userId);
 		dto.setMem_pw(userPw);
-		
-		int idCheck = memDao.idCheck(userId); 
-		if(idCheck==1) {
+
+		int idCheck = memDao.idCheck(userId);
+		if (idCheck == 1) {
 			String dbPw = memDao.signIn(userId);
-			if(userPw.equals(dbPw)) {
+			if (userPw.equals(dbPw)) {
 				sedto.setMove("로그인(성공)");
 				session.setAttribute("userId", userId);
 				mv.setViewName("/main/main.jsp");
-			}else {
+			} else {
 				sedto.setMove("로그인(실패)");
 				mv.setViewName("/sign/signError.jsp");
-			}			
-		}else {
+			}
+		} else {
 			mv.setViewName("/sign/signError.jsp");
 		}
-		
-		
 		return mv;
 	}
 
-	
+	@RequestMapping("/logout.do")
+	public ModelAndView logout(HttpSession session) {
+		session.invalidate();
+		mv.setViewName("/sign/logout.jsp");
+		return mv;
+	}
 
-	
-	
-	
-	
 }

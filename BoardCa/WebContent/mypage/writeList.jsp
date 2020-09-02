@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<html>
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=Edge">
@@ -69,11 +70,11 @@
 					<div class="col-lg-12 col-md-12 col-sm-12">
 						<h2>myFavorite</h2>
 						<ul class="breadcrumb">
-							<li class="breadcrumb-item"><a href="index.html"><i
-									class="zmdi zmdi-home"></i> Aero</a></li>
+							<li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/main/main.jsp"><i
+									class="zmdi zmdi-home"></i> BoardCa</a></li>
 							<li class="breadcrumb-item"><a
 								href="${pageContext.request.contextPath}/myPage.do">myPage</a></li>
-							<li class="breadcrumb-item active">myFavorite</li>
+							<li class="breadcrumb-item active">Writted</li>
 
 						</ul>
 
@@ -87,139 +88,143 @@
 
 				<div class="container-fluid">
 					<!-- Basic Examples -->
-					<div class="card">
-						<div class="body">
-							<div class="row clearfix">
-								<div class="col-md-12">
-									<div class="d-flex">
-										<div class="mobile-left">
-											<a class="btn btn-info btn-icon toggle-email-nav collapsed"
-												data-toggle="collapse" href="#mypage-nav" role="button"
-												aria-expanded="false" aria-controls="email-nav"> <span
-												class="btn-label"><i class="zmdi zmdi-account"></i></span>
-											</a>
-										</div>
-										<div class="inbox left collapse" id="mypage-nav" style="">
-											<div class="mail-side">
-												<a href="${pageContext.request.contextPath}/myPage.do"><h5>마이페이지</h5></a>
-												<ul class="nav">
-													<li><a
-														href="${pageContext.request.contextPath}/myWriteList.do"><i
-															class="zmdi zmdi-edit"></i>Writted</a></li>
-													<li><a
-														href="${pageContext.request.contextPath}/myFAQ.do"><i
-															class="zmdi zmdi-comments"></i>FAQ</a></li>
-													<li><a
-														href="${pageContext.request.contextPath}/myFavorite.do"><i
-															class="zmdi zmdi-favorite"></i>Favorite</a></li>
-													<li><a
-														href="${pageContext.request.contextPath}/myCoupon.do"><i
-															class="zmdi zmdi-ticket-star"></i>COUPON</a></li>
 
-												</ul>
+					<div class="row clearfix">
+						<div class="col-md-12">
+							<div class="d-flex">
+								<div class="mobile-left">
+									<a class="btn btn-info btn-icon toggle-email-nav collapsed"
+										data-toggle="collapse" href="#mypage-nav" role="button"
+										aria-expanded="false" aria-controls="email-nav"> <span
+										class="btn-label"><i class="zmdi zmdi-account"></i></span>
+									</a>
+								</div>
+								<div class="inbox left collapse" id="mypage-nav" style="">
+									<div class="mail-side">
+										<a href="${pageContext.request.contextPath}/myPage.do"><h5>마이페이지</h5></a>
+										<ul class="nav">
+											<li><a
+												href="${pageContext.request.contextPath}/myPageEdit.do"><i
+													class="zmdi zmdi-edit"></i>Edit</a></li>
+											<li><a
+												href="${pageContext.request.contextPath}/myWriteList.do"><i
+													class="zmdi zmdi-file"></i>Writted</a></li>
+											<li><a
+												href="${pageContext.request.contextPath}/myFAQ.do"><i
+													class="zmdi zmdi-comments"></i>FAQ</a></li>
+											<li><a
+												href="${pageContext.request.contextPath}/myFavorite.do"><i
+													class="zmdi zmdi-favorite"></i>Favorite</a></li>
+											<li><a
+												href="${pageContext.request.contextPath}/mySaved.do"><i
+													class="zmdi zmdi-folder-star"></i>Saved</a></li>
+											<li><a
+												href="${pageContext.request.contextPath}/myCoupon.do"><i
+													class="zmdi zmdi-ticket-star"></i>COUPON</a></li>
+
+										</ul>
+									</div>
+								</div>
+
+								<div class=" inbox right">
+									<div class="header">
+										<h2>
+											<strong>내가 쓴 글</strong>
+										</h2>
+									</div>
+
+									<div class="table-responsive">
+										<div id="DataTables_Table_0_wrapper"
+											class="dataTables_wrapper dt-bootstrap4">
+
+											<div class="row">
+												<div class="col-sm-12">
+													<table
+														class="table table-bordered table-striped table-hover js-basic-example dataTable"
+														id="DataTables_Table_0" role="grid"
+														aria-describedby="DataTables_Table_0_info">
+														<thead>
+															<tr role="row">
+																<th class="sorting" tabindex="0"
+																	aria-controls="DataTables_Table_0" rowspan="1"
+																	colspan="1"
+																	aria-label="Name: activate to sort column ascending"
+																	style="width: 61px;">No</th>
+																<th class="sorting" tabindex="0"
+																	aria-controls="DataTables_Table_0" rowspan="1"
+																	colspan="1"
+																	aria-label="Position: activate to sort column ascending"
+																	style="width: 83px;">Date</th>
+																<th class="sorting" tabindex="0"
+																	aria-controls="DataTables_Table_0" rowspan="1"
+																	colspan="1"
+																	aria-label="Office: activate to sort column ascending"
+																	style="width: 60px;">Title</th>
+																<th class="sorting" tabindex="0"
+																	aria-controls="DataTables_Table_0" rowspan="1"
+																	colspan="1"
+																	aria-label="Age: activate to sort column ascending"
+																	style="width: 28px;">reply</th>
+
+															</tr>
+														</thead>
+
+														<tbody>
+															<tr class="clickBtn ">
+
+																<td>1</td>
+																<td>2020/08/20</td>
+																<td>하이</td>
+																<td>답변대기</td>
+
+															</tr>
+															<tr>
+																<td>2</td>
+																<td>2020/08/21</td>
+																<td>가나다</td>
+																<td>답변완료</td>
+															</tr>
+															<tr>
+																<td>3</td>
+																<td>2020/08/23</td>
+																<td>가나다</td>
+																<td>답변완료</td>
+															</tr>
+															<tr>
+																<td>4</td>
+																<td>2020/08/24</td>
+																<td>가나다</td>
+																<td>답변완료</td>
+															</tr>
+															<tr>
+																<td>5</td>
+																<td>2020/08/25</td>
+																<td>가나다</td>
+																<td>답변완료</td>
+															</tr>
+															<tr>
+																<td>6</td>
+																<td>2020/08/21</td>
+																<td>가나다</td>
+																<td>답변완료</td>
+															</tr>
+														</tbody>
+													</table>
+												</div>
 											</div>
-										</div>
-										<div class=" inbox right">
-											<div class="header">
-												<h2>
-													<strong>내가 쓴 글</strong>
-												</h2>
-											</div>
-
-											<div class="table-responsive">
-												<div id="DataTables_Table_0_wrapper"
-													class="dataTables_wrapper dt-bootstrap4">
-
-													<div class="row">
-														<div class="col-sm-12">
-															<table
-																class="table table-bordered table-striped table-hover js-basic-example dataTable"
-																id="DataTables_Table_0" role="grid"
-																aria-describedby="DataTables_Table_0_info">
-																<thead>
-																	<tr role="row">
-																		<th class="sorting" tabindex="0"
-																			aria-controls="DataTables_Table_0" rowspan="1"
-																			colspan="1"
-																			aria-label="Name: activate to sort column ascending"
-																			style="width: 61px;">No</th>
-																		<th class="sorting" tabindex="0"
-																			aria-controls="DataTables_Table_0" rowspan="1"
-																			colspan="1"
-																			aria-label="Position: activate to sort column ascending"
-																			style="width: 83px;">Date</th>
-																		<th class="sorting" tabindex="0"
-																			aria-controls="DataTables_Table_0" rowspan="1"
-																			colspan="1"
-																			aria-label="Office: activate to sort column ascending"
-																			style="width: 60px;">Title</th>
-																		<th class="sorting" tabindex="0"
-																			aria-controls="DataTables_Table_0" rowspan="1"
-																			colspan="1"
-																			aria-label="Age: activate to sort column ascending"
-																			style="width: 28px;">reply</th>
-
-																	</tr>
-																</thead>
-
-																<tbody>
-																	<tr class="clickBtn ">
-
-																		<td>1</td>
-																		<td>2020/08/20</td>
-																		<td>하이</td>
-																		<td>답변대기</td>
-
-																	</tr>
-																	<tr>
-																		<td>2</td>
-																		<td>2020/08/21</td>
-																		<td>가나다</td>
-																		<td>답변완료</td>
-																	</tr>
-																	<tr>
-																		<td>3</td>
-																		<td>2020/08/23</td>
-																		<td>가나다</td>
-																		<td>답변완료</td>
-																	</tr>
-																	<tr>
-																		<td>4</td>
-																		<td>2020/08/24</td>
-																		<td>가나다</td>
-																		<td>답변완료</td>
-																	</tr>
-																	<tr>
-																		<td>5</td>
-																		<td>2020/08/25</td>
-																		<td>가나다</td>
-																		<td>답변완료</td>
-																	</tr>
-																	<tr>
-																		<td>6</td>
-																		<td>2020/08/21</td>
-																		<td>가나다</td>
-																		<td>답변완료</td>
-																	</tr>
-																</tbody>
-															</table>
-														</div>
-													</div>
-													<div class="container-fluid">
-														<div class="row clearfix">
-															<div class="col-lg-12">
-																<div class="card">
-																	<div class="header">
-																		<h5 style="color: orange">선택한 글</h5>
-																	</div>
-																	<div class="body" id="ex1_Result1">
-																		<p>선택한 글이 보여집니다!</p>
-																	</div>
-																	<a href="${pageContext.request.contextPath}/myFAQ.do"
-																		class="btn btn-primary btn-lg bg-orange waves-effect waves-light float-right">
-																		1:1문의하기</a>
-																</div>
+											<div class="container-fluid">
+												<div class="row clearfix">
+													<div class="col-lg-12">
+														<div class="card">
+															<div class="header">
+																<h5 style="color: orange">선택한 글</h5>
 															</div>
+															<div class="body" id="ex1_Result1">
+																<p>선택한 글이 보여집니다!</p>
+															</div>
+															<a href="${pageContext.request.contextPath}/myFAQ.do"
+																class="btn btn-primary btn-lg bg-orange waves-effect waves-light float-right">
+																1:1문의하기</a>
 														</div>
 													</div>
 												</div>
@@ -228,12 +233,14 @@
 									</div>
 								</div>
 							</div>
-
 						</div>
 					</div>
+
 				</div>
 			</div>
 		</div>
+	</div>
+	</div>
 	</div>
 
 

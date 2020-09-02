@@ -41,9 +41,6 @@ public class CommunityDao {
 	String C_comment3 = "select * from comments3 ORDER BY num DESC";
 	String C_comment4 = "select * from comments4 ORDER BY num DESC";
 
-	ArrayList<CommunityDto> list1;
-	ArrayList<CommunityDto> list2;
-	ArrayList<CommunityDto> list3;
 	ArrayList<ArrayList<CommunityDto>> totalList;
 	private Connection conn;
 	private PreparedStatement pstmt;

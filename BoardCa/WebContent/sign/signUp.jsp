@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -51,13 +52,40 @@
 </style>
 <script src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">
-	$(function() {
-		$('').click(function() {
-			
-		})
-	})
-</script>
 
+	/* 비밀번호 일치하는지 확인 하는 함수 */
+	function checkPwd(){
+		$("#checkPwd").show();
+		
+		var pw1 = $("#inputPw").value;
+		var pw2 = $("#inputPwCk").value;		
+			
+		if(pw1 != pw2){
+			document.getElementById("checkPwd").innerHTML = "<font color=red>비밀번호를 확인해주세요.</font>";		
+		}else{
+			document.getElementById("checkPwd").innerHTML = "<font color=green>비밀번호가 동일합니다.</font>";
+		}
+	}
+	
+	/* ID 중복 체크  */
+	function checkId(){
+		$.ajax({
+			type : "post",
+			url : "/BoardCa/idOverlapCheck.do",
+			data :{
+				id : $("#inputId").val()
+			},
+			success : function test(a){ 
+				$("#checkId").html(a); 
+			},
+			error : function error(){ 
+				alert("error"); 
+			}
+		});		
+	}
+	
+	
+</script>
 </head>
 
 <body class="theme-blush">
@@ -67,45 +95,40 @@
 			<img src="${pageContext.request.contextPath}/imgs/logo1.png"
 				alt="logo" style="width: 50%" />
 			<div class="body">
-				<form id="form_validation" method="POST">
-
+				<form id="form_validation" method="POST" action="${pageContext.request.contextPath}/signUpPro.do">
 					<div class="form-group form-float col-sm-6"
 						style="display: inline-block;">
 						<input type="text" class="form-control" placeholder="아이디"
-							value="${userId}" name="inputId" required>
+							value="${inputId}" name="inputId"  id="inputId" onblur="checkId()">
 					</div>
-					<div class="" style="display: inline-block;">
-						<a class="btn btn-raised btn-primary waves-effect checkBtn"
-							href="${pageContext.request.contextPath}/idOverlapCheck.do">중복확인</a>
-						
-					</div>
-
+					<div class="form-group form-float col-sm-9" id="checkId" ></div>
+					
 					<div class="form-group form-float col-sm-6"
 						style="display: inline-flex;">
 						<input type="text" class="form-control" placeholder="비밀번호"
-							style="display: inline-block;" value="" name="inputPw" required>
+							style="display: inline-block;" value="" name="inputPw" id="inputPw" >
 					</div>
 					<div class="form-group form-float col-sm-6"
 						style="display: inline-flex;">
-						<input type="text" class="form-control" placeholder="비밀번호 확인"
-							style="display: inline-block;" value="" name="inputPwCk" required>
+						<input type="text" class="form-control" onkeyup="checkPwd()" placeholder="비밀번호 확인"
+							style="display: inline-block;" value="" name="inputPwCk" id="inputPwCk" >
 					</div>
+					<div class="form-group form-float col-sm-9" id="checkPwd" style="display: none;"></div>
+					
 					<div class="form-group form-float col-sm-6"
 						style="display: inline-flex;">
 						<input type="text" class="form-control" placeholder="이름"
-							style="display: inline-block;" value="" name="inputName" required>
+							style="display: inline-block;" value="" name="inputName" >
 					</div>
 					<div class="form-group form-float col-sm-6"
 						style="display: inline-flex;">
 						<input type="text" class="form-control" placeholder="이메일"
-							style="display: inline-block;" value="" name="inputEmail"
-							required>
+							style="display: inline-block;" value="" name="inputEmail">
 					</div>
 					<div class="form-group form-float col-sm-6"
 						style="display: inline-flex;">
 						<input type="text" class="form-control" placeholder="핸드폰번호"
-							style="display: inline-block;" value="" name="inputPhone"
-							required>
+							style="display: inline-block;" value="" name="inputPhone">
 					</div>
 
 					<!-- 성별 체크 라디오 버튼  -->
