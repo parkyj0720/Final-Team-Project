@@ -116,16 +116,16 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        //메시지 아이콘 - 스낵바 문장
-        findViewById(R.id.fab)
-                .setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                                .setAction("Action", null)
-                                .show();
-                    }
-                });
+//        //메시지 아이콘 - 스낵바 문장
+//        findViewById(R.id.fab)
+//                .setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View view) {
+//                        Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                                .setAction("Action", null)
+//                                .show();
+//                    }
+//                });
 
         //프래그먼트 생성
         this.home_fragment = new HomeFragment();

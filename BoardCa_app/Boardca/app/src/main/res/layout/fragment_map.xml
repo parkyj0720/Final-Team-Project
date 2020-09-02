@@ -5,6 +5,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <!-- 맵뷰 -->
+    <com.google.android.gms.maps.MapView
+        android:id="@+id/map"
+        android="http://schemas.android.com/apk/res/android"
+        xmlns:map="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <!-- GPS 버튼 -->
     <Button
         android:id="@+id/button3"
         android:layout_width="wrap_content"
@@ -17,6 +27,8 @@
         map:layout_constraintTop_toTopOf="parent" />
 
 
+
+    <!-- 뒤로 버튼 -->
     <Button
         android:id="@+id/button5"
         android:layout_width="wrap_content"
@@ -29,36 +41,39 @@
         map:layout_constraintBottom_toBottomOf="parent"
         map:layout_constraintStart_toStartOf="parent" />
 
-    <com.google.android.gms.maps.MapView
-        android:id="@+id/map"
-        android="http://schemas.android.com/apk/res/android"
-        xmlns:map="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
-
-    <EditText
-        android:id="@+id/editPlace"
-        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:ems="12"
-        android:background="#ffffff"
-        android:hint="찾는 장소"
-        map:layout_constraintStart_toStartOf="parent"
-        map:layout_constraintTop_toTopOf="parent" />
+        android:layout_gravity="bottom"
+        tools:ignore="MissingConstraints">
 
-    <Button
-        android:id="@+id/button6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:onClick="searchButtonClicked"
-        android:text="검색"
-        map:layout_constraintEnd_toEndOf="parent"
-        map:layout_constraintStart_toEndOf="@+id/editPlace"
-        map:layout_constraintTop_toTopOf="parent" />
+        <!-- 검색창 -->
+        <EditText
+            android:id="@+id/editPlace"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:ems="12"
+            android:background="#ffffff"
+            android:hint="찾는 장소"
+            map:layout_constraintStart_toStartOf="parent"
+            map:layout_constraintTop_toTopOf="parent" />
+
+        <!-- 검색 버튼 -->
+        <Button
+            android:id="@+id/button6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:onClick="searchButtonClicked"
+            android:drawableRight="@drawable/serch"
+            map:layout_constraintEnd_toEndOf="parent"
+            map:layout_constraintStart_toEndOf="@+id/editPlace"
+            map:layout_constraintTop_toTopOf="parent" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
