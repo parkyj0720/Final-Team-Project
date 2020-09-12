@@ -2,7 +2,6 @@ package com.example.boardca_app;
 
 import android.Manifest;
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -15,8 +14,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -31,18 +28,15 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
-import androidx.viewpager.widget.ViewPager;
 
 import com.example.boardca_app.ui.Map.GpsTracker;
+import com.example.boardca_app.ui.Map.MapFragment;
 import com.example.boardca_app.ui.community.CommunityFragment;
-import com.example.boardca_app.ui.community.ViewPagerAdapter;
 import com.example.boardca_app.ui.game.GameFragment;
 import com.example.boardca_app.ui.home.HomeFragment;
 import com.example.boardca_app.ui.recipe.RecipeFragment;
-import com.example.boardca_app.ui.Map.MapFragment;
+import com.example.boardca_app.ui.setting.SettingsActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.snackbar.Snackbar;
-import com.google.android.material.tabs.TabLayout;
 
 import java.io.IOException;
 import java.util.List;
@@ -72,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
     private Fragment community_fragment;
     private Fragment map_fragment;
 
+
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
@@ -80,16 +75,16 @@ public class MainActivity extends AppCompatActivity {
             try {
                 switch (item.getItemId()) {
                     //menu.xml에 저장해뒀던 아이디 값을 받아와 swich문으로 선택 프래그먼트에 각자 다른 이벤트를 발생
+                    case R.id.action_home: {
+                        replaceFragment(home_fragment);
+                        return true;
+                    }
                     case R.id.action_recipe: {
                         replaceFragment(recipe_fragment);
                         return true;
                     }
                     case R.id.action_game: {
                         replaceFragment(game_fragment);
-                        return true;
-                    }
-                    case R.id.action_home: {
-                        replaceFragment(home_fragment);
                         return true;
                     }
                     case R.id.action_community: {
@@ -107,6 +102,28 @@ public class MainActivity extends AppCompatActivity {
             return false;
         }
     };
+
+    //위에 설정 메뉴 아이콘 생성
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
+
+
+    //설정 아이콘
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+        int id = item.getItemId();
+        if(id == R.id.action_settings){
+            Intent settingIntent = new Intent(this, SettingsActivity.class);
+            startActivity(settingIntent);
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -160,13 +177,6 @@ public class MainActivity extends AppCompatActivity {
         Log.v("확인",address);
 
 
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
     }
 
     @Override

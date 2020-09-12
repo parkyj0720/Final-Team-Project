@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 
 android {
+
     compileSdkVersion 30
     buildToolsVersion "30.0.1"
     defaultConfig {
@@ -31,13 +32,14 @@ dependencies {
     implementation 'androidx.annotation:annotation:1.1.0'
     implementation 'com.google.android.gms:play-services-maps:17.0.0'
     implementation 'com.google.android.gms:play-services-location:17.0.0'
+    implementation 'androidx.preference:preference:1.1.0-alpha05'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     //noinspection GradleCompatible
     implementation 'com.android.support:design:28.0.0'
     //noinspection GradleCompatible,GradleCompatible
-    implementation 'com.android.support:appcompat-v7:23.2.0'
+    implementation 'com.android.support:appcompat-v7:27.0.0'
 
     // 구글 지도 검색 API
     implementation 'com.google.android.gms:play-services-places:15.0.0'

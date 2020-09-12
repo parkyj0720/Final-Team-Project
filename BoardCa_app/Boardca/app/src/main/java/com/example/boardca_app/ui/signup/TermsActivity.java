@@ -1,11 +1,12 @@
 package com.example.boardca_app.ui.signup;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.boardca_app.R;
 
@@ -16,6 +17,10 @@ public class TermsActivity extends AppCompatActivity {
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_terms);
+
+            //액션바 숨기기
+            ActionBar actionBar = getSupportActionBar();
+            actionBar.hide();
 
             getWindow().setWindowAnimations(0); //뷰이벤트없애기
 

@@ -1,7 +1,5 @@
 package com.example.boardca_app.ui.game;
 
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -14,12 +12,13 @@ import android.webkit.WebViewClient;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
-import androidx.fragment.app.Fragment;
 
 import com.example.boardca_app.R;
 
 public class GameFragment extends DialogFragment {
 
+    ViewGroup viewGroup;
+    WebView webView;
 
 
     @Nullable
@@ -28,8 +27,8 @@ public class GameFragment extends DialogFragment {
                              ViewGroup container, Bundle savedInstanceState) {
 
 
-        ViewGroup viewGroup = (ViewGroup) inflater.inflate(R.layout.fragment_game, container, false);
-        WebView webView = (viewGroup).findViewById(R.id.game_web);
+        viewGroup = (ViewGroup) inflater.inflate(R.layout.fragment_game, container, false);
+        webView = (viewGroup).findViewById(R.id.game_web);
 
         webView.getSettings().setJavaScriptEnabled(true);
         webView.setWebChromeClient(new WebChromeClient());

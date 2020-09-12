@@ -3,6 +3,12 @@
 
 
     <item
+        android:id="@+id/action_home"
+        android:icon="@drawable/home"
+        android:enabled="true"
+        android:title="@string/home" />
+
+    <item
         android:id="@+id/action_recipe"
         android:icon="@drawable/ic_kitchen_black_24dp"
         android:enabled="true"
@@ -13,12 +19,6 @@
         android:icon="@drawable/ic_group_black_24dp"
         android:enabled="true"
         android:title="@string/game" />
-
-    <item
-        android:id="@+id/action_home"
-        android:icon="@drawable/home"
-        android:enabled="true"
-        android:title="@string/home" />
 
     <item
         android:id="@+id/action_community"

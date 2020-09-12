@@ -123,14 +123,15 @@
             android:layout_marginTop="204dp"
             android:text="@string/signin_2" />
 
+        <!-- 휴대폰 인증하기 임시버튼 -->
         <ImageButton
             android:id="@+id/signup_next_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="130dp"
-            android:layout_marginLeft="-60dp"
-            android:background="@drawable/ic_arrow_back" />
+            android:layout_marginLeft="-80dp"
+            android:background="@drawable/ic_arrow_forward_black_100dp" />
     </LinearLayout>
 
 
@@ -148,9 +149,6 @@
             android:textSize="13sp"/>
 
     </LinearLayout>
-
-
-    <!-- 휴대폰 인증하기 임시버튼 -->
 
 
     <TextView

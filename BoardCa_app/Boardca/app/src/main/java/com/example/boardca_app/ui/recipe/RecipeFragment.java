@@ -12,14 +12,13 @@ import android.webkit.WebViewClient;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProviders;
 
 import com.example.boardca_app.R;
-import com.example.boardca_app.ui.game.GameFragment;
 
 public class RecipeFragment extends Fragment {
 
     ViewGroup viewGroup;
+    WebView webView;
 
     @Nullable
     @Override
@@ -28,7 +27,7 @@ public class RecipeFragment extends Fragment {
 
 
         viewGroup = (ViewGroup) inflater.inflate(R.layout.fragment_recipe, container, false);
-        WebView webView = (viewGroup).findViewById(R.id.ricipe_web);
+        webView = (viewGroup).findViewById(R.id.ricipe_web);
 
         webView.getSettings().setJavaScriptEnabled(true);
         webView.setWebChromeClient(new WebChromeClient());
