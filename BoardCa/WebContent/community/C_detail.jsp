@@ -95,26 +95,9 @@
 					</div>
 					<div class="card">
 						<div class="header">
-							<h2>
-								<strong>Leave</strong> a Comment
-							</h2>
 						</div>
-						<div class="">
-							<small>Your email address will not be published. Required
-								fields are marked*</small>
+						<div>
 							<form class="row comment-form mt-2">
-								<div class="col-sm-6">
-									<div class="form-group">
-										<input type="text" class="form-control"
-											placeholder="Your Name">
-									</div>
-								</div>
-								<div class="col-sm-6">
-									<div class="form-group">
-										<input type="text" class="form-control"
-											placeholder="Email Address">
-									</div>
-								</div>
 								<div class="col-sm-12">
 									<div class="form-group">
 										<textarea rows="4" class="form-control no-resize"

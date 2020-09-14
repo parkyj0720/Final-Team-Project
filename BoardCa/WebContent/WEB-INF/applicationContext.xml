@@ -21,7 +21,7 @@
   <bean id="oracleDatasource" class="oracle.jdbc.pool.OracleDataSource"
     destroy-method="close">
     <property name="URL" value="jdbc:oracle:thin:@localhost:1521:orcl" />
-    <property name="user" value="community" />
+    <property name="user" value="boardca" />
     <property name="password" value="1234" />
     <property name="connectionCachingEnabled" value="true" />
     <qualifier value="main-db" />
