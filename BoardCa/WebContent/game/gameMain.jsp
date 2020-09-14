@@ -59,7 +59,7 @@
 							href="${pageContext.request.contextPath}/main.do"><i
 								class="zmdi zmdi-home"></i> BoardCa</a></li>
 						<li class="breadcrumb-item">GameMain</li>
-						
+
 					</ul>
 				</div>
 			</div>
@@ -68,59 +68,47 @@
 		<div class="container-fluid">
 			<div class="row clearfix">
 				<div class="row">
-
-					<!-- Team Member 1 -->
-					<div class="col-xl-3 col-md-3 col-mb-3">
-						<div class="card border-0 shadow">
-							<img src="${pageContext.request.contextPath}/mypage/imgs/01.jpg"
-								class="card-img-top" alt="...">
-							<div class="card-body text-center">
-								<h5 class="card-title mb-0">Team Member</h5>
-								<div class="card-text text-black-50">Web Developer</div>
+					<div class="col-sm-6 col-md-3">
+						<div class="thumbnail">
+							<Img src="${pageContext.request.contextPath}/mypage/img/01.jpg"
+								alt="generic placeholder thumbnail">
+							<div class="caption">
+								<h3>Thumbnails tab</h3>
+								<p>Some sample text. Some sample text.</p>
+						
 							</div>
 						</div>
 					</div>
-					<!-- Team Member 2 -->
-					<div class="col-xl-3 col-md-3 col-mb-3">
-						<div class="card border-0 shadow">
-							<img src="${pageContext.request.contextPath}/mypage/imgs/01.jpg"
-								class="card-img-top" alt="...">
-							<div class="card-body text-center">
-								<h5 class="card-title mb-0">Team Member</h5>
-								<div class="card-text text-black-50">Web Developer</div>
+					<div class="col-sm-6 col-md-3">
+						<div class="thumbnail">
+							<Img src="${pageContext.request.contextPath}/mypage/imgs/01.jpg"
+								alt="generic placeholder thumbnail">
+							<div class="caption">
+								<h3>Thumbnails tab</h3>
+								<p>Some sample text. Some sample text.</p>
+						
 							</div>
 						</div>
 					</div>
-					<!-- Team Member 3 -->
-					<div class="col-xl-3 col-md-3 col-mb-3">
-						<div class="card border-0 shadow">
-							<img src="https://source.unsplash.com/sNut2MqSmds/500x350"
-								class="card-img-top" alt="...">
-							<div class="card-body text-center">
-								<h5 class="card-title mb-0">Team Member</h5>
-								<div class="card-text text-black-50">Web Developer</div>
+					<div class="col-sm-6 col-md-3">
+						<div class="thumbnail">
+							<Img src="${pageContext.request.contextPath}/mypage/imgs/01.jpg"
+								alt="generic placeholder thumbnail">
+							<div class="caption">
+								<h3>Thumbnails tab</h3>
+								<p>Some sample text. Some sample text.</p>
+						
 							</div>
 						</div>
 					</div>
-					<!-- Team Member 4 -->
-					<div class="col-xl-3 col-md-3 col-mb-3">
-						<div class="card border-0 shadow">
-							<img src="https://source.unsplash.com/ZI6p3i9SbVU/500x350"
-								class="card-img-top" alt="...">
-							<div class="card-body text-center">
-								<h5 class="card-title mb-0">Team Member</h5>
-								<div class="card-text text-black-50">Web Developer</div>
-							</div>
-						</div>
-					</div>
-
-					<div class="col-xl-3 col-md-3 col-mb-3">
-						<div class="card border-0 shadow">
-							<img src="https://source.unsplash.com/ZI6p3i9SbVU/500x350"
-								class="card-img-top" alt="...">
-							<div class="card-body text-center">
-								<h5 class="card-title mb-0">Team Member</h5>
-								<div class="card-text text-black-50">Web Developer</div>
+										<div class="col-sm-6 col-md-3">
+						<div class="thumbnail">
+							<Img src="${pageContext.request.contextPath}/mypage/img/01.jpg"
+								alt="generic placeholder thumbnail">
+							<div class="caption">
+								<h3>Thumbnails tab</h3>
+								<p>Some sample text. Some sample text.</p>
+						
 							</div>
 						</div>
 					</div>

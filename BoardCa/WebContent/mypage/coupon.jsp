@@ -79,7 +79,7 @@
 										href="${pageContext.request.contextPath}/myFavorite.do"><i
 											class="zmdi zmdi-favorite"></i>Favorite</a></li>
 									<li><a
-										href="${pageContext.request.contextPath}/mySavedText.do"><i
+										href="${pageContext.request.contextPath}/mySaved.do"><i
 											class="zmdi zmdi-folder-star"></i>Saved</a></li>
 									<li><a
 										href="${pageContext.request.contextPath}/myCoupon.do"><i
