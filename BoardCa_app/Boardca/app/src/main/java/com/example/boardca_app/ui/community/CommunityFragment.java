@@ -23,17 +23,15 @@ public class CommunityFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 
-
-
         //뷰페이저 세팅
         viewPagerAdapter = new ViewPagerAdapter(getChildFragmentManager());
         viewPager = viewGroup.findViewById(R.id.viewPager);
 
         // add your fragments
-        viewPagerAdapter.addFrag(new FragmainBoard(), "메인"); //메인탭
+        viewPagerAdapter.addFrag(new FragmainBoard(), "숙취 게시판"); //메인탭
         viewPagerAdapter.addFrag(new FragtipBoard(), "나만의 팁"); //나만의 팁
-        viewPagerAdapter.addFrag(new FragmainBoard(), "묻고 답하기"); //묻고 답하기
-        viewPagerAdapter.addFrag(new FragmainBoard(), "신고하기"); //신고하기
+        viewPagerAdapter.addFrag(new FragAskBoard(), "묻고 답하기"); //묻고 답하기
+        viewPagerAdapter.addFrag(new FragReportBoard(), "신고하기"); //신고하기
 
         viewPager.setAdapter(viewPagerAdapter);
 
@@ -75,5 +73,64 @@ public class CommunityFragment extends Fragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+    }
+
+
+    // 게시글번호 (시퀀스) / 제목 / 작성자 / 내용 / 작성일 / 조회수 / 카테고리 번호 / 댓글 번호
+    private int sequence;
+    private String title;
+    private String username;
+    private int date;
+    private String contents;
+    private String views;
+
+    public CommunityFragment(){ }
+
+    public int getSequence() {
+        return sequence;
+    }
+
+    public void setSequence(int sequence) {
+        this.sequence = sequence;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public int getDate() {
+        return date;
+    }
+
+    public void setDate(int date) {
+        this.date = date;
+    }
+
+    public String getContents() {
+        return contents;
+    }
+
+    public void setContents(String contents) {
+        this.contents = contents;
+    }
+
+    public String getViews() {
+        return views;
+    }
+
+    public void setViews(String views) {
+        this.views = views;
     }
 }

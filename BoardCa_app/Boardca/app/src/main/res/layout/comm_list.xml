@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <!-- 게시글번호 (시퀀스) / 제목 / 작성자 / 내용 / 작성일 / 조회수 / 카테고리 번호 / 댓글 번호 -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/comm_pic"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_margin="5dp"
+            app:srcCompat="@drawable/ic_launcher_background"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="5dp">
+
+            <!--제목-->
+            <TextView
+                android:id="@+id/comm_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="게시글 제목"
+                android:textStyle="bold"
+                android:layout_margin="5dp"/>
+
+            <!-- 리플수 -->
+            <TextView
+                android:id="@+id/comm_reply_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="(리플갯수)"
+                android:layout_margin="5dp"
+                android:textColor="@color/colorKakaoSignIn"/>
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <!--게시글 conut  num-->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="001"
+                    android:layout_margin="5dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="|"
+                    android:textSize="5pt"
+                    android:layout_margin="5dp"/>
+
+                <!--작성자-->
+                <TextView
+                    android:id="@+id/comm_writer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="작성자"
+                    android:textSize="5pt"
+                    android:layout_margin="5dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="|"
+                    android:textSize="5pt"
+                    android:layout_margin="5dp"/>
+
+                <!--작성일-->
+                <TextView
+                    android:id="@+id/comm_date_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="5pt"
+                    android:text="작성일"
+                    android:layout_margin="5dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="|"
+                    android:textSize="5pt"
+                    android:layout_margin="5dp"/>
+
+                <!-- 조회수 -->
+                <TextView
+                    android:id="@+id/comm_hitsnumber"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="(조회수)"
+                    android:textSize="5pt"
+                    android:layout_margin="5dp"/>
+
+                <!-- 게시글로 -->
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    app:srcCompat="@drawable/ic_keyboard_arrow_right_black_30dp"
+                    android:layout_marginLeft="120dp"/>
+
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

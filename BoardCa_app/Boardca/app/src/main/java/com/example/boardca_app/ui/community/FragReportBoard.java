@@ -13,20 +13,14 @@ import com.example.boardca_app.R;
 
 public class FragReportBoard extends Fragment {
 
-    private View view;
-
-    public static FragReportBoard newInstance(){
-        FragReportBoard fragReportBoard = new FragReportBoard();
-        return fragReportBoard;
-    }
-
+    private ViewGroup viewGroup;
 
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.comm_reportboard, container, false);
+        viewGroup = (ViewGroup)inflater.inflate(R.layout.comm_reportboard, container, false);
 
-        return view;
+        return viewGroup;
     }
 }
