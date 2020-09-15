@@ -90,8 +90,6 @@
 									<div class="card">
 										<div class="body"></div>
 
-
-
 									</div>
 								</div>
 							</div>
