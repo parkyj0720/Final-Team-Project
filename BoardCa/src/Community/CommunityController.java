@@ -30,48 +30,27 @@ public class CommunityController {
 			mv.addObject(list, dao.main(i));
 		}
 		mv.addObject("boardList", boardlist);
-		System.out.println(boardlist.size());
 		mv.setViewName("community/C_main.jsp");
 		return mv;
 	}
 
 	// List
-//	@RequestMapping("/Community_list_sook.do")
-//	public ModelAndView community_list_sook() {
-//		mv.addObject("listname", "숙취게시판");
-//		mv.addObject("viewname", "/Community_list_sook.do");
-//		mv.addObject("list", dao.list1());
-//		mv.setViewName("community/C_list.jsp");
-//		return mv;
-//	}
-//
-//	@RequestMapping("/Community_list_jeong.do")
-//	public ModelAndView community_list_jeong() {
-//		mv.addObject("listname", "정보공유");
-//		mv.addObject("viewname", "/Community_list_jeong.do");
-//		mv.addObject("list", dao.list2());
-//		mv.setViewName("community/C_list.jsp");
-//		return mv;
-//	}
-//
-//	@RequestMapping("/Community_list_Q.do")
-//	public ModelAndView community_list_Q() {
-//		mv.addObject("listname", "QnA");
-//		mv.addObject("viewname", "/Community_list_Q.do");
-//		mv.addObject("list", dao.list3());
-//		mv.setViewName("community/C_list.jsp");
-//		return mv;
-//	}
-//
-//	@RequestMapping("/Community_list_shin.do")
-//	public ModelAndView community_list_sin() {
-//		mv.addObject("listname", "신고합니다");
-//		mv.addObject("viewname", "/Community_list_shin.do");
-//		mv.addObject("list", dao.list4());
-//		mv.setViewName("community/C_list.jsp");
-//		return mv;
-//	}
-//
+	@RequestMapping("/Community_list.do")
+	public ModelAndView community_list(HttpServletRequest request) {
+		ArrayList<Object> heartList = new ArrayList<Object>();
+		int list = Integer.parseInt(request.getParameter("list"));
+		ArrayList<CommunityDto> communityList = dao.main(list);
+		for(int i = 0; i<communityList.size(); i++) {
+			int num = dao.list_heart(communityList.get(i).getNum());
+			heartList.add(num);
+		}
+		mv.addObject("heart", heartList);
+		mv.addObject("viewname", dao.one_board(list));
+		mv.addObject("list", communityList);
+		mv.setViewName("community/C_list.jsp");
+		return mv;
+	}
+
 //	// detail
 //	@RequestMapping("/Community_detail.do")
 //	public ModelAndView community_detail(HttpServletRequest request) {
