@@ -20,9 +20,15 @@
   <!-- oracle datasource -->
   <bean id="oracleDatasource" class="oracle.jdbc.pool.OracleDataSource"
     destroy-method="close">
+<<<<<<< HEAD
+    <property name="URL" value="jdbc:oracle:thin:@localhost:1521:xe" />
+    <property name="user" value="test" />
+    <property name="password" value="test" />
+=======
     <property name="URL" value="jdbc:oracle:thin:@localhost:1521:orcl" />
     <property name="user" value="boardca" />
     <property name="password" value="1234" />
+>>>>>>> branch 'master' of https://github.com/parkyj0720/Final-Team-Project
     <property name="connectionCachingEnabled" value="true" />
     <qualifier value="main-db" />
   </bean>

@@ -16,4 +16,10 @@
 	where r_title like '%'||#{search}||'%'
 </select>
 
+<select id="cDetail" resultType="Food.CDto">
+	select *
+	from recipe
+	where r_board_no
+</select>
+
 </mapper>

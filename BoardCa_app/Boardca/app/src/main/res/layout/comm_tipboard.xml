@@ -2,10 +2,13 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/tip"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
+
+    <!-- 게시글번호 (시퀀스) / 작성자 / 작성일 / 내용 / 조회수 / 게시판번호 -->
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -22,7 +25,7 @@
             android:layout_width="130dp"
             android:layout_height="45dp"
             android:layout_marginLeft="10dp"
-            android:layout_gravity="bottom" />
+            android:entries="@array/comm_arr" />
 
         <!-- 검색창 -->
         <EditText
@@ -31,9 +34,28 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="10dp"
             android:drawableRight="@drawable/serch"
-            android:hint="@string/search_bar"
-            android:layout_gravity="bottom"/>
+            android:hint="@string/search_bar" />
 
     </LinearLayout>
+
+    <include
+        layout="@layout/comm_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="50dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+<!--    <androidx.recyclerview.widget.RecyclerView-->
+<!--        android:id="@+id/comm_tip_view"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="50dp"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        tools:ignore="MissingConstraints" />-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

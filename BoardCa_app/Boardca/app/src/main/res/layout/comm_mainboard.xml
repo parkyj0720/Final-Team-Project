@@ -4,44 +4,29 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorDivision">
+    android:background="@color/colorKakaoSignIn">
 
 
-    <LinearLayout
-        android:id="@+id/linearLayout"
+    <WebView
+        android:id="@+id/comm_main_webView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="666dp"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="8dp"/>
 
-        <!-- 셀렉트 창 -->
-        <Spinner
-            android:id="@+id/comm_spinner"
-            android:layout_width="150dp"
-            android:layout_height="45dp"
-            android:layout_gravity="bottom"
-            android:layout_marginLeft="10dp"
-            android:entries="@array/comm_arr" />
+<!--    <LinearLayout-->
+<!--        android:id="@+id/comm_main"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="666dp"-->
+<!--        android:orientation="horizontal"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent">-->
 
-        <!-- 검색창 -->
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom">
-
-            <EditText
-                android:id="@+id/search_bar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:drawableRight="@drawable/serch"
-                android:hint="@string/search_bar" />
-        </com.google.android.material.textfield.TextInputLayout>
+<!--    </LinearLayout>-->
 
 
-    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
