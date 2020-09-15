@@ -152,7 +152,6 @@ public class CommunityDao {
 			while(rs.next()) {
 				int num = rs.getInt("BOARDNUM");
 				String boardname = rs.getString("BOARDNAME");
-				System.out.println(boardname);
 				boardList = new BoardList(num, boardname);
 			}
 		} catch (Exception e) {

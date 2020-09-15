@@ -51,47 +51,16 @@ public class CommunityController {
 		return mv;
 	}
 
-//	// detail
-//	@RequestMapping("/Community_detail.do")
-//	public ModelAndView community_detail(HttpServletRequest request) {
-//		String board = request.getParameter("list");
-//		int num1 = Integer.parseInt(request.getParameter("num"));
-//		if ("숙취게시판".equals(board)) {
-//			CommunityDto dto = dao.detail1(num1);
-//			if (dto.getComment_num() != 0) {
-//				ArrayList<Comment> commentL = dao.comment1(num1);
-//				mv.addObject("comment", commentL);
-//			}
-//			mv.addObject("dto", dto);
-//			mv.addObject("board", board);
-//		} else if ("정보공유".equals(board)) {
-//			CommunityDto dto = dao.detail2(num1);
-//			if (dto.getComment_num() != 0) {
-//				ArrayList<Comment> commentL = dao.comment2(num1);
-//				mv.addObject("comment", commentL);
-//			}
-//			mv.addObject("dto", dto);
-//			mv.addObject("board", board);
-//		} else if ("QnA".equals(board)) {
-//			CommunityDto dto = dao.detail3(num1);
-//			if (dto.getComment_num() != 0) {
-//				ArrayList<Comment> commentL = dao.comment3(num1);
-//				mv.addObject("comment", commentL);
-//			}
-//			mv.addObject("dto", dto);
-//			mv.addObject("board", board);
-//		} else if ("신고합니다".equals(board)) {
-//			CommunityDto dto = dao.detail4(num1);
-//			if (dto.getComment_num() != 0) {
-//				ArrayList<Comment> commentL = dao.comment4(num1);
-//				mv.addObject("comment", commentL);
-//			}
-//			mv.addObject("dto", dto);
-//			mv.addObject("board", board);
-//		}
-//		mv.setViewName("community/C_detail.jsp");
-//		return mv;
-//	}
+	// detail
+	@RequestMapping("/Community_detail.do")
+	public ModelAndView community_detail(HttpServletRequest request) {
+		String board = request.getParameter("list");
+		int num1 = Integer.parseInt(request.getParameter("num"));
+		mv.addObject("dto", dto);
+		mv.addObject("board", board);
+		mv.setViewName("community/C_detail.jsp");
+		return mv;
+	}
 //
 //	@RequestMapping("/Community_input.do")
 //	public ModelAndView community_input() {
