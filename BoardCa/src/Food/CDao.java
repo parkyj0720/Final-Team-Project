@@ -36,7 +36,7 @@ public class CDao {
 		dto.setR_filename(file);
 		System.out.println(dto);
 		System.out.println(file);
-		sqlSession.insert("cXml.cInsertTest", dto);
-        return 0;
+		int cnt = sqlSession.insert("cXml.cInsertTest", dto);
+        return cnt;
   }
 }

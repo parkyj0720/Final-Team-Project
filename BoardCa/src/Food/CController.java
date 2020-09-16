@@ -75,7 +75,6 @@ public class CController {
 		if (isMulti) {
 			MultipartRequest multi = new MultipartRequest(req, saveDir, maxSize, encoding,
 					new DefaultFileRenamePolicy());
-			CDao dao = new CDao();
 
 //			String author = multi.getParameter("author");
 //			String title = multi.getParameter("title");
@@ -91,7 +90,6 @@ public class CController {
 					System.out.println("저장실패");
 					moveUrl = "Upload.html";
 				}
-				res.sendRedirect(moveUrl);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
