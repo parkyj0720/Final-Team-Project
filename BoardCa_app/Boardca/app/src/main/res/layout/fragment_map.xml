@@ -1,77 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:map="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!-- 맵뷰 -->
+    <!-- Activity에서는 fragment로 구현해야되지만
+    Fragment로 구현하기위해서는 MapView를 사용해야함-->
     <com.google.android.gms.maps.MapView
         android:id="@+id/map"
-        android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        map:layout_constraintBottom_toBottomOf="parent"
-        map:layout_constraintEnd_toEndOf="parent"
-        map:layout_constraintStart_toStartOf="parent"
-        map:layout_constraintTop_toTopOf="parent" />
+        android:name="com.example.boardca_app.ui.Map.MapFragment"
+        />
 
-    <!-- GPS 버튼 -->
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:ems="10"
+        android:layout_alignParentLeft="true" />
+
     <Button
-        android:id="@+id/button3"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        android:layout_marginStart="370dp"
-        android:layout_marginLeft="370dp"
-        android:layout_marginTop="70dp"
-        android:background="@drawable/ic_gps_not_fixed_black"
-        android:onClick="onLastLocationButtonClicked"
-        map:layout_constraintBottom_toTopOf="@+id/map"
-        map:layout_constraintEnd_toStartOf="@+id/map"
-        map:layout_constraintHorizontal_bias="0.0"
-        map:layout_constraintStart_toStartOf="parent"
-        map:layout_constraintTop_toTopOf="parent"
-        map:layout_constraintVertical_bias="0.0"
-        tools:ignore="MissingConstraints" />
-
-    <!-- 검색창 -->
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="@color/colorWhite"
-        map:layout_constraintBottom_toTopOf="@+id/map"
-        map:layout_constraintEnd_toEndOf="parent"
-        map:layout_constraintStart_toStartOf="parent"
-        map:layout_constraintTop_toTopOf="parent"
-        map:layout_constraintVertical_bias="0.0">
-
-        <!-- 뒤로 가기 -->
-        <Button
-            android:id="@+id/button5"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:layout_marginLeft="10dp"
-            android:background="@drawable/ic_arrow_back_black"
-            android:onClick="moveMainActivity" />
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginEnd="110dp"
+        android:layout_marginRight="110dp"
+        android:text="변환2" />
 
 
-        <EditText
-            android:id="@+id/editPlace"
-            android:layout_width="300dp"
-            android:layout_height="match_parent"
-            android:ems="12"
-            android:hint="@string/map_search"
-            android:layout_marginLeft="20dp"/>
-
-        <!-- 음성 -->
-        <Button
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:layout_marginLeft="10dp"
-            android:background="@drawable/ic_mic_none_black"/>
-
-
-    </LinearLayout>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>
