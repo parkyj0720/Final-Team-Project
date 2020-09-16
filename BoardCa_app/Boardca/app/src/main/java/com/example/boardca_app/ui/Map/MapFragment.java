@@ -13,13 +13,17 @@ import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.text.InputType;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -127,11 +131,11 @@ public class MapFragment extends Fragment
     }
 
     public void setCurrentLocation(Location location, String markerTitle, String markerSnippet) {
-        if ( currentMarker != null ) currentMarker.remove();
+        if (currentMarker != null) currentMarker.remove();
 
-        if ( location != null) {
+        if (location != null) {
             //현재위치의 위도 경도 가져옴
-            LatLng currentLocation = new LatLng( location.getLatitude(), location.getLongitude());
+            LatLng currentLocation = new LatLng(location.getLatitude(), location.getLongitude());
 
             MarkerOptions markerOptions = new MarkerOptions();
             markerOptions.position(currentLocation);
@@ -145,14 +149,14 @@ public class MapFragment extends Fragment
             return;
         }
 
-        latitude = ((MainActivity)getActivity()).latitude;
-        longitude = ((MainActivity)getActivity()).longitude;
+        latitude = ((MainActivity) getActivity()).latitude;
+        longitude = ((MainActivity) getActivity()).longitude;
 
         LatLng firstLocation = new LatLng(latitude, longitude); //설정해주는 경도 위도
 
-        String add = ((MainActivity)getActivity()).getCurrentAddress(latitude,longitude);
+        String add = ((MainActivity) getActivity()).getCurrentAddress(latitude, longitude);
         int length = add.length();
-        String showadd = add.substring(5,length);
+        String showadd = add.substring(5, length);
 
         MarkerOptions markerOptions = new MarkerOptions();
         markerOptions.position(firstLocation);
@@ -178,33 +182,43 @@ public class MapFragment extends Fragment
         mapView = (MapView) view.findViewById(R.id.map_view);
         mapView.getMapAsync(this);
 
-        btn = (ImageButton) view.findViewById(R.id.map_button);
         ed = (EditText) view.findViewById(R.id.map_editText);
-        btn.setOnClickListener(new View.OnClickListener() {
+
+        ed.setImeOptions(EditorInfo.IME_ACTION_SEARCH);
+        ed.setInputType(InputType.TYPE_CLASS_TEXT);
+
+        ed.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
-            public void onClick(View view) {
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                switch (actionId) {
+                    case EditorInfo.IME_ACTION_SEARCH:
+                        if (currentMarker != null) currentMarker.remove();
 
-                if (currentMarker != null) currentMarker.remove();
+                        List<Address> list = null;
 
-                List<Address> list = null;
+                        String str = ed.getText().toString();
 
-                String str = ed.getText().toString();
+                        LatLng loca = ((MainActivity) getActivity()).LocationNumber(str);
 
-                LatLng loca = ((MainActivity) getActivity()).LocationNumber(str);
+                        MarkerOptions markerOptions = new MarkerOptions();
+                        markerOptions.position(loca);
+                        markerOptions.title(str);
+                        markerOptions.draggable(true);
+                        markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
+                        currentMarker = googleMap.addMarker(markerOptions);
 
-                MarkerOptions markerOptions = new MarkerOptions();
-                markerOptions.position(loca);
-                markerOptions.title(str);
-                markerOptions.draggable(true);
-                markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
-                currentMarker = googleMap.addMarker(markerOptions);
+                        googleMap.moveCamera(CameraUpdateFactory.newLatLng(loca));
+                        googleMap.animateCamera(CameraUpdateFactory.zoomTo(15));
+                        googleMap.getUiSettings().setZoomControlsEnabled(true);
+                        break;
+                    default:
 
-                googleMap.moveCamera(CameraUpdateFactory.newLatLng(loca));
-                googleMap.animateCamera(CameraUpdateFactory.zoomTo(15));
-                googleMap.getUiSettings().setZoomControlsEnabled(true);
-
+                        return false;
+                }
+                return true;
             }
         });
+
 
         return view;
     }
@@ -420,7 +434,7 @@ public class MapFragment extends Fragment
     @Override
     public void onLocationChanged(Location location) {
         Log.i(TAG, "onLocationChanged call..");
-        if(tf) {
+        if (tf) {
             searchCurrentPlaces();
             tf = false;
         }

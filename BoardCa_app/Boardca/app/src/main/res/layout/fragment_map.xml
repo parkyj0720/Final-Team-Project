@@ -27,21 +27,8 @@
         android:paddingLeft="10dp"
         android:padding="10dp"
         android:textSize="7pt"
+        android:imeOptions="actionSearch"
+        android:inputType="text"
         android:ems="10" />
-
-    <ImageButton
-        android:id="@+id/map_button"
-        android:layout_width="42dp"
-        android:layout_height="38dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="55dp"
-        android:layout_marginRight="55dp"
-        android:background="#BFFFFFFF"
-        android:src="@drawable/serch"
-        android:text="검색" />
-
 
 </RelativeLayout>
