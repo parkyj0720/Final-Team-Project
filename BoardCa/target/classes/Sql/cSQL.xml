@@ -22,4 +22,47 @@
 	where r_board_no
 </select>
 
+<insert id="cInsertTest" parameterType="Food.CDto">
+
+	<!-- <selectKey keyProperty="r_board_no" resultType="int" order="BEFORE">
+        SELECT seq_board_no.nextval FROM DUAL
+    </selectKey> -->
+
+	insert into recipe (r_board_no,
+	r_crawling_addr,
+	r_main_thumbs,
+	r_filename,
+	r_title,
+	r_explain,
+	r_standard,
+	r_cooking_time,
+	r_difficult,
+	r_ingredient,
+	r_cooking_order)
+	
+	values(0,
+	'1',
+	'1',
+	'1',
+	'1',
+	'1',
+	'1',
+	'1',
+	'1',
+	'1',
+	'1')
+	
+	<!-- values(#{r_board_no},
+	#{r_crawling_addr},
+	#{r_main_thumbs},
+	#{r_filename},
+	#{r_title},
+	#{r_explain},
+	#{r_standard},
+	#{r_cooking_time},
+	#{r_difficult},
+	#{r_ingredient},
+	#{r_cooking_order}) -->
+</insert>
+
 </mapper>
