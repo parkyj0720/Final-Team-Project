@@ -48,7 +48,7 @@ dependencies {
     implementation 'com.github.ybq:Android-SpinKit:1.4.0'//로딩 애니메이션
 
     // 구글 지도 검색 API
-    implementation 'com.google.android.gms:play-services-places:15.0.0'
+    implementation 'com.google.android.gms:play-services-places:17.0.0'
 
 
 }
