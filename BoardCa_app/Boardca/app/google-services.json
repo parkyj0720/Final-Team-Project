@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "61010415229",
+    "firebase_url": "https://boardcaapp-ac9e2.firebaseio.com",
+    "project_id": "boardcaapp-ac9e2",
+    "storage_bucket": "boardcaapp-ac9e2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:61010415229:android:12ed57d61cdac58d1f6b14",
+        "android_client_info": {
+          "package_name": "com.example.boardca_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "61010415229-3hsrv4i6ssgfaal2ffirq66fk6k31h6u.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.boardca_app",
+            "certificate_hash": "89a4f2451edada395dd0d6946ff878f957bbff6a"
+          }
+        },
+        {
+          "client_id": "61010415229-uvmchl0jc793qn7fo9fldbnb8r4j2m1d.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAHbw79WuBh_6kGK9SocW6Z8NZ7dYQT1D4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "61010415229-uvmchl0jc793qn7fo9fldbnb8r4j2m1d.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -5,32 +5,43 @@
 
     <!-- Activity에서는 fragment로 구현해야되지만
     Fragment로 구현하기위해서는 MapView를 사용해야함-->
+
     <com.google.android.gms.maps.MapView
-        android:id="@+id/map"
+        android:id="@+id/map_view"
+        android:name="com.example.boardca_app.ui.Map.MapFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:name="com.example.boardca_app.ui.Map.MapFragment"
-        />
+        android:layout_alignParentTop="true" />
 
     <EditText
-        android:id="@+id/editText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/map_editText"
+        android:layout_width="298dp"
+        android:layout_height="38dp"
         android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:ems="10"
-        android:layout_alignParentLeft="true" />
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="12dp"
+        android:background="#BFFFFFFF"
+        android:paddingLeft="10dp"
+        android:padding="10dp"
+        android:textSize="7pt"
+        android:ems="10" />
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <ImageButton
+        android:id="@+id/map_button"
+        android:layout_width="42dp"
+        android:layout_height="38dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_marginEnd="110dp"
-        android:layout_marginRight="110dp"
-        android:text="변환2" />
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="55dp"
+        android:layout_marginRight="55dp"
+        android:background="#BFFFFFFF"
+        android:src="@drawable/serch"
+        android:text="검색" />
 
 
 </RelativeLayout>
