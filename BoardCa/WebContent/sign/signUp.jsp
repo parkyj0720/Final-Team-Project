@@ -53,6 +53,7 @@
 <script src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">
 
+
 	/* 비밀번호 일치하는지 확인 하는 함수 */
 	function eqPW(){
 		$("#checkPwd").show();
