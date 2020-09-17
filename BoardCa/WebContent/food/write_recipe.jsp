@@ -91,6 +91,19 @@
 											$('.ingre_info').last().focus();
 											$('#ingre_text').val('');
 										});
+						
+						$('#order_addBtn')
+						.on(
+								'click',
+								function() {
+
+									var tag = '<tr><td style="padding: 20px;">1</td>'
+									+ '<td><textarea style="width: 250px; height: 195px; resize: none; margin-right:100px;"></textarea></td>'
+									+ '<td><div class="dropify-wrapper"><div class="dropify-message"><span class="file-icon"></span> <p>Drag and drop a file here or click</p><p class="dropify-error">Ooops, something wrong appended.</p></div><div class="dropify-loader"></div><div class="dropify-errors-container"><ul></ul></div><input type="file" class="dropify r_detail" name="file"><button type="button" class="dropify-clear">Remove</button><div class="dropify-preview"><span class="dropify-render"></span><div class="dropify-infos"><div class="dropify-infos-inner"><p class="dropify-filename"><span class="file-icon"></span> <span class="dropify-filename-inner"></span></p><p class="dropify-infos-message">Drag and drop or click to replace</p></div></div></div></div></td></tr>';
+									
+									$('#cooking_order_table').append(tag);
+									
+								});
 						/* $(window).resize(function() {
 							var detail_h = $('.r_detail').height();
 							var header_h = $('.detail_header').height();
@@ -171,24 +184,7 @@
 							<div class="row "> <!-- r_detail -->
 								<div class="col-xl-3 col-lg-4 col-md-12 flex_check">
 									<!-- <img id="main_img" src="https://recipe1.ezmember.co.kr/cache/recipe/2020/08/25/0fbfab533f6ade9b81906d52a91585551.jpg" style="width:100%; height:100%"> -->
-										<div class="dropify-loader" style="display: none;"></div>
-										<div class="dropify-errors-container">
-											<ul></ul>
-										</div>
 										<input type="file" class="dropify r_detail" name="file">
-										<div class="dropify-preview" style="display: none; width:100%; height:100%;">
-											<span class="dropify-render"></span>
-											<div class="dropify-infos">
-												<div class="dropify-infos-inner">
-													<p class="dropify-filename">
-														<span class="file-icon"></span> <span
-															class="dropify-filename-inner">1.jpg</span>
-													</p>
-													<p class="dropify-infos-message">Drag and drop or
-														click to replace</p>
-												</div>
-											</div>
-										</div>
 									</div>
 								<div class="col-xl-9 col-lg-8 col-md-12">
 									<div class="product details detail_header">
@@ -249,8 +245,15 @@
 								<div class="col-lg-12">
 									<div>
 										<h6>조리순서</h6>
+										<button type="button" id="order_addBtn">추가</button>
 										<hr>
-										<p>조리순서 ~~~~</p>
+										<table id="cooking_order_table">
+											<tr>
+												<td style="padding: 20px;">1</td>
+												<td><textarea style="width: 250px; height: 195px; resize: none; margin-right:100px;"></textarea></td>
+												<td><input type="file" class="dropify r_detail" name="file"></td>
+											</tr>
+										</table>
 									</div>
 								</div>
 							</div>
