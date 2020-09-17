@@ -83,12 +83,12 @@
 												return;
 											}
 
-											var tag = '<tr><td style="width: 150px;">'
+											var tag = '<tr><td style="width: 150px;" class="ingre_info">'
 													+ ingre
-													+ '</td><td>수량: <input type="text" size="10"></td>';
+													+ '</td><td>수량: <input type="text" size="10" class="ingre_info"></td>';
 											tag += '<td><button type="button" onclick="remove_list(this)">삭제</button></td></tr>';
 											$('#ingre_list').append(tag);
-
+											$('.ingre_info').last().focus();
 											$('#ingre_text').val('');
 										});
 						/* $(window).resize(function() {
@@ -105,6 +105,38 @@
 								$('.detail_footer').css('margin-top', '0px');
 							}
 						}); */
+						$('#write_form').submit(function(event){
+							event.preventDefault();
+							var ingre_info = '';
+							$('.ingre_info').each(function(index, item){
+								if(index %2 == 0){
+									ingre_info += $(item).text() + '&';
+									//console.log($(item).text());
+								}else{
+									ingre_info += $(item).val() + '&';
+									//console.log($(item).val());
+								}
+							});
+								//console.log(ingre_info);
+								$('.ingre_text_list').val(ingre_info);
+								console.log($('.ingre_text_list').val());
+						});
+						
+						$("#ingre_text").keyup(function(event) {
+						    if (event.keyCode === 13) {
+						        $('#ingre_addBtn').click();
+						    }
+						});
+						
+						$(document).on('keyup', ".ingre_info", function(event) {
+						    if (event.keyCode === 13) {
+						        $('#ingre_text').focus();
+						    }
+						});
+						
+						$('#write_btn').on('click',function(){
+							$('#write_form').submit();
+						});
 					});
 </script>
 </head>
@@ -129,106 +161,107 @@
 				</div>
 			</div>
 		</div>
-		<form action="${pageContext.request.contextPath}/cUpload.do" method="post" enctype="multipart/form-data">
-			<div class="container-fluid">
-				<div class="row clearfix">
-					<div class="col-lg-12">
-						<div class="card">
-							<div class="body">
-								<div class="row "> <!-- r_detail -->
-									<div class="col-xl-3 col-lg-4 col-md-12 flex_check">
-										<!-- <img id="main_img" src="https://recipe1.ezmember.co.kr/cache/recipe/2020/08/25/0fbfab533f6ade9b81906d52a91585551.jpg" style="width:100%; height:100%"> -->
-											<div class="dropify-loader" style="display: none;"></div>
-											<div class="dropify-errors-container">
-												<ul></ul>
-											</div>
-											<input type="file" class="dropify r_detail" name="file">
-											<div class="dropify-preview" style="display: none; width:100%; height:100%;">
-												<span class="dropify-render"></span>
-												<div class="dropify-infos">
-													<div class="dropify-infos-inner">
-														<p class="dropify-filename">
-															<span class="file-icon"></span> <span
-																class="dropify-filename-inner">1.jpg</span>
-														</p>
-														<p class="dropify-infos-message">Drag and drop or
-															click to replace</p>
-													</div>
+	</div>
+	<form id="write_form" action="${pageContext.request.contextPath}/cUpload.do" method="post" enctype="multipart/form-data">
+		<div class="container-fluid">
+			<div class="row clearfix">
+				<div class="col-lg-12">
+					<div class="card">
+						<div class="body">
+							<div class="row "> <!-- r_detail -->
+								<div class="col-xl-3 col-lg-4 col-md-12 flex_check">
+									<!-- <img id="main_img" src="https://recipe1.ezmember.co.kr/cache/recipe/2020/08/25/0fbfab533f6ade9b81906d52a91585551.jpg" style="width:100%; height:100%"> -->
+										<div class="dropify-loader" style="display: none;"></div>
+										<div class="dropify-errors-container">
+											<ul></ul>
+										</div>
+										<input type="file" class="dropify r_detail" name="file">
+										<div class="dropify-preview" style="display: none; width:100%; height:100%;">
+											<span class="dropify-render"></span>
+											<div class="dropify-infos">
+												<div class="dropify-infos-inner">
+													<p class="dropify-filename">
+														<span class="file-icon"></span> <span
+															class="dropify-filename-inner">1.jpg</span>
+													</p>
+													<p class="dropify-infos-message">Drag and drop or
+														click to replace</p>
 												</div>
 											</div>
 										</div>
-									<div class="col-xl-9 col-lg-8 col-md-12">
-										<div class="product details detail_header">
-											제목 <input type="text" style="width: 100%;"
-												value="초간단 맥주안주:모짜렐라치즈없이 콘치즈만들기">
-
-											<hr>
-											음식 설명
-											<textarea id="content_area"
-												style="width: 100%; height: 200px; resize: none;">맥주는 먹고 싶고 안주는 없어서 간단히 만들어봤어요.</textarea>
-										</div>
-
 									</div>
+								<div class="col-xl-9 col-lg-8 col-md-12">
+									<div class="product details detail_header">
+										제목 <input type="text" style="width: 100%;" name="title"
+											value="초간단 맥주안주:모짜렐라치즈없이 콘치즈만들기">
+
+										<hr>
+										음식 설명
+										<textarea id="content_area" name="explain"
+											style="width: 100%; height: 200px; resize: none;">맥주는 먹고 싶고 안주는 없어서 간단히 만들어봤어요.</textarea>
+									</div>
+
 								</div>
 							</div>
 						</div>
-
-						<div class="card">
-							<div class="body">
-								<div class="row">
-									<div class="col-lg-12">
-										<div>
-											<h6>레시피정보</h6>
-											<hr>
-											<p>
-												기준인원: <input type="text" value="1" size="5" dir="rtl">
-												인분<br> 조리시간: <input type="text" value="10" size="5"
-													dir="rtl"> 분<br> 난이도: <input type="text"
-													value="쉬움" style="margin-left: 14px" size="5" dir="rtl">
-											</p>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-
-						<div class="card">
-							<div class="body">
-								<div class="row">
-									<div class="col-lg-12">
-										<div>
-											<h6>재료</h6>
-											<hr>
-											<input id="ingre_text" type="text" placeholder="재료이름">
-											<button id="ingre_addBtn" type="button">재료추가</button>
-											<table id="ingre_list" style="margin-top: 20px;">
-												<!-- 재료 추가 부분 -->
-											</table>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-
-						<div class="card">
-							<div class="body">
-								<div class="row">
-									<div class="col-lg-12">
-										<div>
-											<h6>조리순서</h6>
-											<hr>
-											<p>조리순서 ~~~~</p>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-
 					</div>
+
+					<div class="card">
+						<div class="body">
+							<div class="row">
+								<div class="col-lg-12">
+									<div>
+										<h6>레시피정보</h6>
+										<hr>
+										<p>
+											기준인원: <input type="text" value="1" size="5" dir="rtl" name="standard"> 인분<br>
+											조리시간: <input type="text" value="10" size="5"dir="rtl" name="cooking_time"> 분<br>
+											난이도: <input type="text" value="쉬움" style="margin-left: 14px" size="5" dir="rtl" name="difficult">
+										</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="card">
+						<div class="body">
+							<div class="row">
+								<div class="col-lg-12">
+									<div>
+										<h6>재료</h6>
+										<hr>
+										<input id="ingre_text" type="text" placeholder="재료이름">
+										<button id="ingre_addBtn" type="button">재료추가</button>
+										<table id="ingre_list" style="margin-top: 20px;">
+											<!-- 재료 추가 부분 -->
+										</table>
+										<input type="text" class="ingre_text_list" style="visibility: hidden;" name="ingredient">
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="card">
+						<div class="body">
+							<div class="row">
+								<div class="col-lg-12">
+									<div>
+										<h6>조리순서</h6>
+										<hr>
+										<p>조리순서 ~~~~</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
 				</div>
 			</div>
-			<input type="submit" value="ggggg">
-		</form>
+		</div>
+		<input id="write_btn" type="button" value="글쓰기">
+	</form>
 
 
 

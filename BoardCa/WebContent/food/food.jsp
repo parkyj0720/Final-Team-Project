@@ -165,10 +165,13 @@ request.getParameter("test");
 
 	
 <section class="content file_manager"style="margin: auto;">
-	<div class="search_div">
-	<form action="${pageContext.request.contextPath}/cSearch.do" method="POST">
+	<div class="search_div" style="position:relative;">
+	<form action="${pageContext.request.contextPath}/cSearch.do" method="POST" style="display:inline-block">
 		<input type="text" size="34" name="inputSearch">
-		<input type="submit" value="검색" name="inputSearchButton" style="margin-left:-15px">	
+		<input type="submit" value="검색" name="inputSearchButton" style="margin-left:-15px">
+	</form>
+	<form action="${pageContext.request.contextPath}/cWrite.do" method="POST" style="display:inline-block; position:absolute; right:16px;">
+		<input type="submit" value="레시피추가" name="inputRecipe">
 	</form>
 	</div>
     <div class="body_scroll">

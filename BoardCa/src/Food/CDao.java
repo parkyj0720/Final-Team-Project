@@ -31,11 +31,8 @@ public class CDao {
 	    return list;
 	  }
 	
-	public int uploadFile(String file) {
-		CDto dto = new CDto();
-		dto.setR_filename(file);
+	public int uploadFile(CDto dto) {
 		System.out.println(dto);
-		System.out.println(file);
 		int cnt = sqlSession.insert("cXml.cInsertTest", dto);
         return cnt;
   }

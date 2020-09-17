@@ -10,6 +10,7 @@ import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.oreilly.servlet.MultipartRequest;
@@ -54,17 +55,36 @@ public class CController {
 		return mv;
 	}
 	
+	@RequestMapping("/cWrite.do")
+	public ModelAndView write(HttpServletRequest req) {
+		mv.setViewName("/food/write_recipe.jsp");
+		return mv;
+	}
+	
 	@RequestMapping("/cUpload.do")
 	public ModelAndView upload(HttpServletRequest req, HttpServletResponse res) throws IOException {
 		
-		String file_name = req.getParameter("file");
-		System.out.println(file_name);
+		String r_crawling_addr = "";
+		String r_main_thumbs = "";
+		
+		String r_filename = req.getParameter("file");
+		
+//		String r_title = req.getParameter("title");
+//		String r_explain = req.getParameter("explain");
+//		String r_standard = req.getParameter("standard");
+//		String r_cooking_time = req.getParameter("cooking_time");
+//		String r_difficult = req.getParameter("difficult");
+//		
+//		String r_ingredient = req.getParameter("ingredient");
+//		String r_cooking_order = req.getParameter("cooking_order");
+		
+		System.out.println(r_filename);
 		ServletContext context = req.getServletContext(); // 어플리케이션에 대한 정보를 ServletContext 객체가 갖게 됨. (서버의 절대경로를 구하는 데 필요)
 		String saveDir = context.getRealPath("upload"); // 절대경로를 가져옴
 		System.out.println("절대경로 >> " + saveDir);
 
 		int maxSize = 3 * 1024 * 1024; // 3MB
-		String encoding = "euc-kr";
+		String encoding = "utf-8";
 
 		// saveDir: 경로
 		// maxSize: 크기제한 설정
@@ -79,9 +99,19 @@ public class CController {
 //			String author = multi.getParameter("author");
 //			String title = multi.getParameter("title");
 			String file = multi.getFilesystemName("file");
+			
+			String r_title = multi.getParameter("title");
+			String r_explain = multi.getParameter("explain");
+			String r_standard = multi.getParameter("standard");
+			String r_cooking_time = multi.getParameter("cooking_time");
+			String r_difficult = multi.getParameter("difficult");
+			
+			String r_ingredient = multi.getParameter("ingredient");
+			String r_cooking_order = multi.getParameter("cooking_order");
+			r_cooking_order = "";
 
 			try {
-				int result = dao.uploadFile(file);
+				int result = dao.uploadFile(new CDto(0, r_crawling_addr, r_main_thumbs, file, r_title, r_explain, r_standard, r_cooking_time, r_difficult, r_ingredient, r_cooking_order));
 				String moveUrl = "";
 				if (result > 0) {
 					System.out.println("저장완료");
