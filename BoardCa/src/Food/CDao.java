@@ -3,6 +3,7 @@ package Food;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
+import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -30,4 +31,12 @@ public class CDao {
 	    return list;
 	  }
 	
+	public int uploadFile(String file) {
+		CDto dto = new CDto();
+		dto.setR_filename(file);
+		System.out.println(dto);
+		System.out.println(file);
+		int cnt = sqlSession.insert("cXml.cInsertTest", dto);
+        return cnt;
+  }
 }

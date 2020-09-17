@@ -1,3 +1,4 @@
+<%@page import="CommunityModel.BoardList"%>
 <%@page import="org.springframework.web.servlet.ModelAndView"%>
 <%@page import="CommunityModel.CommunityDto"%>
 <%@page import="java.util.ArrayList"%>
@@ -25,9 +26,11 @@
 </head>
 <body>
 <%
+	ArrayList<Object> heartList = (ArrayList<Object>)request.getAttribute("heart");
 	ArrayList<CommunityDto> list = (ArrayList<CommunityDto>) request.getAttribute("list");
-	String listname = (String) request.getAttribute("listname");
-	String viewname = (String) request.getAttribute("viewname");
+	BoardList viewname = (BoardList)request.getAttribute("viewname");
+	String community_title = viewname.getBoard_name();
+	int boardnum = viewname.getNum();
 %>
 	<section class="content"
 		style="margin-left: auto; margin-right: auto; padding-left: 10%; padding-right: 10%;">
@@ -57,7 +60,7 @@
 						<li class="breadcrumb-item"><a
 							href="${pageContext.request.contextPath}/Community_main.do">Community</a></li>
 						<li id="listname" class="breadcrumb-item active"><a
-							href="${pageContext.request.contextPath}<%=viewname %>"><%=listname%></a></li>
+							href="${pageContext.request.contextPath}/Community_list.do?list=<%=boardnum%>"><%=community_title%></a></li>
 					</ul>
 					<button class="btn btn-primary btn-icon mobile_menu" type="button">
 						<i class="zmdi zmdi-sort-amount-desc"></i>
@@ -75,7 +78,9 @@
 									style="width: 100%; ">
 									<tbody>
 									<%for(int i = 0; i<list.size(); i++){ 
-									CommunityDto dto = list.get(i);%>
+									CommunityDto dto = list.get(i);
+									int heart = (int)heartList.get(i);
+									%>
 										<tr class="list" style="box-sizing: content-box;">
 											<td class="Ctd" width="10%" height="auto" align="center"
 												style="white-space: normal;"><%=dto.getNum()%></td>
@@ -88,7 +93,7 @@
 											<td width="10%" height="auto" align="center"
 												style="white-space: normal;"><%=dto.getViews()%></td>
 											<td width="10%" height="auto" align="center"
-												style="white-space: normal;"><%=dto.getHeart()%></td>
+												style="white-space: normal;"><%=heart%></td>
 											<td width="10%" height="auto" align="center"
 												style="white-space: normal;"><i class="zmdi zmdi-hc-fw"></i></td>
 										</tr>
@@ -133,9 +138,7 @@
         $(document).ready(function(){
             $('.list').click(function() {
                 var num = $(this).children(0).eq(0).text();
-                var viewname = $('#listname').text();
-                $(location).attr('href', '${pageContext.request.contextPath}/Community_detail.do?list='+viewname+'&num='+num);
-                
+                $(location).attr('href', '${pageContext.request.contextPath}/Community_detail.do?num='+num);
             });
         });
     </script>

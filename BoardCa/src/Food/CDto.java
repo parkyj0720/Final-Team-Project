@@ -4,6 +4,7 @@ public class CDto {
 	int r_board_no;
 	String r_crawling_addr;
 	String r_main_thumbs;
+	String r_filename;
 	String r_title;
 	String r_explain;
 	String r_standard;
@@ -11,7 +12,31 @@ public class CDto {
 	String r_difficult;
 	String r_ingredient;
 	String r_cooking_order;
-	 
+	public CDto() {
+		this(0, "", "", "", "", "", "", "", "", "", "");
+	}
+	
+	public CDto(int r_board_no, String r_crawling_addr, String r_main_thumbs, String r_filename, String r_title,
+			String r_explain, String r_standard, String r_cooking_time, String r_difficult, String r_ingredient,
+			String r_cooking_order) {
+		this.r_board_no = r_board_no;
+		this.r_crawling_addr = r_crawling_addr;
+		this.r_main_thumbs = r_main_thumbs;
+		this.r_filename = r_filename;
+		this.r_title = r_title;
+		this.r_explain = r_explain;
+		this.r_standard = r_standard;
+		this.r_cooking_time = r_cooking_time;
+		this.r_difficult = r_difficult;
+		this.r_ingredient = r_ingredient;
+		this.r_cooking_order = r_cooking_order;
+	}
+	public String getR_filename() {
+		return r_filename;
+	}
+	public void setR_filename(String r_filename) {
+		this.r_filename = r_filename;
+	}
 	public int getR_board_no() {
 		return r_board_no;
 	}
@@ -74,10 +99,10 @@ public class CDto {
 	}
 	@Override
 	public String toString() {
-		return "cDto [r_board_no=" + r_board_no + ", r_crawling_addr=" + r_crawling_addr + ", r_main_thumbs="
-				+ r_main_thumbs + ", r_title=" + r_title + ", r_explain=" + r_explain + ", r_standard=" + r_standard
-				+ ", r_cooking_time=" + r_cooking_time + ", r_difficult=" + r_difficult + ", r_ingredient="
-				+ r_ingredient + ", r_cooking_order=" + r_cooking_order + "]";
+		return "CDto [r_board_no=" + r_board_no + ", r_crawling_addr=" + r_crawling_addr + ", r_main_thumbs="
+				+ r_main_thumbs + ", r_filename=" + r_filename + ", r_title=" + r_title + ", r_explain=" + r_explain
+				+ ", r_standard=" + r_standard + ", r_cooking_time=" + r_cooking_time + ", r_difficult=" + r_difficult
+				+ ", r_ingredient=" + r_ingredient + ", r_cooking_order=" + r_cooking_order + "]";
 	}
 	
 	

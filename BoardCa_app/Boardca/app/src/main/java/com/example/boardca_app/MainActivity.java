@@ -36,6 +36,7 @@ import com.example.boardca_app.ui.game.GameFragment;
 import com.example.boardca_app.ui.home.HomeFragment;
 import com.example.boardca_app.ui.recipe.RecipeFragment;
 import com.example.boardca_app.ui.setting.SettingsActivity;
+import com.google.android.gms.maps.model.LatLng;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.io.IOException;
@@ -428,5 +429,26 @@ public class MainActivity extends AppCompatActivity {
 
         return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
                 || locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
+    }
+
+    //내가 원하는 위치를 찾아서 마커로 등록하는 버튼의 onClick을 구현해주었다.
+    public LatLng LocationNumber(String str) {
+        //구글의 Geocoder을 활용해 그 데이터의 정보를 가져온다.
+        Geocoder coder = new Geocoder(getApplicationContext());
+        //리스트에 담아주고,
+        List<Address> list = null;
+        try{
+            list = coder.getFromLocationName(str,1);
+        } catch(IOException e){
+            e.printStackTrace();
+        }
+        //그 정보의 좌표값을 가져온다.
+        Address addr = list.get(0);
+        double lat = addr.getLatitude();
+        double lng = addr.getLongitude();
+
+        LatLng loca = new LatLng(lat, lng);
+
+        return loca;
     }
 }

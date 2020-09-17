@@ -21,6 +21,8 @@ public class CommunityDao {
 		return instance;
 	}
 	String boardnum = "select * from board";
+	
+	String board = "select * from board where BOARDNUM=?";
 
 	//String main = "select * from (select * from community ORDER BY num DESC where boardnum=?) where rownum<=6";
 	String main = "select * from community where boardnum=?";
@@ -30,6 +32,8 @@ public class CommunityDao {
 	String C_detail = "select * from community where num=?";
 
 	String C_comment = "select * from community_comment ORDER BY num DESC where boardnum=? and content_num=?";
+	
+	String list_heart = "select * from heart where content_num=?";
 
 	ArrayList<ArrayList<CommunityDto>> totalList;
 	private Connection conn;
@@ -76,7 +80,6 @@ public class CommunityDao {
 				}
 			}
 		}
-		System.out.println(boardList.size());
 		return boardList;
 	}
 	public ArrayList<CommunityDto> main(int b_num){
@@ -119,14 +122,14 @@ public class CommunityDao {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-			} else if (pstmt != null) {
+			}if (pstmt != null) {
 				try {
 					pstmt.close();
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-			} else if (rs != null) {
+			}if (rs != null) {
 				try {
 					rs.close();
 				} catch (SQLException e) {
@@ -135,7 +138,81 @@ public class CommunityDao {
 				}
 			}
 		}
-		System.out.println("보드"+b_num+"사이즈="+list.size());
 		return list;
+	}
+	
+	public BoardList one_board(int n) {
+		BoardList boardList = new BoardList();
+		try {
+			conn = DriverManager.getConnection(url, user, pass);
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			pstmt = conn.prepareStatement((board));
+			pstmt.setInt(1, n);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				int num = rs.getInt("BOARDNUM");
+				String boardname = rs.getString("BOARDNAME");
+				boardList = new BoardList(num, boardname);
+			}
+		} catch (Exception e) {
+		} finally {
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return boardList;
+	}
+	public int list_heart(int n) {
+		ArrayList<Heart> heartList = new ArrayList<Heart>();
+		try {
+			conn = DriverManager.getConnection(url, user, pass);
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			pstmt = conn.prepareStatement((list_heart));
+			pstmt.setInt(1, n);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				String username = rs.getNString("username");
+				int content_num = rs.getInt("content_num");
+				heartList.add(new Heart(username, content_num));
+			}
+		} catch (Exception e) {
+		} finally {
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return heartList.size();
 	}
 }

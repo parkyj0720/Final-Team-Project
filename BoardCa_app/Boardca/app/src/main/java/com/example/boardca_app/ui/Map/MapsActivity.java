@@ -42,27 +42,26 @@ import java.util.Stack;
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, GoogleMap.OnMarkerClickListener, GoogleMap.OnInfoWindowClickListener {
 
     private static final int REQUEST_CODE_PERMISSIONS = 1000;
-    private GoogleMap mMap;
+    public GoogleMap mMap;
     private FusedLocationProviderClient mFusedLocationClient;
     Marker mMarker;
     private EditText editPlace;
     private boolean boundaryIsOn = false;
     //마지막 활용을 위해서 변수 선언
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
-        editPlace = findViewById(R.id.editPlace);
+//        editPlace = findViewById(R.id.editPlace);
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.map);
+                .findFragmentById(R.id.map_view);
         mapFragment.getMapAsync(this);
 
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
-    }
 
+    }
 
     /**
      * Manipulates the map once available.
@@ -160,6 +159,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 }
             }
         });
+
     }
 
     @RequiresApi(api = Build.VERSION_CODES.M)

@@ -71,7 +71,7 @@
 						<div class="card">
 							<div class="header" align="center">
 								<a
-									href="${pageContext.request.contextPath}/Community_list_sook.do"><h2
+									href="${pageContext.request.contextPath}/Community_list.do?list=<%=i+1%>"><h2
 										id="listname1"><%=blist.getBoard_name() %></h2></a>
 							</div>
 							<div class="body" style="height: 30em;">
@@ -106,7 +106,6 @@
 											style="white-space: normal;"><%=dto.getWritten_date()%></td>
 										<td width="10%" height="auto" align="center"
 											style="white-space: normal;"><%=dto.getViews()%></td>
-
 									</tr>
 									<%
 										}
@@ -129,7 +128,7 @@
 						<div class="card">
 							<div class="header" align="center">
 								<a
-									href="${pageContext.request.contextPath}/Community_list_sook.do"><h2
+									href="${pageContext.request.contextPath}/Community_list.do?list=<%=i+1%>"><h2
 										id="listname1"><%=blist.getBoard_name() %></h2></a>
 							</div>
 							<div class="body">
