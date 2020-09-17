@@ -48,6 +48,7 @@ import com.google.android.gms.location.places.PlaceLikelihoodBuffer;
 import com.google.android.gms.location.places.Places;
 import com.google.android.gms.location.places.ui.PlaceAutocompleteFragment;
 import com.google.android.gms.location.places.ui.PlaceSelectionListener;
+import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
@@ -103,8 +104,8 @@ public class MapFragment extends Fragment
     private static final String TAG = "googlemap_example";
     private static final int GPS_ENABLE_REQUEST_CODE = 2001;
     private static final int PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 2002;
-    private static final int UPDATE_INTERVAL_MS = 15000;
-    private static final int FASTEST_UPDATE_INTERVAL_MS = 15000;
+    private static final int UPDATE_INTERVAL_MS = 5000;
+    private static final int FASTEST_UPDATE_INTERVAL_MS = 5000;
 
     private GoogleMap googleMap = null;
     private MapView mapView = null;
@@ -114,59 +115,16 @@ public class MapFragment extends Fragment
     double latitude = 0;
     double longitude = 0;
 
-
     private final static int MAXENTRIES = 5;
     private String[] LikelyPlaceNames = null;
     private String[] LikelyAddresses = null;
     private String[] LikelyAttributions = null;
     private LatLng[] LikelyLatLngs = null;
 
-    ImageButton btn;
     EditText ed;
-
-    boolean tf = true;
 
     public MapFragment() {
         // required
-    }
-
-    public void setCurrentLocation(Location location, String markerTitle, String markerSnippet) {
-        if (currentMarker != null) currentMarker.remove();
-
-        if (location != null) {
-            //현재위치의 위도 경도 가져옴
-            LatLng currentLocation = new LatLng(location.getLatitude(), location.getLongitude());
-
-            MarkerOptions markerOptions = new MarkerOptions();
-            markerOptions.position(currentLocation);
-            markerOptions.title(markerTitle);
-            markerOptions.snippet(markerSnippet);
-            markerOptions.draggable(true);
-            markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE));
-            currentMarker = this.googleMap.addMarker(markerOptions);
-
-            this.googleMap.moveCamera(CameraUpdateFactory.newLatLng(currentLocation));
-            return;
-        }
-
-        latitude = ((MainActivity) getActivity()).latitude;
-        longitude = ((MainActivity) getActivity()).longitude;
-
-        LatLng firstLocation = new LatLng(latitude, longitude); //설정해주는 경도 위도
-
-        String add = ((MainActivity) getActivity()).getCurrentAddress(latitude, longitude);
-        int length = add.length();
-        String showadd = add.substring(5, length);
-
-        MarkerOptions markerOptions = new MarkerOptions();
-        markerOptions.position(firstLocation);
-        markerOptions.title("현재 위치");
-        markerOptions.snippet(showadd);
-        markerOptions.draggable(true);
-        markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
-        currentMarker = this.googleMap.addMarker(markerOptions);
-
-        this.googleMap.moveCamera(CameraUpdateFactory.newLatLng(firstLocation));
     }
 
     @Override
@@ -207,9 +165,13 @@ public class MapFragment extends Fragment
                         markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
                         currentMarker = googleMap.addMarker(markerOptions);
 
+//                        currentMarker.showInfoWindow();
+
                         googleMap.moveCamera(CameraUpdateFactory.newLatLng(loca));
                         googleMap.animateCamera(CameraUpdateFactory.zoomTo(15));
                         googleMap.getUiSettings().setZoomControlsEnabled(true);
+                        googleMap.getUiSettings().setCompassEnabled(true);
+
                         break;
                     default:
 
@@ -218,7 +180,6 @@ public class MapFragment extends Fragment
                 return true;
             }
         });
-
 
         return view;
     }
@@ -259,10 +220,10 @@ public class MapFragment extends Fragment
         super.onPause();
         mapView.onPause();
 
-        if (googleApiClient != null && googleApiClient.isConnected()) {
-            LocationServices.FusedLocationApi.removeLocationUpdates(googleApiClient, this);
-            googleApiClient.disconnect();
-        }
+//        if (googleApiClient != null && googleApiClient.isConnected()) {
+//            LocationServices.FusedLocationApi.removeLocationUpdates(googleApiClient, this);
+//            googleApiClient.disconnect();
+//        }
     }
 
     @Override
@@ -276,15 +237,15 @@ public class MapFragment extends Fragment
         super.onDestroy();
         mapView.onLowMemory();
 
-        if (googleApiClient != null) {
-            googleApiClient.unregisterConnectionCallbacks(this);
-            googleApiClient.unregisterConnectionFailedListener(this);
-
-            if (googleApiClient.isConnected()) {
-                LocationServices.FusedLocationApi.removeLocationUpdates(googleApiClient, this);
-                googleApiClient.disconnect();
-            }
-        }
+//        if (googleApiClient != null) {
+//            googleApiClient.unregisterConnectionCallbacks(this);
+//            googleApiClient.unregisterConnectionFailedListener(this);
+//
+//            if (googleApiClient.isConnected()) {
+//                LocationServices.FusedLocationApi.removeLocationUpdates(googleApiClient, this);
+//                googleApiClient.disconnect();
+//            }
+//        }
     }
 
     @Override
@@ -341,7 +302,46 @@ public class MapFragment extends Fragment
             googleMap.setMyLocationEnabled(true);
         }
 
+    }
 
+    public void setCurrentLocation(Location location, String markerTitle, String markerSnippet) {
+        if (currentMarker != null) currentMarker.remove();
+
+        if (location != null) {
+            //현재위치의 위도 경도 가져옴
+            LatLng currentLocation = new LatLng(location.getLatitude(), location.getLongitude());
+
+            MarkerOptions markerOptions = new MarkerOptions();
+            markerOptions.position(currentLocation);
+            markerOptions.title(markerTitle);
+            markerOptions.snippet(markerSnippet);
+            markerOptions.draggable(true);
+            markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE));
+            currentMarker = this.googleMap.addMarker(markerOptions);
+
+            this.googleMap.moveCamera(CameraUpdateFactory.newLatLng(currentLocation));
+        } else {
+
+            latitude = ((MainActivity) getActivity()).latitude;
+            longitude = ((MainActivity) getActivity()).longitude;
+
+            LatLng firstLocation = new LatLng(latitude, longitude); //설정해주는 경도 위도
+
+            String add = ((MainActivity) getActivity()).getCurrentAddress(latitude, longitude);
+            int length = add.length();
+            String showadd = add.substring(5, length);
+
+            MarkerOptions markerOptions = new MarkerOptions();
+            markerOptions.position(firstLocation);
+            markerOptions.title("현재 위치");
+            markerOptions.snippet(showadd);
+            markerOptions.draggable(true);
+            markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
+            currentMarker = this.googleMap.addMarker(markerOptions);
+
+//            this.googleMap.moveCamera(CameraUpdateFactory.newLatLng(firstLocation));
+
+        }
     }
 
     private void buildGoogleApiClient() {
@@ -391,8 +391,8 @@ public class MapFragment extends Fragment
 
         LocationRequest locationRequest = new LocationRequest();
         locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
-        locationRequest.setInterval(UPDATE_INTERVAL_MS);
-        locationRequest.setFastestInterval(FASTEST_UPDATE_INTERVAL_MS);
+//        locationRequest.setInterval(UPDATE_INTERVAL_MS);
+//        locationRequest.setFastestInterval(FASTEST_UPDATE_INTERVAL_MS);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (ActivityCompat.checkSelfPermission(getActivity(),
@@ -434,10 +434,7 @@ public class MapFragment extends Fragment
     @Override
     public void onLocationChanged(Location location) {
         Log.i(TAG, "onLocationChanged call..");
-        if (tf) {
-            searchCurrentPlaces();
-            tf = false;
-        }
+        searchCurrentPlaces();
     }
 
     private void searchCurrentPlaces() {
