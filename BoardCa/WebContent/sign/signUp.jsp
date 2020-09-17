@@ -60,13 +60,33 @@
 		
 		var pw1 = $("#inputPw").value;
 		var pw2 = $("#inputPwCk").value;		
-			
-		if(pw1 != pw2){
-			document.getElementById("checkPwd").innerHTML = "<font color=red>비밀번호를 확인해주세요.</font>";		
-		}else{
-			document.getElementById("checkPwd").innerHTML = "<font color=green>비밀번호가 동일합니다.</font>";
+		console.log(pw1);
+		if(pw1 != 'undefined'){
+			if(pw1 != pw2){
+				document.getElementById("checkPwd").innerHTML = "<font color=red>비밀번호를 확인해주세요.</font>";		
+			}else{
+				document.getElementById("checkPwd").innerHTML = "<font color=green>비밀번호가 동일합니다.</font>";
+			}			
 		}
 	}
+	
+	function equalPwCk(){
+		$.ajax({
+			type : "post",
+			url : "/BoardCa/equalPwCk.do",
+			data :{
+				pw1 : $("#inputPw").val(),
+				pw2 : $("#inputPwCk").val()
+			},
+			success : function test(a){ 
+				$("#checkPwd").html(a); 
+			},
+			error : function error(){ 
+				alert("error"); 
+			}
+		});
+	}
+	
 	
 	/* ID 중복 체크  */
 	function checkId(){
@@ -88,7 +108,7 @@
 	/* pw 정규식 */
 	/* 8-20자리 , 영문,숫자,특수문자 포함, 공백x */
 	function chkPW(){
-		 var pw = $("#password").val();
+		 var pw = $("#inputPw").val();
 		 var num = pw.search(/[0-9]/g);
 		 var eng = pw.search(/[a-z]/ig);
 		 var spe = pw.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi);
@@ -113,7 +133,6 @@
 </head>
 
 <body class="theme-blush">
-
 	<div class="authentication">
 		<div class="container">
 			<img src="${pageContext.request.contextPath}/imgs/logo1.png"
@@ -123,25 +142,31 @@
 					action="${pageContext.request.contextPath}/signUpPro.do">
 					<div class="form-group form-float col-sm-6"
 						style="display: inline-block;">
-						<input type="text" class="form-control" placeholder="아이디"
-							value="${inputId}" name="inputId" id="inputId" onblur="checkId()">
+						<c:if test="${inputId == null}">
+							<input type="text" class="form-control" placeholder="아이디"
+								value="" name="inputId" id="inputId" onblur="checkId()">
+						</c:if>
+						<c:if test="${inputId != null}">
+							<input type="text" class="form-control" placeholder="아이디"
+								value="${inputId}" name="inputId" id="inputId" readonly>
+						</c:if>
+
 					</div>
 					<div class="form-group form-float col-sm-9" id="checkId"></div>
 
 					<div class="form-group form-float col-sm-6"
 						style="display: inline-flex;">
-						<input type="text" class="form-control"  onkeyup="chkPW()" placeholder="비밀번호"
-							style="display: inline-block;" value="" name="inputPw"
-							id="inputPw">
+						<input type="text" class="form-control" onblur="chkPW()"
+							placeholder="비밀번호 ( 8~20자, 영문, 숫자, 특수문자 포함 )" style="display: inline-block;" value=""
+							name="inputPw" id="inputPw">
 					</div>
 					<div class="form-group form-float col-sm-6"
 						style="display: inline-flex;">
-						<input type="text" class="form-control" onkeyup="eqPW()"
-							placeholder="비밀번호 확인" style="display: inline-block;" value=""
+						<input type="text" class="form-control" onblur="equalPwCk()"
+							placeholder="비밀번호 확인" style="display: inline-block;" 
 							name="inputPwCk" id="inputPwCk">
 					</div>
-					<div class="form-group form-float col-sm-9" id="checkPwd"
-						style="display: none;"></div>
+					<div class="form-group form-float col-sm-9" id="checkPwd"></div>
 
 					<div class="form-group form-float col-sm-6"
 						style="display: inline-flex;">
@@ -150,8 +175,14 @@
 					</div>
 					<div class="form-group form-float col-sm-6"
 						style="display: inline-flex;">
-						<input type="text" class="form-control" placeholder="이메일"
-							style="display: inline-block;" value="" name="inputEmail">
+						<c:if test="${account_email == null}">
+							<input type="text" class="form-control" placeholder="이메일"
+								style="display: inline-block;" value="" name="inputEmail">
+						</c:if>
+						<c:if test="${account_email != null}">
+							<input type="text" class="form-control" placeholder="이메일"
+								style="display: inline-block;" value="${account_email}" name="inputEmail" readonly>
+						</c:if>
 					</div>
 					<div class="form-group form-float col-sm-6"
 						style="display: inline-flex;">
@@ -162,16 +193,33 @@
 					<!-- 성별 체크 라디오 버튼  -->
 					<div class="form-group form-float col-sm-6 center"
 						style="text-align: left;">
-						<div class="form-group">
-							<div class="radio inlineblock m-r-20" style="margin: 0;">
-								<input type="radio" name="gender" id="male" class="with-gap"
-									value="option1"> <label for="male">남성</label>
+						<c:choose>
+							<c:when test="${userGender == null or userGender == 'male'}">
+								<div class="form-group">
+									<div class="radio inlineblock m-r-20" style="margin: 0;">
+										<input type="radio" name="gender" id="male" class="with-gap"
+											value="option1" checked> <label for="male">남성</label>
+									</div>
+									<div class="radio inlineblock" style="margin: 0;">
+										<input type="radio" name="gender" id="Female" class="with-gap"
+											value="option2"> <label for="Female">여성</label>
+									</div>
+								</div>
+							</c:when>
+							<c:when test="${userGender == 'female'}">
+								<div class="form-group">
+								<div class="radio inlineblock m-r-20" style="margin: 0;">
+									<input type="radio" name="gender" id="male" class="with-gap"
+										value="option1"> <label for="male">남성</label>
+								</div>
+								<div class="radio inlineblock" style="margin: 0;">
+									<input type="radio" name="gender" id="Female" class="with-gap"
+										value="option2" checked> <label for="Female">여성</label>
+								</div>
 							</div>
-							<div class="radio inlineblock" style="margin: 0;">
-								<input type="radio" name="gender" id="Female" class="with-gap"
-									value="option2" checked=""> <label for="Female">여성</label>
-							</div>
-						</div>
+							</c:when>
+						</c:choose>
+						
 					</div>
 					<div class="checkbox">
 						<input id="remember_me" type="checkbox"> <label

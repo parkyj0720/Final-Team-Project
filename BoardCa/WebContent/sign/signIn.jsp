@@ -46,7 +46,7 @@
 	$(function() {
 		//발급받은 JavaScript Key
 		Kakao.init("ba17cff478a4c1a7991132264b4d34bf");
-		var userID;
+		
 		// 카카오 로그인 버튼을 생성
 		Kakao.Auth.createLoginButton({
 			container : '#kakao-login-btn',
@@ -57,12 +57,14 @@
 					success : function(res) {
 						console.log(res);
 
-						userId = res.id; //유저의 카카오톡 고유 id
+						var userId = res.id; //유저의 카카오톡 고유 id
 						var userGender = res.kakao_account.gender; //유저의 성별
+						var account_email = res.kakao_account.email;
 						var userAgeRange = res.kakao_account.age_range; //유저의 연령대
 						var joinDate = res.connected_at;
 
 						console.log(userId);
+						console.log(account_email);
 						console.log(userGender);
 						console.log(userAgeRange);
 						console.log(joinDate);
@@ -76,6 +78,12 @@
 						hiddenField.setAttribute("name", "inputId");
 						hiddenField.setAttribute("value", userId);
 						form.appendChild(hiddenField);
+						
+						hiddenField = document.createElement("input");
+						hiddenField.setAttribute("type", "hidden");
+						hiddenField.setAttribute("name", "account_email");
+						hiddenField.setAttribute("value", account_email);
+						form.appendChild(hiddenField); 
 						
 						hiddenField = document.createElement("input");
 						hiddenField.setAttribute("type", "hidden");
