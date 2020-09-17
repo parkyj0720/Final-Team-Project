@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" %>
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
@@ -53,8 +53,9 @@
 <script src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">
 
+
 	/* 비밀번호 일치하는지 확인 하는 함수 */
-	function checkPwd(){
+	function eqPW(){
 		$("#checkPwd").show();
 		
 		var pw1 = $("#inputPw").value;
@@ -84,6 +85,29 @@
 		});		
 	}
 	
+	/* pw 정규식 */
+	/* 8-20자리 , 영문,숫자,특수문자 포함, 공백x */
+	function chkPW(){
+		 var pw = $("#password").val();
+		 var num = pw.search(/[0-9]/g);
+		 var eng = pw.search(/[a-z]/ig);
+		 var spe = pw.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi);
+
+		 if(pw.length < 8 || pw.length > 20){
+
+		  alert("8자리 ~ 20자리 이내로 입력해주세요.");
+		  return false;
+		 }else if(pw.search(/\s/) != -1){
+		  alert("비밀번호는 공백 없이 입력해주세요.");
+		  return false;
+		 }else if(num < 0 || eng < 0 || spe < 0 ){
+		  alert("영문,숫자, 특수문자를 혼합하여 입력해주세요.");
+		  return false;
+		 }else {
+			console.log("통과"); 
+		    return true;
+		 }
+		}
 	
 </script>
 </head>
@@ -95,30 +119,34 @@
 			<img src="${pageContext.request.contextPath}/imgs/logo1.png"
 				alt="logo" style="width: 50%" />
 			<div class="body">
-				<form id="form_validation" method="POST" action="${pageContext.request.contextPath}/signUpPro.do">
+				<form id="form_validation" method="POST"
+					action="${pageContext.request.contextPath}/signUpPro.do">
 					<div class="form-group form-float col-sm-6"
 						style="display: inline-block;">
 						<input type="text" class="form-control" placeholder="아이디"
-							value="${inputId}" name="inputId"  id="inputId" onblur="checkId()">
+							value="${inputId}" name="inputId" id="inputId" onblur="checkId()">
 					</div>
-					<div class="form-group form-float col-sm-9" id="checkId" ></div>
-					
+					<div class="form-group form-float col-sm-9" id="checkId"></div>
+
 					<div class="form-group form-float col-sm-6"
 						style="display: inline-flex;">
-						<input type="text" class="form-control" placeholder="비밀번호"
-							style="display: inline-block;" value="" name="inputPw" id="inputPw" >
+						<input type="text" class="form-control"  onkeyup="chkPW()" placeholder="비밀번호"
+							style="display: inline-block;" value="" name="inputPw"
+							id="inputPw">
 					</div>
 					<div class="form-group form-float col-sm-6"
 						style="display: inline-flex;">
-						<input type="text" class="form-control" onkeyup="checkPwd()" placeholder="비밀번호 확인"
-							style="display: inline-block;" value="" name="inputPwCk" id="inputPwCk" >
+						<input type="text" class="form-control" onkeyup="eqPW()"
+							placeholder="비밀번호 확인" style="display: inline-block;" value=""
+							name="inputPwCk" id="inputPwCk">
 					</div>
-					<div class="form-group form-float col-sm-9" id="checkPwd" style="display: none;"></div>
-					
+					<div class="form-group form-float col-sm-9" id="checkPwd"
+						style="display: none;"></div>
+
 					<div class="form-group form-float col-sm-6"
 						style="display: inline-flex;">
 						<input type="text" class="form-control" placeholder="이름"
-							style="display: inline-block;" value="" name="inputName" >
+							style="display: inline-block;" value="" name="inputName">
 					</div>
 					<div class="form-group form-float col-sm-6"
 						style="display: inline-flex;">
