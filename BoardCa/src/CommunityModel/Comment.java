@@ -1,50 +1,50 @@
 package CommunityModel;
 
 public class Comment {
-	int num;
-	String comment_id;
-	String comment_content;
-	String comment_date;
+	String writer_id;
+	String written_date;
+	String content;
+	int content_num;
 	
 	public Comment() {
-		this(0,"","","");
+		this("","","",0);
 	}
 	
-	public Comment(int num, String comment_id, String comment_content, String comment_date) {
-		this.num = num;
-		this.comment_id = comment_id;
-		this.comment_content = comment_content;
-		this.comment_date = comment_date;
+	public Comment(String writer_id, String written_date, String content, int content_num) {
+		this.writer_id = writer_id;
+		this.written_date = written_date;
+		this.content = content;
+		this.content_num = content_num;
 	}
 
+	public String getWriter_id() {
+		return writer_id;
+	}
+	public void setWriter_id(String writer_id) {
+		this.writer_id = writer_id;
+	}
+	public String getWritten_date() {
+		return written_date;
+	}
+	public void setWritten_date(String written_date) {
+		this.written_date = written_date;
+	}
+	public String getContent() {
+		return content;
+	}
+	public void setContent(String content) {
+		this.content = content;
+	}
+	public int getContent_num() {
+		return content_num;
+	}
+	public void setContent_num(int content_num) {
+		this.content_num = content_num;
+	}
 	@Override
 	public String toString() {
-		return "Comment [num=" + num + ", comment_id=" + comment_id + ", comment_content=" + comment_content
-				+ ", comment_date=" + comment_date + "]";
+		return "Comment [writer_id=" + writer_id + ", written_date=" + written_date + ", content=" + content
+				+ ", content_num=" + content_num + "]";
 	}
-	public int getNum() {
-		return num;
-	}
-	public void setNum(int num) {
-		this.num = num;
-	}
-	public String getComment_id() {
-		return comment_id;
-	}
-	public void setComment_id(String comment_id) {
-		this.comment_id = comment_id;
-	}
-	public String getComment_content() {
-		return comment_content;
-	}
-	public void setComment_content(String comment_content) {
-		this.comment_content = comment_content;
-	}
-	public String getComment_date() {
-		return comment_date;
-	}
-	public void setComment_date(String comment_date) {
-		this.comment_date = comment_date;
-	}
-
+	
 }

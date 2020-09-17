@@ -54,10 +54,14 @@ public class CommunityController {
 	// detail
 	@RequestMapping("/Community_detail.do")
 	public ModelAndView community_detail(HttpServletRequest request) {
-		String board = request.getParameter("list");
-		int num1 = Integer.parseInt(request.getParameter("num"));
+		int num = Integer.parseInt(request.getParameter("num"));
+		dao.view(num);
+		CommunityDto dto = dao.detail(num);
+		int boardnum = dto.getBoardnum();
+		mv.addObject("board", dao.one_board(boardnum));
 		mv.addObject("dto", dto);
-		mv.addObject("board", board);
+		mv.addObject("heart", dao.detail_heart(num));	
+		mv.addObject("comment", dao.detail_comments(num));
 		mv.setViewName("community/C_detail.jsp");
 		return mv;
 	}

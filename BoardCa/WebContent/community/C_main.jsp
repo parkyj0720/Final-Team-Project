@@ -66,7 +66,71 @@
 					for(int i = 0; i<boardList.size(); i+=2){
 						String listname = "list"+(i+1);
 						ArrayList<CommunityDto> list = (ArrayList<CommunityDto>)request.getAttribute(listname);
+						BoardList blist = boardList.get(i); 
+						int nel = 7 - list.size();
+					%>
+						<div class="card">
+							<div class="header" align="center">
+								<a
+									href="${pageContext.request.contextPath}/Community_list.do?list=<%=i+1%>"><h2
+										id="listname1"><%=blist.getBoard_name() %></h2></a>
+							</div>
+							<div class="body" style="height: 30em;">
+								<table
+									class="table-hover product_item_list c_table theme-color mb-0"
+									style="height: 100%; width: 100%">
+									<%
+										if (list.size()==0) {
+											%>
+											<div align="center" style="margin-top: 14em;">
+												아직 게시글이 없습니다.
+											</div>
+											<%
+										}else{
+										for (int j = 0; j < list.size(); j++) {
+											CommunityDto dto = list.get(j);
+											String title = dto.getTitle();
+											int endidx = title.length();
+											if (endidx > 20) {
+										title = title.substring(0, 20);
+										title += "...";
+											}
+									%>
+									<tr class="list" height="14.2%" width="100%" style="box-sizing: content-box;">
+										<td width="10%" height="auto" align="center"
+											style="white-space: normal;"><%=dto.getNum()%></td>
+										<td width="10%" height="auto" align="center"
+											style="white-space: normal;"><%=dto.getWriter_id()%></td>
+										<td width="50%" height="auto" align="center"
+											style="white-space: normal;"><%=title%></td>
+										<td width="10%" height="auto" align="center"
+											style="white-space: normal;"><%=dto.getWritten_date()%></td>
+										<td width="10%" height="auto" align="center"
+											style="white-space: normal;"><%=dto.getViews()%></td>
+									</tr>
+									<%
+										}
+										for(int j = 0; j<nel; j++){%>
+											<tr>
+											</tr>
+											<%
+										}
+									}
+									%>
+								</table>
+							</div>
+						</div>
+						<%
+						}
+						%>
+					</div>
+					<div class="col-lg-6" style="float: right;">
+					<%
+					for(int i = 1; i<boardList.size(); i+=2){
+						String listname = "list"+(i+1);
+						ArrayList<CommunityDto> list = (ArrayList<CommunityDto>)request.getAttribute(listname);
 						BoardList blist = boardList.get(i);
+						int nel = 7 - list.size();
 					%>
 						<div class="card">
 							<div class="header" align="center">
@@ -95,64 +159,7 @@
 										title += "...";
 											}
 									%>
-									<tr class="list" height="10%" width="100%" style="box-sizing: content-box;">
-										<td width="10%" height="auto" align="center"
-											style="white-space: normal;"><%=dto.getNum()%></td>
-										<td width="10%" height="auto" align="center"
-											style="white-space: normal;"><%=dto.getWriter_id()%></td>
-										<td width="50%" height="auto" align="center"
-											style="white-space: normal;"><%=title%></td>
-										<td width="10%" height="auto" align="center"
-											style="white-space: normal;"><%=dto.getWritten_date()%></td>
-										<td width="10%" height="auto" align="center"
-											style="white-space: normal;"><%=dto.getViews()%></td>
-									</tr>
-									<%
-										}
-									}
-									%>
-								</table>
-							</div>
-						</div>
-						<%
-						}
-						%>
-					</div>
-					<div class="col-lg-6" style="float: right;">
-					<%
-					for(int i = 1; i<boardList.size(); i+=2){
-						String listname = "list"+(i+1);
-						ArrayList<CommunityDto> list = (ArrayList<CommunityDto>)request.getAttribute(listname);
-						BoardList blist = boardList.get(i);
-					%>
-						<div class="card">
-							<div class="header" align="center">
-								<a
-									href="${pageContext.request.contextPath}/Community_list.do?list=<%=i+1%>"><h2
-										id="listname1"><%=blist.getBoard_name() %></h2></a>
-							</div>
-							<div class="body">
-								<table
-									class="table-hover product_item_list c_table theme-color mb-0"
-									style="height: 100%; width: 100%">
-									<%
-										if (list.size()==0) {
-											%>
-											<div>
-												아직 게시글이 없습니다.
-											</div>
-											<%
-										}else{
-										for (int j = 0; j < list.size(); j++) {
-											CommunityDto dto = list.get(j);
-											String title = dto.getTitle();
-											int endidx = title.length();
-											if (endidx > 20) {
-										title = title.substring(0, 20);
-										title += "...";
-											}
-									%>
-									<tr class="list" width="100%" style="box-sizing: content-box;">
+									<tr class="list" width="14.2%" style="box-sizing: content-box;">
 										<td width="10%" height="auto" align="center"
 											style="white-space: normal;"><%=dto.getNum()%></td>
 										<td width="10%" height="auto" align="center"
@@ -166,6 +173,11 @@
 
 									</tr>
 									<%
+										}
+										for(int j = 0; j<nel; j++){%>
+											<tr>
+											</tr>
+											<%
 										}
 									}
 									%>
@@ -192,8 +204,8 @@
 								var viewname = $('#listname1').text();
 								$(location).attr(
 										'href',
-										'${pageContext.request.contextPath}/Community_detail.do?list='
-												+ viewname + '&num=' + num);
+										'${pageContext.request.contextPath}/Community_detail.do?num='
+												+ num);
 
 							});
 

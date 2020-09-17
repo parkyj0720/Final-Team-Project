@@ -1,3 +1,5 @@
+<%@page import="CommunityModel.BoardList"%>
+<%@page import="CommunityModel.Heart"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="CommunityModel.Comment"%>
 <%@page import="CommunityModel.CommunityDto"%>
@@ -6,10 +8,31 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script src="http://code.jquery.com/jquery.js"></script>
+<style>
+.heart {
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  left: 10%;
+  top: 60%;
+  transform: translate(-50%, -50%);
+  background: url(http://imagizer.imageshack.com/img923/4545/XdJDuY.png) no-repeat; 
+  background-size: 1000px 1000px'
+  cursor: pointer;
+  
+}
+.heart-blast {
+  background-position: -2800px 0;
+  transition: background 1s steps(28);
+}
+
+
+</style>
 <meta charset="UTF-8">
 <title>BoardCa</title>
 <!-- Favicon-->
-<link rel="icon" href="favicon.ico" type="image/x-icon">
+<!-- <link rel="icon" href="favicon.ico" type="image/x-icon"> -
 <!-- Custom Css -->
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/stylesheet/assets/plugins/bootstrap/css/bootstrap.min.css"
@@ -20,23 +43,26 @@
 </head>
 <body>
 	<%
-	ArrayList<Comment> comment = new ArrayList<Comment>();
-		CommunityDto dto = (CommunityDto) request.getAttribute("dto");
-	if (dto.getComment_num() != 0) {
-		comment = (ArrayList<Comment>) request.getAttribute("comment");
+	CommunityDto dto = (CommunityDto)request.getAttribute("dto");
+	ArrayList<Heart> heart = (ArrayList<Heart>)request.getAttribute("heart");
+	ArrayList<Comment> comment = (ArrayList<Comment>)request.getAttribute("comment");
+	BoardList viewname = (BoardList)request.getAttribute("board");
+	String community_title = viewname.getBoard_name();
+	int heart_ssize = heart.size();
+	String heart_size;
+	if(heart_ssize > 1000){
+		if(heart_ssize > 100000){
+			heart_size = (heart_ssize / 10000) + "." + ((heart_ssize % 10000 + "").substring(0,2)+"m");
+		}
+		else{
+			heart_size = (heart_ssize / 1000) + "." + ((heart_ssize % 1000 + "").substring(0,2)+"k");
+		}
+	}else{
+		heart_size = heart_ssize+"";
 	}
-	String boardname = (String) request.getAttribute("board");
-	String viewname = "";
-	if ("숙취게시판".equals(boardname)) {
-		viewname = "/Community_list_sook.do";
-	} else if ("정보공유".equals(boardname)) {
-		viewname = "/Community_list_jeong.do";
-	} else if ("QnA".equals(boardname)) {
-		viewname = "/Community_list_Q.do";
-	} else if ("신고하기".equals(boardname)) {
-		viewname = "/Community_list_shin.do";
-	}
+	
 	%>
+	
 	<section class="content"
 		style="margin-left: auto; margin-right: auto; padding-left: 10%; padding-right: 10%;">
 		<div class="body_scroll" style="max-width: none;">
@@ -64,8 +90,8 @@
 								class="zmdi zmdi-home"></i> BoardCa</a></li>
 						<li class="breadcrumb-item"><a
 							href="${pageContext.request.contextPath}/Community_main.do">Community</a></li>
-						<li class="breadcrumb-item active"><a
-							href="${pageContext.request.contextPath}<%=viewname %>"><%=boardname%></a></li>
+						<li id="listname" class="breadcrumb-item active"><a
+							href="${pageContext.request.contextPath}/Community_list.do?list=<%=viewname.getNum()%>"><%=community_title%></a></li>
 					</ul>
 					<button class="btn btn-primary btn-icon mobile_menu" type="button">
 						<i class="zmdi zmdi-sort-amount-desc"></i>
@@ -74,7 +100,7 @@
 				<div class="col-lg-5 col-md-6 col-sm-12"></div>
 			</div>
 			<div class="col-lg-8 col-md-12" style="max-width: none;">
-				<div class="card">
+				<div class="card" style="background">
 					<div class="blogitem mb-5">
 						<div class="blogitem-content">
 							<h5>
@@ -90,8 +116,8 @@
 				<div class="card">
 					<div class="header">
 						<h2>
-							<i class="zmdi zmdi-comments"></i><strong>댓글</strong> (<%=dto.getComment_num()%>)
-						</h2>
+							<i class="zmdi zmdi-comments"></i><strong>댓글</strong> (<%=comment.size()%>)
+						</h2><div class="heart"><div style="margin-top: 40%; text-align: center; margin-left:70%; position: absolute;"><%=heart_size %></div></div>
 					</div>
 					<div class="card">
 						<div class="header">
@@ -100,10 +126,10 @@
 							<form class="row comment-form mt-2">
 								<div class="col-sm-12">
 									<div class="form-group">
-										<textarea rows="4" class="form-control no-resize"
+										<textarea id="comment_area" rows="4" class="form-control no-resize"
 											placeholder="Please type what you want..."></textarea>
 									</div>
-									<button type="submit" class="btn btn btn-primary"
+									<button id="comment_submit" type="submit" class="btn btn btn-primary"
 										style="float: right;">SUBMIT</button>
 								</div>
 							</form>
@@ -116,9 +142,9 @@
 							 	Comment Comm = comment.get(i);
 							 %>
 								<div class="text-box">
-									<h5><%=Comm.getComment_id() %></h5>
-									<span class="comment-date"><%=Comm.getComment_date() %></span>
-									<p><%=Comm.getComment_content() %></p>
+									<h5><%=Comm.getWriter_id() %></h5>
+									<span class="comment-date"><%=Comm.getWritten_date() %></span>
+									<p><%=Comm.getContent() %></p>
 								</div>
 								<%} %>
 							</li>
@@ -128,5 +154,23 @@
 			</div>
 		</div>
 	</section>
+<script>
+$(function() {
+ 
+  $(".heart").on("click", function() {
+    $(this).toggleClass("heart-blast");
+    console.log("y");
+  });
+  
+  $(".heart-blast").on("click", function() {
+    $(this).toggleClass("heart");
+    console.log("n");
+  });
+  $(".comment_submit").on("click", function() {
+	
+})
+}); 
+ 
+</script>
 </body>
 </html>
