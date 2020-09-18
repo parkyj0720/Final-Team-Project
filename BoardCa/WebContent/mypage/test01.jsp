@@ -1,1045 +1,465 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
-<html class="no-js " lang="en">
+<html>
 <head>
-<meta charset="utf-8">
+<meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=Edge">
 <meta
 	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
 	name="viewport">
 <meta name="description"
 	content="Responsive Bootstrap 4 and web Application ui kit.">
-<title>BoardCa 근처술집검색</title>
+
+<title>:: BoardCa :: Sign Up</title>
+<!-- Favicon-->
 <link rel="icon" href="favicon.ico" type="image/x-icon">
-<!-- Favicon -->
+<!-- Custom Css -->
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/stylesheet/assets/plugins/bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/stylesheet/assets/css/style.min.css">
-<style>
-<%--map css --%>.map_wrap, .map_wrap * {
+
+
+<style type="text/css">
+.container {
+	text-align: center;
+}
+
+.checkBtn {
 	margin: 0;
-	padding: 0;
-	font-family: 'Malgun Gothic', dotum, '돋움', sans-serif;
-	font-size: 12px;
 }
 
-.map_wrap a, .map_wrap a:hover, .map_wrap a:active {
-	color: #000;
-	text-decoration: none;
+.center {
+	margin: auto;
 }
 
-.map_wrap {
-	position: relative;
-	width: 100%;
-	height: 969px;
-}
-
-#menu_wrap {
-	position: absolute;
-	top: -10px;
-	left: -10px;
-	bottom: 0;
-	width: 350px;
-	height: 969px;
-	margin: 10px 0 30px 10px;
-	padding: 5px;
-	overflow-y: auto;
-	background: rgba(255, 255, 255, 1);
-	z-index: 1;
-	font-size: 12px;
-	border-radius: 5px;
-}
-
-.bg_white {
-	background: #fff;
-}
-
-#menu_wrap hr {
-	display: block;
-	height: 1px;
-	border: 0;
-	border-top: 2px solid #5F5F5F;
-	margin: 3px 0;
-}
-
-#menu_wrap .option {
-	text-align: center;
-}
-
-#menu_wrap .option p {
-	margin: 10px 0;
-}
-
-#menu_wrap .option button {
-	margin-left: 5px;
-}
-
-#menu_wrap .option input {
-	width: 300px;
-	height: 40px;
-	position: absolute;
-	top: 70px;
-	left: 25px;
-}
-
-#placesList li {
-	list-style: none;
-}
-
-#placesList .item {
-	position: relative;
-	border-bottom: 1px solid #888;
-	overflow: hidden;
-	cursor: pointer;
-	min-height: 65px;
-}
-
-#placesList .item span {
-	display: block;
-	margin-top: 4px;
-}
-
-#placesList .item h5, #placesList .item .info {
-	text-overflow: ellipsis;
-	overflow: hidden;
-	white-space: nowrap;
-}
-
-#placesList .item .info {
-	padding: 10px 0 10px 55px;
-}
-
-#placesList .info .gray {
-	color: #8a8a8a;
-}
-
-#placesList .info .jibun {
-	padding-left: 26px;
-	background:
-		url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/places_jibun.png)
-		no-repeat;
-}
-
-#placesList .info .tel {
-	color: #009900;
-}
-
-#placesList .item .markerbg {
-	float: left;
-	position: absolute;
-	width: 36px;
-	height: 37px;
-	margin: 10px 0 0 10px;
-	background:
-		url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_number_blue.png)
-		no-repeat;
-}
-
-#placesList .item .marker_1 {
-	background-position: 0 -10px;
-}
-
-#placesList .item .marker_2 {
-	background-position: 0 -56px;
-}
-
-#placesList .item .marker_3 {
-	background-position: 0 -102px
-}
-
-#placesList .item .marker_4 {
-	background-position: 0 -148px;
-}
-
-#placesList .item .marker_5 {
-	background-position: 0 -194px;
-}
-
-#placesList .item .marker_6 {
-	background-position: 0 -240px;
-}
-
-#placesList .item .marker_7 {
-	background-position: 0 -286px;
-}
-
-#placesList .item .marker_8 {
-	background-position: 0 -332px;
-}
-
-#placesList .item .marker_9 {
-	background-position: 0 -378px;
-}
-
-#placesList .item .marker_10 {
-	background-position: 0 -423px;
-}
-
-#placesList .item .marker_11 {
-	background-position: 0 -470px;
-}
-
-#placesList .item .marker_12 {
-	background-position: 0 -516px;
-}
-
-#placesList .item .marker_13 {
-	background-position: 0 -562px;
-}
-
-#placesList .item .marker_14 {
-	background-position: 0 -608px;
-}
-
-#placesList .item .marker_15 {
-	background-position: 0 -654px;
-}
-
-#pagination {
-	margin: 10px auto;
-	text-align: center;
-}
-
-#pagination a {
-	display: inline-block;
-	margin-right: 10px;
-}
-
-#pagination .on {
-	font-weight: bold;
-	cursor: default;
-	color: #777;
-}
-
-
-
-#hide {
-	width: 20px;
-	height: 50px;
-	text-align: center;
-	padding-top: 15px;
-	display: relative;
-	position: absolute;
-	left: 350px;
-	top: 450px;
-	background: rgba(255, 255, 255, 1);
-	z-index: 1;
-	font-size: 12px;
-	border-radius: 2px;
-}
-
-#show {
-	width: 20px;
-	height: 50px;
-	text-align: center;
-	padding-top: 15px;
-	display: relative;
-	position: absolute;
-	left: 0px;
-	top: 450px;
-	background: rgba(255, 255, 255, 1);
-	z-index: 1;
-	font-size: 12px;
-	border-radius: 2px;
-}
-
-.h_white {
-	background: rgba(255, 255, 255, 0.7);
-}
-
-.s_white {
-	background: rgba(255, 255, 255, 0.7);
-}
-
-#submit {
-	background: none;
-	width: 45px;
-	height: 37px;
-	position: absolute;
-	left: 245px;
-	top: 24px;
-}
-
-#keyword {
-	border-color: #0064FF;
-	border-radius: 2px;
-	font-size: 15px;
-}
-
-#BoardCa_title {
-	font-weight: bold;
-	font-size: 20px;
-	position: absolute;
-	top: 20px;
-	left: 20px;
-	color: white;
-}
-
-#map_title {
-	width: 400px;
-	height: 150px;
-	background-color: #0099FF;
-	position:
-}
-
-<%--커스텀 오버레이 --%>.wrap {
-	position: absolute;
-	left: 0;
-	bottom: 40px;
-	width: 288px;
-	height: 132px;
-	margin-left: -144px;
-	text-align: left;
-	overflow: hidden;
-	font-size: 12px;
-	font-family: 'Malgun Gothic', dotum, '돋움', sans-serif;
+.inputForm {
+	width: 70%;
+	height: auto;
+	padding: .375rem .75rem;
+	margin-right: 5%;
+	font-weight: 400;
 	line-height: 1.5;
+	color: #495057;
+	border: 1px solid #ced4da;
+	border-radius: .25rem;
+	transition: border-color .15s;
+	font-size: 14px;
+	background: rgba(0, 0, 0, 0);
 }
 
-.wrap * {
+.modal-body {
+	margin: 7%;
 	padding: 0;
-	margin: 0;
+	text-align: left;
 }
 
-.wrap .information {
-	width: 286px;
-	height: 120px;
-	border-radius: 5px;
-	border-bottom: 2px solid #ccc;
-	border-right: 1px solid #ccc;
-	overflow: hidden;
-	background: #fff;
-}
-
-.wrap .information:nth-child(1) {
-	border: 0;
-	box-shadow: 0px 1px 2px #888;
-}
-
-.information .title {
-	padding: 5px 0 0 10px;
-	height: 30px;
-	background: #eee;
-	border-bottom: 1px solid #ddd;
-	font-size: 18px;
-	font-weight: bold;
-}
-
-.information .body {
-	position: relative;
-	overflow: hidden;
-}
-
-.information .desc {
-	position: relative;
-	margin: 13px 0 0 20px;
-	height: 75px;
-}
-
-.desc .ellipsis {
-	overflow: hidden;
-	text-overflow: ellipsis;
-	white-space: nowrap;
-}
-
-.desc .jibun {
-	font-size: 11px;
-	color: #888;
-	margin-top: -2px;
-}
-
-.information:after {
-	content: '';
-	position: absolute;
-	margin-left: -12px;
-	left: 50%;
-	bottom: 0;
-	width: 22px;
-	height: 12px;
-	background:
-		url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png')
-}
-
-<%--선 css --%>.dot {
-	overflow: hidden;
-	float: left;
-	width: 12px;
-	height: 12px;
-	background:
-		url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/mini_circle.png');
-}
-
-.dotOverlay {
-	position: relative;
-	bottom: 10px;
-	border-radius: 6px;
-	border: 1px solid #ccc;
-	border-bottom: 2px solid #ddd;
-	float: left;
-	font-size: 12px;
-	padding: 5px;
-	background: #fff;
-}
-
-.dotOverlay:nth-of-type(n) {
-	border: 0;
-	box-shadow: 0px 1px 2px #888;
-}
-
-.number {
-	font-weight: bold;
-	color: #ee6152;
-}
-
-.dotOverlay:after {
-	content: '';
-	position: absolute;
-	margin-left: -6px;
-	left: 50%;
-	bottom: -8px;
-	width: 11px;
-	height: 8px;
-	background:
-		url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white_small.png')
-}
-
-.distanceInfo {
-	position: relative;
-	top: 5px;
-	left: 5px;
-	list-style: none;
-	margin: 0;
-}
-
-.distanceInfo .label {
+label {
 	display: inline-block;
-	width: 50px;
+	margin-bottom: .5rem;
+	margin-top: .5rem;
 }
 
-.distanceInfo:after {
-	content: none;
+select {
+	word-wrap: normal;
+	margin-top: .5rem;
 }
 </style>
+<script src="http://code.jquery.com/jquery.js"></script>
+<script type="text/javascript">
+	/* 비밀번호 일치하는지 확인 하는 함수 */
+	function checkPwd() {
+		$("#checkPwd").show();
 
-<script>
-	window.onload = function() {
-		var h = document.getElementById('hide');
-		var s = document.getElementById('show');
-		var m = document.getElementById('menu_wrap');
+		var pw1 = $("#inputPw").value;
+		var pw2 = $("#inputPwCk").value;
 
-		h.onclick = function() {
-			m.style.display = 'none';
-			h.style.display = 'none';
-		}
-
-		s.onclick = function() {
-			m.style.display = 'block';
-			h.style.display = 'block';
+		if (pw1 != pw2) {
+			document.getElementById("checkPwd").innerHTML = "<font color=red>비밀번호를 확인해주세요.</font>";
+		} else {
+			document.getElementById("checkPwd").innerHTML = "<font color=green>비밀번호가 동일합니다.</font>";
 		}
 	}
+
+	/* ID 중복 체크  */
+	function checkId() {
+		$.ajax({
+			type : "post",
+			url : "/BoardCa/idOverlapCheck.do",
+			data : {
+				id : $("#inputId").val()
+			},
+			success : function test(a) {
+				$("#checkId").html(a);
+			},
+			error : function error() {
+				alert("error");
+			}
+		});
+	}
+
+	function categoryChange(e) {
+
+		var area1 = [ "강남구", "강동구", "강북구", "강서구", "관악구", "광진구", "구로구", "금천구",
+				"노원구", "도봉구", "동대문구", "동작구", "마포구", "서대문구", "서초구", "성동구",
+				"성북구", "송파구", "양천구", "영등포구", "용산구", "은평구", "종로구", "중구", "중랑구" ];
+		var area2 = [ "계양구", "남구", "남동구", "동구", "부평구", "서구", "연수구", "중구",
+				"강화군", "옹진군" ];
+		var area3 = [ "대덕구", "동구", "서구", "유성구", "중구" ];
+		var area4 = [ "광산구", "남구", "동구", "북구", "서구" ];
+		var area5 = [ "남구", "달서구", "동구", "북구", "서구", "수성구", "중구", "달성군" ];
+		var area6 = [ "남구", "동구", "북구", "중구", "울주군" ];
+		var area7 = [ "강서구", "금정구", "남구", "동구", "동래구", "부산진구", "북구", "사상구",
+				"사하구", "서구", "수영구", "연제구", "영도구", "중구", "해운대구", "기장군" ];
+		var area8 = [ "고양시", "과천시", "광명시", "광주시", "구리시", "군포시", "김포시", "남양주시",
+				"동두천시", "부천시", "성남시", "수원시", "시흥시", "안산시", "안성시", "안양시", "양주시",
+				"오산시", "용인시", "의왕시", "의정부시", "이천시", "파주시", "평택시", "포천시", "하남시",
+				"화성시", "가평군", "양평군", "여주군", "연천군" ];
+		var area9 = [ "강릉시", "동해시", "삼척시", "속초시", "원주시", "춘천시", "태백시", "고성군",
+				"양구군", "양양군", "영월군", "인제군", "정선군", "철원군", "평창군", "홍천군", "화천군",
+				"횡성군" ];
+		var area10 = [ "제천시", "청주시", "충주시", "괴산군", "단양군", "보은군", "영동군", "옥천군",
+				"음성군", "증평군", "진천군", "청원군" ];
+		var area11 = [ "계룡시", "공주시", "논산시", "보령시", "서산시", "아산시", "천안시", "금산군",
+				"당진군", "부여군", "서천군", "연기군", "예산군", "청양군", "태안군", "홍성군" ];
+		var area12 = [ "군산시", "김제시", "남원시", "익산시", "전주시", "정읍시", "고창군", "무주군",
+				"부안군", "순창군", "완주군", "임실군", "장수군", "진안군" ];
+		var area13 = [ "광양시", "나주시", "목포시", "순천시", "여수시", "강진군", "고흥군", "곡성군",
+				"구례군", "담양군", "무안군", "보성군", "신안군", "영광군", "영암군", "완도군", "장성군",
+				"장흥군", "진도군", "함평군", "해남군", "화순군" ];
+		var area14 = [ "경산시", "경주시", "구미시", "김천시", "문경시", "상주시", "안동시", "영주시",
+				"영천시", "포항시", "고령군", "군위군", "봉화군", "성주군", "영덕군", "영양군", "예천군",
+				"울릉군", "울진군", "의성군", "청도군", "청송군", "칠곡군" ];
+		var area15 = [ "거제시", "김해시", "마산시", "밀양시", "사천시", "양산시", "진주시", "진해시",
+				"창원시", "통영시", "거창군", "고성군", "남해군", "산청군", "의령군", "창녕군", "하동군",
+				"함안군", "함양군", "합천군" ];
+		var area16 = [ "서귀포시", "제주시", "남제주군", "북제주군" ];
+		var a = [ area1, area2, area3, area4, area5, area6, area7, area8,
+				area9, area10, area11, area12, area13, area14, area15, area16 ];
+		// 시/도 선택 박스 초기화
+
+		var target = document.getElementById("area");
+
+		if (e.value == "area1")
+			var d = area1;
+		else if (e.value == "area2")
+			var d = area2;
+		else if (e.value == "area3")
+			var d = area3;
+		else if (e.value == "area4")
+			var d = area4;
+		else if (e.value == "area5")
+			var d = area5;
+		else if (e.value == "area6")
+			var d = area6;
+		else if (e.value == "area7")
+			var d = area7;
+		else if (e.value == "area8")
+			var d = area8;
+		else if (e.value == "area9")
+			var d = area9;
+		else if (e.value == "area10")
+			var d = area10;
+		else if (e.value == "area11")
+			var d = area11;
+		else if (e.value == "area12")
+			var d = area12;
+		else if (e.value == "area13")
+			var d = area13;
+		else if (e.value == "area14")
+			var d = area14;
+		else if (e.value == "area15")
+			var d = area15;
+		else if (e.value == "area16")
+			var d = area16;
+
+		target.options.length = 0;
+
+		for (x in d) {
+			var opt = document.createElement("option");
+			opt.value = d[x];
+			opt.innerHTML = d[x];
+			target.appendChild(opt);
+		}
+	}
+	$(function() {
+		$("#close").click(function() {
+			alert("작성 취소")
+		})
+	})
+	$(function() {
+		$("#complete").click(function() {
+			alert("작성 완료")
+		})
+	})
 </script>
+
 </head>
 
-<body class="theme-blush ls-closed ls-toggle-menu">
-	<!-- header -->
-	<jsp:include page="/WEB-INF/header.jsp"></jsp:include>
-	<div class="body_scroll">
-		<div class="block-header">
-			<div class="container-fluid">
-				<div class="row clearfix">
-<div class="card"><div class="">
-					<div class="col-md-12">
-						<div class="map_wrap">
-							<div id="map"
-								style="width: 100%; height: 100%; position: relative; overflow: hidden;"></div>
-							<div id="hide" class="h_white">◀</div>
-							<div id="show" class="s_white">▶</div>
-							<div id="menu_wrap" class="bg_white">
-								<div id="map_title">
-									<h1 id="BoardCa_title">BoardCa Map</h1>
-									<div class="option">
-										<div>
-											<form onsubmit="searchPlaces(); return false;">
-												<input type="text" placeholder="키워드를 입력하세요" id="keyword"
-													size="15">
-												<div class="input-group-prepend">
-													<button type="submit" id="submit">검색</button>
+<body class="theme-blush">
+
+	<div class="authentication">
+		<div class="container">
+			<img src="${pageContext.request.contextPath}/imgs/logo1.png"
+				alt="logo" style="width: 50%" />
+			<div class="body">
+				<form id="form_validation" method="POST"
+					action="${pageContext.request.contextPath}/signUpPro.do">
+					<div class="form-group form-float col-sm-6"
+						style="display: inline-block;">
+						<input type="text" class="form-control" placeholder="아이디"
+							value="${inputId}" name="inputId" id="inputId" onblur="checkId()">
+					</div>
+					<div class="form-group form-float col-sm-9" id="checkId"></div>
+
+					<div class="form-group form-float col-sm-6"
+						style="display: inline-flex;">
+						<input type="text" class="form-control" placeholder="비밀번호"
+							style="display: inline-block;" value="" name="inputPw"
+							id="inputPw">
+					</div>
+					<div class="form-group form-float col-sm-6"
+						style="display: inline-flex;">
+						<input type="text" class="form-control" onkeyup="checkPwd()"
+							placeholder="비밀번호 확인" style="display: inline-block;" value=""
+							name="inputPwCk" id="inputPwCk">
+					</div>
+					<div class="form-group form-float col-sm-9" id="checkPwd"
+						style="display: none;"></div>
+
+					<div class="form-group form-float col-sm-6"
+						style="display: inline-flex;">
+						<input type="text" class="form-control" placeholder="이름"
+							style="display: inline-block;" value="" name="inputName">
+					</div>
+					<div class="form-group form-float col-sm-6"
+						style="display: inline-flex;">
+						<input type="text" class="form-control" placeholder="이메일"
+							style="display: inline-block;" value="" name="inputEmail">
+					</div>
+					<div class="form-group form-float col-sm-6"
+						style="display: inline-flex;">
+						<input type="text" class="form-control" placeholder="핸드폰번호"
+							style="display: inline-block;" value="" name="inputPhone">
+					</div>
+
+					<!-- 성별 체크 라디오 버튼  -->
+					<div class="form-group form-float col-sm-6 center"
+						style="text-align: left;">
+						<div class="form-group">
+							<div class="radio inlineblock m-r-20" style="margin: 0;">
+								<input type="radio" name="gender" id="male" class="with-gap"
+									value="option1"> <label for="male">남성</label>
+							</div>
+							<div class="radio inlineblock" style="margin: 0;">
+								<input type="radio" name="gender" id="Female" class="with-gap"
+									value="option2" checked=""> <label for="Female">여성</label>
+							</div>
+						</div>
+					</div>
+					<div class="form-group form-float col-sm-6"
+						style="display: inline-block;">
+						이메일 : <input type="text" name="str_email01" id="str_email01"
+							class="form-control"> <input type="text"
+							name="str_email02" id="str_email02" class="form-control" disabled
+							value="naver.com"> <select class="form-control"
+							style="margin-right: 10px" name="selectEmail" id="selectEmail">
+							<option value="1">직접입력</option>
+							<option value="naver.com" selected>naver.com</option>
+							<option value="hanmail.net">hanmail.net</option>
+							<option value="hotmail.com">hotmail.com</option>
+							<option value="nate.com">nate.com</option>
+							<option value="yahoo.co.kr">yahoo.co.kr</option>
+							<option value="empas.com">empas.com</option>
+							<option value="dreamwiz.com">dreamwiz.com</option>
+							<option value="freechal.com">freechal.com</option>
+							<option value="lycos.co.kr">lycos.co.kr</option>
+							<option value="korea.com">korea.com</option>
+							<option value="gmail.com">gmail.com</option>
+							<option value="hanmir.com">hanmir.com</option>
+							<option value="paran.com">paran.com</option>
+						</select>
+						<script type="text/javascript"
+							src="http://code.jquery.com/jquery-latest.min.js"></script>
+						<script type="text/javascript">
+							$('#selectEmail')
+									.change(
+											function() {
+												$(
+														"#selectEmail option:selected")
+														.each(
+																function() {
+																	if ($(this)
+																			.val() == '1') {
+																		$(
+																				"#str_email02")
+																				.val(
+																						'');
+																		$(
+																				"#str_email02")
+																				.attr(
+																						"disabled",
+																						false);
+																	} else {
+																		$(
+																				"#str_email02")
+																				.val(
+																						$(
+																								this)
+																								.text());
+																		$(
+																				"#str_email02")
+																				.attr(
+																						"disabled",
+																						true);
+																	}
+																});
+											});
+						</script>
+					</div>
+
+
+					<div class="checkbox">
+						<input id="remember_me" type="checkbox"> <label
+							for="remember_me">I read and agree to the <a
+							href="javascript:void(0);">terms of usage</a></label>
+					</div>
+
+					<div class="col-sm-6 center" style="padding: 0;">
+						<button class="btn btn-raised btn-primary waves-effect"
+							type="button" style="width: inherit;" data-toggle="modal"
+							data-target=".bd-example-modal-lg">회원가입</button>
+						<div class="modal fade bd-example-modal-lg " tabindex="-1"
+							role="dialog" aria-labelledby="myLargeModalLabel"
+							data-backdrop="static" aria-hidden="true">
+							<div class="modal-dialog">
+								<div class="modal-content">
+									<div class="modal-header">
+										<h3 class="modal-title" id="exampleModalLabel">설문조사</h3>
+										<button type="button" class="close" data-dismiss="modal"
+											aria-label="Close">
+											<span aria-hidden="true">x</span>
+										</button>
+									</div>
+									<div class="modal-body">설문조사를 하시겠습니까?</div>
+									<div class="modal-footer">
+										<button type="submit" class="btn btn-secondary">NO</button>
+										<button type="button" class="btn btn-primary"
+											data-toggle="modal" data-target="#exampleModal">YES</button>
+										<!-- Modal -->
+										<div class="modal fade" id="exampleModal" tabindex="-1"
+											role="dialog" aria-labelledby="exampleModalLabel"
+											aria-hidden="true">
+											<div class="modal-dialog">
+												<div class="modal-content">
+													<div class="modal-header">
+														<h3 class="modal-title" id="exampleModalLabel">설문조사</h3>
+														<button type="button" class="close" data-dismiss="modal"
+															aria-label="Close">
+															<span aria-hidden="true">x</span>
+														</button>
+													</div>
+													<div class="modal-body">
+														<label>주종</label> <select class="form-control">
+															<option>소주</option>
+															<option>맥주</option>
+															<option>양주</option>
+															<option>막걸리</option>
+															<option>와인</option>
+														</select> <label>관심지역 선택</label> <select
+															onchange="categoryChange(this)" class="form-control">
+															<option>광역시·도 선택</option>
+															<option value="area1">서울특별시</option>
+															<option value="area2">인천광역시</option>
+															<option value="area3">대전광역시</option>
+															<option value="area4">광주광역시</option>
+															<option value="area5">대구광역시</option>
+															<option value="area6">울산광역시</option>
+															<option value="area7">부산광역시</option>
+															<option value="area8">경기도</option>
+															<option value="area9">강원도</option>
+															<option value="area10">충청북도</option>
+															<option value="area11">충청남도</option>
+															<option value="area12">전라북도</option>
+															<option value="area13">전라남도</option>
+															<option value="area14">경상북도</option>
+															<option value="area15">경상남도</option>
+															<option value="area16">제주도</option>
+														</select> <select id="area" class="form-control">
+															<option>시·군·구 선택</option>
+														</select>
+														<div>
+															<label>가입 경로</label>
+															<div>
+																<label class="radio-inline"> <input type="radio"
+																	name="inlineRadioOptions" id="inlineRadio1"
+																	value="option1"> 인터넷
+																</label> <label class="radio-inline"> <input
+																	type="radio" name="inlineRadioOptions"
+																	id="inlineRadio2" value="option2"> 지인소개
+																</label> <label class="radio-inline"> <input
+																	type="radio" name="inlineRadioOptions"
+																	id="inlineRadio3" value="option3"> 이벤트
+																</label>
+															</div>
+														</div>
+														<div>
+															<label>가입 목적</label>
+															<div>
+																<label class="checkbox-inline"> <input
+																	type="checkbox" id="inlineCheckbox1" value="option1">
+																	술 게임
+																</label> <label class="checkbox-inline"> <input
+																	type="checkbox" id="inlineCheckbox2" value="option2">
+																	술 안주 레시피
+																</label> <label class="checkbox-inline"> <input
+																	type="checkbox" id="inlineCheckbox3" value="option3">
+																	친목도모
+																</label>
+															</div>
+														</div>
+													</div>
+													<div class="modal-footer">
+														<button type="submit" class="btn btn-secondary" id="close">Close</button>
+														<button type="submit" class="btn btn-primary"
+															id="complete">OK</button>
+													</div>
 												</div>
-											</form>
+											</div>
 										</div>
 									</div>
 								</div>
-								<hr>
-								<ul id="placesList"></ul>
-								<div id="pagination"></div>
 							</div>
-							<script botId="B1yjvo"
-								src="https://www.closer.ai/js/webchat.min.js">
-								
-							</script>
+						</div>
+						<div class="col-sm-6 center" style="padding: 0">
+							<a class="link"
+								href="${pageContext.request.contextPath}/signIn.do">이미
+								회원이신가요?</a>
 						</div>
 					</div>
-				</div>
-				</div>
-				</div>
+				</form>
 			</div>
 		</div>
+
 	</div>
 
 
-
-	<script type="text/javascript"
-		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=7be0492e9a9dc8262e242b9d862de462&libraries=services"></script>
-	<script>
-		// 마커를 담을 배열입니다
-		var markers = [];
-
-		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-		mapOption = {
-			center : new kakao.maps.LatLng(37.566826, 126.9786567), // 지도의 중심좌표
-			level : 3
-		// 지도의 확대 레벨
-		};
-
-		// 지도를 생성합니다    
-		var map = new kakao.maps.Map(mapContainer, mapOption);
-
-		// 장소 검색 객체를 생성합니다
-		var ps = new kakao.maps.services.Places();
-
-		// 검색 결과 목록이나 마커를 클릭했을 때 장소명을 표출할 인포윈도우를 생성합니다
-		var infowindow = new kakao.maps.InfoWindow({
-			zIndex : 1
-		});
-
-		// 키워드로 장소를 검색합니다
-		searchPlaces();
-
-		// 키워드 검색을 요청하는 함수입니다
-		function searchPlaces() {
-
-			var keyword = document.getElementById('keyword').value;
-
-			if (!keyword.replace(/^\s+|\s+$/g, '')) {
-				//alert('키워드를 입력해주세요!');
-				return false;
-			}
-
-			// 장소검색 객체를 통해 키워드로 장소검색을 요청합니다
-			ps.keywordSearch(keyword, placesSearchCB);
-		}
-
-		// 장소검색이 완료됐을 때 호출되는 콜백함수 입니다
-		function placesSearchCB(data, status, pagination) {
-			if (status === kakao.maps.services.Status.OK) {
-
-				// 정상적으로 검색이 완료됐으면
-				// 검색 목록과 마커를 표출합니다
-				displayPlaces(data);
-
-				// 페이지 번호를 표출합니다
-				displayPagination(pagination);
-
-			} else if (status === kakao.maps.services.Status.ZERO_RESULT) {
-
-				alert('검색 결과가 존재하지 않습니다.');
-				return;
-
-			} else if (status === kakao.maps.services.Status.ERROR) {
-
-				alert('검색 결과 중 오류가 발생했습니다.');
-				return;
-
-			}
-		}
-
-		// 검색 결과 목록과 마커를 표출하는 함수입니다
-		function displayPlaces(places) {
-
-			var listEl = document.getElementById('placesList'), menuEl = document
-					.getElementById('menu_wrap'), fragment = document
-					.createDocumentFragment(), bounds = new kakao.maps.LatLngBounds(), listStr = '';
-
-			// 검색 결과 목록에 추가된 항목들을 제거합니다
-			removeAllChildNods(listEl);
-
-			// 지도에 표시되고 있는 마커를 제거합니다
-			removeMarker();
-
-			for (var i = 0; i < places.length; i++) {
-
-				// 마커를 생성하고 지도에 표시합니다
-				var placePosition = new kakao.maps.LatLng(places[i].y,
-						places[i].x), marker = addMarker(placePosition, i), itemEl = getListItem(
-						i, places[i]); // 검색 결과 항목 Element를 생성합니다
-
-				var CustomOverlay = new kakao.maps.CustomOverlay({
-					position : marker.getPosition()
-				});
-
-				content = '<div class="wrap">' + '<div class="information">'
-						+ '<div class="title">' + places[i].place_name
-						//+ '<div class="close" onclick="closeOverlay()" title="닫기"></div>'
-						+ '</div>' + '<div class="body">'
-						+ '<div class="desc">' + '<div class="ellipsis">'
-						+ places[i].road_address_name + '</div>'
-						+ '<div class="jibun ellipsis">'
-						+ places[i].address_name + '</div>'
-						+ '<div class="tell">' + places[i].phone + '</div>'
-						+ '</div>' + '</div>' + '</div>' + '</div>';
-
-				marker.content = content;
-
-				// 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해
-				// LatLngBounds 객체에 좌표를 추가합니다
-				bounds.extend(placePosition);
-
-				// 마커와 검색결과 항목에 mouseover 했을때
-				// 해당 장소에 인포윈도우에 장소명을 표시합니다
-				// mouseout 했을 때는 인포윈도우를 닫습니다
-				(function(marker, title) {
-					/* kakao.maps.event.addListener(marker, 'mouseover', function() {
-					    displayInfowindow(marker, title);
-					});
-
-					kakao.maps.event.addListener(marker, 'mouseout', function() {
-					    infowindow.close();
-					}); */
-
-					//마커를 클릭 했을 때 커스텀 오버레이를 표시합니다
-					kakao.maps.event.addListener(marker, 'click', function() {
-						CustomOverlay.setPosition(marker.getPosition());
-						CustomOverlay.setContent(marker.content);
-						CustomOverlay.setMap(map);
-					});
-
-					//마커를 마우스아웃 했을 때 커스텀 오버레이 표시를 없앱니다
-					kakao.maps.event.addListener(marker, 'mouseout',
-							function() {
-								CustomOverlay.setMap(null);
-							});
-
-					itemEl.onclick = function() {
-						// itemEl 목록 클릭시 해당 마커의 위치를 지도의 중심으로 이동시킨다 
-						map.setCenter(marker.getPosition());
-					};
-
-					itemEl.onmouseover = function() {
-						displayInfowindow(marker, title);
-					};
-
-					itemEl.onmouseout = function() {
-						infowindow.close();
-					};
-				})(marker, places[i].place_name);
-
-				fragment.appendChild(itemEl);
-			}
-
-			// 검색결과 항목들을 검색결과 목록 Elemnet에 추가합니다
-			listEl.appendChild(fragment);
-			menuEl.scrollTop = 0;
-
-			// 검색된 장소 위치를 기준으로 지도 범위를 재설정합니다
-			map.setBounds(bounds);
-		}
-
-		// 검색결과 항목을 Element로 반환하는 함수입니다
-		function getListItem(index, places) {
-
-			var el = document.createElement('li'), itemStr = '<span class="markerbg marker_'
-					+ (index + 1)
-					+ '"></span>'
-					+ '<div class="info">'
-					+ '   <h5>' + places.place_name + '</h5>';
-
-			if (places.road_address_name) {
-				itemStr += '    <span>' + places.road_address_name + '</span>'
-						+ '   <span class="jibun gray">' + places.address_name
-						+ '</span>';
-			} else {
-				itemStr += '    <span>' + places.address_name + '</span>';
-			}
-
-			itemStr += '  <span class="tel">' + places.phone + '</span>'
-					+ '</div>';
-
-			el.innerHTML = itemStr;
-			el.className = 'item';
-
-			return el;
-		}
-
-		// 마커를 생성하고 지도 위에 마커를 표시하는 함수입니다
-		function addMarker(position, idx, title) {
-			var imageSrc = 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_number_blue.png', // 마커 이미지 url, 스프라이트 이미지를 씁니다
-			imageSize = new kakao.maps.Size(36, 37), // 마커 이미지의 크기
-			imgOptions = {
-				spriteSize : new kakao.maps.Size(36, 691), // 스프라이트 이미지의 크기
-				spriteOrigin : new kakao.maps.Point(0, (idx * 46) + 10), // 스프라이트 이미지 중 사용할 영역의 좌상단 좌표
-				offset : new kakao.maps.Point(13, 37)
-			// 마커 좌표에 일치시킬 이미지 내에서의 좌표
-			}, markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize,
-					imgOptions), marker = new kakao.maps.Marker({
-				position : position, // 마커의 위치
-				image : markerImage
-			});
-
-			marker.setMap(map); // 지도 위에 마커를 표출합니다
-			markers.push(marker); // 배열에 생성된 마커를 추가합니다
-
-			return marker;
-		}
-
-		// 지도 위에 표시되고 있는 마커를 모두 제거합니다
-		function removeMarker() {
-			for (var i = 0; i < markers.length; i++) {
-				markers[i].setMap(null);
-			}
-			markers = [];
-		}
-
-		// 검색결과 목록 하단에 페이지번호를 표시는 함수입니다
-		function displayPagination(pagination) {
-			var paginationEl = document.getElementById('pagination'), fragment = document
-					.createDocumentFragment(), i;
-
-			// 기존에 추가된 페이지번호를 삭제합니다
-			while (paginationEl.hasChildNodes()) {
-				paginationEl.removeChild(paginationEl.lastChild);
-			}
-
-			for (i = 1; i <= pagination.last; i++) {
-				var el = document.createElement('a');
-				el.href = "#";
-				el.innerHTML = i;
-
-				if (i === pagination.current) {
-					el.className = 'on';
-				} else {
-					el.onclick = (function(i) {
-						return function() {
-							pagination.gotoPage(i);
-						}
-					})(i);
-				}
-
-				fragment.appendChild(el);
-			}
-			paginationEl.appendChild(fragment);
-		}
-
-		// 검색결과 목록 또는 마커를 클릭했을 때 호출되는 함수입니다
-		// 인포윈도우에 장소명을 표시합니다
-		function displayInfowindow(marker, title) {
-			var content = '<div style="padding:5px;z-index:1;">' + title
-					+ '</div>';
-
-			infowindow.setContent(content);
-			infowindow.open(map, marker);
-		}
-
-		// 검색결과 목록의 자식 Element를 제거하는 함수입니다
-		function removeAllChildNods(el) {
-			while (el.hasChildNodes()) {
-				el.removeChild(el.lastChild);
-			}
-		}
-	<%-- 선 그리기 --%>
-		var drawingFlag = false; // 선이 그려지고 있는 상태를 가지고 있을 변수입니다
-		var moveLine; // 선이 그려지고 있을때 마우스 움직임에 따라 그려질 선 객체 입니다
-		var clickLine // 마우스로 클릭한 좌표로 그려질 선 객체입니다
-		var distanceOverlay; // 선의 거리정보를 표시할 커스텀오버레이 입니다
-		var dots = {}; // 선이 그려지고 있을때 클릭할 때마다 클릭 지점과 거리를 표시하는 커스텀 오버레이 배열입니다.
-
-		//지도에 클릭 이벤트를 등록합니다
-		//지도를 클릭하면 선 그리기가 시작됩니다 그려진 선이 있으면 지우고 다시 그립니다
-		kakao.maps.event.addListener(map, 'click', function(mouseEvent) {
-
-			// 마우스로 클릭한 위치입니다 
-			var clickPosition = mouseEvent.latLng;
-
-			// 지도 클릭이벤트가 발생했는데 선을 그리고있는 상태가 아니면
-			if (!drawingFlag) {
-
-				// 상태를 true로, 선이 그리고있는 상태로 변경합니다
-				drawingFlag = true;
-
-				// 지도 위에 선이 표시되고 있다면 지도에서 제거합니다
-				deleteClickLine();
-
-				// 지도 위에 커스텀오버레이가 표시되고 있다면 지도에서 제거합니다
-				deleteDistnce();
-
-				// 지도 위에 선을 그리기 위해 클릭한 지점과 해당 지점의 거리정보가 표시되고 있다면 지도에서 제거합니다
-				deleteCircleDot();
-
-				// 클릭한 위치를 기준으로 선을 생성하고 지도위에 표시합니다
-				clickLine = new kakao.maps.Polyline({
-					map : map, // 선을 표시할 지도입니다 
-					path : [ clickPosition ], // 선을 구성하는 좌표 배열입니다 클릭한 위치를 넣어줍니다
-					strokeWeight : 3, // 선의 두께입니다 
-					strokeColor : '#db4040', // 선의 색깔입니다
-					strokeOpacity : 1, // 선의 불투명도입니다 0에서 1 사이값이며 0에 가까울수록 투명합니다
-					strokeStyle : 'solid' // 선의 스타일입니다
-				});
-
-				// 선이 그려지고 있을 때 마우스 움직임에 따라 선이 그려질 위치를 표시할 선을 생성합니다
-				moveLine = new kakao.maps.Polyline({
-					strokeWeight : 3, // 선의 두께입니다 
-					strokeColor : '#db4040', // 선의 색깔입니다
-					strokeOpacity : 0.5, // 선의 불투명도입니다 0에서 1 사이값이며 0에 가까울수록 투명합니다
-					strokeStyle : 'solid' // 선의 스타일입니다    
-				});
-
-				// 클릭한 지점에 대한 정보를 지도에 표시합니다
-				displayCircleDot(clickPosition, 0);
-
-			} else { // 선이 그려지고 있는 상태이면
-
-				// 그려지고 있는 선의 좌표 배열을 얻어옵니다
-				var path = clickLine.getPath();
-
-				// 좌표 배열에 클릭한 위치를 추가합니다
-				path.push(clickPosition);
-
-				// 다시 선에 좌표 배열을 설정하여 클릭 위치까지 선을 그리도록 설정합니다
-				clickLine.setPath(path);
-
-				var distance = Math.round(clickLine.getLength());
-				displayCircleDot(clickPosition, distance);
-			}
-		});
-
-		//지도에 마우스무브 이벤트를 등록합니다
-		//선을 그리고있는 상태에서 마우스무브 이벤트가 발생하면 그려질 선의 위치를 동적으로 보여주도록 합니다
-		kakao.maps.event
-				.addListener(
-						map,
-						'mousemove',
-						function(mouseEvent) {
-
-							// 지도 마우스무브 이벤트가 발생했는데 선을 그리고있는 상태이면
-							if (drawingFlag) {
-
-								// 마우스 커서의 현재 위치를 얻어옵니다 
-								var mousePosition = mouseEvent.latLng;
-
-								// 마우스 클릭으로 그려진 선의 좌표 배열을 얻어옵니다
-								var path = clickLine.getPath();
-
-								// 마우스 클릭으로 그려진 마지막 좌표와 마우스 커서 위치의 좌표로 선을 표시합니다
-								var movepath = [ path[path.length - 1],
-										mousePosition ];
-								moveLine.setPath(movepath);
-								moveLine.setMap(map);
-
-								var distance = Math.round(clickLine.getLength()
-										+ moveLine.getLength()), // 선의 총 거리를 계산합니다
-								content = '<div class="dotOverlay distanceInfo">총거리 <span class="number">'
-										+ distance + '</span>m</div>'; // 커스텀오버레이에 추가될 내용입니다
-
-								// 거리정보를 지도에 표시합니다
-								showDistance(content, mousePosition);
-							}
-						});
-
-		//지도에 마우스 오른쪽 클릭 이벤트를 등록합니다
-		//선을 그리고있는 상태에서 마우스 오른쪽 클릭 이벤트가 발생하면 선 그리기를 종료합니다
-		kakao.maps.event.addListener(map, 'rightclick', function(mouseEvent) {
-
-			// 지도 오른쪽 클릭 이벤트가 발생했는데 선을 그리고있는 상태이면
-			if (drawingFlag) {
-
-				// 마우스무브로 그려진 선은 지도에서 제거합니다
-				moveLine.setMap(null);
-				moveLine = null;
-
-				// 마우스 클릭으로 그린 선의 좌표 배열을 얻어옵니다
-				var path = clickLine.getPath();
-
-				// 선을 구성하는 좌표의 개수가 2개 이상이면
-				if (path.length > 1) {
-
-					// 마지막 클릭 지점에 대한 거리 정보 커스텀 오버레이를 지웁니다
-					if (dots[dots.length - 1].distance) {
-						dots[dots.length - 1].distance.setMap(null);
-						dots[dots.length - 1].distance = null;
-					}
-
-					var distance = Math.round(clickLine.getLength()), // 선의 총 거리를 계산합니다
-					content = getTimeHTML(distance); // 커스텀오버레이에 추가될 내용입니다
-
-					// 그려진 선의 거리정보를 지도에 표시합니다
-					showDistance(content, path[path.length - 1]);
-
-				} else {
-
-					// 선을 구성하는 좌표의 개수가 1개 이하이면 
-					// 지도에 표시되고 있는 선과 정보들을 지도에서 제거합니다.
-					deleteClickLine();
-					deleteCircleDot();
-					deleteDistnce();
-
-				}
-
-				// 상태를 false로, 그리지 않고 있는 상태로 변경합니다
-				drawingFlag = false;
-			}
-		});
-
-		//클릭으로 그려진 선을 지도에서 제거하는 함수입니다
-		function deleteClickLine() {
-			if (clickLine) {
-				clickLine.setMap(null);
-				clickLine = null;
-			}
-		}
-
-		//마우스 드래그로 그려지고 있는 선의 총거리 정보를 표시하거
-		//마우스 오른쪽 클릭으로 선 그리가 종료됐을 때 선의 정보를 표시하는 커스텀 오버레이를 생성하고 지도에 표시하는 함수입니다
-		function showDistance(content, position) {
-
-			if (distanceOverlay) { // 커스텀오버레이가 생성된 상태이면
-
-				// 커스텀 오버레이의 위치와 표시할 내용을 설정합니다
-				distanceOverlay.setPosition(position);
-				distanceOverlay.setContent(content);
-
-			} else { // 커스텀 오버레이가 생성되지 않은 상태이면
-
-				// 커스텀 오버레이를 생성하고 지도에 표시합니다
-				distanceOverlay = new kakao.maps.CustomOverlay({
-					map : map, // 커스텀오버레이를 표시할 지도입니다
-					content : content, // 커스텀오버레이에 표시할 내용입니다
-					position : position, // 커스텀오버레이를 표시할 위치입니다.
-					xAnchor : 0,
-					yAnchor : 0,
-					zIndex : 3
-				});
-			}
-		}
-
-		//그려지고 있는 선의 총거리 정보와 
-		//선 그리가 종료됐을 때 선의 정보를 표시하는 커스텀 오버레이를 삭제하는 함수입니다
-		function deleteDistnce() {
-			if (distanceOverlay) {
-				distanceOverlay.setMap(null);
-				distanceOverlay = null;
-			}
-		}
-
-		//선이 그려지고 있는 상태일 때 지도를 클릭하면 호출하여 
-		//클릭 지점에 대한 정보 (동그라미와 클릭 지점까지의 총거리)를 표출하는 함수입니다
-		function displayCircleDot(position, distance) {
-
-			// 클릭 지점을 표시할 빨간 동그라미 커스텀오버레이를 생성합니다
-			var circleOverlay = new kakao.maps.CustomOverlay({
-				content : '<span class="dot"></span>',
-				position : position,
-				zIndex : 1
-			});
-
-			// 지도에 표시합니다
-			circleOverlay.setMap(map);
-
-			if (distance > 0) {
-				// 클릭한 지점까지의 그려진 선의 총 거리를 표시할 커스텀 오버레이를 생성합니다
-				var distanceOverlay = new kakao.maps.CustomOverlay(
-						{
-							content : '<div class="dotOverlay">거리 <span class="number">'
-									+ distance + '</span>m</div>',
-							position : position,
-							yAnchor : 1,
-							zIndex : 2
-
-						});
-
-				// 지도에 표시합니다
-				distanceOverlay.setMap(map);
-			}
-
-			// 배열에 추가합니다
-			dots.push({
-				circle : circleOverlay,
-				distance : distanceOverlay
-			});
-		}
-
-		//클릭 지점에 대한 정보 (동그라미와 클릭 지점까지의 총거리)를 지도에서 모두 제거하는 함수입니다
-		function deleteCircleDot() {
-			var i;
-
-			for (i = 0; i < dots.length; i++) {
-				if (dots[i].circle) {
-					dots[i].circle.setMap(null);
-				}
-
-				if (dots[i].distance) {
-					dots[i].distance.setMap(null);
-				}
-			}
-
-			dots = [];
-		}
-
-		//마우스 우클릭 하여 선 그리기가 종료됐을 때 호출하여 
-		//그려진 선의 총거리 정보와 거리에 대한 도보, 자전거 시간을 계산하여
-		//HTML Content를 만들어 리턴하는 함수입니다
-		function getTimeHTML(distance) {
-
-			// 도보의 시속은 평균 4km/h 이고 도보의 분속은 67m/min입니다
-			var walkkTime = distance / 67 | 0;
-			var walkHour = '', walkMin = '';
-
-			// 계산한 도보 시간이 60분 보다 크면 시간으로 표시합니다
-			if (walkkTime > 60) {
-				walkHour = '<span class="number">' + Math.floor(walkkTime / 60)
-						+ '</span>시간 '
-			}
-			walkMin = '<span class="number">' + walkkTime % 60 + '</span>분'
-
-			// 자전거의 평균 시속은 16km/h 이고 이것을 기준으로 자전거의 분속은 267m/min입니다
-			//var bycicleTime = distance / 227 | 0;
-			//var bycicleHour = '', bycicleMin = '';
-
-			// 계산한 자전거 시간이 60분 보다 크면 시간으로 표출합니다
-			//if (bycicleTime > 60) {
-			// bycicleHour = '<span class="number">' + Math.floor(bycicleTime / 60) + '</span>시간 '
-			//}
-			//bycicleMin = '<span class="number">' + bycicleTime % 60 + '</span>분'
-
-			// 거리와 도보 시간, 자전거 시간을 가지고 HTML Content를 만들어 리턴합니다
-			var content = '<ul class="dotOverlay distanceInfo">';
-			content += '    <li>';
-			content += '        <span class="label">총거리</span><span class="number">'
-					+ distance + '</span>m';
-			content += '    </li>';
-			content += '    <li>';
-			content += '        <span class="label">도보</span>' + walkHour
-					+ walkMin;
-			content += '    </li>';
-			content += '    <li>';
-			//content += '        <span class="label">자전거</span>' + bycicleHour + bycicleMin;
-			//content += '    </li>';
-			content += '</ul>'
-
-			return content;
-		}
-	</script>
-	<!-- Jquery Core Js -->
 	<script
 		src="${pageContext.request.contextPath}/stylesheet/assets/bundles/libscripts.bundle.js"></script>
 	<!-- Lib Scripts Plugin Js -->
-	<script
-		src="${pageContext.request.contextPath}/stylesheet/assets/bundles/vendorscripts.bundle.js"></script>
-	<!-- Lib Scripts Plugin Js -->
 
+	<script
+		src="${pageContext.request.contextPath}/stylesheet/assets/plugins/jquery-validation/jquery.validate.js"></script>
+	<!-- Jquery Validation Plugin Css -->
+	<script
+		src="${pageContext.request.contextPath}/stylesheet/assets/plugins/jquery-steps/jquery.steps.js"></script>
+	<!-- JQuery Steps Plugin Js -->
 	<script
 		src="${pageContext.request.contextPath}/stylesheet/assets/bundles/mainscripts.bundle.js"></script>
 	<!-- Custom Js -->
-	<jsp:include page="/WEB-INF/footer.jsp"></jsp:include>
+	<script
+		src="${pageContext.request.contextPath}/stylesheet/assets/js/pages/forms/form-validation.js"></script>
 </body>
 </html>

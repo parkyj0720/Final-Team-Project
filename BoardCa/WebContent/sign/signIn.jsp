@@ -32,7 +32,7 @@
 				alert("아이디를 입력해주세요");
 				$("#userId").focus();
 				return;
-			} 
+			}
 
 			if (!$("#userPw").val()) {
 				event.preventDefault();
@@ -46,71 +46,160 @@
 	$(function() {
 		//발급받은 JavaScript Key
 		Kakao.init("ba17cff478a4c1a7991132264b4d34bf");
-		var userID;
+
 		// 카카오 로그인 버튼을 생성
-		Kakao.Auth.createLoginButton({
-			container : '#kakao-login-btn',
-			success : function(authObj) {
-				// 로그인 성공시, API를 호출합니다.
-				Kakao.API.request({
-					url : '/v2/user/me',
-					success : function(res) {
-						console.log(res);
+		Kakao.Auth
+				.createLoginButton({
+					container : '#kakao-login-btn',
+					success : function(authObj) {
+						// 로그인 성공시, API를 호출합니다.
+						Kakao.API
+								.request({
+									url : '/v2/user/me',
+									success : function(res) {
+										console.log(res);
 
-						userId = res.id; //유저의 카카오톡 고유 id
-						var userGender = res.kakao_account.gender; //유저의 성별
-						var userAgeRange = res.kakao_account.age_range; //유저의 연령대
-						var joinDate = res.connected_at;
+										var userId = res.id; //유저의 카카오톡 고유 id
+										var userGender = res.kakao_account.gender; //유저의 성별
+										var account_email = res.kakao_account.email;
+										var userAgeRange = res.kakao_account.age_range; //유저의 연령대
+										var joinDate = res.connected_at;
 
-						console.log(userId);
-						console.log(userGender);
-						console.log(userAgeRange);
-						console.log(joinDate);
-						
-						var form = document.createElement("form");
-						form.setAttribute('method', 'post');
-						form.setAttribute('action', '${pageContext.request.contextPath}/signUp.do');
-						
-						var hiddenField = document.createElement("input");
-						hiddenField.setAttribute("type", "hidden");
-						hiddenField.setAttribute("name", "inputId");
-						hiddenField.setAttribute("value", userId);
-						form.appendChild(hiddenField);
-						
-						hiddenField = document.createElement("input");
-						hiddenField.setAttribute("type", "hidden");
-						hiddenField.setAttribute("name", "userGender");
-						hiddenField.setAttribute("value", userGender);
-						form.appendChild(hiddenField);
-						
-						hiddenField = document.createElement("input");
-						hiddenField.setAttribute("type", "hidden");
-						hiddenField.setAttribute("name", "userAgeRange");
-						hiddenField.setAttribute("value", userAgeRange);
-						form.appendChild(hiddenField);
-						
-						hiddenField = document.createElement("input");
-						hiddenField.setAttribute("type", "hidden");
-						hiddenField.setAttribute("name", "joinDate");
-						hiddenField.setAttribute("value", joinDate);
-						form.appendChild(hiddenField);
-						
-						document.body.appendChild(form);
-						alert("추가정보를 입력해주세요");
-						form.submit();
-						
+										console.log(userId);
+										console.log(account_email);
+										console.log(userGender);
+										console.log(userAgeRange);
+										console.log(joinDate);
 
+										var form = document
+												.createElement("form");
+										form.setAttribute('method', 'post');
+										form
+												.setAttribute('action',
+														'${pageContext.request.contextPath}/signUp.do');
+
+										var hiddenField = document
+												.createElement("input");
+										hiddenField.setAttribute("type",
+												"hidden");
+										hiddenField.setAttribute("name",
+												"inputId");
+										hiddenField.setAttribute("value",
+												userId);
+										form.appendChild(hiddenField);
+
+										hiddenField = document
+												.createElement("input");
+										hiddenField.setAttribute("type",
+												"hidden");
+										hiddenField.setAttribute("name",
+												"account_email");
+										hiddenField.setAttribute("value",
+												account_email);
+										form.appendChild(hiddenField);
+
+										hiddenField = document
+												.createElement("input");
+										hiddenField.setAttribute("type",
+												"hidden");
+										hiddenField.setAttribute("name",
+												"userGender");
+										hiddenField.setAttribute("value",
+												userGender);
+										form.appendChild(hiddenField);
+
+										hiddenField = document
+												.createElement("input");
+										hiddenField.setAttribute("type",
+												"hidden");
+										hiddenField.setAttribute("name",
+												"userAgeRange");
+										hiddenField.setAttribute("value",
+												userAgeRange);
+										form.appendChild(hiddenField);
+
+										hiddenField = document
+												.createElement("input");
+										hiddenField.setAttribute("type",
+												"hidden");
+										hiddenField.setAttribute("name",
+												"joinDate");
+										hiddenField.setAttribute("value",
+												joinDate);
+										form.appendChild(hiddenField);
+
+										document.body.appendChild(form);
+										alert("추가정보를 입력해주세요");
+										form.submit();
+
+									},
+									fail : function(error) {
+										alert(JSON.stringify(error));
+									}
+								});
 					},
-					fail : function(error) {
-						alert(JSON.stringify(error));
+					fail : function(err) {
+						alert(JSON.stringify(err));
 					}
-				});
-			},
-			fail : function(err) {
-				alert(JSON.stringify(err));
-			}
-		})
+				})
 	})
+	/* 아이디 저장 */
+	$(function() {
+		var userInputId = getCookie("userInputId");//저장된 쿠기값 가져오기
+		$("input[name='userId']").val(userInputId);
+
+		if ($("input[name='userId']").val() != "") { // 그 전에 ID를 저장해서 처음 페이지 로딩
+			// 아이디 저장하기 체크되어있을 시,
+			$("#remember_me").attr("checked", true); // ID 저장하기를 체크 상태로 두기.
+		}
+
+		$("#remember_me").change(function() { // 체크박스에 변화가 발생시
+			if ($("#remember_me").is(":checked")) { // ID 저장하기 체크했을 때,
+				var userInputId = $("input[name='userId']").val();
+				setCookie("userInputId", userInputId, 7); // 7일 동안 쿠키 보관
+			} else { // ID 저장하기 체크 해제 시,
+				deleteCookie("userInputId");
+			}
+		});
+
+		// ID 저장하기를 체크한 상태에서 ID를 입력하는 경우, 이럴 때도 쿠키 저장.
+		$("input[name='userId']").keyup(function() { // ID 입력 칸에 ID를 입력할 때,
+			if ($("#remember_me").is(":checked")) { // ID 저장하기를 체크한 상태라면,
+				var userInputId = $("input[name='userId']").val();
+				setCookie("userInputId", userInputId, 7); // 7일 동안 쿠키 보관
+			}
+		});
+	});
+
+	function setCookie(cookieName, value, exdays) {
+		var exdate = new Date();
+		exdate.setDate(exdate.getDate() + exdays);
+		var cookieValue = escape(value)
+				+ ((exdays == null) ? "" : "; expires=" + exdate.toGMTString());
+		document.cookie = cookieName + "=" + cookieValue;
+	}
+
+	function deleteCookie(cookieName) {
+		var expireDate = new Date();
+		expireDate.setDate(expireDate.getDate() - 1);
+		document.cookie = cookieName + "= " + "; expires="
+				+ expireDate.toGMTString();
+	}
+
+	function getCookie(cookieName) {
+		cookieName = cookieName + '=';
+		var cookieData = document.cookie;
+		var start = cookieData.indexOf(cookieName);
+		var cookieValue = '';
+		if (start != -1) {
+			start += cookieName.length;
+			var end = cookieData.indexOf(';', start);
+			if (end == -1)
+				end = cookieData.length;
+			cookieValue = cookieData.substring(start, end);
+		}
+		return unescape(cookieValue);
+	}
 </script>
 </head>
 
@@ -124,9 +213,9 @@
 					<form class="card auth_form"
 						action="${pageContext.request.contextPath}/signPro.do"
 						method="post" name="userinput">
-						<div class="header" >
+						<div class="header">
 							<img src="${pageContext.request.contextPath}/imgs/logo1.png"
-								alt="logo" style="width:50%"/>
+								alt="logo" style="width: 50%" />
 						</div>
 						<div class="body">
 							<div class="input-group mb-3">

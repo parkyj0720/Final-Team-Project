@@ -32,15 +32,16 @@
 	String community_title = viewname.getBoard_name();
 	int boardnum = viewname.getNum();
 %>
-	<section class="content"
-		style="margin-left: auto; margin-right: auto; padding-left: 10%; padding-right: 10%;">
-		<div class="row">
+<jsp:include page="/WEB-INF/header.jsp"></jsp:include>
+	<!-- <section class="content"
+		style="margin-left: auto; margin-right: auto; padding-left: 10%; padding-right: 10%;"> -->
+		<%-- <div class="row">
 			<div>
 				<img src="${pageContext.request.contextPath}/imgs/logo1.png"
 					height="250em" />
 			</div>
-		</div>
-		<div class="alert alert-warning" id="menu" role="alert">
+		</div> --%>
+		<%-- <div class="alert alert-warning" id="menu" role="alert">
 			<ul
 				style="list-style: none; padding: 0; margin: 0; overflow: hidden;">
 				<li style="width: 25%; float: left; text-align: center;">안주 레시피</li>
@@ -49,7 +50,7 @@
 					href="${pageContext.request.contextPath}/Community_main.do">커뮤니티</a></li>
 				<li style="width: 25%; float: left; text-align: center;">근처 술집</li>
 			</ul>
-		</div>
+		</div> --%>
 		<div class="body_scroll">
 			<div class="block-header">
 				<div class="col-lg-7 col-md-6 col-sm-12">
@@ -132,7 +133,8 @@
 				</div>
 			</div>
 		</div>
-	</section>
+	<!-- </section> -->
+	<jsp:include page="/WEB-INF/footer.jsp"></jsp:include>
 <script src="http://code.jquery.com/jquery.js"></script>
     <script>
         $(document).ready(function(){
@@ -142,5 +144,14 @@
             });
         });
     </script>
+    <script
+		src="${pageContext.request.contextPath}/stylesheet/assets/bundles/libscripts.bundle.js"></script>
+	<!-- Lib Scripts Plugin Js -->
+	<script
+		src="${pageContext.request.contextPath}/stylesheet/assets/bundles/vendorscripts.bundle.js"></script>
+	<!-- Lib Scripts Plugin Js -->
+
+	<script
+		src="${pageContext.request.contextPath}/stylesheet/assets/bundles/mainscripts.bundle.js"></script>
 </body>
 </html>

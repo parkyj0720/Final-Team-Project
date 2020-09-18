@@ -30,7 +30,7 @@ public class loadingActivity extends Activity {
                 overridePendingTransition(0,1);
                 finish();
             }
-        }, 3000);
+        }, 1000);
 
     }
 

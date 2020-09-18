@@ -14,5 +14,9 @@
 <c:if test="${idCheck == 0 }">
 <span style="color: green;">사용가능한 아이디 입니다.</span>
 </c:if>
+<c:if test="${idCheck == -1 }">
+<span style="color: red;">아이디를 입력해 주세요.</span>
+</c:if>
+
 </body>
 </html>

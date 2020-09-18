@@ -96,12 +96,12 @@
 				<div class="col-lg-11 col-md-12 col-sm-11 inbox right">
 					<div class="card mcard_3">
 						<div class="body">
-							<h4 class="m-t-10">UserName</h4>
+							
 							<a href="${pageContext.request.contextPath}/myPage.do"><img
 								src="${pageContext.request.contextPath}/mypage/imgs/01.jpg"
 								class="rounded-circle shadow " alt="profile-image"
 								style="width: 20%; height: 20%;"></a>
-							<h4 class="m-t-10">NickName</h4>
+							<h4 class="m-t-10">ID</h4>
 
 						</div>
 					</div>
@@ -182,8 +182,7 @@
 			</div>
 		</div>
 	</div>
-	</div>
-	</div>
+
 
 
 

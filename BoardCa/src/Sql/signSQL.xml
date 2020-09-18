@@ -5,17 +5,17 @@
 
 <mapper namespace="signXml">
 
-<select id="idCheck" resultType="int" parameterType="String">
+<select id="idCheck" resultType="int" parameterType="MemberDto">
 	select count(*) 
-	from member 
-	where mem_id=#{userId}
+	from MEMBER 
+	where MEM_ID=#{userId}
 </select>
 
 
 <select id="signCheck" resultType="String" parameterType="MemberDto">
 	select mem_pw
-	from member
-	where mem_id=#{userId}
+	from MEMBER
+	where MEM_ID=#{userId}
 </select>
 
 <select id="sessionInput" parameterType="Sign.SessionDto">
