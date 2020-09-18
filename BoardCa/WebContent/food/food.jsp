@@ -57,7 +57,7 @@ white-space: nowrap;
 	request.setAttribute("maxList", maxList);
 
 	// 페이지당 리스트 개수
-	int listNum = 12;
+	int listNum = 8;
 	
 	int now_page = 1;
 
@@ -165,10 +165,13 @@ request.getParameter("test");
 
 	
 <section class="content file_manager"style="margin: auto;">
-	<div class="search_div">
-	<form action="${pageContext.request.contextPath}/cSearch.do" method="POST">
+	<div class="search_div" style="position:relative;">
+	<form action="${pageContext.request.contextPath}/cSearch.do" method="POST" style="display:inline-block">
 		<input type="text" size="34" name="inputSearch">
-		<input type="submit" value="검색" name="inputSearchButton" style="margin-left:-15px">	
+		<input type="submit" value="검색" name="inputSearchButton" style="margin-left:-15px">
+	</form>
+	<form action="${pageContext.request.contextPath}/cWrite.do" method="POST" style="display:inline-block; position:absolute; right:16px;">
+		<input type="submit" value="레시피추가" name="inputRecipe">
 	</form>
 	</div>
     <div class="body_scroll">
@@ -187,6 +190,7 @@ request.getParameter("test");
                                     <div class="col-lg-3 col-md-4 col-sm-12">
                                         <div class="card">
                                             <div class="file">
+                                            <!-- 수정해야 됨 주소랑 썸네일 없을 수 있음 -->
                                                 <a href="<%=dto.getR_crawling_addr()%>">
                                                     <div class="hover">
                                                         <button type="button" class="bg-orange btn btn-icon btn-icon-mini btn-round bg-orange">
