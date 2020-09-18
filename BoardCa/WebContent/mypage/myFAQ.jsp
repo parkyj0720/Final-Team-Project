@@ -19,7 +19,7 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/stylesheet/assets/css/style.min.css">
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/stylesheet/assets/plugins/summernote/dist/summernote.css">
+	href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/stylesheet/assets/plugins/bootstrap-select/css/bootstrap-select.css">
 <link rel="stylesheet"
@@ -104,10 +104,10 @@
 												<option>Sports</option>
 											</select>
 										</div>
-										<div class="body mb-2">
+										<div class="body mb-4">
 											<div class="summernote" style="display: none;">Hello
 												there,</div>
-											<div class="note-editor note-frame panel panel-default">
+											<div class="note-editor note-frame panel ">
 												<div class="note-dropzone">
 													<div class="note-dropzone-message"></div>
 												</div>
