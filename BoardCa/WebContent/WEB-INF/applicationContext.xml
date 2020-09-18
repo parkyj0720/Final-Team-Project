@@ -21,18 +21,31 @@
   <bean id="oracleDatasource" class="oracle.jdbc.pool.OracleDataSource"
     destroy-method="close">
 
-    <property name="URL" value="jdbc:oracle:thin:@192.168.219.105:1521:xe" />
-    <property name="user" value="hr" />
-    <property name="password" value="hr" />
+    <property name="URL" value="board-1.cqff4lw7mwyx.ap-northeast-2.rds.amazonaws.com" />
+    <property name="user" value="admin" />
+    <property name="password" value="comstudy03" />
 
     <property name="connectionCachingEnabled" value="true" />
     <qualifier value="main-db" />
   </bean>
+  
+  <!--MySQL dataSource  -->
+  
+   <bean id="dataSource"
+        class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"></property>
+        <property name="url"
+            value="jdbc:mysql://board-1.cqff4lw7mwyx.ap-northeast-2.rds.amazonaws.com:3306/boardCa?useSSL=false&amp;serverTimezone=UTC">
+        </property>
+        <property name="username" value="admin"></property>
+        <property name="password" value="comstudy03"></property>
+    </bean>        
+        
 
 
   <!-- MyBatis SqlSessionFactoryBean -->
   <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-    <property name="dataSource" ref="oracleDatasource" />
+    <property name="dataSource" ref="dataSource" />
     <property name="configLocation" value="WEB-INF/configuration.xml" />
   </bean>
 

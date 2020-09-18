@@ -18,9 +18,9 @@ public class SignUpController {
 	@Autowired
 	private MemberDao memDao;
 
+//	회원가입 폼
 	@RequestMapping("/signUp.do")
-	public ModelAndView signUp(HttpServletRequest req) {
-		
+	public ModelAndView signUp(HttpServletRequest req) {		
 		String inputId = req.getParameter("inputId");
 		String account_email = req.getParameter("account_email");
 		String userGender = req.getParameter("userGender");
@@ -58,12 +58,7 @@ public class SignUpController {
 		return mv;
 	}
 	
-	@RequestMapping("/signUpPro.do")
-	public ModelAndView signUpPro() {
-		mv.setViewName("/sign/signUpPro.jsp");
-		return mv;
-	}
-
+//  PW 두개가 일치하는지 체크 
 	@RequestMapping("equalPwCk.do")
 	public ModelAndView equalPwCk(HttpServletRequest req, String pw1, String pw2) {
 		int pwCheck = -1;
@@ -80,4 +75,10 @@ public class SignUpController {
 		return mv;
 	}
 	
+//	회원가입하기 클릭시 
+	@RequestMapping("/signUpPro.do")
+	public ModelAndView signUpPro() {
+		mv.setViewName("/sign/signUpPro.jsp");
+		return mv;
+	}
 }
