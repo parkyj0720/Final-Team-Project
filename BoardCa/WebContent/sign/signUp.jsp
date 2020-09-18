@@ -201,7 +201,7 @@
 
 					<div class="form-group form-float col-sm-6"
 						style="display: inline-flex;">
-						<input type="text" class="form-control" placeholder="이름"
+						<input type="text" class="form-control" placeholder="닉네임"
 							style="display: inline-block;" value="" name="inputName">
 					</div>
 					<div class="form-group form-float col-sm-6"
