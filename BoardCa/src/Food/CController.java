@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
+import com.oreilly.servlet.multipart.FileRenamePolicy;
 
 @Controller
 public class CController {
@@ -128,6 +129,31 @@ public class CController {
 		}
 		
 		mv.setViewName("food/write_recipe.jsp");
+		return mv;
+	}
+	
+	@RequestMapping("/cFileNameCheck.do")
+	public ModelAndView fileNameCheck(HttpServletRequest req, HttpServletResponse res) throws IOException {
+		
+		String file = req.getParameter("file2");
+		System.out.println("file: "+file);
+		
+		
+		ServletContext context = req.getServletContext();
+		String saveDir = context.getRealPath("upload"); // 절대경로를 가져옴
+		System.out.println("절대경로 >> " + saveDir);
+
+		int maxSize = 3 * 1024 * 1024; // 3MB
+		String encoding = "utf-8";
+		
+		MultipartRequest multi = new MultipartRequest(req, saveDir, maxSize, encoding,
+				new DefaultFileRenamePolicy());
+		
+		String new_fileName = multi.getFilesystemName("file2");
+		System.out.println("new_file: "+new_fileName);
+		
+		mv.addObject("newFileName",new_fileName);
+		mv.setViewName("food/fileNameCheck.jsp");
 		return mv;
 	}
 }

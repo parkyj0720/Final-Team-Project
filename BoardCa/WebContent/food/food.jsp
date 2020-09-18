@@ -57,7 +57,7 @@ white-space: nowrap;
 	request.setAttribute("maxList", maxList);
 
 	// 페이지당 리스트 개수
-	int listNum = 12;
+	int listNum = 8;
 	
 	int now_page = 1;
 
@@ -190,6 +190,7 @@ request.getParameter("test");
                                     <div class="col-lg-3 col-md-4 col-sm-12">
                                         <div class="card">
                                             <div class="file">
+                                            <!-- 수정해야 됨 주소랑 썸네일 없을 수 있음 -->
                                                 <a href="<%=dto.getR_crawling_addr()%>">
                                                     <div class="hover">
                                                         <button type="button" class="bg-orange btn btn-icon btn-icon-mini btn-round bg-orange">

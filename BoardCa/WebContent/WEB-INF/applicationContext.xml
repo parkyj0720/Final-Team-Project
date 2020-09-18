@@ -21,7 +21,7 @@
   <bean id="oracleDatasource" class="oracle.jdbc.pool.OracleDataSource"
     destroy-method="close">
 
-    <property name="URL" value="jdbc:oracle:thin:@192.168.219.155:1521:xe" />
+    <property name="URL" value="jdbc:oracle:thin:@192.168.219.141:1521:xe" />
     <property name="user" value="test" />
     <property name="password" value="test" />
 
