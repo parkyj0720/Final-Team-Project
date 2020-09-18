@@ -7,7 +7,7 @@ EDIT ON
 <head>
     <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
 <style>
-.heart {
+.heart1 {
   width: 100px;
   height: 100px;
   position: absolute;
@@ -16,11 +16,12 @@ EDIT ON
   transform: translate(-50%, -50%);
   background: url(http://imagizer.imageshack.com/img923/4545/XdJDuY.png) no-repeat;  
   cursor: pointer;
-  
-}
-.heart-blast {
-  background-position: -2800px 0;
+  background-position: -2800px 0;  
   transition: background 1s steps(28);
+}
+.heart-blast1 {
+  background-position: 0px 0;
+  transition: none;
 }
 
 
@@ -29,8 +30,9 @@ EDIT ON
 <script>
 $(function() {
     
-  $(".heart").on("click", function() {
-    $(this).toggleClass("heart-blast");
+  $(".heart1").on("click", function() {
+    $(this).toggleClass("heart-blast1");
+    console.log("x");
   });
 }); 
     
@@ -39,6 +41,6 @@ $(function() {
 
 </head>
 <body>
-<div class="heart"></div>   
+<div class="heart1"></div>   
 </body> 
 </html>

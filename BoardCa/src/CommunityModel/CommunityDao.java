@@ -243,7 +243,7 @@ public class CommunityDao {
 				int views = rs.getInt("views");
 				int boardnum = rs.getInt("boardnum");
 				dto = new CommunityDto(num, title, writer_id, written_date, content, views, boardnum);
-			}
+			}System.out.println("디테일");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -289,6 +289,7 @@ public class CommunityDao {
 				int content_num = rs.getInt("content_num");
 				heartList.add(new Heart(username, content_num));
 			}
+			System.out.println("디테일 좋아요");
 		} catch (Exception e) {
 		} finally {
 			if (conn != null) {
@@ -336,6 +337,7 @@ public class CommunityDao {
 				int content_num = rs.getInt("content_num");
 				commentList.add(new Comment(writeer_id, written_date, content, content_num));
 			}
+			System.out.println("디테일 댓글");
 		} catch (Exception e) {
 		} finally {
 			if (conn != null) {

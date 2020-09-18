@@ -4,10 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-
 <jsp:include page="/WEB-INF/header.jsp"></jsp:include>
 <div id="tabContent">
-	<h2>내용</h2>
+
 </div>
 
 <script	src="${pageContext.request.contextPath}/stylesheet/assets/bundles/libscripts.bundle.js"></script>
