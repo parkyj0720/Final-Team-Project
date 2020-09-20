@@ -93,6 +93,8 @@
     <string name="menu_web">Web</string>
     <string name="title_activity_web__fragment">Web_Fragment</string>
 
+    <string name="menu_mypage">내 게시글 확인</string>
+
     <!-- search -->
     <string name="map_search">장소, 주소 검색</string>
 

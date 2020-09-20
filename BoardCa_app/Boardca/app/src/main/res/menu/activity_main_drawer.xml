@@ -6,52 +6,21 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_home"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="@string/menu_home" />
+            android:id="@+id/nav_mypage"
+            android:icon="@drawable/ic_person_black_24dp"
+            android:title="@string/menu_mypage" />
+
         <item
-            android:id="@+id/nav_recipe"
+            android:id="@+id/nav_inquiries"
             android:icon="@drawable/ic_menu_gallery"
-            android:title="@string/menu_recipe" />
+            android:title="문의하기 / 문의 내역 확인" />
         <item
-            android:id="@+id/nav_game"
+            android:id="@+id/nav_hearts"
             android:icon="@drawable/ic_menu_slideshow"
-            android:title="@string/menu_game" />
+            android:title="관심글" />
         <item
-            android:id="@+id/nav_community"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="@string/menu_community" >
-            <menu>
-                <group>
-                    <item
-                        android:id="@+id/nav_community_sub1"
-                        android:title="@string/menu_community_sub1" />
-                    <item
-                        android:id="@+id/nav_community_sub2"
-                        android:title="@string/menu_community_sub2" />
-                    <item
-                        android:id="@+id/nav_community_sub4"
-                        android:title="@string/menu_community_sub3" />
-                </group>
-            </menu>
-        </item>
-        <item
-            android:id="@+id/nav_map"
-            android:icon="@drawable/ic_menu_share"
-            android:title="@string/menu_map" />
+            android:id="@+id/nav_coupons"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="쿠폰함" />
     </group>
-
-    <item android:title="버그 보내기">
-        <menu>
-            <item
-                android:id="@+id/nav_signup"
-                android:icon="@drawable/ic_menu_send"
-                android:title="@string/menu_signup" />
-            <item
-                android:id="@+id/nav_webview"
-                android:icon="@drawable/ic_menu_send"
-                android:title="웹으로보기" />
-        </menu>
-    </item>
-
 </menu>

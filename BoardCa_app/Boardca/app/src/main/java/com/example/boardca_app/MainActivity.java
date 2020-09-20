@@ -38,6 +38,7 @@ import com.example.boardca_app.ui.recipe.RecipeFragment;
 import com.example.boardca_app.ui.setting.SettingsActivity;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationView;
 
 import java.io.IOException;
 import java.util.List;
@@ -157,6 +158,9 @@ public class MainActivity extends AppCompatActivity {
         //바텀 네이베이션의 프래그먼트 선택 리스너
         bottomNavigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
+
+
+        //차후 수정할 곳
         this.replaceFragment(home_fragment);
         this.createNavi();
 
@@ -215,19 +219,18 @@ public class MainActivity extends AppCompatActivity {
 
     // 네비게이션 생성
     private void createNavi() {
-//        DrawerLayout drawer = findViewById(R.id.drawer_layout);
-//        NavigationView navigationView = findViewById(R.id.nav_view);
-//
-//        // Passing each menu ID as a set of Ids because each
-//        // menu should be considered as top level destinations.
-//        mAppBarConfiguration = new AppBarConfiguration.Builder(
-//                R.id.nav_home, R.id.nav_recipe, R.id.nav_game,
-//                R.id.nav_community, R.id.nav_map, R.id.nav_signup, R.id.nav_webview)
-//                .setDrawerLayout(drawer)
-//                .build();
-//        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-//        NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
-//        NavigationUI.setupWithNavController(navigationView, navController);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        NavigationView navigationView = findViewById(R.id.nav_view);
+
+        // Passing each menu ID as a set of Ids because each
+        // menu should be considered as top level destinations.
+        mAppBarConfiguration = new AppBarConfiguration.Builder(
+                R.id.nav_home, R.id.nav_mypage, R.id.nav_inquiries, R.id.nav_hearts, R.id.nav_coupons)
+                .setDrawerLayout(drawer)
+                .build();
+        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+        NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
+        NavigationUI.setupWithNavController(navigationView, navController);
     }
 
     // Fragment 변환을 해주기 위한 부분, Fragment의 Instance를 받아서 변경

@@ -40,7 +40,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@+id/bottom_navigation"
-        android:layout_below="@+id/toolbar_division"/>
+        android:layout_below="@+id/toolbar_division">
+
+        <include layout="@layout/content_main"/>
+
+    </FrameLayout>
 
 
     <!-- 하단바 -->

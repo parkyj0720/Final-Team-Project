@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
@@ -12,41 +13,22 @@
         android:label="@string/menu_home"
         tools:layout="@layout/fragment_home" />
 
-    <fragment
-        android:id="@+id/nav_recipe"
-        android:name="com.example.boardca_app.ui.recipe.RecipeFragment"
-        android:label="@string/menu_recipe"
-        tools:layout="@layout/fragment_recipe" />
+    <activity
+    android:id="@+id/nav_mypage"
+    android:name="com.example.boardca_app.ui.mypage.MypageFragment"
+    android:label="@string/menu_mypage"
+    tools:layout="@layout/fragment_mypage" />
 
-    <fragment
-        android:id="@+id/nav_game"
-        android:name="com.example.boardca_app.ui.game.GameFragment"
-        android:label="@string/menu_game"
-        tools:layout="@layout/fragment_game" />
+<!--    <fragment-->
+<!--        android:id="@+id/nav_hearts"-->
+<!--        android:name="com.example.boardca_app.ui.mypage.MypageFragment"-->
+<!--        android:label="@string/menu_mypage"-->
+<!--        tools:layout="@layout/fragment_mypage" />-->
 
-    <fragment
-        android:id="@+id/nav_community"
-        android:name="com.example.boardca_app.ui.community.CommunityFragment"
-        android:label="@string/menu_community"
-        tools:layout="@layout/fragment_community" />
-
-    <fragment
-        android:id="@+id/nav_map"
-        android:name="com.example.boardca_app.ui.Map.MapFragment"
-        android:label="@string/menu_map"
-        tools:layout="@layout/fragment_map" />
-
-    <fragment
-        android:id="@+id/nav_signup"
-        android:name="com.example.boardca_app.ui.mypage.MypageFragment"
-        android:label="@string/menu_signup"
-        tools:layout="@layout/fragment_mypage" />
-
-    <fragment
-        android:id="@+id/nav_webview"
-        android:name="com.example.boardca_app.ui.web_view.Web_Fragment"
-        android:label="@string/menu_web"
-        tools:layout="@layout/activity_web" />
-
+<!--    <fragment-->
+<!--        android:id="@+id/nav_coupons"-->
+<!--        android:name="com.example.boardca_app.ui.mypage.MypageFragment"-->
+<!--        android:label="@string/menu_mypage"-->
+<!--        tools:layout="@layout/fragment_mypage" />-->
 
 </navigation>
