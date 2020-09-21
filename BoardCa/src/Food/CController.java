@@ -109,7 +109,6 @@ public class CController {
 			
 			String r_ingredient = multi.getParameter("ingredient");
 			String r_cooking_order = multi.getParameter("cooking_order");
-			r_cooking_order = "";
 
 			try {
 				int result = dao.uploadFile(new CDto(0, r_crawling_addr, r_main_thumbs, file, r_title, r_explain, r_standard, r_cooking_time, r_difficult, r_ingredient, r_cooking_order));
@@ -135,9 +134,8 @@ public class CController {
 	@RequestMapping("/cFileNameCheck.do")
 	public ModelAndView fileNameCheck(HttpServletRequest req, HttpServletResponse res) throws IOException {
 		
-		String file = req.getParameter("file2");
-		System.out.println("file: "+file);
-		
+//		String file = req.getParameter("file2");
+//		System.out.println("file: "+file);
 		
 		ServletContext context = req.getServletContext();
 		String saveDir = context.getRealPath("upload"); // 절대경로를 가져옴

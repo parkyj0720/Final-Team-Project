@@ -18,10 +18,15 @@
 	where MEM_ID=#{userId}
 </select>
 
-<select id="sessionInput" parameterType="Sign.SessionDto">
+<insert id="sessionInput" parameterType="Sign.SessionDto">
 	
-</select>
+</insert>
 
+<insert id="memInsert" parameterType="MemberDto">
+	
+
+
+</insert>
 
 
 

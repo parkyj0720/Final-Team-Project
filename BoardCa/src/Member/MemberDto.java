@@ -1,26 +1,28 @@
 package Member;
 
 public class MemberDto {
-	int mem_idx, mem_age_group, mem_mng_gwonhan;
-	String mem_id, mem_nickname, mem_pw, mem_name;
-	String mem_email, mem_rocal, mem_state, mem_sysdate;
+	int mem_idx, mem_age_group;
+	String mem_id, mem_nickname, mem_pw, mem_gender;
+	String mem_email, mem_rocal, mem_state;
+	int mem_mng_gwonhan, mem_login_gwonhan, mem_board_gwonhan;
 
-	public MemberDto() {
-	}
+	public MemberDto() {}
 
-	public MemberDto(int mem_idx, int mem_age_group, int mem_mng_gwonhan, String mem_id, String mem_nickname,
-			String mem_pw, String mem_name, String mem_email, String mem_rocal, String mem_state, String mem_sysdate) {
+	public MemberDto(int mem_idx, int mem_age_group, String mem_id, String mem_nickname, String mem_pw,
+			String mem_gender, String mem_email, String mem_rocal, String mem_state, int mem_mng_gwonhan,
+			int mem_login_gwonhan, int mem_board_gwonhan) {
 		this.mem_idx = mem_idx;
 		this.mem_age_group = mem_age_group;
-		this.mem_mng_gwonhan = mem_mng_gwonhan;
 		this.mem_id = mem_id;
 		this.mem_nickname = mem_nickname;
 		this.mem_pw = mem_pw;
-		this.mem_name = mem_name;
+		this.mem_gender = mem_gender;
 		this.mem_email = mem_email;
 		this.mem_rocal = mem_rocal;
 		this.mem_state = mem_state;
-		this.mem_sysdate = mem_sysdate;
+		this.mem_mng_gwonhan = mem_mng_gwonhan;
+		this.mem_login_gwonhan = mem_login_gwonhan;
+		this.mem_board_gwonhan = mem_board_gwonhan;
 	}
 
 	public int getMem_idx() {
@@ -37,14 +39,6 @@ public class MemberDto {
 
 	public void setMem_age_group(int mem_age_group) {
 		this.mem_age_group = mem_age_group;
-	}
-
-	public int getMem_mng_gwonhan() {
-		return mem_mng_gwonhan;
-	}
-
-	public void setMem_mng_gwonhan(int mem_mng_gwonhan) {
-		this.mem_mng_gwonhan = mem_mng_gwonhan;
 	}
 
 	public String getMem_id() {
@@ -71,12 +65,12 @@ public class MemberDto {
 		this.mem_pw = mem_pw;
 	}
 
-	public String getMem_name() {
-		return mem_name;
+	public String getMem_gender() {
+		return mem_gender;
 	}
 
-	public void setMem_name(String mem_name) {
-		this.mem_name = mem_name;
+	public void setMem_gender(String mem_gender) {
+		this.mem_gender = mem_gender;
 	}
 
 	public String getMem_email() {
@@ -103,21 +97,39 @@ public class MemberDto {
 		this.mem_state = mem_state;
 	}
 
-	public String getMem_sysdate() {
-		return mem_sysdate;
+	public int getMem_mng_gwonhan() {
+		return mem_mng_gwonhan;
 	}
 
-	public void setMem_sysdate(String mem_sysdate) {
-		this.mem_sysdate = mem_sysdate;
+	public void setMem_mng_gwonhan(int mem_mng_gwonhan) {
+		this.mem_mng_gwonhan = mem_mng_gwonhan;
+	}
+
+	public int getMem_login_gwonhan() {
+		return mem_login_gwonhan;
+	}
+
+	public void setMem_login_gwonhan(int mem_login_gwonhan) {
+		this.mem_login_gwonhan = mem_login_gwonhan;
+	}
+
+	public int getMem_board_gwonhan() {
+		return mem_board_gwonhan;
+	}
+
+	public void setMem_board_gwonhan(int mem_board_gwonhan) {
+		this.mem_board_gwonhan = mem_board_gwonhan;
 	}
 
 	@Override
 	public String toString() {
-		return "MemberDto [mem_idx=" + mem_idx + ", mem_age_group=" + mem_age_group + ", mem_mng_gwonhan="
-				+ mem_mng_gwonhan + ", mem_id=" + mem_id + ", mem_nickname=" + mem_nickname + ", mem_pw=" + mem_pw
-				+ ", mem_name=" + mem_name + ", mem_email=" + mem_email + ", mem_rocal=" + mem_rocal + ", mem_state="
-				+ mem_state + ", mem_sysdate=" + mem_sysdate + "]";
+		return "MemberDto [mem_idx=" + mem_idx + ", mem_age_group=" + mem_age_group + ", mem_id=" + mem_id
+				+ ", mem_nickname=" + mem_nickname + ", mem_pw=" + mem_pw + ", mem_gender=" + mem_gender
+				+ ", mem_email=" + mem_email + ", mem_rocal=" + mem_rocal + ", mem_state=" + mem_state
+				+ ", mem_mng_gwonhan=" + mem_mng_gwonhan + ", mem_login_gwonhan=" + mem_login_gwonhan
+				+ ", mem_board_gwonhan=" + mem_board_gwonhan + "]";
 	}
+
 	
 	
 }

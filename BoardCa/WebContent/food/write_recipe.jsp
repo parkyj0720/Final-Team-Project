@@ -34,6 +34,13 @@
 	var fileValue = '';
 	var fileName = '';
 	
+	var ingre_info = '';
+	var cooking_order = '';
+	var new_fileName = '';
+	
+	var order1 = [];
+	var order2 = [];
+	
 	$(function() {
 		$('#heart').click(
 				function() {
@@ -53,8 +60,8 @@
 		return location.href.substring(hostIndex, location.href.indexOf('/', hostIndex + 1));
 	}
 	
-	function fileNameCheck(){
-		var formData = new FormData($('#write_form')[0]);
+	function fileNameCheck(index, item){
+		var formData = new FormData($('#file_form')[0]);
 		$.ajax({
 			type : "post",
 			url : "/BoardCa/cFileNameCheck.do",
@@ -62,7 +69,17 @@
 			contentType:false,
 			processData:false,
 			success : function test(a){
-				$('#fileNameCheckT').val(a);
+				/* $('#fileNameCheckT').val(a);
+				
+				var new_fileName = $('#fileNameCheckT').val(); */
+				new_fileName = a;
+				
+				//cooking_order += new_fileName + '&';
+				order2.push(new_fileName + '&');
+				//console.log(new_fileName);
+				//console.log(cooking_order);
+				$('#file_form').empty();
+				
 			},
 			error : function error(){ 
 				alert("error");
@@ -128,7 +145,8 @@
 								function() {
 									var tag = '<tr><td style="padding: 20px;"><p>'+order_cnt+'</p></td>'
 									+ '<td><textarea style="width: 250px; height: 195px; resize: none; margin-right:100px;" name="order_text" class="order_info"></textarea></td>'
-									+ '<td><input type="file" class="dropify r_detail order_info" name="file2"></td></tr>';
+									+ '<td><input type="file" class="dropify r_detail order_info" name="file2"></td>'
+									+'<td><button type="button" onclick="remove_list(this)" style="margin-left: 10px;">삭제</button></td></tr>';
 									
 									$('#cooking_order_table').append(tag);
 									console.log(getContextPath())
@@ -170,8 +188,12 @@
 						// 글쓰기 버튼클릭
 						$('#write_form').submit(function(event){
 							event.preventDefault();
-							var ingre_info = '';
-							var cooking_order = '';
+							
+							ingre_info = '';
+							cooking_order = '';
+							
+							order1 = [];
+							order2 = [];
 							
 							// 재료 문자열로 나열
 							$('.ingre_info').each(function(index, item){
@@ -187,29 +209,33 @@
 							// 조리순서 문자열로 나열
 							$('.order_info').each(function(index, item){
 								if(index %2 == 0){
-									cooking_order += $(item).text() + '&';
-									console.log($(item).val());
+									//cooking_order += $(item).val() + '&';
+									order1.push($(item).val() + '&');
+									//console.log($(item).val());
 								}else{
 									fileValue = $(item).val().split("\\");
 									fileName = fileValue[fileValue.length-1];
+									//console.log(fileName);
+									$('#file_form').append(item);
+									$('#file_form').eq(0).removeClass('order_info');
 									fileNameCheck();
-									
-									
-									
-									var new_fileName = $('#fileNameCheckT').val();
-
-									cooking_order += new_fileName + '&';
-									console.log(new_fileName);
-									console.log(cooking_order);
 								}
 							});
+								
+							//console.log(ingre_info);
+							$('.ingre_text_list').val(ingre_info);
+							//console.log($('.ingre_text_list').val());
 							
-								//console.log(ingre_info);
-								$('.ingre_text_list').val(ingre_info);
-								console.log($('.ingre_text_list').val());
+							var timer = window.setTimeout(function(){
+								for(var i=0;i<order1.length;i++){
+									cooking_order += order1[i];
+									cooking_order += order2[i];
+								}
 								
 								$('.order_text_list').val(cooking_order);
 								console.log($('.order_text_list').val());
+							},100);
+
 						});
 						
 						$("#ingre_text").keyup(function(event) {
@@ -332,7 +358,7 @@
 											</tr>
 										</table>
 										<input type="text" class="ingre_text_list" style="visibility: hidden;" name="cooking_order">
-										<input type="text" id="fileNameCheckT" style="visibility: visible ;">
+										<input type="text" id="fileNameCheckT" style="visibility: hidden ;">
 									</div>
 								</div>
 							</div>
@@ -343,6 +369,8 @@
 			</div>
 		</div>
 		<input id="write_btn" type="button" value="글쓰기">
+	</form>
+	<form id="file_form" action="${pageContext.request.contextPath}/cFileNameCheck.do" method="post" enctype="multipart/form-data" style="visibility: hidden;">
 	</form>
 
 
