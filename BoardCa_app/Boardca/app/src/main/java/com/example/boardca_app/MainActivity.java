@@ -2,6 +2,7 @@ package com.example.boardca_app;
 
 import android.Manifest;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -51,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
     public double longitude = 126.940079;
 
     private GpsTracker gpsTracker;
-
+    private Context context = this;
 
     //메뉴아이콘에 관련된 이벤트
     private AppBarConfiguration mAppBarConfiguration;
@@ -67,7 +68,6 @@ public class MainActivity extends AppCompatActivity {
     private Fragment game_fragment;
     private Fragment community_fragment;
     private Fragment map_fragment;
-
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -117,12 +117,16 @@ public class MainActivity extends AppCompatActivity {
     //설정 아이콘
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
 
         int id = item.getItemId();
         if(id == R.id.action_settings){
             Intent settingIntent = new Intent(this, SettingsActivity.class);
             startActivity(settingIntent);
         }
+//        else if(id == R.id.){
+//            drawer.openDrawer(GravityCompat.START);
+//        }
         return super.onOptionsItemSelected(item);
     }
 
@@ -158,9 +162,7 @@ public class MainActivity extends AppCompatActivity {
         //바텀 네이베이션의 프래그먼트 선택 리스너
         bottomNavigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
-
-
-        //차후 수정할 곳
+        //차후 수정할 곳 //시작 프래그먼트
         this.replaceFragment(home_fragment);
         this.createNavi();
 
@@ -219,19 +221,45 @@ public class MainActivity extends AppCompatActivity {
 
     // 네비게이션 생성
     private void createNavi() {
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        final DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
-
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_mypage, R.id.nav_inquiries, R.id.nav_hearts, R.id.nav_coupons)
+                 R.id.nav_home, R.id.nav_mypage, R.id.nav_inquiries, R.id.nav_hearts, R.id.nav_coupons)
                 .setDrawerLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+        
+        //네비게이션 셀렉트 이벤트
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                item.setChecked(true);
+                drawer.closeDrawers();
+
+                int id = item.getItemId();
+                String title = item.getTitle().toString();
+
+                if(id == R.id.nav_mypage){
+                    Toast.makeText(context, title + "마이페이지", Toast.LENGTH_SHORT).show();
+                }
+                else if (id == R.id.nav_hearts){
+                    Toast.makeText(context, title + "관심글", Toast.LENGTH_SHORT).show();
+                }
+                else if (id == R.id.nav_coupons){
+                    Toast.makeText(context, title + "쿠폰", Toast.LENGTH_SHORT).show();
+                }
+                return true;
+            }
+        });
+
+
     }
+
+
 
     // Fragment 변환을 해주기 위한 부분, Fragment의 Instance를 받아서 변경
     private void replaceFragment(Fragment fragment) {

@@ -3,6 +3,7 @@ package com.example.boardca_app.ui.login;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -39,6 +40,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         mContext = this; //필수!
 
+
         //로그인창 액션바 숨기기
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
@@ -52,6 +54,12 @@ public class LoginActivity extends AppCompatActivity {
         final Button loginButton = findViewById(R.id.login);
         final ProgressBar loadingProgressBar = findViewById(R.id.loading);
         final CheckBox cb_save = (CheckBox) findViewById(R.id.cb_save);
+        final CheckBox auto_save = (CheckBox) findViewById(R.id.auto_save);
+
+        //자동로그인
+        SharedPreferences auto = getSharedPreferences("auto", Activity.MODE_PRIVATE); //자동고르인
+        String loginId = auto.getString("inputId",null);
+        String loginPwd = auto.getString("inputPwd",null);
 
         //ID창내 엔터방지.
         usernameEditText.setOnKeyListener(new View.OnKeyListener() {
@@ -75,6 +83,7 @@ public class LoginActivity extends AppCompatActivity {
                 //intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK); //새로운 테스크에 작동시키기.
                 startActivity(intent);
                 overridePendingTransition(0,0);
+                finish();
             }
         });
 
@@ -100,7 +109,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        //체크박스 체크 유무에 따른 동작 구현.
+        //아이디 저장-체크박스 체크 유무에 따른 동작 구현.
         cb_save.setOnClickListener(new CheckBox.OnClickListener(){
             @Override
             public void onClick(View view) {
@@ -112,6 +121,19 @@ public class LoginActivity extends AppCompatActivity {
                     PreferenceManager.setBoolean(mContext, "check", cb_save.isChecked());
                     PreferenceManager.clear(mContext);
                 }
+            }
+        });
+        //자동 로그인 - 체크박스 체크 유무에 따른 동작 구현.
+        auto_save.setOnClickListener(new CheckBox.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                SharedPreferences auto = getSharedPreferences("auto", Activity.MODE_PRIVATE);
+                SharedPreferences.Editor autoLogin = auto.edit();
+                autoLogin.putString("inputUsername", usernameEditText.getText().toString());
+                autoLogin.putString("inputPwd", passwordEditText.getText().toString());
+
+
+                autoLogin.commit();
             }
         });
 
