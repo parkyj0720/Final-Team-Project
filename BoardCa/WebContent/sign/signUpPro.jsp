@@ -9,6 +9,7 @@
 <body>
 
 <script>
+	alert("회원가입 되었습니다.");
 	window.location="signIn.do";
 </script>
 
