@@ -32,6 +32,7 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.example.boardca_app.ui.Map.GpsTracker;
 import com.example.boardca_app.ui.Map.MapFragment;
+import com.example.boardca_app.ui.Map.MapsActivity;
 import com.example.boardca_app.ui.community.CommunityFragment;
 import com.example.boardca_app.ui.game.GameFragment;
 import com.example.boardca_app.ui.home.HomeFragment;
@@ -95,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
                         return true;
                     }
                     case R.id.action_map: {
-                        replaceFragment(map_fragment);
+                            showMap();
                         return true;
                     }
                 }
@@ -105,6 +106,12 @@ public class MainActivity extends AppCompatActivity {
             return false;
         }
     };
+
+    public void showMap(){
+        Intent settingIntent = new Intent(this, MapsActivity.class);
+        startActivity(settingIntent);
+        overridePendingTransition(0,0);
+    }
 
     //위에 설정 메뉴 아이콘 생성
     @Override
