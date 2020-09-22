@@ -13,14 +13,6 @@
         android:layout_height="?attr/actionBarSize"
         android:theme="@style/Theme.AppCompat.DayNight"
         app:layout_scrollFlags="scroll|enterAlways">
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:src="@drawable/logo_title"/>
-        </RelativeLayout>
     </androidx.appcompat.widget.Toolbar>
 
     <!-- 상단바 아래 구분선 -->

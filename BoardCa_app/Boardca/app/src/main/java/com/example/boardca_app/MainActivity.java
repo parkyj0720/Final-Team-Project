@@ -42,6 +42,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
@@ -117,7 +118,7 @@ public class MainActivity extends AppCompatActivity {
     //설정 아이콘
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        //DrawerLayout drawer = findViewById(R.id.drawer_layout);
 
         int id = item.getItemId();
         if(id == R.id.action_settings){
@@ -138,6 +139,19 @@ public class MainActivity extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        // Set drawable
+        toolbar.setLogo(ContextCompat.getDrawable(context, R.drawable.logo_title));
+        // Find logo
+        View view = toolbar.getChildAt(1);
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                replaceFragment(home_fragment);
+            }
+        });
+
+
 
 //        //메시지 아이콘 - 스낵바 문장
 //        findViewById(R.id.fab)
@@ -257,6 +271,25 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+    }
+
+    public static View getToolbarLogoIcon(Toolbar toolbar){
+        //check if contentDescription previously was set
+        boolean hadContentDescription = android.text.TextUtils.isEmpty(toolbar.getLogoDescription());
+        String contentDescription = String.valueOf(!hadContentDescription ? toolbar.getLogoDescription() : "logoContentDescription");
+        toolbar.setLogoDescription(contentDescription);
+        ArrayList<View> potentialViews = new ArrayList<View>();
+        //find the view based on it's content description, set programatically or with android:contentDescription
+        toolbar.findViewsWithText(potentialViews,contentDescription, View.FIND_VIEWS_WITH_CONTENT_DESCRIPTION);
+        //Nav icon is always instantiated at this point because calling setLogoDescription ensures its existence
+        View logoIcon = null;
+        if(potentialViews.size() > 0){
+            logoIcon = potentialViews.get(0);
+        }
+        //Clear content description if not previously present
+        if(hadContentDescription)
+            toolbar.setLogoDescription(null);
+        return logoIcon;
     }
 
 
