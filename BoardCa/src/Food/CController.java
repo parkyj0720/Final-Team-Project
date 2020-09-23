@@ -40,6 +40,17 @@ public class CController {
 		return mv;
 	}
 	
+	@RequestMapping("/cDetail.do")
+	public ModelAndView detail(HttpServletRequest req) {
+		int r_board_no = Integer.parseInt(req.getParameter("no"));
+		CDto dto = dao.detail(r_board_no);
+		
+		mv.addObject("dto",dto);
+		
+		mv.setViewName("/food/recipeDetail.jsp");
+		return mv;
+	}
+	
 	@RequestMapping("/cSearch.do")
 	public ModelAndView search(HttpServletRequest req) {
 		int page= 1;

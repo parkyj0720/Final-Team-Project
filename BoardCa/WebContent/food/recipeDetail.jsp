@@ -1,3 +1,4 @@
+<%@page import="Food.CDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -24,6 +25,10 @@
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
 <script src="http://code.jquery.com/jquery.js"></script>
+
+<% CDto dto = (CDto)request.getAttribute("dto");
+%>
+
 <script>
 	$('#like').text();
 	var count = 0;
@@ -86,15 +91,15 @@
 						<div class="body">
 							<div class="row">
 								<div class="col-xl-3 col-lg-4 col-md-12">
-									<img src="https://recipe1.ezmember.co.kr/cache/recipe/2020/08/25/631e8a991bff0bdcb18cb0681a8d702b1.jpg" width="100%">
+									<img src="<%=(dto.getR_main_thumbs()!="")?dto.getR_main_thumbs():request.getContextPath()+"/upload/"+dto.getR_filename() %>" width="100%">
 								</div>
 								<div class="col-xl-9 col-lg-8 col-md-12 r_detail" style="positon:relative;">
 									<div class="product details detail_header">
-										<h3 class="mb-0">초간단 맥주안주:모짜렐라치즈없이 콘치즈만들기</h3>
+										<h3 class="mb-0"><%=dto.getR_title() %></h3>
 
 
 										<hr>
-										<p class="product-description">맥주는 먹고 싶고 안주는 없어서 간단히 만들어봤어요.</p>
+										<p class="product-description"><%=dto.getR_explain() %></p>
 
 
 									</div>
@@ -110,7 +115,20 @@
 								<div class="col-lg-12">
 									<div>
 										<h6>레시피정보</h6>
-										<p>기준인원: ?인분, 조리시간: ?분, 난이도: ??</p>
+										<table>
+											<tr>
+												<td>기준인원: </td>
+												<td style="padding-left: 10px;"><%=dto.getR_standard() %></td>
+											</tr>
+											<tr>
+												<td>조리시간: </td>
+												<td style="padding-left: 10px;"><%=dto.getR_cooking_time() %></td>
+											</tr>
+											<tr>
+												<td>난이도: </td>
+												<td style="padding-left: 10px;"><%=dto.getR_difficult() %></td>
+											</tr>
+										</table>
 									</div>
 								</div>
 							</div>
@@ -123,7 +141,13 @@
 								<div class="col-lg-12">
 									<div>
 										<h6>재료</h6>
-										<p>재료설명</p>
+										<% %>
+										<table id="ingre_list" style="margin-top: 20px;">
+											<tr>
+												<td style="width: 150px;" class="ingre_info">김치</td>
+												<td>수량: 200g</td>
+											</tr>
+										</table>
 									</div>
 								</div>
 							</div>
@@ -136,7 +160,13 @@
 								<div class="col-lg-12">
 									<div>
 										<h6>조리순서</h6>
-										<p>조리순서 ~~~~</p>
+										<table>
+											<tr>
+												<td style="padding-left: 10px;">1</td>
+												<td style="padding-left: 50px;">재료를 준비한다.</td>
+												<td style="padding-left: 100px;"><img src="https://recipe1.ezmember.co.kr/cache/recipe/2017/03/31/ba10b05722f64e501a44c8d9b2f4f18b1.png" width="300"></td>
+											</tr>
+										</table>
 									</div>
 								</div>
 							</div>

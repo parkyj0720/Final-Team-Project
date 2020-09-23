@@ -30,6 +30,12 @@ public class CDao {
 	    return list;
 	  }
 	
+	public CDto detail(int no){
+	    System.out.println("----> cXml.cDetail()");
+	    CDto dto = sqlSession.selectOne("cXml.cDetail", no);
+	    return dto;
+	  }
+	
 	public int uploadFile(CDto dto) {
 		System.out.println(dto);
 		int cnt = sqlSession.insert("cXml.cInsertTest", dto);
