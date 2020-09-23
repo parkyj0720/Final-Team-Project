@@ -19,41 +19,66 @@ public class SignUpController {
 	@Autowired
 	private MemberDao memDao;
 
+	@RequestMapping("/kakaoSignIn.do")
+	public ModelAndView kakaoSignIn(HttpServletRequest req) {
+		String userId = req.getParameter("userId");
+		String account_email = req.getParameter("account_email");
+		String userGender = req.getParameter("userGender");
+		String userAgeRange = req.getParameter("userAgeRange");
+		String joinDate = req.getParameter("joinDate");
+		int idCheck = -1;
+
+		idCheck = memDao.idCheck(userId);
+		
+		mv.addObject("idCheck", idCheck);
+		mv.addObject("userId", userId); 
+		mv.addObject("account_email", account_email); // 카카오이메일 
+		mv.addObject("userGender", userGender); // male ,female
+		mv.addObject("userAgeRange", userAgeRange); // 20~29
+		mv.addObject("joinDate", joinDate); // 2018-08-21		
+		
+		mv.setViewName("/sign/kakaoChk.jsp");
+
+		return mv;
+	}
+
 //	회원가입 폼
 	@RequestMapping("/signUp.do")
 	public ModelAndView signUp(HttpServletRequest req) {
-		String inputId = req.getParameter("inputId");
+		String inputId = req.getParameter("userId");
 		String account_email = req.getParameter("account_email");
 		String userGender = req.getParameter("userGender");
 		String userAgeRange = req.getParameter("userAgeRange");
 		String joinDate = req.getParameter("joinDate");
 
 		req.setAttribute("idCheck", 1);
+
+		String email1 = null;
+		String email2 = null;
+		if (account_email != null) {
+			String[] email = account_email.split("@");
+			email1 = email[0];
+			email2 = email[1];
+		}
+
+		if (userAgeRange != null) {
+			userAgeRange = userAgeRange.substring(0, 2);
+		}
 		if (joinDate != null) {
 			joinDate = joinDate.substring(0, 10);
 		}
-		
-		String email1 = null;
-		String email2 = null;	
-		if(account_email != null) {
-			String[] email = account_email.split("@");		
-			email1 = email[0];
-			email2 = email[1];	
-		}
-			
-		if(userAgeRange != null) {
-			userAgeRange = userAgeRange.substring(0,2);
-		}
-		
+
 		mv.addObject("inputId", inputId); // only number
 		mv.addObject("email1", email1); // 카카오이메일 @ 앞부분
 		mv.addObject("email2", email2); // 카카오이메일 @ 뒷부분
-		mv.addObject("userGender", userGender); // male / female
+		mv.addObject("userGender", userGender); // male female
 		mv.addObject("userAgeRange", userAgeRange); // 20~29
 		mv.addObject("joinDate", joinDate); // 2018-08-21
 
+		System.out.println(userGender);
 		mv.setViewName("/sign/signUp.jsp");
 		return mv;
+
 	}
 
 //	ID중복 체크 
@@ -96,7 +121,7 @@ public class SignUpController {
 		dto.setMem_id(req.getParameter("inputId"));
 		dto.setMem_pw(req.getParameter("inputPw"));
 		dto.setMem_nickname(req.getParameter("inputNickName"));
-		dto.setMem_email(req.getParameter("email1")+"@"+req.getParameter("email2"));
+		dto.setMem_email(req.getParameter("email1") + "@" + req.getParameter("email2"));
 		dto.setMem_gender(req.getParameter("gender"));
 		dto.setMem_age_group(req.getParameter("ageRange"));
 		dto.setMem_rocal(req.getParameter("mem_rocal"));
@@ -104,10 +129,9 @@ public class SignUpController {
 		dto.setMem_mng_gwonhan(0);
 		dto.setMem_login_gwonhan(1);
 		dto.setMem_board_gwonhan(1);
-		
 
-		//System.out.println(dto);
-		// 회원정보 insert 
+		// System.out.println(dto);
+		// 회원정보 insert
 		memDao.memInsert(dto);
 
 		mv.setViewName("/sign/signUpPro.jsp");
