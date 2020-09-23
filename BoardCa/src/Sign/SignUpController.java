@@ -32,10 +32,22 @@ public class SignUpController {
 		if (joinDate != null) {
 			joinDate = joinDate.substring(0, 10);
 		}
-		System.out.println("카카오Id" + account_email);
-
+		
+		String email1 = null;
+		String email2 = null;	
+		if(account_email != null) {
+			String[] email = account_email.split("@");		
+			email1 = email[0];
+			email2 = email[1];	
+		}
+			
+		if(userAgeRange != null) {
+			userAgeRange = userAgeRange.substring(0,2);
+		}
+		
 		mv.addObject("inputId", inputId); // only number
-		mv.addObject("account_email", account_email); // 카카오이메일
+		mv.addObject("email1", email1); // 카카오이메일 @ 앞부분
+		mv.addObject("email2", email2); // 카카오이메일 @ 뒷부분
 		mv.addObject("userGender", userGender); // male / female
 		mv.addObject("userAgeRange", userAgeRange); // 20~29
 		mv.addObject("joinDate", joinDate); // 2018-08-21
@@ -81,16 +93,22 @@ public class SignUpController {
 	public ModelAndView signUpPro(HttpServletRequest req, MemberDto dto) {
 		// dto에 회원정보 담기
 
-
-		dto.setMem_id(req.getParameter("mem_id"));
-		dto.setMem_nickname(req.getParameter("mem_nickname"));
-		dto.setMem_pw(req.getParameter("mem_pw"));
-		dto.setMem_email(req.getParameter("mem_email"));
+		dto.setMem_id(req.getParameter("inputId"));
+		dto.setMem_pw(req.getParameter("inputPw"));
+		dto.setMem_nickname(req.getParameter("inputNickName"));
+		dto.setMem_email(req.getParameter("email1")+"@"+req.getParameter("email2"));
+		dto.setMem_gender(req.getParameter("gender"));
+		dto.setMem_age_group(req.getParameter("ageRange"));
 		dto.setMem_rocal(req.getParameter("mem_rocal"));
 		dto.setMem_state(req.getParameter("mem_state"));
 		dto.setMem_mng_gwonhan(0);
+		dto.setMem_login_gwonhan(1);
+		dto.setMem_board_gwonhan(1);
+		
 
-		// 회원정보 insert memDao.memInsert(dto);
+		//System.out.println(dto);
+		// 회원정보 insert 
+		memDao.memInsert(dto);
 
 		mv.setViewName("/sign/signUpPro.jsp");
 		return mv;

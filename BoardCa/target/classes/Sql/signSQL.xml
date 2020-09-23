@@ -5,28 +5,52 @@
 
 <mapper namespace="signXml">
 
-<select id="idCheck" resultType="int" parameterType="MemberDto">
-	select count(*) 
-	from MEMBER 
-	where MEM_ID=#{userId}
-</select>
+	<select id="idCheck" resultType="int" parameterType="MemberDto">
+		select count(*)
+		from MEMBER
+		where MEM_ID=#{userId}
+	</select>
 
 
-<select id="signCheck" resultType="String" parameterType="MemberDto">
-	select mem_pw
-	from MEMBER
-	where MEM_ID=#{userId}
-</select>
+	<select id="signCheck" resultType="String"
+		parameterType="MemberDto">
+		select mem_pw
+		from MEMBER
+		where MEM_ID=#{userId}
+	</select>
 
-<insert id="sessionInput" parameterType="Sign.SessionDto">
-	
-</insert>
+	<insert id="sessionInput" parameterType="Sign.SessionDto">
 
-<insert id="memInsert" parameterType="MemberDto">
-	
+	</insert>
 
-
-</insert>
+	<insert id="memInsert" parameterType="MemberDto">
+		INSERT INTO MEMBER
+		(	MEM_ID
+			,MEM_NICKNAME
+			,MEM_PW
+			,MEM_AGE_GROUP
+			,MEM_GENDER
+			,MEM_EMAIL
+			,MEM_ROCAL
+			,MEM_STATE
+			,MEM_MNG_GWONHAN
+			,MEM_LOGIN_GWONHAN
+			,MEM_BOARD_GWONHAN
+		)
+		VALUES(
+			#{mem_id}
+			,#{mem_nickname}
+			,#{mem_pw}
+			,#{mem_age_group}
+			,#{mem_gender}
+			,#{mem_email}
+			,#{mem_rocal}
+			,#{mem_state}
+			,#{mem_mng_gwonhan}
+			,#{mem_login_gwonhan}
+			,#{mem_board_gwonhan}
+		)
+	</insert>
 
 
 

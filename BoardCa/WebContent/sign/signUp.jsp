@@ -30,11 +30,6 @@
 .checkBtn {
 	margin: 0;
 }
-
-.center {
-	margin: auto;
-}
-
 .inputForm {
 	width: 70%;
 	height: auto;
@@ -49,9 +44,13 @@
 	font-size: 14px;
 	background: rgba(0, 0, 0, 0);
 }
+.margin-auto{
+	margin: auto;
+}
 </style>
 <script src="http://code.jquery.com/jquery.js"></script>
 <script type="text/javascript">
+
 
 	/* 지역 select box */
 	function categoryChange(e) {
@@ -214,28 +213,52 @@
 		    return true;
 		 }
 	}
+	
+	<%-- function userAgeRangeChk(){
+		var a =(String) <%= request.getAttribute("userGender")%>
+		alert(a);
+		//var ageRangeVal = $('input[name="ageRange"]:checked').val
+		
+	} --%>
+	
+	
+	
 	/* 회원 가입 클릭시 전체 입력창 확인  */
-	$(function() {
+	$(function() {		
+		var ageRange = <%= request.getAttribute("userAgeRange")%>
+		
+		switch(ageRange){
+			case 10:
+				$("input:radio[id='one']").prop("checked", true);
+				$("input:radio[id='two']").prop("checked", false);
+				break;
+			case 20:
+				break;
+			case 30:
+				$("input:radio[id='three']").prop("checked", true);
+				$("input:radio[id='two']").prop("checked", false);
+				break;
+			default:
+				$("input:radio[id='four']").prop("checked", true);
+				$("input:radio[id='two']").prop("checked", false);			
+		}
+		
+		
 		$('#submitBtn').click(function() {		
 			
-			if (!checkInputId(form.inputId.value)) {		
-	        	alert("0");
+			if (!checkInputId(form.inputId.value)) {			        
 	            return false;
-	        } else if (!checkPassword(form.inputId.value, form.inputPw.value,
-	                form.inputPwCk.value)) {
-	        	alert("1");
+	        } else if (!checkPassword(form.inputPw.value, form.inputPwCk.value)) {	        	
 	            return false;
-	        } else if (!checkNickName(form.inputNickName.value)) {
-	        	alert("2");
+	        } else if (!checkNickName(form.inputNickName.value)) {	        
 	            return false;
-	        } else if (!checkEmail(form.inputEmail.value)) {
-	        	alert("3");
+	        } else if (!checkEmail1(form.email1.value)) {	      
+	            return false;	            
+	        } else if (!checkEmail2(form.email2.value)) {	      
 	            return false;	            
 	        } else if (!checkRocal(form.mem_rocal.value)) {
-	        	alert("4");
 	            return false;
-	        } else if (!checkState(form.mem_state.value)) {
-	        	alert("5");
+	        } else if (!checkState(form.mem_state.value)) {	        
 	            return false;
 	        }
 	        	    
@@ -248,7 +271,7 @@
         	return true;
 	    }
 		/* PW입력창 확인 */
-		function checkPassword(id, inputPw, inputPwCk) {
+		function checkPassword(inputPw, inputPwCk) {
 	        //비밀번호가 입력되었는지 확인하기
 	        if (!checkExistData(inputPw, "비밀번호를"))
 	            return false;
@@ -263,15 +286,21 @@
 	            return false;
 			return true;
 		}
-		/* 이메일 입력창 확인 */
-		function checkEmail(inputEmail) {
+		/* 이메일1 입력창 확인 */
+		function checkEmail1(inputEmail) {
 			if (!checkExistData(inputEmail, "이메일을"))
 	            return false;
 			return true;
 		}
+		/* 이메일2 입력창 확인 */
+		function checkEmail2(email1) {
+			if (!checkExistData(email1, "이메일을"))
+	            return false;
+			return true;
+		}
 		/* 광역시.도 선택 확인 */
-		function checkRocal(mem_rocal) {
-			if (!checkExistData(mem_rocal, "지역을"))
+		function checkRocal(email2) {
+			if (!checkExistData(email2, "지역을"))
 	            return false;
 			return true;
 		}
@@ -303,10 +332,10 @@
 			<img src="${pageContext.request.contextPath}/imgs/logo1.png"
 				alt="logo" style="width: 50%" />
 			<div class="body">
+				<div class="st_inline margin-auto" style="width: 80%;">
 				<form id="form_validation" method="POST" name="form"
 					action="${pageContext.request.contextPath}/signUpPro.do">
-					<div class="form-group form-float col-sm-6"
-						style="display: inline-block;">
+					<div class="form-group form-float col-sm-9 margin-auto">
 						<c:if test="${inputId == null}">
 							<input type="text" class="form-control" placeholder="아이디( 4~12자, 영문 대소문자, 숫자  포함 )"
 								value="" name="inputId" id="inputId" onblur="chkID()">
@@ -319,38 +348,58 @@
 					</div>
 					<div class="form-group form-float col-sm-9" id="checkId"></div>
 
-					<div class="form-group form-float col-sm-6"
-						style="display: inline-flex;">
+					<div class="form-group form-float col-sm-9 margin-auto" style="padding-bottom: 1rem;">
 						<input type="text" class="form-control" onblur="chkPW()"
 							placeholder="비밀번호 ( 8~20자, 영문, 숫자, 특수문자 포함 )"
 							style="display: inline-block;" value="" name="inputPw"
 							id="inputPw">
 					</div>
-					<div class="form-group form-float col-sm-6"
-						style="display: inline-flex;">
+					<div class="form-group form-float col-sm-9 margin-auto">
 						<input type="text" class="form-control" onblur="equalPwCk()"
 							placeholder="비밀번호 확인" style="display: inline-block;"
 							name="inputPwCk" id="inputPwCk">
 					</div>
 					<div class="form-group form-float col-sm-9" id="checkPwd"></div>
 
-					<div class="form-group form-float col-sm-6"
-						style="display: inline-flex;">
+					<div class="form-group form-float col-sm-9 margin-auto"  style="padding-bottom: 1rem;">
 						<input type="text" class="form-control" placeholder="닉네임"
 							style="display: inline-block;" value="" name="inputNickName">
 					</div>
-					<div class="form-group form-float col-sm-6"
-						style="display: inline-flex;">
-						<c:if test="${account_email == null}">
-							<input type="text" class="form-control" placeholder="이메일"
-								style="display: inline-block;" value="" name="inputEmail">
+					
+					<div class="form-group form-float col-sm-9 margin-auto" style="display: inline-block; padding: 0;">
+						<div class="form-group form-float col-sm-6"
+							style="display: inline-flex; float: left;">
+							<c:if test="${email1 == null}">
+								<input type="text" class="form-control" placeholder="이메일"
+									style="display: inline-block;" value="" name="email1">
+							</c:if>
+							<c:if test="${email1 != null}">
+								<input type="text" class="form-control" placeholder="이메일"
+									style="display: inline-block;" value="${email1}"
+									name="email1" readonly>
+							</c:if>
+						</div>
+						<span>@</span>						
+						<c:if test="${email1 == null}">
+							<div class="form-group form-float col-sm-5" style="display: inline-block; float: right;">							
+		                        <select class="form-control show-tick ms select2" data-placeholder="Select" name=email2>
+		                            <option value="" selected>선택하세요</option>
+		                            <option value="naver.com">naver.com</option>
+		                            <option value="nate.com">nate.com</option>
+		                            <option value="kakao.com" >kakao.com</option>
+		                            <option value="gmail.com">gmail.com</option>
+		                            <option value="hanmail.com">hanmail.com</option>
+		                        </select>
+		                    </div>
+	                    </c:if>
+	                    <c:if test="${email1 != null}">
+	                    	<div class="form-group form-float col-sm-5" style="display: inline-block; float: right;">
+								<input type="text" class="form-control" placeholder="이메일"
+									style="display: inline-block;" value="${email2}"
+									name="email2" readonly>
+							</div>
 						</c:if>
-						<c:if test="${account_email != null}">
-							<input type="text" class="form-control" placeholder="이메일"
-								style="display: inline-block;" value="${account_email}"
-								name="inputEmail" readonly>
-						</c:if>
-					</div>
+                    </div>
 					<!-- <div class="form-group form-float col-sm-6"
 						style="display: inline-flex;">
 						<input type="text" class="form-control" placeholder="핸드폰번호"
@@ -358,18 +407,18 @@
 					</div> -->
 
 					<!-- 성별 체크 라디오 버튼  -->
-					<div class="form-group form-float col-sm-6 center"
+					<div class="form-group form-float col-sm-9 margin-auto"
 						style="text-align: left;">
 						<c:choose>
 							<c:when test="${userGender == null or userGender == 'male'}">
 								<div class="form-group">
 									<div class="radio inlineblock m-r-20" style="margin: 0;">
 										<input type="radio" name="gender" id="male" class="with-gap"
-											value="option1" checked> <label for="male">남성</label>
+											value="남" checked> <label for="male">남성</label>
 									</div>
 									<div class="radio inlineblock" style="margin: 0;">
 										<input type="radio" name="gender" id="Female" class="with-gap"
-											value="option2"> <label for="Female">여성</label>
+											value="여"> <label for="Female">여성</label>
 									</div>
 								</div>
 							</c:when>
@@ -377,67 +426,89 @@
 								<div class="form-group">
 									<div class="radio inlineblock m-r-20" style="margin: 0;">
 										<input type="radio" name="gender" id="male" class="with-gap"
-											value="option1"> <label for="male">남성</label>
+											value="남"> <label for="male">남성</label>
 									</div>
 									<div class="radio inlineblock" style="margin: 0;">
 										<input type="radio" name="gender" id="Female" class="with-gap"
-											value="option2" checked> <label for="Female">여성</label>
+											value="여" checked> <label for="Female">여성</label>
 									</div>
 								</div>
 							</c:when>
 						</c:choose>
 					</div>
-					<div class="form-group form-float col-sm-6 center"
-						style="margin-bottom: 1%;">
-						<div>
-							<select onchange="categoryChange(this)" class="form-control"
-								id="area0">
-								<option>광역시·도 선택</option>
-								<option value="area1">서울특별시</option>
-								<option value="area2">인천광역시</option>
-								<option value="area3">대전광역시</option>
-								<option value="area4">광주광역시</option>
-								<option value="area5">대구광역시</option>
-								<option value="area6">울산광역시</option>
-								<option value="area7">부산광역시</option>
-								<option value="area8">경기도</option>
-								<option value="area9">강원도</option>
-								<option value="area10">충청북도</option>
-								<option value="area11">충청남도</option>
-								<option value="area12">전라북도</option>
-								<option value="area13">전라남도</option>
-								<option value="area14">경상북도</option>
-								<option value="area15">경상남도</option>
-								<option value="area16">제주도</option>
-							</select>
+					<!-- 연령대 --> 
+					<div class="form-group form-float col-sm-9 margin-auto"
+						style="text-align: left;">
+						<div class="form-group">
+							<div class="radio inlineblock m-r-20" style="margin: 0;">
+								<input type="radio" name="ageRange" id="one" class="with-gap"
+									value="10대" > <label for="one">10대</label>
+							</div>
+							<div class="radio inlineblock m-r-20" style="margin: 0;">
+								<input type="radio" name="ageRange" id="two" class="with-gap"
+									value="20대" checked> <label for="two">20대</label>
+							</div>
+							<div class="radio inlineblock" style="margin: 0;">
+								<input type="radio" name="ageRange" id="three" class="with-gap"
+									value="30대"> <label for="three">30대</label>
+							</div>
+							<div class="radio inlineblock" style="margin: 0;">
+								<input type="radio" name="ageRange" id="four" class="with-gap"
+									value="40대 이상"> <label for="four">40대 이상</label>
+							</div>
 						</div>
 					</div>
-					<input type="text" id="mem_rocal" name="mem_rocal"
-						style="visibility: hidden;">
-					<div class="form-group form-float col-sm-6 center"
-						style="margin-bottom: 1%;">
-						<div>
-							<select id="mem_state" class="form-control" name="mem_state">
-								<option>시·군·구 선택</option>
-							</select>
+					
+					<div class="form-group form-float col-sm-9 margin-auto" style="padding: 0;">
+						<div class="form-group form-float col-sm-6"
+							style="margin-bottom: 1%; display: inline-block; float: left;">
+							<div>
+								<select onchange="categoryChange(this)" class="form-control"
+									id="area0">
+									<option>광역시·도 선택</option>
+									<option value="area1">서울특별시</option>
+									<option value="area2">인천광역시</option>
+									<option value="area3">대전광역시</option>
+									<option value="area4">광주광역시</option>
+									<option value="area5">대구광역시</option>
+									<option value="area6">울산광역시</option>
+									<option value="area7">부산광역시</option>
+									<option value="area8">경기도</option>
+									<option value="area9">강원도</option>
+									<option value="area10">충청북도</option>
+									<option value="area11">충청남도</option>
+									<option value="area12">전라북도</option>
+									<option value="area13">전라남도</option>
+									<option value="area14">경상북도</option>
+									<option value="area15">경상남도</option>
+									<option value="area16">제주도</option>
+								</select>
+							</div>
 						</div>
+						
+						<div class="form-group form-float col-sm-6"
+							style="margin-bottom: 1%;     display: inline-block; float: right;">
+							<div>
+								<select id="mem_state" class="form-control" name="mem_state">
+									<option>시·군·구 선택</option>
+								</select>
+							</div>
+						</div>
+						<input type="text" id="mem_rocal" name="mem_rocal"
+							style="visibility: hidden;">
 					</div>
-
-					<div class="checkbox">
-						<input id="remember_me" type="checkbox"> <label
-							for="remember_me">I read and agree to the <a
-							href="javascript:void(0);">terms of usage</a></label>
-					</div>
-					<div class="col-sm-6 center" style="padding: 0;">
+					
+					<div class="col-sm-9 margin-auto">
 						<button class="btn btn-raised btn-primary waves-effect"
 							type="submit" style="width: inherit;" id="submitBtn">회원가입</button>
 					</div>
-					<div class="col-sm-6 center" style="padding: 0">
+					<div class="col-sm-9 margin-auto">
 						<a class="link"
 							href="${pageContext.request.contextPath}/signIn.do">이미
 							회원이신가요?</a>
 					</div>
 				</form>
+				</div>
 			</div>
 		</div>
 	</div>

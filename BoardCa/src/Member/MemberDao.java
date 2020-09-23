@@ -30,7 +30,8 @@ public class MemberDao {
 	
 // 회원정보 insert
 	public void memInsert(MemberDto dto) {
-		mysqlSession.insert("signXml.memInsert");
+		System.out.println(dto);
+		mysqlSession.insert("signXml.memInsert", dto);
 	}
 	
 }

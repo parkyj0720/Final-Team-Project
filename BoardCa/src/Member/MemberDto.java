@@ -1,22 +1,22 @@
 package Member;
 
 public class MemberDto {
-	int mem_idx, mem_age_group;
-	String mem_id, mem_nickname, mem_pw, mem_gender;
+	int mem_idx;
+	String mem_id, mem_nickname, mem_pw, mem_gender, mem_age_group;
 	String mem_email, mem_rocal, mem_state;
 	int mem_mng_gwonhan, mem_login_gwonhan, mem_board_gwonhan;
 
 	public MemberDto() {}
 
-	public MemberDto(int mem_idx, int mem_age_group, String mem_id, String mem_nickname, String mem_pw,
-			String mem_gender, String mem_email, String mem_rocal, String mem_state, int mem_mng_gwonhan,
+	public MemberDto(int mem_idx, String mem_id, String mem_nickname, String mem_pw, String mem_gender,
+			String mem_age_group, String mem_email, String mem_rocal, String mem_state, int mem_mng_gwonhan,
 			int mem_login_gwonhan, int mem_board_gwonhan) {
 		this.mem_idx = mem_idx;
-		this.mem_age_group = mem_age_group;
 		this.mem_id = mem_id;
 		this.mem_nickname = mem_nickname;
 		this.mem_pw = mem_pw;
 		this.mem_gender = mem_gender;
+		this.mem_age_group = mem_age_group;
 		this.mem_email = mem_email;
 		this.mem_rocal = mem_rocal;
 		this.mem_state = mem_state;
@@ -31,14 +31,6 @@ public class MemberDto {
 
 	public void setMem_idx(int mem_idx) {
 		this.mem_idx = mem_idx;
-	}
-
-	public int getMem_age_group() {
-		return mem_age_group;
-	}
-
-	public void setMem_age_group(int mem_age_group) {
-		this.mem_age_group = mem_age_group;
 	}
 
 	public String getMem_id() {
@@ -71,6 +63,14 @@ public class MemberDto {
 
 	public void setMem_gender(String mem_gender) {
 		this.mem_gender = mem_gender;
+	}
+
+	public String getMem_age_group() {
+		return mem_age_group;
+	}
+
+	public void setMem_age_group(String mem_age_group) {
+		this.mem_age_group = mem_age_group;
 	}
 
 	public String getMem_email() {
@@ -123,15 +123,13 @@ public class MemberDto {
 
 	@Override
 	public String toString() {
-		return "MemberDto [mem_idx=" + mem_idx + ", mem_age_group=" + mem_age_group + ", mem_id=" + mem_id
-				+ ", mem_nickname=" + mem_nickname + ", mem_pw=" + mem_pw + ", mem_gender=" + mem_gender
-				+ ", mem_email=" + mem_email + ", mem_rocal=" + mem_rocal + ", mem_state=" + mem_state
-				+ ", mem_mng_gwonhan=" + mem_mng_gwonhan + ", mem_login_gwonhan=" + mem_login_gwonhan
-				+ ", mem_board_gwonhan=" + mem_board_gwonhan + "]";
+		return "MemberDto [mem_idx=" + mem_idx + ", mem_id=" + mem_id + ", mem_nickname=" + mem_nickname + ", mem_pw="
+				+ mem_pw + ", mem_gender=" + mem_gender + ", mem_age_group=" + mem_age_group + ", mem_email="
+				+ mem_email + ", mem_rocal=" + mem_rocal + ", mem_state=" + mem_state + ", mem_mng_gwonhan="
+				+ mem_mng_gwonhan + ", mem_login_gwonhan=" + mem_login_gwonhan + ", mem_board_gwonhan="
+				+ mem_board_gwonhan + "]";
 	}
 
-	
-	
 }
 
 	
