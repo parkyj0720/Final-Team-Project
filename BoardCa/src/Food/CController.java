@@ -99,6 +99,7 @@ public class CController {
 
 //			String author = multi.getParameter("author");
 //			String title = multi.getParameter("title");
+			System.out.println("test");
 			String file = multi.getFilesystemName("file");
 			
 			String r_title = multi.getParameter("title");
@@ -109,6 +110,7 @@ public class CController {
 			
 			String r_ingredient = multi.getParameter("ingredient");
 			String r_cooking_order = multi.getParameter("cooking_order");
+			System.out.println(r_cooking_order);
 
 			try {
 				int result = dao.uploadFile(new CDto(0, r_crawling_addr, r_main_thumbs, file, r_title, r_explain, r_standard, r_cooking_time, r_difficult, r_ingredient, r_cooking_order));
@@ -127,7 +129,7 @@ public class CController {
 			System.out.println("일반 전송 form 입니다.");
 		}
 		
-		mv.setViewName("food/write_recipe.jsp");
+		mv.setViewName("food/food.jsp");
 		return mv;
 	}
 	

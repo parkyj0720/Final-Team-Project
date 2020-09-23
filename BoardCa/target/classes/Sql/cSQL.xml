@@ -6,12 +6,13 @@
 <mapper namespace="cXml">
 <!-- r_crawling_addr, r_main_thumbs, r_title -->
 <select id="cListAll" resultType="Food.CDto">
-	select r_crawling_addr, r_main_thumbs, r_title 
+	select r_board_no, r_crawling_addr, r_main_thumbs, r_filename, r_title 
 	from recipe
+	order by r_board_no ASC
 </select>
 
 <select id="cSearchList" resultType="Food.CDto" parameterType="String">
-	select r_crawling_addr, r_main_thumbs, r_title 
+	select r_board_no, r_crawling_addr, r_main_thumbs, r_filename, r_title 
 	from recipe 
 	where r_title like '%'||#{search}||'%'
 </select>

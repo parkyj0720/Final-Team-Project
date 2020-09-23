@@ -30,6 +30,7 @@
 	$('#like').text();
 	var count = 0;
 	var order_cnt = 1;
+	var cnt = 1;
 	
 	var fileValue = '';
 	var fileName = '';
@@ -53,6 +54,11 @@
 	});
 	function remove_list(item) {
 		$(item).parent().parent().remove();
+		order_cnt -= 1;
+		
+		$('.order_count').each(function(index,item){
+			$(item).text(index+1);
+		})
 	}
 	
 	function getContextPath(){
@@ -69,6 +75,7 @@
 			contentType:false,
 			processData:false,
 			success : function test(a){
+				cnt += 1;
 				/* $('#fileNameCheckT').val(a);
 				
 				var new_fileName = $('#fileNameCheckT').val(); */
@@ -76,9 +83,13 @@
 				
 				//cooking_order += new_fileName + '&';
 				order2.push(new_fileName + '&');
-				//console.log(new_fileName);
+				console.log(new_fileName);
 				//console.log(cooking_order);
 				$('#file_form').empty();
+				
+				if(order_cnt == cnt){
+					$('#write_form').submit();
+				}
 				
 			},
 			error : function error(){ 
@@ -94,7 +105,7 @@
 						var flex_check = $('.flex_check');
 
 						var r_detail_h = $('.r_detail').height()+70;
-						console.log(r_detail_h);
+						//console.log(r_detail_h);
 						if ($main_img.width() >= 350) {
 							r_detail_h = $('.r_detail').height()
 									- $main_img.height();
@@ -104,9 +115,9 @@
 						$(window)
 								.resize(
 										function() {
-											console.log(flex_check.css('flex'));
+											//console.log(flex_check.css('flex'));
 											r_detail_h = $('.r_detail').height() - 100;
-											console.log($('#content_area').val());
+											//console.log($('#content_area').val());
 											/* if($main_img.width() >= 350){
 												r_detail_h = 300;
 											} */
@@ -143,7 +154,7 @@
 						.on(
 								'click',
 								function() {
-									var tag = '<tr><td style="padding: 20px;"><p>'+order_cnt+'</p></td>'
+									var tag = '<tr><td style="padding: 20px;"><p class="order_count">'+order_cnt+'</p></td>'
 									+ '<td><textarea style="width: 250px; height: 195px; resize: none; margin-right:100px;" name="order_text" class="order_info"></textarea></td>'
 									+ '<td><input type="file" class="dropify r_detail order_info" name="file2"></td>'
 									+'<td><button type="button" onclick="remove_list(this)" style="margin-left: 10px;">삭제</button></td></tr>';
@@ -187,13 +198,59 @@
 						
 						// 글쓰기 버튼클릭
 						$('#write_form').submit(function(event){
-							event.preventDefault();
+							//event.preventDefault();
+							
+							for(var i=0;i<order1.length;i++){
+								cooking_order += order1[i];
+								cooking_order += order2[i];
+							}
+
+							$('.order_text_list').val(cooking_order);
+							console.log($('.order_text_list').val());
+							
+							if(form.cooking_order.value == ''){
+								alert("7");
+								return false;
+							}
+							
+						});
+						
+						$("#ingre_text").keyup(function(event) {
+						    if (event.keyCode === 13) {
+						        $('#ingre_addBtn').click();
+						    }
+						});
+						
+						$(document).on('keyup', ".ingre_info", function(event) {
+						    if (event.keyCode === 13) {
+						        $('#ingre_text').focus();
+						    }
+						});
+						
+						$('#write_btn').on('click',function(){
 							
 							ingre_info = '';
 							cooking_order = '';
 							
 							order1 = [];
 							order2 = [];
+							
+							if(form.title.value == ''){
+								alert("1");
+								return false;
+							}else if(form.explain.value == ''){
+								alert("2");
+								return false;
+							}else if(form.standard.value == ''){
+								alert("3");
+								return false;
+							}else if(form.cooking_time.value == ''){
+								alert("4");
+								return false;
+							}else if(form.difficult.value == ''){
+								alert("5");
+								return false;
+							}
 							
 							// 재료 문자열로 나열
 							$('.ingre_info').each(function(index, item){
@@ -205,6 +262,7 @@
 									//console.log($(item).val());
 								}
 							});
+							
 							
 							// 조리순서 문자열로 나열
 							$('.order_info').each(function(index, item){
@@ -221,38 +279,46 @@
 									fileNameCheck();
 								}
 							});
-								
+							
 							//console.log(ingre_info);
 							$('.ingre_text_list').val(ingre_info);
+							
+							if(form.ingredient.value == ''){
+								alert("6");
+								return false;
+							}
+							
 							//console.log($('.ingre_text_list').val());
 							
-							var timer = window.setTimeout(function(){
-								for(var i=0;i<order1.length;i++){
-									cooking_order += order1[i];
-									cooking_order += order2[i];
-								}
-								
-								$('.order_text_list').val(cooking_order);
-								console.log($('.order_text_list').val());
-							},100);
+							/* var timeAttack = new Promise(function (resolve, reject) {
+								setTimeout(function () {
+									for(var i=0;i<order1.length;i++){
+										cooking_order += order1[i];
+										cooking_order += order2[i];
+									}
 
+									$('.order_text_list').val(cooking_order);
+									console.log($('.order_text_list').val());
+									
+									if ($('.order_text_list').val() != '') {
+										resolve();
+									} else {
+										reject();
+									}
+								}, 10000);
+							});
+							
+							timeAttack.then(function () {
+								  console.log('complete');
+								}, function () {
+								  console.log('error');
+								}); */
+							
+							
+							
+							//$('#write_form').submit();
 						});
 						
-						$("#ingre_text").keyup(function(event) {
-						    if (event.keyCode === 13) {
-						        $('#ingre_addBtn').click();
-						    }
-						});
-						
-						$(document).on('keyup', ".ingre_info", function(event) {
-						    if (event.keyCode === 13) {
-						        $('#ingre_text').focus();
-						    }
-						});
-						
-						$('#write_btn').on('click',function(){
-							$('#write_form').submit();
-						});
 					});
 </script>
 </head>
@@ -278,7 +344,7 @@
 			</div>
 		</div>
 	</div>
-	<form id="write_form" action="${pageContext.request.contextPath}/cUpload.do" method="post" enctype="multipart/form-data">
+	<form id="write_form" name="form" action="${pageContext.request.contextPath}/cUpload.do" method="post" enctype="multipart/form-data">
 		<div class="container-fluid">
 			<div class="row clearfix">
 				<div class="col-lg-12">
@@ -335,7 +401,7 @@
 										<table id="ingre_list" style="margin-top: 20px;">
 											<!-- 재료 추가 부분 -->
 										</table>
-										<input type="text" class="order_text_list" style="visibility: hidden;" name="ingredient">
+										<input type="text" class="ingre_text_list" style="visibility: hidden;" name="ingredient">
 									</div>
 								</div>
 							</div>
@@ -357,7 +423,7 @@
 												<td><input type="file" class="dropify r_detail" name="file"></td> -->
 											</tr>
 										</table>
-										<input type="text" class="ingre_text_list" style="visibility: hidden;" name="cooking_order">
+										<input type="text" class="order_text_list" style="visibility: hidden;" name="cooking_order" value="asd">
 										<input type="text" id="fileNameCheckT" style="visibility: hidden ;">
 									</div>
 								</div>
