@@ -39,7 +39,7 @@ public class MapSearchDetailActivity extends AppCompatActivity {
     ArrayList<Document> hospitalList = new ArrayList<>(); //병원 HP8
     ArrayList<Document> pharmacyList = new ArrayList<>(); //약국 PM9
     ArrayList<Document> cafeList = new ArrayList<>(); //카페
-    ArrayList<Document> restaurantList = new ArrayList<>(); //카페
+    ArrayList<Document> restaurantList = new ArrayList<>(); //음식점
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

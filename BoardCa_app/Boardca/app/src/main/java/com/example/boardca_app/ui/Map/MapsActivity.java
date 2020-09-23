@@ -305,7 +305,7 @@ public class MapsActivity extends AppCompatActivity implements MapView.MapViewEv
         cafeList.clear();
         restaurantList.clear();
         ApiInterface apiInterface = ApiClient.getApiClient().create(ApiInterface.class);
-        Call<CategoryResult> call = apiInterface.getSearchCategory(getString(R.string.restapi_key), "MT1", x + "", y + "", 1000);
+        Call<CategoryResult> call = apiInterface.getSearchCategory(getString(R.string.restapi_key), "MT1", x + "", y + "", 500);
         call.enqueue(new Callback<CategoryResult>() {
             @Override
             public void onResponse(@NotNull Call<CategoryResult> call, @NotNull Response<CategoryResult> response) {
@@ -315,7 +315,7 @@ public class MapsActivity extends AppCompatActivity implements MapView.MapViewEv
                         Log.d(TAG, "bigMartList Success");
                         bigMartList.addAll(response.body().getDocuments());
                     }
-                    call = apiInterface.getSearchCategory(getString(R.string.restapi_key), "CS2", x + "", y + "", 1000);
+                    call = apiInterface.getSearchCategory(getString(R.string.restapi_key), "CS2", x + "", y + "", 500);
                     call.enqueue(new Callback<CategoryResult>() {
                         @Override
                         public void onResponse(@NotNull Call<CategoryResult> call, @NotNull Response<CategoryResult> response) {
@@ -323,7 +323,7 @@ public class MapsActivity extends AppCompatActivity implements MapView.MapViewEv
                                 assert response.body() != null;
                                 Log.d(TAG, "gs24List Success");
                                 gs24List.addAll(response.body().getDocuments());
-                                call = apiInterface.getSearchCategory(getString(R.string.restapi_key), "SC4", x + "", y + "", 1000);
+                                call = apiInterface.getSearchCategory(getString(R.string.restapi_key), "SC4", x + "", y + "", 500);
                                 call.enqueue(new Callback<CategoryResult>() {
                                     @Override
                                     public void onResponse(@NotNull Call<CategoryResult> call, @NotNull Response<CategoryResult> response) {
@@ -331,7 +331,7 @@ public class MapsActivity extends AppCompatActivity implements MapView.MapViewEv
                                             assert response.body() != null;
                                             Log.d(TAG, "schoolList Success");
                                             schoolList.addAll(response.body().getDocuments());
-                                            call = apiInterface.getSearchCategory(getString(R.string.restapi_key), "AC5", x + "", y + "", 1000);
+                                            call = apiInterface.getSearchCategory(getString(R.string.restapi_key), "AC5", x + "", y + "", 500);
                                             call.enqueue(new Callback<CategoryResult>() {
                                                 @Override
                                                 public void onResponse(@NotNull Call<CategoryResult> call, @NotNull Response<CategoryResult> response) {
@@ -339,7 +339,7 @@ public class MapsActivity extends AppCompatActivity implements MapView.MapViewEv
                                                         assert response.body() != null;
                                                         Log.d(TAG, "academyList Success");
                                                         academyList.addAll(response.body().getDocuments());
-                                                        call = apiInterface.getSearchCategory(getString(R.string.restapi_key), "SW8", x + "", y + "", 1000);
+                                                        call = apiInterface.getSearchCategory(getString(R.string.restapi_key), "SW8", x + "", y + "", 500);
                                                         call.enqueue(new Callback<CategoryResult>() {
                                                             @Override
                                                             public void onResponse(@NotNull Call<CategoryResult> call, @NotNull Response<CategoryResult> response) {
@@ -347,7 +347,7 @@ public class MapsActivity extends AppCompatActivity implements MapView.MapViewEv
                                                                     assert response.body() != null;
                                                                     Log.d(TAG, "subwayList Success");
                                                                     subwayList.addAll(response.body().getDocuments());
-                                                                    call = apiInterface.getSearchCategory(getString(R.string.restapi_key), "BK9", x + "", y + "", 1000);
+                                                                    call = apiInterface.getSearchCategory(getString(R.string.restapi_key), "BK9", x + "", y + "", 500);
                                                                     call.enqueue(new Callback<CategoryResult>() {
                                                                         @Override
                                                                         public void onResponse(@NotNull Call<CategoryResult> call, @NotNull Response<CategoryResult> response) {
@@ -355,7 +355,7 @@ public class MapsActivity extends AppCompatActivity implements MapView.MapViewEv
                                                                                 assert response.body() != null;
                                                                                 Log.d(TAG, "bankList Success");
                                                                                 bankList.addAll(response.body().getDocuments());
-                                                                                call = apiInterface.getSearchCategory(getString(R.string.restapi_key), "HP8", x + "", y + "", 1000);
+                                                                                call = apiInterface.getSearchCategory(getString(R.string.restapi_key), "HP8", x + "", y + "", 500);
                                                                                 call.enqueue(new Callback<CategoryResult>() {
                                                                                     @Override
                                                                                     public void onResponse(@NotNull Call<CategoryResult> call, @NotNull Response<CategoryResult> response) {
@@ -363,7 +363,7 @@ public class MapsActivity extends AppCompatActivity implements MapView.MapViewEv
                                                                                             assert response.body() != null;
                                                                                             Log.d(TAG, "hospitalList Success");
                                                                                             hospitalList.addAll(response.body().getDocuments());
-                                                                                            call = apiInterface.getSearchCategory(getString(R.string.restapi_key), "FD6", x + "", y + "", 1000);
+                                                                                            call = apiInterface.getSearchCategory(getString(R.string.restapi_key), "FD6", x + "", y + "", 500);
                                                                                             call.enqueue(new Callback<CategoryResult>() {
                                                                                                 @Override
                                                                                                 public void onResponse(@NotNull Call<CategoryResult> call, @NotNull Response<CategoryResult> response) {
@@ -371,7 +371,7 @@ public class MapsActivity extends AppCompatActivity implements MapView.MapViewEv
                                                                                                         assert response.body() != null;
                                                                                                         Log.d(TAG, "restaurantList Success");
                                                                                                         restaurantList.addAll(response.body().getDocuments());
-                                                                                                        call = apiInterface.getSearchCategory(getString(R.string.restapi_key), "PM9", x + "", y + "", 1000);
+                                                                                                        call = apiInterface.getSearchCategory(getString(R.string.restapi_key), "PM9", x + "", y + "", 500);
                                                                                                         call.enqueue(new Callback<CategoryResult>() {
                                                                                                             @Override
                                                                                                             public void onResponse(@NotNull Call<CategoryResult> call, @NotNull Response<CategoryResult> response) {
@@ -379,7 +379,7 @@ public class MapsActivity extends AppCompatActivity implements MapView.MapViewEv
                                                                                                                     assert response.body() != null;
                                                                                                                     Log.d(TAG, "pharmacyList Success");
                                                                                                                     pharmacyList.addAll(response.body().getDocuments());
-                                                                                                                    call = apiInterface.getSearchCategory(getString(R.string.restapi_key), "CE7", x + "", y + "", 1000);
+                                                                                                                    call = apiInterface.getSearchCategory(getString(R.string.restapi_key), "CE7", x + "", y + "", 500);
                                                                                                                     call.enqueue(new Callback<CategoryResult>() {
                                                                                                                         @Override
                                                                                                                         public void onResponse(@NotNull Call<CategoryResult> call, @NotNull Response<CategoryResult> response) {
@@ -390,7 +390,7 @@ public class MapsActivity extends AppCompatActivity implements MapView.MapViewEv
                                                                                                                                 //모두 통신 성공 시 circle 생성
                                                                                                                                 MapCircle circle1 = new MapCircle(
                                                                                                                                         MapPoint.mapPointWithGeoCoord(y, x), // center
-                                                                                                                                        1000, // radius
+                                                                                                                                        500, // radius
                                                                                                                                         Color.argb(128, 255, 255, 255), // strokeColor
                                                                                                                                         Color.argb(128, 72, 255, 255) // fillColor
                                                                                                                                 );

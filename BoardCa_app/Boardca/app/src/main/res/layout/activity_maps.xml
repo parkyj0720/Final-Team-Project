@@ -50,7 +50,7 @@
         android:layout_gravity="bottom|end"
         android:layout_marginRight="15sp"
         android:layout_marginBottom="300dp"
-        android:src="@drawable/bg_splash_image"
+        android:src="@drawable/current_location_button_red"
         android:visibility="invisible"
         app:backgroundTint="#ffffff"
         app:elevation="6dp"
