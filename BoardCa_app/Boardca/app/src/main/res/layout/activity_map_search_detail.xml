@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_main_gradient"
+    android:background="@color/colorBlack"
     tools:context=".ui.Map.MapSearchDetailActivity"
     >
 
@@ -41,6 +41,7 @@
             android:id="@+id/mapsearchdetail_radar_chart"
             android:layout_width="match_parent"
             android:layout_height="500dp"
+            android:background="@color/colorWhite"
             />
 
         <TextView
@@ -260,8 +261,24 @@
                     />
 
                 <TextView
+                android:textColor="@color/colorWhite"
+                android:id="@+id/mapsearchdetail_tv_itemcount9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:textSize="15sp"
+                />
+                <TextView
                     android:textColor="@color/colorWhite"
-                    android:id="@+id/mapsearchdetail_tv_itemcount9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="  음식점: "
+                    android:textSize="15sp"
+                    />
+
+                <TextView
+                    android:textColor="@color/colorWhite"
+                    android:id="@+id/mapsearchdetail_tv_itemcount10"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="0"

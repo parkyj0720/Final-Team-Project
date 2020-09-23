@@ -44,6 +44,20 @@
     </LinearLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btn_reset"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_marginRight="15sp"
+        android:layout_marginBottom="300dp"
+        android:src="@drawable/current_location_button_red"
+        android:visibility="invisible"
+        app:backgroundTint="#ffffff"
+        app:elevation="6dp"
+        app:pressedTranslationZ="12dp"
+        />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -87,6 +101,7 @@
         />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
+        app:borderWidth="0dp"
         android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

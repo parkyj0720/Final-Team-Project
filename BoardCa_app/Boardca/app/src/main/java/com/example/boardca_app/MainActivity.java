@@ -108,8 +108,8 @@ public class MainActivity extends AppCompatActivity {
     };
 
     public void showMap(){
-        Intent settingIntent = new Intent(this, MapsActivity.class);
-        startActivity(settingIntent);
+        Intent kakaoMap = new Intent(this, MapsActivity.class);
+        startActivity(kakaoMap);
         overridePendingTransition(0,0);
     }
 
@@ -195,6 +195,7 @@ public class MainActivity extends AppCompatActivity {
             checkRunTimePermission();
         }
 
+        // 구글 api 사용한 현 위치 가져오기
         gpsTracker = new GpsTracker(MainActivity.this);
 
         latitude = gpsTracker.getLatitude();
@@ -365,7 +366,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    void checkRunTimePermission(){
+    public void checkRunTimePermission(){
 
         //런타임 퍼미션 처리
         // 1. 위치 퍼미션을 가지고 있는지 체크합니다.
@@ -409,7 +410,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-
+    // 좌표를 주소로 변환해주는 메소드
     public String getCurrentAddress( double latitude, double longitude) {
 
         //지오코더... GPS를 주소로 변환
@@ -448,7 +449,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     //여기부터는 GPS 활성화를 위한 메소드들
-    private void showDialogForLocationServiceSetting() {
+    public void showDialogForLocationServiceSetting() {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
         builder.setTitle("위치 서비스 비활성화");
@@ -522,4 +523,5 @@ public class MainActivity extends AppCompatActivity {
 
         return loca;
     }
+
 }
