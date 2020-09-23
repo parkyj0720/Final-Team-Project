@@ -24,7 +24,7 @@
             <div class="col-lg-4 col-sm-12">
                 <form class="card auth_form">
                     <div class="header">
-                        <img class="logo" src="assets/images/logo.svg" alt="">
+                        <img class="logo" src="${pageContext.request.contextPath}/stylesheet/assets/images/logo.svg" alt="">
                         <h5>Error 404</h5>
                         <span>Page not found</span>
                     </div>
@@ -35,7 +35,7 @@
                                 <span class="input-group-text"><i class="zmdi zmdi-search"></i></span>
                             </div>
                         </div>
-                        <a href="index.html" class="btn btn-primary btn-block waves-effect waves-light">GO TO HOMEPAGE</a>                        
+                        <a href="${pageContext.request.contextPath}/main.do" class="btn btn-primary btn-block waves-effect waves-light">GO TO HOMEPAGE</a>                        
                         <div class="signin_with mt-3">
                             <a href="javascript:void(0);" class="link">Need Help?</a>
                         </div>
@@ -49,7 +49,7 @@
             </div>
             <div class="col-lg-8 col-sm-12">
                 <div class="card">
-                    <img src="assets/images/404.svg" alt="404" />
+                    <img src="${pageContext.request.contextPath}/stylesheet/assets/images/404.svg" alt="404" />
                 </div>
             </div>
         </div>
@@ -57,7 +57,7 @@
 </div>
 
 <!-- Jquery Core Js -->
-<script src="assets/bundles/libscripts.bundle.js"></script>
-<script src="assets/bundles/vendorscripts.bundle.js"></script> <!-- Lib Scripts Plugin Js --> 
+<script src="${pageContext.request.contextPath}/stylesheet/assets/bundles/libscripts.bundle.js"></script>
+<script src="${pageContext.request.contextPath}/stylesheet/assets/bundles/vendorscripts.bundle.js"></script> <!-- Lib Scripts Plugin Js --> 
 </body>
 </html>
