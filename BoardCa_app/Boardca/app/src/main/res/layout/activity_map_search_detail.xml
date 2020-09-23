@@ -260,8 +260,24 @@
                     />
 
                 <TextView
+                android:textColor="@color/colorWhite"
+                android:id="@+id/mapsearchdetail_tv_itemcount9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:textSize="15sp"
+                />
+                <TextView
                     android:textColor="@color/colorWhite"
-                    android:id="@+id/mapsearchdetail_tv_itemcount9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="  음식점: "
+                    android:textSize="15sp"
+                    />
+
+                <TextView
+                    android:textColor="@color/colorWhite"
+                    android:id="@+id/mapsearchdetail_tv_itemcount10"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="0"

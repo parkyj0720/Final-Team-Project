@@ -25,7 +25,7 @@ public class MapSearchDetailActivity extends AppCompatActivity {
 
     //xml
     RadarChart radarChart;
-    TextView itemCntText1, itemCntText2, itemCntText3, itemCntText4, itemCntText5, itemCntText6, itemCntText7, itemCntText8, itemCntText9;
+    TextView itemCntText1, itemCntText2, itemCntText3, itemCntText4, itemCntText5, itemCntText6, itemCntText7, itemCntText8, itemCntText9, itemCntText10;
     TextView ratingScore;
     RatingBar ratingBar;
 
@@ -39,6 +39,7 @@ public class MapSearchDetailActivity extends AppCompatActivity {
     ArrayList<Document> hospitalList = new ArrayList<>(); //병원 HP8
     ArrayList<Document> pharmacyList = new ArrayList<>(); //약국 PM9
     ArrayList<Document> cafeList = new ArrayList<>(); //카페
+    ArrayList<Document> restaurantList = new ArrayList<>(); //카페
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +54,7 @@ public class MapSearchDetailActivity extends AppCompatActivity {
         itemCntText7 = findViewById(R.id.mapsearchdetail_tv_itemcount7);
         itemCntText8 = findViewById(R.id.mapsearchdetail_tv_itemcount8);
         itemCntText9 = findViewById(R.id.mapsearchdetail_tv_itemcount9);
+        itemCntText10 = findViewById(R.id.mapsearchdetail_tv_itemcount10);
         ratingBar = findViewById(R.id.mapsearchdetail_rb_ratingbar);
         ratingScore = findViewById(R.id.mapsearchdetail_tv_rating_score);
         radarChart = findViewById(R.id.mapsearchdetail_radar_chart);
@@ -73,6 +75,7 @@ public class MapSearchDetailActivity extends AppCompatActivity {
         hospitalList = getIntent.getParcelableArrayListExtra(IntentKey.CATEGOTY_SEARCH_MODEL_EXTRA7);
         pharmacyList = getIntent.getParcelableArrayListExtra(IntentKey.CATEGOTY_SEARCH_MODEL_EXTRA8);
         cafeList = getIntent.getParcelableArrayListExtra(IntentKey.CATEGOTY_SEARCH_MODEL_EXTRA9);
+        restaurantList = getIntent.getParcelableArrayListExtra(IntentKey.CATEGOTY_SEARCH_MODEL_EXTRA10);
     }
 
     private void initView(){
@@ -85,6 +88,7 @@ public class MapSearchDetailActivity extends AppCompatActivity {
         float itemCnt7 = hospitalList.size();
         float itemCnt8 = pharmacyList.size();
         float itemCnt9 = cafeList.size();
+        float itemCnt10 = restaurantList.size();
         itemCntText1.setText("" +(int) itemCnt1);
         itemCntText2.setText("" +(int) itemCnt2);
         itemCntText3.setText("" +(int) itemCnt3);
@@ -94,6 +98,7 @@ public class MapSearchDetailActivity extends AppCompatActivity {
         itemCntText7.setText("" +(int) itemCnt7);
         itemCntText8.setText("" +(int) itemCnt8);
         itemCntText9.setText("" +(int) itemCnt9);
+        itemCntText10.setText("" +(int) itemCnt10);
 
 
         //평균계산 최대 10점
@@ -124,7 +129,10 @@ public class MapSearchDetailActivity extends AppCompatActivity {
         if(itemCnt9 > 10){
             itemCnt9 = 10;
         }
-        float averageScore = Math.round((itemCnt1 + itemCnt2 + itemCnt3 + itemCnt4 + itemCnt5 + itemCnt6 + itemCnt7 + itemCnt8 + itemCnt9)/10*10 /10.0 );
+        if(itemCnt10 > 10){
+            itemCnt10 = 10;
+        }
+        float averageScore = Math.round((itemCnt1 + itemCnt2 + itemCnt3 + itemCnt4 + itemCnt5 + itemCnt6 + itemCnt7 + itemCnt8 + itemCnt9 + itemCnt10)/10*10 /10.0 );
         ratingScore.setText(averageScore+"");
         ratingBar.setRating(averageScore/2);
     }
@@ -136,7 +144,7 @@ public class MapSearchDetailActivity extends AppCompatActivity {
 
         RadarData data = new RadarData();
         data.addDataSet(dataSet);
-        String[] labels = {"대형마트", "편의점", "학교", "학원", "지하철", "은행", "병원", "약국", "카페"};
+        String[] labels = {"대형마트", "편의점", "학교", "학원", "지하철", "은행", "병원", "약국", "카페", "음식점"};
         XAxis xAxis = radarChart.getXAxis();
         xAxis.setValueFormatter(new IndexAxisValueFormatter(labels));
         radarChart.setData(data);
@@ -154,6 +162,7 @@ public class MapSearchDetailActivity extends AppCompatActivity {
         dataVals.add(new RadarEntry(hospitalList.size()));
         dataVals.add(new RadarEntry(pharmacyList.size()));
         dataVals.add(new RadarEntry(cafeList.size()));
+        dataVals.add(new RadarEntry(restaurantList.size()));
         return dataVals;
     }
 
