@@ -9,8 +9,12 @@
 <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
 <script>
 
-	 /*  alert("로그아웃 되었습니다.");
-	  window.location.href="main.do";  */
+	<%
+	session.setAttribute("userId",null);
+	session.invalidate();
+	%>
+	alert("로그아웃 되었습니다.");
+	window.location.href = "main.do";
 </script>
 </head>
 <body>
