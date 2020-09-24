@@ -111,8 +111,14 @@ dependencies {
     //dialog
     implementation 'com.crowdfire.cfalertdialog:cfalertdialog:1.1.0'
 
+<<<<<<< Updated upstream
     // 글작성 api
     androidTestImplementation 'androidx.test:runner:1.2.0-alpha05'
     implementation 'com.github.esafirm.android-image-picker:imagepicker:2.0.0'
     implementation 'com.github.lumyjuwon:Android-Rich-Wysiwyg-Editor:1.0.0'
+=======
+    //kakao sdk // 카카오 로그인
+    implementation group: 'com.kakao.sdk', name: 'usermgmt', version: '1.30.2'
+
+>>>>>>> Stashed changes
 }
