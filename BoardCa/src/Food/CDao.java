@@ -10,11 +10,11 @@ import org.springframework.stereotype.Repository;
 public class CDao {
 
 	@Autowired
-	private SqlSession sqlSession;
+	private SqlSession mysqlSession;
 	 
 	public List<CDto> getList(){
 	    System.out.println("----> cXml.cListAll()");
-	    List<CDto> list = sqlSession.selectList("cXml.cListAll");
+	    List<CDto> list = mysqlSession.selectList("cXml.cListAll");
 	    for (CDto dto : list) {
 	    	System.out.println(dto);
 	    }
@@ -23,7 +23,7 @@ public class CDao {
 	
 	public List<CDto> getSearchList(String search){
 	    System.out.println("----> cXml.cSearchList()");
-	    List<CDto> list = sqlSession.selectList("cXml.cSearchList",search);
+	    List<CDto> list = mysqlSession.selectList("cXml.cSearchList",search);
 	    for (CDto dto : list) {
 	    	System.out.println(dto);
 	    }
@@ -32,13 +32,13 @@ public class CDao {
 	
 	public CDto detail(int no){
 	    System.out.println("----> cXml.cDetail()");
-	    CDto dto = sqlSession.selectOne("cXml.cDetail", no);
+	    CDto dto = mysqlSession.selectOne("cXml.cDetail", no);
 	    return dto;
 	  }
 	
 	public int uploadFile(CDto dto) {
 		System.out.println(dto);
-		int cnt = sqlSession.insert("cXml.cInsertTest", dto);
+		int cnt = mysqlSession.insert("cXml.cInsertTest", dto);
         return cnt;
   }
 }

@@ -115,6 +115,7 @@
 								<div class="col-lg-12">
 									<div>
 										<h6>레시피정보</h6>
+										<hr>
 										<table>
 											<tr>
 												<td>기준인원: </td>
@@ -141,12 +142,26 @@
 								<div class="col-lg-12">
 									<div>
 										<h6>재료</h6>
-										<% %>
+										<hr>
+										<% String ingre_str = dto.getR_ingredient();
+											String[] ingre_arr = ingre_str.split("&");
+											boolean checkOne = true;
+										%>
 										<table id="ingre_list" style="margin-top: 20px;">
+											<% for(int i=0;i<ingre_arr.length;i++){ 
+											if(ingre_arr[i].indexOf("[") == -1){
+											%>
 											<tr>
-												<td style="width: 150px;" class="ingre_info">김치</td>
-												<td>수량: 200g</td>
+												<% if(checkOne){ %>
+												<td style="width: 150px;" class="ingre_info"><%=ingre_arr[i] %></td>
+												<% checkOne = false;
+													i++;}
+												if(!checkOne && i < ingre_arr.length){ %>
+												<td><%=ingre_arr[i] %></td>
+												<% checkOne = true;} %>
 											</tr>
+											<% }
+											} %>
 										</table>
 									</div>
 								</div>
@@ -160,12 +175,22 @@
 								<div class="col-lg-12">
 									<div>
 										<h6>조리순서</h6>
+										<hr>
+										<% String order_str = dto.getR_cooking_order();
+											String[] order_arr = order_str.split("&");
+											int cnt = 1;
+										%>
 										<table>
+											<% for(int i=0;i<order_arr.length;i++){ %>
 											<tr>
-												<td style="padding-left: 10px;">1</td>
-												<td style="padding-left: 50px;">재료를 준비한다.</td>
-												<td style="padding-left: 100px;"><img src="https://recipe1.ezmember.co.kr/cache/recipe/2017/03/31/ba10b05722f64e501a44c8d9b2f4f18b1.png" width="300"></td>
+												<td style="padding-left: 20px;"><%=cnt %></td>
+												<td style="padding-left: 100px;"><%=order_arr[i] %></td>
+												<% i++; %>
+												<% if(i < order_arr.length || order_arr[i].indexOf("jpg") != -1 || order_arr[i].indexOf("png") != -1 || order_arr[i].indexOf("gif") != -1){ %>
+												<td style="padding-left: 150px; padding-bottom:20px; width:200; height:200;"><img src="<%=order_arr[i] %>"></td>
+												<% } %>
 											</tr>
+											<% cnt++;} %>
 										</table>
 									</div>
 								</div>
@@ -185,28 +210,14 @@
 
 
 						<div class="body">
-							<small>Your email address will not be published. Required
-								fields are marked*</small>
 							<form class="row comment-form mt-2">
-								<div class="col-xl-6 col-lg-6	col-md-6">
-									<div class="form-group">
-										<input type="text" class="form-control"
-											placeholder="Your Name">
-									</div>
-								</div>
-								<div class="col-xl-6 col-lg-6	col-md-6">
-									<div class="form-group">
-										<input type="text" class="form-control"
-											placeholder="Email Address">
-									</div>
-								</div>
 
 								<div class="col-xl-12 col-lg-12	col-md-12">
 									<div class="form-group">
 										<textarea rows="4" class="form-control no-resize"
-											placeholder="Please type what you want..."></textarea>
+											placeholder="댓글 입력"></textarea>
 									</div>
-									<button type="submit" class="btn btn btn-primary">SUBMIT</button>
+									<button type="submit" class="btn btn btn-primary">댓글쓰기</button>
 								</div>
 							</form>
 						</div>

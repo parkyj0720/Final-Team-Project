@@ -57,7 +57,7 @@ white-space: nowrap;
 	request.setAttribute("maxList", maxList);
 
 	// 페이지당 리스트 개수
-	int listNum = 8;
+	int listNum = 12;
 	
 	int now_page = 1;
 
