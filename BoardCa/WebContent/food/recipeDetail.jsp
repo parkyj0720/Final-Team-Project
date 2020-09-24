@@ -1,3 +1,4 @@
+<%@page import="Food.CDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -24,6 +25,10 @@
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
 <script src="http://code.jquery.com/jquery.js"></script>
+
+<% CDto dto = (CDto)request.getAttribute("dto");
+%>
+
 <script>
 	$('#like').text();
 	var count = 0;
@@ -86,15 +91,15 @@
 						<div class="body">
 							<div class="row">
 								<div class="col-xl-3 col-lg-4 col-md-12">
-									<img src="https://recipe1.ezmember.co.kr/cache/recipe/2020/08/25/631e8a991bff0bdcb18cb0681a8d702b1.jpg" width="100%">
+									<img src="<%=(dto.getR_main_thumbs()!="")?dto.getR_main_thumbs():request.getContextPath()+"/upload/"+dto.getR_filename() %>" width="100%">
 								</div>
 								<div class="col-xl-9 col-lg-8 col-md-12 r_detail" style="positon:relative;">
 									<div class="product details detail_header">
-										<h3 class="mb-0">초간단 맥주안주:모짜렐라치즈없이 콘치즈만들기</h3>
+										<h3 class="mb-0"><%=dto.getR_title() %></h3>
 
 
 										<hr>
-										<p class="product-description">맥주는 먹고 싶고 안주는 없어서 간단히 만들어봤어요.</p>
+										<p class="product-description"><%=dto.getR_explain() %></p>
 
 
 									</div>
@@ -110,7 +115,21 @@
 								<div class="col-lg-12">
 									<div>
 										<h6>레시피정보</h6>
-										<p>기준인원: ?인분, 조리시간: ?분, 난이도: ??</p>
+										<hr>
+										<table>
+											<tr>
+												<td>기준인원: </td>
+												<td style="padding-left: 10px;"><%=dto.getR_standard() %></td>
+											</tr>
+											<tr>
+												<td>조리시간: </td>
+												<td style="padding-left: 10px;"><%=dto.getR_cooking_time() %></td>
+											</tr>
+											<tr>
+												<td>난이도: </td>
+												<td style="padding-left: 10px;"><%=dto.getR_difficult() %></td>
+											</tr>
+										</table>
 									</div>
 								</div>
 							</div>
@@ -123,7 +142,27 @@
 								<div class="col-lg-12">
 									<div>
 										<h6>재료</h6>
-										<p>재료설명</p>
+										<hr>
+										<% String ingre_str = dto.getR_ingredient();
+											String[] ingre_arr = ingre_str.split("&");
+											boolean checkOne = true;
+										%>
+										<table id="ingre_list" style="margin-top: 20px;">
+											<% for(int i=0;i<ingre_arr.length;i++){ 
+											if(ingre_arr[i].indexOf("[") == -1){
+											%>
+											<tr>
+												<% if(checkOne){ %>
+												<td style="width: 150px;" class="ingre_info"><%=ingre_arr[i] %></td>
+												<% checkOne = false;
+													i++;}
+												if(!checkOne && i < ingre_arr.length){ %>
+												<td><%=ingre_arr[i] %></td>
+												<% checkOne = true;} %>
+											</tr>
+											<% }
+											} %>
+										</table>
 									</div>
 								</div>
 							</div>
@@ -136,7 +175,23 @@
 								<div class="col-lg-12">
 									<div>
 										<h6>조리순서</h6>
-										<p>조리순서 ~~~~</p>
+										<hr>
+										<% String order_str = dto.getR_cooking_order();
+											String[] order_arr = order_str.split("&");
+											int cnt = 1;
+										%>
+										<table>
+											<% for(int i=0;i<order_arr.length;i++){ %>
+											<tr>
+												<td style="padding-left: 20px;"><%=cnt %></td>
+												<td style="padding-left: 100px;"><%=order_arr[i] %></td>
+												<% i++; %>
+												<% if(i < order_arr.length || order_arr[i].indexOf("jpg") != -1 || order_arr[i].indexOf("png") != -1 || order_arr[i].indexOf("gif") != -1){ %>
+												<td style="padding-left: 150px; padding-bottom:20px; width:200; height:200;"><img src="<%=order_arr[i] %>"></td>
+												<% } %>
+											</tr>
+											<% cnt++;} %>
+										</table>
 									</div>
 								</div>
 							</div>
@@ -155,28 +210,14 @@
 
 
 						<div class="body">
-							<small>Your email address will not be published. Required
-								fields are marked*</small>
 							<form class="row comment-form mt-2">
-								<div class="col-xl-6 col-lg-6	col-md-6">
-									<div class="form-group">
-										<input type="text" class="form-control"
-											placeholder="Your Name">
-									</div>
-								</div>
-								<div class="col-xl-6 col-lg-6	col-md-6">
-									<div class="form-group">
-										<input type="text" class="form-control"
-											placeholder="Email Address">
-									</div>
-								</div>
 
 								<div class="col-xl-12 col-lg-12	col-md-12">
 									<div class="form-group">
 										<textarea rows="4" class="form-control no-resize"
-											placeholder="Please type what you want..."></textarea>
+											placeholder="댓글 입력"></textarea>
 									</div>
-									<button type="submit" class="btn btn btn-primary">SUBMIT</button>
+									<button type="submit" class="btn btn btn-primary">댓글쓰기</button>
 								</div>
 							</form>
 						</div>

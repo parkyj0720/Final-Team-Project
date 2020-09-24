@@ -77,7 +77,7 @@
     	<jsp:include page="/WEB-INF/footer.jsp" />
 
 	<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
-    <script>
+	<script>
       $( document ).ready( function() {
     	  $('#submit').click(function() {
     		  var select = $('#select').val();
@@ -86,26 +86,23 @@
     		  var content = $( '.note-editable' ).html();
     		  var title_trim = $.trim($("#title").val());
     		  var content_sub;
-    		  
-
+    		  var boardnum;
+  			<%for (int i = 0; i < boardList.size(); i++) {%>
+  				if((select)=="<%=boardList.get(i).getBoard_name()%>"){
+  					boardnum=<%=boardList.get(i).getNum()%>
+  				}
+  				<%}%>
     		  
     		  if(select == "게시판을 선택해주세요."){
-    			  alert("게시판을 선택해주세요")
+    	 		  alert("게시판을 선택해주세요")
     		  }else{
     			  if(title == "" || title_trim == ""){
     				  alert("제목을 입력해주세요")  
     			  }
     			  else{
-    				  
-    		  	        console.log( "SELECT= " + select );
-    		  	        console.log( "TITLE= " + title );
-    		  	        console.log( "USER= " + username );
-    		  	        console.log( "HTML= " + content );
-    		  	        	
-    		  	        
  					var dto = {
 							title: title,
-							community: select,
+							community_num: boardnum,
 							username: username,
 							content: content
 							};
@@ -116,13 +113,17 @@
 						datatype: 'application/json',
 						data: dto
 					})
-    			  }
+					setTimeout(() => {
+    		  $(location).attr('href', '${pageContext.request.contextPath}/Community_list.do?list='+boardnum);
+						
+					}, 300);
     		  }
-  		  
-		});
-      } );
+    			
+		};
+      })
+      });
     </script>
-	
+
 
 	<!-- Jquery Core Js --> 
 <script src="${pageContext.request.contextPath}/stylesheet/assets/bundles/libscripts.bundle.js"></script> <!-- Lib Scripts Plugin Js --> 

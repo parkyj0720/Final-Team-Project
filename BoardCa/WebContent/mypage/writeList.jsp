@@ -68,7 +68,7 @@
 			<div class="row">
 				<div class="card">
 					<div class="col-lg-12 col-md-12 col-sm-12">
-						<h2>myFavorite</h2>
+						<h2>writeList</h2>
 						<ul class="breadcrumb">
 							<li class="breadcrumb-item"><a
 								href="${pageContext.request.contextPath}/main/main.jsp"><i
@@ -149,22 +149,22 @@
 																<th class="sorting" tabindex="0"
 																	aria-controls="DataTables_Table_0" rowspan="1"
 																	colspan="1"
-																	aria-label="Name: activate to sort column ascending"
+																	aria-label="No"
 																	style="width: 61px;">No</th>
 																<th class="sorting" tabindex="0"
 																	aria-controls="DataTables_Table_0" rowspan="1"
 																	colspan="1"
-																	aria-label="Position: activate to sort column ascending"
+																	aria-label="Date"
 																	style="width: 83px;">Date</th>
 																<th class="sorting" tabindex="0"
 																	aria-controls="DataTables_Table_0" rowspan="1"
 																	colspan="1"
-																	aria-label="Office: activate to sort column ascending"
+																	aria-label="Title"
 																	style="width: 60px;">Title</th>
 																<th class="sorting" tabindex="0"
 																	aria-controls="DataTables_Table_0" rowspan="1"
 																	colspan="1"
-																	aria-label="Age: activate to sort column ascending"
+																	aria-label="reply"
 																	style="width: 28px;">reply</th>
 
 															</tr>

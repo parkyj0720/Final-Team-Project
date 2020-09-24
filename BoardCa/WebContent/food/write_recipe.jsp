@@ -31,6 +31,7 @@
 	var count = 0;
 	var order_cnt = 1;
 	var cnt = 1;
+	var check = true;
 	
 	var fileValue = '';
 	var fileName = '';
@@ -85,9 +86,10 @@
 				order2.push(new_fileName + '&');
 				console.log(new_fileName);
 				//console.log(cooking_order);
+				
 				$('#file_form').empty();
 				
-				if(order_cnt == cnt){
+				if(order_cnt == cnt && check == true){
 					$('#write_form').submit();
 				}
 				
@@ -208,11 +210,6 @@
 							$('.order_text_list').val(cooking_order);
 							console.log($('.order_text_list').val());
 							
-							if(form.cooking_order.value == ''){
-								alert("7");
-								return false;
-							}
-							
 						});
 						
 						$("#ingre_text").keyup(function(event) {
@@ -228,27 +225,30 @@
 						});
 						
 						$('#write_btn').on('click',function(){
-							
+							check = true;
 							ingre_info = '';
 							cooking_order = '';
 							
 							order1 = [];
 							order2 = [];
 							
-							if(form.title.value == ''){
-								alert("1");
+							if(form.file.value == ''){
+								alert("음식 이미지를 추가해주세요");
+								return false;
+							}else if(form.title.value == ''){
+								alert("제목을 입력해주세요");
 								return false;
 							}else if(form.explain.value == ''){
-								alert("2");
+								alert("설명을 입력해주세요");
 								return false;
 							}else if(form.standard.value == ''){
-								alert("3");
+								alert("기준인원을 입력해주세요");
 								return false;
 							}else if(form.cooking_time.value == ''){
-								alert("4");
+								alert("조리시간을 입력해주세요");
 								return false;
 							}else if(form.difficult.value == ''){
-								alert("5");
+								alert("난이도를 입력해주세요");
 								return false;
 							}
 							
@@ -274,7 +274,8 @@
 									fileValue = $(item).val().split("\\");
 									fileName = fileValue[fileValue.length-1];
 									//console.log(fileName);
-									$('#file_form').append(item);
+									var copy = $(item).clone();
+									$('#file_form').append(copy);
 									$('#file_form').eq(0).removeClass('order_info');
 									fileNameCheck();
 								}
@@ -284,9 +285,50 @@
 							$('.ingre_text_list').val(ingre_info);
 							
 							if(form.ingredient.value == ''){
-								alert("6");
+								alert("재료를 추가해주세요");
+								check = false;
 								return false;
 							}
+							
+							$('.ingre_info').each(function(index, item){
+								if(index%2==1){
+									if($(item).val() == ''){
+										alert("재료 수량을 입력해주세요");
+										check = false;
+										return false;
+									}
+								}
+							})
+							
+							if(check == false){
+								return false;
+							}
+							
+							$('.order_info').each(function(index, item){
+								if(index%2==0){
+									if($(item).val() == ''){
+										alert("조리순서 설명을 입력해주세요");
+										check = false;
+										return false;
+									}
+								}else if(index%2==1){
+									if($(item).val() == ''){
+										alert("조리순서 이미지를 추가해주세요");
+										check = false;
+										return false;
+									}
+								}
+							})
+							
+							if(check == false){
+								return false;
+							}
+							
+							if($('.order_info').length==0){
+								alert("조리순서를 추가해주세요");
+								return false;
+							}
+							
 							
 							//console.log($('.ingre_text_list').val());
 							
@@ -379,8 +421,8 @@
 										<h6>레시피정보</h6>
 										<hr>
 										<p>
-											기준인원: <input type="text" value="1" size="5" dir="rtl" name="standard"> 인분<br>
-											조리시간: <input type="text" value="10" size="5"dir="rtl" name="cooking_time"> 분<br>
+											기준인원: <input type="text" value="1" size="5" dir="rtl" name="standard"><br>
+											조리시간: <input type="text" value="10" size="5"dir="rtl" name="cooking_time"><br>
 											난이도: <input type="text" value="쉬움" style="margin-left: 14px" size="5" dir="rtl" name="difficult">
 										</p>
 									</div>

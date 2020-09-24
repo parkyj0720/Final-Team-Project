@@ -8,19 +8,20 @@
 <select id="cListAll" resultType="Food.CDto">
 	select r_board_no, r_crawling_addr, r_main_thumbs, r_filename, r_title 
 	from recipe
+	where r_explain is not null and r_standard is not null and r_cooking_time is not null and r_difficult is not null
 	order by r_board_no ASC
 </select>
 
 <select id="cSearchList" resultType="Food.CDto" parameterType="String">
 	select r_board_no, r_crawling_addr, r_main_thumbs, r_filename, r_title 
 	from recipe 
-	where r_title like '%'||#{search}||'%'
+	where r_title like CONCAT('%', #{search}, '%')
 </select>
 
 <select id="cDetail" resultType="Food.CDto">
 	select *
 	from recipe
-	where r_board_no
+	where r_board_no = #{r_board_no}
 </select>
 
 <insert id="cInsertTest" parameterType="Food.CDto">

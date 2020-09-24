@@ -37,7 +37,7 @@
 			<div class="row">
 				<div class="card">
 					<div class="col-lg-12 col-md-12 col-sm-12 ">
-						<h2>myFavorite</h2>
+						<h2>COUPON</h2>
 						<ul class="breadcrumb">
 							<li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/main/main.jsp"><i
 									class="zmdi zmdi-home"></i> BoardCa</a></li>

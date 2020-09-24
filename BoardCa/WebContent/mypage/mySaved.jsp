@@ -33,8 +33,7 @@
 			<div class="row clearfix ">
 				<div class="card">
 					<div class="col-lg-12 col-md-12 col-sm-12">
-						<h2>myFavorite</h2>
-
+						<h2>mySaved</h2>
 						<ul class="breadcrumb">
 							<li class="breadcrumb-item"><a
 								href="${pageContext.request.contextPath}/main/main.jsp"><i
@@ -88,7 +87,11 @@
 
 								<div class="col-lg-11 col-md-12 col-sm-11 inbox right">
 									<div class="card">
-										<div class="body"></div>
+										<div class="body">
+										
+										내용
+										
+										</div>
 
 									</div>
 								</div>
