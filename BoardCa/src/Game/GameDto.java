@@ -2,24 +2,27 @@ package Game;
 
 public class GameDto {
 	int gameNo;
+	String gameId;
 	String gameThum;
 	String gameTitle;
 	String content;
-	String vdieo;
+	String vdieoId;
 	String propose;
 	String reply;
 
 	public GameDto() {
-		this(0, "", "", "", "", "", "");
+		this(0, "", "", "", "", "", "", "");
 	}
 
-	public GameDto(int gameNo, String gameThum, String gameTitle, String content, String vdieo, String propose,
-			String reply) {
+	public GameDto(int gameNo, String gameId, String gameThum, String gameTitle, String content, String vdieoId,
+			String propose, String reply) {
+
 		this.gameNo = gameNo;
+		this.gameId = gameId;
 		this.gameThum = gameThum;
 		this.gameTitle = gameTitle;
 		this.content = content;
-		this.vdieo = vdieo;
+		this.vdieoId = vdieoId;
 		this.propose = propose;
 		this.reply = reply;
 	}
@@ -30,6 +33,14 @@ public class GameDto {
 
 	public void setGameNo(int gameNo) {
 		this.gameNo = gameNo;
+	}
+
+	public String getGameId() {
+		return gameId;
+	}
+
+	public void setGameId(String gameId) {
+		this.gameId = gameId;
 	}
 
 	public String getGameThum() {
@@ -56,12 +67,12 @@ public class GameDto {
 		this.content = content;
 	}
 
-	public String getVdieo() {
-		return vdieo;
+	public String getVdieoId() {
+		return vdieoId;
 	}
 
-	public void setVdieo(String vdieo) {
-		this.vdieo = vdieo;
+	public void setVdieoId(String vdieoId) {
+		this.vdieoId = vdieoId;
 	}
 
 	public String getPropose() {
@@ -82,8 +93,8 @@ public class GameDto {
 
 	@Override
 	public String toString() {
-		return "GameDto [gameNo=" + gameNo + ", gameThum=" + gameThum + ", gameTitle=" + gameTitle + ", content="
-				+ content + ", vdieo=" + vdieo + ", propose=" + propose + ", reply=" + reply + "]";
+		return "GameDto [gameNo=" + gameNo + ", gameId=" + gameId + ", gameThum=" + gameThum + ", gameTitle="
+				+ gameTitle + ", content=" + content + ", vdieoId=" + vdieoId + ", propose=" + propose + ", reply="
+				+ reply + "]";
 	}
-
 }

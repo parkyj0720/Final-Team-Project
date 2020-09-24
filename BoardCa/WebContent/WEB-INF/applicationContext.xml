@@ -21,9 +21,10 @@
   <bean id="oracleDatasource" class="oracle.jdbc.pool.OracleDataSource"
     destroy-method="close">
 
-    <property name="URL" value="jdbc:oracle:thin:@192.168.219.141:1521:xe" />
-    <property name="user" value="test" />
-    <property name="password" value="test" />
+    <property name="URL" value="jdbc:oracle:thin:@localhost:1521:xe" />
+    <property name="user" value="boardca" />
+    <property name="password" value="12345" />
+
 
     <property name="connectionCachingEnabled" value="true" />
     <qualifier value="main-db" />
@@ -80,6 +81,7 @@
 	 
 	<bean id="ModelAndView" class="org.springframework.web.servlet.ModelAndView"/>
 	<bean id="MemberDao" class="Member.MemberDao"/>
+	<bean id="MemberDto" class="Member.MemberDto"/>
 	<bean id="CDao" class="Food.CDao"/>
 
 </beans>

@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -37,7 +39,7 @@
 			<div class="row">
 				<div class="card">
 					<div class="col-lg-12 col-md-12 col-sm-12">
-						<h2>myFavorite</h2>
+						<h2>myPage</h2>
 						<ul class="breadcrumb">
 							<li class="breadcrumb-item"><a
 								href="${pageContext.request.contextPath}/main/main.jsp"><i
@@ -83,8 +85,7 @@
 							<li><a
 								href="${pageContext.request.contextPath}/myFavorite.do"><i
 									class="zmdi zmdi-favorite"></i>Favorite</a></li>
-							<li><a
-								href="${pageContext.request.contextPath}/mySaved.do"><i
+							<li><a href="${pageContext.request.contextPath}/mySaved.do"><i
 									class="zmdi zmdi-folder-star"></i>Saved</a></li>
 							<li><a href="${pageContext.request.contextPath}/myCoupon.do"><i
 									class="zmdi zmdi-ticket-star"></i>COUPON</a></li>
@@ -96,34 +97,32 @@
 				<div class="col-lg-11 col-md-12 col-sm-11 inbox right">
 					<div class="card mcard_3">
 						<div class="body">
-							
+
 							<a href="${pageContext.request.contextPath}/myPage.do"><img
 								src="${pageContext.request.contextPath}/mypage/imgs/01.jpg"
 								class="rounded-circle shadow " alt="profile-image"
 								style="width: 20%; height: 20%;"></a>
-							<h4 class="m-t-10">ID</h4>
+							<h4 class="m-t-10">${userId}</h4>
 
 						</div>
 					</div>
 					<div class="card">
 						<div class="body">
 							<small class="text-muted">gender: </small>
-							<p>male/female</p>
-							<hr>
-							<small class="text-muted">Address: </small>
-							<p>Address</p>
+							<p>${userGender }</p>
 							<hr>
 							<small class="text-muted">Email address: </small>
-							<p>michael_dorsey@gmail.com</p>
+							<p>${account_email }</p>
 							<hr>
 							<small class="text-muted">Phone: </small>
 							<p>+ 202-555-0191</p>
+							
 							<hr>
 							<div class="col-lg-12 col-md-12 col-sm-12">
 								<div class="card">
 									<div class="header">
 										<h2>
-											<strong>내가 쓴글</strong>
+											<strong>${userId}님 이 쓴글</strong>
 										</h2>
 										<div class="body">
 											<div>

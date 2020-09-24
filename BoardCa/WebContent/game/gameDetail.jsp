@@ -25,9 +25,49 @@
 	href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
 
 </head>
-
-
 <body class="ls-closed ls-toggle-menu ">
+	<script>
+		// 2. This code loads the IFrame Player API code asynchronously.
+		var tag = document.createElement('script');
+
+		tag.src = "https://www.youtube.com/iframe_api";
+		var firstScriptTag = document.getElementsByTagName('script')[0];
+		firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+		// 3. This function creates an <iframe> (and YouTube player)
+		//    after the API code downloads.
+		var player;
+		function onYouTubeIframeAPIReady() {
+			player = new YT.Player('player', {
+				height : '500',
+				width : '100%',
+				videoId : 'tKaAMqnX4fM',
+				events : {
+					'onReady' : onPlayerReady,
+					'onStateChange' : onPlayerStateChange
+				}
+			});
+		}
+
+		// 4. The API will call this function when the video player is ready.
+		function onPlayerReady(event) {
+			event.target.playVideo();
+		}
+
+		// 5. The API calls this function when the player's state changes.
+		//    The function indicates that when playing a video (state=1),
+		//    the player should play for six seconds and then stop.
+		var done = false;
+		function onPlayerStateChange(event) {
+			if (event.data == YT.PlayerState.PLAYING && !done) {
+				setTimeout(stopVideo, 400000);
+				done = true;
+			}
+		}
+		function stopVideo() {
+			player.stopVideo();
+		}
+	</script>
 	<jsp:include page="/WEB-INF/header.jsp"></jsp:include>
 
 
@@ -56,7 +96,7 @@
 								<div class="col-xl-3 col-lg-4 col-md-12">
 									<div class="preview preview-pic tab-content">
 										<div class="tab-pane active" id="product_1">
-											<img src="/BoardCa/stylesheet/assets/images/ecommerce/1.png"
+											<img src="https://i.ytimg.com/vi/eGansGfxZHM/hqdefault.jpg"
 												class="img-fluid" alt="">
 										</div>
 									</div>
@@ -71,36 +111,22 @@
 							</div>
 						</div>
 					</div>
-
 					<div class="container-fluid">
 						<div class="row clearfix">
 							<div class="card">
 								<div class="body">
 									<div class="row">
 										<div class="col-lg-12">
-											<div>
-												<h6>유튜브 링크 가져오기</h6>
-												<p>오렌지 룰 설명</p>
-											</div>
+											<div id="player"></div>
 										</div>
-									</div>
-								</div>
-							</div>
-							<div class="card">
-								<div class="body">
-									<div class="row">
-										<div class="col-lg-12">
-											<div>추천 게임</div>
-										</div>
+										
+										<div class="body">씨봉</div>
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
-
-
-
-
+					
 					<div class="container-fluid">
 						<div class="row clearfix">
 							<div class="card">

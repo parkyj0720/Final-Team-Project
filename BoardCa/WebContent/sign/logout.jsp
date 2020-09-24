@@ -8,21 +8,9 @@
 <script src="http://code.jquery.com/jquery.js"></script>
 <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
 <script>
-/* $(function() {
-	if (!Kakao.Auth.getAccessToken()) {
-		alert('Not logged in.')
-	    return;
-	}
-	Kakao.Auth.logout(function() {	      
-		window.location.href="main.do";
-	})	  
-}) */
-	  /*   alert("로그아웃 되었습니다.");
-	    window.location.href="main.do"; */
-	
-	 
-	    
-	    
+
+	 /*  alert("로그아웃 되었습니다.");
+	  window.location.href="main.do";  */
 </script>
 </head>
 <body>

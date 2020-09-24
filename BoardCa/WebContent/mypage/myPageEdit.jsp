@@ -27,6 +27,7 @@ select {
 </style>
 <script src="http://code.jquery.com/jquery.js"></script>
 <script>
+
 	function categoryChange(e) {
 
 		var area1 = [ "강남구", "강동구", "강북구", "강서구", "관악구", "광진구", "구로구", "금천구",
@@ -125,7 +126,7 @@ select {
 			<div class="row">
 				<div class="card">
 					<div class="col-lg-12 col-md-12 col-sm-12">
-						<h2>myFavorite</h2>
+						<h2>myPageEdit</h2>
 						<ul class="breadcrumb">
 							<li class="breadcrumb-item"><a
 								href="${pageContext.request.contextPath}/main/main.jsp"><i
@@ -134,9 +135,6 @@ select {
 								href="${pageContext.request.contextPath}/myPage.do">myPage</a></li>
 							<li class="breadcrumb-item active">Edit</li>
 						</ul>
-						<a href="${pageContext.request.contextPath}/myPage.do"
-							class="btn btn-info btn-icon float-right"><i
-							class="zmdi zmdi-check"></i></a>
 					</div>
 				</div>
 
@@ -208,7 +206,7 @@ select {
 										</div>
 									</div>
 									<div class="col-12">
-										<button class="btn btn-info bg-orange">Save Changes</button>
+										<button type="submit" class="btn btn-info bg-orange">Save Changes</button>
 									</div>
 								</div>
 							</div>

@@ -259,7 +259,39 @@ select {
 							</div>
 						</div>
 					</div>
-					<div class="form-group form-float col-sm-6"
+					<div class="col-lg-6 col-md-12">
+						<div>
+							<select onchange="categoryChange(this)" class="form-control"
+								id="area0">
+								<option>광역시·도 선택</option>
+								<option value="area1">서울특별시</option>
+								<option value="area2">인천광역시</option>
+								<option value="area3">대전광역시</option>
+								<option value="area4">광주광역시</option>
+								<option value="area5">대구광역시</option>
+								<option value="area6">울산광역시</option>
+								<option value="area7">부산광역시</option>
+								<option value="area8">경기도</option>
+								<option value="area9">강원도</option>
+								<option value="area10">충청북도</option>
+								<option value="area11">충청남도</option>
+								<option value="area12">전라북도</option>
+								<option value="area13">전라남도</option>
+								<option value="area14">경상북도</option>
+								<option value="area15">경상남도</option>
+								<option value="area16">제주도</option>
+							</select>
+						</div>
+					</div>
+
+					<div class="col-lg-6 col-md-12">
+						<div>
+							<select id="area" class="form-control">
+								<option>시·군·구 선택</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group form-float col-sm-3"
 						style="display: inline-block;">
 						이메일 : <input type="text" name="str_email01" id="str_email01"
 							class="form-control"> <input type="text"
