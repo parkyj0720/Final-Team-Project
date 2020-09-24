@@ -167,7 +167,8 @@ $(function() {
 									<c:when test="${sessionScope.userId == null}">
 										<li><a href="signIn.do">로그인</a></li>
 									</c:when>
-									<c:when test="${sessionScope.userId == admin}">
+									
+									<c:when test="${sessionScope.userId == 'ADMIN'}">
 										<li class="dropdown"><a href="javascript:void(0);"
 											class="dropdown-toggle" data-toggle="dropdown" role="button"
 											aria-haspopup="true" aria-expanded="false">
