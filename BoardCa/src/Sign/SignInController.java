@@ -1,7 +1,12 @@
 package Sign;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
+import java.net.HttpURLConnection;
+import java.net.URL;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -9,6 +14,13 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
+import org.apache.http.HttpResponse;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.HttpClientBuilder;
+import org.codehaus.jackson.JsonNode;
+import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +29,8 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
+
+
 
 import Member.MemberDao;
 import Member.MemberDto;
@@ -69,10 +83,12 @@ public class SignInController {
 		sedto.setPlace(country);
 
 		String userId = req.getParameter("userId");
-		System.out.println("1111111111111111@@@"+userId);
+		String userToken = req.getParameter("userToken");
 		
 		sedto.setMove("로그인(성공)");
 		session.setAttribute("userId", userId);
+		session.setAttribute("userToken", userToken);
+		
 		mv.setViewName("/main/main.jsp");	
 		
 		return mv;
@@ -141,7 +157,39 @@ public class SignInController {
 	
 	@RequestMapping("/logout.do")
 	public ModelAndView logout(HttpSession session) {
-		session.invalidate();
+		final String RequestUrl = "https://kapi.kakao.com/v1/user/logout";
+		
+		String userToken = session.getAttribute("userToken").toString();
+		
+		System.out.println("1111111111111111@@@        "+userToken);
+		
+		 
+		try {
+	        URL url = new URL(RequestUrl);
+	        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+	        conn.setRequestMethod("POST");
+	        conn.setRequestProperty("Authorization", "Bearer " + userToken);
+	        
+	        int responseCode = conn.getResponseCode();
+	        System.out.println("responseCode : " + responseCode);
+	        
+	        BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+	        
+	        String result = "";
+	        String line = "";
+	        
+	        while ((line = br.readLine()) != null) {
+	            result += line;
+	        }
+	        System.out.println(result);
+	    } catch (IOException e) {
+	        // TODO Auto-generated catch block
+	        e.printStackTrace();
+	    }
+		session.removeAttribute("userToken");
+	    session.removeAttribute("userId");
+	    
+		//session.invalidate();
 		mv.setViewName("/sign/logout.jsp");
 		return mv;
 	}

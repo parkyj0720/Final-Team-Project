@@ -62,12 +62,14 @@
 						var account_email = res.kakao_account.email;
 						var userAgeRange = res.kakao_account.age_range; //유저의 연령대
 						var joinDate = res.connected_at;
+						var userToken = authObj.access_token;
 
 						console.log(userId);
 						console.log(account_email);
 						console.log(userGender);
 						console.log(userAgeRange);
 						console.log(joinDate);
+						console.log(userToken);
 
 						var form = document
 								.createElement("form");
@@ -114,6 +116,16 @@
 								"joinDate");
 						hiddenField.setAttribute("value",
 								joinDate);
+						form.appendChild(hiddenField);
+						
+						hiddenField = document
+								.createElement("input");
+						hiddenField.setAttribute("type",
+								"hidden");
+						hiddenField.setAttribute("name",
+								"userToken");
+						hiddenField.setAttribute("value",
+								userToken);
 						form.appendChild(hiddenField);
 
 						document.body.appendChild(form);

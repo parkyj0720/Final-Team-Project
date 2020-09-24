@@ -26,6 +26,7 @@ public class SignUpController {
 		String userGender = req.getParameter("userGender");
 		String userAgeRange = req.getParameter("userAgeRange");
 		String joinDate = req.getParameter("joinDate");
+		String userToken = req.getParameter("userToken");
 		int idCheck = -1;
 
 		idCheck = memDao.idCheck(userId);
@@ -36,6 +37,7 @@ public class SignUpController {
 		mv.addObject("userGender", userGender); // male ,female
 		mv.addObject("userAgeRange", userAgeRange); // 20~29
 		mv.addObject("joinDate", joinDate); // 2018-08-21		
+		mv.addObject("userToken", userToken); // 사용자토큰	
 		
 		mv.setViewName("/sign/kakaoChk.jsp");
 
