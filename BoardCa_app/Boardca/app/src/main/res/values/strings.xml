@@ -262,4 +262,6 @@
         <item>@android:color/holo_orange_light</item>
     </array>
 
+    <string name="btn_game">랜덤 게임</string>
+
 </resources>
