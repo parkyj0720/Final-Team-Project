@@ -46,102 +46,88 @@
 	$(function() {
 		//발급받은 JavaScript Key
 		Kakao.init("ba17cff478a4c1a7991132264b4d34bf");
-
+		
 		// 카카오 로그인 버튼을 생성
-		Kakao.Auth
-				.createLoginButton({
-					container : '#kakao-login-btn',
-					success : function(authObj) {
-						// 로그인 성공시, API를 호출합니다.
-						Kakao.API
-								.request({
-									url : '/v2/user/me',
-									success : function(res) {
-										console.log(res);
+		Kakao.Auth.createLoginButton({
+			container : '#kakao-login-btn',
+			success : function(authObj) {
+				// 로그인 성공시, API를 호출합니다.
+				Kakao.API.request({
+					url : '/v2/user/me',
+					success : function(res) {
+						console.log(res);
 
-										var userId = res.id; //유저의 카카오톡 고유 id
-										var userGender = res.kakao_account.gender; //유저의 성별
-										var account_email = res.kakao_account.email;
-										var userAgeRange = res.kakao_account.age_range; //유저의 연령대
-										var joinDate = res.connected_at;
+						var userId = res.id; //유저의 카카오톡 고유 id
+						var userGender = res.kakao_account.gender; //유저의 성별
+						var account_email = res.kakao_account.email;
+						var userAgeRange = res.kakao_account.age_range; //유저의 연령대
+						var joinDate = res.connected_at;
 
-										console.log(userId);
-										console.log(account_email);
-										console.log(userGender);
-										console.log(userAgeRange);
-										console.log(joinDate);
+						console.log(userId);
+						console.log(account_email);
+						console.log(userGender);
+						console.log(userAgeRange);
+						console.log(joinDate);
 
-										var form = document
-												.createElement("form");
-										form.setAttribute('method', 'post');
-										form
-												.setAttribute('action',
-														'${pageContext.request.contextPath}/signUp.do');
+						var form = document
+								.createElement("form");
+						form.setAttribute('method', 'post');
+						form.setAttribute('action',
+										'${pageContext.request.contextPath}/kakaoSignIn.do');
+						var hiddenField = document.createElement("input");
+						hiddenField.setAttribute("type","hidden");
+						hiddenField.setAttribute("name","userId");
+						hiddenField.setAttribute("value",userId);
+						form.appendChild(hiddenField);
 
-										var hiddenField = document
-												.createElement("input");
-										hiddenField.setAttribute("type",
-												"hidden");
-										hiddenField.setAttribute("name",
-												"inputId");
-										hiddenField.setAttribute("value",
-												userId);
-										form.appendChild(hiddenField);
+						hiddenField = document.createElement("input");
+						hiddenField.setAttribute("type","hidden");
+						hiddenField.setAttribute("name","account_email");
+						hiddenField.setAttribute("value",account_email);
+						form.appendChild(hiddenField);
 
-										hiddenField = document
-												.createElement("input");
-										hiddenField.setAttribute("type",
-												"hidden");
-										hiddenField.setAttribute("name",
-												"account_email");
-										hiddenField.setAttribute("value",
-												account_email);
-										form.appendChild(hiddenField);
+						hiddenField = document
+								.createElement("input");
+						hiddenField.setAttribute("type",
+								"hidden");
+						hiddenField.setAttribute("name",
+								"userGender");
+						hiddenField.setAttribute("value",
+								userGender);
+						form.appendChild(hiddenField);
 
-										hiddenField = document
-												.createElement("input");
-										hiddenField.setAttribute("type",
-												"hidden");
-										hiddenField.setAttribute("name",
-												"userGender");
-										hiddenField.setAttribute("value",
-												userGender);
-										form.appendChild(hiddenField);
+						hiddenField = document
+								.createElement("input");
+						hiddenField.setAttribute("type",
+								"hidden");
+						hiddenField.setAttribute("name",
+								"userAgeRange");
+						hiddenField.setAttribute("value",
+								userAgeRange);
+						form.appendChild(hiddenField);
 
-										hiddenField = document
-												.createElement("input");
-										hiddenField.setAttribute("type",
-												"hidden");
-										hiddenField.setAttribute("name",
-												"userAgeRange");
-										hiddenField.setAttribute("value",
-												userAgeRange);
-										form.appendChild(hiddenField);
+						hiddenField = document
+								.createElement("input");
+						hiddenField.setAttribute("type",
+								"hidden");
+						hiddenField.setAttribute("name",
+								"joinDate");
+						hiddenField.setAttribute("value",
+								joinDate);
+						form.appendChild(hiddenField);
 
-										hiddenField = document
-												.createElement("input");
-										hiddenField.setAttribute("type",
-												"hidden");
-										hiddenField.setAttribute("name",
-												"joinDate");
-										hiddenField.setAttribute("value",
-												joinDate);
-										form.appendChild(hiddenField);
-
-										document.body.appendChild(form);
-										alert("추가정보를 입력해주세요");
-										form.submit();
-
-									},
-									fail : function(error) {
-										alert(JSON.stringify(error));
-									}
-								});
+						document.body.appendChild(form);
+						form.submit();
 					},
-					fail : function(err) {
-						alert(JSON.stringify(err));
+					fail : function(error) {
+						alert(JSON.stringify(error));
 					}
-				})
+				});
+			},
+			fail : function(err) {
+				alert(JSON.stringify(err));
+			}
+		})		
 	})
 	/* 아이디 저장 */
 	$(function() {

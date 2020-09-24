@@ -7,13 +7,17 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import CommunityModel.BoardList;
 import CommunityModel.Comment;
 import CommunityModel.CommunityDao;
 import CommunityModel.CommunityDto;
+import CommunityModel.InputDto;
 
 @Controller
 public class CommunityController {
@@ -65,11 +69,38 @@ public class CommunityController {
 		mv.setViewName("community/C_detail.jsp");
 		return mv;
 	}
-//
-//	@RequestMapping("/Community_input.do")
-//	public ModelAndView community_input() {
-//		mv.setViewName("community/C_input.jsp");
-//		return mv;
-//	}
+	// input
+	@RequestMapping("/Community_input.do")
+	public ModelAndView community_input(HttpServletRequest request) {
+		mv.setViewName("community/C_input.jsp");
+		mv.addObject("boardList", dao.Get_boardlist());
+		return mv;
+	}
+	@RequestMapping(value="/Community_inputContent.do", method=RequestMethod.POST)
+	@ResponseBody
+	public void community_input_content(InputDto data){
+		System.out.println(data);
+		/*
+		 * if(data.getContent() == null || data.getContent().equals("")) {
+		 * result.put("isFileInserted", false); result.put("uploadStatus",
+		 * "FileIsNull"); return result; } else if(data.getContent().length() > 400000)
+		 * { result.put("isFileInserted", false); result.put("uploadStatus",
+		 * "FileIsTooBig"); return result; }
+		 */
+		ArrayList<BoardList> boardlist = dao.Get_boardlist();
+		int boardnum = 0;
+		for (int i = 0; i < boardlist.size(); i++) {
+			BoardList board = boardlist.get(i);
+			if (board.getBoard_name().equals(data.getCommunity())) {
+				boardnum = board.getNum() + 1;
+			}
+		}
+		System.out.println(boardnum);
+		CommunityDto inputBoard = new CommunityDto(0, data.getTitle(), data.getUsername(), "", data.getContent(), 0,
+				boardnum);
+
+
+	}
+	
 
 }

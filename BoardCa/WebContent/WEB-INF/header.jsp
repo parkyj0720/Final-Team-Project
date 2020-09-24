@@ -3,6 +3,19 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<title>Insert title here</title>
+<script src="http://code.jquery.com/jquery.js"></script>
+<script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
+<script>
+
+  
+	
+	
+</script>
+</head>
+
 <link rel="icon" href="favicon.ico" type="image/x-icon">
 <!-- Favicon-->
 <link rel="stylesheet"
@@ -16,6 +29,7 @@
 <!-- Custom Css -->
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/stylesheet/assets/css/style.min.css">
+
 
 <!-- Page Loader -->
 <div class="page-loader-wrapper">
@@ -156,7 +170,7 @@
 													href="${pageContext.request.contextPath}/myPageEdit.do">정보수정</a></li>
 												<li><a
 													href="${pageContext.request.contextPath}/myFAQ.do">1:1문의</a></li>
-												<li><a href="${pageContext.request.contextPath}/logout.do">로그아웃</a></li>
+												<li><a href="${pageContext.request.contextPath}/logout.do" id="logoutBtn">로그아웃</a></li>
 											</ul></li>
 									</c:otherwise>
 								</c:choose>
