@@ -104,10 +104,11 @@ tools:context=".ui.login.LoginActivity">
             android:layout_marginLeft="20dp"
             android:background="@drawable/btn_signin_gogole_test" />
 
-        <Button android:layout_width="60dp"
+        <com.kakao.usermgmt.LoginButton
+            android:id="@+id/kakao_loginbtn"
+            android:layout_width="60dp"
             android:layout_height="60dp"
-            android:layout_marginLeft="20dp"
-            android:background="@drawable/btn_signin_kakao_test" />
+            android:layout_marginLeft="20dp"/>
     </GridLayout>
 
     <ProgressBar

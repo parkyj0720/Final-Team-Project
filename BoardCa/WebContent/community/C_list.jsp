@@ -120,12 +120,12 @@
 										href="javascript:void(0);"><i
 											class="zmdi zmdi-arrow-right"></i></a></li>
 									<div style="width: 100%">
-										<button
-												class="btn btn-primary float-right right_icon_toggle_btn"
-												type="button" onclick="location.href='${pageContext.request.contextPath}/Community_input.do'">
-												<i class="zmdi zmdi-hc-fw"></i>
-											</button></a>
 									</div>
+										<button
+												class="btn btn-primary float-right"
+												type="button" id="input">
+												<i class="zmdi zmdi-hc-fw"></i>
+										</button>
 								</ul>
 							</div>
 						</div>
@@ -142,6 +142,9 @@
                 var num = $(this).children(0).eq(0).text();
                 $(location).attr('href', '${pageContext.request.contextPath}/Community_detail.do?num='+num);
             });
+            $('#input').click(function() {
+				$(location).attr('href', '${pageContext.request.contextPath}/Community_input.do')
+			})
         });
     </script>
     <script

@@ -20,6 +20,7 @@
     <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
 
     <application
+        android:name=".ui.login.App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -27,7 +28,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.community.repleActivity"></activity>
+
+        <meta-data
+            android:name="com.kakao.sdk.AppKey"
+            android:value="@string/daummap_key" />
+
+
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -40,9 +46,6 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
-        <meta-data
-            android:name="com.kakao.sdk.AppKey"
-            android:value="@string/daummap_key" />
 
         <uses-library
             android:name="org.apache.http.legacy"
@@ -51,10 +54,10 @@
         <activity android:name=".ui.Map.MapsActivity">
             <intent-filter>
                 <action android:name="com.google.android.gms.actions.RESERVE_TAXI_RESERVATION" />
-
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+        <activity android:name=".ui.community.WriteActivity" />
         <activity android:name=".ui.Map.PlaceDetailActivity" />
         <activity android:name=".ui.Map.MapSearchDetailActivity" />
         <activity android:name=".ui.Map.MapNavigationActivity" />
@@ -65,17 +68,19 @@
         <activity android:name=".ui.loading.loadingActivity"></activity>
         <activity
             android:name=".ui.login.LoginActivity"
-            android:label="@string/title_activity_login"></activity>
+            android:label="@string/title_activity_login">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
+        <activity android:name=".ui.community.repleActivity"></activity>
         <activity
             android:name=".ui.setting.SettingsActivity"
             android:label="@string/title_activity_settings" />

@@ -129,7 +129,9 @@
 								<span><i class="zmdi zmdi-account"></i><%=dto.getWriter_id()%></a></span>
 							</div>
 						</h5>
-						<%=dto.getContent()%>
+						<div style="margin-top: 50px;">
+							<%=dto.getContent()%>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -150,15 +152,14 @@
 					if (tf == false) {
 					%>
 					<div class="heart">
-						<div
+						<div id="heart_size"
 							style="margin-top: 40%; text-align: center; margin-left: 70%; position: absolute;"><%=heart_size%></div>
 					</div>
 					<%
 						} else {
 					%>
-					<div class="heart1">
-						<div
-							style="margin-top: 40%; text-align: center; margin-left: 70%;"><%=heart_size%></div>
+					<div id="heart1">
+						<div class="heart_size"	style="margin-top: 40%; text-align: center; margin-left: 70%;"><%=heart_size%></div>
 					</div>
 					<%
 						}
@@ -210,14 +211,14 @@
 			$(".heart").on("click", function() {
 				$(this).toggleClass("heart-blast");
 				console.log("y");
+				
 			});
 			$(".heart1").on("click", function() {
 				$(this).toggleClass("heart-blast1");
 				console.log("x");
 			});
-
 			$(".comment_submit").on("click", function() {
-
+				
 			})
 		});
 	</script>

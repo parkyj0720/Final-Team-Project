@@ -1,5 +1,6 @@
 package com.example.boardca_app.ui.community;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +13,8 @@ import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.boardca_app.R;
+import com.example.boardca_app.ui.Map.MapsActivity;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
 
 public class CommunityFragment extends Fragment {
@@ -20,12 +23,17 @@ public class CommunityFragment extends Fragment {
     private ViewPager viewPager;
     private ViewPagerAdapter viewPagerAdapter;
 
+    private FloatingActionButton fab_write;
+
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 
         //뷰페이저 세팅
         viewPagerAdapter = new ViewPagerAdapter(getChildFragmentManager());
         viewPager = viewGroup.findViewById(R.id.viewPager);
+
+        // 글 작성 버튼
+        fab_write = (FloatingActionButton)view.findViewById(R.id.fab_write);
 
         // add your fragments
         viewPagerAdapter.addFrag(new FragmainBoard(), "숙취 게시판"); //메인탭
@@ -59,6 +67,21 @@ public class CommunityFragment extends Fragment {
             }
         });
 
+        // fab 글 작성 버튼
+        fab_write.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showWrite();
+            }
+        });
+
+    }
+
+    // 글 작성 액티비티 intent로 열기
+    public void showWrite(){
+        Intent i = new Intent(getActivity(), WriteActivity.class);
+        startActivity(i);
+        getActivity().overridePendingTransition(0,0);
     }
 
     @Nullable
