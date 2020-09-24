@@ -10,7 +10,12 @@
 		from MEMBER_T
 		where MEM_ID=#{userId}
 	</select>
-
+	
+	<select id="nickNameCheck" resultType="int" parameterType="MemberDto">
+		select count(*)
+		from MEMBER_T
+		where MEM_NICKNAME=#{mem_nickname}
+	</select>
 
 	<select id="signCheck" resultType="String"
 		parameterType="MemberDto">
@@ -18,6 +23,8 @@
 		from MEMBER_T
 		where MEM_ID=#{userId}
 	</select>
+	
+	
 
 	<insert id="sessionInput" parameterType="Sign.SessionDto">
 

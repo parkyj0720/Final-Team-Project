@@ -16,6 +16,12 @@ public class MemberDao {
 		int dto = mysqlSession.selectOne("signXml.idCheck", userId); 
 		return dto;
 	}	
+// 입력한 아이디가 있는 아이디인지 아이디 체크 
+	public int nickNameCheck(String nickName) {		
+		System.out.println("DaonickNameCheck "+nickName);
+		int dto = mysqlSession.selectOne("signXml.nickNameCheck", nickName); 
+		return dto;
+	}	
 
 // 로그인시 입력한 아이디와 비밀번호가 맞는지 체크 
 	public String signIn(String userId) {		

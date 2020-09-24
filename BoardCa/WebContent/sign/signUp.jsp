@@ -176,6 +176,23 @@
 			}
 		});		
 	}
+	
+	/* nickname 중복 체크  */
+	function nickNameCheck(){
+		$.ajax({
+			type : "post",
+			url : "/BoardCa/nickNameCheck.do",
+			data :{
+				nickName : $("#inputNickName").val()
+			},
+			success : function test(a){ 
+				$("#checkNickName").html(a); 
+			},
+			error : function error(){ 
+				alert("error"); 
+			}
+		});		
+	}
 	function chkID(){
 		var idRegExp = /^[a-zA-z0-9]{4,12}$/; //아이디 유효성 검사
         if (!idRegExp.test(form.inputId.value)) {
@@ -280,7 +297,7 @@
 	            return false;
 	        return true;
 		}
-		/* 이름 입력창 확인 */
+		/* 닉네임 입력창 확인 */
 		function checkNickName(inputNickName) {
 			if (!checkExistData(inputNickName, "닉네임을"))
 	            return false;
@@ -362,9 +379,10 @@
 					<div class="form-group form-float col-sm-9" id="checkPwd"></div>
 
 					<div class="form-group form-float col-sm-9 margin-auto"  style="padding-bottom: 1rem;">
-						<input type="text" class="form-control" placeholder="닉네임"
-							style="display: inline-block;" value="" name="inputNickName">
+						<input type="text" class="form-control" placeholder="닉네임" onblur="nickNameCheck()"
+							style="display: inline-block;" value="" name="inputNickName" id="inputNickName">
 					</div>
+					<div class="form-group form-float col-sm-9" id="checkNickName"></div>
 					
 					<div class="form-group form-float col-sm-9 margin-auto" style="display: inline-block; padding: 0;">
 						<div class="form-group form-float col-sm-6"
