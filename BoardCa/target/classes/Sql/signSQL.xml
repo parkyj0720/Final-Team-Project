@@ -7,7 +7,7 @@
 
 	<select id="idCheck" resultType="int" parameterType="MemberDto">
 		select count(*)
-		from MEMBER
+		from MEMBER_T
 		where MEM_ID=#{userId}
 	</select>
 
@@ -15,7 +15,7 @@
 	<select id="signCheck" resultType="String"
 		parameterType="MemberDto">
 		select mem_pw
-		from MEMBER
+		from MEMBER_T
 		where MEM_ID=#{userId}
 	</select>
 
@@ -24,7 +24,7 @@
 	</insert>
 
 	<insert id="memInsert" parameterType="MemberDto">
-		INSERT INTO MEMBER
+		INSERT INTO MEMBER_T
 		(	MEM_ID
 			,MEM_NICKNAME
 			,MEM_PW
@@ -51,8 +51,6 @@
 			,#{mem_board_gwonhan}
 		)
 	</insert>
-
-
 
 
 

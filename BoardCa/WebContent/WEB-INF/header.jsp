@@ -167,6 +167,25 @@ $(function() {
 									<c:when test="${sessionScope.userId == null}">
 										<li><a href="signIn.do">로그인</a></li>
 									</c:when>
+									<c:when test="${sessionScope.userId == admin}">
+										<li class="dropdown"><a href="javascript:void(0);"
+											class="dropdown-toggle" data-toggle="dropdown" role="button"
+											aria-haspopup="true" aria-expanded="false">
+												<p>${sessionScope.userId}님반갑습니다.
+												</p>
+										</a>
+											<ul class="dropdown-menu dropdown-menu-right">
+												<li><a
+													href="${pageContext.request.contextPath}/myPage.do">사이트 통계</a></li>
+												<li><a
+													href="${pageContext.request.contextPath}/myPageEdit.do">정보수정</a></li>
+												<li><a
+													href="${pageContext.request.contextPath}/myFAQ.do">1:1문의</a></li>
+												<li><a id="logoutBtn">로그아웃</a></li>
+											</ul>
+											</li>
+									</c:when>
+									
 									<c:otherwise>
 										<li class="dropdown"><a href="javascript:void(0);"
 											class="dropdown-toggle" data-toggle="dropdown" role="button"
@@ -182,7 +201,8 @@ $(function() {
 												<li><a
 													href="${pageContext.request.contextPath}/myFAQ.do">1:1문의</a></li>
 												<li><a id="logoutBtn">로그아웃</a></li>
-											</ul></li>
+											</ul>
+											</li>
 									</c:otherwise>
 								</c:choose>
 							</ul>
