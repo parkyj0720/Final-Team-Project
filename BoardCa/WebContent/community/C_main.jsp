@@ -1,6 +1,6 @@
+<%@page import="java.util.List"%>
 <%@page import="CommunityModel.BoardList"%>
 <%@page import="CommunityModel.CommunityDto"%>
-<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 	
@@ -26,7 +26,7 @@
 </head>
 <body>
 	<%
-	ArrayList<BoardList> boardList = (ArrayList<BoardList>) request.getAttribute("boardList");
+	List<BoardList> boardList = (List<BoardList>) request.getAttribute("boardList");
 	%>
 	<jsp:include page="/WEB-INF/header.jsp"></jsp:include>
 	<!-- <section class="content"
@@ -67,7 +67,7 @@
 					<%
 					for(int i = 0; i<boardList.size(); i+=2){
 						String listname = "list"+(i+1);
-						ArrayList<CommunityDto> list = (ArrayList<CommunityDto>)request.getAttribute(listname);
+						List<CommunityDto> list = (List<CommunityDto>)request.getAttribute(listname);
 						BoardList blist = boardList.get(i); 
 						int nel = 7 - list.size();
 					%>
@@ -130,7 +130,7 @@
 					<%
 					for(int i = 1; i<boardList.size(); i+=2){
 						String listname = "list"+(i+1);
-						ArrayList<CommunityDto> list = (ArrayList<CommunityDto>)request.getAttribute(listname);
+						List<CommunityDto> list = (List<CommunityDto>)request.getAttribute(listname);
 						BoardList blist = boardList.get(i);
 						int nel = 7 - list.size();
 					%>

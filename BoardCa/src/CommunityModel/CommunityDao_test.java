@@ -10,13 +10,13 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class CommunityDao {
-	private CommunityDao instance;
+public class CommunityDao_test {
+	private CommunityDao_test instance;
 
 	// 싱글톤 패턴
-	public CommunityDao getInstance() {
+	public CommunityDao_test getInstance() {
 		if (instance == null) {
-			instance = new CommunityDao();
+			instance = new CommunityDao_test();
 		}
 		return instance;
 	}
