@@ -37,6 +37,8 @@ public class CommunityDao {
 	String detail = "select * from community where num=?";
 	
 	String views = "update community set views = views+1 where num=?";
+	
+	String insert = "insert into community values(community_seq.nextval,?,?,sysdate,?,0,?)";
 
 	ArrayList<ArrayList<CommunityDto>> totalList;
 	private Connection conn;
@@ -397,16 +399,44 @@ public class CommunityDao {
 			}
 		}
 	}
-	/*
-	 * public void input(int num) { try { conn = DriverManager.getConnection(url,
-	 * user, pass); Class.forName("oracle.jdbc.driver.OracleDriver"); pstmt =
-	 * conn.prepareStatement(views); pstmt.setInt(1, num); int success =
-	 * pstmt.executeUpdate(); if(success > 0) { System.out.println("성공"); }else {
-	 * System.out.println("실패"); } } catch (Exception e) { } finally { if (conn !=
-	 * null) { try { conn.close(); } catch (SQLException e) { e.printStackTrace(); }
-	 * }if (pstmt != null) { try { pstmt.close(); } catch (SQLException e) {
-	 * e.printStackTrace(); } }if (rs != null) { try { rs.close(); } catch
-	 * (SQLException e) { e.printStackTrace(); } } } }
-	 */
+	public void insert(CommunityDto dto) {
+		try {
+			conn = DriverManager.getConnection(url, user, pass);
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			pstmt = conn.prepareStatement(insert);
+			pstmt.setString(1, dto.getTitle());
+			pstmt.setString(2, dto.getWriter_id());
+			pstmt.setString(3, dto.getContent());
+			pstmt.setInt(4, dto.getBoardnum());
+			int success = pstmt.executeUpdate();
+			if(success > 0) {
+				System.out.println("성공");
+			}else {
+				System.out.println("실패");
+			}
+		} catch (Exception e) {
+		} finally {
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+	}
+
 	
 }

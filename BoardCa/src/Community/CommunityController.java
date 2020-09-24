@@ -1,5 +1,8 @@
 package Community;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServlet;
@@ -78,28 +81,11 @@ public class CommunityController {
 	}
 	@RequestMapping(value="/Community_inputContent.do", method=RequestMethod.POST)
 	@ResponseBody
-	public void community_input_content(InputDto data){
+	public void community_input_content(InputDto data, HttpServletRequest request){
 		System.out.println(data);
-		/*
-		 * if(data.getContent() == null || data.getContent().equals("")) {
-		 * result.put("isFileInserted", false); result.put("uploadStatus",
-		 * "FileIsNull"); return result; } else if(data.getContent().length() > 400000)
-		 * { result.put("isFileInserted", false); result.put("uploadStatus",
-		 * "FileIsTooBig"); return result; }
-		 */
-		ArrayList<BoardList> boardlist = dao.Get_boardlist();
-		int boardnum = 0;
-		for (int i = 0; i < boardlist.size(); i++) {
-			BoardList board = boardlist.get(i);
-			if (board.getBoard_name().equals(data.getCommunity())) {
-				boardnum = board.getNum() + 1;
-			}
-		}
-		System.out.println(boardnum);
-		CommunityDto inputBoard = new CommunityDto(0, data.getTitle(), data.getUsername(), "", data.getContent(), 0,
-				boardnum);
-
-
+		CommunityDto dto = new CommunityDto(0, data.getTitle(), data.getUsername(), "", data.getContent(), 0, data.getCommunity_num());
+		dao.insert(dto);
+		
 	}
 	
 
