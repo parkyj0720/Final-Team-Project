@@ -61,12 +61,12 @@
 		</dependency>
 		
 		<!-- MySQL -->
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <version>8.0.21</version>
-        </dependency>
-		
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>8.0.21</version>
+		</dependency>
+
 
 		<!-- sring-jdbc -->
 		<dependency>
@@ -107,11 +107,14 @@
 
 		<!-- https://mvnrepository.com/artifact/servlets.com/cos -->
 		<dependency>
-		    <groupId>servlets.com</groupId>
-		    <artifactId>cos</artifactId>
-		    <version>05Nov2002</version>
+			<groupId>servlets.com</groupId>
+			<artifactId>cos</artifactId>
+			<version>05Nov2002</version>
 		</dependency>
-		
+
+
+
+
 	</dependencies>
 
 
