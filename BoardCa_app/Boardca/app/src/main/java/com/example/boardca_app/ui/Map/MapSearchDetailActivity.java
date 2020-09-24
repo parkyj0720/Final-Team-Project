@@ -148,6 +148,9 @@ public class MapSearchDetailActivity extends AppCompatActivity {
         XAxis xAxis = radarChart.getXAxis();
         xAxis.setValueFormatter(new IndexAxisValueFormatter(labels));
         radarChart.setData(data);
+
+        // 차트 오른쪽 밑에 글씨 지우기
+        radarChart.setDescription(null);
     }
 
     //차트 데이터 생성
