@@ -36,7 +36,7 @@
 			<div class="row clearfix js-sweetalert">
 				<div class="card">
 					<div class="col-lg-12 col-md-12 col-sm-12">
-						<h2>myFavorite</h2>
+						<h2>myFAQ</h2>
 
 						<ul class="breadcrumb">
 							<li class="breadcrumb-item"><a

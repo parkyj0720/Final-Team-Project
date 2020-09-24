@@ -53,7 +53,7 @@
 		<div class="block-header">
 			<div class="row">
 				<div class="col-lg-7 col-md-6 col-sm-12">
-					<h2>GameDetail</h2>
+					<h2>GameMain</h2>
 					<ul class="breadcrumb">
 						<li class="breadcrumb-item"><a
 							href="${pageContext.request.contextPath}/main.do"><i
@@ -70,53 +70,46 @@
 				<div class="row">
 					<div class="col-sm-6 col-md-3">
 						<div class="thumbnail">
-							<Img src="${pageContext.request.contextPath}/mypage/img/01.jpg"
-								alt="generic placeholder thumbnail">
+							<Img src="https://i.ytimg.com/vi/XgI2-r1oEuU/mqdefault.jpg">
 							<div class="caption">
-								<h3>Thumbnails tab</h3>
-								<p>Some sample text. Some sample text.</p>
-						
+								<h6>[술게임] 20학번 새내기도 이정도는 알아야지 &quot;베이직 술게임&quot;</h6>
 							</div>
 						</div>
 					</div>
 					<div class="col-sm-6 col-md-3">
 						<div class="thumbnail">
-							<Img src="${pageContext.request.contextPath}/mypage/imgs/01.jpg"
-								alt="generic placeholder thumbnail">
+							<Img src="https://i.ytimg.com/vi/XgI2-r1oEuU/mqdefault.jpg">
 							<div class="caption">
-								<h3>Thumbnails tab</h3>
-								<p>Some sample text. Some sample text.</p>
-						
+								<h6>[술게임] 20학번 새내기도 이정도는 알아야지 &quot;베이직 술게임&quot;</h6>
 							</div>
 						</div>
 					</div>
 					<div class="col-sm-6 col-md-3">
 						<div class="thumbnail">
-							<Img src="${pageContext.request.contextPath}/mypage/imgs/01.jpg"
-								alt="generic placeholder thumbnail">
+							<Img src="https://i.ytimg.com/vi/XgI2-r1oEuU/mqdefault.jpg">
 							<div class="caption">
-								<h3>Thumbnails tab</h3>
-								<p>Some sample text. Some sample text.</p>
-						
+								<h6>[술게임] 20학번 새내기도 이정도는 알아야지 &quot;베이직 술게임&quot;</h6>
 							</div>
 						</div>
 					</div>
-										<div class="col-sm-6 col-md-3">
+					<div class="col-sm-6 col-md-3">
 						<div class="thumbnail">
-							<Img src="${pageContext.request.contextPath}/mypage/img/01.jpg"
-								alt="generic placeholder thumbnail">
+							<Img src="https://i.ytimg.com/vi/XgI2-r1oEuU/mqdefault.jpg">
 							<div class="caption">
-								<h3>Thumbnails tab</h3>
-								<p>Some sample text. Some sample text.</p>
-						
+								<h6>[술게임] 20학번 새내기도 이정도는 알아야지 &quot;베이직 술게임&quot;</h6>
 							</div>
 						</div>
 					</div>
-
+					<div class="col-sm-6 col-md-3">
+						<div class="thumbnail">
+							<Img src="https://i.ytimg.com/vi/XgI2-r1oEuU/mqdefault.jpg">
+							<div class="caption">
+								<h6>[술게임] 20학번 새내기도 이정도는 알아야지 &quot;베이직 술게임&quot;</h6>
+							</div>
+						</div>
+					</div>
 				</div>
 				<!-- /.row -->
-
-
 			</div>
 		</div>
 	</div>
