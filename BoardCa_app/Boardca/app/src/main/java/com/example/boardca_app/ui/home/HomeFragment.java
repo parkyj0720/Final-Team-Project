@@ -30,6 +30,7 @@ public class HomeFragment extends Fragment {
 
     String[] labels = {"game1", "game2", "game3", "game4", "game5", "game6", "game7", "game8", "game9", "game10"};
 
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -39,8 +40,19 @@ public class HomeFragment extends Fragment {
 
         LottieAnimationView animationView = viewGroup.findViewById(R.id.animation_view);
         setUpAnimation(animationView);
-        animationView.loop(true);
         animationView.playAnimation();
+//        animationView.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                if(){
+//                    animationView.setAnimation("click_data.json");
+//                }
+//                if(){
+//                    animationView.setAnimation("home_data.json");
+//                }
+//
+//            }
+//        });
 
         btnGame = (Button) viewGroup.findViewById(R.id.btn_game);
         textGame = (TextView) viewGroup.findViewById(R.id.textview_game);
@@ -60,6 +72,7 @@ public class HomeFragment extends Fragment {
     private void setUpAnimation(LottieAnimationView animationView) {
         // 재생할 애니메이션 넣어준다.
         animationView.setAnimation("home_data.json");
+        animationView.loop(true);
         // 반복횟수를 무한히 주고 싶을 땐 LottieDrawable.INFINITE or 원하는 횟수
         animationView.setRepeatCount(LottieDrawable.INFINITE);
         // 시작
