@@ -25,7 +25,6 @@ public class HomeFragment extends Fragment {
 
     private View viewGroup;
 
-
     Button btnGame;
     TextView textGame;
 
@@ -43,8 +42,8 @@ public class HomeFragment extends Fragment {
         animationView.loop(true);
         animationView.playAnimation();
 
-       btnGame = (Button)viewGroup.findViewById(R.id.btn_game);
-        textGame = (TextView)viewGroup.findViewById(R.id.textview_game);
+        btnGame = (Button) viewGroup.findViewById(R.id.btn_game);
+        textGame = (TextView) viewGroup.findViewById(R.id.textview_game);
 
         btnGame.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,7 +56,6 @@ public class HomeFragment extends Fragment {
         });
         return viewGroup;
     }
-
 
     private void setUpAnimation(LottieAnimationView animationView) {
         // 재생할 애니메이션 넣어준다.

@@ -100,21 +100,21 @@ public class MainActivity extends AppCompatActivity {
                         return true;
                     }
                     case R.id.action_map: {
-                            showMap();
+                        showMap();
                         return true;
                     }
                 }
-            } catch (Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
             }
             return false;
         }
     };
 
-    public void showMap(){
+    public void showMap() {
         Intent kakaoMap = new Intent(this, MapsActivity.class);
         startActivity(kakaoMap);
-        overridePendingTransition(0,0);
+        overridePendingTransition(0, 0);
     }
 
     //위에 설정 메뉴 아이콘 생성
@@ -129,16 +129,11 @@ public class MainActivity extends AppCompatActivity {
     //설정 아이콘
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        //DrawerLayout drawer = findViewById(R.id.drawer_layout);
-
         int id = item.getItemId();
-        if(id == R.id.action_settings){
+        if (id == R.id.action_settings) {
             Intent settingIntent = new Intent(this, SettingsActivity.class);
             startActivity(settingIntent);
         }
-//        else if(id == R.id.){
-//            drawer.openDrawer(GravityCompat.START);
-//        }
         return super.onOptionsItemSelected(item);
     }
 
@@ -162,17 +157,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-//        //메시지 아이콘 - 스낵바 문장
-//        findViewById(R.id.fab)
-//                .setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View view) {
-//                        Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                                .setAction("Action", null)
-//                                .show();
-//                    }
-//                });
-
         //프래그먼트 생성
         this.home_fragment = new HomeFragment();
         this.recipe_fragment = new RecipeFragment();
@@ -192,7 +176,7 @@ public class MainActivity extends AppCompatActivity {
         if (!checkLocationServicesStatus()) {
 
             showDialogForLocationServiceSetting();
-        }else {
+        } else {
 
             checkRunTimePermission();
         }
@@ -204,10 +188,7 @@ public class MainActivity extends AppCompatActivity {
         longitude = gpsTracker.getLongitude();
 
         String address = getCurrentAddress(latitude, longitude);
-
-        Log.v("확인",address);
-
-
+        Log.v("확인", address);
     }
 
     @Override
@@ -222,9 +203,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if(view != null){
+        if (view != null) {
             ViewGroup parent = (ViewGroup) view.getParent();
-            if(parent != null){
+            if (parent != null) {
                 parent.removeView(view);
             }
         }
@@ -235,9 +216,9 @@ public class MainActivity extends AppCompatActivity {
     public void onBackPressed() {
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        if(drawer.isDrawerOpen(GravityCompat.START)){
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
-        } else{
+        } else {
             getSupportFragmentManager().popBackStack();
             super.onBackPressed();
         }
@@ -259,16 +240,16 @@ public class MainActivity extends AppCompatActivity {
 //        tvProfile.setText(username);
 
 
-                // Passing each menu ID as a set of Ids because each
+        // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                 R.id.nav_home, R.id.nav_mypage, R.id.nav_inquiries, R.id.nav_hearts, R.id.nav_coupons)
+                R.id.nav_home, R.id.nav_mypage, R.id.nav_inquiries, R.id.nav_hearts, R.id.nav_coupons)
                 .setDrawerLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
-        
+
         //네비게이션 셀렉트 이벤트
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -279,13 +260,11 @@ public class MainActivity extends AppCompatActivity {
                 int id = item.getItemId();
                 String title = item.getTitle().toString();
 
-                if(id == R.id.nav_mypage){
+                if (id == R.id.nav_mypage) {
                     Toast.makeText(context, title + "마이페이지", Toast.LENGTH_SHORT).show();
-                }
-                else if (id == R.id.nav_hearts){
+                } else if (id == R.id.nav_hearts) {
                     Toast.makeText(context, title + "관심글", Toast.LENGTH_SHORT).show();
-                }
-                else if (id == R.id.nav_coupons){
+                } else if (id == R.id.nav_coupons) {
                     Toast.makeText(context, title + "쿠폰", Toast.LENGTH_SHORT).show();
                 }
                 return true;
@@ -295,25 +274,24 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public static View getToolbarLogoIcon(Toolbar toolbar){
+    public static View getToolbarLogoIcon(Toolbar toolbar) {
         //check if contentDescription previously was set
         boolean hadContentDescription = android.text.TextUtils.isEmpty(toolbar.getLogoDescription());
         String contentDescription = String.valueOf(!hadContentDescription ? toolbar.getLogoDescription() : "logoContentDescription");
         toolbar.setLogoDescription(contentDescription);
         ArrayList<View> potentialViews = new ArrayList<View>();
         //find the view based on it's content description, set programatically or with android:contentDescription
-        toolbar.findViewsWithText(potentialViews,contentDescription, View.FIND_VIEWS_WITH_CONTENT_DESCRIPTION);
+        toolbar.findViewsWithText(potentialViews, contentDescription, View.FIND_VIEWS_WITH_CONTENT_DESCRIPTION);
         //Nav icon is always instantiated at this point because calling setLogoDescription ensures its existence
         View logoIcon = null;
-        if(potentialViews.size() > 0){
+        if (potentialViews.size() > 0) {
             logoIcon = potentialViews.get(0);
         }
         //Clear content description if not previously present
-        if(hadContentDescription)
+        if (hadContentDescription)
             toolbar.setLogoDescription(null);
         return logoIcon;
     }
-
 
 
     // Fragment 변환을 해주기 위한 부분, Fragment의 Instance를 받아서 변경
@@ -323,11 +301,10 @@ public class MainActivity extends AppCompatActivity {
                 .replace(R.id.main_content, fragment)
                 .commit();
     }
+
     private static final int GPS_ENABLE_REQUEST_CODE = 2001;
     private static final int PERMISSIONS_REQUEST_CODE = 100;
-    String[] REQUIRED_PERMISSIONS  = {Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION};
-
-
+    String[] REQUIRED_PERMISSIONS = {Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION};
 
 
     /*
@@ -338,7 +315,7 @@ public class MainActivity extends AppCompatActivity {
                                            @NonNull String[] permissions,
                                            @NonNull int[] grandResults) {
 
-        if ( permsRequestCode == PERMISSIONS_REQUEST_CODE && grandResults.length == REQUIRED_PERMISSIONS.length) {
+        if (permsRequestCode == PERMISSIONS_REQUEST_CODE && grandResults.length == REQUIRED_PERMISSIONS.length) {
 
             // 요청 코드가 PERMISSIONS_REQUEST_CODE 이고, 요청한 퍼미션 개수만큼 수신되었다면
 
@@ -355,12 +332,11 @@ public class MainActivity extends AppCompatActivity {
             }
 
 
-            if ( check_result ) {
+            if (check_result) {
 
                 //위치 값을 가져올 수 있음
                 ;
-            }
-            else {
+            } else {
                 // 거부한 퍼미션이 있다면 앱을 사용할 수 없는 이유를 설명해주고 앱을 종료합니다.2 가지 경우가 있습니다.
 
                 if (ActivityCompat.shouldShowRequestPermissionRationale(this, REQUIRED_PERMISSIONS[0])
@@ -370,7 +346,7 @@ public class MainActivity extends AppCompatActivity {
                     finish();
 
 
-                }else {
+                } else {
 
                     Toast.makeText(MainActivity.this, "퍼미션이 거부되었습니다. 설정(앱 정보)에서 퍼미션을 허용해야 합니다. ", Toast.LENGTH_LONG).show();
 
@@ -380,7 +356,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void checkRunTimePermission(){
+    public void checkRunTimePermission() {
 
         //런타임 퍼미션 처리
         // 1. 위치 퍼미션을 가지고 있는지 체크합니다.
@@ -398,7 +374,6 @@ public class MainActivity extends AppCompatActivity {
 
 
             // 3.  위치 값을 가져올 수 있음
-
 
 
         } else {  //2. 퍼미션 요청을 허용한 적이 없다면 퍼미션 요청이 필요합니다. 2가지 경우(3-1, 4-1)가 있습니다.
@@ -425,7 +400,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     // 좌표를 주소로 변환해주는 메소드
-    public String getCurrentAddress( double latitude, double longitude) {
+    public String getCurrentAddress(double latitude, double longitude) {
 
         //지오코더... GPS를 주소로 변환
         Geocoder geocoder = new Geocoder(this, Locale.getDefault());
@@ -449,7 +424,6 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
-
         if (addresses == null || addresses.size() == 0) {
             Toast.makeText(this, "주소 미발견", Toast.LENGTH_LONG).show();
             return "주소 미발견";
@@ -457,7 +431,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         Address address = addresses.get(0);
-        return address.getAddressLine(0).toString()+"\n";
+        return address.getAddressLine(0).toString() + "\n";
 
     }
 
@@ -523,9 +497,9 @@ public class MainActivity extends AppCompatActivity {
         Geocoder coder = new Geocoder(getApplicationContext());
         //리스트에 담아주고,
         List<Address> list = null;
-        try{
-            list = coder.getFromLocationName(str,1);
-        } catch(IOException e){
+        try {
+            list = coder.getFromLocationName(str, 1);
+        } catch (IOException e) {
             e.printStackTrace();
         }
         //그 정보의 좌표값을 가져온다.
