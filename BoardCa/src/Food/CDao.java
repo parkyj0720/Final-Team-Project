@@ -38,7 +38,7 @@ public class CDao {
 	
 	public int uploadFile(CDto dto) {
 		System.out.println(dto);
-		int cnt = mysqlSession.insert("cXml.cInsertTest", dto);
+		int cnt = mysqlSession.insert("cXml.cInsert", dto);
         return cnt;
   }
 }

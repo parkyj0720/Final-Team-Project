@@ -91,15 +91,15 @@
 						<div class="body">
 							<div class="row">
 								<div class="col-xl-3 col-lg-4 col-md-12">
-									<img src="<%=(dto.getR_main_thumbs()!="")?dto.getR_main_thumbs():request.getContextPath()+"/upload/"+dto.getR_filename() %>" width="100%">
+									<img src="<%=(!dto.getREC_MAIN_IMG().equals(""))?dto.getREC_MAIN_IMG():request.getContextPath()+"/upload/"+dto.getREC_IMG_NAME() %>" width="100%">
 								</div>
 								<div class="col-xl-9 col-lg-8 col-md-12 r_detail" style="positon:relative;">
 									<div class="product details detail_header">
-										<h3 class="mb-0"><%=dto.getR_title() %></h3>
+										<h3 class="mb-0"><%=dto.getREC_TIT() %></h3>
 
 
 										<hr>
-										<p class="product-description"><%=dto.getR_explain() %></p>
+										<p class="product-description"><%=dto.getREC_CONTENT() %></p>
 
 
 									</div>
@@ -119,15 +119,15 @@
 										<table>
 											<tr>
 												<td>기준인원: </td>
-												<td style="padding-left: 10px;"><%=dto.getR_standard() %></td>
+												<td style="padding-left: 10px;"><%=dto.getREC_PEOPLE() %></td>
 											</tr>
 											<tr>
 												<td>조리시간: </td>
-												<td style="padding-left: 10px;"><%=dto.getR_cooking_time() %></td>
+												<td style="padding-left: 10px;"><%=dto.getREC_COOKING_TIME() %></td>
 											</tr>
 											<tr>
 												<td>난이도: </td>
-												<td style="padding-left: 10px;"><%=dto.getR_difficult() %></td>
+												<td style="padding-left: 10px;"><%=dto.getREC_DIFICULTY() %></td>
 											</tr>
 										</table>
 									</div>
@@ -143,7 +143,7 @@
 									<div>
 										<h6>재료</h6>
 										<hr>
-										<% String ingre_str = dto.getR_ingredient();
+										<% String ingre_str = dto.getREC_INGREDIENT();
 											String[] ingre_arr = ingre_str.split("&");
 											boolean checkOne = true;
 										%>
@@ -176,7 +176,7 @@
 									<div>
 										<h6>조리순서</h6>
 										<hr>
-										<% String order_str = dto.getR_cooking_order();
+										<% String order_str = dto.getREC_COOKING_METHOD();
 											String[] order_arr = order_str.split("&");
 											int cnt = 1;
 										%>
@@ -187,7 +187,7 @@
 												<td style="padding-left: 100px;"><%=order_arr[i] %></td>
 												<% i++; %>
 												<% if(i < order_arr.length || order_arr[i].indexOf("jpg") != -1 || order_arr[i].indexOf("png") != -1 || order_arr[i].indexOf("gif") != -1){ %>
-												<td style="padding-left: 150px; padding-bottom:20px; width:200; height:200;"><img src="<%=order_arr[i] %>"></td>
+												<td style="padding-left: 150px; padding-bottom:20px; width:400px; height:200px;"><img src="${pageContext.request.contextPath}/upload/<%=order_arr[i] %>"></td>
 												<% } %>
 											</tr>
 											<% cnt++;} %>
@@ -240,25 +240,18 @@
 								<ul class="comment-reply ">
 									<li>
 										<div class="text-box " style="width: auto;">
-											<h5>Kareem Todd</h5>
-											<span class="comment-date">Wednesday, October 17, 2018
-												at 4:00PM.</span>
-											<p>There are many variations of passages of Lorem Ipsum
-												available, but the majority have suffered alteration in some
-												form, by injected humour.</p>
+											<h5 style="display:inline-block;">이름</h5><span style="margin-left:10px;" class="comment-date">작성 0000-00-00</span>
+											<p>내용</p>
 										</div>
 									</li>
+									<hr>
 									<li>
-
 										<div class="text-box " style="width: auto;">
-											<h5>Stillnot david</h5>
-											<span class="comment-date">Wednesday, October 17, 2018
-												at 4:00PM.</span>
-											<p>Lorem Ipsum is simply dummy text of the printing and
-												typesetting industry. Lorem Ipsum has been the industry's
-												standard dummy.</p>
+											<h5 style="display:inline-block;">이름</h5><span style="margin-left:10px;" class="comment-date">작성 0000-00-00</span>
+											<p>내용</p>
 										</div>
 									</li>
+									
 								</ul>
 							</div>
 						</div>

@@ -1,109 +1,134 @@
 package Food;
 
 public class CDto {
-	int r_board_no;
-	String r_crawling_addr;
-	String r_main_thumbs;
-	String r_filename;
-	String r_title;
-	String r_explain;
-	String r_standard;
-	String r_cooking_time;
-	String r_difficult;
-	String r_ingredient;
-	String r_cooking_order;
+	int REC_IDX;
+	String REC_CRAWLING_ADDR;
+	String REC_MAIN_IMG;
+	String REC_IMG_NAME;
+	String REC_TIT;
+	String REC_CONTENT;
+	String REC_PEOPLE;
+	String REC_COOKING_TIME;
+	String REC_DIFICULTY;
+	String REC_INGREDIENT;
+	String REC_COOKING_METHOD;
 	public CDto() {
 		this(0, "", "", "", "", "", "", "", "", "", "");
 	}
 	
-	public CDto(int r_board_no, String r_crawling_addr, String r_main_thumbs, String r_filename, String r_title,
-			String r_explain, String r_standard, String r_cooking_time, String r_difficult, String r_ingredient,
-			String r_cooking_order) {
-		this.r_board_no = r_board_no;
-		this.r_crawling_addr = r_crawling_addr;
-		this.r_main_thumbs = r_main_thumbs;
-		this.r_filename = r_filename;
-		this.r_title = r_title;
-		this.r_explain = r_explain;
-		this.r_standard = r_standard;
-		this.r_cooking_time = r_cooking_time;
-		this.r_difficult = r_difficult;
-		this.r_ingredient = r_ingredient;
-		this.r_cooking_order = r_cooking_order;
+	
+	public CDto(int rEC_IDX, String rEC_CRAWLING_ADDR, String rEC_MAIN_IMG, String rEC_IMG_NAME, String rEC_TIT,
+			String rEC_CONTENT, String rEC_PEOPLE, String rEC_COOKING_TIME, String rEC_DIFICULTY, String rEC_INGREDIENT,
+			String rEC_COOKING_METHOD) {
+		super();
+		REC_IDX = rEC_IDX;
+		REC_CRAWLING_ADDR = rEC_CRAWLING_ADDR;
+		REC_MAIN_IMG = rEC_MAIN_IMG;
+		REC_IMG_NAME = rEC_IMG_NAME;
+		REC_TIT = rEC_TIT;
+		REC_CONTENT = rEC_CONTENT;
+		REC_PEOPLE = rEC_PEOPLE;
+		REC_COOKING_TIME = rEC_COOKING_TIME;
+		REC_DIFICULTY = rEC_DIFICULTY;
+		REC_INGREDIENT = rEC_INGREDIENT;
+		REC_COOKING_METHOD = rEC_COOKING_METHOD;
 	}
-	public String getR_filename() {
-		return r_filename;
+
+	public int getREC_IDX() {
+		return REC_IDX;
 	}
-	public void setR_filename(String r_filename) {
-		this.r_filename = r_filename;
+
+	public void setREC_IDX(int rEC_IDX) {
+		REC_IDX = rEC_IDX;
 	}
-	public int getR_board_no() {
-		return r_board_no;
+
+	public String getREC_CRAWLING_ADDR() {
+		return REC_CRAWLING_ADDR;
 	}
-	public void setR_board_no(int r_board_no) {
-		this.r_board_no = r_board_no;
+
+	public void setREC_CRAWLING_ADDR(String rEC_CRAWLING_ADDR) {
+		REC_CRAWLING_ADDR = rEC_CRAWLING_ADDR;
 	}
-	public String getR_crawling_addr() {
-		return r_crawling_addr;
+
+	public String getREC_MAIN_IMG() {
+		return REC_MAIN_IMG;
 	}
-	public void setR_crawling_addr(String r_crawling_addr) {
-		this.r_crawling_addr = r_crawling_addr;
+
+	public void setREC_MAIN_IMG(String rEC_MAIN_IMG) {
+		REC_MAIN_IMG = rEC_MAIN_IMG;
 	}
-	public String getR_main_thumbs() {
-		return r_main_thumbs;
+
+	public String getREC_IMG_NAME() {
+		return REC_IMG_NAME;
 	}
-	public void setR_main_thumbs(String r_main_thumbs) {
-		this.r_main_thumbs = r_main_thumbs;
+
+	public void setREC_IMG_NAME(String rEC_IMG_NAME) {
+		REC_IMG_NAME = rEC_IMG_NAME;
 	}
-	public String getR_title() {
-		return r_title;
+
+	public String getREC_TIT() {
+		return REC_TIT;
 	}
-	public void setR_title(String r_title) {
-		this.r_title = r_title;
+
+	public void setREC_TIT(String rEC_TIT) {
+		REC_TIT = rEC_TIT;
 	}
-	public String getR_explain() {
-		return r_explain;
+
+	public String getREC_CONTENT() {
+		return REC_CONTENT;
 	}
-	public void setR_explain(String r_explain) {
-		this.r_explain = r_explain;
+
+	public void setREC_CONTENT(String rEC_CONTENT) {
+		REC_CONTENT = rEC_CONTENT;
 	}
-	public String getR_standard() {
-		return r_standard;
+
+	public String getREC_PEOPLE() {
+		return REC_PEOPLE;
 	}
-	public void setR_standard(String r_standard) {
-		this.r_standard = r_standard;
+
+	public void setREC_PEOPLE(String rEC_PEOPLE) {
+		REC_PEOPLE = rEC_PEOPLE;
 	}
-	public String getR_cooking_time() {
-		return r_cooking_time;
+
+	public String getREC_COOKING_TIME() {
+		return REC_COOKING_TIME;
 	}
-	public void setR_cooking_time(String r_cooking_time) {
-		this.r_cooking_time = r_cooking_time;
+
+	public void setREC_COOKING_TIME(String rEC_COOKING_TIME) {
+		REC_COOKING_TIME = rEC_COOKING_TIME;
 	}
-	public String getR_difficult() {
-		return r_difficult;
+
+	public String getREC_DIFICULTY() {
+		return REC_DIFICULTY;
 	}
-	public void setR_difficult(String r_difficult) {
-		this.r_difficult = r_difficult;
+
+	public void setREC_DIFICULTY(String rEC_DIFICULTY) {
+		REC_DIFICULTY = rEC_DIFICULTY;
 	}
-	public String getR_ingredient() {
-		return r_ingredient;
+
+	public String getREC_INGREDIENT() {
+		return REC_INGREDIENT;
 	}
-	public void setR_ingredient(String r_ingredient) {
-		this.r_ingredient = r_ingredient;
+
+	public void setREC_INGREDIENT(String rEC_INGREDIENT) {
+		REC_INGREDIENT = rEC_INGREDIENT;
 	}
-	public String getR_cooking_order() {
-		return r_cooking_order;
+
+	public String getREC_COOKING_METHOD() {
+		return REC_COOKING_METHOD;
 	}
-	public void setR_cooking_order(String r_cooking_order) {
-		this.r_cooking_order = r_cooking_order;
+
+	public void setREC_COOKING_METHOD(String rEC_COOKING_METHOD) {
+		REC_COOKING_METHOD = rEC_COOKING_METHOD;
 	}
+
 	@Override
 	public String toString() {
-		return "CDto [r_board_no=" + r_board_no + ", r_crawling_addr=" + r_crawling_addr + ", r_main_thumbs="
-				+ r_main_thumbs + ", r_filename=" + r_filename + ", r_title=" + r_title + ", r_explain=" + r_explain
-				+ ", r_standard=" + r_standard + ", r_cooking_time=" + r_cooking_time + ", r_difficult=" + r_difficult
-				+ ", r_ingredient=" + r_ingredient + ", r_cooking_order=" + r_cooking_order + "]";
+		return "CDto [REC_IDX=" + REC_IDX + ", REC_CRAWLING_ADDR=" + REC_CRAWLING_ADDR + ", REC_MAIN_IMG="
+				+ REC_MAIN_IMG + ", REC_IMG_NAME=" + REC_IMG_NAME + ", REC_TIT=" + REC_TIT + ", REC_CONTENT="
+				+ REC_CONTENT + ", REC_PEOPLE=" + REC_PEOPLE + ", REC_COOKING_TIME=" + REC_COOKING_TIME
+				+ ", REC_DIFICULTY=" + REC_DIFICULTY + ", REC_INGREDIENT=" + REC_INGREDIENT + ", REC_COOKING_METHOD="
+				+ REC_COOKING_METHOD + "]";
 	}
-	
-	
+
 }

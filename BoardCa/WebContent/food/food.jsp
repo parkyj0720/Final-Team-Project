@@ -187,10 +187,10 @@ request.getParameter("test");
                                 		break;
                                 	CDto dto = list.get(i);
                                 	String img_src = "";
-                                	if(dto.getR_main_thumbs()!=""){
-                                		img_src = dto.getR_main_thumbs();
+                                	if(dto.getREC_MAIN_IMG().equals("")){
+                                		img_src = dto.getREC_MAIN_IMG();
                                 	}else{
-                                		img_src = dto.getR_filename();
+                                		img_src = dto.getREC_IMG_NAME();
                                 	}
                                 %> 
                                     <div class="col-lg-3 col-md-4 col-sm-12">
@@ -198,17 +198,17 @@ request.getParameter("test");
                                             <div class="file">
                                             <!-- 수정해야 됨 주소랑 썸네일 없을 수 있음 -->
                                                 <%-- <a href="<%=dto.getR_crawling_addr()%>"> --%>
-                                                <a href="${pageContext.request.contextPath}/cDetail.do?no=<%=dto.getR_board_no()%>">
+                                                <a href="${pageContext.request.contextPath}/cDetail.do?no=<%=dto.getREC_IDX() %>">
                                                     <div class="hover">
                                                         <button type="button" class="bg-orange btn btn-icon btn-icon-mini btn-round bg-orange">
                                                             <i class="ti-heart"></i>
                                                         </button>
                                                     </div>
                                                     <div class="icon" >
-                                                        <img src="<%=(dto.getR_main_thumbs()!="")?dto.getR_main_thumbs():request.getContextPath()+"/upload/"+dto.getR_filename()%>" height="150" >
+                                                        <img src="<%=(!dto.getREC_MAIN_IMG().equals(""))?dto.getREC_MAIN_IMG():request.getContextPath()+"/upload/"+dto.getREC_IMG_NAME() %>" height="150" >
                                                     </div>
                                                     <div class="file-name" style="height:100px">
-                                                        <p class="m-b-5 text-muted"><%=dto.getR_title() %></p>
+                                                        <p class="m-b-5 text-muted"><%=dto.getREC_TIT() %></p>
                                                        
                                                     </div>
                                                 </a>

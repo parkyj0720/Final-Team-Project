@@ -121,7 +121,6 @@ public class CController {
 			
 			String r_ingredient = multi.getParameter("ingredient");
 			String r_cooking_order = multi.getParameter("cooking_order");
-			System.out.println(r_cooking_order);
 
 			try {
 				int result = dao.uploadFile(new CDto(0, r_crawling_addr, r_main_thumbs, file, r_title, r_explain, r_standard, r_cooking_time, r_difficult, r_ingredient, r_cooking_order));
@@ -140,7 +139,7 @@ public class CController {
 			System.out.println("일반 전송 form 입니다.");
 		}
 		
-		mv.setViewName("food/food.jsp");
+		mv.setViewName("food/food.jsp?page=1");
 		return mv;
 	}
 	
@@ -167,4 +166,22 @@ public class CController {
 		mv.setViewName("food/fileNameCheck.jsp");
 		return mv;
 	}
+	
+//	private static PythonInterpreter intPre;
+//	
+//	@RequestMapping("/test.do")
+//	public ModelAndView test(HttpServletRequest req, HttpServletResponse res) throws IOException {
+//		intPre = new PythonInterpreter();
+//		intPre.execfile("src/Py/test.py");
+//		intPre.exec("print(testFunc(5,10))");
+//		
+//		PyFunction pyFunction = (PyFunction)intPre.get("testFunc", PyFunction.class);
+//		int a = 10, b = 20;
+//		PyObject pyobj = pyFunction.__call__(new PyInteger(a), new PyInteger(b));
+//		System.out.println(pyobj.toString());
+//		
+//		
+//		mv.setViewName("/food/food.jsp?page=1");
+//		return mv;
+//	}
 }

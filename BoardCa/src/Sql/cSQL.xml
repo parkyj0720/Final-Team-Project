@@ -6,53 +6,49 @@
 <mapper namespace="cXml">
 <!-- r_crawling_addr, r_main_thumbs, r_title -->
 <select id="cListAll" resultType="Food.CDto">
-	select r_board_no, r_crawling_addr, r_main_thumbs, r_filename, r_title 
-	from recipe
-	where r_explain is not null and r_standard is not null and r_cooking_time is not null and r_difficult is not null
-	order by r_board_no ASC
+	select REC_IDX, REC_CRAWLING_ADDR, REC_MAIN_IMG, REC_IMG_NAME, REC_TIT 
+	from RECIPE_T
+	where REC_CONTENT is not null and REC_PEOPLE is not null and REC_COOKING_TIME is not null and REC_DIFICULTY is not null
+	order by REC_IDX ASC
 </select>
 
 <select id="cSearchList" resultType="Food.CDto" parameterType="String">
-	select r_board_no, r_crawling_addr, r_main_thumbs, r_filename, r_title 
-	from recipe 
-	where r_title like CONCAT('%', #{search}, '%')
+	select REC_IDX, REC_CRAWLING_ADDR, REC_MAIN_IMG, REC_IMG_NAME, REC_TIT 
+	from RECIPE_T 
+	where REC_TIT like CONCAT('%', #{search}, '%')
 </select>
 
 <select id="cDetail" resultType="Food.CDto">
 	select *
-	from recipe
-	where r_board_no = #{r_board_no}
+	from RECIPE_T
+	where REC_IDX = #{REC_IDX}
 </select>
 
-<insert id="cInsertTest" parameterType="Food.CDto">
+<insert id="cInsert" parameterType="Food.CDto">
 
-	<selectKey keyProperty="r_board_no" resultType="int" order="BEFORE">
-        SELECT seq_board_no.nextval FROM DUAL
-    </selectKey>
+	insert into RECIPE_T (REC_IDX,
+	REC_CRAWLING_ADDR,
+	REC_MAIN_IMG,
+	REC_IMG_NAME,
+	REC_TIT,
+	REC_CONTENT,
+	REC_PEOPLE,
+	REC_COOKING_TIME,
+	REC_DIFICULTY,
+	REC_INGREDIENT,
+	REC_COOKING_METHOD)
 
-	insert into recipe (r_board_no,
-	r_crawling_addr,
-	r_main_thumbs,
-	r_filename,
-	r_title,
-	r_explain,
-	r_standard,
-	r_cooking_time,
-	r_difficult,
-	r_ingredient,
-	r_cooking_order)
-
-	values(#{r_board_no},
-	#{r_crawling_addr},
-	#{r_main_thumbs},
-	#{r_filename},
-	#{r_title},
-	#{r_explain},
-	#{r_standard},
-	#{r_cooking_time},
-	#{r_difficult},
-	#{r_ingredient},
-	#{r_cooking_order})
+	values(#{REC_IDX},
+	#{REC_CRAWLING_ADDR},
+	#{REC_MAIN_IMG},
+	#{REC_IMG_NAME},
+	#{REC_TIT},
+	#{REC_CONTENT},
+	#{REC_PEOPLE},
+	#{REC_COOKING_TIME},
+	#{REC_DIFICULTY},
+	#{REC_INGREDIENT},
+	#{REC_COOKING_METHOD})
 </insert>
 
 </mapper>
