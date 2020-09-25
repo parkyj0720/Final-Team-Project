@@ -6,6 +6,8 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.res.Configuration;
+import android.graphics.Color;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.LocationManager;
@@ -15,10 +17,16 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.FrameLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
@@ -39,16 +47,24 @@ import com.example.boardca_app.ui.Map.MapsActivity;
 import com.example.boardca_app.ui.community.CommunityFragment;
 import com.example.boardca_app.ui.game.GameFragment;
 import com.example.boardca_app.ui.home.HomeFragment;
+import com.example.boardca_app.ui.mypage.MypageFragment;
 import com.example.boardca_app.ui.recipe.RecipeFragment;
 import com.example.boardca_app.ui.setting.SettingsActivity;
+import com.example.boardca_app.ui.web_view.Web_Fragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+
+import static com.example.boardca_app.R.drawable.baseline_format_align_right_black_48;
+import static com.example.boardca_app.R.string.navigation_drawer_close;
+import static com.example.boardca_app.R.string.navigation_drawer_open;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -61,12 +77,14 @@ public class MainActivity extends AppCompatActivity {
 
     //메뉴아이콘에 관련된 이벤트
     private AppBarConfiguration mAppBarConfiguration;
+    private ListView lvNavList;
+    private FrameLayout flContainer;
+    private DrawerLayout dlDrawer;
+    private ActionBarDrawerToggle dtToggle;
 
     //바텀 네비게이션
     private BottomNavigationView bottomNavigationView;
-
     private View view;
-    private String strNickname, strProfile;
 
     //프래그먼트 생성
     private Fragment home_fragment;
@@ -81,6 +99,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             try {
+
                 switch (item.getItemId()) {
                     //menu.xml에 저장해뒀던 아이디 값을 받아와 swich문으로 선택 프래그먼트에 각자 다른 이벤트를 발생
                     case R.id.action_home: {
@@ -125,7 +144,6 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
-
     //설정 아이콘
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
@@ -137,11 +155,11 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -169,8 +187,6 @@ public class MainActivity extends AppCompatActivity {
         //바텀 네이베이션의 프래그먼트 선택 리스너
         bottomNavigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
-        //차후 수정할 곳 //시작 프래그먼트
-        this.replaceFragment(home_fragment);
         this.createNavi();
 
         if (!checkLocationServicesStatus()) {
@@ -189,6 +205,8 @@ public class MainActivity extends AppCompatActivity {
 
         String address = getCurrentAddress(latitude, longitude);
         Log.v("확인", address);
+
+
     }
 
     @Override
@@ -224,55 +242,122 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    public boolean onNavigationItemSelected(MenuItem item){
+
+        int id = item.getItemId();
+
+        if (id == R.id.nav_inquiries) {
+            Toast.makeText(this, "문의하기", Toast.LENGTH_LONG).show();
+//            Intent Intent = new Intent(this, Web_Fragment.class);
+//            startActivity(Intent);
+        } else if (id == R.id.nav_mypage) {
+            Toast.makeText(this, "마이페이지", Toast.LENGTH_LONG).show();
+        } else if (id == R.id.nav_hearts) {
+            Toast.makeText(this, "관심글", Toast.LENGTH_LONG).show();
+        } else if (id == R.id.nav_coupons) {
+            Toast.makeText(this, "쿠폰", Toast.LENGTH_LONG).show();
+        }
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
+    };
+
     // 네비게이션 생성
+    private MenuItem navItems;
     private void createNavi() {
+        //시작 프래그먼트
+        this.replaceFragment(home_fragment);
         final DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
+        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
 
-        TextView tvNickname = findViewById(R.id.tv_nickname);
-        TextView tvProfile = findViewById(R.id.tv_id);
-//
-//        Intent intent = getIntent();
-//        strNickname = intent.getStringExtra("nick_name");
-//        strProfile = intent.getStringExtra("profile");
-
-//        tvNickname.setText(strNickname);
-//        tvProfile.setText(username);
-
-
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
-        mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_mypage, R.id.nav_inquiries, R.id.nav_hearts, R.id.nav_coupons)
+        mAppBarConfiguration = new AppBarConfiguration.Builder(navController.getGraph())
                 .setDrawerLayout(drawer)
                 .build();
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
-
-        //네비게이션 셀렉트 이벤트
-        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                item.setChecked(true);
-                drawer.closeDrawers();
-
-                int id = item.getItemId();
-                String title = item.getTitle().toString();
-
-                if (id == R.id.nav_mypage) {
-                    Toast.makeText(context, title + "마이페이지", Toast.LENGTH_SHORT).show();
-                } else if (id == R.id.nav_hearts) {
-                    Toast.makeText(context, title + "관심글", Toast.LENGTH_SHORT).show();
-                } else if (id == R.id.nav_coupons) {
-                    Toast.makeText(context, title + "쿠폰", Toast.LENGTH_SHORT).show();
-                }
-                return true;
-            }
-        });
-
+        //NavigationUI.onNavDestinationSelected(navItems, navController);
 
     }
+
+
+
+
+        //        lvNavList = (ListView)findViewById(R.id.lv_activity_main_nav_list);
+//        flContainer = (FrameLayout)findViewById(R.id.nav_host_fragment);
+//
+//        lvNavList.setAdapter(
+//                new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, navItems));
+//        lvNavList.setOnItemClickListener(new DrawerItemClickListener());
+//
+//        dlDrawer = (DrawerLayout)findViewById(R.id.drawer_layout);
+//        dtToggle = new ActionBarDrawerToggle(MainActivity, baseline_format_align_right_black_48, navigation_drawer_open, navigation_drawer_close){
+//
+//            @Override
+//            public void onDrawerClosed(View drawerView) {
+//                super.onDrawerClosed(drawerView);
+//            }
+//
+//            @Override
+//            public void onDrawerOpened(View drawerView) {
+//                super.onDrawerOpened(drawerView);
+//            }
+//
+//        };
+//        dlDrawer.setDrawerListener(dtToggle);
+//        getActionBar().setDisplayHomeAsUpEnabled(true);
+//
+//
+//    }
+//
+//    private class DrawerItemClickListener implements ListView.OnItemClickListener {
+//
+//        @Override
+//        public void onItemClick(AdapterView<?> adapter, View view, int position,
+//                                long id) {
+//            switch (position) {
+//                case 0:
+//                    flContainer.setBackgroundColor(Color.parseColor("#A52A2A"));
+//                    break;
+//                case 1:
+//                    flContainer.setBackgroundColor(Color.parseColor("#5F9EA0"));
+//                    break;
+//                case 2:
+//                    flContainer.setBackgroundColor(Color.parseColor("#556B2F"));
+//                    break;
+//                case 3:
+//                    flContainer.setBackgroundColor(Color.parseColor("#FF8C00"));
+//                    break;
+//                case 4:
+//                    flContainer.setBackgroundColor(Color.parseColor("#DAA520"));
+//                    break;
+//            }
+//            dlDrawer.closeDrawer(lvNavList);
+//
+//        }
+//    }
+//
+//    protected void onPostCreate(Bundle savedInstanceState){
+//        super.onPostCreate(savedInstanceState);
+//        dtToggle.syncState();
+//    }
+//
+//    @Override
+//    public void onConfigurationChanged(Configuration newConfig) {
+//        super.onConfigurationChanged(newConfig);
+//        dtToggle.onConfigurationChanged(newConfig);
+//    }
+
+
+
+
+
+
+
+
+
 
     public static View getToolbarLogoIcon(Toolbar toolbar) {
         //check if contentDescription previously was set

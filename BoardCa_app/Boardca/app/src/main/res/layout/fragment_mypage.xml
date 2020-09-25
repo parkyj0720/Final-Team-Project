@@ -10,43 +10,43 @@
 
     <!-- 마이페이지 설정 /  -->
 
-    <com.google.android.material.textview.MaterialTextView
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:text="0OO님 환영합니다."
-    tools:ignore="MissingConstraints"/>
+<!--    <com.google.android.material.textview.MaterialTextView-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="wrap_content"-->
+<!--    android:text="0OO님 환영합니다."-->
+<!--    tools:ignore="MissingConstraints"/>-->
 
-    <com.google.android.material.textview.MaterialTextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="로그아웃"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="110dp"
-        tools:layout_editor_absoluteY="422dp" />
+<!--    <com.google.android.material.textview.MaterialTextView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="로그아웃"-->
+<!--        tools:ignore="MissingConstraints"-->
+<!--        tools:layout_editor_absoluteX="110dp"-->
+<!--        tools:layout_editor_absoluteY="422dp" />-->
 
-    <com.google.android.material.textview.MaterialTextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="알람 내역"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="74dp"
-        tools:layout_editor_absoluteY="187dp" />
+<!--    <com.google.android.material.textview.MaterialTextView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="알람 내역"-->
+<!--        tools:ignore="MissingConstraints"-->
+<!--        tools:layout_editor_absoluteX="74dp"-->
+<!--        tools:layout_editor_absoluteY="187dp" />-->
 
-    <com.google.android.material.textview.MaterialTextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="내 쿠폰"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="27dp"
-        tools:layout_editor_absoluteY="119dp" />
+<!--    <com.google.android.material.textview.MaterialTextView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="내 쿠폰"-->
+<!--        tools:ignore="MissingConstraints"-->
+<!--        tools:layout_editor_absoluteX="27dp"-->
+<!--        tools:layout_editor_absoluteY="119dp" />-->
 
-    <com.google.android.material.textview.MaterialTextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="1:1 문의 답변"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="156dp"
-        tools:layout_editor_absoluteY="261dp" />
+<!--    <com.google.android.material.textview.MaterialTextView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="1:1 문의 답변"-->
+<!--        tools:ignore="MissingConstraints"-->
+<!--        tools:layout_editor_absoluteX="156dp"-->
+<!--        tools:layout_editor_absoluteY="261dp" />-->
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
