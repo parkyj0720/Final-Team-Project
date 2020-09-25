@@ -71,7 +71,7 @@
 						<h2>writeList</h2>
 						<ul class="breadcrumb">
 							<li class="breadcrumb-item"><a
-								href="${pageContext.request.contextPath}/main/main.jsp"><i
+								href="${pageContext.request.contextPath}/main.do"><i
 									class="zmdi zmdi-home"></i> BoardCa</a></li>
 							<li class="breadcrumb-item"><a
 								href="${pageContext.request.contextPath}/myPage.do">myPage</a></li>
@@ -100,28 +100,31 @@
 										class="btn-label"><i class="zmdi zmdi-account"></i></span>
 									</a>
 								</div>
-								<div class="inbox left collapse" id="mypage-nav" style="">
+								<div class="inbox left collapse" id="mypage-nav">
 									<div class="mail-side">
-										<a href="${pageContext.request.contextPath}/myPage.do"><h5>마이페이지</h5></a>
+
 										<ul class="nav">
 											<li><a
-												href="${pageContext.request.contextPath}/myPageEdit.do"><i
-													class="zmdi zmdi-edit"></i>Edit</a></li>
+												href="${pageContext.request.contextPath}/adminPage.do">
+													<h5>
+														<i class="zmdi zmdi-menu"></i>메뉴
+													</h5>
+											</a></li>
 											<li><a
-												href="${pageContext.request.contextPath}/myWriteList.do"><i
-													class="zmdi zmdi-file"></i>Writted</a></li>
+												href="${pageContext.request.contextPath}/adminPage.do"><i
+													class="zmdi zmdi-chart"></i>통계 페이지</a></li>
+											<li><a
+												href="${pageContext.request.contextPath}/adminEdit.do"><i
+													class="zmdi zmdi-assignment-account"></i>유저 관리</a></li>
+											<li><a
+												href="${pageContext.request.contextPath}/adminList.do"><i
+													class="zmdi zmdi-alert-circle"></i>신고 관리</a></li>
+											<li><a
+												href="${pageContext.request.contextPath}/adminFAQ.do"><i
+													class="zmdi zmdi-comments"></i>문의 답변</a></li>
 											<li><a
 												href="${pageContext.request.contextPath}/myFAQ.do"><i
-													class="zmdi zmdi-comments"></i>FAQ</a></li>
-											<li><a
-												href="${pageContext.request.contextPath}/myFavorite.do"><i
-													class="zmdi zmdi-favorite"></i>Favorite</a></li>
-											<li><a
-												href="${pageContext.request.contextPath}/mySaved.do"><i
-													class="zmdi zmdi-folder-star"></i>Saved</a></li>
-											<li><a
-												href="${pageContext.request.contextPath}/myCoupon.do"><i
-													class="zmdi zmdi-ticket-star"></i>COUPON</a></li>
+													class="zmdi zmdi-comments"></i>FAQ 답변</a></li>
 
 										</ul>
 									</div>
@@ -130,7 +133,7 @@
 								<div class=" inbox right">
 									<div class="header">
 										<h2>
-											<strong>내가 쓴 글</strong>
+											<strong>신고 관리</strong>
 										</h2>
 									</div>
 
@@ -148,24 +151,16 @@
 															<tr role="row">
 																<th class="sorting" tabindex="0"
 																	aria-controls="DataTables_Table_0" rowspan="1"
-																	colspan="1"
-																	aria-label="No"
-																	style="width: 61px;">No</th>
+																	colspan="1" aria-label="No" style="width: 61px;">No</th>
 																<th class="sorting" tabindex="0"
 																	aria-controls="DataTables_Table_0" rowspan="1"
-																	colspan="1"
-																	aria-label="Date"
-																	style="width: 83px;">Date</th>
+																	colspan="1" aria-label="Date" style="width: 83px;">Date</th>
 																<th class="sorting" tabindex="0"
 																	aria-controls="DataTables_Table_0" rowspan="1"
-																	colspan="1"
-																	aria-label="Title"
-																	style="width: 60px;">Title</th>
+																	colspan="1" aria-label="Title" style="width: 60px;">Title</th>
 																<th class="sorting" tabindex="0"
 																	aria-controls="DataTables_Table_0" rowspan="1"
-																	colspan="1"
-																	aria-label="reply"
-																	style="width: 28px;">reply</th>
+																	colspan="1" aria-label="reply" style="width: 28px;">reply</th>
 
 															</tr>
 														</thead>
@@ -179,31 +174,31 @@
 																<td>답변대기</td>
 
 															</tr>
-															<tr>
+															<tr class="clickBtn ">
 																<td>2</td>
 																<td>2020/08/21</td>
 																<td>가나다</td>
 																<td>답변완료</td>
 															</tr>
-															<tr>
+															<tr class="clickBtn ">
 																<td>3</td>
 																<td>2020/08/23</td>
 																<td>가나다</td>
 																<td>답변완료</td>
 															</tr>
-															<tr>
+															<tr class="clickBtn ">
 																<td>4</td>
 																<td>2020/08/24</td>
 																<td>가나다</td>
 																<td>답변완료</td>
 															</tr>
-															<tr>
+															<tr class="clickBtn ">
 																<td>5</td>
 																<td>2020/08/25</td>
 																<td>가나다</td>
 																<td>답변완료</td>
 															</tr>
-															<tr>
+															<tr class="clickBtn ">
 																<td>6</td>
 																<td>2020/08/21</td>
 																<td>가나다</td>
