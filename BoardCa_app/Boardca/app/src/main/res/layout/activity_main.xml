@@ -16,11 +16,13 @@
         android:fitsSystemWindows="true"
         android:theme="@style/Theme.AppCompat.Light.DarkActionBar"
         app:headerLayout="@layout/nav_header_main"
-        app:menu="@menu/activity_main_drawer" />
+        app:menu="@menu/activity_main_drawer"
+        android:background="@color/colorWhite"/>
 
     <include
         layout="@layout/app_bar_main"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        />
 
 </androidx.drawerlayout.widget.DrawerLayout>

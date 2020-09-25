@@ -57,7 +57,6 @@ public class LoginActivity extends AppCompatActivity {
     private Context mContext;
     private SessionCallback sessionCallback;
 
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -232,11 +231,10 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-
-
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 loadingProgressBar.setVisibility(View.VISIBLE);
                 loginViewModel.login(usernameEditText.getText().toString(),
                         passwordEditText.getText().toString());
@@ -272,7 +270,6 @@ public class LoginActivity extends AppCompatActivity {
 
     //kakao
     private class SessionCallback implements ISessionCallback {
-
 
         @Override
         public void onSessionOpened() {

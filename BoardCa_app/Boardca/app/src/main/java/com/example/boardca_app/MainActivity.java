@@ -15,6 +15,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -30,6 +31,8 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import com.example.boardca_app.data.Result;
+import com.example.boardca_app.data.model.LoggedInUser;
 import com.example.boardca_app.ui.Map.GpsTracker;
 import com.example.boardca_app.ui.Map.MapFragment;
 import com.example.boardca_app.ui.Map.MapsActivity;
@@ -63,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
     private BottomNavigationView bottomNavigationView;
 
     private View view;
+    private String strNickname, strProfile;
 
     //프래그먼트 생성
     private Fragment home_fragment;
@@ -158,8 +162,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
-
 //        //메시지 아이콘 - 스낵바 문장
 //        findViewById(R.id.fab)
 //                .setOnClickListener(new View.OnClickListener() {
@@ -245,7 +247,19 @@ public class MainActivity extends AppCompatActivity {
     private void createNavi() {
         final DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
-        // Passing each menu ID as a set of Ids because each
+
+        TextView tvNickname = findViewById(R.id.tv_nickname);
+        TextView tvProfile = findViewById(R.id.tv_id);
+//
+//        Intent intent = getIntent();
+//        strNickname = intent.getStringExtra("nick_name");
+//        strProfile = intent.getStringExtra("profile");
+
+//        tvNickname.setText(strNickname);
+//        tvProfile.setText(username);
+
+
+                // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
                  R.id.nav_home, R.id.nav_mypage, R.id.nav_inquiries, R.id.nav_hearts, R.id.nav_coupons)

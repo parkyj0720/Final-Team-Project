@@ -18,10 +18,6 @@ public class TermsActivity extends AppCompatActivity {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_terms);
 
-            //액션바 숨기기
-            ActionBar actionBar = getSupportActionBar();
-            actionBar.hide();
-
             getWindow().setWindowAnimations(0); //뷰이벤트없애기
 
             Button button = (Button)findViewById(R.id.consent_btn);
@@ -32,6 +28,7 @@ public class TermsActivity extends AppCompatActivity {
                     //intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK); //새로운 테스크에 작동시키기.
                     startActivity(intent);
                     overridePendingTransition(0,0);
+                    finish();
                 }
             });
 
