@@ -1,5 +1,7 @@
 package Game;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,8 +22,9 @@ public class GameController {
 	@RequestMapping("/gameMain.do")
 	public ModelAndView gameMain() {
 		System.out.println("gameMain.do");
-		mv.addObject("gameList",dao.getList());
-		
+		List<GameDto> list = dao.getList();
+		mv.addObject("gameList",list);
+		System.out.println(list);
 		mv.setViewName("/game/gameMain.jsp");
 		return mv;
 	}
@@ -29,7 +32,6 @@ public class GameController {
 	public ModelAndView gameDetail(HttpServletRequest req) {
 		int GameNo = Integer.parseInt(req.getParameter("no"));
 		GameDto dto = dao.detail(GameNo);
-		
 		mv.addObject("dto",dto);
 		mv.setViewName("/game/gameDetail.jsp");
 		return mv;

@@ -16,6 +16,7 @@
     <mapper resource="Sql/signSQL.xml"/>
     <mapper resource="Sql/cSQL.xml"/>
     <mapper resource="Sql/gameSQL.xml"/>
+    <mapper resource="Sql/mypageSQL.xml"/>
     
   </mappers>
 

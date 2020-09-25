@@ -44,7 +44,7 @@
 			player = new YT.Player('player', {
 				height : '600',
 				width : '100%',
-				videoId : '<%=dto.getVideoId()%>',
+				videoId : '<%=dto.getGAME_VIDEO()%>',
 				events : {
 					'onReady' : onPlayerReady,
 					'onStateChange' : onPlayerStateChange
@@ -98,7 +98,7 @@
 							<div class="row">
 								<div class="col-xl-12 col-lg-12 col-md-12">
 									<div class="preview preview-pic tab-content">
-										<h3 class="mb-0"><%=dto.getTitle() %></h3>
+										<h3 class="mb-0"><%=dto.getGAME_TIT() %></h3>
 										<div class="tab-pane active" id="player"></div>
 									</div>
 								</div>

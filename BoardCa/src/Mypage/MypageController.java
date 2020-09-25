@@ -1,17 +1,31 @@
 package Mypage;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import Game.GameDao;
+import Member.MemberDto;
+
 @Controller
 public class MypageController {
+	
 	@Autowired
 	private ModelAndView mv;
 	
+	@Autowired
+	private MypageDao dao;
+	
+	
 	@RequestMapping("/myPage.do")
-	public ModelAndView myPage() {
+	public ModelAndView myPage(HttpSession session) {
+		MemberDto dto = new MemberDto();
+		dto.setMem_id(session.getAttribute("userId")+"");
+		
+		mv.addObject("memInfo", dao.memInfo(dto));
 		mv.setViewName("/mypage/myPage.jsp");
 		return mv;
 	}
@@ -38,11 +52,6 @@ public class MypageController {
 		return mv;
 	}
 	
-	@RequestMapping("/myCoupon.do")
-	public ModelAndView myCoupon() {
-		mv.setViewName("/mypage/coupon.jsp");
-		return mv;
-	}
 	@RequestMapping("/mySaved.do")
 	public ModelAndView mySaved() {
 		mv.setViewName("/mypage/mySaved.jsp");

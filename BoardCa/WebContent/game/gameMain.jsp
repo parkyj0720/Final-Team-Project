@@ -90,13 +90,13 @@
 											<div class="file">
 											
 												<a
-													href="${pageContext.request.contextPath}/gameDetail.do?no=<%=dto.getGameNo()%>">
+													href="${pageContext.request.contextPath}/gameDetail.do?no=<%=dto.getGAME_IDX() %>">
 
 													<div class="icon">
-														<img src="<%=dto.getDETAILIMG()%>">
+														<img src="<%=dto.getGAME_IMG() %>">
 													</div>
 													<div class="file-name">
-														<h4 class="m-b-5 text-muted"><%=dto.getTitle() %></h4>
+														<h4 class="m-b-5 text-muted"><%=dto.getGAME_TIT() %></h4>
 													</div>
 												</a>
 											</div>

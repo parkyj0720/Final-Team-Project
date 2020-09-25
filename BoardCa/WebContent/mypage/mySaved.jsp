@@ -23,6 +23,10 @@
 <link
 	href="${pageContext.request.contextPath}/stylesheet/assets/plugins/bootstrap-select/css/bootstrap-select.css"
 	rel="stylesheet">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/stylesheet/assets/plugins/footable-bootstrap/css/footable.bootstrap.min.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/stylesheet/assets/plugins/footable-bootstrap/css/footable.standalone.min.css">
 </head>
 <body class="ls-closed ls-toggle-menu ">
 	<!-- header -->
@@ -77,22 +81,84 @@
 											<li><a
 												href="${pageContext.request.contextPath}/mySaved.do"><i
 													class="zmdi zmdi-folder-star"></i>Saved</a></li>
-											<li><a
-												href="${pageContext.request.contextPath}/myCoupon.do"><i
-													class="zmdi zmdi-ticket-star"></i>COUPON</a></li>
+
 
 										</ul>
 									</div>
 								</div>
 
-								<div class="col-lg-11 col-md-12 col-sm-11 inbox right">
-									<div class="card">
-										<div class="body">
-										
-										내용
-										
-										</div>
+								<div
+									class="container-fluid col-lg-11 col-md-12 col-sm-11 inbox right">
+									<div class="row clearfix">
+										<div class="col-lg-12 col-md-12 col-sm-12">
+											<div class="card">
+												<div class="body">
+													<div class="table-responsive">
+														<table
+															class="table table-striped m-b-0 footable footable-1 footable-paging footable-paging-center breakpoint-md"
+															style="">
+															<thead>
+																<tr class="footable-header">
+																	<th class="footable-sortable footable-first-visible"
+																		style="display: table-cell;">First Name<span
+																		class="fooicon fooicon-sort"></span></th>
+																	<th data-breakpoints="xs" class="footable-sortable"
+																		style="display: table-cell;">Last Name<span
+																		class="fooicon fooicon-sort"></span></th>
+																	<th
+																		class="footable-sortable footable-last-visible footable-desc"
+																		style="display: table-cell;">Status<span
+																		class="fooicon fooicon-sort-desc"></span></th>
+																</tr>
+															</thead>
+															<tbody>
+																<tr>
+																	<td class="footable-first-visible"
+																		style="display: table-cell;">가나다</td>
+																	<td style="display: table-cell;">Brielle</td>
+																	<td style="display: table-cell;">하하하</td>
 
+																</tr>
+																<tr>
+																	<td class="footable-first-visible"
+																		style="display: table-cell;">가하나</td>
+																	<td style="display: table-cell;">Brielle</td>
+																	<td style="display: table-cell;">하나가</td>
+
+																</tr>
+																<tr>
+																	<td class="footable-first-visible"
+																		style="display: table-cell;">하하하</td>
+																	<td style="display: table-cell;">Accountant</td>
+																	<td style="display: table-cell;">가나다</td>
+
+																</tr>
+															</tbody>
+															<tfoot>
+																<tr class="footable-paging">
+																	<td colspan="2"><ul class="pagination">
+
+																			<li class="footable-page-nav disabled"
+																				data-page="prev"><a class="footable-page-link"
+																				href="#">‹</a></li>
+																			<li class="footable-page visible active"
+																				data-page="1"><a class="footable-page-link"
+																				href="#">1</a></li>
+																			<li class="footable-page visible" data-page="2"><a
+																				class="footable-page-link" href="#">2</a></li>
+																			<li class="footable-page-nav" data-page="next"><a
+																				class="footable-page-link" href="#">›</a></li>
+
+																		</ul>
+																		<div class="divider"></div> <span
+																		class="label label-default">1 of 2</span></td>
+																</tr>
+															</tfoot>
+														</table>
+													</div>
+												</div>
+											</div>
+										</div>
 									</div>
 								</div>
 							</div>
@@ -112,8 +178,11 @@
 	<script
 		src="${pageContext.request.contextPath}/stylesheet/assets/bundles/vendorscripts.bundle.js"></script>
 	<!-- Lib Scripts Plugin Js -->
-
 	<script
 		src="${pageContext.request.contextPath}/stylesheet/assets/bundles/mainscripts.bundle.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/stylesheet/assets/bundles/footable.bundle.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/stylesheet/assets/js/pages/tables/footable.js"></script>
 </body>
 </html>

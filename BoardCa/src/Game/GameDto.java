@@ -5,48 +5,45 @@ package Game;
  *
  */
 public class GameDto {
-	int GameNo;
-	String DETAILIMG;
-	String Title;
-	String VideoId;
+	int GAME_IDX;
+	String GAME_IMG;
+	String GAME_TIT;
+	String GAME_VIDEO;
 	String propose;
 	public GameDto() {
 		this(0,"","","","");
 	}
-	
-	
-	public GameDto(int gameNo, String dETAILIMG, String title, String videoId, String propose) {
-		GameNo = gameNo;
-		DETAILIMG = dETAILIMG;
-		Title = title;
-		VideoId = videoId;
+	public GameDto(int gAME_IDX, String gAME_IMG, String gAME_TIT, String gAME_VIDEO, String propose) {
+		super();
+		GAME_IDX = gAME_IDX;
+		GAME_IMG = gAME_IMG;
+		GAME_TIT = gAME_TIT;
+		GAME_VIDEO = gAME_VIDEO;
 		this.propose = propose;
 	}
-
-
-	public int getGameNo() {
-		return GameNo;
+	public int getGAME_IDX() {
+		return GAME_IDX;
 	}
-	public void setGameNo(int gameNo) {
-		GameNo = gameNo;
+	public void setGAME_IDX(int gAME_IDX) {
+		GAME_IDX = gAME_IDX;
 	}
-	public String getDETAILIMG() {
-		return DETAILIMG;
+	public String getGAME_IMG() {
+		return GAME_IMG;
 	}
-	public void setDETAILIMG(String dETAILIMG) {
-		DETAILIMG = dETAILIMG;
+	public void setGAME_IMG(String gAME_IMG) {
+		GAME_IMG = gAME_IMG;
 	}
-	public String getTitle() {
-		return Title;
+	public String getGAME_TIT() {
+		return GAME_TIT;
 	}
-	public void setTitle(String title) {
-		Title = title;
+	public void setGAME_TIT(String gAME_TIT) {
+		GAME_TIT = gAME_TIT;
 	}
-	public String getVideoId() {
-		return VideoId;
+	public String getGAME_VIDEO() {
+		return GAME_VIDEO;
 	}
-	public void setVideoId(String videoId) {
-		VideoId = videoId;
+	public void setGAME_VIDEO(String gAME_VIDEO) {
+		GAME_VIDEO = gAME_VIDEO;
 	}
 	public String getPropose() {
 		return propose;
@@ -54,14 +51,11 @@ public class GameDto {
 	public void setPropose(String propose) {
 		this.propose = propose;
 	}
-
-
+	
 	@Override
 	public String toString() {
-		return "GameDto [GameNo=" + GameNo + ", DETAILIMG=" + DETAILIMG + ", Title=" + Title + ", VideoId=" + VideoId
-				+ ", propose=" + propose + "]";
+		return "GameDto [GAME_IDX=" + GAME_IDX + ", GAME_IMG=" + GAME_IMG + ", GAME_TIT=" + GAME_TIT + ", GAME_VIDEO="
+				+ GAME_VIDEO + ", propose=" + propose + "]";
 	}
-	
-	
-	
+
 }

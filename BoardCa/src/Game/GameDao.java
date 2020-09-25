@@ -17,9 +17,7 @@ public class GameDao {
 	public List<GameDto> getList(){
 	    System.out.println("----> gameXml.gameListAll()");
 	    List<GameDto> list = mysqlSession.selectList("gameXml.gameListAll");
-	    for (GameDto dto : list) {
-	    	System.out.println(dto);
-	    }
+
 	    return list;
 	  }
 	public GameDto detail(int no){
