@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@page import="java.util.List"%>
+<%@page import="Game.GameDto"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,6 +29,7 @@
 <style>
 </style>
 </head>
+
 
 <script>
 	$('#like').text();
@@ -65,54 +68,52 @@
 			</div>
 		</div>
 
+
+
 		<div class="container-fluid">
 			<div class="row clearfix">
-				<div class="row">
-					<div class="col-sm-6 col-md-3">
-						<div class="thumbnail">
-							<Img src="https://i.ytimg.com/vi/XgI2-r1oEuU/mqdefault.jpg">
-							<div class="caption">
-								<h6>[술게임] 20학번 새내기도 이정도는 알아야지 &quot;베이직 술게임&quot;</h6>
-							</div>
-						</div>
-					</div>
-					<div class="col-sm-6 col-md-3">
-						<div class="thumbnail">
-							<Img src="https://i.ytimg.com/vi/XgI2-r1oEuU/mqdefault.jpg">
-							<div class="caption">
-								<h6>[술게임] 20학번 새내기도 이정도는 알아야지 &quot;베이직 술게임&quot;</h6>
-							</div>
-						</div>
-					</div>
-					<div class="col-sm-6 col-md-3">
-						<div class="thumbnail">
-							<Img src="https://i.ytimg.com/vi/XgI2-r1oEuU/mqdefault.jpg">
-							<div class="caption">
-								<h6>[술게임] 20학번 새내기도 이정도는 알아야지 &quot;베이직 술게임&quot;</h6>
-							</div>
-						</div>
-					</div>
-					<div class="col-sm-6 col-md-3">
-						<div class="thumbnail">
-							<Img src="https://i.ytimg.com/vi/XgI2-r1oEuU/mqdefault.jpg">
-							<div class="caption">
-								<h6>[술게임] 20학번 새내기도 이정도는 알아야지 &quot;베이직 술게임&quot;</h6>
-							</div>
-						</div>
-					</div>
-					<div class="col-sm-6 col-md-3">
-						<div class="thumbnail">
-							<Img src="https://i.ytimg.com/vi/XgI2-r1oEuU/mqdefault.jpg">
-							<div class="caption">
-								<h6>[술게임] 20학번 새내기도 이정도는 알아야지 &quot;베이직 술게임&quot;</h6>
+				<div class="col-lg-12">
+					<div class="card">
+						<div class="tab-content">
+							<div class="tab-pane active" id="2019">
+								<div class="row clearfix">
+									<%
+										List<GameDto> list = (List<GameDto>) request.getAttribute("gameList");
+									%>
+
+									<%
+										for (int i = 0; i < list.size(); i++) {
+										GameDto dto = list.get(i);
+									%>
+									<div class="col-lg-3 col-md-4 col-sm-12">
+										<div class="card">
+											<div class="file">
+											
+												<a
+													href="${pageContext.request.contextPath}/gameDetail.do?no=<%=dto.getGameNo()%>">
+
+													<div class="icon">
+														<img src="<%=dto.getDETAILIMG()%>">
+													</div>
+													<div class="file-name">
+														<h4 class="m-b-5 text-muted"><%=dto.getTitle() %></h4>
+													</div>
+												</a>
+											</div>
+										</div>
+									</div>
+									<%
+										}
+									%>
+								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-				<!-- /.row -->
 			</div>
 		</div>
 	</div>
+
 
 
 

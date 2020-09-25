@@ -8,13 +8,14 @@
   <typeAliases>
     <typeAlias alias="MemberDto" type="Member.MemberDto"></typeAlias>
     <typeAlias alias="CDto" type="Food.CDto"></typeAlias>
+    <typeAlias alias="GameDto" type="Game.GameDto"></typeAlias>
+    
   </typeAliases>
   
   <mappers>
     <mapper resource="Sql/signSQL.xml"/>
     <mapper resource="Sql/cSQL.xml"/>
-     
-    
+    <mapper resource="Sql/gameSQL.xml"/>
     
   </mappers>
 
