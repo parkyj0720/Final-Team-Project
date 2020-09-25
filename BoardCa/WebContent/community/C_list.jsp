@@ -1,7 +1,9 @@
+<%@page import="java.util.ArrayList"%>
+<%@page import="CommunityModel.Heart"%>
+<%@page import="java.util.List"%>
 <%@page import="CommunityModel.BoardList"%>
 <%@page import="org.springframework.web.servlet.ModelAndView"%>
 <%@page import="CommunityModel.CommunityDto"%>
-<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -27,10 +29,10 @@
 <body>
 <%
 	ArrayList<Object> heartList = (ArrayList<Object>)request.getAttribute("heart");
-	ArrayList<CommunityDto> list = (ArrayList<CommunityDto>) request.getAttribute("list");
+	List<CommunityDto> list = (List<CommunityDto>) request.getAttribute("list");
 	BoardList viewname = (BoardList)request.getAttribute("viewname");
-	String community_title = viewname.getBoard_name();
-	int boardnum = viewname.getNum();
+	String community_title = viewname.getBOARDNAME();
+	int boardnum = viewname.getBOARDNUM();
 %>
 <jsp:include page="/WEB-INF/header.jsp"></jsp:include>
 	<!-- <section class="content"

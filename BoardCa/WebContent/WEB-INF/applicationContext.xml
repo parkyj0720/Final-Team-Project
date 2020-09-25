@@ -71,6 +71,7 @@
 	<context:component-scan base-package="Board3" />
 	<context:component-scan base-package="Board4" />
 	<context:component-scan base-package="Community" />
+	<context:component-scan base-package="CommunityModel" />
 	<context:component-scan base-package="Food" />
 	<context:component-scan base-package="Game" />
 	<context:component-scan base-package="Main" />

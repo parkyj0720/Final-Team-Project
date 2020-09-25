@@ -67,7 +67,7 @@
 	ArrayList<Heart> heart = (ArrayList<Heart>) request.getAttribute("heart");
 	ArrayList<Comment> comment = (ArrayList<Comment>) request.getAttribute("comment");
 	BoardList viewname = (BoardList) request.getAttribute("board");
-	String community_title = viewname.getBoard_name();
+	String community_title = viewname.getBOARDNAME();
 	int heart_ssize = heart.size();
 	String heart_size;
 	if (heart_ssize > 1000) {
@@ -111,7 +111,7 @@
 					<li class="breadcrumb-item"><a
 						href="${pageContext.request.contextPath}/Community_main.do">Community</a></li>
 					<li id="listname" class="breadcrumb-item active"><a
-						href="${pageContext.request.contextPath}/Community_list.do?list=<%=viewname.getNum()%>"><%=community_title%></a></li>
+						href="${pageContext.request.contextPath}/Community_list.do?list=<%=viewname.getBOARDNUM()%>"><%=community_title%></a></li>
 				</ul>
 				<button class="btn btn-primary btn-icon mobile_menu" type="button">
 					<i class="zmdi zmdi-sort-amount-desc"></i>

@@ -2,19 +2,25 @@ package CommunityModel;
 
 public class InputDto {
 	String title;
-	int community_num;
-	String username;
-	String content;
+	int boardnum;
+	String writer_id;
+	String asd;
 	
 	public InputDto() {
 		this("",0,"","");
 	}
 	
-	public InputDto(String title, int community_num, String username, String content) {
+	public InputDto(String title, int boardnum, String writer_id, String asd) {
 		this.title = title;
-		this.community_num = community_num;
-		this.username = username;
-		this.content = content;
+		this.boardnum = boardnum;
+		this.writer_id = writer_id;
+		this.asd = asd;
+	}
+
+	@Override
+	public String toString() {
+		return "InputDto [title=" + title + ", boardnum=" + boardnum + ", writer_id=" + writer_id + ", asd=" + asd
+				+ "]";
 	}
 
 	public String getTitle() {
@@ -25,33 +31,29 @@ public class InputDto {
 		this.title = title;
 	}
 
-	public int getCommunity_num() {
-		return community_num;
+	public int getBoardnum() {
+		return boardnum;
 	}
 
-	public void setCommunity_num(int community_num) {
-		this.community_num = community_num;
+	public void setBoardnum(int boardnum) {
+		this.boardnum = boardnum;
 	}
 
-	public String getUsername() {
-		return username;
+	public String getWriter_id() {
+		return writer_id;
 	}
 
-	public void setUsername(String username) {
-		this.username = username;
+	public void setWriter_id(String writer_id) {
+		this.writer_id = writer_id;
 	}
 
-	public String getContent() {
-		return content;
+	public String getAsd() {
+		return asd;
 	}
 
-	public void setContent(String content) {
-		this.content = content;
+	public void setAsd(String asd) {
+		this.asd = asd;
 	}
 
-	@Override
-	public String toString() {
-		return "InputDto [title=" + title + ", community_num=" + community_num + ", username=" + username + ", content="
-				+ content + "]";
-	}
+
 }

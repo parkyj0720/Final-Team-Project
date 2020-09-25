@@ -34,8 +34,6 @@ public class CommunityDao_test {
 	
 	String list_heart = "select * from heart where content_num=?";
 	
-	String detail = "select * from community where num=?";
-	
 	String views = "update community set views = views+1 where num=?";
 	
 	String insert = "insert into community values(community_seq.nextval,?,?,sysdate,?,0,?)";

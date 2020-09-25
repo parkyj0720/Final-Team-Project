@@ -56,7 +56,7 @@
 								<%
 									for (int i = 0; i < boardList.size(); i++) {
 								%>
-								<option><%=boardList.get(i).getBoard_name()%></option>
+								<option><%=boardList.get(i).getBOARDNAME()%></option>
 								<%
 									} // end of for
 								%>
@@ -88,8 +88,9 @@
     		  var content_sub;
     		  var boardnum;
   			<%for (int i = 0; i < boardList.size(); i++) {%>
-  				if((select)=="<%=boardList.get(i).getBoard_name()%>"){
-  					boardnum=<%=boardList.get(i).getNum()%>
+  				if((select)=="<%=boardList.get(i).getBOARDNAME()%>"){
+  					boardnum=<%=boardList.get(i).getBOARDNUM()%>
+  					console.log(boardnum)
   				}
   				<%}%>
     		  
@@ -102,9 +103,9 @@
     			  else{
  					var dto = {
 							title: title,
-							community_num: boardnum,
-							username: username,
-							content: content
+							boardnum: boardnum,
+							writer_id: username,
+							asd: content
 							};
 					
 					$.ajax({
@@ -114,7 +115,7 @@
 						data: dto
 					})
 					setTimeout(() => {
-    		  $(location).attr('href', '${pageContext.request.contextPath}/Community_list.do?list='+boardnum);
+    		 	$(location).attr('href', '${pageContext.request.contextPath}/Community_list.do?list='+boardnum);
 						
 					}, 300);
     		  }

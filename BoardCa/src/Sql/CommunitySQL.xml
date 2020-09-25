@@ -5,57 +5,135 @@
 
 <mapper namespace="CoXml">
 
+	<resultMap type="CommunityModel.CommunityDto" id="Comm">
+		<result property="asd" column="asd"
+			jdbcType="LONGVARCHAR" javaType="java.lang.String"
+			typeHandler="LongHandler.CLOBHandler" />
+	</resultMap>
+	<resultMap type="CommunityModel.Comment" id="nity">
+		<result property="asd" column="asd"
+			jdbcType="LONGVARCHAR" javaType="java.lang.String"
+			typeHandler="LongHandler.CLOBHandler" />
+	</resultMap>
 
-<!-- 입력 -->
-<select id="Get_boardlist" resultType="Community.BoardList">
-	select num, Board_name
-	from board
-</select>
 
-<!-- 메인화면 리스트 -->
-<select id="main" parameterType="int" resultType="Community.BoardList">
-	select num,
-	title,
-	writer_id,
-	written_date,
-	content,
-	views,
-	boardnum
+	<!-- 입력 -->
+	<select id="Get_boardlist" resultType="CommunityModel.BoardList">
+		select BOARDNUM, BOARDNAME
+		from BOARD
+	</select>
+
+	<!-- 메인화면 리스트 -->
+	<select id="Main" parameterType="int"
+		resultType="CommunityModel.CommunityDto">
+		select num,
+		title,
+		writer_id,
+		written_date,
+
+		views,
+		boardnum
+		from community where
+		(boardnum=#{num}
+		and rownum <![CDATA[ < ]]>=
+		7)
+		ORDER BY num DESC
+	</select>
+
+	<!-- 리스트 -->
+	<select id="List" parameterType="int"
+		resultType="CommunityModel.CommunityDto">
+		select num,
+		title,
+		writer_id,
+		written_date,
+
+		views,
+		boardnum
+		from community where
+		(boardnum=#{num}
+		)
+		ORDER BY num DESC
+	</select>
+
+	<!-- 보드하나만 선택 -->
+	<select id="one_board" parameterType="int"
+		resultType="CommunityModel.BoardList">
+		select BOARDNUM, BOARDNAME
+		from BOARD where BOARDNUM = #{num}
+	</select>
 	
-	from community where
-	boardnum=#{num} 
-	and rownum <= 7
-	ORDER BY num DESC
-</select>
+	<!--좋아요 -->
+	<select id="list_heart" parameterType="int"
+		resultType="CommunityModel.Heart">
+		select 
+		username, 
+		content_num 
+		from heart 
+		where content_num=#{num}
+	</select>
 
-<insert id="insert" parameterType="Community.CommunityDto">
+	<!--디테일 게시글 -->
+	<select id="detail" parameterType="int"
+		resultType="CommunityModel.CommunityDto" resultMap="Comm">
+		select
+		num,
+		title,
+		writer_id,
+		written_date,
+		views,
+		boardnum,
+		asd
+		from community 
+		where (num = #{num})
+	</select>
+	
+	<!-- 디테일 좋아요 -->
+	<select id="detail_heart" parameterType="int"
+		resultType="CommunityModel.Heart">
+		select 
+		username,
+		content_num
+		from heart 
+		where content_num=#{num}
+	</select>
+	
+	<!-- 디테일 댓글 -->
+	<select id="detail_comments" parameterType="int"
+		resultType="CommunityModel.Comment" resultMap="nity">
+		select
+		writer_id,
+		written_date,
+		content_num,
+		asd
+		from comments
+		where content_num=#{num}
+	</select>
+	
+	<!-- 디테일 조회수 증가 -->
+	<select id="view" parameterType="int">
+		update community set views = views+1 where num=#{num}
+	</select>
 
-	insert into community (num,
-	title,
-	writer_id,
-	written_date,
-	content,
-	views,
-	boardnum)
 
-	values(#{num},
-	#{title},
-	#{writer_id},
-	#{written_date},
-	#{content},
-	#{views},
-	#{boardnum})
-</insert>
+	<!-- 게시글 작성 -->
+	<insert id="insert" parameterType="CommunityModel.CommunityDto">
+		insert into community
+		(num,
+		title,
+		writer_id,
+		written_date,
+		views,
+		boardnum,
+		asd)
 
-<!-- <select id="cSearchList" resultType="Food.CDto" parameterType="String">
-	select r_board_no, r_crawling_addr, r_main_thumbs, r_filename, r_title 
-	from recipe 
-	where r_title like '%'||#{search}||'%'
-</select>
+		values(community_seq.nextval,
+		#{title},
+		#{writer_id},
+		sysdate,
+		0,
+		#{boardnum},
+		#{asd})
+	</insert>
 
-<select id="cDetail" resultType="Food.CDto">
-	select *
-	from recipe
-	where r_board_no
-</select> -->
 </mapper>
