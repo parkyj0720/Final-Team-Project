@@ -96,7 +96,7 @@
 
 				<div class="col-lg-11 col-md-12 col-sm-11 inbox right row">
 
-					<div class="col-lg-6 col-md-6">
+					<div class="col-lg-6 col-md-12">
 						<div class="card">
 							<div class="header">
 								<h2>
@@ -109,7 +109,7 @@
 						</div>
 					</div>
 
-					<div class="col-lg-6 col-md-6">
+					<div class="col-lg-6 col-md-12">
 						<div class="card">
 							<div class="header">
 								<h2>
@@ -118,6 +118,46 @@
 							</div>
 							<div class="body">
 								<div id="chart2"></div>
+							</div>
+						</div>
+					</div>
+					
+					<div class="col-lg-6 col-md-12">
+						<div class="card">
+							<div class="header">
+								<h2>
+									<strong>유저 연령층</strong>
+								</h2>
+							</div>
+							<div class="body">
+								<div id="chart3"></div>
+							</div>
+						</div>
+					</div>
+					
+						<div class="col-lg-6 col-md-12">
+						<div class="card">
+							<div class="header">
+								<h2>
+									<strong>주요 접속 시간</strong>
+								</h2>
+							</div>
+							<div class="body">
+								<div id="chart4"></div>
+							</div>
+						</div>
+					</div>
+					
+					
+					<div class="col-lg-6 col-md-12">
+						<div class="card">
+							<div class="header">
+								<h2>
+									<strong>일간 가입자수</strong>
+								</h2>
+							</div>
+							<div class="body">
+								<div id="chart5"></div>
 							</div>
 						</div>
 					</div>
@@ -154,6 +194,7 @@
 
 
 <script>
+
 var chart = c3.generate({
 	bindto: '#chart',
     data: {
@@ -192,6 +233,82 @@ var chart = c3.generate({
         title: "지역 분포도"
     }
 });
+
+var chart = c3.generate({
+	bindto: '#chart3',
+    data: {
+        columns: [
+            ['20대', 3000],
+            ['30대', 1800],
+            ['40대', 1100],
+            ['50대이상', 1000],
+        ],
+        type : 'donut',
+        onclick: function (d, i) { console.log("onclick", d, i); },
+        onmouseover: function (d, i) { console.log("onmouseover", d, i); },
+        onmouseout: function (d, i) { console.log("onmouseout", d, i); }
+    },
+    donut: {
+        title: "유저 연령층"
+    }
+});
+
+var chart = c3.generate({
+	bindto: '#chart4',
+    data: {
+        columns: [
+            ['18시~20시', 60],
+            ['20시~22시', 80],
+            ['22시~24시', 60],
+            ['24시~06시', 22],
+            ['06시~18시', 100],
+        ],
+        type : 'donut',
+        onclick: function (d, i) { console.log("onclick", d, i); },
+        onmouseover: function (d, i) { console.log("onmouseover", d, i); },
+        onmouseout: function (d, i) { console.log("onmouseout", d, i); }
+    },
+    donut: {
+        title: "주요 접속 시간"
+    }
+});
+
+
+
+var chart = c3.generate({
+	bindto: '#chart5',
+	
+    data: {
+    	
+    	x: 'x',
+        xFormat: '%Y-%m-%d',
+        columns: [
+        	['x', '2020-09-20', '2020-09-21', '2020-09-22', '2020-09-23', '2020-09-24'],
+            ['일간 가입자수', 30, 200, 100, 200, 110],
+            ['누적 가입자수', 30, 230, 330, 530, 640]
+        ],
+        type: 'spline',
+		types: {
+		
+			'누적 가입자수': 'bar',
+                
+		},
+		
+    },
+    axis: {
+        x: {
+            type: 'timeseries',
+            // if true, treat x value as localtime (Default)
+            // if false, convert to UTC internally
+            localtime: false,
+            tick: {
+                format: '%Y-%m-%d'
+            }
+        }
+    }
+    
+});
+
 
 </script>
 
