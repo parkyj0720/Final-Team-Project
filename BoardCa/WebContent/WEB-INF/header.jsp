@@ -177,7 +177,7 @@ $(function() {
 										</a>
 											<ul class="dropdown-menu dropdown-menu-right">
 												<li><a
-													href="${pageContext.request.contextPath}/myPage.do">사이트 통계</a></li>
+													href="${pageContext.request.contextPath}/adminPage.do">사이트 통계</a></li>
 												<li><a
 													href="${pageContext.request.contextPath}/myPageEdit.do">정보수정</a></li>
 												<li><a
