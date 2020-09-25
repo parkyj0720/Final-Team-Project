@@ -25,11 +25,14 @@ public class AdminController {
 		mv.setViewName("/admin/adminList.jsp");
 		return mv;
 	}
-	/*
-	 * @RequestMapping("/myFAQ.do") public ModelAndView myFAQ() {
-	 * mv.setViewName("/mypage/myFAQ.jsp"); return mv; }
-	 * 
-	 * @RequestMapping("/myFavorite.do") public ModelAndView myFavoriteList() {
+
+	@RequestMapping("/adminFAQ.do")
+	public ModelAndView myFAQ() {
+		mv.setViewName("/admin/adminFAQ.jsp");
+		return mv;
+	}
+	  
+	 /* @RequestMapping("/myFavorite.do") public ModelAndView myFavoriteList() {
 	 * mv.setViewName("/mypage/myfavorite.jsp"); return mv; }
 	 */
 	

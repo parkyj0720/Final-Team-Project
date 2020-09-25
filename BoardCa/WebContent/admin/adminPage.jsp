@@ -66,7 +66,7 @@
 						class="btn-label"><i class="zmdi zmdi-account"></i></span>
 					</a>
 				</div>
-				<div class="inbox left collapse" id="mypage-nav" style="">
+				<div class="inbox left collapse" id="mypage-nav">
 					<div class="mail-side">
 						
 						<ul class="nav">
@@ -78,13 +78,13 @@
 								href="${pageContext.request.contextPath}/adminPage.do"><i
 									class="zmdi zmdi-chart"></i>통계 페이지</a></li>						
 							<li><a
-								href="${pageContext.request.contextPath}/myPageEdit.do"><i
+								href="${pageContext.request.contextPath}/adminEdit.do"><i
 									class="zmdi zmdi-assignment-account"></i>유저 관리</a></li>
 							<li><a
-								href="${pageContext.request.contextPath}/myWriteList.do"><i
+								href="${pageContext.request.contextPath}/adminList.do"><i
 									class="zmdi zmdi-alert-circle"></i>신고 관리</a></li>
-							<li><a href="${pageContext.request.contextPath}/myFAQ.do"><i
-									class="zmdi zmdi-comments"></i>FAQ 답변</a></li>
+							<li><a href="${pageContext.request.contextPath}/adminFAQ.do"><i
+									class="zmdi zmdi-comments"></i>문의 답변</a></li>
 							<li><a href="${pageContext.request.contextPath}/myFAQ.do"><i
 									class="zmdi zmdi-comments"></i>FAQ 답변</a></li>
 

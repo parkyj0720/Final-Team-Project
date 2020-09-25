@@ -177,12 +177,19 @@ $(function() {
 										</a>
 											<ul class="dropdown-menu dropdown-menu-right">
 												<li><a
-													href="${pageContext.request.contextPath}/adminPage.do">사이트 통계</a></li>
+													href="${pageContext.request.contextPath}/adminPage.do"><i
+														class="zmdi zmdi-chart"></i>통계 페이지</a></li>
 												<li><a
-													href="${pageContext.request.contextPath}/myPageEdit.do">정보수정</a></li>
+													href="${pageContext.request.contextPath}/adminEdit.do"><i
+														class="zmdi zmdi-assignment-account"></i>유저 관리</a></li>
 												<li><a
-													href="${pageContext.request.contextPath}/myFAQ.do">1:1문의</a></li>
-												<li><a id="logoutBtn">로그아웃</a></li>
+													href="${pageContext.request.contextPath}/adminList.do"><i
+														class="zmdi zmdi-alert-circle"></i>신고 관리</a></li>
+												<li><a
+													href="${pageContext.request.contextPath}/adminFAQ.do"><i
+														class="zmdi zmdi-comments"></i>문의 답변</a></li>
+												<li><a id="logoutBtn" href=#><i class="zmdi zmdi-flight-takeoff"></i>로그 아웃</a>
+												</li>
 											</ul>
 											</li>
 									</c:when>
