@@ -1,16 +1,20 @@
 package Member;
 
+import java.sql.Timestamp;
+
 public class MemberDto {
 	int mem_idx;
 	String mem_id, mem_nickname, mem_pw, mem_gender, mem_age_group;
 	String mem_email, mem_rocal, mem_state;
 	int mem_mng_gwonhan, mem_login_gwonhan, mem_board_gwonhan;
-
+	Timestamp MEM_SYSDATE;
+	
 	public MemberDto() {}
-
+	
 	public MemberDto(int mem_idx, String mem_id, String mem_nickname, String mem_pw, String mem_gender,
 			String mem_age_group, String mem_email, String mem_rocal, String mem_state, int mem_mng_gwonhan,
-			int mem_login_gwonhan, int mem_board_gwonhan) {
+			int mem_login_gwonhan, int mem_board_gwonhan, Timestamp mEM_SYSDATE) {
+	
 		this.mem_idx = mem_idx;
 		this.mem_id = mem_id;
 		this.mem_nickname = mem_nickname;
@@ -23,7 +27,10 @@ public class MemberDto {
 		this.mem_mng_gwonhan = mem_mng_gwonhan;
 		this.mem_login_gwonhan = mem_login_gwonhan;
 		this.mem_board_gwonhan = mem_board_gwonhan;
+		this.MEM_SYSDATE = mEM_SYSDATE;
+		
 	}
+
 
 	public int getMem_idx() {
 		return mem_idx;
@@ -120,6 +127,14 @@ public class MemberDto {
 	public void setMem_board_gwonhan(int mem_board_gwonhan) {
 		this.mem_board_gwonhan = mem_board_gwonhan;
 	}
+	
+	public Timestamp getMEM_SYSDATE() {
+		return MEM_SYSDATE;
+	}
+
+	public void setMEM_SYSDATE(Timestamp mEM_SYSDATE) {
+		MEM_SYSDATE = mEM_SYSDATE;
+	}
 
 	@Override
 	public String toString() {
@@ -127,7 +142,7 @@ public class MemberDto {
 				+ mem_pw + ", mem_gender=" + mem_gender + ", mem_age_group=" + mem_age_group + ", mem_email="
 				+ mem_email + ", mem_rocal=" + mem_rocal + ", mem_state=" + mem_state + ", mem_mng_gwonhan="
 				+ mem_mng_gwonhan + ", mem_login_gwonhan=" + mem_login_gwonhan + ", mem_board_gwonhan="
-				+ mem_board_gwonhan + "]";
+				+ mem_board_gwonhan + ", MEM_SYSDATE=" + MEM_SYSDATE + "]";
 	}
 
 }
