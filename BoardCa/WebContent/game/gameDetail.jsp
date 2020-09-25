@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ page import="Game.GameDto" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,6 +26,8 @@
 	href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
 
 </head>
+<% GameDto dto = (GameDto)request.getAttribute("dto");
+%>
 <body class="ls-closed ls-toggle-menu ">
 	<script>
 		// 2. This code loads the IFrame Player API code asynchronously.
@@ -39,9 +42,9 @@
 		var player;
 		function onYouTubeIframeAPIReady() {
 			player = new YT.Player('player', {
-				height : '500',
+				height : '600',
 				width : '100%',
-				videoId : 'tKaAMqnX4fM',
+				videoId : '<%=dto.getGAME_VIDEO()%>',
 				events : {
 					'onReady' : onPlayerReady,
 					'onStateChange' : onPlayerStateChange
@@ -93,21 +96,13 @@
 					<div class="card">
 						<div class="body">
 							<div class="row">
-								<div class="col-xl-3 col-lg-4 col-md-12">
+								<div class="col-xl-12 col-lg-12 col-md-12">
 									<div class="preview preview-pic tab-content">
-										<div class="tab-pane active" id="product_1">
-											<img src="https://i.ytimg.com/vi/eGansGfxZHM/hqdefault.jpg"
-												class="img-fluid" alt="">
-										</div>
+										<h3 class="mb-0"><%=dto.getGAME_TIT() %></h3>
+										<div class="tab-pane active" id="player"></div>
 									</div>
 								</div>
-								<div class="col-xl-9 col-lg-8 col-md-12">
-									<div class="product details">
-										<h3 class="mb-0">오렌지 게임</h3>
-										<hr>
-										<p class="product-description">오렌지 오렌지 오렌지</p>
-									</div>
-								</div>
+
 							</div>
 						</div>
 					</div>
@@ -117,16 +112,14 @@
 								<div class="body">
 									<div class="row">
 										<div class="col-lg-12">
-											<div id="player"></div>
+											<div class="body">randon</div>
 										</div>
-										
-										<div class="body">씨봉</div>
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
-					
+
 					<div class="container-fluid">
 						<div class="row clearfix">
 							<div class="card">

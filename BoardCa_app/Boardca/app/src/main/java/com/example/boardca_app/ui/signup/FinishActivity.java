@@ -22,10 +22,6 @@ public class FinishActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_finish);
 
-        //액션바 숨기기
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.hide();
-
         getWindow().setWindowAnimations(0); //뷰이벤트없애기
 
         ImageButton button = (ImageButton) findViewById(R.id.login_next_btn);
@@ -36,6 +32,7 @@ public class FinishActivity extends AppCompatActivity {
                 //intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK); //새로운 테스크에 작동시키기.
                 startActivity(intent);
                 overridePendingTransition(0,0);
+                finish();
             }
         });
 

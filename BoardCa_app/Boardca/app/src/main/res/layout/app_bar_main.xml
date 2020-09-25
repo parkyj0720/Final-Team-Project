@@ -25,18 +25,15 @@
         android:layout_height="1dp">
     </LinearLayout>
 
-
     <!-- 프레임 -->
+
     <FrameLayout
         android:id="@+id/main_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@+id/bottom_navigation"
-        android:layout_below="@+id/toolbar_division">
-
-        <include layout="@layout/content_main"/>
-
-    </FrameLayout>
+        android:layout_below="@+id/toolbar_division"/>
+    <include layout="@layout/content_main"/>
 
 
     <!-- 하단바 -->

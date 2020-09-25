@@ -30,8 +30,6 @@ import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
-
-
 import Member.MemberDao;
 import Member.MemberDto;
 
@@ -48,11 +46,12 @@ public class SignInController {
 		mv.setViewName("/sign/signIn.jsp");
 		return mv;
 	}
+
 // 카카오 로그인 클릭시
 	@RequestMapping("/kakaoSignPro.do")
 	public ModelAndView kakaoSignPro(MemberDto dto, SessionDto sedto, HttpSession session, HttpServletRequest req)
-			throws SAXException, IOException, ParserConfigurationException{
-		
+			throws SAXException, IOException, ParserConfigurationException {
+
 		String ip = req.getHeader("X-FORWARDED-FOR");
 		if (ip == null) {
 			ip = req.getRemoteAddr();
@@ -84,17 +83,17 @@ public class SignInController {
 
 		String userId = req.getParameter("userId");
 		String userToken = req.getParameter("userToken");
-		
+
 		sedto.setMove("로그인(성공)");
 		session.setAttribute("userId", userId);
 		session.setAttribute("userToken", userToken);
+		session.setAttribute("userToken2", "1");
 		
-		mv.setViewName("/main/main.jsp");	
-		
+		mv.setViewName("/main/main.jsp");
+
 		return mv;
-		
 	}
-	
+
 //	일반 로그인 클릭시 
 	@RequestMapping("/signPro.do")
 	public ModelAndView signPro(MemberDto dto, SessionDto sedto, HttpSession session, HttpServletRequest req)
@@ -141,6 +140,7 @@ public class SignInController {
 			if (userPw.equals(dbPw)) {
 				sedto.setMove("로그인(성공)");
 				session.setAttribute("userId", userId);
+				session.setAttribute("userToken2", "0");
 				mv.setViewName("/main/main.jsp");
 			} else {
 				sedto.setMove("로그인(실패)");
@@ -151,45 +151,50 @@ public class SignInController {
 		}
 		return mv;
 	}
-	
-	
-	
-	
+
 	@RequestMapping("/logout.do")
 	public ModelAndView logout(HttpSession session) {
+		session.invalidate();
+		mv.setViewName("/sign/logout.jsp");
+		return mv;
+	}
+
+	@RequestMapping("/kakaoLogout.do")
+	public ModelAndView kakaoLogout(HttpSession session, HttpServletRequest req) {
 		final String RequestUrl = "https://kapi.kakao.com/v1/user/logout";
-		
+
 		String userToken = session.getAttribute("userToken").toString();
+		System.out.println("1111111111111111@@@        " + userToken);
 		
-		System.out.println("1111111111111111@@@        "+userToken);
-		
-		 
+
 		try {
-	        URL url = new URL(RequestUrl);
-	        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-	        conn.setRequestMethod("POST");
-	        conn.setRequestProperty("Authorization", "Bearer " + userToken);
-	        
-	        int responseCode = conn.getResponseCode();
-	        System.out.println("responseCode : " + responseCode);
-	        
-	        BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-	        
-	        String result = "";
-	        String line = "";
-	        
-	        while ((line = br.readLine()) != null) {
-	            result += line;
-	        }
-	        System.out.println(result);
-	    } catch (IOException e) {
-	        // TODO Auto-generated catch block
-	        e.printStackTrace();
-	    }
-		session.removeAttribute("userToken");
-	    session.removeAttribute("userId");
-	    
-		//session.invalidate();
+			URL url = new URL(RequestUrl);
+			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+			conn.setRequestMethod("POST");
+			conn.setRequestProperty("Authorization", "Bearer " + userToken);
+
+			int responseCode = conn.getResponseCode();
+			System.out.println("responseCode : " + responseCode);
+
+			BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+
+			String result = "";
+			String line = "";
+
+			while ((line = br.readLine()) != null) {
+				result += line;
+			}
+			
+			session.removeAttribute("userToken");
+			session.removeAttribute("userId");
+
+			session.invalidate();
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		mv.setViewName("/sign/logout.jsp");
 		return mv;
 	}

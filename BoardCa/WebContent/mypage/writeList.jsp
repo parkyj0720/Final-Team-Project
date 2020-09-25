@@ -119,10 +119,6 @@
 											<li><a
 												href="${pageContext.request.contextPath}/mySaved.do"><i
 													class="zmdi zmdi-folder-star"></i>Saved</a></li>
-											<li><a
-												href="${pageContext.request.contextPath}/myCoupon.do"><i
-													class="zmdi zmdi-ticket-star"></i>COUPON</a></li>
-
 										</ul>
 									</div>
 								</div>
@@ -148,24 +144,16 @@
 															<tr role="row">
 																<th class="sorting" tabindex="0"
 																	aria-controls="DataTables_Table_0" rowspan="1"
-																	colspan="1"
-																	aria-label="No"
-																	style="width: 61px;">No</th>
+																	colspan="1" aria-label="No" style="width: 61px;">No</th>
 																<th class="sorting" tabindex="0"
 																	aria-controls="DataTables_Table_0" rowspan="1"
-																	colspan="1"
-																	aria-label="Date"
-																	style="width: 83px;">Date</th>
+																	colspan="1" aria-label="Date" style="width: 83px;">Date</th>
 																<th class="sorting" tabindex="0"
 																	aria-controls="DataTables_Table_0" rowspan="1"
-																	colspan="1"
-																	aria-label="Title"
-																	style="width: 60px;">Title</th>
+																	colspan="1" aria-label="Title" style="width: 60px;">Title</th>
 																<th class="sorting" tabindex="0"
 																	aria-controls="DataTables_Table_0" rowspan="1"
-																	colspan="1"
-																	aria-label="reply"
-																	style="width: 28px;">reply</th>
+																	colspan="1" aria-label="reply" style="width: 28px;">reply</th>
 
 															</tr>
 														</thead>

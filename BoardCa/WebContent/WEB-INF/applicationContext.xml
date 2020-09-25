@@ -82,6 +82,7 @@
 	<bean id="ModelAndView" class="org.springframework.web.servlet.ModelAndView"/>
 	<bean id="MemberDao" class="Member.MemberDao"/>
 	<bean id="MemberDto" class="Member.MemberDto"/>
+	<bean id="CoDao" class="CommunityModel.CoDao"/>
 	<bean id="CDao" class="Food.CDao"/>
 
 </beans>

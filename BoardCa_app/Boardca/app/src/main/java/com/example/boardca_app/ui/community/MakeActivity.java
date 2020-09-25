@@ -15,14 +15,14 @@ import com.lumyjuwon.richwysiwygeditor.RichWysiwyg;
 
 import java.util.List;
 
-public class WriteActivity extends AppCompatActivity {
+public class MakeActivity extends AppCompatActivity {
 
     private RichWysiwyg wysiwyg;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_write);
+        setContentView(R.layout.activity_make);
         wysiwyg = findViewById(R.id.richwysiwygeditor);
 
         wysiwyg.getContent()

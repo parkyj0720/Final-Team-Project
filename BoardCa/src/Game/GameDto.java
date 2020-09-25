@@ -1,100 +1,61 @@
 package Game;
 
+/**
+ * @author Kosmo_14
+ *
+ */
 public class GameDto {
-	int gameNo;
-	String gameId;
-	String gameThum;
-	String gameTitle;
-	String content;
-	String vdieoId;
+	int GAME_IDX;
+	String GAME_IMG;
+	String GAME_TIT;
+	String GAME_VIDEO;
 	String propose;
-	String reply;
-
 	public GameDto() {
-		this(0, "", "", "", "", "", "", "");
+		this(0,"","","","");
 	}
-
-	public GameDto(int gameNo, String gameId, String gameThum, String gameTitle, String content, String vdieoId,
-			String propose, String reply) {
-
-		this.gameNo = gameNo;
-		this.gameId = gameId;
-		this.gameThum = gameThum;
-		this.gameTitle = gameTitle;
-		this.content = content;
-		this.vdieoId = vdieoId;
+	public GameDto(int gAME_IDX, String gAME_IMG, String gAME_TIT, String gAME_VIDEO, String propose) {
+		super();
+		GAME_IDX = gAME_IDX;
+		GAME_IMG = gAME_IMG;
+		GAME_TIT = gAME_TIT;
+		GAME_VIDEO = gAME_VIDEO;
 		this.propose = propose;
-		this.reply = reply;
 	}
-
-	public int getGameNo() {
-		return gameNo;
+	public int getGAME_IDX() {
+		return GAME_IDX;
 	}
-
-	public void setGameNo(int gameNo) {
-		this.gameNo = gameNo;
+	public void setGAME_IDX(int gAME_IDX) {
+		GAME_IDX = gAME_IDX;
 	}
-
-	public String getGameId() {
-		return gameId;
+	public String getGAME_IMG() {
+		return GAME_IMG;
 	}
-
-	public void setGameId(String gameId) {
-		this.gameId = gameId;
+	public void setGAME_IMG(String gAME_IMG) {
+		GAME_IMG = gAME_IMG;
 	}
-
-	public String getGameThum() {
-		return gameThum;
+	public String getGAME_TIT() {
+		return GAME_TIT;
 	}
-
-	public void setGameThum(String gameThum) {
-		this.gameThum = gameThum;
+	public void setGAME_TIT(String gAME_TIT) {
+		GAME_TIT = gAME_TIT;
 	}
-
-	public String getGameTitle() {
-		return gameTitle;
+	public String getGAME_VIDEO() {
+		return GAME_VIDEO;
 	}
-
-	public void setGameTitle(String gameTitle) {
-		this.gameTitle = gameTitle;
+	public void setGAME_VIDEO(String gAME_VIDEO) {
+		GAME_VIDEO = gAME_VIDEO;
 	}
-
-	public String getContent() {
-		return content;
-	}
-
-	public void setContent(String content) {
-		this.content = content;
-	}
-
-	public String getVdieoId() {
-		return vdieoId;
-	}
-
-	public void setVdieoId(String vdieoId) {
-		this.vdieoId = vdieoId;
-	}
-
 	public String getPropose() {
 		return propose;
 	}
-
 	public void setPropose(String propose) {
 		this.propose = propose;
 	}
-
-	public String getReply() {
-		return reply;
-	}
-
-	public void setReply(String reply) {
-		this.reply = reply;
-	}
-
+	
 	@Override
 	public String toString() {
-		return "GameDto [gameNo=" + gameNo + ", gameId=" + gameId + ", gameThum=" + gameThum + ", gameTitle="
-				+ gameTitle + ", content=" + content + ", vdieoId=" + vdieoId + ", propose=" + propose + ", reply="
-				+ reply + "]";
+		return "GameDto [GAME_IDX=" + GAME_IDX + ", GAME_IMG=" + GAME_IMG + ", GAME_TIT=" + GAME_TIT + ", GAME_VIDEO="
+				+ GAME_VIDEO + ", propose=" + propose + "]";
 	}
+
 }

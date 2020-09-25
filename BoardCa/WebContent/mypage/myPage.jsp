@@ -1,3 +1,4 @@
+<%@page import="Member.MemberDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -25,7 +26,9 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/stylesheet/assets/plugins/sweetalert/sweetalert.css">
 </head>
-
+<%
+MemberDto dto = (MemberDto)request.getAttribute("memInfo");
+%>
 
 
 
@@ -87,8 +90,7 @@
 									class="zmdi zmdi-favorite"></i>Favorite</a></li>
 							<li><a href="${pageContext.request.contextPath}/mySaved.do"><i
 									class="zmdi zmdi-folder-star"></i>Saved</a></li>
-							<li><a href="${pageContext.request.contextPath}/myCoupon.do"><i
-									class="zmdi zmdi-ticket-star"></i>COUPON</a></li>
+							
 
 						</ul>
 					</div>
@@ -102,32 +104,31 @@
 								src="${pageContext.request.contextPath}/mypage/imgs/01.jpg"
 								class="rounded-circle shadow " alt="profile-image"
 								style="width: 20%; height: 20%;"></a>
-							<h4 class="m-t-10">${userId}</h4>
+							<h4 class="m-t-10"><%=dto.getMem_id() %></h4>
 
 						</div>
 					</div>
 					<div class="card">
 						<div class="body">
 							<small class="text-muted">gender: </small>
-							<p>${userGender }</p>
+							<p><%=dto.getMem_gender() %></p>
 							<hr>
 							<small class="text-muted">Email address: </small>
-							<p>${account_email }</p>
+							<p><%=dto.getMem_email() %></p>
 							<hr>
-							<small class="text-muted">Phone: </small>
-							<p>+ 202-555-0191</p>
 							
-							<hr>
 							<div class="col-lg-12 col-md-12 col-sm-12">
 								<div class="card">
 									<div class="header">
 										<h2>
-											<strong>${userId}님 이 쓴글</strong>
+											<strong><%=dto.getMem_id() %> 님이 쓰신 글</strong>
 										</h2>
 										<div class="body">
 											<div>
 												<div class="table-responsive">
 													<table class="table table-hover">
+													
+													<!-- 내가 쓴 글 테이블 -->
 														<thead>
 															<tr>
 																<th>No</th>
@@ -136,6 +137,8 @@
 																<th>reply</th>
 															</tr>
 														</thead>
+														
+														
 														<tbody>
 															<tr>
 																<th scope="row">1</th>
@@ -143,31 +146,8 @@
 																<td>Otto</td>
 																<td>@mdo</td>
 															</tr>
-															<tr>
-																<th scope="row">2</th>
-																<td>Jacob</td>
-																<td>Thornton</td>
-																<td>@fat</td>
-															</tr>
-															<tr>
-																<th scope="row">3</th>
-																<td>Larry</td>
-																<td>the Bird</td>
-																<td>@twitter</td>
-															</tr>
-															<tr>
-																<th scope="row">4</th>
-																<td>Larry</td>
-																<td>Jellybean</td>
-																<td>@lajelly</td>
-															</tr>
-															<tr>
-																<th scope="row">5</th>
-																<td>Larry</td>
-																<td>Kikat</td>
-																<td>@lakitkat</td>
-															</tr>
 														</tbody>
+														
 													</table>
 												</div>
 											</div>

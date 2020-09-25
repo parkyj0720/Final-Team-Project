@@ -1,5 +1,8 @@
 package Member;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -14,6 +17,12 @@ public class MemberDao {
 	public int idCheck(String userId) {		
 		System.out.println("DaoIDCheck "+userId);
 		int dto = mysqlSession.selectOne("signXml.idCheck", userId); 
+		return dto;
+	}	
+// 입력한 아이디가 있는 아이디인지 아이디 체크 
+	public int nickNameCheck(String nickName) {		
+		System.out.println("DaonickNameCheck "+nickName);
+		int dto = mysqlSession.selectOne("signXml.nickNameCheck", nickName); 
 		return dto;
 	}	
 
@@ -33,5 +42,14 @@ public class MemberDao {
 		System.out.println(dto);
 		mysqlSession.insert("signXml.memInsert", dto);
 	}
+	
+	
+	public List<Object> ListAll() {
+		
+		List<Object> list = mysqlSession.selectList("signXml.Listall");
+		
+		return list;
+	}
+	
 	
 }

@@ -7,24 +7,38 @@
 
 	<select id="idCheck" resultType="int" parameterType="MemberDto">
 		select count(*)
-		from MEMBER
+		from MEMBER_T
 		where MEM_ID=#{userId}
 	</select>
-
+	
+	<select id="Listall" resultType="MemberDto">
+	
+		select *
+		from MEMBER_T;
+	
+	</select>
+	
+	<select id="nickNameCheck" resultType="int" parameterType="MemberDto">
+		select count(*)
+		from MEMBER_T
+		where MEM_NICKNAME=#{mem_nickname}
+	</select>
 
 	<select id="signCheck" resultType="String"
 		parameterType="MemberDto">
 		select mem_pw
-		from MEMBER
+		from MEMBER_T
 		where MEM_ID=#{userId}
 	</select>
+	
+	
 
 	<insert id="sessionInput" parameterType="Sign.SessionDto">
 
 	</insert>
 
 	<insert id="memInsert" parameterType="MemberDto">
-		INSERT INTO MEMBER
+		INSERT INTO MEMBER_T
 		(	MEM_ID
 			,MEM_NICKNAME
 			,MEM_PW
@@ -51,8 +65,6 @@
 			,#{mem_board_gwonhan}
 		)
 	</insert>
-
-
 
 
 

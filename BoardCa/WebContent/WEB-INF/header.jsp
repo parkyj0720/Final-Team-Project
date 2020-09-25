@@ -10,7 +10,18 @@
 <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
 <script>
 
-  
+$(function() {
+	var userToken = '${userToken2}';
+	
+	$('#logoutBtn').click(function() {
+		if(userToken == '1'){
+			window.location.href="kakaoLogout.do";
+		}else{
+			window.location.href="logout.do";
+		}
+		
+	})
+})
 	
 	
 </script>
@@ -153,14 +164,41 @@
 												All Notifications</a></li>
 									</ul></li>
 								<c:choose>
-									<c:when test="${userId == null}">
+									<c:when test="${sessionScope.userId == null}">
 										<li><a href="signIn.do">로그인</a></li>
 									</c:when>
+									
+									<c:when test="${sessionScope.userId == 'ADMIN'}">
+										<li class="dropdown"><a href="javascript:void(0);"
+											class="dropdown-toggle" data-toggle="dropdown" role="button"
+											aria-haspopup="true" aria-expanded="false">
+												<p>${sessionScope.userId}님반갑습니다.
+												</p>
+										</a>
+											<ul class="dropdown-menu dropdown-menu-right">
+												<li><a
+													href="${pageContext.request.contextPath}/adminPage.do"><i
+														class="zmdi zmdi-chart"></i>통계 페이지</a></li>
+												<li><a
+													href="${pageContext.request.contextPath}/adminEdit.do"><i
+														class="zmdi zmdi-assignment-account"></i>유저 관리</a></li>
+												<li><a
+													href="${pageContext.request.contextPath}/adminList.do"><i
+														class="zmdi zmdi-alert-circle"></i>신고 관리</a></li>
+												<li><a
+													href="${pageContext.request.contextPath}/adminFAQ.do"><i
+														class="zmdi zmdi-comments"></i>문의 답변</a></li>
+												<li><a id="logoutBtn" href=#><i class="zmdi zmdi-flight-takeoff"></i>로그 아웃</a>
+												</li>
+											</ul>
+											</li>
+									</c:when>
+									
 									<c:otherwise>
 										<li class="dropdown"><a href="javascript:void(0);"
 											class="dropdown-toggle" data-toggle="dropdown" role="button"
 											aria-haspopup="true" aria-expanded="false">
-												<p>${userId}님반갑습니다.
+												<p>${sessionScope.userId}님반갑습니다.
 												</p>
 										</a>
 											<ul class="dropdown-menu dropdown-menu-right">
@@ -170,8 +208,9 @@
 													href="${pageContext.request.contextPath}/myPageEdit.do">정보수정</a></li>
 												<li><a
 													href="${pageContext.request.contextPath}/myFAQ.do">1:1문의</a></li>
-												<li><a href="${pageContext.request.contextPath}/logout.do" id="logoutBtn">로그아웃</a></li>
-											</ul></li>
+												<li><a id="logoutBtn">로그아웃</a></li>
+											</ul>
+											</li>
 									</c:otherwise>
 								</c:choose>
 							</ul>

@@ -97,6 +97,20 @@ public class SignUpController {
 		mv.setViewName("/sign/idCheck.jsp");
 		return mv;
 	}
+//	닉네임 중복 체크 
+	@RequestMapping("/nickNameCheck.do")
+	public ModelAndView nickNameCheck(HttpServletRequest req, String nickName) {
+		int Check = -1;
+		
+		if (nickName.equals("")) {
+			
+		} else {
+			Check = memDao.nickNameCheck(nickName);
+		}
+		mv.addObject("Check", Check);
+		mv.setViewName("/sign/nickNameCheck.jsp");
+		return mv;
+	}
 
 //  PW 두개가 일치하는지 체크 
 	@RequestMapping("equalPwCk.do")

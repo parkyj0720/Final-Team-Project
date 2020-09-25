@@ -170,9 +170,7 @@ select {
 										class="zmdi zmdi-favorite"></i>Favorite</a></li>
 								<li><a href="${pageContext.request.contextPath}/mySaved.do"><i
 										class="zmdi zmdi-folder-star"></i>Saved</a></li>
-								<li><a
-									href="${pageContext.request.contextPath}/myCoupon.do"><i
-										class="zmdi zmdi-ticket-star"></i>COUPON</a></li>
+							
 
 							</ul>
 						</div>
