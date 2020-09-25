@@ -57,7 +57,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.community.WriteActivity" />
+        <activity android:name=".ui.community.MakeActivity" />
         <activity android:name=".ui.Map.PlaceDetailActivity" />
         <activity android:name=".ui.Map.MapSearchDetailActivity" />
         <activity android:name=".ui.Map.MapNavigationActivity" />
