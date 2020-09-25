@@ -94,9 +94,9 @@
 					</div>
 				</div>
 
-				<div class="col-lg-11 col-md-12 col-sm-11 inbox right">
+				<div class="col-lg-11 col-md-12 col-sm-11 inbox right row">
 
-					<div class="col-lg-6 col-md-12">
+					<div class="col-lg-12 col-md-6">
 						<div class="card">
 							<div class="header">
 								<h2>
@@ -109,11 +109,11 @@
 						</div>
 					</div>
 
-					<div class="col-lg-6 col-md-12">
+					<div class="col-lg-12 col-md-6">
 						<div class="card">
 							<div class="header">
 								<h2>
-									<strong>성별 분포도</strong>
+									<strong>지역 분포도</strong>
 								</h2>
 							</div>
 							<div class="body">
@@ -121,8 +121,7 @@
 							</div>
 						</div>
 					</div>
-
-
+					
 				</div>
 			</div>
 		</div>
