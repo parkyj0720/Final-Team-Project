@@ -45,7 +45,9 @@
 				})
 	})
 </script>
-
+<script>
+	
+</script>
 
 <body class="ls-closed ls-toggle-menu ">
 	<jsp:include page="/WEB-INF/header.jsp"></jsp:include>
@@ -75,7 +77,17 @@
 				<div class="col-lg-12">
 					<div class="card">
 						<div class="tab-content">
-							<div class="tab-pane active" id="2019">
+							<div class="tab-pane active">
+								<div class="search_div" style="position: relative;">
+									<div>
+										<form action="/BoardCa/cSearch.do" method="POST"
+											style="display: inline-block">
+											<input type="text" size="34" name="inputSearch"> <input
+												type="submit" value="검색" name="inputSearchButton"
+												style="margin-left: -15px">
+										</form>
+									</div>
+								</div>
 								<div class="row clearfix">
 									<%
 										List<GameDto> list = (List<GameDto>) request.getAttribute("gameList");
@@ -88,15 +100,15 @@
 									<div class="col-lg-3 col-md-4 col-sm-12">
 										<div class="card">
 											<div class="file">
-											
+
 												<a
 													href="${pageContext.request.contextPath}/gameDetail.do?no=<%=dto.getGAME_IDX() %>">
 
 													<div class="icon">
-														<img src="<%=dto.getGAME_IMG() %>">
+														<img src="<%=dto.getGAME_IMG()%>">
 													</div>
 													<div class="file-name">
-														<h4 class="m-b-5 text-muted"><%=dto.getGAME_TIT() %></h4>
+														<h5 class="m-b-5 text-muted"><%=dto.getGAME_TIT()%></h5>
 													</div>
 												</a>
 											</div>

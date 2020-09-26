@@ -1,12 +1,13 @@
 package Game;
 
+import java.util.Collections;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Service;
+
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -23,6 +24,7 @@ public class GameController {
 	public ModelAndView gameMain() {
 		System.out.println("gameMain.do");
 		List<GameDto> list = dao.getList();
+		Collections.shuffle(list);
 		mv.addObject("gameList",list);
 		System.out.println(list);
 		mv.setViewName("/game/gameMain.jsp");
@@ -32,6 +34,9 @@ public class GameController {
 	public ModelAndView gameDetail(HttpServletRequest req) {
 		int GameNo = Integer.parseInt(req.getParameter("no"));
 		GameDto dto = dao.detail(GameNo);
+		List<GameDto> list = dao.getList();
+		Collections.shuffle(list);
+		mv.addObject("gameList",list);
 		mv.addObject("dto",dto);
 		mv.setViewName("/game/gameDetail.jsp");
 		return mv;

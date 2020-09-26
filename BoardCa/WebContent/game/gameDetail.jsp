@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="Game.GameDto" %>
+<%@ page import="java.util.List" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -112,7 +113,34 @@
 								<div class="body">
 									<div class="row">
 										<div class="col-lg-12">
-											<div class="body">randon</div>
+											<div class="body"><%
+										List<GameDto> list = (List<GameDto>) request.getAttribute("gameList");
+									%>
+
+									<%
+										for (int i = 0; i <= 5; i++) {
+										GameDto dto1 = list.get(i);
+									%>
+									<div class="col-lg-3 col-md-4 col-sm-12">
+										<div class="card">
+											<div class="file">
+
+												<a
+													href="${pageContext.request.contextPath}/gameDetail.do?no=<%=dto1.getGAME_IDX() %>">
+
+													<div class="icon">
+														<img src="<%=dto1.getGAME_MINI()%>">
+													</div>
+													<div class="file-name">
+														<h4 class="m-b-5 text-muted"><%=dto1.getGAME_TIT()%></h4>
+													</div>
+												</a>
+											</div>
+										</div>
+									</div>
+									<%
+										}
+									%></div>
 										</div>
 									</div>
 								</div>
