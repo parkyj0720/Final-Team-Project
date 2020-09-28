@@ -18,13 +18,21 @@
 	content="Responsive Bootstrap 4 and web Application ui kit.">
 
 <title></title>
-<link rel="icon" href="/BoardCa/stylesheet/favicon.ico"
+<link rel="icon" href="${pageContext.request.contextPath}/stylesheet/favicon.ico"
 	type="image/x-icon">
 <!-- Favicon-->
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/stylesheet/assets/plugins/bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/stylesheet/assets/css/style.min.css">
+	
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/stylesheet/assets/plugins/sweetalert/sweetalert.css">
+<!-- JQuery DataTable Css -->
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/stylesheet/assets/plugins/jquery-datatable/dataTables.bootstrap4.min.css">
+	
+	
 <style>
 select {
 	margin-bottom: 5em;
@@ -155,19 +163,19 @@ select {
 														aria-label="No" style="width: 30px;">No</th>
 													<th class="sorting" tabindex="0"
 														aria-controls="DataTables_Table_0" rowspan="1" colspan="1"
-														aria-label="Date" style="width: 53px;">닉네임</th>
+														aria-label="닉네임" style="width: 30px;">닉네임</th>
 													<th class="sorting" tabindex="0"
 														aria-controls="DataTables_Table_0" rowspan="1" colspan="1"
-														aria-label="Title" style="width: 30px;">관리자 권한</th>
+														aria-label="관리자 권한" style="width: 30px;">관리자 권한</th>
 													<th class="sorting" tabindex="0"
 														aria-controls="DataTables_Table_0" rowspan="1" colspan="1"
-														aria-label="reply" style="width: 30px;">로그인 권한</th>
+														aria-label="로그인 권한" style="width: 30px;">로그인 권한</th>
 													<th class="sorting" tabindex="0"
 														aria-controls="DataTables_Table_0" rowspan="1" colspan="1"
-														aria-label="reply" style="width: 30px;">게시판 권한</th>
+														aria-label="게시판 권한" style="width: 30px;">게시판 권한</th>
 													<th class="sorting" tabindex="0"
 														aria-controls="DataTables_Table_0" rowspan="1" colspan="1"
-														aria-label="reply" style="width: 60px;">가입 일자</th>
+														aria-label="가입 일자" style="width: 30px;">가입 일자</th>
 
 												</tr>
 											</thead>
@@ -189,7 +197,7 @@ select {
 												
 												%>
 												
-												<tr class="clickBtn">
+												<tr class="clickBtn ">
 												
 												<td><%= dto.getMem_idx()%></td>
 												<td><%=dto.getMem_nickname()%></td>
@@ -244,6 +252,26 @@ select {
 	<script
 		src="${pageContext.request.contextPath}/stylesheet/assets/bundles/libscripts.bundle.js"></script>
 	<!-- Lib Scripts Plugin Js -->
+
+	<!-- Jquery DataTable Plugin Js -->
+	<script
+		src="${pageContext.request.contextPath}/stylesheet/assets/bundles/datatablescripts.bundle.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/stylesheet/assets/plugins/jquery-datatable/buttons/dataTables.buttons.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/stylesheet/assets/plugins/jquery-datatable/buttons/buttons.bootstrap4.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/stylesheet/assets/plugins/jquery-datatable/buttons/buttons.colVis.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/stylesheet/assets/plugins/jquery-datatable/buttons/buttons.flash.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/stylesheet/assets/plugins/jquery-datatable/buttons/buttons.html5.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/stylesheet/assets/plugins/jquery-datatable/buttons/buttons.print.min.js"></script>
+
+	<!-- Custom Js -->
+	<script
+		src="${pageContext.request.contextPath}/stylesheet/assets/js/pages/tables/jquery-datatable.js"></script>
 
 	<script
 		src="${pageContext.request.contextPath}/stylesheet/assets/plugins/jquery-validation/jquery.validate.js"></script>
