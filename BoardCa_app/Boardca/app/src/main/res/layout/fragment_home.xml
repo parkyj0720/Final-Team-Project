@@ -12,15 +12,15 @@
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/animation_view"
         android:layout_width="match_parent"
-        android:layout_height="500dp"
+        android:layout_height="match_parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:lottie_autoPlay="true"
         app:lottie_fileName="home_data.json"
-        app:lottie_loop="true"
         tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteY="43dp" />
+        tools:layout_editor_absoluteY="43dp"
+        android:background="#463168"/>
 
     <ImageView
         android:id="@+id/game_img"
