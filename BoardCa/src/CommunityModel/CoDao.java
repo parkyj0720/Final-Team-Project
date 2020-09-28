@@ -50,6 +50,13 @@ public class CoDao {
 		System.out.println(heart);
 		return heart;
 	}
+	public void detail_heart_delete(Heart heart) {
+		sqlSession.delete("CoXml.delete_heart", heart);
+		System.out.println(heart);
+	}
+	public void detail_heart_insert(Heart heart) {
+		sqlSession.insert("CoXml.insert_heart", heart);
+	}
 	public List<Comment> detail_comments(int num) {
 		List<Comment> heart = sqlSession.selectList("CoXml.detail_comments", num);
 		System.out.println(heart);

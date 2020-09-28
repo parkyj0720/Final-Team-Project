@@ -28,7 +28,7 @@
 	transition: background 1s steps(28);
 }
 
-.heart1 {
+ .heart1 {
 	width: 100px;
 	height: 100px;
 	position: absolute;
@@ -123,6 +123,7 @@
 			<div class="card" style="">
 				<div class="blogitem mb-5">
 					<div class="blogitem-content">
+						<div id="content_num" style="visibility: hidden;"><%=dto.getNum()%></div>
 						<h5>
 							<%=dto.getTitle()%>(<%=dto.getViews()%>)
 							<div class="blogitem-meta" style="float: right;">
@@ -139,9 +140,10 @@
 				<div class="header">
 					<h2>
 						<i class="zmdi zmdi-comments"></i><strong>댓글</strong> (<%=comment.size()%>)
+						<a href="${pageContext.request.contextPath}/Community_Modify.do?num=<%=dto.getNum()%>"><strong style="margin-left: 80px">수정</strong></a>
 					</h2>
 					<%
-						String username = "정태진";
+						String username = (String)session.getAttribute("userId");
 					boolean tf = false;
 					for (int i = 0; i < heart.size(); i++) {
 						Heart h = heart.get(i);
@@ -153,13 +155,14 @@
 					%>
 					<div class="heart">
 						<div id="heart_size"
-							style="margin-top: 40%; text-align: center; margin-left: 70%; position: absolute;"><%=heart_size%></div>
+							style="margin-top: 40%; text-align: center; margin-left: 70%; position: absolute;" oncontextmenu="return false" ondragstart="return false" onselectstart="return false"><%=heart_size%></div>
 					</div>
 					<%
 						} else {
 					%>
-					<div id="heart1">
-						<div class="heart_size"	style="margin-top: 40%; text-align: center; margin-left: 70%;"><%=heart_size%></div>
+										<div class="heart1">
+						<div id="heart_size"
+							style="margin-top: 40%; text-align: center; margin-left: 70%; position: absolute;" oncontextmenu="return false" ondragstart="return false" onselectstart="return false"><%=heart_size%></div>
 					</div>
 					<%
 						}
@@ -204,22 +207,82 @@
 	<!-- </section>   -->
 
 	<jsp:include page="/WEB-INF/footer.jsp"></jsp:include>
+	
+	<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
 
 	<script>
 		$(function() {
 
-			$(".heart").on("click", function() {
-				$(this).toggleClass("heart-blast");
-				console.log("y");
-				
-			});
+			var num = <%=dto.getNum()%>
+			var username = "${sessionScope.userId}";
+			
+			console.log(num, username);
+			
+			$(".heart").on("click",	function() {
+						if (username == ""
+								|| username == null) {
+							alert("로그인후 재시도해주세요")
+						} else {
+							
+							$(this).toggleClass("heart-blast");
+							var dto = {
+								username : username,
+								content_num : num
+							};
+							$.ajax({
+								url: "Community_heart.do",
+								type: "POST",
+								data: dto,
+								success: function () {
+									recCount();
+						           }
+							})
+							
+						}
+					});
 			$(".heart1").on("click", function() {
+				if (username == ""
+					|| username == null) {
+				alert("로그인후 재시도해주세요")
+			} else {
+				
 				$(this).toggleClass("heart-blast1");
-				console.log("x");
+				var dto = {
+					username : username,
+					content_num : num
+				};
+				$.ajax({
+					url: "Community_heart.do",
+					type: "POST",
+					data: dto,
+					success: function () {
+						recCount();
+			           }
+				})
+				
+			}
 			});
 			$(".comment_submit").on("click", function() {
-				
+
 			})
+			 function recCount() {
+				console.log('카운트 들어옴')
+				$.ajax({
+					url: "Community_heart_count.do",
+	                type: "POST",
+	                datatype: "text",
+	                data: {
+	                    no: num
+	                },
+	                success: function (count) {
+	                	console.log(count)
+	                	$('#heart_size').text(count)
+	                },
+	                error: function() {
+						console.log('error')
+					}
+				})
+		    };
 		});
 	</script>
 	<script

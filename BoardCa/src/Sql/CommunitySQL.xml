@@ -97,6 +97,19 @@
 		from heart 
 		where content_num=#{num}
 	</select>
+	<select id="delete_heart" parameterType="CommunityModel.Heart">
+		delete
+		from heart 
+		where content_num=#{content_num}
+		and username = #{username}
+	</select>
+	<select id="insert_heart" parameterType="CommunityModel.Heart">
+		insert
+		into heart
+		values(
+		#{username},
+		#{content_num})
+	</select>
 	
 	<!-- 디테일 댓글 -->
 	<select id="detail_comments" parameterType="int"

@@ -8,6 +8,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -82,6 +83,43 @@ public class CommunityController {
 		mv.setViewName("community/C_detail.jsp");
 		return mv;
 	}
+	// 좋아요
+	@RequestMapping(value = "/Community_heart.do", method = RequestMethod.POST, produces="application/json")
+	@ResponseBody
+	public void community_heart(Heart dto, HttpServletRequest request, HttpSession session) {
+		
+		System.out.println(dto);
+
+		List<Heart> hList = dao.detail_heart(dto.getContent_num());
+		int dataNum = 0;
+		for (int i = 0; i < hList.size(); i++) {
+			if (hList.get(i).getUsername().equals(dto.getUsername())) {
+				dao.detail_heart_delete(dto);
+				System.out.println(dto.getContent_num() + "번글" + dto.getUsername() + "좋아요 취소");
+				dataNum = 1;
+			}
+		}
+		if (dataNum == 0) {
+			dao.detail_heart_insert(dto);
+			System.out.println(dto.getContent_num() + "번글" + dto.getUsername() + "좋아요");
+		}
+	}
+	@RequestMapping(value = "/Community_heart_count.do", method = RequestMethod.POST, produces="application/json")
+	@ResponseBody
+	public String recCount(int no){
+		System.out.println(no);
+		System.out.println("카운트 값 전송됨");
+		int count = 0;
+		try {
+			List<Heart> list = (List<Heart>)dao.detail_heart(no);
+			count = list.size();
+		} catch (Exception e) {
+			System.out.println("error");
+			e.printStackTrace();
+		}
+		System.out.println(count);
+		return count + "";
+	}
 		  
 	// input
 	@RequestMapping("/Community_input.do")
@@ -102,7 +140,14 @@ public class CommunityController {
 
 	}
 		 
-	 
+	@RequestMapping("/Community_Modify.do")
+	public ModelAndView community_modify(HttpServletRequest request) {
+		int num = Integer.parseInt(request.getParameter("num"));
+		mv.setViewName("community/C_Modify.jsp");
+		mv.addObject("data", dao.detail(num));
+		mv.addObject("boardList", dao.Get_boardlist());
+		return mv;
+	}
 	
 
 }
