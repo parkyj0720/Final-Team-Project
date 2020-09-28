@@ -13,7 +13,6 @@
 	</select>
 	
 	<select id="Listall" resultType="MemberDto">
-	
 		select *
 		from MEMBER_T;
 	
