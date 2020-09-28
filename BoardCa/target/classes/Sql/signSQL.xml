@@ -15,7 +15,6 @@
 	<select id="Listall" resultType="MemberDto">
 		select *
 		from MEMBER_T;
-	
 	</select>
 	
 	<select id="nickNameCheck" resultType="int" parameterType="MemberDto">
