@@ -29,21 +29,75 @@
 <style>
 </style>
 </head>
+<%
+	String search = "";
+// 검색 했는지 체크
+if (request.getParameter("inputSearch") != null) {
+	search = request.getParameter("inputSearch");
+}
+
+// 최대 보일 리스트 개수
+int maxList = 10;
+request.setAttribute("maxList", maxList);
+
+// 페이지당 리스트 개수
+int listNum = 12;
+
+int now_page = 1;
+
+//보여줄 리스트 배열 번호 선언
+int itemCount = 0;
+
+// 리스트 목록
+List<GameDto> list = (List<GameDto>) request.getAttribute("gameList");
+
+// 보여줄 리스트 배열 번호 (페이지번호 * 페이지에 보여주는 리스트 개수)
+if (request.getParameter("page") != null) {
+	now_page = Integer.parseInt(request.getParameter("page"));
+	if (now_page <= 0)
+		response.sendRedirect("${pageContext.request.contextPath}/gameMain.do?page=1");
+	itemCount = (Integer.parseInt(request.getParameter("page")) - 1) * listNum;
+}
+
+// 리스트 개수
+int listCount = (list.size() % listNum == 0 && list.size() != 0) ? list.size() / listNum : list.size() / listNum + 1;
+
+// 시작 페이지
+int startList = (now_page % maxList == 0) ? ((now_page / maxList) - 1) : (now_page / maxList);
+startList = startList * maxList + 1;
+
+// 최대 페이지
+int endList = (now_page % maxList == 0) ? ((now_page / maxList) - 1) : (now_page / maxList);
+endList = endList * maxList + maxList;
+%>
+
 
 
 <script>
-	$('#like').text();
-	var count = 0;
-	$(function() {
-		$('#heart').click(
-				function() {
-					count++;
-					console.log(count)
-					$('#like').html(
-							'<small class="bg-orange" id="like">' + count
-									+ '</small>')
-				})
-	})
+
+	function Request() {
+		var requestParam = "";
+
+		//getParameter 펑션
+		this.getParameter = function(param) {
+			//현재 주소를 decoding
+			var url = unescape(location.href);
+			//파라미터만 자르고, 다시 &그분자를 잘라서 배열에 넣는다. 
+			var paramArr = (url.substring(url.indexOf("?") + 1, url.length))
+					.split("&");
+
+			for (var i = 0; i < paramArr.length; i++) {
+				var temp = paramArr[i].split("="); //파라미터 변수명을 담음
+
+				if (temp[0].toUpperCase() == param.toUpperCase()) {
+					// 변수명과 일치할 경우 데이터 삽입
+					requestParam = paramArr[i].split("=")[1];
+					break;
+				}
+			}
+			return requestParam;
+		}
+	}
 </script>
 <script>
 	
@@ -69,9 +123,6 @@
 				</div>
 			</div>
 		</div>
-
-
-
 		<div class="container-fluid">
 			<div class="row clearfix">
 				<div class="col-lg-12">
@@ -79,8 +130,8 @@
 						<div class="tab-content">
 							<div class="tab-pane active">
 								<div class="search_div" style="position: relative;">
-									<div>
-										<form action="/BoardCa/cSearch.do" method="POST"
+									<div class="card">
+										<form action="/BoardCa/gameSearch.do" method="POST"
 											style="display: inline-block">
 											<input type="text" size="34" name="inputSearch"> <input
 												type="submit" value="검색" name="inputSearchButton"
@@ -90,7 +141,7 @@
 								</div>
 								<div class="row clearfix">
 									<%
-										List<GameDto> list = (List<GameDto>) request.getAttribute("gameList");
+										
 									%>
 
 									<%
@@ -101,12 +152,10 @@
 										<div class="card">
 											<div class="file">
 
-												<a
-													href="${pageContext.request.contextPath}/gameDetail.do?no=<%=dto.getGAME_IDX() %>">
-
+												<a href="${pageContext.request.contextPath}/gameDetail.do?no=<%=dto.getGAME_IDX() %>">
 													<div class="icon">
 														<img src="<%=dto.getGAME_IMG()%>">
-													</div>
+													</div >
 													<div class="file-name">
 														<h5 class="m-b-5 text-muted"><%=dto.getGAME_TIT()%></h5>
 													</div>

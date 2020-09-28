@@ -20,6 +20,13 @@ public class MypageDao {
 		 return newDto;
 	}
 	
+	public MemberDto memEdit(MemberDto dto) {
+		System.out.println("dao.memEdit");
+		 MemberDto newDto = mysqlSession.selectOne("mypageXml.InfoEdit",dto);
+		 System.out.println(newDto);
+		 return newDto;
+	}
+	
 	
 	
 }

@@ -13,5 +13,10 @@
 	<select id="gameDetail" resultType="Game.GameDto">
 		select * from GAME_T where GAME_IDX = #{GAME_IDX}
 	</select>
+	<select id="gameSearchList" resultType="Game.GameDto" parameterType="String">
+		select * from GAME_T where GAME_TIT like CONCAT('%',#{keyword},'%')
 
+
+	</select>
+ 
 </mapper>

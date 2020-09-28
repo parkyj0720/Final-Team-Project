@@ -16,29 +16,52 @@ public class GameController {
 
 	@Autowired
 	private ModelAndView mv;
-	
+
 	@Autowired
 	private GameDao dao;
-	
+
 	@RequestMapping("/gameMain.do")
-	public ModelAndView gameMain() {
+	public ModelAndView gameMain(HttpServletRequest req) {
+		int page = 1;
+		if (req.getParameter("page") != null) {
+			page = Integer.parseInt(req.getParameter("page"));
+			if (page <= 0)
+				page = 1;
+		}
+
 		System.out.println("gameMain.do");
 		List<GameDto> list = dao.getList();
 		Collections.shuffle(list);
-		mv.addObject("gameList",list);
+		mv.addObject("gameList", list);
 		System.out.println(list);
-		mv.setViewName("/game/gameMain.jsp");
+		mv.setViewName("/game/gameMain.jsp?page=" + page);
 		return mv;
 	}
+
 	@RequestMapping("/gameDetail.do")
 	public ModelAndView gameDetail(HttpServletRequest req) {
 		int GameNo = Integer.parseInt(req.getParameter("no"));
 		GameDto dto = dao.detail(GameNo);
 		List<GameDto> list = dao.getList();
 		Collections.shuffle(list);
-		mv.addObject("gameList",list);
-		mv.addObject("dto",dto);
+		mv.addObject("gameList", list);
+		mv.addObject("dto", dto);
 		mv.setViewName("/game/gameDetail.jsp");
+		return mv;
+	}
+
+	@RequestMapping("/gameSearch.do")
+	public ModelAndView gameSearch(HttpServletRequest req) {
+		int page = 1;
+		if (req.getParameter("page") != null) {
+			page = Integer.parseInt(req.getParameter("page"));
+			if (page <= 0)
+				page = 1;
+		}
+		String keyword = req.getParameter("inputSearch");
+		mv.addObject("gameList", dao.getSearchList(keyword));
+		mv.addObject("inputSearch", keyword);
+		mv.setViewName("/game/gameMain.jsp?page=" + page);
 		return mv;
 	}
 }

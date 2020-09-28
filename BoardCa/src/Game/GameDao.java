@@ -25,4 +25,12 @@ public class GameDao {
 	    GameDto dto = mysqlSession.selectOne("gameXml.gameDetail", no);
 	    return dto;
 	  }
+	public List<GameDto> getSearchList(String keyword){
+	    System.out.println("----> gameXml.gameSearchList()");
+	    List<GameDto> list = mysqlSession.selectList("gameXml.gameSearchList",keyword);
+	    for (GameDto dto : list) {
+	    	System.out.println(dto);
+	    }
+	    return list;
+	  }
 }

@@ -1,8 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@page import="Member.MemberDto"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
+<%
+	MemberDto dto = (MemberDto) request.getAttribute("memInfo");
+%>
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=Edge">
 <meta
@@ -25,9 +31,84 @@ select {
 	padding: 10px;
 }
 </style>
+
+
 <script src="http://code.jquery.com/jquery.js"></script>
 <script>
+function chkPW(){	
+	 var pw = $("#inputPw").val();
+	 var num = pw.search(/[0-9]/g);
+	 var eng = pw.search(/[a-z]/ig);
+	 var spe = pw.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi);
 
+	 if(pw.length < 8 || pw.length > 20){
+
+	  alert("8자리 ~ 20자리 이내로 입력해주세요.");
+	  return false;
+	 }else if(pw.search(/\s/) != -1){
+	  alert("비밀번호는 공백 없이 입력해주세요.");
+	  return false;
+	 }else if(num < 0 || eng < 0 || spe < 0 ){
+	  alert("영문,숫자, 특수문자를 혼합하여 입력해주세요.");
+	  return false;
+	 }else {
+		console.log("통과"); 
+	    return true;
+	 }
+}
+function nickNameCheck(){
+	$.ajax({
+		type : "post",
+		url : "/BoardCa/nickNameCheck.do",
+		data :{
+			nickName : $("#nickname").val()
+		},
+		success : function test(a){ 
+			$("#checkNickName").html(a); 
+		},
+		error : function error(){ 
+			alert("error"); 
+		}
+	});		
+}
+// 비밀번호가 같은 체크
+
+function equalPwCk(){
+	$.ajax({
+		type : "post",
+		url : "/BoardCa/equalPwCk.do",
+		data :{
+			pw1 : $(<%=dto.getMem_pw()%>).val(),
+			pw2 : $("#inputPwCk").val()
+		},
+		success : function test(a){ 
+			$("#checkPwd").html(a); 
+		},
+		error : function error(){ 
+			alert("error"); 
+		}
+	});
+}
+
+// 현재비밀번호가 맞는지 체크
+
+
+function equalPwCk(){
+	$.ajax({
+		type : "post",
+		url : "/BoardCa/equalPwCk.do",
+		data :{
+			pw1 : $(<%=dto.getMem_pw()%>).val(),
+			pw2 : $("#inputPwCk").val()
+		},
+		success : function test(a){ 
+			$("#checkPwd").html(a); 
+		},
+		error : function error(){ 
+			alert("error"); 
+		}
+	});
+}
 	function categoryChange(e) {
 
 		var area1 = [ "강남구", "강동구", "강북구", "강서구", "관악구", "광진구", "구로구", "금천구",
@@ -120,6 +201,7 @@ select {
 	<!-- header -->
 	<jsp:include page="/WEB-INF/header.jsp"></jsp:include>
 
+
 	<!-- body -->
 	<div class="body_scroll">
 		<div class="block-header">
@@ -170,7 +252,7 @@ select {
 										class="zmdi zmdi-favorite"></i>Favorite</a></li>
 								<li><a href="${pageContext.request.contextPath}/mySaved.do"><i
 										class="zmdi zmdi-folder-star"></i>Saved</a></li>
-							
+
 
 							</ul>
 						</div>
@@ -180,92 +262,90 @@ select {
 						<div class="card">
 							<div class="header">
 								<h2>
-									<strong>Security</strong> Settings
+									<strong>EditPage</strong>
 								</h2>
 							</div>
 							<div class="body">
-								<div class="row">
-									<div class="col-lg-12 col-md-12">
-										<div class="form-group">
-											<input type="text" class="form-control"
-												placeholder="Username">
+								<form action="${pageContext.request.contextPath}/myPageEdit.do"
+									method="GET">
+									<div class="row">
+										<div class="col-lg-12 col-md-12">
+											<div class="form-group">
+												<input type="text" class="form-control" id="nickname"
+													name="nickname" onblur="nickNameCheck()"
+													placeholder="NickName">
+											</div>
+										</div>
+										<div class="form-group col-lg-12 col-md-12" id="checkNickName"></div>
+										<div class="col-lg-4 col-md-12">
+											<div class="form-group">
+												<input type="password" class="form-control"
+													placeholder="Current Password" id="inputPwCk" name="curPw"
+													onblur="equalPwCk()">
+											</div>
+											<div class="form-group col-lg-6 col-md-12" id="checkPwd"></div>
+										</div>
+										<div class="col-lg-4 col-md-12">
+											<div class="form-group">
+												<input type="password" class="form-control"
+													placeholder="New Password" name="newPw" id="inputPw"
+													onblur="chkPW()">
+											</div>
+											<div class="form-group col-lg-6 col-md-12" id="checkPwd"></div>
+										</div>
+										<div class="col-lg-4 col-md-12">
+											<div class="form-group">
+												<input type="password" class="form-control"
+													placeholder="New Password" name="newPwch" id="inputPw"
+													onblur="chkPW()">
+											</div>
+											<div class="form-group col-lg-6 col-md-12" id="checkPwd"></div>
 										</div>
 									</div>
-									<div class="col-lg-6 col-md-12">
-										<div class="form-group">
-											<input type="password" class="form-control"
-												placeholder="Current Password">
+									<div class="row">
+										<div class="col-md-12">
+											<div class="form-group">
+												<input type="text" class="form-control" placeholder="E-mail"
+													name="email">
+											</div>
+										</div>
+										<div class="col-lg-6 col-md-12">
+											<div>
+												<select onchange="categoryChange(this)" class="form-control"
+													name="rocal" id="area0">
+													<option value="start">광역시·도 선택</option>
+													<option value="area1">서울특별시</option>
+													<option value="area2">인천광역시</option>
+													<option value="area3">대전광역시</option>
+													<option value="area4">광주광역시</option>
+													<option value="area5">대구광역시</option>
+													<option value="area6">울산광역시</option>
+													<option value="area7">부산광역시</option>
+													<option value="area8">경기도</option>
+													<option value="area9">강원도</option>
+													<option value="area10">충청북도</option>
+													<option value="area11">충청남도</option>
+													<option value="area12">전라북도</option>
+													<option value="area13">전라남도</option>
+													<option value="area14">경상북도</option>
+													<option value="area15">경상남도</option>
+													<option value="area16">제주도</option>
+												</select>
+											</div>
+										</div>
+										<div class="col-lg-6 col-md-12">
+											<div>
+												<select id="area" class="form-control" name="state">
+													<option>시·군·구 선택</option>
+												</select>
+											</div>
+										</div>
+										<div class="col-md-12" style="margin-top: 15px;">
+											<button type="submit" class="btn btn-primary bg-orange">Save
+												Changes</button>
 										</div>
 									</div>
-									<div class="col-lg-6 col-md-12">
-										<div class="form-group">
-											<input type="password" class="form-control"
-												placeholder="New Password">
-										</div>
-									</div>
-									<div class="col-12">
-										<button type="submit" class="btn btn-info bg-orange">Save Changes</button>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="card">
-							<div class="header">
-								<h2>
-									<strong>Account</strong> Settings
-								</h2>
-							</div>
-							<div class="body">
-								<div class="row">
-
-									<div class="col-lg-12 col-md-12">
-										<div class="form-group">
-											<input type="text" class="form-control"
-												placeholder="PhoneNumber">
-										</div>
-									</div>
-									<div class="col-md-12">
-										<div class="form-group">
-											<input type="text" class="form-control" placeholder="E-mail">
-										</div>
-									</div>
-									<div class="col-lg-6 col-md-12">
-										<div>
-											<select onchange="categoryChange(this)" class="form-control" id="area0">
-												<option>광역시·도 선택</option>
-												<option value="area1">서울특별시</option>
-												<option value="area2">인천광역시</option>
-												<option value="area3">대전광역시</option>
-												<option value="area4">광주광역시</option>
-												<option value="area5">대구광역시</option>
-												<option value="area6">울산광역시</option>
-												<option value="area7">부산광역시</option>
-												<option value="area8">경기도</option>
-												<option value="area9">강원도</option>
-												<option value="area10">충청북도</option>
-												<option value="area11">충청남도</option>
-												<option value="area12">전라북도</option>
-												<option value="area13">전라남도</option>
-												<option value="area14">경상북도</option>
-												<option value="area15">경상남도</option>
-												<option value="area16">제주도</option>
-											</select>
-										</div>
-									</div>
-
-									<div class="col-lg-6 col-md-12">
-										<div>
-											<select id="area" class="form-control">
-												<option>시·군·구 선택</option>
-											</select>
-										</div>
-									</div>
-
-									<div class="col-md-12" style="margin-top: 15px;">
-										<button class="btn btn-primary bg-orange">Save
-											Changes</button>
-									</div>
-								</div>
+								</form>
 							</div>
 						</div>
 					</div>
@@ -273,6 +353,7 @@ select {
 			</div>
 		</div>
 	</div>
+
 
 
 

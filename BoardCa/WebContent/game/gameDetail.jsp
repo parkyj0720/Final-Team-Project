@@ -132,10 +132,10 @@
 																href="${pageContext.request.contextPath}/gameDetail.do?no=<%=dto1.getGAME_IDX() %>">
 
 																<div class="thumbnail icon">
-																	<img src="<%=dto1.getGAME_MINI()%>">
+																	<img src="<%=dto1.getGAME_IMG()%>">
 																</div>
 																<div class="file-name">
-																	<h6 class="m-b-5 text-muted"><%=dto1.getGAME_TIT()%><h6>
+																	<h5 class="m-b-5 text-muted"><%=dto1.getGAME_TIT()%><h5>
 																</div>
 															</a>
 														</div>
