@@ -7,6 +7,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import Sign.SessionDto;
+
 @Repository
 public class MemberDao {
 
@@ -31,10 +33,15 @@ public class MemberDao {
 		System.out.println("DaoSignIn "+userId);
 		return mysqlSession.selectOne("signXml.signCheck",userId);
 	}
+// 입력한 아이디의 회원번호 가져오기
+	public int searchIdx(String userId) {
+		return mysqlSession.selectOne("signXml.searchIdx",userId);
+	}
+	
 	
 // 세션 입력 
-	public void sessionInput() {
-		mysqlSession.insert("signXml.sessionInput");
+	public void sessionInput(SessionDto sedto) {
+		mysqlSession.insert("signXml.sessionInput", sedto);
 	}
 	
 // 회원정보 insert
@@ -43,11 +50,9 @@ public class MemberDao {
 		mysqlSession.insert("signXml.memInsert", dto);
 	}
 	
-	
-	public List<Object> ListAll() {
-		
-		List<Object> list = mysqlSession.selectList("signXml.Listall");
-		
+// 회원정보 전체 list
+	public List<Object> ListAll() {		
+		List<Object> list = mysqlSession.selectList("signXml.Listall");		
 		return list;
 	}
 	

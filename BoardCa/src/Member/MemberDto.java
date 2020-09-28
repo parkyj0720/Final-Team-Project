@@ -13,7 +13,7 @@ public class MemberDto {
 	
 	public MemberDto(int mem_idx, String mem_id, String mem_nickname, String mem_pw, String mem_gender,
 			String mem_age_group, String mem_email, String mem_rocal, String mem_state, int mem_mng_gwonhan,
-			int mem_login_gwonhan, int mem_board_gwonhan, Timestamp mEM_SYSDATE) {
+			int mem_login_gwonhan, int mem_board_gwonhan, Timestamp MEM_SYSDATE) {
 	
 		this.mem_idx = mem_idx;
 		this.mem_id = mem_id;
@@ -27,7 +27,7 @@ public class MemberDto {
 		this.mem_mng_gwonhan = mem_mng_gwonhan;
 		this.mem_login_gwonhan = mem_login_gwonhan;
 		this.mem_board_gwonhan = mem_board_gwonhan;
-		this.MEM_SYSDATE = mEM_SYSDATE;
+		this.MEM_SYSDATE = MEM_SYSDATE;
 		
 	}
 
@@ -132,8 +132,8 @@ public class MemberDto {
 		return MEM_SYSDATE;
 	}
 
-	public void setMEM_SYSDATE(Timestamp mEM_SYSDATE) {
-		MEM_SYSDATE = mEM_SYSDATE;
+	public void setMEM_SYSDATE(Timestamp MEM_SYSDATE) {
+		MEM_SYSDATE = MEM_SYSDATE;
 	}
 
 	@Override

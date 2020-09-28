@@ -32,6 +32,12 @@ public class MakeActivity extends AppCompatActivity {
         wysiwyg.getHeadlineEditText().setHint("Headline");
 
         wysiwyg.getCancelButton().setText("Cancel");
+        wysiwyg.getCancelButton().setOnClickListener(new Button.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         wysiwyg.getConfirmButton().setText("Write");
         wysiwyg.getConfirmButton().setOnClickListener(new Button.OnClickListener(){

@@ -1,33 +1,37 @@
 package CommunityModel;
 
 public class BoardList {
-	int num;
-	String Board_name;
+	int BOARDNUM;
+	String BOARDNAME;
 	
 	public BoardList() {
 		this(0,"");
 	}
 	
 	public BoardList(int num, String Board_name) {
-		this.num = num;
-		this.Board_name = Board_name;
+		this.BOARDNUM = num;
+		this.BOARDNAME = Board_name;
 	}
 
-	public int getNum() {
-		return num;
+	public int getBOARDNUM() {
+		return BOARDNUM;
 	}
-	public void setNum(int num) {
-		this.num = num;
+
+	public void setBOARDNUM(int bOARDNUM) {
+		BOARDNUM = bOARDNUM;
 	}
-	public String getBoard_name() {
-		return Board_name;
+
+	public String getBOARDNAME() {
+		return BOARDNAME;
 	}
-	public void setBoard_name(String board_name) {
-		Board_name = board_name;
+
+	public void setBOARDNAME(String bOARDNAME) {
+		BOARDNAME = bOARDNAME;
 	}
+
 	@Override
 	public String toString() {
-		return "BoardList [num=" + num + ", Board_name=" + Board_name + "]";
+		return "BoardList [BOARDNUM=" + BOARDNUM + ", BOARDNAME=" + BOARDNAME + "]";
 	}
 
 }

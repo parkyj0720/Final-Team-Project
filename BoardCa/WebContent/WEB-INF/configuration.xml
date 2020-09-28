@@ -4,21 +4,32 @@
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
 
 <configuration>
+	
+	<typeAliases>
+		<typeAlias alias="MemberDto" type="Member.MemberDto"></typeAlias>
+		<typeAlias alias="SessionDto" type="Sign.SessionDto"></typeAlias>
+		<typeAlias alias="CDto" type="Food.CDto"></typeAlias>
+		<typeAlias alias="BoardList" type="CommunityModel.BoardList"></typeAlias>
+		<typeAlias alias="CommunityDto" type="CommunityModel.CommunityDto"></typeAlias>
+		<typeAlias alias="Community_Heart" type="CommunityModel.Heart"></typeAlias>
+		<typeAlias alias="Community_Comment" type="CommunityModel.Comment"></typeAlias>
+		<typeAlias alias="GameDto" type="Game.GameDto"></typeAlias>
+	</typeAliases>
+	<!-- 오라클에서 Long타입 가져오기 위한 핸들러 -->
+	<typeHandlers>
+        <typeHandler handler="LongHandler.CLOBHandler" javaType="String" jdbcType="LONGVARCHAR"/>
+    </typeHandlers>
+	
+	<mappers>
+	
+		<mapper resource="Sql/signSQL.xml" />
+		<mapper resource="Sql/cSQL.xml" />
+		<mapper resource="Sql/CommunitySQL.xml" />
+		<mapper resource="Sql/gameSQL.xml"/>
+    	<mapper resource="Sql/mypageSQL.xml"/>
+	</mappers>
 
-  <typeAliases>
-    <typeAlias alias="MemberDto" type="Member.MemberDto"></typeAlias>
-    <typeAlias alias="CDto" type="Food.CDto"></typeAlias>
-    <typeAlias alias="GameDto" type="Game.GameDto"></typeAlias>
-    
-  </typeAliases>
-  
-  <mappers>
-    <mapper resource="Sql/signSQL.xml"/>
-    <mapper resource="Sql/cSQL.xml"/>
-    <mapper resource="Sql/gameSQL.xml"/>
-    <mapper resource="Sql/mypageSQL.xml"/>
-    
-  </mappers>
+ 
 
 </configuration>
  

@@ -1,3 +1,5 @@
+<%@page import="javax.xml.crypto.Data"%>
+<%@page import="CommunityModel.CommunityDto"%>
 <%@page import="CommunityModel.BoardList"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -22,6 +24,7 @@
 <body class="theme-blush">
 	<%
 		ArrayList<BoardList> boardList = (ArrayList<BoardList>) request.getAttribute("boardList");
+		CommunityDto dto = (CommunityDto) request.getAttribute("data");
 	%>
 <script src="http://code.jquery.com/jquery.js"></script>
 
@@ -35,7 +38,7 @@
 							class="zmdi zmdi-home"></i> BoardCa</a></li>
 					<li class="breadcrumb-item"><a
 						href="${pageContext.request.contextPath}/Community_main.do">Community</a></li>
-					<li class="breadcrumb-item active">글올리기</li>
+					<li class="breadcrumb-item active">수정하기</li>
 				</ul>
 				<button class="btn btn-primary btn-icon mobile_menu" type="button">
 					<i class="zmdi zmdi-sort-amount-desc"></i>
@@ -49,15 +52,23 @@
                     <div class="card">
                         <div class="body">
                             <div class="form-group">
-                                <input type="text" class="form-control" id="title" placeholder="제목을 입력해주세요" maxlength="133"/>
+                                <input type="text" class="form-control" id="title" placeholder="제목을 입력해주세요" maxlength="133" value="<%=dto.getTitle()%>"/>
                             </div>
 							<select class="form-control show-tick" id="select">
 								<option>게시판을 선택해주세요.</option>
 								<%
 									for (int i = 0; i < boardList.size(); i++) {
+										int  boardnum = dto.getBoardnum();
+										if(boardnum == i+1){
+											%>
+											<option selected="selected"><%=boardList.get(i).getBOARDNAME()%></option>
+											<%
+										}
+										else{
 								%>
 								<option><%=boardList.get(i).getBOARDNAME()%></option>
 								<%
+										}
 									} // end of for
 								%>
 							</select>
@@ -79,6 +90,7 @@
 	<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
 	<script>
       $( document ).ready( function() {
+    	  $( '.note-editable' ).append("<%=dto.getContent()%>")
     	  $('#submit').click(function() {
     		  var select = $('#select').val();
     		  var title = $('#title').val();

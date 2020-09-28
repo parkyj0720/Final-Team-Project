@@ -7,7 +7,7 @@ public class CommunityDto {
 	String title;
 	String writer_id;
 	String written_date;
-	String content;
+	String asd;
 	int views;
 	int boardnum;
 	
@@ -22,7 +22,7 @@ public class CommunityDto {
 		this.title = title;
 		this.writer_id = writer_id;
 		this.written_date = written_date;
-		this.content = content;
+		this.asd = content;
 		this.views = views;
 		this.boardnum = boardnum;
 	}
@@ -69,12 +69,12 @@ public class CommunityDto {
 
 
 	public String getContent() {
-		return content;
+		return asd;
 	}
 
 
 	public void setContent(String content) {
-		this.content = content;
+		this.asd = content;
 	}
 
 
@@ -101,7 +101,7 @@ public class CommunityDto {
 	@Override
 	public String toString() {
 		return "CommunityDto [num=" + num + ", title=" + title + ", writer_id=" + writer_id + ", written_date="
-				+ written_date + ", content=" + content + ", views=" + views + ", boardnum=" + boardnum + "]";
+				+ written_date + ", cont=" + asd + ", views=" + views + ", boardnum=" + boardnum + "]";
 	}
 
 }

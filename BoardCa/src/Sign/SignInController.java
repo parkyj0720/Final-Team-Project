@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
+import java.net.InetAddress;
 import java.net.URL;
 
 import javax.servlet.http.HttpServletRequest;
@@ -56,7 +57,7 @@ public class SignInController {
 		if (ip == null) {
 			ip = req.getRemoteAddr();
 
-			sedto.setIp(ip);
+			sedto.setSess_ip(ip);
 		}
 
 		// 1.문서를 읽기위한 공장을 만들어야 한다.
@@ -79,16 +80,18 @@ public class SignInController {
 			i++;
 		}
 		// settingDto 에 나라 코드를 넣는다.
-		sedto.setPlace(country);
+		sedto.setSess_field(country);
 
 		String userId = req.getParameter("userId");
 		String userToken = req.getParameter("userToken");
 
-		sedto.setMove("로그인(성공)");
+		sedto.setSess_move("로그인(성공)");
 		session.setAttribute("userId", userId);
 		session.setAttribute("userToken", userToken);
 		session.setAttribute("userToken2", "1");
-		
+
+		memDao.sessionInput(sedto);
+
 		mv.setViewName("/main/main.jsp");
 
 		return mv;
@@ -99,26 +102,35 @@ public class SignInController {
 	public ModelAndView signPro(MemberDto dto, SessionDto sedto, HttpSession session, HttpServletRequest req)
 			throws SAXException, IOException, ParserConfigurationException {
 		// memDao = new MemberDao();
-		String ip = req.getHeader("X-FORWARDED-FOR");
-		if (ip == null) {
-			ip = req.getRemoteAddr();
 
-			sedto.setIp(ip);
-		}
+		/*
+		 * String ip = req.getHeader("X-FORWARDED-FOR");
+		 * 
+		 * if (ip == null) { ip = req.getRemoteAddr();
+		 * 
+		 * }
+		 */
 
+		InetAddress inetAddress= InetAddress.getLocalHost();
+		String ip = inetAddress.getHostAddress();
+		
+
+		System.out.println(ip + "sssssssssssssssssssss");
 		// 1.문서를 읽기위한 공장을 만들어야 한다.
 		DocumentBuilderFactory fatory = DocumentBuilderFactory.newInstance();
 		// 2.빌더를 생성
 		DocumentBuilder builder = fatory.newDocumentBuilder();
 		// 3.생성된 빌더를 통해서 xml문서를 Document객체로 파싱해서 가져온다.
 		// Document org에서 가져온다!!!
-		Document doc = builder.parse(
-				"http://whois.kisa.or.kr/openapi/ipascc.jsp?query=192.168.219.111&key=2020081914462601995405&answer=xml");
+		Document doc = builder.parse("http://whois.kisa.or.kr/openapi/ipascc.jsp?query=" + ip
+				+ "&key=2020092812534662722565&answer=xml");
 		NodeList list = doc.getElementsByTagName("countryCode");
 
 		int i = 0;
 		Element element;
 		String country = null;
+
+		System.out.println(doc);
 
 		while (list.item(i) != null) {
 			element = (Element) list.item(i);
@@ -126,7 +138,7 @@ public class SignInController {
 			i++;
 		}
 		// settingDto 에 나라 코드를 넣는다.
-		sedto.setPlace(country);
+		sedto.setSess_field(country);
 
 		String userId = req.getParameter("userId");
 		String userPw = req.getParameter("userPw");
@@ -134,16 +146,27 @@ public class SignInController {
 		dto.setMem_id(userId);
 		dto.setMem_pw(userPw);
 
+//		작성한 아이디가 있는지 체크
 		int idCheck = memDao.idCheck(userId);
+
 		if (idCheck == 1) {
 			String dbPw = memDao.signIn(userId);
+			// 해당아이디의 비밀번호와 입력한 비밀번호가 맞는지 체크
 			if (userPw.equals(dbPw)) {
-				sedto.setMove("로그인(성공)");
+//				해당 아이디의 회원번호 가져오기
+				int searchIdx = memDao.searchIdx(userId);
+
+				sedto.setSess_move("로그인(성공)");
+				sedto.setMem_idx(searchIdx);
+
 				session.setAttribute("userId", userId);
 				session.setAttribute("userToken2", "0");
+
+				System.out.println("@@@@@@@@@" + sedto);
+				memDao.sessionInput(sedto);
 				mv.setViewName("/main/main.jsp");
 			} else {
-				sedto.setMove("로그인(실패)");
+				sedto.setSess_move("로그인(실패)");
 				mv.setViewName("/sign/signError.jsp");
 			}
 		} else {
@@ -165,7 +188,6 @@ public class SignInController {
 
 		String userToken = session.getAttribute("userToken").toString();
 		System.out.println("1111111111111111@@@        " + userToken);
-		
 
 		try {
 			URL url = new URL(RequestUrl);
@@ -184,17 +206,17 @@ public class SignInController {
 			while ((line = br.readLine()) != null) {
 				result += line;
 			}
-			
+
 			session.removeAttribute("userToken");
 			session.removeAttribute("userId");
 
 			session.invalidate();
-			
+
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		mv.setViewName("/sign/logout.jsp");
 		return mv;
 	}

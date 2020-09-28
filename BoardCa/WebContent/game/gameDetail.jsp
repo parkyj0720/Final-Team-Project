@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page import="Game.GameDto" %>
+<%@ page import="Game.GameDto"%>
+<%@ page import="java.util.List"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,7 +27,8 @@
 	href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
 
 </head>
-<% GameDto dto = (GameDto)request.getAttribute("dto");
+<%
+	GameDto dto = (GameDto) request.getAttribute("dto");
 %>
 <body class="ls-closed ls-toggle-menu ">
 	<script>
@@ -98,7 +100,7 @@
 							<div class="row">
 								<div class="col-xl-12 col-lg-12 col-md-12">
 									<div class="preview preview-pic tab-content">
-										<h3 class="mb-0"><%=dto.getGAME_TIT() %></h3>
+										<h3 class="mb-0"><%=dto.getGAME_TIT()%></h3>
 										<div class="tab-pane active" id="player"></div>
 									</div>
 								</div>
@@ -112,45 +114,37 @@
 								<div class="body">
 									<div class="row">
 										<div class="col-lg-12">
-											<div class="body">randon</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
+											<div><h3>추천영상</h3></div>
+											<div class="row clearfix">
+												<%
+													List<GameDto> list = (List<GameDto>) request.getAttribute("gameList");
+												%>
 
-					<div class="container-fluid">
-						<div class="row clearfix">
-							<div class="card">
-								<div class="body">
-									<div class="row">
-										<div class="col-lg-12">
-											<div class="body">
-												<small>Your email address will not be published.
-													Required fields are marked*</small>
-												<form class="row comment-form mt-2">
-													<div class="col-xl-6 col-lg-6	col-md-6">
-														<div class="form-group">
-															<input type="text" class="form-control"
-																placeholder="Your Name">
-														</div>
-													</div>
-													<div class="col-xl-6 col-lg-6	col-md-6">
-														<div class="form-group">
-															<input type="text" class="form-control"
-																placeholder="Email Address">
-														</div>
-													</div>
+												<%
+													for (int i = 0; i < 6; i++) {
+													GameDto dto1 = list.get(i);
+												%>
+												<div class="col-lg-2 col-md-2 col-sm-2">
+													<div class="card">
+														<div class="file">
 
-													<div class="col-xl-12 col-lg-12	col-md-12">
-														<div class="form-group">
-															<textarea rows="4" class="form-control no-resize"
-																placeholder="Please type what you want..."></textarea>
+															<a
+																href="${pageContext.request.contextPath}/gameDetail.do?no=<%=dto1.getGAME_IDX() %>">
+
+																<div class="thumbnail icon">
+																	<img src="<%=dto1.getGAME_MINI()%>">
+																</div>
+																<div class="file-name">
+																	<h6 class="m-b-5 text-muted"><%=dto1.getGAME_TIT()%><h6>
+																</div>
+															</a>
 														</div>
-														<button type="submit" class="btn btn btn-primary">SUBMIT</button>
 													</div>
-												</form>
+												</div>
+												<%
+													}
+												%>
+
 											</div>
 										</div>
 									</div>
@@ -158,44 +152,83 @@
 							</div>
 						</div>
 					</div>
+				</div>
+
+				<div class="container-fluid">
+					<div class="row clearfix">
+						<div class="card">
+							<div class="body">
+								<div class="row">
+									<div class="col-lg-12">
+										<div class="body">
+											<small>Your email address will not be published.
+												Required fields are marked*</small>
+											<form class="row comment-form mt-2">
+												<div class="col-xl-6 col-lg-6	col-md-6">
+													<div class="form-group">
+														<input type="text" class="form-control"
+															placeholder="Your Name">
+													</div>
+												</div>
+												<div class="col-xl-6 col-lg-6	col-md-6">
+													<div class="form-group">
+														<input type="text" class="form-control"
+															placeholder="Email Address">
+													</div>
+												</div>
+
+												<div class="col-xl-12 col-lg-12	col-md-12">
+													<div class="form-group">
+														<textarea rows="4" class="form-control no-resize"
+															placeholder="Please type what you want..."></textarea>
+													</div>
+													<button type="submit" class="btn btn btn-primary">SUBMIT</button>
+												</div>
+											</form>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
 
 
-					<div class="container-fluid">
-						<div class="row clearfix">
-							<div class="card">
-								<div class="body">
-									<div class="row">
-										<div class="col-lg-12">
-											<div class="col-xl-9 col-lg-8 col-md-12">
-												<h2>
-													<strong>Comments</strong> (2)
-												</h2>
-											</div>
-											<div class="col-xl-12 col-lg-12	col-md-12">
-												<ul class="comment-reply ">
-													<li>
-														<div class="text-box " style="width: auto;">
-															<h5>Kareem Todd</h5>
-															<span class="comment-date">Wednesday, October 17,
-																2018 at 4:00PM.</span>
-															<p>There are many variations of passages of Lorem
-																Ipsum available, but the majority have suffered
-																alteration in some form, by injected humour.</p>
-														</div>
-													</li>
-													<li>
+				<div class="container-fluid">
+					<div class="row clearfix">
+						<div class="card">
+							<div class="body">
+								<div class="row">
+									<div class="col-lg-12">
+										<div class="col-xl-9 col-lg-8 col-md-12">
+											<h2>
+												<strong>Comments</strong> (2)
+											</h2>
+										</div>
+										<div class="col-xl-12 col-lg-12	col-md-12">
+											<ul class="comment-reply ">
+												<li>
+													<div class="text-box " style="width: auto;">
+														<h5>Kareem Todd</h5>
+														<span class="comment-date">Wednesday, October 17,
+															2018 at 4:00PM.</span>
+														<p>There are many variations of passages of Lorem
+															Ipsum available, but the majority have suffered
+															alteration in some form, by injected humour.</p>
+													</div>
+												</li>
+												<li>
 
-														<div class="text-box " style="width: auto;">
-															<h5>Stillnot david</h5>
-															<span class="comment-date">Wednesday, October 17,
-																2018 at 4:00PM.</span>
-															<p>Lorem Ipsum is simply dummy text of the printing
-																and typesetting industry. Lorem Ipsum has been the
-																industry's standard dummy.</p>
-														</div>
-													</li>
-												</ul>
-											</div>
+													<div class="text-box " style="width: auto;">
+														<h5>Stillnot david</h5>
+														<span class="comment-date">Wednesday, October 17,
+															2018 at 4:00PM.</span>
+														<p>Lorem Ipsum is simply dummy text of the printing
+															and typesetting industry. Lorem Ipsum has been the
+															industry's standard dummy.</p>
+													</div>
+												</li>
+											</ul>
 										</div>
 									</div>
 								</div>
@@ -205,6 +238,7 @@
 				</div>
 			</div>
 		</div>
+	</div>
 	</div>
 
 

@@ -366,13 +366,13 @@
 					<div class="form-group form-float col-sm-9" id="checkId"></div>
 
 					<div class="form-group form-float col-sm-9 margin-auto" style="padding-bottom: 1rem;">
-						<input type="text" class="form-control" onblur="chkPW()"
+						<input type="password" class="form-control" onblur="chkPW()"
 							placeholder="비밀번호 ( 8~20자, 영문, 숫자, 특수문자 포함 )"
 							style="display: inline-block;" value="" name="inputPw"
 							id="inputPw">
 					</div>
 					<div class="form-group form-float col-sm-9 margin-auto">
-						<input type="text" class="form-control" onblur="equalPwCk()"
+						<input type="password" class="form-control" onblur="equalPwCk()"
 							placeholder="비밀번호 확인" style="display: inline-block;"
 							name="inputPwCk" id="inputPwCk">
 					</div>

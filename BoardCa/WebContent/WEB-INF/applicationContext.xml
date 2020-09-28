@@ -32,7 +32,7 @@
   
   <!--MySQL dataSource  -->
   
-   <bean id="dataSource"
+<bean id="dataSource"
         class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"></property>
         <property name="url"
@@ -40,7 +40,7 @@
         </property>
         <property name="username" value="admin"></property>
         <property name="password" value="comstudy03"></property>
-    </bean>        
+    </bean>   
         
   <!-- orcl SqlSessionFactoryBean -->
   <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
@@ -71,6 +71,7 @@
 	<context:component-scan base-package="Board3" />
 	<context:component-scan base-package="Board4" />
 	<context:component-scan base-package="Community" />
+	<context:component-scan base-package="CommunityModel" />
 	<context:component-scan base-package="Food" />
 	<context:component-scan base-package="Game" />
 	<context:component-scan base-package="Main" />

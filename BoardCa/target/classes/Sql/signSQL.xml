@@ -5,6 +5,7 @@
 
 <mapper namespace="signXml">
 
+	<!--  -->
 	<select id="idCheck" resultType="int" parameterType="MemberDto">
 		select count(*)
 		from MEMBER_T
@@ -12,11 +13,9 @@
 	</select>
 	
 	<select id="Listall" resultType="MemberDto">
-	
 		select *
 		from MEMBER_T;
-	
-	</select>
+	</select> 
 	
 	<select id="nickNameCheck" resultType="int" parameterType="MemberDto">
 		select count(*)
@@ -30,11 +29,24 @@
 		from MEMBER_T
 		where MEM_ID=#{userId}
 	</select>
+	<select id="searchIdx" resultType="int" parameterType="MemberDto">
+		SELECT MEM_IDX
+		FROM MEMBER_T 
+		WHERE MEM_ID = #{userId}	
+	</select>
 	
-	
-
-	<insert id="sessionInput" parameterType="Sign.SessionDto">
-
+	<insert id="sessionInput" parameterType="SessionDto">
+		INSERT INTO SESSION_T
+		( 	MEM_IDX
+			,SESS_IP
+			,SESS_MOVE
+			,SESS_FIELD
+		)VALUES(
+			#{mem_idx}
+			,#{sess_ip}
+			,#{sess_move}
+			,#{sess_field}
+		)
 	</insert>
 
 	<insert id="memInsert" parameterType="MemberDto">

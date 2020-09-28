@@ -75,7 +75,7 @@
 							<div class="header" align="center">
 								<a
 									href="${pageContext.request.contextPath}/Community_list.do?list=<%=i+1%>"><h2
-										id="listname1"><%=blist.getBoard_name() %></h2></a>
+										id="listname1"><%=blist.getBOARDNAME()%></h2></a>
 							</div>
 							<div class="body" style="height: 30em;">
 								<table
@@ -138,7 +138,7 @@
 							<div class="header" align="center">
 								<a
 									href="${pageContext.request.contextPath}/Community_list.do?list=<%=i+1%>"><h2
-										id="listname1"><%=blist.getBoard_name() %></h2></a>
+										id="listname1"><%=blist.getBOARDNAME()%></h2></a>
 							</div>
 							<div class="body" style="height: 30em;">
 								<table
