@@ -225,7 +225,7 @@
 								</div>
 							</div>
 							<div class="input-group mb-3">
-								<input type="text" class="form-control" placeholder="Password"
+								<input type="password" class="form-control" placeholder="Password"
 									name="userPw" id="userPw">
 								<div class="input-group-append">
 									<span class="input-group-text"><a
