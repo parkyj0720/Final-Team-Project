@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import Member.GenderDto;
 import Member.MemberDao;
 
 @Controller
@@ -24,11 +25,15 @@ public class AdminController {
 		
 		mv.setViewName("/admin/adminPage.jsp");
 		
-		int man = MemberDao.Gender().get(0);
+		List<Object> g = MemberDao.Gender();
 		
-		int woman = MemberDao.Gender().get(1);
+		GenderDto gender = (GenderDto)g.get(0); 
 		
-		int secret = MemberDao.Gender().get(2);
+		int man = gender.getMan();
+		
+		int woman = gender.getWoman();
+		
+		int secret = gender.getSecret();
 		
 		// DB를 활용해 남성과 여성의 수를 카운트 한다.
 		

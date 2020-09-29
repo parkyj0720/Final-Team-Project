@@ -7,6 +7,7 @@
 	
 	<typeAliases>
 		<typeAlias alias="MemberDto" type="Member.MemberDto"></typeAlias>
+		<typeAlias alias="GenderDto" type="Member.GenderDto"></typeAlias>
 		<typeAlias alias="SessionDto" type="Sign.SessionDto"></typeAlias>
 		<typeAlias alias="CDto" type="Food.CDto"></typeAlias>
 		<typeAlias alias="BoardList" type="CommunityModel.BoardList"></typeAlias>

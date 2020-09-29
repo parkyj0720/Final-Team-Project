@@ -9,17 +9,15 @@
 		select *
 		from MEMBER_T;
 	</select>
-		
-	<select id="Man" resultType="int">
-		SELECT COUNT(*) FROM MEMBER_T WHERE MEM_GENDER='남'
-	</select>
 	
-	<select id="Woman" resultType="int">
-		SELECT COUNT(*) FROM MEMBER_T WHERE MEM_GENDER='여'
-	</select>
+	<select id="Gender" resultType="GenderDto">
+
+		SELECT 
+			COUNT(case when MEM_GENDER='남' then 1 END)AS man,
+			COUNT(case when MEM_GENDER='여' then 1 END)AS woman,
+			COUNT(case when MEM_GENDER='' then 1 end)AS secret
+		FROM MEMBER_T
 	
-	<select id="Secret" resultType="int">
-		SELECT COUNT(*) FROM MEMBER_T WHERE MEM_GENDER=''
 	</select>
 	
 

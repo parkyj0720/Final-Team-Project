@@ -57,21 +57,23 @@ public class MemberDao {
 	}
 	
 // 회원수의 성별 정보 리스트
-	public ArrayList<Integer> Gender() {
-		
-		ArrayList<Integer> gender = new ArrayList<Integer>();
-		
-		int man = mysqlSession.selectOne("MemberSQL.Man");
-		int woman = mysqlSession.selectOne("MemberSQL.Woman");
-		int secret = mysqlSession.selectOne("MemberSQL.Secret");
-		
-		gender.add(man);
-		gender.add(woman);
-		gender.add(secret);
+	
+	public List<Object> Gender(){
 		
 		
-		return gender;
+		List<Object> list = mysqlSession.selectList("MemberSQL.Gender");
+		
+		GenderDto gender = (GenderDto) list.get(0);
+		
+		int man = gender.getMan();
+		int woman = gender.getWoman();
+		int secret = gender.getSecret();
+		
+		System.out.println(man+", "+ woman+", "+ secret);
+		
+		return list;
 		
 	}
+	
 	
 }
