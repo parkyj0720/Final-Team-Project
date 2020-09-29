@@ -87,7 +87,6 @@ dependencies {
     //ted permission
     implementation "gun0912.ted:tedpermission:2.1.0"
     //다음맵
-    implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation files('libs\\libDaumMapAndroid.jar')
 
     //Circle Menu
@@ -120,7 +119,5 @@ dependencies {
     // 글작성 api
     implementation 'com.github.esafirm.android-image-picker:imagepicker:2.0.0'
     implementation 'com.github.lumyjuwon:Android-Rich-Wysiwyg-Editor:1.0.0'
-
-    implementation 'com.airbnb.android:lottie:2.1.0'
 
 }

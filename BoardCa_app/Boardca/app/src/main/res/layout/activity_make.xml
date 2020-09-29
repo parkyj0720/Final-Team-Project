@@ -6,9 +6,37 @@
     android:layout_height="match_parent"
     tools:context=".ui.community.MakeActivity"
     >
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:id="@+id/rg1"
+        android:layout_alignParentTop="true">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/menu_community" />
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/rb1"
+            android:text="@string/menu_community_sub1"></RadioButton>
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/rb2"
+            android:text="@string/menu_community_sub2"></RadioButton>
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/rb3"
+            android:text="@string/menu_community_sub3"></RadioButton>
+    </RadioGroup>
 
     <com.lumyjuwon.richwysiwygeditor.RichWysiwyg
         android:id="@+id/richwysiwygeditor"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:layout_below="@+id/rg1"/>
+
 </RelativeLayout>
