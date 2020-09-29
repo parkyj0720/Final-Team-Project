@@ -156,6 +156,7 @@ public class SignInController {
 //				해당 아이디의 회원번호 가져오기
 				int searchIdx = memDao.searchIdx(userId);
 
+				sedto.setSess_ip(ip);
 				sedto.setSess_move("로그인(성공)");
 				sedto.setMem_idx(searchIdx);
 

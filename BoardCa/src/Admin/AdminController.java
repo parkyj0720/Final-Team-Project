@@ -29,9 +29,10 @@ public class AdminController {
 				
 		mv.setViewName("/admin/adminEdit.jsp");
 		
-		List<Object> list = MemberDao.ListAll();
+				
+		List<Object> list = MemberDao.ListAll(); // 멤버 DB를 가져옴
 		
-		request.setAttribute("list", list);
+		request.setAttribute("list", list); // request에 DB에서 가져온 리스트를 넣음
 		
 		return mv;
 	}

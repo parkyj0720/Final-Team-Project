@@ -1,4 +1,5 @@
-<%@page import="org.springframework.web.context.support.SpringBeanAutowiringSupport"%>
+<%@page
+	import="org.springframework.web.context.support.SpringBeanAutowiringSupport"%>
 <%@page import="org.springframework.beans.factory.annotation.Autowired"%>
 <%@page import="java.util.List"%>
 <%@page import="Member.MemberDao"%>
@@ -18,21 +19,22 @@
 	content="Responsive Bootstrap 4 and web Application ui kit.">
 
 <title></title>
-<link rel="icon" href="${pageContext.request.contextPath}/stylesheet/favicon.ico"
+<link rel="icon"
+	href="${pageContext.request.contextPath}/stylesheet/favicon.ico"
 	type="image/x-icon">
 <!-- Favicon-->
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/stylesheet/assets/plugins/bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/stylesheet/assets/css/style.min.css">
-	
+
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/stylesheet/assets/plugins/sweetalert/sweetalert.css">
 <!-- JQuery DataTable Css -->
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/stylesheet/assets/plugins/jquery-datatable/dataTables.bootstrap4.min.css">
-	
-	
+
+
 <style>
 select {
 	margin-bottom: 5em;
@@ -166,6 +168,9 @@ select {
 														aria-label="닉네임" style="width: 30px;">닉네임</th>
 													<th class="sorting" tabindex="0"
 														aria-controls="DataTables_Table_0" rowspan="1" colspan="1"
+														aria-label="이메일" style="width: 30px;">이메일</th>
+													<th class="sorting" tabindex="0"
+														aria-controls="DataTables_Table_0" rowspan="1" colspan="1"
 														aria-label="관리자 권한" style="width: 30px;">관리자 권한</th>
 													<th class="sorting" tabindex="0"
 														aria-controls="DataTables_Table_0" rowspan="1" colspan="1"
@@ -182,36 +187,38 @@ select {
 
 											<tbody>
 
-											<%
-											
-											List<Object> list = (List<Object>)request.getAttribute("list");							
-											
-											for(int i=0; i<list.size();i++){
-												
-												MemberDto dto = (MemberDto)list.get(i);
-												
-																							
-												if(dto.getMem_id().equals("ADMIN")){
-													continue;
-												}
-												
+												<%
+													// request를 이용해서 컨트롤러에서 멤버 DB를 가져온다.
+
+												List<Object> list = (List<Object>) request.getAttribute("list");
+
+												for (int i = 0; i < list.size(); i++) {
+
+													MemberDto dto = (MemberDto) list.get(i);
+
+													if (dto.getMem_id().equals("ADMIN")) {
+														continue;
+													}
 												%>
-												
+
 												<tr class="clickBtn ">
-												
-												<td><%= dto.getMem_idx()%></td>
-												<td><%=dto.getMem_nickname()%></td>
-												<td><%=dto.getMem_mng_gwonhan()%></td>
-												<td><%=dto.getMem_login_gwonhan()%></td>
-												<td><%=dto.getMem_board_gwonhan()%></td>
-												<td><%=dto.getMEM_SYSDATE()%></td>
-												
+
+													<td><%=dto.getMem_idx()%></td>
+													<td><%=dto.getMem_nickname()%></td>
+													<td><%=dto.getMem_email()%></td>
+													<td><%=dto.getMem_mng_gwonhan()%></td>
+													<td><%=dto.getMem_login_gwonhan()%></td>
+													<td><%=dto.getMem_board_gwonhan()%></td>
+													<td><%=dto.getMEM_SYSDATE()%></td>
+
 												</tr>
-											
-											<%} %>
-																					
+
+												<%
+													}
+												%>
+
 											</tbody>
-											
+
 										</table>
 									</div>
 								</div>
@@ -235,8 +242,8 @@ select {
 							</div>
 						</div>
 					</div>
-					
-					
+
+
 				</div>
 			</div>
 		</div>

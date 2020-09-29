@@ -133,7 +133,7 @@ public class MemberDto {
 	}
 
 	public void setMEM_SYSDATE(Timestamp MEM_SYSDATE) {
-		MEM_SYSDATE = MEM_SYSDATE;
+		this.MEM_SYSDATE = MEM_SYSDATE;
 	}
 
 	@Override
