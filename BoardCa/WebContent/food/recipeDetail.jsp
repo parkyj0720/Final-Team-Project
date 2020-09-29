@@ -1,3 +1,4 @@
+<%@page import="Member.MemberDto"%>
 <%@page import="Food.CDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -27,6 +28,11 @@
 <script src="http://code.jquery.com/jquery.js"></script>
 
 <% CDto dto = (CDto)request.getAttribute("dto");
+	MemberDto mDto = null;
+	if(request.getAttribute("detailCheck") != null){
+		mDto = (MemberDto)request.getAttribute("detailCheck");
+	}
+	System.out.println(mDto);
 %>
 
 <script>
@@ -44,6 +50,23 @@
 	});
 	
 	$(document).ready(function(){
+		
+		$('#modifyBtn').on('click',function(){
+			$('#btnForm').attr('action','${pageContext.request.contextPath}/cModify.do?no='+<%=dto.getREC_IDX()%>);
+
+			$('#btnForm').submit();
+		});
+		
+
+		$('#deleteBtn').on('click',function(){
+			$('#btnForm').attr('action','${pageContext.request.contextPath}/cDelete.do?no='+<%=dto.getREC_IDX()%>);
+			yesno = window.confirm("정말 삭제하시겠습니까?");
+			if(yesno == 1){
+				$('#btnForm').submit();				
+			}else{
+				return false;
+			}
+		});
 		
 		/* $(window).resize(function() {
 			var detail_h = $('.r_detail').height();
@@ -187,7 +210,8 @@
 												<td style="padding-left: 100px;"><%=order_arr[i] %></td>
 												<% i++; %>
 												<% if(i < order_arr.length || order_arr[i].indexOf("jpg") != -1 || order_arr[i].indexOf("png") != -1 || order_arr[i].indexOf("gif") != -1){ %>
-												<td style="padding-left: 150px; padding-bottom:20px; width:400px; height:200px;"><img src="${pageContext.request.contextPath}/upload/<%=order_arr[i] %>"></td>
+												<td style="padding-left: 150px; padding-bottom:20px; width:400px; height:200px;">
+												<img src="<%=(order_arr[i].indexOf("http") != -1)?order_arr[i]:request.getContextPath()+"/upload/"+order_arr[i]%>"></td>
 												<% } %>
 											</tr>
 											<% cnt++;} %>
@@ -201,7 +225,10 @@
 				</div>
 			</div>
 		</div>
-
+		<form action="" method="post" id="btnForm" style="margin-top:-10px; padding-left: 15px; padding-right:15px; padding-bottom:15px; visibility: <%=(mDto != null && mDto.getMem_mng_gwonhan() == 1)?"visible":"hidden"%>;">
+			<button type="button" id="modifyBtn">글 수정</button>
+			<button type="button" id="deleteBtn">글 삭제</button>
+		</form>
 
 		<div class="container-fluid">
 			<div class="row clearfix">

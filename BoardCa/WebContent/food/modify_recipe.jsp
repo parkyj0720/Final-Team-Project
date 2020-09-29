@@ -1,3 +1,4 @@
+<%@page import="Food.CDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -26,6 +27,9 @@
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
 <script src="http://code.jquery.com/jquery.js"></script>
+<%
+	CDto dto = (CDto)request.getAttribute("dto");
+%>
 <script>
 	$('#like').text();
 	var count = 0;
@@ -113,7 +117,7 @@
 									- $main_img.height();
 						}
 						$('#content_area').css('height', r_detail_h + 'px');
-
+						
 						$(window)
 								.resize(
 										function() {
@@ -395,17 +399,17 @@
 							<div class="row "> <!-- r_detail -->
 								<div class="col-xl-3 col-lg-4 col-md-12 flex_check">
 									<!-- <img id="main_img" src="https://recipe1.ezmember.co.kr/cache/recipe/2020/08/25/0fbfab533f6ade9b81906d52a91585551.jpg" style="width:100%; height:100%"> -->
-										<input type="file" class="dropify r_detail" name="file">
-									</div>
+									<!-- <input type="file" class="dropify r_detail" name="file"> -->
+								</div>
 								<div class="col-xl-9 col-lg-8 col-md-12">
 									<div class="product details detail_header">
 										제목 <input type="text" style="width: 100%;" name="title"
-											value="초간단 맥주안주:모짜렐라치즈없이 콘치즈만들기">
+											value="<%=dto.getREC_TIT()%>">
 
 										<hr>
 										음식 설명
 										<textarea id="content_area" name="explain"
-											style="width: 100%; height: 200px; resize: none;">맥주는 먹고 싶고 안주는 없어서 간단히 만들어봤어요.</textarea>
+											style="width: 100%; height: 200px; resize: none;"><%=dto.getREC_CONTENT()%></textarea>
 									</div>
 
 								</div>
@@ -421,9 +425,9 @@
 										<h6>레시피정보</h6>
 										<hr>
 										<p>
-											기준인원: <input type="text" value="1" size="10" dir="rtl" name="standard"><br>
-											조리시간: <input type="text" value="10" size="10"dir="rtl" name="cooking_time"><br>
-											난이도: <input type="text" value="쉬움" style="margin-left: 14px" size="10" dir="rtl" name="difficult">
+											기준인원: <input type="text" value="<%=dto.getREC_PEOPLE()%>" size="10" dir="rtl" name="standard"><br>
+											조리시간: <input type="text" value="<%=dto.getREC_COOKING_TIME()%>" size="10"dir="rtl" name="cooking_time"><br>
+											난이도: <input type="text" value="<%=dto.getREC_DIFICULTY()%>" style="margin-left: 14px" size="10" dir="rtl" name="difficult">
 										</p>
 									</div>
 								</div>
@@ -503,5 +507,6 @@
 			src="${pageContext.request.contextPath}/stylesheet/assets/plugins/dropify/js/dropify.min.js"></script>
 		<script
 			src="${pageContext.request.contextPath}/stylesheet/assets/js/pages/forms/dropify.js"></script>
+
 </body>
 </html>

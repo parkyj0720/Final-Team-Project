@@ -51,4 +51,17 @@
 	#{REC_COOKING_METHOD})
 </insert>
 
+<delete id="deleteRecipe" parameterType="int">
+	delete
+	from RECIPE_T
+	where REC_IDX = #{rec_idx}
+</delete>
+
+<select id="memberInfo" resultType="Member.MemberDto" parameterType="String">
+	select *
+	from MEMBER_T
+	where MEM_ID = #{userId}
+</select>
+
+
 </mapper>

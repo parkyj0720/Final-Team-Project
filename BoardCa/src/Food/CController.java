@@ -6,6 +6,7 @@ import java.util.Properties;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 import org.python.core.PyFunction;
@@ -22,6 +23,8 @@ import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import com.oreilly.servlet.multipart.FileRenamePolicy;
 
+import Member.MemberDto;
+
 @Controller
 public class CController {
 	@Autowired
@@ -32,7 +35,7 @@ public class CController {
 	
 	// 레시피 전체 목록 맵핑
 	@RequestMapping("/cListAll.do")
-	public ModelAndView getList(HttpServletRequest req) {
+	public ModelAndView getList(HttpServletRequest req, HttpSession session) {
 		// 페이지 기본값
 		int page= 1;
 		if(req.getParameter("page") != null)
@@ -40,6 +43,14 @@ public class CController {
 			page = Integer.parseInt(req.getParameter("page"));
 			if(page<=0)
 				page = 1;
+		}
+		
+		// 관리자 확인을 위한 멤버정보 확인
+		if(session.getAttribute("userId") != null) {
+			String userId = (String) session.getAttribute("userId");
+			MemberDto mDto = dao.memberInfo(userId);
+			System.out.println(mDto);
+			mv.addObject("detailCheck",mDto);
 		}
 		
 		// 레시피 목록 받아오기
@@ -50,7 +61,7 @@ public class CController {
 	
 	// 상세 페이지 맵핑
 	@RequestMapping("/cDetail.do")
-	public ModelAndView detail(HttpServletRequest req) {
+	public ModelAndView detail(HttpServletRequest req, HttpSession session) {
 		
 		// 레시피 게시글 번호 받아오기
 		int r_board_no = Integer.parseInt(req.getParameter("no"));
@@ -60,6 +71,14 @@ public class CController {
 		
 		mv.addObject("dto",dto);
 		
+		// 관리자 확인을 위한 멤버정보 확인
+		if(session.getAttribute("userId") != null) {
+			String userId = (String) session.getAttribute("userId");
+			MemberDto mDto = dao.memberInfo(userId);
+			System.out.println(mDto);
+			mv.addObject("detailCheck",mDto);
+		}
+		
 		// 레시피 상세정보 페이지
 		mv.setViewName("/food/recipeDetail.jsp");
 		return mv;
@@ -67,7 +86,7 @@ public class CController {
 	
 	// 검색 기능
 	@RequestMapping("/cSearch.do")
-	public ModelAndView search(HttpServletRequest req) {
+	public ModelAndView search(HttpServletRequest req, HttpSession session) {
 		int page= 1;
 		if(req.getParameter("page") != null)
 		{
@@ -77,6 +96,14 @@ public class CController {
 		}
 		// 검색어 받아오기
 		String search = req.getParameter("inputSearch");
+		
+		// 관리자 확인을 위한 멤버정보 확인
+		if(session.getAttribute("userId") != null) {
+			String userId = (String) session.getAttribute("userId");
+			MemberDto mDto = dao.memberInfo(userId);
+			System.out.println(mDto);
+			mv.addObject("detailCheck",mDto);
+		}
 		
 		// 검색한 단어에 해당하는 목록 받아서 저장
 		mv.addObject("cList",dao.getSearchList(search));
@@ -89,6 +116,30 @@ public class CController {
 	@RequestMapping("/cWrite.do")
 	public ModelAndView write(HttpServletRequest req) {
 		mv.setViewName("/food/write_recipe.jsp");
+		return mv;
+	}
+	
+	// 레시피 수정 페이지 이동
+	@RequestMapping("/cModify.do")
+	public ModelAndView modify(HttpServletRequest req) {
+		// 레시피 글 번호
+		int no = Integer.parseInt(req.getParameter("no"));
+		
+		// 가져온 번호에 대한 레시피 상세정보
+		CDto dto = dao.detail(no);
+		
+		mv.addObject("dto", dto);
+		mv.setViewName("/food/modify_recipe.jsp?no="+no);
+		return mv;
+	}
+	
+	// 삭제 기능
+	@RequestMapping("/cDelete.do")
+	public ModelAndView delete(HttpServletRequest req) {
+		
+		int cnt = dao.deleteRecipe(Integer.parseInt(req.getParameter("no")));
+		
+		mv.setViewName("/cListAll.do?page=1");
 		return mv;
 	}
 	

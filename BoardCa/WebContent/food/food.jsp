@@ -1,3 +1,4 @@
+<%@page import="Member.MemberDto"%>
 <%@page import="Food.CDto"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -46,6 +47,13 @@ white-space: nowrap;
 </head>
 
 <%
+	// 관리자인지 확인하기 위한 멤버정보
+	MemberDto mDto = null;
+	if(request.getAttribute("detailCheck") != null){
+		mDto = (MemberDto)request.getAttribute("detailCheck");
+	}
+	System.out.println(mDto);
+
 	String search = "";
 	// 검색 했는지 체크
 	if(request.getParameter("inputSearch") != null){
@@ -134,7 +142,7 @@ request.getParameter("test");
 				if(page == 0)
 					page = 10;
 			}
-			// 목록 버튼 사이즈 조절 
+			// 하단 목록 버튼 사이즈 조절 및 위치조정 
 			var wd = 0;
 			if($('.page-item').length >= maxList+2)
 			{
