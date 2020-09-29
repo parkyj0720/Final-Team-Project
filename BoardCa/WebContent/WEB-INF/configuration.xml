@@ -27,8 +27,9 @@
 		<mapper resource="Sql/CommunitySQL.xml" />
 		<mapper resource="Sql/gameSQL.xml"/>
     	<mapper resource="Sql/mypageSQL.xml"/>
+    	<mapper resource="Sql/MemberSQL.xml"/>
+    	
 	</mappers>
-
  
 
 </configuration>

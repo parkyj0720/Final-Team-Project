@@ -52,9 +52,26 @@ public class MemberDao {
 	
 // 회원정보 전체 list
 	public List<Object> ListAll() {		
-		List<Object> list = mysqlSession.selectList("signXml.Listall");		
+		List<Object> list = mysqlSession.selectList("MemberSQL.Listall");		
 		return list;
 	}
 	
+// 회원수의 성별 정보 리스트
+	public ArrayList<Integer> Gender() {
+		
+		ArrayList<Integer> gender = new ArrayList<Integer>();
+		
+		int man = mysqlSession.selectOne("MemberSQL.Man");
+		int woman = mysqlSession.selectOne("MemberSQL.Woman");
+		int secret = mysqlSession.selectOne("MemberSQL.Secret");
+		
+		gender.add(man);
+		gender.add(woman);
+		gender.add(secret);
+		
+		
+		return gender;
+		
+	}
 	
 }

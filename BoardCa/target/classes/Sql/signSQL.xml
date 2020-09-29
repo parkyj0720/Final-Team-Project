@@ -12,10 +12,6 @@
 		where MEM_ID=#{userId}
 	</select>
 	
-	<select id="Listall" resultType="MemberDto">
-		select *
-		from MEMBER_T;
-	</select> 
 	
 	<select id="nickNameCheck" resultType="int" parameterType="MemberDto">
 		select count(*)

@@ -1,3 +1,5 @@
+<%@page import="org.springframework.beans.factory.annotation.Autowired"%>
+<%@page import="Member.MemberDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -196,12 +198,17 @@
 <script>
 
 
+var man = <%=request.getAttribute("man")%>
+var woman = <%=request.getAttribute("woman")%>
+var secret = <%=request.getAttribute("secret")%>
+
 var chart = c3.generate({
 	bindto: '#chart',
     data: {
         columns: [
-            ['남성', 500],
-            ['여성', 200],
+            ['남성', man],
+            ['여성', woman],
+            ['비공개', secret]
         ],
         type : 'donut',
         onclick: function (d, i) { console.log("onclick", d, i); },

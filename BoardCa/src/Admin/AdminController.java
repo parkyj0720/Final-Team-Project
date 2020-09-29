@@ -21,7 +21,23 @@ public class AdminController {
 	
 	@RequestMapping("/adminPage.do")
 	public ModelAndView myPage(HttpServletRequest request) {
+		
 		mv.setViewName("/admin/adminPage.jsp");
+		
+		int man = MemberDao.Gender().get(0);
+		
+		int woman = MemberDao.Gender().get(1);
+		
+		int secret = MemberDao.Gender().get(2);
+		
+		// DB를 활용해 남성과 여성의 수를 카운트 한다.
+		
+		request.setAttribute("man", man);
+		request.setAttribute("woman", woman);
+		request.setAttribute("secret", secret);
+		
+		// request에 카운트한 값들을 넣어준다. 
+		
 		return mv;
 	}
 	@RequestMapping("/adminEdit.do")
