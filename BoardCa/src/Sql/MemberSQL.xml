@@ -20,5 +20,18 @@
 	
 	</select>
 	
+	
+	<select id="AgeRange" resultType="AgeRangeDto">
+
+		SELECT 
+			COUNT(case when MEM_AGE_GROUP='20대' then 1 END)AS twenty,
+			COUNT(case when MEM_AGE_GROUP='30대' then 1 END)AS thirty,
+			COUNT(case when MEM_AGE_GROUP='40대' then 1 end)AS forty,
+			COUNT(case when MEM_AGE_GROUP='50대 이상' then 1 end)AS fifty,
+			COUNT(case when MEM_AGE_GROUP='' then 1 end)AS secret
+		FROM MEMBER_T
+	
+	</select>
+	
 
 </mapper>

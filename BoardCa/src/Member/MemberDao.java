@@ -74,6 +74,26 @@ public class MemberDao {
 		return list;
 		
 	}
+
+// 회원수의 나잇대 정보 리스트
+	
+	public List<Object> AgeRange(){
+		
+		List<Object> list = mysqlSession.selectList("MemberSQL.AgeRange");
+		
+		AgeRangeDto agerange = (AgeRangeDto) list.get(0);
+		
+		int twenty = agerange.getTwenty();
+		int thirty = agerange.getThirty();
+		int forty = agerange.getForty();
+		int fifty = agerange.getFifty();
+		int secret = agerange.getSecret();
+		
+		System.out.println(twenty+", "+ thirty+", "+ forty+", "+fifty + ", "+secret);
+		
+		return list;
+		
+	}
 	
 	
 }

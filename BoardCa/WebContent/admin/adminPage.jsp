@@ -220,7 +220,6 @@ var chart = c3.generate({
     }
 });
 
-
 var chart = c3.generate({
 	bindto: '#chart2',
     data: {
@@ -242,14 +241,21 @@ var chart = c3.generate({
     }
 });
 
+var twenty = <%=request.getAttribute("twenty")%>
+var thirty = <%=request.getAttribute("thirty")%>
+var forty = <%=request.getAttribute("forty")%>
+var fifty = <%=request.getAttribute("fifty")%>
+var agesecret = <%=request.getAttribute("agesecret")%>
+
 var chart = c3.generate({
 	bindto: '#chart3',
     data: {
         columns: [
-            ['20대', 3000],
-            ['30대', 1800],
-            ['40대', 1100],
-            ['50대이상', 1000],
+            ['20대', twenty],
+            ['30대', thirty],
+            ['40대', forty],
+            ['50대이상', fifty],
+            ['비공개', agesecret]
         ],
         type : 'donut',
         onclick: function (d, i) { console.log("onclick", d, i); },

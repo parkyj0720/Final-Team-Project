@@ -438,6 +438,10 @@
 										<input type="radio" name="gender" id="Female" class="with-gap"
 											value="여"> <label for="Female">여성</label>
 									</div>
+									<div class="radio inlineblock" style="margin: 0;">
+										<input type="radio" name="gender" id="secret" class="with-gap"
+											value=""> <label for="secret">비공개</label>
+									</div>
 								</div>
 							</c:when>
 							<c:when test="${userGender == 'female'}">
@@ -450,6 +454,10 @@
 										<input type="radio" name="gender" id="Female" class="with-gap"
 											value="여" checked> <label for="Female">여성</label>
 									</div>
+									<div class="radio inlineblock" style="margin: 0;">
+										<input type="radio" name="gender" id="secret" class="with-gap"
+											value=""> <label for="secret">비공개</label>
+									</div>
 								</div>
 							</c:when>
 						</c:choose>
@@ -460,19 +468,23 @@
 						<div class="form-group">
 							<div class="radio inlineblock m-r-20" style="margin: 0;">
 								<input type="radio" name="ageRange" id="one" class="with-gap"
-									value="10대" > <label for="one">10대</label>
+									value="20대" > <label for="one">20대</label>
 							</div>
 							<div class="radio inlineblock m-r-20" style="margin: 0;">
 								<input type="radio" name="ageRange" id="two" class="with-gap"
-									value="20대" checked> <label for="two">20대</label>
+									value="30대" checked> <label for="two">30대</label>
 							</div>
 							<div class="radio inlineblock" style="margin: 0;">
 								<input type="radio" name="ageRange" id="three" class="with-gap"
-									value="30대"> <label for="three">30대</label>
+									value="40대"> <label for="three">40대</label>
 							</div>
 							<div class="radio inlineblock" style="margin: 0;">
 								<input type="radio" name="ageRange" id="four" class="with-gap"
-									value="40대 이상"> <label for="four">40대 이상</label>
+									value="50대 이상"> <label for="four">50대 이상</label>
+							</div>
+							<div class="radio inlineblock" style="margin: 0;">
+								<input type="radio" name="ageRange" id="five" class="with-gap"
+									value=""> <label for="five">비공개</label>
 							</div>
 						</div>
 					</div>

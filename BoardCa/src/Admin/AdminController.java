@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import Member.AgeRangeDto;
 import Member.GenderDto;
 import Member.MemberDao;
 
@@ -42,6 +43,27 @@ public class AdminController {
 		request.setAttribute("secret", secret);
 		
 		// request에 카운트한 값들을 넣어준다. 
+		
+		List<Object> age = MemberDao.AgeRange();
+		
+		AgeRangeDto agerange = (AgeRangeDto)age.get(0);
+		
+		int twenty = agerange.getTwenty();
+		int thirty = agerange.getThirty();
+		int forty = agerange.getForty();
+		int fifty = agerange.getFifty();
+		int agesecret = agerange.getSecret();		
+		
+		// DB를 활용해 유저의 나잇대를 카운트한다.
+		
+		request.setAttribute("twenty", twenty);
+		request.setAttribute("thirty", thirty);
+		request.setAttribute("forty", forty);
+		request.setAttribute("fifty", fifty);
+		request.setAttribute("agesecret", agesecret);
+		
+		// request에 카운트한 값들을 넣어준다. 
+		
 		
 		return mv;
 	}
