@@ -3,7 +3,7 @@ package CommunityModel;
 public class Comment {
 	String writer_id;
 	String written_date;
-	String asd;
+	String content;
 	int content_num;
 	
 	public Comment() {
@@ -13,7 +13,7 @@ public class Comment {
 	public Comment(String writer_id, String written_date, String content, int content_num) {
 		this.writer_id = writer_id;
 		this.written_date = written_date;
-		this.asd = content;
+		this.content = content;
 		this.content_num = content_num;
 	}
 
@@ -30,10 +30,10 @@ public class Comment {
 		this.written_date = written_date;
 	}
 	public String getContent() {
-		return asd;
+		return content;
 	}
 	public void setContent(String content) {
-		this.asd = content;
+		this.content = content;
 	}
 	public int getContent_num() {
 		return content_num;
@@ -43,7 +43,7 @@ public class Comment {
 	}
 	@Override
 	public String toString() {
-		return "Comment [writer_id=" + writer_id + ", written_date=" + written_date + ", cont=" + asd
+		return "Comment [writer_id=" + writer_id + ", written_date=" + written_date + ", cont=" + content
 				+ ", content_num=" + content_num + "]";
 	}
 	

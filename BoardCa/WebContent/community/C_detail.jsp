@@ -140,7 +140,8 @@
 				<div class="header">
 					<h2>
 						<i class="zmdi zmdi-comments"></i><strong>댓글</strong> (<%=comment.size()%>)
-						<a href="${pageContext.request.contextPath}/Community_Modify.do?num=<%=dto.getNum()%>"><strong style="margin-left: 80px">수정</strong></a>
+						<a href="${pageContext.request.contextPath}/Community_Modify.do?num=<%=dto.getNum()%>"><strong style="margin-left: 80px; color: gray">수정</strong></a>
+						<span id="delete" style="cursor: pointer;"><strong style="margin-left: 20px; color: gray">삭제</strong></span>
 					</h2>
 					<%
 						String username = (String)session.getAttribute("userId");
@@ -176,10 +177,9 @@
 								<div class="form-group">
 									<textarea id="comment_area" rows="4"
 										class="form-control no-resize"
-										placeholder="Please type what you want..."></textarea>
+										placeholder="댓글을 작성해주세요"></textarea>
 								</div>
-								<button id="comment_submit" type="submit"
-									class="btn btn btn-primary" style="float: right;">SUBMIT</button>
+								<div id="comment_submit" class="btn btn btn-primary" style="float: right;">SUBMIT</div>
 							</div>
 						</form>
 					</div>
@@ -262,9 +262,50 @@
 				
 			}
 			});
-			$(".comment_submit").on("click", function() {
-
-			})
+			$("#delete").on("click", function() {
+				console.log('삭제버튼')
+				var dto = {
+						username : username,
+						content_num : num
+					};
+				console.log(num)
+				$.ajax({
+					url: "Community_delete.do",
+					type: "POST",
+					data: dto,
+					success: function () {
+						console.log('삭제성공')
+						setTimeout(() => {
+    		 	$(location).attr('href', '${pageContext.request.contextPath}/Community_list.do?list=<%=viewname.getBOARDNUM()%>');
+						
+					}, 100);
+			           }
+				})
+			});
+			$("#comment_submit").on("click", function() {
+				console.log('댓글입력버튼');
+				var comment_content = $('#comment_area').val();
+				if(comment_content == "" || comment_content == null){
+					alert('댓글 내용을 입력해주세요');
+				}else{
+					var dto = {
+							writer_id : username,
+							written_date : "",
+							content : comment_content,
+							content_num : num
+						};
+						$.ajax({
+							url: "Community_comment.do",
+							type: "POST",
+							data: dto,
+							success: function () {
+								alert('댓글 입력완료')
+					           }
+						})
+				}
+				
+				
+			});
 			 function recCount() {
 				console.log('카운트 들어옴')
 				$.ajax({
@@ -275,11 +316,11 @@
 	                    no: num
 	                },
 	                success: function (count) {
-	                	console.log(count)
-	                	$('#heart_size').text(count)
+	                	console.log(count);
+	                	$('#heart_size').text(count);
 	                },
 	                error: function() {
-						console.log('error')
+						console.log('error');
 					}
 				})
 		    };

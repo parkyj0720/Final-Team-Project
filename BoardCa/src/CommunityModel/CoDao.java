@@ -72,4 +72,9 @@ public class CoDao {
 		sqlSession.insert("CoXml.insert", dto);
 		System.out.println("입력끝");
 	}
+	public void delete_content(int num) {
+		sqlSession.delete("CoXml.delete_content_heart", num);
+		sqlSession.delete("CoXml.delete_content_comments", num);
+		sqlSession.delete("CoXml.delete_content", num);
+	}
 }

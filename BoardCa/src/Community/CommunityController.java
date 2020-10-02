@@ -137,9 +137,8 @@ public class CommunityController {
 		CommunityDto dto = new CommunityDto(0, data.getTitle(), data.getWriter_id(), "", data.getAsd(), 0,
 				data.getBoardnum());
 		dao.insert(dto);
-
 	}
-		 
+	// modify 
 	@RequestMapping("/Community_Modify.do")
 	public ModelAndView community_modify(HttpServletRequest request) {
 		int num = Integer.parseInt(request.getParameter("num"));
@@ -149,5 +148,23 @@ public class CommunityController {
 		return mv;
 	}
 	
+	// delete
+	@RequestMapping(value = "/Community_delete.do", method = RequestMethod.POST)
+
+	@ResponseBody
+	public void community_delete(Heart data, HttpServletRequest request) {
+		int num = data.getContent_num();
+		System.out.println(num);
+		dao.delete_content(num);
+	}
+	
+	
+	// delete
+	@RequestMapping(value = "/Community_comment.do", method = RequestMethod.POST)
+	
+	@ResponseBody
+	public void community_comment(Comment data, HttpServletRequest request) {
+		System.out.println(data);
+	}
 
 }
