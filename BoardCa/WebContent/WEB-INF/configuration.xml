@@ -9,6 +9,7 @@
 		<typeAlias alias="MemberDto" type="Member.MemberDto"></typeAlias>
 		<typeAlias alias="GenderDto" type="Member.GenderDto"></typeAlias>
 		<typeAlias alias="AgeRangeDto" type="Member.AgeRangeDto"></typeAlias>
+		<typeAlias alias="GwonhanDto" type="Member.GwonhanDto"></typeAlias>
 		<typeAlias alias="SessionDto" type="Sign.SessionDto"></typeAlias>
 		<typeAlias alias="CDto" type="Food.CDto"></typeAlias>
 		<typeAlias alias="BoardList" type="CommunityModel.BoardList"></typeAlias>
@@ -32,7 +33,6 @@
     	<mapper resource="Sql/MemberSQL.xml"/>
     	
 	</mappers>
- 
 
 </configuration>
  

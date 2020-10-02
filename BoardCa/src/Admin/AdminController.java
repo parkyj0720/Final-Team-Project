@@ -3,14 +3,18 @@ package Admin;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import Member.AgeRangeDto;
 import Member.GenderDto;
+import Member.GwonhanDto;
 import Member.MemberDao;
 
 @Controller
@@ -79,6 +83,23 @@ public class AdminController {
 		
 		return mv;
 	}
+	
+	@RequestMapping(value = "/adminmodify.do", method = RequestMethod.POST, produces="application/json")
+	@ResponseBody
+	public int adminmodify(GwonhanDto data,HttpServletRequest request, HttpSession session) {
+		
+		System.out.println("ajax 성공");
+		
+		System.out.println(data);
+		
+		MemberDao.GwonhanModify(data);
+		
+		return data.getGwonhancode();
+		
+	}
+	
+	
+	
 	@RequestMapping("/adminList.do")
 	public ModelAndView myWriteList(HttpServletRequest request) {
 		mv.setViewName("/admin/adminList.jsp");
