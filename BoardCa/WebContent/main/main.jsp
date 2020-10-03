@@ -42,7 +42,6 @@
 
 </head>
 <body>
-
 	<div class="container" style="padding: 15%;">
 		<div class="logoImg" style="width: 80%; margin:auto">
 			<img alt="logo"
