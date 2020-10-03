@@ -4,7 +4,7 @@ public class InputDto {
 	String title;
 	int boardnum;
 	String writer_id;
-	String asd;
+	String content;
 	
 	public InputDto() {
 		this("",0,"","");
@@ -14,12 +14,12 @@ public class InputDto {
 		this.title = title;
 		this.boardnum = boardnum;
 		this.writer_id = writer_id;
-		this.asd = asd;
+		this.content = asd;
 	}
 
 	@Override
 	public String toString() {
-		return "InputDto [title=" + title + ", boardnum=" + boardnum + ", writer_id=" + writer_id + ", asd=" + asd
+		return "InputDto [title=" + title + ", boardnum=" + boardnum + ", writer_id=" + writer_id + ", asd=" + content
 				+ "]";
 	}
 
@@ -48,11 +48,11 @@ public class InputDto {
 	}
 
 	public String getAsd() {
-		return asd;
+		return content;
 	}
 
 	public void setAsd(String asd) {
-		this.asd = asd;
+		this.content = asd;
 	}
 
 

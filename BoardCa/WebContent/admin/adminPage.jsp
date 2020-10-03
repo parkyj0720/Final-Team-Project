@@ -194,6 +194,8 @@
 		src="${pageContext.request.contextPath}/stylesheet/assets/bundles/mainscripts.bundle.js"></script>
 	<!-- Custom Js -->
 
+<script
+		src="${pageContext.request.contextPath}/stylesheet/assets/plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
 
 <script>
 

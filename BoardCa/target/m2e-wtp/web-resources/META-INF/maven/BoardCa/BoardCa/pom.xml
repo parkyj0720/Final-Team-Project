@@ -12,7 +12,7 @@
 	</properties>
 
 	<dependencies>
-		
+
 		<!-- spring container(core) -->
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -59,7 +59,7 @@
 			<artifactId>commons-pool2</artifactId>
 			<version>2.6.2</version>
 		</dependency>
-		
+
 		<!-- MySQL -->
 		<dependency>
 			<groupId>mysql</groupId>
@@ -103,7 +103,7 @@
 			<artifactId>jstl</artifactId>
 			<version>1.2</version>
 		</dependency>
-		
+
 
 		<!-- https://mvnrepository.com/artifact/servlets.com/cos -->
 		<dependency>
@@ -112,7 +112,7 @@
 			<version>05Nov2002</version>
 		</dependency>
 
-			<!-- https://mvnrepository.com/artifact/org.apache.httpcomponents/httpclient -->
+		<!-- https://mvnrepository.com/artifact/org.apache.httpcomponents/httpclient -->
 		<dependency>
 			<groupId>org.apache.httpcomponents</groupId>
 			<artifactId>httpclient</artifactId>
@@ -124,6 +124,13 @@
 			<groupId>org.apache.httpcomponents</groupId>
 			<artifactId>httpcore</artifactId>
 			<version>4.4.13</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>2.11.0</version>
 		</dependency>
 
 		<!-- https://mvnrepository.com/artifact/org.codehaus.jackson/jackson-mapper-asl -->
@@ -139,12 +146,12 @@
 			<artifactId>jackson-core-asl</artifactId>
 			<version>1.9.13</version>
 		</dependency>
-		
+
 		<!-- https://mvnrepository.com/artifact/org.python/jython -->
 		<dependency>
-		    <groupId>org.python</groupId>
-		    <artifactId>jython</artifactId>
-		    <version>2.7.2</version>
+			<groupId>org.python</groupId>
+			<artifactId>jython</artifactId>
+			<version>2.7.2</version>
 		</dependency>
 
 		<dependency>

@@ -44,29 +44,205 @@ select {
 <script src="http://code.jquery.com/jquery.js"></script>
 </head>
 <script>
+
+var tr
+var td
+
+var MEM_IDX
+
+var MEM_MNG_GWONHAN
+
+var MEM_LOGIN_GWONHAN
+
+var MEM_BOARD_GWONHAN
+
+	
 	$(function() {
 		$(".clickBtn").click(function() {
 			var str = ""
 			var tdArr = new Array(); // 배열 선언
 
 			// 현재 클릭된 Row(<tr>)
-			var tr = $(this);
-			var td = tr.children();
+			tr = $(this);
+			td = tr.children();
 
 			// tr.text()는 클릭된 Row 즉 tr에 있는 모든 값을 가져온다.
 			console.log("클릭한 Row의 모든 데이터 : " + tr.text());
 
-			// 반복문을 이용해서 배열에 값을 담아 사용할 수 도 있다.
-			td.each(function(i) {
-				tdArr.push(td.eq(i).text());
-			});
+			MEM_IDX = td.eq(0).text()
 
-			// td.eq(index)를 통해 값을 가져올 수도 있다.
-			var no = td.eq(0).text();
-			var date = td.eq(1).text();
-			var title = td.eq(2).text();
-			var reply = td.eq(3).text();
+			MEM_MNG_GWONHAN = td.eq(3).text()
 
+			MEM_LOGIN_GWONHAN = td.eq(4).text()
+
+			MEM_BOARD_GWONHAN = td.eq(5).text()
+
+			$("#adminbtn1").on("click", function() {
+
+				console.log("게시판 권한")
+
+				console.log(MEM_IDX + "<< 회원 번호")
+
+				console.log(MEM_BOARD_GWONHAN + "<< 현재 권한여부")
+				
+				if(MEM_BOARD_GWONHAN==0){
+					MEM_BOARD_GWONHAN = 1;
+				}else{
+					MEM_BOARD_GWONHAN = 0;
+				}
+
+				console.log(MEM_BOARD_GWONHAN + "<< 바꿔질 권한여부")
+				
+				if (confirm('권한을 변경하시겠습니까?')) {
+                 // Yes click
+                 
+                 $.ajax({
+
+					url : "${pageContext.request.contextPath}/adminmodify.do", // 클라이언트가 요청을 보낼 서버의 URL 주소
+
+					data : {
+						mem_id : MEM_IDX,
+						gwonhan : "MEM_BOARD_GWONHAN",
+						gwonhancode : MEM_BOARD_GWONHAN
+					}, // HTTP 요청과 함께 서버로 보낼 데이터
+
+					type : "POST", // HTTP 요청 방식(GET, POST)
+					
+					dataType : "text", // 서버에서 보내줄 데이터의 타입
+					
+					success : function (data) {
+						console.log(data)
+						
+						td.eq(5).text(data);
+						
+						alert("권한 변경을 성공하셨습니다.")
+					}
+
+				})
+                 
+           		 } else {
+                	
+           			 alert("권한 변경을 취소하셨습니다.")
+				
+           		 }
+				
+
+			})
+
+			$("#adminbtn2").click(function() {
+
+				console.log("로그인 권한")
+
+				console.log(MEM_IDX + "<< 회원 번호")
+
+				console.log(MEM_LOGIN_GWONHAN + "<< 현재 권한여부")
+				
+				if(MEM_LOGIN_GWONHAN==0){
+					MEM_LOGIN_GWONHAN = 1;
+				}else{
+					MEM_LOGIN_GWONHAN = 0;
+				}
+
+				console.log(MEM_LOGIN_GWONHAN + "<< 바꿔질 권한여부")
+				
+				if (confirm('권한을 변경하시겠습니까?')) {
+                 // Yes click
+                 
+                 $.ajax({
+
+					url : "${pageContext.request.contextPath}/adminmodify.do", // 클라이언트가 요청을 보낼 서버의 URL 주소
+
+					data : {
+						mem_id : MEM_IDX,
+						gwonhan : "MEM_LOGIN_GWONHAN",
+						gwonhancode : MEM_LOGIN_GWONHAN
+					}, // HTTP 요청과 함께 서버로 보낼 데이터
+
+					type : "POST", // HTTP 요청 방식(GET, POST)
+					
+					dataType : "text", // 서버에서 보내줄 데이터의 타입
+					
+					success : function (data) {
+						console.log(data)
+						
+						td.eq(4).text(data);
+						
+						alert("권한 변경을 성공하셨습니다.")
+					}
+
+				})
+                 
+           		 } else {
+                	
+           			 alert("권한 변경을 취소하셨습니다.")
+				
+           		 }
+
+			})
+
+			$("#adminbtn3").click(function() {
+
+				console.log("관리자 권한")
+
+				console.log(MEM_IDX + "<< 회원 번호")
+
+				console.log(MEM_MNG_GWONHAN + "<< 현재 권한여부")
+				
+				if(MEM_MNG_GWONHAN==0){
+					MEM_MNG_GWONHAN = 1;
+				}else{
+					MEM_MNG_GWONHAN = 0;
+				}
+
+				console.log(MEM_MNG_GWONHAN + "<< 바꿔질 권한여부")
+				
+				if (confirm('권한을 변경하시겠습니까?')) {
+                 // Yes click
+                 
+                 $.ajax({
+
+					url : "${pageContext.request.contextPath}/adminmodify.do", // 클라이언트가 요청을 보낼 서버의 URL 주소
+
+					data : {
+						mem_id : MEM_IDX,
+						gwonhan : "MEM_MNG_GWONHAN",
+						gwonhancode : MEM_MNG_GWONHAN
+					}, // HTTP 요청과 함께 서버로 보낼 데이터
+
+					type : "POST", // HTTP 요청 방식(GET, POST)
+					
+					dataType : "text", // 서버에서 보내줄 데이터의 타입
+					
+					success : function (data) {
+						console.log(data)
+						
+						td.eq(3).text(data);
+						
+						alert("권한 변경을 성공하셨습니다.")
+					}
+
+				})
+                 
+           		 } else {
+                	
+           			 alert("권한 변경을 취소하셨습니다.")
+				
+           		 }
+
+			})
+
+			/* 				
+				// 반복문을 이용해서 배열에 값을 담아 사용할 수 도 있다.
+				td.each(function(i) {
+					tdArr.push(td.eq(i).text());
+				});
+
+				// td.eq(index)를 통해 값을 가져올 수도 있다.
+				var no = td.eq(0).text();
+				var date = td.eq(1).text();
+				var title = td.eq(2).text();
+				var reply = td.eq(3).text();
+			 */
 			$("#ex1_Result1").html("<p>" + tr.text() + "<p>");
 
 		})
@@ -222,19 +398,30 @@ select {
 										</table>
 									</div>
 								</div>
+
+							
 								<div class="container-fluid">
 									<div class="row clearfix">
 										<div class="col-lg-12">
 											<div class="card">
+																						
 												<div class="header">
-													<h5 style="color: orange">선택한 글</h5>
+													<h5 style="color: orange">유저 정보 확인</h5>
 												</div>
 												<div class="body" id="ex1_Result1">
-													<p>선택한 글이 보여집니다!</p>
+													<p>선택한 유저의 정보가 보여집니다!</p>
 												</div>
-												<a href="${pageContext.request.contextPath}/myFAQ.do"
-													class="btn btn-primary btn-lg bg-orange waves-effect waves-light float-right">
-													1:1문의하기</a>
+
+	<a id="adminbtn1"
+										class="btn btn-primary btn-lg bg-orange waves-effect waves-light float-right">
+										게시판 권한 부여/회수</a>
+										<a id="adminbtn2"
+										class="btn btn-primary btn-lg bg-orange waves-effect waves-light float-right">
+										로그인 권한 부여/회수</a>
+										<a id="adminbtn3"
+										class="btn btn-primary btn-lg bg-orange waves-effect waves-light float-right">
+										관리자 권한 부여/회수</a>
+
 											</div>
 										</div>
 									</div>
@@ -291,5 +478,9 @@ select {
 	<!-- Custom Js -->
 	<script
 		src="${pageContext.request.contextPath}/stylesheet/assets/js/pages/forms/form-validation.js"></script>
+		
+	<script
+		src="${pageContext.request.contextPath}/stylesheet/assets/plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
+		
 </body>
 </html>

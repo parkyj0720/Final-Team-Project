@@ -95,5 +95,19 @@ public class MemberDao {
 		
 	}
 	
+	public void GwonhanModify(GwonhanDto data) {
+		
+		int r = mysqlSession.update("MemberSQL.GwonhanModify", data);
+		
+		System.out.println(r);
+		
+		if(r==1) {
+		
+			System.out.println("DB 변경 성공");
+		
+		}
+
+	}
+	
 	
 }

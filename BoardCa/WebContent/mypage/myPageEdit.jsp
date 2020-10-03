@@ -35,6 +35,9 @@ select {
 
 <script src="http://code.jquery.com/jquery.js"></script>
 <script>
+
+// pw 정규식 
+// 8-20자리 , 영문,숫자,특수문자 포함, 공백x 
 function chkPW(){	
 	 var pw = $("#inputPw").val();
 	 var num = pw.search(/[0-9]/g);
@@ -56,6 +59,8 @@ function chkPW(){
 	    return true;
 	 }
 }
+
+// nickname 중복 체크  
 function nickNameCheck(){
 	$.ajax({
 		type : "post",
@@ -71,46 +76,30 @@ function nickNameCheck(){
 		}
 	});		
 }
-// 비밀번호가 같은 체크
-
-function equalPwCk(){
-	$.ajax({
-		type : "post",
-		url : "/BoardCa/equalPwCk.do",
-		data :{
-			pw1 : $(<%=dto.getMem_pw()%>).val(),
-			pw2 : $("#inputPwCk").val()
-		},
-		success : function test(a){ 
-			$("#checkPwd").html(a); 
-		},
-		error : function error(){ 
-			alert("error"); 
-		}
-	});
-}
-
-// 현재비밀번호가 맞는지 체크
 
 
-function equalPwCk(){
-	$.ajax({
-		type : "post",
-		url : "/BoardCa/equalPwCk.do",
-		data :{
-			pw1 : $(<%=dto.getMem_pw()%>).val(),
-			pw2 : $("#inputPwCk").val()
-		},
-		success : function test(a){ 
-			$("#checkPwd").html(a); 
-		},
-		error : function error(){ 
-			alert("error"); 
-		}
-	});
-}
+	
+
+// 바꿀 비밀번호가 일치한지 체크
+	function equalPwCk(){
+		$.ajax({
+			type : "post",
+			url : "/BoardCa/equalPwCk.do",
+			data :{
+				pw1 : $("#inputPw").val(),
+				pw2 : $("#inputPwCk").val()
+			},
+			success : function test(a){ 
+				$("#checkPwd").html(a); 
+			},
+			error : function error(){ 
+				alert("error"); 
+			}
+		});
+	}
+
 	function categoryChange(e) {
-
+		
 		var area1 = [ "강남구", "강동구", "강북구", "강서구", "관악구", "광진구", "구로구", "금천구",
 				"노원구", "도봉구", "동대문구", "동작구", "마포구", "서대문구", "서초구", "성동구",
 				"성북구", "송파구", "양천구", "영등포구", "용산구", "은평구", "종로구", "중구", "중랑구" ];
@@ -148,9 +137,9 @@ function equalPwCk(){
 		var a = [ area1, area2, area3, area4, area5, area6, area7, area8,
 				area9, area10, area11, area12, area13, area14, area15, area16 ];
 		// 시/도 선택 박스 초기화
-
-		var target = document.getElementById("area");
-
+	
+		var target = document.getElementById("mem_state");
+	
 		if (e.value == "area1")
 			var d = area1;
 		else if (e.value == "area2")
@@ -183,15 +172,49 @@ function equalPwCk(){
 			var d = area15;
 		else if (e.value == "area16")
 			var d = area16;
-
+	
 		target.options.length = 0;
-
+	
 		for (x in d) {
 			var opt = document.createElement("option");
 			opt.value = d[x];
 			opt.innerHTML = d[x];
 			target.appendChild(opt);
 		}
+		var mem_rocal = $('#area0 option:selected').text();
+		
+		$('#mem_rocal').val(mem_rocal);
+		
+	}
+	
+	function submit() {
+		$.ajax({
+			type :"post",
+			url : "/BoardCa/Edit.do",
+			data :{
+				nickName : $("#nickname").val(),
+				pw :$("#inputPw").val(),
+				email1 : $("#email1").val(),
+				email2 : $("#email2").val(),
+				rocal : $("#rocal").val(),
+				state : $("#state").val(),
+			},
+			success : function test(a) {
+				console.log(a)
+			},
+			error : function error() {
+				alert("error");
+			}
+		});
+	}	
+	function checkPassword(inputPw, inputPwCk) {
+        //비밀번호가 입력되었는지 확인하기
+        if (!checkExistData(inputPw, "비밀번호를"))
+            return false;
+        //비밀번호 확인이 입력되었는지 확인하기
+        if (!checkExistData(inputPwCk, "비밀번호 확인을"))
+            return false;
+        return true;
 	}
 </script>
 </head>
@@ -267,7 +290,7 @@ function equalPwCk(){
 							</div>
 							<div class="body">
 								<form action="${pageContext.request.contextPath}/myPageEdit.do"
-									method="GET">
+									method="POST">
 									<div class="row">
 										<div class="col-lg-12 col-md-12">
 											<div class="form-group">
@@ -275,45 +298,72 @@ function equalPwCk(){
 													name="nickname" onblur="nickNameCheck()"
 													placeholder="NickName">
 											</div>
+											<div class="form-group col-lg-3 col-md-12" id="checkNickName"></div>
 										</div>
-										<div class="form-group col-lg-12 col-md-12" id="checkNickName"></div>
-										<div class="col-lg-4 col-md-12">
+
+
+										<div class="col-lg-6 col-md-12">
 											<div class="form-group">
 												<input type="password" class="form-control"
-													placeholder="Current Password" id="inputPwCk" name="curPw"
+													placeholder="New Password" name="inputPw" id="inputPw"
+													onblur="chkPW()">
+											</div>
+											<div class="form-group col-lg-6 col-md-12" id="checkPwd"></div>
+										</div>
+
+
+										<div class="col-lg-6 col-md-12">
+											<div class="form-group">
+												<input type="password" class="form-control"
+													placeholder="Password Chcek" name="newPwck" id="inputPwCk"
 													onblur="equalPwCk()">
 											</div>
-											<div class="form-group col-lg-6 col-md-12" id="checkPwd"></div>
 										</div>
-										<div class="col-lg-4 col-md-12">
-											<div class="form-group">
-												<input type="password" class="form-control"
-													placeholder="New Password" name="newPw" id="inputPw"
-													onblur="chkPW()">
-											</div>
-											<div class="form-group col-lg-6 col-md-12" id="checkPwd"></div>
-										</div>
-										<div class="col-lg-4 col-md-12">
-											<div class="form-group">
-												<input type="password" class="form-control"
-													placeholder="New Password" name="newPwch" id="inputPw"
-													onblur="chkPW()">
-											</div>
-											<div class="form-group col-lg-6 col-md-12" id="checkPwd"></div>
-										</div>
+										<div class="form-group col-lg-6 col-md-12" id="checkPwd"></div>
 									</div>
+
+
+
 									<div class="row">
-										<div class="col-md-12">
-											<div class="form-group">
-												<input type="text" class="form-control" placeholder="E-mail"
-													name="email">
+										<c:if test="${email1 == null}">
+											<div class="form-group col-lg-12 col-md-12">
+												<input type="text" class="form-control" placeholder="이메일"
+													value="" name="email1">
 											</div>
-										</div>
+										</c:if>
+										<c:if test="${email1 != null}">
+											<div class="form-group col-lg-12 col-md-12">
+												<input type="text" class="form-control" placeholder="이메일"
+													value="${email1}" name="email1" readonly>
+											</div>
+										</c:if>
+										<p style="margin-left: 50%;">@</p>
+										<c:if test="${email1 == null}">
+											<div class="form-group  col-lg-12 col-md-12">
+												<select class="form-control show-tick ms select2"
+													data-placeholder="Select" name=email2>
+													<option value="" selected>선택하세요</option>
+													<option value="naver.com">naver.com</option>
+													<option value="nate.com">nate.com</option>
+													<option value="kakao.com">kakao.com</option>
+													<option value="gmail.com">gmail.com</option>
+													<option value="hanmail.com">hanmail.com</option>
+												</select>
+											</div>
+										</c:if>
+										<c:if test="${email1 != null}">
+											<div class="form-group  col-lg-12 col-md-12">
+												<input type="text" class="form-control " placeholder="이메일"
+													value="${email2}" name="email2" readonly>
+											</div>
+										</c:if>
+
+
 										<div class="col-lg-6 col-md-12">
 											<div>
 												<select onchange="categoryChange(this)" class="form-control"
-													name="rocal" id="area0">
-													<option value="start">광역시·도 선택</option>
+													id="rocal" name="rocal">
+													<option>광역시·도 선택</option>
 													<option value="area1">서울특별시</option>
 													<option value="area2">인천광역시</option>
 													<option value="area3">대전광역시</option>
@@ -335,7 +385,7 @@ function equalPwCk(){
 										</div>
 										<div class="col-lg-6 col-md-12">
 											<div>
-												<select id="area" class="form-control" name="state">
+												<select id="mem_state" class="form-control" name="mem_state">
 													<option>시·군·구 선택</option>
 												</select>
 											</div>

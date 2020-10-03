@@ -5,7 +5,10 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import Member.MemberDto;
@@ -29,32 +32,33 @@ public class MypageController {
 		return mv;
 	}
 
+
+
 	@RequestMapping("/myPageEdit.do")
 	public ModelAndView myPageEdit(HttpServletRequest req, HttpSession session) {
-		MemberDto dto = new MemberDto();
-
-		String Nickname = req.getParameter("nickname");
-		String newPw = req.getParameter("newPw");
-		String Email = req.getParameter("email");
-		String rocal = req.getParameter("rocal");
-		String state = req.getParameter("state");
-
-		if (Nickname == null) {
-			Nickname = dto.getMem_nickname();
-		} else if (newPw == null) {
-			newPw = dto.getMem_pw();
-		} else if (Email == null) {
-			Email = dto.getMem_email();
-		} else if (rocal.equals("start")) {
-			rocal = dto.getMem_rocal();
-		} else if (state.equals("시·군·구 선택")) {
-			state = dto.getMem_state();
-		}
-		mv.addObject("memInfo", dao.memInfo(dto));
-		mv.addObject("memEdit", dao.memEdit(dto));
+		
 		mv.setViewName("/mypage/myPageEdit.jsp");
 		return mv;
-
+	}
+	
+	@RequestMapping(value="/Edit.do", method = RequestMethod.POST, produces="application/json")
+	@ResponseBody
+	public String modify(HttpServletRequest req, HttpSession session) {
+		MemberDto dto = new MemberDto();
+		dto.setMem_nickname(req.getParameter("nickname"));
+		dto.setMem_pw(req.getParameter("inputPw"));
+		dto.setMem_email(req.getParameter("email1") + "@" + req.getParameter("email2"));
+		dto.setMem_rocal(req.getParameter("rocal"));
+		dto.setMem_state(req.getParameter("mem_state"));
+		System.out.println(req.getParameter("nickname"));
+		System.out.println(req.getParameter("inputPw"));
+		System.out.println(req.getParameter("email1") + "@" + req.getParameter("email2"));
+		System.out.println(req.getParameter("rocal"));
+		System.out.println(req.getParameter("mem_state"));
+		
+		 dao.memEdit(dto);
+		 
+		 return "true";
 	}
 
 	@RequestMapping("/myWriteList.do")
