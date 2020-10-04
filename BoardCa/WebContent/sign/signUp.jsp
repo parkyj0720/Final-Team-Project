@@ -196,10 +196,11 @@
 			}
 		});		
 	}
+	/* id 정규식 */
 	function chkID(){
-		var idRegExp = /^[a-zA-z0-9]{4,12}$/; //아이디 유효성 검사
+		var idRegExp = /^[a-zA-z0-9]{4,12}$/; 
         if (!idRegExp.test(form.inputId.value)) {
-            alert("아이디는 영문 대소문자와 숫자 4~12자리로 입력해야합니다!");
+            alert("아이디는 영문 대소문자 또는 숫자로  4~12자 입력해야합니다!");
             form.userId.value = "";
             form.userId.focus();
             return false;
@@ -357,7 +358,7 @@
 					action="${pageContext.request.contextPath}/signUpPro.do">
 					<div class="form-group form-float col-sm-9 margin-auto">
 						<c:if test="${inputId == null}">
-							<input type="text" class="form-control" placeholder="아이디( 4~12자, 영문 대소문자, 숫자  포함 )"
+							<input type="text" class="form-control" placeholder="아이디( 4~12자, 영문 대소문자 또는 숫자)"
 								value="" name="inputId" id="inputId" onblur="chkID()">
 						</c:if>
 						<c:if test="${inputId != null}">
