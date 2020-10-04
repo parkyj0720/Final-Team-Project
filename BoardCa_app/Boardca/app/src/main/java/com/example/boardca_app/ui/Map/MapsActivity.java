@@ -289,6 +289,7 @@ public class MapsActivity extends AppCompatActivity implements MapView.MapViewEv
                 mMapView.removeAllPOIItems();
                 mMapView.removeAllCircles();
                 mMapView.setCurrentLocationTrackingMode(MapView.CurrentLocationTrackingMode.TrackingModeOnWithoutHeading);
+                searchDetailFab.setVisibility(View.GONE);
                 break;
         }
     }

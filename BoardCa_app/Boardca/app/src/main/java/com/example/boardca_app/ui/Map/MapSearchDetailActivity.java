@@ -12,6 +12,7 @@ import com.example.boardca_app.R;
 import com.example.boardca_app.ui.Map.model.category_search.Document;
 import com.example.boardca_app.ui.Map.utils.IntentKey;
 import com.github.mikephil.charting.charts.RadarChart;
+import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.data.RadarData;
 import com.github.mikephil.charting.data.RadarDataSet;
@@ -55,8 +56,8 @@ public class MapSearchDetailActivity extends AppCompatActivity {
         itemCntText8 = findViewById(R.id.mapsearchdetail_tv_itemcount8);
         itemCntText9 = findViewById(R.id.mapsearchdetail_tv_itemcount9);
         itemCntText10 = findViewById(R.id.mapsearchdetail_tv_itemcount10);
-        ratingBar = findViewById(R.id.mapsearchdetail_rb_ratingbar);
-        ratingScore = findViewById(R.id.mapsearchdetail_tv_rating_score);
+//        ratingBar = findViewById(R.id.mapsearchdetail_rb_ratingbar);
+//        ratingScore = findViewById(R.id.mapsearchdetail_tv_rating_score);
         radarChart = findViewById(R.id.mapsearchdetail_radar_chart);
         processIntent();
         makeChart();
@@ -101,40 +102,40 @@ public class MapSearchDetailActivity extends AppCompatActivity {
         itemCntText10.setText("" +(int) itemCnt10);
 
 
-        //평균계산 최대 10점
-        if(itemCnt1 > 10){
-            itemCnt1 = 10;
-        }
-        if(itemCnt2 > 10){
-            itemCnt2 = 10;
-        }
-        if(itemCnt3 > 10){
-            itemCnt3 = 10;
-        }
-        if(itemCnt4 > 10){
-            itemCnt4 = 10;
-        }
-        if(itemCnt5 > 10){
-            itemCnt5 = 10;
-        }
-        if(itemCnt6 > 10){
-            itemCnt6 = 10;
-        }
-        if(itemCnt7 > 10){
-            itemCnt7 = 10;
-        }
-        if(itemCnt8 > 10){
-            itemCnt8 = 10;
-        }
-        if(itemCnt9 > 10){
-            itemCnt9 = 10;
-        }
-        if(itemCnt10 > 10){
-            itemCnt10 = 10;
-        }
-        float averageScore = Math.round((itemCnt1 + itemCnt2 + itemCnt3 + itemCnt4 + itemCnt5 + itemCnt6 + itemCnt7 + itemCnt8 + itemCnt9 + itemCnt10)/10*10 /10.0 );
-        ratingScore.setText(averageScore+"");
-        ratingBar.setRating(averageScore/2);
+//        //평균계산 최대 10점
+//        if(itemCnt1 > 10){
+//            itemCnt1 = 10;
+//        }
+//        if(itemCnt2 > 10){
+//            itemCnt2 = 10;
+//        }
+//        if(itemCnt3 > 10){
+//            itemCnt3 = 10;
+//        }
+//        if(itemCnt4 > 10){
+//            itemCnt4 = 10;
+//        }
+//        if(itemCnt5 > 10){
+//            itemCnt5 = 10;
+//        }
+//        if(itemCnt6 > 10){
+//            itemCnt6 = 10;
+//        }
+//        if(itemCnt7 > 10){
+//            itemCnt7 = 10;
+//        }
+//        if(itemCnt8 > 10){
+//            itemCnt8 = 10;
+//        }
+//        if(itemCnt9 > 10){
+//            itemCnt9 = 10;
+//        }
+//        if(itemCnt10 > 10){
+//            itemCnt10 = 10;
+//        }
+//        float averageScore = Math.round((itemCnt1 + itemCnt2 + itemCnt3 + itemCnt4 + itemCnt5 + itemCnt6 + itemCnt7 + itemCnt8 + itemCnt9 + itemCnt10)/10*10 /10.0 );
+//        ratingScore.setText(averageScore+"");
+//        ratingBar.setRating(averageScore/2);
     }
 
     //차트생성

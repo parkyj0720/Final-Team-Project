@@ -1,8 +1,11 @@
 package com.example.boardca_app.ui.community;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -12,14 +15,14 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.airbnb.lottie.L;
-import com.esafirm.imagepicker.features.ImagePicker;
 import com.esafirm.imagepicker.model.Image;
 import com.example.boardca_app.R;
 import com.lumyjuwon.richwysiwygeditor.RichWysiwyg;
 
 import java.io.BufferedReader;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
@@ -32,6 +35,8 @@ public class MakeActivity extends AppCompatActivity {
     private RichWysiwyg wysiwyg;
     private RadioGroup rg;
     private RadioButton rb;
+
+    private static final int REQUEST_CODE = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,6 +76,7 @@ public class MakeActivity extends AppCompatActivity {
                 String text = "";
                 String community = "";
 
+                // 유효성 체크 ( 빈 칸이면 write 기능 작동 X )
                 if (rb == null) {
                     showText(0);
                 } else {
@@ -86,9 +92,16 @@ public class MakeActivity extends AppCompatActivity {
                 }
 
                 if (tf) {
+                    // 선택한 게시판 받아오기
                     community = rb.getText().toString();
+
+                    // 제목 받아오기
                     title = wysiwyg.getHeadlineEditText().getText().toString();
+
+                    // 내용 받아오기 (HTML 형식으로)
                     text = wysiwyg.getContent().getHtml();
+
+
                     try {
                         String result;
                         CustomTask task = new CustomTask();
@@ -102,7 +115,18 @@ public class MakeActivity extends AppCompatActivity {
                 }
             }
         });
+
+        wysiwyg.getInsertImageButton().setOnClickListener(new Button.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setType("image/*");
+                intent.setAction(Intent.ACTION_GET_CONTENT);
+                startActivityForResult(intent, REQUEST_CODE);
+            }
+        });
     }
+
 
     public void showText(int num) {
         switch (num) {
@@ -120,11 +144,40 @@ public class MakeActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, final int resultCode, Intent data) {
-        if (ImagePicker.shouldHandle(requestCode, resultCode, data)) {
-            List<Image> images = ImagePicker.getImages(data);
-            insertImages(images);
-        }
         super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_CODE) {
+            if (resultCode == RESULT_OK) {
+                try {
+                    InputStream in = getContentResolver().openInputStream(data.getData());
+
+                    Bitmap img = BitmapFactory.decodeStream(in);
+                    in.close();
+
+//                    imageView.setImageBitmap(img);
+                    String photo = BitmapToString(img);
+                    String str = wysiwyg.getContent().getHtml();
+                    if(str == null){
+                        str = "";
+                    }
+                    wysiwyg.getContent().setHtml(str + "\n" +"<img src=\"data:image/jpg;base64,"+photo+"\" alt=\"photo\" />" + "\n");
+                } catch (Exception e) {
+
+                }
+            } else if (resultCode == RESULT_CANCELED) {
+                Toast.makeText(this, "사진 선택 취소", Toast.LENGTH_LONG).show();
+            }
+        }
+    }
+
+    /*
+     * Bitmap을 String형으로 변환
+     * */
+    public static String BitmapToString(Bitmap bitmap) {
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
+        byte[] bytes = baos.toByteArray();
+        String temp = Base64.encodeToString(bytes, Base64.NO_WRAP);
+        return temp;
     }
 
     private void insertImages(List<Image> images) {
@@ -143,11 +196,12 @@ public class MakeActivity extends AppCompatActivity {
     class CustomTask extends AsyncTask<String, Void, String> {
         String sendMsg, receiveMsg;
 
+        // JSP로 값을 넘긴 후, MySQL로 데이터 저장
         @Override
         protected String doInBackground(String... strings) {
             try {
                 String str;
-                URL url = new URL("http://192.168.219.112:8088/android1/home.do");
+                URL url = new URL("http://192.168.219.101:8088/android1/home.do");
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
                 conn.setRequestMethod("POST");
