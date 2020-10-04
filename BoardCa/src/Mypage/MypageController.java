@@ -5,7 +5,6 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -50,13 +49,8 @@ public class MypageController {
 		dto.setMem_email(req.getParameter("email1") + "@" + req.getParameter("email2"));
 		dto.setMem_rocal(req.getParameter("rocal"));
 		dto.setMem_state(req.getParameter("mem_state"));
-		System.out.println(req.getParameter("nickname"));
-		System.out.println(req.getParameter("inputPw"));
-		System.out.println(req.getParameter("email1") + "@" + req.getParameter("email2"));
-		System.out.println(req.getParameter("rocal"));
-		System.out.println(req.getParameter("mem_state"));
 		
-		 dao.memEdit(dto);
+		dao.memEdit(dto);
 		 
 		 return "true";
 	}

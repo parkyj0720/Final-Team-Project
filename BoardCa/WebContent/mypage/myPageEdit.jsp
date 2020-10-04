@@ -189,7 +189,7 @@ function nickNameCheck(){
 	
 	function submit() {
 		$.ajax({
-			type :"post",
+			type :"POST",
 			url : "/BoardCa/Edit.do",
 			data :{
 				nickName : $("#nickname").val(),
