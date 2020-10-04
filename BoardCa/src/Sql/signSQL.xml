@@ -31,6 +31,14 @@
 		WHERE MEM_ID = #{userId}	
 	</select>
 	
+	<select id="GwonhanCheck" resultType="int" parameterType="MemberDto">
+	
+		SELECT MEM_LOGIN_GWONHAN
+		FROM MEMBER_T 
+		WHERE MEM_ID = #{userId}
+	
+	</select>
+	
 	<insert id="sessionInput" parameterType="SessionDto">
 		INSERT INTO SESSION_T
 		( 	MEM_IDX

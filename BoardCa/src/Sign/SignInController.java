@@ -85,6 +85,15 @@ public class SignInController {
 		String userId = req.getParameter("userId");
 		String userToken = req.getParameter("userToken");
 
+		int gwonhan = memDao.GwonhanCheck(userId);
+		
+		if(gwonhan==0) {
+			
+			mv.setViewName("/sign/cantlogin.jsp");
+			return mv;
+			
+		}
+		
 		sedto.setSess_move("로그인(성공)");
 		session.setAttribute("userId", userId);
 		session.setAttribute("userToken", userToken);
@@ -153,6 +162,19 @@ public class SignInController {
 			String dbPw = memDao.signIn(userId);
 			// 해당아이디의 비밀번호와 입력한 비밀번호가 맞는지 체크
 			if (userPw.equals(dbPw)) {
+				
+				
+				int gwonhan = memDao.GwonhanCheck(userId);
+				
+				if(gwonhan==0) {
+					
+					mv.setViewName("/sign/cantlogin.jsp");
+					return mv;
+					
+				}
+				
+				
+				
 //				해당 아이디의 회원번호 가져오기
 				int searchIdx = memDao.searchIdx(userId);
 

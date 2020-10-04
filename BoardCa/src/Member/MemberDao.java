@@ -131,5 +131,15 @@ public class MemberDao {
 
 	}
 	
+	public int GwonhanCheck(String data) {
+		
+		int r = (int)mysqlSession.selectOne("signXml.GwonhanCheck", data);
+		
+		System.out.println("현재 로그인 권한" + r);
+		
+		return r;
+
+	}
+	
 	
 }

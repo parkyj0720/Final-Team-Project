@@ -58,7 +58,7 @@ var MEM_BOARD_GWONHAN
 
 	
 	$(function() {
-		$(".clickBtn").click(function() {
+		$(".clickBtn").one("click",function() {
 			var str = ""
 			var tdArr = new Array(); // 배열 선언
 
@@ -77,7 +77,7 @@ var MEM_BOARD_GWONHAN
 
 			MEM_BOARD_GWONHAN = td.eq(5).text()
 
-			$("#adminbtn1").on("click", function() {
+			$("#adminbtn1").one("click", function() {
 
 				console.log("게시판 권한")
 
@@ -129,7 +129,7 @@ var MEM_BOARD_GWONHAN
 
 			})
 
-			$("#adminbtn2").click(function() {
+			$("#adminbtn2").one("click",function() {
 
 				console.log("로그인 권한")
 
@@ -180,7 +180,7 @@ var MEM_BOARD_GWONHAN
 
 			})
 
-			$("#adminbtn3").click(function() {
+			$("#adminbtn3").one("click",function() {
 
 				console.log("관리자 권한")
 
@@ -379,6 +379,7 @@ var MEM_BOARD_GWONHAN
 
 												<tr class="clickBtn ">
 
+												
 													<td><%=dto.getMem_idx()%></td>
 													<td><%=dto.getMem_nickname()%></td>
 													<td><%=dto.getMem_email()%></td>
