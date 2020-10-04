@@ -66,8 +66,8 @@ public class SignInController {
 		DocumentBuilder builder = fatory.newDocumentBuilder();
 		// 3.생성된 빌더를 통해서 xml문서를 Document객체로 파싱해서 가져온다.
 		// Document org에서 가져온다!!!
-		Document doc = builder.parse(
-				"http://whois.kisa.or.kr/openapi/ipascc.jsp?query=192.168.219.111&key=2020081914462601995405&answer=xml");
+		Document doc = builder.parse("http://whois.kisa.or.kr/openapi/ipascc.jsp?query=" + ip
+				+ "&key=2020092812534662722565&answer=xml");
 		NodeList list = doc.getElementsByTagName("countryCode");
 
 		int i = 0;
@@ -90,7 +90,7 @@ public class SignInController {
 		session.setAttribute("userToken", userToken);
 		session.setAttribute("userToken2", "1");
 
-		memDao.sessionInput(sedto);
+		//memDao.sessionInput(sedto);
 
 		mv.setViewName("/main/main.jsp");
 
@@ -163,7 +163,6 @@ public class SignInController {
 				session.setAttribute("userId", userId);
 				session.setAttribute("userToken2", "0");
 
-				System.out.println("@@@@@@@@@" + sedto);
 				memDao.sessionInput(sedto);
 				mv.setViewName("/main/main.jsp");
 			} else {
@@ -188,7 +187,6 @@ public class SignInController {
 		final String RequestUrl = "https://kapi.kakao.com/v1/user/logout";
 
 		String userToken = session.getAttribute("userToken").toString();
-		System.out.println("1111111111111111@@@        " + userToken);
 
 		try {
 			URL url = new URL(RequestUrl);

@@ -89,6 +89,7 @@
 				"창원시", "통영시", "거창군", "고성군", "남해군", "산청군", "의령군", "창녕군", "하동군",
 				"함안군", "함양군", "합천군" ];
 		var area16 = [ "서귀포시", "제주시", "남제주군", "북제주군" ];
+		var areas = ["비공개"];
 		var a = [ area1, area2, area3, area4, area5, area6, area7, area8,
 				area9, area10, area11, area12, area13, area14, area15, area16 ];
 		// 시/도 선택 박스 초기화
@@ -127,6 +128,8 @@
 			var d = area15;
 		else if (e.value == "area16")
 			var d = area16;
+		else if (e.value == "areas")
+			var d = areas;
 	
 		target.options.length = 0;
 	
@@ -512,6 +515,7 @@
 									<option value="area14">경상북도</option>
 									<option value="area15">경상남도</option>
 									<option value="area16">제주도</option>
+									<option value="areas">비공개</option>
 								</select>
 							</div>
 						</div>
