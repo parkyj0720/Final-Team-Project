@@ -65,7 +65,7 @@ white-space: nowrap;
 	request.setAttribute("maxList", maxList);
 
 	// 페이지당 리스트 개수
-	int listNum = 12;
+	int listNum = 8;
 	
 	int now_page = 1;
 
@@ -178,7 +178,7 @@ request.getParameter("test");
 		<input type="text" size="34" name="inputSearch">
 		<input type="submit" value="검색" name="inputSearchButton" style="margin-left:-15px">
 	</form>
-	<form action="${pageContext.request.contextPath}/cWrite.do" method="POST" style="display:inline-block; position:absolute; right:16px;">
+	<form action="${pageContext.request.contextPath}/cWrite.do" method="POST" style="display:inline-block; position:absolute; right:16px; visibility: <%=(mDto != null && mDto.getMem_mng_gwonhan() == 1)?"visible":"hidden"%>;">
 		<input type="submit" value="레시피추가" name="inputRecipe">
 	</form>
 	</div>

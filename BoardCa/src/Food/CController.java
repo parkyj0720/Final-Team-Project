@@ -147,7 +147,7 @@ public class CController {
 	@RequestMapping("/cUpload.do")
 	public ModelAndView upload(HttpServletRequest req, HttpServletResponse res) throws IOException {
 		
-		// 크롤링으로 받아오는게 아니라 크롤링관련 정보 공백
+		// 글쓰기시 크롤링으로 받아오는게 아니라 크롤링관련 정보 공백
 		String r_crawling_addr = "";
 		String r_main_thumbs = "";
 		
@@ -157,7 +157,6 @@ public class CController {
 
 		int maxSize = 3 * 1024 * 1024; // 3MB
 		String encoding = "utf-8";
-
 		// saveDir: 경로
 		// maxSize: 크기제한 설정
 		// encoding: 인코딩타입 설정
@@ -246,7 +245,7 @@ public class CController {
 		intPre.execfile(req.getContextPath()+"/Final-Team-Project/BoardCa/src/Py/crawlingMysqlTest2.py");
 		//intPre.exec("print(testFunc(1,1))");
 		
-		// 지정한 파일에서 실행할 메소드이름
+		// 지정한 파일에서 실행할 함수이름
 		PyFunction pyFunction = (PyFunction)intPre.get("crawlingFunc", PyFunction.class);
 		// 필요한 매개변수 값
 		int a = 1, b = 2;

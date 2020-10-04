@@ -13,9 +13,6 @@ import pymysql
 
 def crawlingFunc(startNum, endNum):
     print("crawlingFunc")
-    # mysql 연결
-    conn = pymysql.connect(host='board-1.cqff4lw7mwyx.ap-northeast-2.rds.amazonaws.com', user='admin', password='comstudy03', db="boardCa", charset='utf8')
-    #cursor = conn.cursor()
 
     # 추천순
     #uri = "https://www.10000recipe.com/recipe/list.html?cat2=19&order=reco&page=1"
@@ -23,14 +20,17 @@ def crawlingFunc(startNum, endNum):
     # 최신순
     #uri = "https://www.10000recipe.com/recipe/list.html?cat2=19&order=date&page=1"
 
+    # mysql 연결
+    conn = pymysql.connect(host='board-1.cqff4lw7mwyx.ap-northeast-2.rds.amazonaws.com', user='admin', password='comstudy03', db="boardCa", charset='utf8')
     cat2 = 19;
     order = "date";
     page = 20;
-
+    
+    # 시작페이지, 끝페이지
     for i in range(startNum, endNum):
         uri = "https://www.10000recipe.com/recipe/list.html?cat2=19&order="+order+"&page="+str(i)
 
-        # 크롤링 개수
+        # 페이지당 가져올 개수
         testCount = 48
 
         req = Request(uri)
@@ -40,17 +40,16 @@ def crawlingFunc(startNum, endNum):
         html = html.decode("utf-8")
         # print(html[:256 ]) # 코드가 정상적이다
         # 이제 BeautifulSoup 으로 html 을 정제하자
-        bs = bs4.BeautifulSoup(html, "html.parser")
+        bs = BeautifulSoup(html, "html.parser")
         print(bs.title)
         print(bs.title.name)
-        # 이쁘게 표현하자 print(bs.prettify()[:1024])
         print()
 
         list = bs.select(".common_sp_list_ul.ea4>li")
         for food in list:
             # 전체 레시피 목록
             titles = food.select(".common_sp_thumb>a")
-
+            # 변수 초기화
             r_crawling_addr = ''
             r_main_thumbs = ''
             r_title = ''
@@ -91,12 +90,14 @@ def crawlingFunc(startNum, endNum):
                         img = container.select("#main_thumbs")
                         r_main_thumbs = img[0]['src']
                         print(img[0]['src'])
-
+                        
+                        # 제목
                         view_title = container.select(".view2_summary>h3")
                         r_title = view_title[0].text
                         r_title = r_title.replace('\'', "\"")
                         print('제목: ' + view_title[0].text)
-
+                        
+                        # 설명내용
                         try:
                             view_explain = container.select(".view2_summary_in")
                             r_explain = view_explain[0].text.strip()
@@ -105,6 +106,7 @@ def crawlingFunc(startNum, endNum):
                             r_explain = ""
                         print('설명: ' + r_explain.strip())
 
+                        # 기준인원
                         try:
                             info1 = container.select(".view2_summary_info1")
                             r_standard = info1[0].text
@@ -113,6 +115,7 @@ def crawlingFunc(startNum, endNum):
                             r_standard = ""
                         print("기준인원: " + r_standard)
 
+                        # 조리시간
                         try:
                             info2 = container.select(".view2_summary_info2")
                             r_cooking_time = info2[0].text
@@ -121,6 +124,7 @@ def crawlingFunc(startNum, endNum):
                             r_cooking_time = ""
                         print("조리시간: " + r_cooking_time)
 
+                        # 음식 난이도
                         try:
                             info3 = container.select(".view2_summary_info3")
                             r_difficult = info3[0].text
