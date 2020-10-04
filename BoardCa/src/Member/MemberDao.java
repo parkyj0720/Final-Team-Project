@@ -56,40 +56,62 @@ public class MemberDao {
 		return list;
 	}
 	
-// 회원수의 성별 정보 리스트
+// 회원들의 성별 정보 리스트
 	
 	public List<Object> Gender(){
 		
 		
 		List<Object> list = mysqlSession.selectList("MemberSQL.Gender");
 		
+		/*
 		GenderDto gender = (GenderDto) list.get(0);
 		
-		int man = gender.getMan();
-		int woman = gender.getWoman();
-		int secret = gender.getSecret();
+		  int man = gender.getMan(); 
+		  int woman = gender.getWoman();
+		  int secret = gender.getSecret();
+		  
+		  System.out.println(man+", "+ woman+", "+ secret);
+		 */
+		return list;
 		
-		System.out.println(man+", "+ woman+", "+ secret);
+	}
+// 회원들의 지역 정보 리스트
+	
+	public List<Object> Area(){
 		
+		
+		List<Object> list = mysqlSession.selectList("MemberSQL.Area");
+		
+		/*
+		GenderDto gender = (GenderDto) list.get(0);
+		
+		  int man = gender.getMan(); 
+		  int woman = gender.getWoman();
+		  int secret = gender.getSecret();
+		  
+		  System.out.println(man+", "+ woman+", "+ secret);
+		 */
 		return list;
 		
 	}
 
-// 회원수의 나잇대 정보 리스트
+// 회원들의 나잇대 정보 리스트
 	
 	public List<Object> AgeRange(){
 		
 		List<Object> list = mysqlSession.selectList("MemberSQL.AgeRange");
 		
+		/*
 		AgeRangeDto agerange = (AgeRangeDto) list.get(0);
 		
-		int twenty = agerange.getTwenty();
-		int thirty = agerange.getThirty();
-		int forty = agerange.getForty();
-		int fifty = agerange.getFifty();
-		int secret = agerange.getSecret();
-		
-		System.out.println(twenty+", "+ thirty+", "+ forty+", "+fifty + ", "+secret);
+		  int twenty = agerange.getTwenty();
+		  int thirty = agerange.getThirty(); 
+		  int forty = agerange.getForty(); 
+		  int fifty = agerange.getFifty(); 
+		  int secret = agerange.getSecret();
+		  
+		  System.out.println(twenty+", "+ thirty+", "+ forty+", "+fifty + ", "+secret);
+		 */
 		
 		return list;
 		

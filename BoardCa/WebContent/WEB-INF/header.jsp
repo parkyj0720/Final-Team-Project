@@ -209,7 +209,7 @@ $(function() {
 													href="${pageContext.request.contextPath}/myPageEdit.do">정보수정</a></li>
 												<li><a
 													href="${pageContext.request.contextPath}/myFAQ.do">1:1문의</a></li>
-												<li><a id="logoutBtn">로그아웃</a></li>
+												<li><a id="logoutBtn" href=#>로그아웃</a></li>
 											</ul>
 											</li>
 									</c:otherwise>

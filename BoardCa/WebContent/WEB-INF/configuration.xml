@@ -8,6 +8,7 @@
 	<typeAliases>
 		<typeAlias alias="MemberDto" type="Member.MemberDto"></typeAlias>
 		<typeAlias alias="GenderDto" type="Member.GenderDto"></typeAlias>
+		<typeAlias alias="AreaDto" type="Member.AreaDto"></typeAlias>
 		<typeAlias alias="AgeRangeDto" type="Member.AgeRangeDto"></typeAlias>
 		<typeAlias alias="GwonhanDto" type="Member.GwonhanDto"></typeAlias>
 		<typeAlias alias="SessionDto" type="Sign.SessionDto"></typeAlias>
