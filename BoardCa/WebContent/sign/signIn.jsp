@@ -24,16 +24,16 @@
 <script src="http://code.jquery.com/jquery.js"></script>
 <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
 <script>
+
+/* 입력창 빈칸 확인  */
 	$(function() {
 		$('#submitBtn').click(function() {
-
 			if (!$("#userId").val()) {
 				event.preventDefault();
 				alert("아이디를 입력해주세요");
 				$("#userId").focus();
 				return;
 			}
-
 			if (!$("#userPw").val()) {
 				event.preventDefault();
 				alert("패스워드를 입력해주세요");
