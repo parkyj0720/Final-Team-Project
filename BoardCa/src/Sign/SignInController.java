@@ -197,7 +197,7 @@ public class SignInController {
 		}
 		return mv;
 	}
-
+//  일반 회원 로그아웃
 	@RequestMapping("/logout.do")
 	public ModelAndView logout(HttpSession session) {
 		session.invalidate();
@@ -205,6 +205,7 @@ public class SignInController {
 		return mv;
 	}
 
+//	카카오 회원 로그아웃
 	@RequestMapping("/kakaoLogout.do")
 	public ModelAndView kakaoLogout(HttpSession session, HttpServletRequest req) {
 		final String RequestUrl = "https://kapi.kakao.com/v1/user/logout";
@@ -229,17 +230,13 @@ public class SignInController {
 			while ((line = br.readLine()) != null) {
 				result += line;
 			}
-
 			session.removeAttribute("userToken");
 			session.removeAttribute("userId");
-
 			session.invalidate();
-
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
 		mv.setViewName("/sign/logout.jsp");
 		return mv;
 	}

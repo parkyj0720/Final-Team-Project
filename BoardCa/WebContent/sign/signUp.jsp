@@ -262,11 +262,9 @@
 			default:
 				$("input:radio[id='four']").prop("checked", true);
 				$("input:radio[id='two']").prop("checked", false);			
-		}
+		}		
 		
-		
-		$('#submitBtn').click(function() {		
-			
+		$('#submitBtn').click(function() {					
 			if (!checkInputId(form.inputId.value)) {			        
 	            return false;
 	        } else if (!checkPassword(form.inputPw.value, form.inputPwCk.value)) {	        	
@@ -281,8 +279,7 @@
 	            return false;
 	        } else if (!checkState(form.mem_state.value)) {	        
 	            return false;
-	        }
-	        	    
+	        }	        	    
 		})
 		/* ID입력창 확인 */
 		function checkInputId(id) {
