@@ -23,23 +23,23 @@
 	<select id="Area" resultType="AreaDto">
 
 		SELECT 
-			COUNT(case when MEM_AGE_GROUP='서울특별시' then 1 END)AS area1,
-			COUNT(case when MEM_AGE_GROUP='인천광역시' then 1 END)AS area2,
-			COUNT(case when MEM_AGE_GROUP='대전광역시' then 1 END)AS area3,
-			COUNT(case when MEM_AGE_GROUP='광주광역시' then 1 END)AS area4,
-			COUNT(case when MEM_AGE_GROUP='대구광역시' then 1 END)AS area5,
-			COUNT(case when MEM_AGE_GROUP='울산광역시' then 1 END)AS area6,
-			COUNT(case when MEM_AGE_GROUP='부산광역시' then 1 END)AS area7,
-			COUNT(case when MEM_AGE_GROUP='경기도' then 1 END)AS area8,
-			COUNT(case when MEM_AGE_GROUP='강원도' then 1 END)AS area9,
-			COUNT(case when MEM_AGE_GROUP='충청북도' then 1 END)AS area10,
-			COUNT(case when MEM_AGE_GROUP='충청남도' then 1 END)AS area11,
-			COUNT(case when MEM_AGE_GROUP='전라북도' then 1 END)AS area12,
-			COUNT(case when MEM_AGE_GROUP='전라남도' then 1 END)AS area13,
-			COUNT(case when MEM_AGE_GROUP='경상북도' then 1 END)AS area14,
-			COUNT(case when MEM_AGE_GROUP='경상남도' then 1 END)AS area15,
-			COUNT(case when MEM_AGE_GROUP='제주도' then 1 END)AS area16,
-			COUNT(case when MEM_AGE_GROUP='비공개' then 1 END)AS areas,
+			COUNT(case when MEM_ROCAL='서울특별시' then 1 END)AS area1,
+			COUNT(case when MEM_ROCAL='인천광역시' then 1 END)AS area2,
+			COUNT(case when MEM_ROCAL='대전광역시' then 1 END)AS area3,
+			COUNT(case when MEM_ROCAL='광주광역시' then 1 END)AS area4,
+			COUNT(case when MEM_ROCAL='대구광역시' then 1 END)AS area5,
+			COUNT(case when MEM_ROCAL='울산광역시' then 1 END)AS area6,
+			COUNT(case when MEM_ROCAL='부산광역시' then 1 END)AS area7,
+			COUNT(case when MEM_ROCAL='경기도' then 1 END)AS area8,
+			COUNT(case when MEM_ROCAL='강원도' then 1 END)AS area9,
+			COUNT(case when MEM_ROCAL='충청북도' then 1 END)AS area10,
+			COUNT(case when MEM_ROCAL='충청남도' then 1 END)AS area11,
+			COUNT(case when MEM_ROCAL='전라북도' then 1 END)AS area12,
+			COUNT(case when MEM_ROCAL='전라남도' then 1 END)AS area13,
+			COUNT(case when MEM_ROCAL='경상북도' then 1 END)AS area14,
+			COUNT(case when MEM_ROCAL='경상남도' then 1 END)AS area15,
+			COUNT(case when MEM_ROCAL='제주도' then 1 END)AS area16,
+			COUNT(case when MEM_ROCAL='비공개' then 1 END)AS areas
 
 		FROM MEMBER_T
 	

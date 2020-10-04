@@ -222,16 +222,48 @@ var chart = c3.generate({
     }
 });
 
+var area1 = <%=request.getAttribute("area1")%> //서울
+var area2 = <%=request.getAttribute("area2")%> //인천
+var area3 = <%=request.getAttribute("area3")%> //대전
+var area4 = <%=request.getAttribute("area4")%>; //광주
+var area5 = <%=request.getAttribute("area5")%>; //대구
+var area6 = <%=request.getAttribute("area6")%>; //울산
+var area7 = <%=request.getAttribute("area7")%>; //부산
+var area8 = <%=request.getAttribute("area8")%>; //경기
+var area9 = <%=request.getAttribute("area9")%>; //강원
+var area10 = <%=request.getAttribute("area10")%>; //충북
+var area11 = <%=request.getAttribute("area11")%>; //충남
+var area12 = <%=request.getAttribute("area12")%>; //전북
+var area13 = <%=request.getAttribute("area13")%>; //전남
+var area14 = <%=request.getAttribute("area14")%>; //경북
+var area15 = <%=request.getAttribute("area15")%>; //경남
+var area16 = <%=request.getAttribute("area16")%>; //제주
+var areas = <%=request.getAttribute("areas")%>; //비공개
+
+
 var chart = c3.generate({
 	bindto: '#chart2',
     data: {
         columns: [
-            ['경기도', 2000],
-            ['서울', 2000],
-            ['인천', 1000],
-            ['강원도', 500],
-            ['충청도', 500],
-            ['제주도', 500],
+        	
+            ['서울', area1],
+            ['인천', area2],
+            ['대전', area3],
+            ['광주', area4],
+            ['대구', area5],
+            ['울산', area6],
+            ['부산', area7],
+            ['경기', area8],
+            ['강원', area9],
+            ['충북', area10],
+            ['충남', area11],
+            ['전북', area12],
+            ['전남', area13],
+            ['경북', area14],
+            ['경남', area15],
+            ['제주', area16],
+            ['비공개', areas]            
+            
         ],
         type : 'donut',
         onclick: function (d, i) { console.log("onclick", d, i); },

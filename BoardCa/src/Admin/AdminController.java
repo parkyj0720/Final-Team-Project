@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import Member.AgeRangeDto;
+import Member.AreaDto;
 import Member.GenderDto;
 import Member.GwonhanDto;
 import Member.MemberDao;
@@ -47,6 +48,49 @@ public class AdminController {
 		request.setAttribute("secret", secret);
 		
 		// request에 카운트한 값들을 넣어준다. 
+		
+		
+		List<Object> area = MemberDao.Area();
+		
+		AreaDto ar = (AreaDto)area.get(0);
+		
+		int area1 = ar.getArea1(); //서울
+		int area2 = ar.getArea2(); //인천
+		int area3 = ar.getArea3(); //대전
+		int area4 = ar.getArea4(); //광주
+		int area5 = ar.getArea5(); //대구
+		int area6 = ar.getArea6(); //울산
+		int area7 = ar.getArea7(); //부산
+		int area8 = ar.getArea8(); //경기
+		int area9 = ar.getArea9(); //강원
+		int area10 = ar.getArea10(); //충북
+		int area11 = ar.getArea11(); //충남
+		int area12 = ar.getArea12(); //전북
+		int area13 = ar.getArea13(); //전남
+		int area14 = ar.getArea14(); //경북
+		int area15 = ar.getArea15(); //경남
+		int area16 = ar.getArea16(); //제주
+		int areas = ar.getAreas(); //비공개
+		
+		request.setAttribute("area1", area1);
+		request.setAttribute("area2", area2);
+		request.setAttribute("area3", area3);
+		request.setAttribute("area4", area4);
+		request.setAttribute("area5", area5);
+		request.setAttribute("area6", area6);
+		request.setAttribute("area7", area7);
+		request.setAttribute("area8", area8);
+		request.setAttribute("area9", area9);
+		request.setAttribute("area10", area10);
+		request.setAttribute("area11", area11);
+		request.setAttribute("area12", area12);
+		request.setAttribute("area13", area13);
+		request.setAttribute("area14", area14);
+		request.setAttribute("area15", area15);
+		request.setAttribute("area16", area16);
+		request.setAttribute("areas", areas);
+		
+		
 		
 		List<Object> age = MemberDao.AgeRange();
 		
