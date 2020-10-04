@@ -66,8 +66,8 @@ public class SignInController {
 		DocumentBuilder builder = fatory.newDocumentBuilder();
 		// 3.생성된 빌더를 통해서 xml문서를 Document객체로 파싱해서 가져온다.
 		// Document org에서 가져온다!!!
-		Document doc = builder.parse(
-				"http://whois.kisa.or.kr/openapi/ipascc.jsp?query=192.168.219.111&key=2020081914462601995405&answer=xml");
+		Document doc = builder.parse("http://whois.kisa.or.kr/openapi/ipascc.jsp?query=" + ip
+				+ "&key=2020092812534662722565&answer=xml");
 		NodeList list = doc.getElementsByTagName("countryCode");
 
 		int i = 0;
