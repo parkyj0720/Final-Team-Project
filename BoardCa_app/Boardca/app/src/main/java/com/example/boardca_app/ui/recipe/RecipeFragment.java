@@ -32,7 +32,7 @@ public class RecipeFragment extends Fragment {
         webView.getSettings().setJavaScriptEnabled(true);
         webView.setWebChromeClient(new WebChromeClient());
         webView.setWebViewClient(new RecipeFragment.WebViewClientClass());
-        webView.loadUrl("http://www.naver.com"); //주소는 임시, 차후에 바꿀것.
+        webView.loadUrl("http://192.168.219.139:8088/BoardCa/cListAll.do"); //주소는 임시, 차후에 바꿀것.
 
 //        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://172.30.1.17:8088/BoardCa/signIn.do"));
 //        startActivity(intent);

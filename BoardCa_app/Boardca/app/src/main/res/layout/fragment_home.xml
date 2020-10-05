@@ -6,21 +6,23 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:name="androidx.navigation.fragment.NavHostFragment">
+    android:name="androidx.navigation.fragment.NavHostFragment"
+    android:background="#463168">
 
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/animation_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="#463168"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:lottie_autoPlay="true"
         app:lottie_fileName="home_data.json"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteY="43dp"
-        android:background="#463168"/>
+        tools:ignore="MissingConstraints" />
 
     <ImageView
         android:id="@+id/game_img"
@@ -45,14 +47,14 @@
         app:layout_constraintStart_toStartOf="parent"
         tools:ignore="MissingConstraints" />
 
-    <Button
+    <ImageButton
         android:id="@+id/btn_game"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/btn_game"
+        android:layout_width="200dp"
+        android:layout_height="80dp"
+        android:layout_marginBottom="48dp"
+        android:src="@drawable/start_btn"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         tools:ignore="MissingConstraints" />
 
