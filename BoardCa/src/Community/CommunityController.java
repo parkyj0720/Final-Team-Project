@@ -61,7 +61,7 @@ public class CommunityController {
 		int list_num = Integer.parseInt(request.getParameter("list"));
 		List<CommunityDto> communityList = dao.List(list_num);
 		for (int i = 0; i < communityList.size(); i++) {
-			int no = communityList.get(i).getNum();
+			int no = communityList.get(i).getBRD_IDX();
 			int num = dao.list_heart(no);
 			heartList.add(num);
 		}
@@ -79,7 +79,7 @@ public class CommunityController {
 		int num = Integer.parseInt(request.getParameter("num"));
 		dao.view(num);
 		CommunityDto dto = dao.detail(num);
-		int boardnum = dto.getBoardnum();
+		int boardnum = dto.getBRD_IDX();
 		mv.addObject("board", dao.one_board(boardnum));
 		mv.addObject("dto", dto);
 		mv.addObject("heart", dao.detail_heart(num));
@@ -94,18 +94,18 @@ public class CommunityController {
 		
 		System.out.println(dto);
 
-		List<Heart> hList = dao.detail_heart(dto.getContent_num());
+		List<Heart> hList = dao.detail_heart(dto.getBOARD_IDX());
 		int dataNum = 0;
 		for (int i = 0; i < hList.size(); i++) {
-			if (hList.get(i).getUsername().equals(dto.getUsername())) {
+			if (hList.get(i).getMEM_IDX()==dto.getMEM_IDX()) {
 				dao.detail_heart_delete(dto);
-				System.out.println(dto.getContent_num() + "번글" + dto.getUsername() + "좋아요 취소");
+				System.out.println(dto.getBOARD_IDX() + "번글" + dto.getBOARD_IDX() + "좋아요 취소");
 				dataNum = 1;
 			}
 		}
 		if (dataNum == 0) {
 			dao.detail_heart_insert(dto);
-			System.out.println(dto.getContent_num() + "번글" + dto.getUsername() + "좋아요");
+			System.out.println(dto.getBOARD_IDX() + "번글" + dto.getMEM_IDX() + "좋아요");
 		}
 	}
 	@RequestMapping(value = "/Community_heart_count.do", method = RequestMethod.POST, produces="application/json")
@@ -138,8 +138,8 @@ public class CommunityController {
 	@ResponseBody
 	public void community_input_content(InputDto data, HttpServletRequest request) {
 		System.out.println(data);
-		CommunityDto dto = new CommunityDto(0, data.getTitle(), data.getWriter_id(), "", data.getAsd(), 0,
-				data.getBoardnum());
+		CommunityDto dto = new CommunityDto(0, data.getBRD_TIT(), data.getBRD_WRT_ID(), "", data.getBRD_CONTENT(), 0,
+				data.getCATEGORY_IDX());
 		dao.insert(dto);
 	}
 	// modify 
@@ -157,7 +157,7 @@ public class CommunityController {
 
 	@ResponseBody
 	public void community_delete(Heart data, HttpServletRequest request) {
-		int num = data.getContent_num();
+		int num = data.getBOARD_IDX();
 		System.out.println(num);
 		dao.delete_content(num);
 	}

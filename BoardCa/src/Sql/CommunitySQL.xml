@@ -19,134 +19,129 @@
 
 	<!-- 입력 -->
 	<select id="Get_boardlist" resultType="CommunityModel.BoardList">
-		select BOARDNUM, BOARDNAME
-		from BOARD
+		select *
+		from BOARD_CAT_T
 	</select>
 
 	<!-- 메인화면 리스트 -->
 	<select id="Main" parameterType="int"
 		resultType="CommunityModel.CommunityDto">
-		select num,
-		title,
-		writer_id,
-		written_date,
+		select BRD_IDX,
+		BRD_TIT,
+		BRD_WRT_ID,
+		BRD_SYSDATE,
 
-		views,
-		boardnum
-		from community where
-		(boardnum=#{num}
-		and rownum <![CDATA[ < ]]>=
-		7)
-		ORDER BY num DESC
+		BRD_VIEWS,
+		CATEGORY_IDX
+		from BOARD_T 
+		where
+		CATEGORY_IDX = #{num}
+		ORDER BY BRD_IDX DESC
+		limit 7
 	</select>
 
 	<!-- 리스트 -->
 	<select id="List" parameterType="int"
 		resultType="CommunityModel.CommunityDto">
-		select num,
-		title,
-		writer_id,
-		written_date,
+		select BRD_IDX,
+		BRD_TIT,
+		BRD_WRT_ID,
+		BRD_SYSDATE,
 
-		views,
-		boardnum
-		from community where
-		(boardnum=#{num}
-		)
-		ORDER BY num DESC
+		BRD_VIEWS,
+		CATEGORY_IDX
+		from BOARD_T 
+		where
+		CATEGORY_IDX = #{num}
+		ORDER BY BRD_IDX DESC
 	</select>
 
 	<!-- 보드하나만 선택 -->
 	<select id="one_board" parameterType="int"
 		resultType="CommunityModel.BoardList">
-		select BOARDNUM, BOARDNAME
-		from BOARD where BOARDNUM = #{num}
+		select *
+		from BOARD_CAT_T where BRD_CAT_IDX = #{num}
 	</select>
 	
-	<!--좋아요 -->
+	<!-- 좋아요 -->
 	<select id="list_heart" parameterType="int"
 		resultType="CommunityModel.Heart">
-		select 
-		username, 
-		content_num 
-		from heart 
-		where content_num=#{num}
+		select *
+		from HEART_T 
+		where BOARD_IDX = #{num}
 	</select>
 
-	<!--디테일 게시글 -->
+	<!-- 디테일 게시글 -->
 	<select id="detail" parameterType="int"
 		resultType="CommunityModel.CommunityDto" resultMap="Comm">
 		select
-		num,
-		title,
-		writer_id,
-		written_date,
-		views,
-		boardnum,
-		content
+		BRD_IDX,
+		BRD_TIT,
+		BRD_WRT_ID,
+		BRD_SYSDATE,
+		BRD_VIEWS,
+		CATEGORY_IDX,
+		BRD_CONTENT
 		from community 
-		where (num = #{num})
+		where (BRD_IDX = #{num})
 	</select>
 	
 	<!-- 디테일 좋아요 -->
 	<select id="detail_heart" parameterType="int"
 		resultType="CommunityModel.Heart">
 		select 
-		username,
-		content_num
-		from heart 
-		where content_num=#{num}
+		*
+		from HEART_T
+		where BOARD_IDX = #{num}
 	</select>
 	<select id="delete_heart" parameterType="CommunityModel.Heart">
 		delete
-		from heart 
-		where content_num=#{content_num}
-		and username = #{username}
+		from HEART_T 
+		where BOARD_IDX=#{BOARD_IDX}
+		and MEM_IDX = #{MEM_IDX}
 	</select>
 	<select id="insert_heart" parameterType="CommunityModel.Heart">
 		insert
-		into heart
+		into HEART_T
 		values(
-		#{username},
-		#{content_num})
+		#{BOARD_IDX},
+		#{MEM_IDX})
 	</select>
 	
 	<!-- 디테일 댓글 -->
 	<select id="detail_comments" parameterType="int"
 		resultType="CommunityModel.Comment" resultMap="nity">
 		select
-		writer_id,
-		written_date,
-		content_num,
-		content
-		from comments
-		where content_num=#{num}
+		MEM_IDX,
+		COMT_SYSDATE,
+		BRD_IDX,
+		COMT_CONTENT
+		from COMMENT_T
+		where BRD_IDX = #{num}
 	</select>
 	
 	<!-- 디테일 조회수 증가 -->
 	<select id="view" parameterType="int">
-		update community set views = views+1 where num=#{num}
+		update BOART_T set BRD_VIEWS = BRD_VIEWS + 1 where BRD_IDX=#{BRD_IDX}
 	</select>
 
 
 	<!-- 게시글 작성 -->
 	<insert id="insert" parameterType="CommunityModel.CommunityDto">
-		insert into community
-		(num,
-		title,
-		writer_id,
-		written_date,
-		views,
-		boardnum,
-		content)
+		insert into BOARD_T
+		(
+		BRD_TIT,
+		BRD_WRT_ID,
+		BRD_VIEWS,
+		CATEGORY_IDX,
+		BRD_CONTENT)
 
-		values(community_seq.nextval,
-		#{title},
-		#{writer_id},
-		sysdate,
+		values(
+		#{BRD_TIT},
+		#{BRD_WRT_ID},
 		0,
-		#{boardnum},
-		#{content})
+		#{CATEGORY_IDX},
+		#{BRD_CONTENT})
 	</insert>
 	
 	<delete id="delete_content_comments" parameterType="int">

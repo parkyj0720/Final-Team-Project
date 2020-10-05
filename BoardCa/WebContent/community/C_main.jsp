@@ -75,7 +75,7 @@
 							<div class="header" align="center">
 								<a
 									href="${pageContext.request.contextPath}/Community_list.do?list=<%=i+1%>"><h2
-										id="listname1"><%=blist.getBOARDNAME()%></h2></a>
+										id="listname1"><%=blist.getCAT_NAME()%></h2></a>
 							</div>
 							<div class="body" style="height: 30em;">
 								<table
@@ -91,7 +91,7 @@
 										}else{
 										for (int j = 0; j < list.size(); j++) {
 											CommunityDto dto = list.get(j);
-											String title = dto.getTitle();
+											String title = dto.getBRD_TIT();
 											int endidx = title.length();
 											if (endidx > 20) {
 										title = title.substring(0, 20);
@@ -100,15 +100,15 @@
 									%>
 									<tr class="list" height="14.2%" width="100%" style="box-sizing: content-box;">
 										<td width="10%" height="auto" align="center"
-											style="white-space: normal;"><%=dto.getNum()%></td>
+											style="white-space: normal;"><%=dto.getBRD_IDX()%></td>
 										<td width="10%" height="auto" align="center"
-											style="white-space: normal;"><%=dto.getWriter_id()%></td>
+											style="white-space: normal;"><%=dto.getBRD_WRT_ID()%></td>
 										<td width="50%" height="auto" align="center"
 											style="white-space: normal;"><%=title%></td>
 										<td width="10%" height="auto" align="center"
-											style="white-space: normal;"><%=dto.getWritten_date()%></td>
+											style="white-space: normal;"><%=dto.getBRD_SYSDATE()%></td>
 										<td width="10%" height="auto" align="center"
-											style="white-space: normal;"><%=dto.getViews()%></td>
+											style="white-space: normal;"><%=dto.getBRD_VIEWS()%></td>
 									</tr>
 									<%
 										}
@@ -138,7 +138,7 @@
 							<div class="header" align="center">
 								<a
 									href="${pageContext.request.contextPath}/Community_list.do?list=<%=i+1%>"><h2
-										id="listname1"><%=blist.getBOARDNAME()%></h2></a>
+										id="listname1"><%=blist.getCAT_NAME()%></h2></a>
 							</div>
 							<div class="body" style="height: 30em;">
 								<table
@@ -154,7 +154,7 @@
 										}else{
 										for (int j = 0; j < list.size(); j++) {
 											CommunityDto dto = list.get(j);
-											String title = dto.getTitle();
+											String title = dto.getBRD_TIT();
 											int endidx = title.length();
 											if (endidx > 20) {
 										title = title.substring(0, 20);
@@ -163,15 +163,15 @@
 									%>
 									<tr class="list" width="14.2%" style="box-sizing: content-box;">
 										<td width="10%" height="auto" align="center"
-											style="white-space: normal;"><%=dto.getNum()%></td>
+											style="white-space: normal;"><%=dto.getBRD_IDX()%></td>
 										<td width="10%" height="auto" align="center"
-											style="white-space: normal;"><%=dto.getWriter_id()%></td>
+											style="white-space: normal;"><%=dto.getBRD_WRT_ID()%></td>
 										<td width="50%" height="auto" align="center"
 											style="white-space: normal;"><%=title%></td>
 										<td width="10%" height="auto" align="center"
-											style="white-space: normal;"><%=dto.getWritten_date()%></td>
+											style="white-space: normal;"><%=dto.getBRD_SYSDATE()%></td>
 										<td width="10%" height="auto" align="center"
-											style="white-space: normal;"><%=dto.getViews()%></td>
+											style="white-space: normal;"><%=dto.getBRD_VIEWS()%></td>
 
 									</tr>
 									<%
