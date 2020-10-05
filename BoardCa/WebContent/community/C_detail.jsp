@@ -140,8 +140,10 @@
 				<div class="header">
 					<h2>
 						<i class="zmdi zmdi-comments"></i><strong>댓글</strong> (<%=comment.size()%>)
+						<%if(dto.getWriter_id() == (String)session.getAttribute("userId")){ %>
 						<a href="${pageContext.request.contextPath}/Community_Modify.do?num=<%=dto.getNum()%>"><strong style="margin-left: 80px; color: gray">수정</strong></a>
 						<span id="delete" style="cursor: pointer;"><strong style="margin-left: 20px; color: gray">삭제</strong></span>
+						<%} %>
 					</h2>
 					<%
 						String username = (String)session.getAttribute("userId");
@@ -186,19 +188,20 @@
 				</div>
 				<div>
 					<ul class="comment-reply list-unstyled">
-						<li>
 							<%
 								for (int i = 0; i < comment.size(); i++) {
 								Comment Comm = comment.get(i);
 							%>
-							<div class="text-box">
+						<li>
+							<div class="text-box" style="padding-left: 10px">
 								<h5><%=Comm.getWriter_id()%></h5>
 								<span class="comment-date"><%=Comm.getWritten_date()%></span>
 								<p><%=Comm.getContent()%></p>
-							</div> <%
+							</div> 
+						</li>
+							<%
  	}
  %>
-						</li>
 					</ul>
 				</div>
 			</div>
@@ -262,6 +265,8 @@
 				
 			}
 			});
+			
+			
 			$("#delete").on("click", function() {
 				console.log('삭제버튼')
 				var dto = {
@@ -275,13 +280,15 @@
 					data: dto,
 					success: function () {
 						console.log('삭제성공')
-						setTimeout(() => {
-    		 	$(location).attr('href', '${pageContext.request.contextPath}/Community_list.do?list=<%=viewname.getBOARDNUM()%>');
-						
-					}, 100);
+						delete_success()
 			           }
 				})
 			});
+			function delete_success() {
+    		 	$(location).attr('href', '${pageContext.request.contextPath}/Community_list.do?list=<%=viewname.getBOARDNUM()%>');
+			}
+			
+			
 			$("#comment_submit").on("click", function() {
 				console.log('댓글입력버튼');
 				var comment_content = $('#comment_area').val();
@@ -300,6 +307,7 @@
 							data: dto,
 							success: function () {
 								alert('댓글 입력완료')
+								location.reload();
 					           }
 						})
 				}

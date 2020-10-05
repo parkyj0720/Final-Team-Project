@@ -77,4 +77,7 @@ public class CoDao {
 		sqlSession.delete("CoXml.delete_content_comments", num);
 		sqlSession.delete("CoXml.delete_content", num);
 	}
+	public void insert_comment(Comment dto) {
+		sqlSession.insert("CoXml.insert_comment", dto);
+	}
 }

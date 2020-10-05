@@ -112,15 +112,19 @@
 						url: "Community_inputContent.do",
 						type: "POST",
 						datatype: 'application/json',
-						data: dto
+						data: dto,
+						success: function() {
+							alert('게시글 작성이 완료되었습니다!');
+							view_List();
+						}
 					})
-					setTimeout(() => {
-    		 	$(location).attr('href', '${pageContext.request.contextPath}/Community_list.do?list='+boardnum);
-						
-					}, 300);
+
     		  }
     			
 		};
+	      function view_List() {
+	  		 	$(location).attr('href', '${pageContext.request.contextPath}/Community_list.do?list='+boardnum);
+		}
       })
       });
     </script>

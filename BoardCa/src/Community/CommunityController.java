@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -39,11 +40,14 @@ public class CommunityController {
 	// Main
 	@RequestMapping("/Community_main.do")
 	public ModelAndView community_main() {
+		// 게시판 번호, 이름 정보 가져오기
 		List<BoardList> boardlist = dao.Get_boardlist();
 		for(int i = 1; i<=boardlist.size(); i++) {
+			// 게시판당 상위7개 게시글 가져와서 넘겨줌
 			String list = "list"+i;
 			mv.addObject(list, dao.main(i));
 		}
+		// 게시판 번호, 이름정보 넘겨줌
 		mv.addObject("boardList", boardlist);
 		mv.setViewName("community/C_main.jsp");
 		return mv;
@@ -71,7 +75,7 @@ public class CommunityController {
 	  
 	// detail
 	@RequestMapping("/Community_detail.do")
-	public ModelAndView community_detail(HttpServletRequest request) {
+	public ModelAndView community_detail(HttpServletRequest request, HttpSession session) {
 		int num = Integer.parseInt(request.getParameter("num"));
 		dao.view(num);
 		CommunityDto dto = dao.detail(num);
@@ -165,6 +169,7 @@ public class CommunityController {
 	@ResponseBody
 	public void community_comment(Comment data, HttpServletRequest request) {
 		System.out.println(data);
+		dao.insert_comment(data); 
 	}
 
 }
