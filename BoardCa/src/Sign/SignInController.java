@@ -169,19 +169,17 @@ public class SignInController {
 				if(gwonhan==0) {
 					
 					mv.setViewName("/sign/cantlogin.jsp");
-					return mv;
-					
+					return mv;					
 				}
 				
-				
-				
 //				해당 아이디의 회원번호 가져오기
-				int searchIdx = memDao.searchIdx(userId);
+				int userIdx = memDao.searchIdx(userId);
 
 				sedto.setSess_ip(ip);
 				sedto.setSess_move("로그인(성공)");
-				sedto.setMem_idx(searchIdx);
-
+				sedto.setMem_idx(userIdx);
+				
+				session.setAttribute("userIdx", userIdx);
 				session.setAttribute("userId", userId);
 				session.setAttribute("userToken2", "0");
 
