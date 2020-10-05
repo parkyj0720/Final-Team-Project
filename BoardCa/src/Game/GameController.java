@@ -13,13 +13,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class GameController {
-
 	@Autowired
 	private ModelAndView mv;
-
 	@Autowired
 	private GameDao dao;
-
 	@RequestMapping("/gameMain.do")
 	public ModelAndView gameMain(HttpServletRequest req) {
 		int page = 1;
@@ -28,7 +25,6 @@ public class GameController {
 			if (page <= 0)
 				page = 1;
 		}
-
 		System.out.println("gameMain.do");
 		List<GameDto> list = dao.getList();
 		Collections.shuffle(list);
@@ -37,7 +33,6 @@ public class GameController {
 		mv.setViewName("/game/gameMain.jsp?page=" + page);
 		return mv;
 	}
-
 	@RequestMapping("/gameDetail.do")
 	public ModelAndView gameDetail(HttpServletRequest req) {
 		int GameNo = Integer.parseInt(req.getParameter("no"));
@@ -49,7 +44,6 @@ public class GameController {
 		mv.setViewName("/game/gameDetail.jsp");
 		return mv;
 	}
-
 	@RequestMapping("/gameSearch.do")
 	public ModelAndView gameSearch(HttpServletRequest req) {
 		int page = 1;

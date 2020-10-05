@@ -6,9 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<%
-	MemberDto dto = (MemberDto) request.getAttribute("memInfo");
-%>
+
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=Edge">
 <meta
@@ -32,6 +30,9 @@ select {
 }
 </style>
 
+<%
+	MemberDto dto = (MemberDto) request.getAttribute("memInfo");
+%>
 
 <script src="http://code.jquery.com/jquery.js"></script>
 <script>
@@ -138,7 +139,7 @@ function nickNameCheck(){
 				area9, area10, area11, area12, area13, area14, area15, area16 ];
 		// 시/도 선택 박스 초기화
 	
-		var target = document.getElementById("mem_state");
+		var target = document.getElementById("state");
 	
 		if (e.value == "area1")
 			var d = area1;
@@ -172,6 +173,8 @@ function nickNameCheck(){
 			var d = area15;
 		else if (e.value == "area16")
 			var d = area16;
+		else if (e.value == "areas")
+			var d = areas;
 	
 		target.options.length = 0;
 	
@@ -183,30 +186,10 @@ function nickNameCheck(){
 		}
 		var mem_rocal = $('#area0 option:selected').text();
 		
-		$('#mem_rocal').val(mem_rocal);
+		$('#rocal').val(mem_rocal);
 		
 	}
-	
-	function submit() {
-		$.ajax({
-			type :"POST",
-			url : "/BoardCa/Edit.do",
-			data :{
-				nickName : $("#nickname").val(),
-				pw :$("#inputPw").val(),
-				email1 : $("#email1").val(),
-				email2 : $("#email2").val(),
-				rocal : $("#rocal").val(),
-				state : $("#state").val(),
-			},
-			success : function test(a) {
-				console.log(a)
-			},
-			error : function error() {
-				alert("error");
-			}
-		});
-	}	
+
 	function checkPassword(inputPw, inputPwCk) {
         //비밀번호가 입력되었는지 확인하기
         if (!checkExistData(inputPw, "비밀번호를"))
@@ -289,7 +272,7 @@ function nickNameCheck(){
 								</h2>
 							</div>
 							<div class="body">
-								<form action="${pageContext.request.contextPath}/myPageEdit.do"
+								<form action="${pageContext.request.contextPath}/Edit.do"
 									method="POST">
 									<div class="row">
 										<div class="col-lg-12 col-md-12">
@@ -362,7 +345,7 @@ function nickNameCheck(){
 										<div class="col-lg-6 col-md-12">
 											<div>
 												<select onchange="categoryChange(this)" class="form-control"
-													id="rocal" name="rocal">
+													id="area0">
 													<option>광역시·도 선택</option>
 													<option value="area1">서울특별시</option>
 													<option value="area2">인천광역시</option>
@@ -385,9 +368,80 @@ function nickNameCheck(){
 										</div>
 										<div class="col-lg-6 col-md-12">
 											<div>
-												<select id="mem_state" class="form-control" name="mem_state">
+												<select id="state" class="form-control" name="state">
 													<option>시·군·구 선택</option>
 												</select>
+											</div>
+											<input type="text" id="rocal" name="rocal"
+												style="visibility: hidden;">
+										</div>
+										<!-- 성별 체크 라디오 버튼  -->
+										<div class="form-group col-sm-12 margin-auto"
+											style="text-align: left;">
+											<c:choose>
+												<c:when test="${userGender == null or userGender == 'male'}">
+													<div class="form-group">
+														<div class="radio inlineblock m-r-20" style="margin: 0;">
+															<input type="radio" name="gender" id="male"
+																class="with-gap" value="남" checked> <label
+																for="male">남성</label>
+														</div>
+														<div class="radio inlineblock" style="margin: 0;">
+															<input type="radio" name="gender" id="Female"
+																class="with-gap" value="여"> <label for="Female">여성</label>
+														</div>
+														<div class="radio inlineblock" style="margin: 0;">
+															<input type="radio" name="gender" id="secret"
+																class="with-gap" value=""> <label for="secret">비공개</label>
+														</div>
+													</div>
+												</c:when>
+												<c:when test="${userGender == 'female'}">
+													<div class="form-group">
+														<div class="radio inlineblock m-r-20" style="margin: 0;">
+															<input type="radio" name="gender" id="male"
+																class="with-gap" value="남"> <label for="male">남성</label>
+														</div>
+														<div class="radio inlineblock" style="margin: 0;">
+															<input type="radio" name="gender" id="Female"
+																class="with-gap" value="여" checked> <label
+																for="Female">여성</label>
+														</div>
+														<div class="radio inlineblock" style="margin: 0;">
+															<input type="radio" name="gender" id="secret"
+																class="with-gap" value=""> <label for="secret">비공개</label>
+														</div>
+													</div>
+												</c:when>
+											</c:choose>
+										</div>
+										
+										<!-- 연령대 -->
+										<div class="form-group  col-sm-9 margin-auto"
+											style="text-align: left;">
+											<div class="form-group">
+												<div class="radio inlineblock m-r-20" style="margin: 0;">
+													<input type="radio" name="ageRange" id="one"
+														class="with-gap" value="20대"> <label for="one">20대</label>
+												</div>
+												<div class="radio inlineblock m-r-20" style="margin: 0;">
+													<input type="radio" name="ageRange" id="two"
+														class="with-gap" value="30대" checked> <label
+														for="two">30대</label>
+												</div>
+												<div class="radio inlineblock" style="margin: 0;">
+													<input type="radio" name="ageRange" id="three"
+														class="with-gap" value="40대"> <label for="three">40대</label>
+												</div>
+												<div class="radio inlineblock" style="margin: 0;">
+													<input type="radio" name="ageRange" id="four"
+														class="with-gap" value="50대 이상"> <label for="four">50대
+														이상</label>
+												</div>
+												<div class="radio inlineblock" style="margin: 0;">
+													<input type="radio" name="ageRange" id="five"
+														class="with-gap" value=""> <label for="five">비공개</label>
+												</div>
 											</div>
 										</div>
 										<div class="col-md-12" style="margin-top: 15px;">
