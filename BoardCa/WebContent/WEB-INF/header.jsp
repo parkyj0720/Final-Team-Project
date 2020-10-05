@@ -166,7 +166,7 @@ $(function() {
 									</ul></li>
 								<c:choose>
 									<c:when test="${sessionScope.userId == null}">
-										<li><a href="signIn.do">로그인</a></li>
+										<li><a href="${pageContext.request.contextPath}/signIn.do">로그인</a></li>
 									</c:when>
 									
 									<c:when test="${sessionScope.userId == 'ADMIN'}">
