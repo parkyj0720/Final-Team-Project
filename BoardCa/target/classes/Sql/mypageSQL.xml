@@ -9,12 +9,11 @@
 		parameterType="MemberDto">
 		select * from MEMBER_T where MEM_ID=#{mem_id}
 	</select>
-	<select id="InfoEdit" resultType="MemberDto"
-		parameterType="MemberDto">
-		update MEMBER_T set
+	<update id="InfoEdit" parameterType="MemberDto">
+		UPDATE MEMBER_T SET
 		MEM_NICKNAME=#{mem_nickname},MEM_PW=#{mem_pw},MEM_EMAIL=#{mem_email},MEM_ROCAL=#{mem_rocal},MEM_STATE=#{mem_state}
-		where MEM_ID=#{mem_id}
+		WHERE MEM_ID=#{userId}
 
-	</select>
+	</update>
 
 </mapper>
