@@ -3,7 +3,10 @@
     <color name="colorPrimary">#ededed</color>
     <color name="colorPrimaryDark">#cccccc</color>
     <color name="colorLightGray">#f1f1f1</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorAccent">#fa8d00</color>
+    <!--#FF4081 기본색 / #463168 보라색 / #fa8d00 주황색-->
+
+
     <color name="colorWhite">#FFFFFF</color>
     <color name="colorDivision">#e0e0e0</color>
     <color name="colorNavIcon">#1d1d1d</color>

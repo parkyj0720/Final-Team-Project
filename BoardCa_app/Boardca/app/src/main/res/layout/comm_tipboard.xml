@@ -8,54 +8,49 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <WebView
+        android:id="@+id/comm_tip"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
     <!-- 게시글번호 (시퀀스) / 작성자 / 작성일 / 내용 / 조회수 / 게시판번호 -->
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="@+id/tip"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <!-- 셀렉트 -->
-        <Spinner
-            android:id="@+id/comm_spinner"
-            android:layout_width="130dp"
-            android:layout_height="45dp"
-            android:layout_marginLeft="10dp"
-            android:entries="@array/comm_arr" />
-
-        <!-- 검색창 -->
-        <EditText
-            android:id="@+id/search_bar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="10dp"
-            android:drawableRight="@drawable/serch"
-            android:hint="@string/search_bar" />
-
-    </LinearLayout>
-
-    <include
-        layout="@layout/comm_list"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="50dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-
-<!--    <androidx.recyclerview.widget.RecyclerView-->
-<!--        android:id="@+id/comm_tip_view"-->
+<!--    <LinearLayout-->
 <!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:orientation="horizontal"-->
+<!--        app:layout_constraintBottom_toBottomOf="@+id/tip"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent">-->
+
+<!--        &lt;!&ndash; 셀렉트 &ndash;&gt;-->
+<!--        <Spinner-->
+<!--            android:id="@+id/comm_spinner"-->
+<!--            android:layout_width="130dp"-->
+<!--            android:layout_height="45dp"-->
+<!--            android:layout_marginLeft="10dp"-->
+<!--            android:entries="@array/comm_arr" />-->
+
+<!--        &lt;!&ndash; 검색창 &ndash;&gt;-->
+<!--        <EditText-->
+<!--            android:id="@+id/search_bar"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginRight="10dp"-->
+<!--            android:drawableRight="@drawable/serch"-->
+<!--            android:hint="@string/search_bar" />-->
+
+<!--    </LinearLayout>-->
+
+<!--    <include-->
+<!--        layout="@layout/comm_list"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
 <!--        android:layout_marginTop="50dp"-->
 <!--        app:layout_constraintEnd_toEndOf="parent"-->
 <!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent"-->
-<!--        tools:ignore="MissingConstraints" />-->
+<!--        app:layout_constraintTop_toTopOf="parent" />-->
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
