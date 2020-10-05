@@ -11,6 +11,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:id="@+id/rg1"
+        android:layout_marginTop="10dp"
         android:layout_alignParentTop="true">
         <TextView
             android:layout_width="wrap_content"
@@ -31,6 +32,11 @@
             android:layout_height="wrap_content"
             android:id="@+id/rb3"
             android:text="@string/menu_community_sub3"></RadioButton>
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/rb4"
+            android:text="@string/menu_community_sub4"></RadioButton>
     </RadioGroup>
 
     <com.lumyjuwon.richwysiwygeditor.RichWysiwyg

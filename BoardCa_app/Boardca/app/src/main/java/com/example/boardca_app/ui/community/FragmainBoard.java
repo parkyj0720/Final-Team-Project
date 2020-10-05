@@ -31,7 +31,7 @@ public class FragmainBoard extends Fragment {
         webView.getSettings().setJavaScriptEnabled(true);
         webView.setWebChromeClient(new WebChromeClient());
         webView.setWebViewClient(new WebViewClientClass());
-        webView.loadUrl("http://192.168.219.111:8088/BoardCa/Community_main.do"); //주소는 임시, 차후에 바꿀것.
+        webView.loadUrl("http://192.168.219.101:8088/android1/home.do"); //주소는 임시, 차후에 바꿀것.
 
         return viewGroup;
 

@@ -9,6 +9,7 @@ import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
@@ -17,6 +18,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.esafirm.imagepicker.model.Image;
 import com.example.boardca_app.R;
+import com.lumyjuwon.richwysiwygeditor.RichEditor.RichEditor;
 import com.lumyjuwon.richwysiwygeditor.RichWysiwyg;
 
 import java.io.BufferedReader;
@@ -28,6 +30,7 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.URLEncoder;
 import java.util.List;
 
 public class MakeActivity extends AppCompatActivity {
@@ -151,15 +154,18 @@ public class MakeActivity extends AppCompatActivity {
                     InputStream in = getContentResolver().openInputStream(data.getData());
 
                     Bitmap img = BitmapFactory.decodeStream(in);
+
                     in.close();
 
 //                    imageView.setImageBitmap(img);
-                    String photo = BitmapToString(img);
+                    String p = BitmapToString(img);
+                    String photo = URLEncoder.encode(p,"utf-8");
+
                     String str = wysiwyg.getContent().getHtml();
                     if(str == null){
                         str = "";
                     }
-                    wysiwyg.getContent().setHtml(str + "\n" +"<img src=\"data:image/jpg;base64,"+photo+"\" alt=\"photo\" />" + "\n");
+                    wysiwyg.getContent().setHtml(str + "<br><br>" +"<img width=\"400px\" height=\"400px\" src=\"data:image/png;base64,"+photo+"\" alt=\"photo\" />" + "<br><br><br>");
                 } catch (Exception e) {
 
                 }
@@ -221,7 +227,7 @@ public class MakeActivity extends AppCompatActivity {
                 } else {
                     Log.i("통신 결과", conn.getResponseCode() + "에러");
                 }
-
+                osw.close();
             } catch (MalformedURLException e) {
                 e.printStackTrace();
             } catch (IOException e) {

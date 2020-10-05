@@ -87,7 +87,8 @@
     <string name="menu_community">커뮤니티</string>
     <string name="menu_community_sub1">숙취 게시판</string>
     <string name="menu_community_sub2">정보 공유</string>
-    <string name="menu_community_sub3">신고 하기</string>
+    <string name="menu_community_sub3">질문하기</string>
+    <string name="menu_community_sub4">신고하기</string>
     <string name="menu_map">지도</string>
     <string name="menu_signup">회원가입</string>
     <string name="menu_web">Web</string>
