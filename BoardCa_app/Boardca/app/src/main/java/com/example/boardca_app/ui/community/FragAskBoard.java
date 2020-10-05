@@ -32,7 +32,7 @@ public class FragAskBoard extends Fragment {
 
         webView.setWebChromeClient(new WebChromeClient());
         webView.setWebViewClient(new FragAskBoard.WebViewClientClass());
-        webView.loadUrl("http://192.168.219.111:8088/BoardCa/Community_main.do");
+        webView.loadUrl("http://192.168.219.130:8088/BoardCa/Community_list.do?list=3");
 
         return viewGroup;
     }

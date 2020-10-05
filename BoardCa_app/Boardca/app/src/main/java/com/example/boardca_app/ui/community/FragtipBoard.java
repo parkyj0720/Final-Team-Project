@@ -31,7 +31,7 @@ public class FragtipBoard extends Fragment {
 
         webView.setWebChromeClient(new WebChromeClient());
         webView.setWebViewClient(new FragtipBoard.WebViewClientClass());
-        webView.loadUrl("http://192.168.219.111:8088/BoardCa/Community_main.do");
+        webView.loadUrl("http://192.168.219.130:8088/BoardCa/Community_list.do?list=2");
 
         return viewGroup;
 
