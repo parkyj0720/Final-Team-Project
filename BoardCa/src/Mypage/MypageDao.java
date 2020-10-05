@@ -21,7 +21,8 @@ public class MypageDao {
 
 	public int memEdit(MemberDto dto) {
 		System.out.println("dao.memEdit");
-		int suc = mysqlSession.update("mypageXml.InfoEdit", dto);
+		System.out.println(dto);
+		int suc = mysqlSession.update("mypageXml.InfoEdit",dto);
 		return suc;
 	}
 

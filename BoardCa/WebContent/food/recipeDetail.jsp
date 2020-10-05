@@ -1,3 +1,6 @@
+<%@page import="Food.ReviewAndMember"%>
+<%@page import="Food.ReviewDto"%>
+<%@page import="java.util.List"%>
 <%@page import="Member.MemberDto"%>
 <%@page import="Food.CDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -33,6 +36,13 @@
 		mDto = (MemberDto)request.getAttribute("detailCheck");
 	}
 	System.out.println(mDto);
+	
+	List<ReviewAndMember> reviewList = null;
+	if(request.getAttribute("reviewList") != null){
+		reviewList =(List<ReviewAndMember>) request.getAttribute("reviewList");
+	}
+	System.out.println(reviewList);
+	
 %>
 
 <script>
@@ -66,6 +76,17 @@
 			}else{
 				return false;
 			}
+		});
+		
+		$('#reviewBtn').on('click',function(){
+			if($('#review_text').val() ==''){
+				alert('내용을 입력해주세요.');
+			}else if(<%=session.getAttribute("userIdx")%> != null){
+				$('#reviewForm').submit();				
+			}else{
+				alert('로그인 후 이용하실 수 있습니다.');
+			}
+			
 		});
 		
 		/* $(window).resize(function() {
@@ -237,14 +258,14 @@
 
 
 						<div class="body">
-							<form class="row comment-form mt-2">
-
+							<form id="reviewForm" class="row comment-form mt-2" action="reviewInsert.do" method="post">
 								<div class="col-xl-12 col-lg-12	col-md-12">
 									<div class="form-group">
 										<textarea rows="4" class="form-control no-resize"
-											placeholder="댓글 입력"></textarea>
+											placeholder="한줄평 입력" name="review_text" id="review_text"></textarea>
 									</div>
-									<button type="submit" class="btn btn btn-primary">댓글쓰기</button>
+									<button id="reviewBtn" type="button" class="btn btn btn-primary">한줄평 등록</button>
+									<input type="text" value="<%=dto.getREC_IDX() %>" name="no" style="visibility: hidden;">
 								</div>
 							</form>
 						</div>
@@ -259,26 +280,26 @@
 					<div class="card">
 						<div class="body">
 							<div class="col-xl-9 col-lg-8 col-md-12">
-								<h2>
-									<strong>Comments</strong> (2)
-								</h2>
+								<h5 style="margin: 0;">
+									<strong>한줄평</strong> (<%=reviewList.size() %>)
+								</h5>
 							</div>
 							<div class="col-xl-12 col-lg-12	col-md-12">
-								<ul class="comment-reply ">
-									<li>
-										<div class="text-box " style="width: auto;">
-											<h5 style="display:inline-block;">이름</h5><span style="margin-left:10px;" class="comment-date">작성 0000-00-00</span>
-											<p>내용</p>
-										</div>
-									</li>
+								<ul class="comment-reply " style="padding: 5px;">
+								<% for(int i=0;i<reviewList.size();i++){
+									ReviewAndMember reviewDto = reviewList.get(i);
+								%>
 									<hr>
 									<li>
 										<div class="text-box " style="width: auto;">
-											<h5 style="display:inline-block;">이름</h5><span style="margin-left:10px;" class="comment-date">작성 0000-00-00</span>
-											<p>내용</p>
+											<h5 style="display:inline-block;"><%=reviewDto.getMemberDto().getMem_nickname() %></h5><span style="margin-left:10px;" class="comment-date">작성 <%=reviewDto.getReviewDto().getRev_sysdate() %></span>
+											<%if(session.getAttribute("userIdx")!=null && Integer.parseInt(session.getAttribute("userIdx")+"") == reviewDto.getReviewDto().getMem_idx()){ %>
+											<a href="${pageContext.request.contextPath}/deleteReview.do?no=<%=dto.getREC_IDX()%>&del=<%=reviewDto.getReviewDto().getRev_idx() %>">삭제</a>
+											<%} %>
+											<p><%=reviewDto.getReviewDto().getRev_content() %></p>
 										</div>
 									</li>
-									
+								<% } %>
 								</ul>
 							</div>
 						</div>

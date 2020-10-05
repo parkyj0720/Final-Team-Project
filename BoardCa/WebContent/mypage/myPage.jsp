@@ -27,7 +27,7 @@
 	href="${pageContext.request.contextPath}/stylesheet/assets/plugins/sweetalert/sweetalert.css">
 </head>
 <%
-MemberDto dto = (MemberDto)request.getAttribute("memInfo");
+	MemberDto dto = (MemberDto) request.getAttribute("memInfo");
 %>
 
 
@@ -90,7 +90,7 @@ MemberDto dto = (MemberDto)request.getAttribute("memInfo");
 									class="zmdi zmdi-favorite"></i>Favorite</a></li>
 							<li><a href="${pageContext.request.contextPath}/mySaved.do"><i
 									class="zmdi zmdi-folder-star"></i>Saved</a></li>
-							
+
 
 						</ul>
 					</div>
@@ -104,57 +104,23 @@ MemberDto dto = (MemberDto)request.getAttribute("memInfo");
 								src="${pageContext.request.contextPath}/mypage/imgs/01.jpg"
 								class="rounded-circle shadow " alt="profile-image"
 								style="width: 20%; height: 20%;"></a>
-							<h4 class="m-t-10"><%=dto.getMem_id() %></h4>
+							<h4 class="m-t-10"><%=dto.getMem_nickname()%></h4>
 
 						</div>
 					</div>
 					<div class="card">
 						<div class="body">
-							<small class="text-muted">gender: </small>
-							<p><%=dto.getMem_gender() %></p>
+							<small class="text-muted">Gender: </small>
+							<p><%=dto.getMem_gender()%></p>
 							<hr>
-							<small class="text-muted">Email address: </small>
-							<p><%=dto.getMem_email() %></p>
+							<small class="text-muted">AgeRange: </small>
+							<p><%=dto.getMem_age_group()%></p>
 							<hr>
-							
-							<div class="col-lg-12 col-md-12 col-sm-12">
-								<div class="card">
-									<div class="header">
-										<h2>
-											<strong><%=dto.getMem_id() %> 님이 쓰신 글</strong>
-										</h2>
-										<div class="body">
-											<div>
-												<div class="table-responsive">
-													<table class="table table-hover">
-													
-													<!-- 내가 쓴 글 테이블 -->
-														<thead>
-															<tr>
-																<th>No</th>
-																<th>Date</th>
-																<th>Title</th>
-																<th>reply</th>
-															</tr>
-														</thead>
-														
-														
-														<tbody>
-															<tr>
-																<th scope="row">1</th>
-																<td>Mark</td>
-																<td>Otto</td>
-																<td>@mdo</td>
-															</tr>
-														</tbody>
-														
-													</table>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
+							<small class="text-muted">Email Address: </small>
+							<p><%=dto.getMem_email()%></p>
+							<hr>
+							<small class="text-muted">Address: </small>
+							<p><%=dto.getMem_rocal()+" "+dto.getMem_state()%></p>
 						</div>
 					</div>
 				</div>
