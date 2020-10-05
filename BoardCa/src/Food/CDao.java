@@ -1,6 +1,7 @@
 package Food;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,5 +56,23 @@ public class CDao {
 		MemberDto mDto = mysqlSession.selectOne("cXml.memberInfo", userId);
 		return mDto;
 	}
+
+	public int insertReview(ReviewDto dto) {
+		System.out.println(dto);
+		int cnt = mysqlSession.insert("cXml.reviewInsert", dto);
+		return cnt;
+	}
 	
+	// 전체 리스트
+	public List<ReviewAndMember> reviewList(int no){
+	    System.out.println("----> cXml.reviewList()");
+	    return mysqlSession.selectList("cXml.reviewListAll", no);
+	}
+
+	public int deleteReview(int del) {
+		System.out.println("delete : "+del);
+		int cnt = mysqlSession.delete("cXml.deleteReview", del);
+		return cnt;
+		
+	}
 }

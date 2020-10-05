@@ -1,6 +1,7 @@
 package Food;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Properties;
 
 import javax.servlet.ServletContext;
@@ -68,8 +69,11 @@ public class CController {
 		
 		// 가져온 번호에 대한 레시피 상세정보
 		CDto dto = dao.detail(r_board_no);
-		
 		mv.addObject("dto",dto);
+		
+		// 댓글 리스트
+		List<ReviewAndMember> reviewList = dao.reviewList(r_board_no);
+		mv.addObject("reviewList", reviewList);
 		
 		// 관리자 확인을 위한 멤버정보 확인
 		if(session.getAttribute("userId") != null) {
@@ -142,6 +146,33 @@ public class CController {
 		mv.setViewName("/cListAll.do?page=1");
 		return mv;
 	}
+	
+	// 한줄평 등록
+	@RequestMapping("/reviewInsert.do")
+	public ModelAndView review(HttpServletRequest req, HttpSession session) {
+		
+		int no = Integer.parseInt(req.getParameter("no"));
+		String review = req.getParameter("review_text");
+		ReviewDto dto = new ReviewDto(0, "R", review, "", no, 0, Integer.parseInt(session.getAttribute("userIdx")+""));
+		
+		dao.insertReview(dto);
+		
+		mv.setViewName("/cDetail.do?no="+no);
+		return mv;
+	}
+	
+	// 한줄평 삭제
+		@RequestMapping("/deleteReview.do")
+		public ModelAndView deleteReview(HttpServletRequest req, HttpSession session) {
+			
+			int no = Integer.parseInt(req.getParameter("no"));
+			int del = Integer.parseInt(req.getParameter("del"));
+			
+			dao.deleteReview(del);
+			
+			mv.setViewName("/cDetail.do?no="+no);
+			return mv;
+		}
 	
 	// 글 썼을때 정보 저장 form에서 multipart/form-data 형식으로 데이터를 보내줌
 	@RequestMapping("/cUpload.do")

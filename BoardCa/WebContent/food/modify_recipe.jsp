@@ -399,7 +399,7 @@
 							<div class="row "> <!-- r_detail -->
 								<div class="col-xl-3 col-lg-4 col-md-12 flex_check">
 									<!-- <img id="main_img" src="https://recipe1.ezmember.co.kr/cache/recipe/2020/08/25/0fbfab533f6ade9b81906d52a91585551.jpg" style="width:100%; height:100%"> -->
-									<!-- <input type="file" class="dropify r_detail" name="file"> -->
+									<input type="file" class="dropify r_detail" name="file" id="mainImg" value="https://recipe1.ezmember.co.kr/cache/recipe/2020/08/25/0fbfab533f6ade9b81906d52a91585551.jpg">
 								</div>
 								<div class="col-xl-9 col-lg-8 col-md-12">
 									<div class="product details detail_header">
