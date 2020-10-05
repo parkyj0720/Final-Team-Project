@@ -229,7 +229,7 @@
 									name="userPw" id="userPw">
 								<div class="input-group-append">
 									<span class="input-group-text"><a
-										href="forgot-password.html" class="forgot"
+										class="forgot"
 										title="Forgot Password"><i class="zmdi zmdi-lock"></i></a></span>
 								</div>
 							</div>
