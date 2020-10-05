@@ -72,11 +72,11 @@ public class MypageController {
 		if (req.getParameter("rocal").equals("")) {
 			dto.setMem_rocal(newdto.getMem_rocal());
 		}
-		if (req.getParameter("state").equals("")) {
+		if (req.getParameter("state").equals("")||req.getParameter("state").equals("시·군·구 선택")) {
 			dto.setMem_state(newdto.getMem_state());
 		}
 		if (req.getParameter("gender").equals(newdto.getMem_gender())) {
-			dto.setMem_gender(newdto.getMem_state());
+			dto.setMem_gender(newdto.getMem_gender());
 		}
 		if (req.getParameter("ageRange").equals(newdto.getMem_age_group())) {
 			dto.setMem_age_group(newdto.getMem_age_group());

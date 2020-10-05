@@ -415,7 +415,7 @@ function nickNameCheck(){
 												</c:when>
 											</c:choose>
 										</div>
-										
+
 										<!-- 연령대 -->
 										<div class="form-group  col-sm-9 margin-auto"
 											style="text-align: left;">

@@ -111,10 +111,10 @@
 					<div class="card">
 						<div class="body">
 							<small class="text-muted">Gender: </small>
-							<p><%=dto.getMem_age_group()%></p>
+							<p><%=dto.getMem_gender()%></p>
 							<hr>
 							<small class="text-muted">AgeRange: </small>
-							<p><%=dto.getMem_gender()%></p>
+							<p><%=dto.getMem_age_group()%></p>
 							<hr>
 							<small class="text-muted">Email Address: </small>
 							<p><%=dto.getMem_email()%></p>
