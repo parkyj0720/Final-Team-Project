@@ -81,9 +81,12 @@
       $( document ).ready( function() {
     	  $('#submit').click(function() {
     		  var select = $('#select').val();
+    		  console.log(select);
     		  var title = $('#title').val();
     		  var username = "${userId}";
     		  var content = $( '.note-editable' ).html();
+    		  var title_trim = $.trim($("#title").val());
+    		  var content_sub;
     		  var boardnum;
   			<%for (int i = 0; i < boardList.size(); i++) {%>
   				if((select)=="<%=boardList.get(i).getCAT_NAME()%>"){

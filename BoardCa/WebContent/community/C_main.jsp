@@ -147,7 +147,7 @@
 									<%
 										if (list.size()==0) {
 											%>
-											<div>
+											<div align="center" style="margin-top: 14em;">
 												아직 게시글이 없습니다.
 											</div>
 											<%
