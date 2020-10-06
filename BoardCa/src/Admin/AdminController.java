@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import CommunityModel.CoDao;
+import CommunityModel.CommunityDto;
 import Member.AgeRangeDto;
 import Member.AreaDto;
 import Member.GenderDto;
@@ -25,6 +27,9 @@ public class AdminController {
 	
 	@Autowired
 	private MemberDao MemberDao;
+	
+	@Autowired
+	private CoDao CoDao;
 	
 	@RequestMapping("/adminPage.do")
 	public ModelAndView myPage(HttpServletRequest request) {
@@ -145,13 +150,22 @@ public class AdminController {
 	
 	
 	@RequestMapping("/adminList.do")
-	public ModelAndView myWriteList(HttpServletRequest request) {
+	public ModelAndView adminList(HttpServletRequest request) {
+				
 		mv.setViewName("/admin/adminList.jsp");
+		
+		int num = 4;
+		
+		List<CommunityDto> rplist = CoDao.List(num);
+		System.out.println(rplist); 
+		 
+		request.setAttribute("rplist", rplist);		
+		
 		return mv;
 	}
 
 	@RequestMapping("/adminFAQ.do")
-	public ModelAndView myFAQ(HttpServletRequest request) {
+	public ModelAndView adminFAQ(HttpServletRequest request) {
 		mv.setViewName("/admin/adminFAQ.jsp");
 		return mv;
 	}

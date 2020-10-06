@@ -1,3 +1,5 @@
+<%@page import="CommunityModel.CommunityDto"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -49,7 +51,7 @@
 			});
 
 			// td.eq(index)를 통해 값을 가져올 수도 있다.
-			var no = td.eq(0).text();
+			
 			var date = td.eq(1).text();
 			var title = td.eq(2).text();
 			var reply = td.eq(3).text();
@@ -151,59 +153,49 @@
 															<tr role="row">
 																<th class="sorting" tabindex="0"
 																	aria-controls="DataTables_Table_0" rowspan="1"
-																	colspan="1" aria-label="No" style="width: 61px;">No</th>
+																	colspan="1" aria-label="No" style="width: 61px;">신고자 ID</th>
 																<th class="sorting" tabindex="0"
 																	aria-controls="DataTables_Table_0" rowspan="1"
-																	colspan="1" aria-label="Date" style="width: 83px;">Date</th>
+																	colspan="1" aria-label="Date" style="width: 83px;">글 제목</th>
 																<th class="sorting" tabindex="0"
 																	aria-controls="DataTables_Table_0" rowspan="1"
-																	colspan="1" aria-label="Title" style="width: 60px;">Title</th>
-																<th class="sorting" tabindex="0"
-																	aria-controls="DataTables_Table_0" rowspan="1"
-																	colspan="1" aria-label="reply" style="width: 28px;">reply</th>
+																	colspan="1" aria-label="Title" style="width: 60px;">글쓴 시간</th>
+																
 
 															</tr>
 														</thead>
 
 														<tbody>
+														
+														<%
+														
+														
+														List<CommunityDto> rplist = (List<CommunityDto>)request.getAttribute("rplist");
+														
+														for(int i=0; i<rplist.size(); i++){
+															
+															CommunityDto report = rplist.get(i);
+															
+														
+														
+														%>
+														
+														
 															<tr class="clickBtn ">
 
-																<td>1</td>
-																<td>2020/08/20</td>
-																<td>하이</td>
-																<td>답변대기</td>
+																<td><%=report.getBRD_WRT_ID()%></td>
+																<td><%=report.getBRD_TIT()%></td>
+																<td><%=report.getBRD_SYSDATE()%></td>
+																
 
 															</tr>
-															<tr class="clickBtn ">
-																<td>2</td>
-																<td>2020/08/21</td>
-																<td>가나다</td>
-																<td>답변완료</td>
-															</tr>
-															<tr class="clickBtn ">
-																<td>3</td>
-																<td>2020/08/23</td>
-																<td>가나다</td>
-																<td>답변완료</td>
-															</tr>
-															<tr class="clickBtn ">
-																<td>4</td>
-																<td>2020/08/24</td>
-																<td>가나다</td>
-																<td>답변완료</td>
-															</tr>
-															<tr class="clickBtn ">
-																<td>5</td>
-																<td>2020/08/25</td>
-																<td>가나다</td>
-																<td>답변완료</td>
-															</tr>
-															<tr class="clickBtn ">
-																<td>6</td>
-																<td>2020/08/21</td>
-																<td>가나다</td>
-																<td>답변완료</td>
-															</tr>
+														
+														<%
+														
+															}
+														
+														%>
+															
 														</tbody>
 													</table>
 												</div>
@@ -218,9 +210,7 @@
 															<div class="body" id="ex1_Result1">
 																<p>선택한 글이 보여집니다!</p>
 															</div>
-															<a href="${pageContext.request.contextPath}/myFAQ.do"
-																class="btn btn-primary btn-lg bg-orange waves-effect waves-light float-right">
-																1:1문의하기</a>
+															
 														</div>
 													</div>
 												</div>

@@ -33,6 +33,31 @@
 	BoardList viewname = (BoardList)request.getAttribute("viewname");
 	String community_title = viewname.getCAT_NAME();
 	int boardnum = viewname.getBRD_CAT_IDX();
+	
+	
+	
+	int leng = list.size();
+	
+	int showCount = 10;
+	
+	int pageCount = leng / showCount + 1;
+	
+	int maxPage = 5;
+	
+	int pages = 1;
+	if(request.getParameter("page") != null){
+		pages = Integer.parseInt(request.getParameter("page"));
+	}
+	
+	int startNum = (pages-1) * showCount;
+	int endNum = (pages-1)*showCount + showCount;
+	
+	int a = (pages-1)/maxPage;
+	
+	int startPage = (a==0)?1:a*maxPage+1;
+	System.out.println(startPage);
+	int endPage = startPage + maxPage -1;
+	System.out.println(endPage);
 %>
 <jsp:include page="/WEB-INF/header.jsp"></jsp:include>
 	<!-- <section class="content"
@@ -81,7 +106,9 @@
 									style="width: 100%; ">
 									<tbody>
 									<%
-									for(int i = 0; i<list.size(); i++){ 
+									for(int i = startNum; i<endNum; i++){ 
+										if(i >= list.size())
+											break;
 									CommunityDto dto = list.get(i);
 									int heart = (int)heartList.get(i);
 									%>
@@ -108,13 +135,25 @@
 							<div class="body">
 								<ul class="pagination pagination-primary m-b-0">
 									<li class="page-item"><a class="page-link"
-										href="javascript:void(0);"><i class="zmdi zmdi-arrow-left"></i></a></li>
+										href="${pageContext.request.contextPath}/Community_list.do?list=<%=list.get(0).getCATEGORY_IDX() %>&page=<%=(startPage-maxPage>0)?startPage-maxPage:1%>"><i class="zmdi zmdi-arrow-left"></i></a></li>
+										
+										<% for(int i=startPage-1;i<endPage;i++){ 
+										if(i>=pageCount) break; 
+										
+										if(pages == i+1){
+										%>
+										
+										
 									<li class="page-item active"><a class="page-link"
-										href="javascript:void(0);">1</a></li>
-									<!-- <li class="page-item"><a class="page-link"
-										href="javascript:void(0);">2</a></li> -->
+										href="${pageContext.request.contextPath}/Community_list.do?list=<%=list.get(i).getCATEGORY_IDX() %>&page=<%=i+1%>"><%=i+1 %></a></li>
+										<%} else{%>
+										
 									<li class="page-item"><a class="page-link"
-										href="javascript:void(0);"><i
+										href="${pageContext.request.contextPath}/Community_list.do?list=<%=list.get(i).getCATEGORY_IDX() %>&page=<%=i+1%>"><%=i+1 %></a></li>
+										<% } }%>
+										
+									<li class="page-item"><a class="page-link"
+										href="${pageContext.request.contextPath}/Community_list.do?list=<%=list.get(0).getCATEGORY_IDX() %>&page=<%=(endPage+maxPage>=pageCount)?pageCount:endPage+1%>"><i
 											class="zmdi zmdi-arrow-right"></i></a></li>
 									<div style="width: 100%">
 									</div>

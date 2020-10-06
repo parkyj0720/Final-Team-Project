@@ -64,6 +64,8 @@
 </head>
 <body>
 	<%
+		
+	
 		CommunityDto dto = (CommunityDto) request.getAttribute("dto");
 	ArrayList<Heart> heart = (ArrayList<Heart>) request.getAttribute("heart");
 	List<Comment> comment = (List<Comment>) request.getAttribute("comment");
@@ -312,7 +314,8 @@
 
 			$("#comment_submit").on("click", function() {
 				console.log('댓글입력버튼');
-				var comment_content = $('#comment_area').value
+				var comment_content = $('#comment_area').val()
+				console.log(comment_content);
 				if (comment_content == "" || comment_content == null) {
 					alert('댓글 내용을 입력해주세요');
 				} else {

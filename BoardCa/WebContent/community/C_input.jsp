@@ -80,11 +80,10 @@
 	<script>
       $( document ).ready( function() {
     	  $('#submit').click(function() {
-    		  var select = $('#select').val();
-    		  console.log(select);
-    		  var title = $('#title').val();
-    		  var username = "${userId}";
-    		  var content = $( '.note-editable' ).html();
+    		  var select = $('#select').val(); // 게시판
+    		  var title = $('#title').val(); // 제목
+    		  var username = "${userId}"; // 작성자 아이디
+    		  var content = $( '.note-editable' ).html(); // 내용
     		  var title_trim = $.trim($("#title").val());
     		  var content_sub;
     		  var boardnum;
@@ -116,16 +115,14 @@
 						data: dto,
 						success: function() {
 							alert('게시글 작성이 완료되었습니다!');
-							view_List();
+							// 게시글 작성후 해당 리스트로
+							$(location).attr('href', '${pageContext.request.contextPath}/Community_list.do?list='+boardnum);
 						}
 					})
 
     		  }
     			
 		};
-	      function view_List() {
-	  		 	$(location).attr('href', '${pageContext.request.contextPath}/Community_list.do?list='+boardnum);
-		}
       })
       });
     </script>
