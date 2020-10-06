@@ -199,6 +199,7 @@ function nickNameCheck(){
             return false;
         return true;
 	}
+
 </script>
 </head>
 
@@ -243,7 +244,7 @@ function nickNameCheck(){
 					</div>
 					<div class="inbox left collapse" id="mypage-nav" style="">
 						<div class="mail-side">
-							<a href="${pageContext.request.contextPath}/myPage.do"><h5>마이페이지</h5></a>
+							<a href="${pageContext.request.contextPath}/myPage.do"><h5>MYPAGE</h5></a>
 							<ul class="nav">
 								<li><a
 									href="${pageContext.request.contextPath}/myPageEdit.do"><i
@@ -258,8 +259,6 @@ function nickNameCheck(){
 										class="zmdi zmdi-favorite"></i>Favorite</a></li>
 								<li><a href="${pageContext.request.contextPath}/mySaved.do"><i
 										class="zmdi zmdi-folder-star"></i>Saved</a></li>
-
-
 							</ul>
 						</div>
 					</div>

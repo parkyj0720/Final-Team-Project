@@ -15,4 +15,18 @@
 		WHERE MEM_ID=#{mem_id}
 	</update>
 
+	<select id="writeList" resultType="CommunityDto"
+		parameterType="CommunityDto">
+		select * from BOARD_T WHERE BRD_WRT_ID=#{BRD_WRT_ID}
+	</select>
+	<insert id="FaQinsert"
+		parameterType="CommunityModel.CommunityDto">
+		insert into BOARD_T
+		(BRD_TIT,BRD_WRT_ID,BRD_VIEWS,CATEGORY_IDX,BRD_CONTENT)values(
+		#{BRD_TIT}, #{BRD_WRT_ID}, 0, #{CATEGORY_IDX},#{BRD_CONTENT})
+	</insert>
+	<select id="boardlist" resultType="CommunityModel.BoardList">
+		select *
+		from BOARD_CAT_T
+	</select>
 </mapper>

@@ -1,3 +1,5 @@
+<%@page import="CommunityModel.BoardList"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -18,16 +20,21 @@
 	href="${pageContext.request.contextPath}/stylesheet/assets/plugins/bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/stylesheet/assets/css/style.min.css">
+<!--  -->
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css">
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/stylesheet/assets/plugins/bootstrap-select/css/bootstrap-select.css">
-<link rel="stylesheet"
 	href="${pageContext.request.contextPath}/stylesheet/assets/plugins/sweetalert/sweetalert.css">
+
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/stylesheet/assets/plugins/bootstrap-select/css/bootstrap-select.css">
 <script src="http://code.jquery.com/jquery.js"></script>
 
 </head>
 <body class="ls-closed ls-toggle-menu ">
+	<%
+		ArrayList<BoardList> boardList = (ArrayList<BoardList>) request.getAttribute("write");
+	%>
 	<!-- header -->
 	<jsp:include page="/WEB-INF/header.jsp"></jsp:include>
 	<!-- body -->
@@ -64,7 +71,7 @@
 								</div>
 								<div class="inbox left collapse" id="mypage-nav" style="">
 									<div class="mail-side">
-										<a href="${pageContext.request.contextPath}/myPage.do"><h5>마이페이지</h5></a>
+										<a href="${pageContext.request.contextPath}/myPage.do"><h5>MYPAGE</h5></a>
 										<ul class="nav">
 											<li><a
 												href="${pageContext.request.contextPath}/myPageEdit.do"><i
@@ -81,41 +88,37 @@
 											<li><a
 												href="${pageContext.request.contextPath}/mySaved.do"><i
 													class="zmdi zmdi-folder-star"></i>Saved</a></li>
-											
+
 
 										</ul>
 									</div>
 								</div>
 								<div class="col-lg-11 col-md-12 col-sm-11 inbox right">
 									<div class="card">
-										<div class="body md-2">
+										<div class="body">
 											<div class="form-group">
-												<input type="text" class="form-control"
-													placeholder="Enter Blog title" />
+												<input type="text" class="form-control" id="title"
+													placeholder="제목을 입력해주세요" maxlength="200" />
 											</div>
-											<select class="form-control show-tick">
-												<option>Select Category --</option>
-												<option>Web Design</option>
-												<option>Photography</option>
-												<option>Technology</option>
-												<option>Lifestyle</option>
-												<option>Sports</option>
+											<select class="form-control show-tick" id="select">
+												<option>게시판을 선택해주세요.</option>
+												<%
+													for (int i = 0; i < boardList.size(); i++) {
+												%>
+												<option><%=boardList.get(i).getCAT_NAME()%></option>
+												<%
+													} // end of for
+												%>
 											</select>
 										</div>
-										<div class="body mb-4">
-											<div class="summernote" style="display: none;">Hello
-												there,</div>
-											<div class="note-editor note-frame panel ">
-												<div class="note-dropzone">
-													<div class="note-dropzone-message"></div>
-												</div>
-
-											</div>
+									</div>
+									<div class="card">
+										<div class="body">
+											<div class="summernote" id="content"></div>
+											<button type="button" id="submit"
+												class="btn btn-info waves-effect m-t-20">전송</button>
 										</div>
 									</div>
-									<button
-										class="btn btn-raised btn-primary waves-effect float-right waves-light bg-orange"
-										type="submit">글 작성하기</button>
 								</div>
 							</div>
 						</div>
@@ -124,7 +127,55 @@
 			</div>
 		</div>
 	</div>
+	<script>
+	  $( document ).ready( function() {
+    	  $('#submit').click(function() {
+    		  var select = $('#select').val(); // 게시판
+    		  var title = $('#title').val(); // 제목
+    		  var username = "${userId}"; // 작성자 아이디
+    		  var content = $( '.note-editable' ).html(); // 내용
+    		  var title_trim = $.trim($("#title").val());
+    		  var content_sub;
+    		  var boardnum;
+  			<%for (int i = 0; i < boardList.size(); i++) {%>
+  				if((select)=="<%=boardList.get(i).getCAT_NAME()%>"){
+  					boardnum=<%=boardList.get(i).getBRD_CAT_IDX()%>
+  					console.log(boardnum)
+  				}
+  				<%}%>
+    		  
+    		  if(select == "게시판을 선택해주세요."){
+    	 		  alert("게시판을 선택해주세요")
+    		  }else{
+    			  if(title == "" || title_trim == ""){
+    				  alert("제목을 입력해주세요")  
+    			  }
+    			  else{
+ 					var dto = {
+ 							BRD_TIT: title,
+ 							CATEGORY_IDX: boardnum,
+ 							BRD_WRT_ID: username,
+ 							BRD_CONTENT: content
+							};
+					
+					$.ajax({
+						url: "myPageFaQinsert.do",
+						type: "POST",
+						datatype: 'application/json',
+						data: dto,
+						success: function() {
+							alert('게시글 작성이 완료되었습니다!');
+							// 게시글 작성후 해당 리스트로
+							$(location).attr('href', '${pageContext.request.contextPath}/myPage.do');
+						}
+					})
 
+    		  }
+    			
+		};
+      })
+      });
+	</script>
 
 
 	<jsp:include page="/WEB-INF/footer.jsp"></jsp:include>

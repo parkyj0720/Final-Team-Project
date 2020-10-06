@@ -67,7 +67,7 @@
 							</div>
 							<div class="inbox left collapse" id="mypage-nav" style="">
 								<div class="mail-side">
-									<a href="${pageContext.request.contextPath}/myPage.do"><h5>마이페이지</h5></a>
+									<a href="${pageContext.request.contextPath}/myPage.do"><h5>MYPAGE</h5></a>
 									<ul class="nav">
 										<li><a
 											href="${pageContext.request.contextPath}/myPageEdit.do"><i

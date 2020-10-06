@@ -1,5 +1,9 @@
+<%@page import="CommunityModel.BoardList"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@page import="CommunityModel.CommunityDto"%>
+<%@page import="java.util.List"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,33 +35,10 @@
 <script src="http://code.jquery.com/jquery.js"></script>
 </head>
 <script>
-	$(function() {
-		$(".clickBtn").click(function() {
-			var str = ""
-			var tdArr = new Array(); // 배열 선언
-
-			// 현재 클릭된 Row(<tr>)
-			var tr = $(this);
-			var td = tr.children();
-
-			// tr.text()는 클릭된 Row 즉 tr에 있는 모든 값을 가져온다.
-			console.log("클릭한 Row의 모든 데이터 : " + tr.text());
-
-			// 반복문을 이용해서 배열에 값을 담아 사용할 수 도 있다.
-			td.each(function(i) {
-				tdArr.push(td.eq(i).text());
-			});
-
-			// td.eq(index)를 통해 값을 가져올 수도 있다.
-			var no = td.eq(0).text();
-			var date = td.eq(1).text();
-			var title = td.eq(2).text();
-			var reply = td.eq(3).text();
-
-			$("#ex1_Result1").html("<p>" + tr.text() + "<p>");
-
-		})
-	});
+	
+<%List<CommunityDto> writeList = (List<CommunityDto>) request.getAttribute("writeList");
+ArrayList<BoardList> boardList = (ArrayList<BoardList>) request.getAttribute("write");%>
+	
 </script>
 <body class="ls-toggle-menu ls-closed ">
 	<!-- header -->
@@ -76,9 +57,7 @@
 							<li class="breadcrumb-item"><a
 								href="${pageContext.request.contextPath}/myPage.do">myPage</a></li>
 							<li class="breadcrumb-item active">Writted</li>
-
 						</ul>
-
 					</div>
 				</div>
 			</div>
@@ -89,7 +68,6 @@
 
 				<div class="container-fluid">
 					<!-- Basic Examples -->
-
 					<div class="row clearfix">
 						<div class="col-md-12">
 							<div class="d-flex">
@@ -100,9 +78,9 @@
 										class="btn-label"><i class="zmdi zmdi-account"></i></span>
 									</a>
 								</div>
-								<div class="inbox left collapse" id="mypage-nav" style="">
+								<div class="inbox left collapse" id="mypage-nav">
 									<div class="mail-side">
-										<a href="${pageContext.request.contextPath}/myPage.do"><h5>마이페이지</h5></a>
+										<a href="${pageContext.request.contextPath}/myPage.do"><h5>MYPAGE</h5></a>
 										<ul class="nav">
 											<li><a
 												href="${pageContext.request.contextPath}/myPageEdit.do"><i
@@ -122,100 +100,66 @@
 										</ul>
 									</div>
 								</div>
+								<div class="col-lg-11 col-md-11 col-sm-11 inbox right">
+									<div class="card">
+										<div class="header">
+											<h2>
+												<strong>내가 쓴 글</strong>
+											</h2>
+										</div>
+										<div class="body">
+											<div class="table-responsive">
+												<div id="DataTables_Table_0_wrapper"
+													class="dataTables_wrapper dt-bootstrap4">
 
-								<div class=" inbox right">
-									<div class="header">
-										<h2>
-											<strong>내가 쓴 글</strong>
-										</h2>
-									</div>
-
-									<div class="table-responsive">
-										<div id="DataTables_Table_0_wrapper"
-											class="dataTables_wrapper dt-bootstrap4">
-
-											<div class="row">
-												<div class="col-sm-12">
-													<table
-														class="table table-bordered table-striped table-hover js-basic-example dataTable"
-														id="DataTables_Table_0" role="grid"
-														aria-describedby="DataTables_Table_0_info">
-														<thead>
-															<tr role="row">
-																<th class="sorting" tabindex="0"
-																	aria-controls="DataTables_Table_0" rowspan="1"
-																	colspan="1" aria-label="No" style="width: 61px;">No</th>
-																<th class="sorting" tabindex="0"
-																	aria-controls="DataTables_Table_0" rowspan="1"
-																	colspan="1" aria-label="Date" style="width: 83px;">Date</th>
-																<th class="sorting" tabindex="0"
-																	aria-controls="DataTables_Table_0" rowspan="1"
-																	colspan="1" aria-label="Title" style="width: 60px;">Title</th>
-																<th class="sorting" tabindex="0"
-																	aria-controls="DataTables_Table_0" rowspan="1"
-																	colspan="1" aria-label="reply" style="width: 28px;">reply</th>
-
-															</tr>
-														</thead>
-
-														<tbody>
-															<tr class="clickBtn ">
-
-																<td>1</td>
-																<td>2020/08/20</td>
-																<td>하이</td>
-																<td>답변대기</td>
-
-															</tr>
-															<tr>
-																<td>2</td>
-																<td>2020/08/21</td>
-																<td>가나다</td>
-																<td>답변완료</td>
-															</tr>
-															<tr>
-																<td>3</td>
-																<td>2020/08/23</td>
-																<td>가나다</td>
-																<td>답변완료</td>
-															</tr>
-															<tr>
-																<td>4</td>
-																<td>2020/08/24</td>
-																<td>가나다</td>
-																<td>답변완료</td>
-															</tr>
-															<tr>
-																<td>5</td>
-																<td>2020/08/25</td>
-																<td>가나다</td>
-																<td>답변완료</td>
-															</tr>
-															<tr>
-																<td>6</td>
-																<td>2020/08/21</td>
-																<td>가나다</td>
-																<td>답변완료</td>
-															</tr>
-														</tbody>
-													</table>
-												</div>
-											</div>
-											<div class="container-fluid">
-												<div class="row clearfix">
-													<div class="col-lg-12">
-														<div class="card">
-															<div class="header">
-																<h5 style="color: orange">선택한 글</h5>
-															</div>
-															<div class="body" id="ex1_Result1">
-																<p>선택한 글이 보여집니다!</p>
-															</div>
-															<a href="${pageContext.request.contextPath}/myFAQ.do"
-																class="btn btn-primary btn-lg bg-orange waves-effect waves-light float-right">
-																1:1문의하기</a>
+													<div class="row">
+														<div class="col-sm-12">
+															<table
+																class="table table-bordered table-striped table-hover js-basic-example dataTable"
+																id="DataTables_Table_0" role="grid"
+																aria-describedby="DataTables_Table_0_info">
+																<thead>
+																	<tr role="row">
+																		<th class="sorting" tabindex="0"
+																			aria-controls="DataTables_Table_0" rowspan="1"
+																			colspan="1" aria-label="No" style="width: 61px;">Title</th>
+																		<th class="sorting" tabindex="0"
+																			aria-controls="DataTables_Table_0" rowspan="1"
+																			colspan="1" aria-label="Title" style="width: 83px;">Date</th>
+																		<th class="sorting" tabindex="0"
+																			aria-controls="DataTables_Table_0" rowspan="1"
+																			colspan="1" aria-label="Date" style="width: 60px;">Cateory</th>
+																	</tr>
+																</thead>
+																<tbody>
+																	<%
+																		for (int i = 0; i < writeList.size(); i++) {
+																			CommunityDto dto = writeList.get(i);
+																			String boardname="";
+																			for (int y = 0; y < boardList.size(); y++) {
+																				if(boardList.get(y).getBRD_CAT_IDX() == dto.getCATEGORY_IDX()){
+																					boardname = boardList.get(y).getCAT_NAME();
+																				}
+																			}
+																	%>
+																	<tr>
+																		<td><a class="text-muted"
+																			href="${pageContext.request.contextPath}/Community_detail.do?num=<%=dto.getBRD_IDX()%>"><%=dto.getBRD_TIT()%></a>
+																		</td>
+																		<td><%=dto.getBRD_SYSDATE()%></td>
+																		<td><%=boardname%></td>
+																	</tr>
+																	<%
+																		
+																	}
+																	%>
+																</tbody>
+															</table>
 														</div>
 													</div>
+													<a href="${pageContext.request.contextPath}/myFAQ.do"
+														class="btn btn-primary btn-lg bg-orange waves-effect waves-light float-right">
+														1:1문의하기</a>
 												</div>
 											</div>
 										</div>
@@ -224,13 +168,10 @@
 							</div>
 						</div>
 					</div>
-
 				</div>
 			</div>
 		</div>
 	</div>
-
-
 
 	<jsp:include page="/WEB-INF/footer.jsp"></jsp:include>
 
@@ -262,6 +203,5 @@
 	<!-- Custom Js -->
 	<script
 		src="/BoardCa/stylesheet/assets/js/pages/tables/jquery-datatable.js"></script>
-
 </body>
 </html>
