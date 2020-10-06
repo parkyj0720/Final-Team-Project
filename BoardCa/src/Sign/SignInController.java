@@ -94,11 +94,17 @@ public class SignInController {
 			
 		}
 		
+		int mem_idx = memDao.searchIdx(userId);
+		
+		sedto.setMem_idx(mem_idx);
+		
 		sedto.setSess_move("로그인(성공)");
 		session.setAttribute("userId", userId);
 		session.setAttribute("userToken", userToken);
 		session.setAttribute("userToken2", "1");
 
+		System.out.println(sedto);
+		
 		memDao.sessionInput(sedto);
 
 		mv.setViewName("/main/main.jsp");
