@@ -1,3 +1,4 @@
+<%@page import="Food.StarDto"%>
 <%@page import="Member.MemberDto"%>
 <%@page import="Food.CDto"%>
 <%@page import="java.util.List"%>
@@ -95,6 +96,17 @@ white-space: nowrap;
 	int endList = (now_page%maxList==0)?((now_page/maxList)-1):(now_page/maxList);
 	endList = endList * maxList + maxList;
 	
+	// 즐겨찾기목록 받아오기
+	List<StarDto> starList = null;
+	if(request.getAttribute("starList") != null){
+		starList = (List<StarDto>)request.getAttribute("starList");
+	}
+	
+	// 로그인 확인
+	int userIdx = 0;
+	if(session.getAttribute("userIdx") != null){
+		userIdx = Integer.parseInt(session.getAttribute("userIdx")+"");
+	}
 %>
 
 <script>
@@ -155,6 +167,47 @@ request.getParameter("test");
 			// 버튼 눌림 효과클래스 추가
 			$('.page-item').eq(page).addClass('active');
 		});
+		
+		function starCheck(btn, no){
+			if($(btn).hasClass('bg-red') == true){
+				if(<%=userIdx%> == 0){
+					alert('로그인 후 이용할 수 있습니다.');
+					return;
+				}
+				$(btn).removeClass('bg-red');
+				$.ajax({
+					type : "get",
+					url : "/BoardCa/starDelete.do",
+					data : {no : no},
+					success : function test(a){
+						
+					},
+					error : function error(){ 
+						alert("error");
+					}
+				});
+			}else{
+				if(<%=userIdx%> == 0){
+					alert('로그인 후 이용할 수 있습니다.');
+					return;
+				}
+				$(btn).addClass('bg-red');
+				$(btn).parent().css('visibility','visible');
+				$.ajax({
+					type : "get",
+					url : "/BoardCa/starInsert.do",
+					data : {no : no},
+					success : function test(a){
+						
+					},
+					error : function error(){ 
+						alert("error");
+					}
+				});
+			}
+			
+			
+		}
 	</script>
 	<header class="body_header">
 		<jsp:include page="/WEB-INF/header.jsp"></jsp:include>
@@ -194,6 +247,7 @@ request.getParameter("test");
                                 	if(i>itemCount+listNum-1)
                                 		break;
                                 	CDto dto = list.get(i);
+                                	boolean check = false;
                                 	String img_src = "";
                                 	if(dto.getREC_MAIN_IMG().equals("")){
                                 		img_src = dto.getREC_MAIN_IMG();
@@ -206,20 +260,33 @@ request.getParameter("test");
                                             <div class="file">
                                             <!-- 수정해야 됨 주소랑 썸네일 없을 수 있음 -->
                                                 <%-- <a href="<%=dto.getR_crawling_addr()%>"> --%>
+                                                <%for(int j=0;j<starList.size();j++){
+                                                	StarDto starDto = starList.get(j);
+                                                	
+                                                	if(starDto.getRec_idx() == dto.getREC_IDX()){
+                                                		check = true;
+                                                	} }
+                                                	if(check){%>
+                                                <div class="hover">
+                                                    <button type="button" class="btn btn-icon btn-icon-mini btn-round bg-red" onclick="starCheck(this, <%=dto.getREC_IDX()%>)">
+                                                        <i class="ti-heart"></i>
+                                                    </button>
+                                                </div>
+                                                <%} else{%>
+                                                <div class="hover">
+                                                    <button type="button" class="btn btn-icon btn-icon-mini btn-round" onclick="starCheck(this, <%=dto.getREC_IDX()%>)">
+                                                        <i class="ti-heart"></i>
+                                                    </button>
+                                                </div>
+                                                <%} %>
                                                 <a href="${pageContext.request.contextPath}/cDetail.do?no=<%=dto.getREC_IDX() %>">
-                                                    <div class="hover">
-                                                        <button type="button" class="bg-orange btn btn-icon btn-icon-mini btn-round bg-orange">
-                                                            <i class="ti-heart"></i>
-                                                        </button>
-                                                    </div>
                                                     <div class="icon" >
                                                         <img src="<%=(!dto.getREC_MAIN_IMG().equals(""))?dto.getREC_MAIN_IMG():request.getContextPath()+"/upload/"+dto.getREC_IMG_NAME() %>" height="150" >
                                                     </div>
                                                     <div class="file-name" style="height:100px">
                                                         <p class="m-b-5 text-muted"><%=dto.getREC_TIT() %></p>
-                                                       
                                                     </div>
-                                                </a>
+                                               	 </a>
                                             </div>
                                         </div>
                                     </div>

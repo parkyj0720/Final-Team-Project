@@ -69,10 +69,32 @@ public class CDao {
 	    return mysqlSession.selectList("cXml.reviewListAll", no);
 	}
 
+	// 한줄평 삭제
 	public int deleteReview(int del) {
 		System.out.println("delete : "+del);
 		int cnt = mysqlSession.delete("cXml.deleteReview", del);
 		return cnt;
-		
 	}
+	
+	// 즐겨찾기목록
+	public List<StarDto> starList(StarDto dto){
+		System.out.println("starList>> ");
+		List<StarDto> list = mysqlSession.selectList("cXml.starList", dto);
+		return list;
+	}
+	
+	// 즐겨찾기추가
+	public int starInsert(StarDto dto){
+		System.out.println("starInsert>> ");
+		int cnt = mysqlSession.insert("cXml.starInsert", dto);
+		return cnt;
+	}
+	
+	// 즐겨찾기삭제
+	public int starDelete(StarDto dto){
+		System.out.println("starDelete>> ");
+		int cnt = mysqlSession.delete("cXml.starDelete", dto);
+		return cnt;
+	}
+	
 }

@@ -54,6 +54,15 @@ public class CController {
 			mv.addObject("detailCheck",mDto);
 		}
 		
+		// 즐겨찾기 목록 받아오기
+		int userIdx = 0;
+		if(session.getAttribute("userIdx") != null) {
+			userIdx = Integer.parseInt(session.getAttribute("userIdx")+"");
+		}
+		StarDto starDto = new StarDto(0, null, 0, 0, userIdx);
+		List<StarDto> starList = dao.starList(starDto);
+		mv.addObject("starList", starList);
+		
 		// 레시피 목록 받아오기
 		mv.addObject("cList",dao.getList());
 		mv.setViewName("/food/food.jsp?page="+page);
@@ -162,18 +171,38 @@ public class CController {
 	}
 	
 	// 한줄평 삭제
-		@RequestMapping("/deleteReview.do")
-		public ModelAndView deleteReview(HttpServletRequest req, HttpSession session) {
-			
-			int no = Integer.parseInt(req.getParameter("no"));
-			int del = Integer.parseInt(req.getParameter("del"));
-			
-			dao.deleteReview(del);
-			
-			mv.setViewName("/cDetail.do?no="+no);
-			return mv;
-		}
+	@RequestMapping("/deleteReview.do")
+	public ModelAndView deleteReview(HttpServletRequest req, HttpSession session) {
+		
+		int no = Integer.parseInt(req.getParameter("no"));
+		int del = Integer.parseInt(req.getParameter("del"));
+		
+		dao.deleteReview(del);
+		
+		mv.setViewName("/cDetail.do?no="+no);
+		return mv;
+	}
+
+	// 즐겨찾기추가
+	@RequestMapping("/starInsert.do")
+	public ModelAndView starInsert(HttpServletRequest req, HttpSession session) {
+		int no = Integer.parseInt(req.getParameter("no"));
+		StarDto dto = new StarDto(0, "R", no, 0, Integer.parseInt(session.getAttribute("userIdx")+""));
+		dao.starInsert(dto);
+		
+		return mv;
+	}
 	
+	// 즐겨찾기삭제
+	@RequestMapping("/starDelete.do")
+	public ModelAndView starDelete(HttpServletRequest req, HttpSession session) {
+		int no = Integer.parseInt(req.getParameter("no"));
+		StarDto dto = new StarDto(0, "R", no, 0, Integer.parseInt(session.getAttribute("userIdx")+""));
+		dao.starDelete(dto);
+		
+		return mv;
+	}
+		
 	// 글 썼을때 정보 저장 form에서 multipart/form-data 형식으로 데이터를 보내줌
 	@RequestMapping("/cUpload.do")
 	public ModelAndView upload(HttpServletRequest req, HttpServletResponse res) throws IOException {

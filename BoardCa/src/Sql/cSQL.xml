@@ -144,4 +144,28 @@
 	where REV_IDX = #{rev_idx}
 </delete>
 
+<select id="starList" resultType="Food.StarDto" parameterType="Food.StarDto">
+	select * from STAR_T where MEM_IDX = #{mem_idx}
+</select>
+
+<insert id="starInsert" parameterType="Food.StarDto">
+	insert into STAR_T (STAR_IDX,
+	STAR_CATEGORY,
+	REC_IDX,
+	GAME_IDX,
+	MEM_IDX)
+
+	values(0,
+	#{star_category},
+	#{rec_idx},
+	null,
+	#{mem_idx})
+</insert>
+
+<delete id="starDelete" parameterType="Food.StarDto">
+	delete
+	from STAR_T
+	where STAR_CATEGORY = 'R' and REC_IDX = #{rec_idx} and MEM_IDX = #{mem_idx} 
+</delete>
+
 </mapper>
