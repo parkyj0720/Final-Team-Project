@@ -14,7 +14,10 @@
 <link rel="icon" href="favicon.ico" type="image/x-icon">
 <!-- Favicon-->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/stylesheet/assets/plugins/bootstrap/css/bootstrap.min.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/stylesheet/assets/plugins/summernote/dist/summernote.css"/>
+<link rel="stylesheet"
+   href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css">
+<link rel="stylesheet"
+   href="${pageContext.request.contextPath}/stylesheet/assets/plugins/sweetalert/sweetalert.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/stylesheet/assets/plugins/bootstrap-select/css/bootstrap-select.css" />
 <!-- Custom Css -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/stylesheet/assets/css/style.min.css">
