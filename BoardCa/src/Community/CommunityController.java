@@ -3,6 +3,7 @@ package Community;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,8 +32,6 @@ public class CommunityController {
 	
 	@Autowired
 	CoDao dao;
-	
-	
 	
 	@Autowired
 	private ModelAndView mv;
@@ -149,7 +148,7 @@ public class CommunityController {
 	@ResponseBody
 	public void community_input_content(InputDto data, HttpServletRequest request) {
 		System.out.println(data);
-		CommunityDto dto = new CommunityDto(0, data.getBRD_TIT(), data.getBRD_WRT_ID(), "", data.getBRD_CONTENT(), 0,
+		CommunityDto dto = new CommunityDto(0, data.getBRD_TIT(), data.getBRD_WRT_ID(), new Timestamp((System.currentTimeMillis()/1000L)*1000L), data.getBRD_CONTENT(), 0,
 				data.getCATEGORY_IDX());
 		dao.insert(dto);
 	}
@@ -169,7 +168,7 @@ public class CommunityController {
 	@ResponseBody
 	public void community_modify_content(InputDto data, HttpServletRequest request) {
 		System.out.println(data);
-		CommunityDto dto = new CommunityDto(data.getBRD_IDX(), data.getBRD_TIT(), data.getBRD_WRT_ID(), "", data.getBRD_CONTENT(), 0, data.getCATEGORY_IDX());
+		CommunityDto dto = new CommunityDto(data.getBRD_IDX(), data.getBRD_TIT(), data.getBRD_WRT_ID(), new Timestamp((System.currentTimeMillis()/1000L)*1000L), data.getBRD_CONTENT(), 0, data.getCATEGORY_IDX());
 		dao.modify(dto);
 	}
 	

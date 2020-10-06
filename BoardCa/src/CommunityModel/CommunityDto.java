@@ -1,21 +1,25 @@
 package CommunityModel;
 
+import java.sql.Timestamp;
 import java.util.Date;
 
 public class CommunityDto {
 	int BRD_IDX;
 	String BRD_TIT;
 	String BRD_WRT_ID;
-	String BRD_SYSDATE;
+	Timestamp BRD_SYSDATE;
 	String BRD_CONTENT;
 	int BRD_VIEWS;
 	int CATEGORY_IDX;
 	
 	
 	public CommunityDto() {
-		this(0,"","","","",0,0);
+				
+		this(0,"","",new Timestamp((System.currentTimeMillis()/1000L)*1000L),"",0,0);
+		
 	}
-	public CommunityDto(int BRD_IDX, String BRD_TIT, String BRD_WRT_ID, String BRD_SYSDATE, String BRD_CONTENT, int BRD_VIEWS, int CATEGORY_IDX) {
+	
+	public CommunityDto(int BRD_IDX, String BRD_TIT, String BRD_WRT_ID, Timestamp BRD_SYSDATE, String BRD_CONTENT, int BRD_VIEWS, int CATEGORY_IDX) {
 		this.BRD_IDX = BRD_IDX;
 		this.BRD_TIT = BRD_TIT;
 		this.BRD_WRT_ID = BRD_WRT_ID;
@@ -42,10 +46,10 @@ public class CommunityDto {
 	public void setBRD_WRT_ID(String bRD_WRT_ID) {
 		BRD_WRT_ID = bRD_WRT_ID;
 	}
-	public String getBRD_SYSDATE() {
+	public Timestamp getBRD_SYSDATE() {
 		return BRD_SYSDATE;
 	}
-	public void setBRD_SYSDATE(String bRD_SYSDATE) {
+	public void setBRD_SYSDATE(Timestamp bRD_SYSDATE) {
 		BRD_SYSDATE = bRD_SYSDATE;
 	}
 	public String getBRD_CONTENT() {

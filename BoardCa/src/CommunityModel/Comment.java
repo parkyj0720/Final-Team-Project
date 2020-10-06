@@ -1,18 +1,20 @@
 package CommunityModel;
 
+import java.sql.Timestamp;
+
 public class Comment {
 	int COMT_IDX;
 	int MEM_IDX;
 	String BRD_WRT_ID;
-	String COMT_SYSDATE;
+	Timestamp COMT_SYSDATE;
 	String COMT_CONTENT;
 	int BRD_IDX;
 	
 	public Comment() {
-		this(0, 0, "", "", "", 0);
+		this(0, 0, "", new Timestamp((System.currentTimeMillis()/1000L)*1000L), "", 0);
 	}
 	
-	public Comment(int cOMT_IDX, int mEM_IDX, String bRD_WRT_ID, String cOMT_SYSDATE, String cOMT_CONTENT,
+	public Comment(int cOMT_IDX, int mEM_IDX, String bRD_WRT_ID, Timestamp cOMT_SYSDATE, String cOMT_CONTENT,
 			int bRD_IDX) {
 		COMT_IDX = cOMT_IDX;
 		MEM_IDX = mEM_IDX;
@@ -46,11 +48,11 @@ public class Comment {
 		BRD_WRT_ID = bRD_WRT_ID;
 	}
 
-	public String getCOMT_SYSDATE() {
+	public Timestamp getCOMT_SYSDATE() {
 		return COMT_SYSDATE;
 	}
 
-	public void setCOMT_SYSDATE(String cOMT_SYSDATE) {
+	public void setCOMT_SYSDATE(Timestamp cOMT_SYSDATE) {
 		COMT_SYSDATE = cOMT_SYSDATE;
 	}
 

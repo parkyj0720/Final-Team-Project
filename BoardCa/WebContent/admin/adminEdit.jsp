@@ -1,3 +1,4 @@
+<%@page import="java.sql.Timestamp"%>
 <%@page
 	import="org.springframework.web.context.support.SpringBeanAutowiringSupport"%>
 <%@page import="org.springframework.beans.factory.annotation.Autowired"%>
@@ -364,8 +365,8 @@ var MEM_BOARD_GWONHAN
 											<tbody>
 
 												<%
-													// request를 이용해서 컨트롤러에서 멤버 DB를 가져온다.
-
+												// request를 이용해서 컨트롤러에서 멤버 DB를 가져온다.
+													
 												List<Object> list = (List<Object>) request.getAttribute("memlist");
 
 												for (int i = 0; i < list.size(); i++) {
