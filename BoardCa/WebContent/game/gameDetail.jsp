@@ -1,7 +1,10 @@
+<%@page import="Food.ReviewAndMember"%>
+<%@page import="Food.ReviewDto"%>
+<%@page import="java.util.List"%>
+<%@page import="Member.MemberDto"%>
+<%@page import="Game.GameDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page import="Game.GameDto"%>
-<%@ page import="java.util.List"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,10 +30,23 @@
 	href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
 
 </head>
-<%
-	GameDto dto = (GameDto) request.getAttribute("dto");
-%>
+
 <body class="ls-closed ls-toggle-menu ">
+	<%
+		GameDto dto = (GameDto) request.getAttribute("dto");
+	
+	MemberDto mDto = null;
+	if (request.getAttribute("infocheck") != null) {
+		mDto = (MemberDto) request.getAttribute("infocheck");
+	}
+	System.out.println(mDto);
+
+	List<ReviewAndMember> reviewList = null;
+	if (request.getAttribute("reviewList") != null) {
+		reviewList = (List<ReviewAndMember>) request.getAttribute("reviewList");
+	}
+	System.out.println(reviewList);
+	%>
 	<script>
 		// 2. This code loads the IFrame Player API code asynchronously.
 		var tag = document.createElement('script');
@@ -72,7 +88,20 @@
 		function stopVideo() {
 			player.stopVideo();
 		}
+		$('#reviewBtn').on('click', function() {
+			if ($('#review_text').val() == '') {
+				alert('내용을 입력해주세요.');
+			} else if (
+	<%=session.getAttribute("userIdx")%>
+		!= null) {
+				$('#reviewForm').submit();
+			} else {
+				alert('로그인 후 이용하실 수 있습니다.');
+			}
+
+		});
 	</script>
+
 	<jsp:include page="/WEB-INF/header.jsp"></jsp:include>
 
 
@@ -114,7 +143,9 @@
 								<div class="body">
 									<div class="row">
 										<div class="col-lg-12">
-											<div><h3>추천영상</h3></div>
+											<div>
+												<h3>추천영상</h3>
+											</div>
 											<div class="row clearfix">
 												<%
 													List<GameDto> list = (List<GameDto>) request.getAttribute("gameList");
@@ -156,89 +187,79 @@
 
 				<div class="container-fluid">
 					<div class="row clearfix">
-						<div class="card">
-							<div class="body">
-								<div class="row">
-									<div class="col-lg-12">
-										<div class="body">
-											<small>Your email address will not be published.
-												Required fields are marked*</small>
-											<form class="row comment-form mt-2">
-												<div class="col-xl-6 col-lg-6	col-md-6">
-													<div class="form-group">
-														<input type="text" class="form-control"
-															placeholder="Your Name">
-													</div>
-												</div>
-												<div class="col-xl-6 col-lg-6	col-md-6">
-													<div class="form-group">
-														<input type="text" class="form-control"
-															placeholder="Email Address">
-													</div>
-												</div>
+						<div class="col-lg-12">
+							<div class="card">
 
-												<div class="col-xl-12 col-lg-12	col-md-12">
-													<div class="form-group">
-														<textarea rows="4" class="form-control no-resize"
-															placeholder="Please type what you want..."></textarea>
-													</div>
-													<button type="submit" class="btn btn btn-primary">SUBMIT</button>
-												</div>
-											</form>
+
+								<div class="body">
+									<form id="reviewForm" class="row comment-form mt-2"
+										action="reviewInsert.do" method="post">
+										<div class="col-xl-12 col-lg-12	col-md-12">
+											<div class="form-group">
+												<textarea rows="4" class="form-control no-resize"
+													placeholder="한줄평 입력" name="review_text" id="review_text"></textarea>
+											</div>
+											<button id="reviewBtn" type="button"
+												class="btn btn btn-primary">한줄평 등록</button>
+											<input type="text" value="<%=dto.getGAME_IDX()%>" name="no"
+												style="visibility: hidden;">
 										</div>
-									</div>
+									</form>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-
 
 				<div class="container-fluid">
 					<div class="row clearfix">
-						<div class="card">
-							<div class="body">
-								<div class="row">
-									<div class="col-lg-12">
-										<div class="col-xl-9 col-lg-8 col-md-12">
-											<h2>
-												<strong>Comments</strong> (2)
-											</h2>
-										</div>
-										<div class="col-xl-12 col-lg-12	col-md-12">
-											<ul class="comment-reply ">
-												<li>
-													<div class="text-box " style="width: auto;">
-														<h5>Kareem Todd</h5>
-														<span class="comment-date">Wednesday, October 17,
-															2018 at 4:00PM.</span>
-														<p>There are many variations of passages of Lorem
-															Ipsum available, but the majority have suffered
-															alteration in some form, by injected humour.</p>
-													</div>
-												</li>
-												<li>
-
-													<div class="text-box " style="width: auto;">
-														<h5>Stillnot david</h5>
-														<span class="comment-date">Wednesday, October 17,
-															2018 at 4:00PM.</span>
-														<p>Lorem Ipsum is simply dummy text of the printing
-															and typesetting industry. Lorem Ipsum has been the
-															industry's standard dummy.</p>
-													</div>
-												</li>
-											</ul>
-										</div>
+						<div class="col-lg-12">
+							<div class="card">
+								<div class="body">
+									<div class="col-xl-9 col-lg-8 col-md-12">
+										<h5 style="margin: 0;">
+											<strong>한줄평</strong> (<%=reviewList.size()%>)
+										</h5>
+									</div>
+									<div class="col-xl-12 col-lg-12	col-md-12">
+										<ul class="comment-reply " style="padding: 5px;">
+											<%
+												for (int s = 0; s < reviewList.size(); s++) {
+												ReviewAndMember reviewDto = reviewList.get(s);
+											%>
+											<hr>
+											<li>
+												<div class="text-box " style="width: auto;">
+													<h5 style="display: inline-block;"><%=reviewDto.getMemberDto().getMem_nickname()%></h5>
+													<span style="margin-left: 10px;" class="comment-date">작성
+														<%=reviewDto.getReviewDto().getRev_sysdate()%></span>
+													<%
+														if (session.getAttribute("userIdx") != null
+															&& Integer.parseInt(session.getAttribute("userIdx") + "") == reviewDto.getReviewDto().getMem_idx()) {
+													%>
+													<a
+														href="${pageContext.request.contextPath}/deleteReview.do?no=<%=dto.getGAME_IDX()%>&del=<%=reviewDto.getReviewDto().getRev_idx() %>">삭제</a>
+													<%
+														}
+													%>
+													<p><%=reviewDto.getReviewDto().getRev_content()%></p>
+												</div>
+											</li>
+											<%
+												}
+											%>
+										</ul>
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
+
+
+
 			</div>
 		</div>
-	</div>
 	</div>
 
 

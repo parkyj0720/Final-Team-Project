@@ -10,18 +10,15 @@ public class GameDto {
 	String GAME_TIT;
 	String GAME_VIDEO;
 	String GAME_MINI;
-	String propose;
 	public GameDto() {
-		this(0,"","","","","");
+		this(0,"","","","");
 	}
-	public GameDto(int gAME_IDX, String gAME_IMG, String gAME_TIT, String gAME_VIDEO, String gAME_MINI,String propose) {
-		super();
+	public GameDto(int gAME_IDX, String gAME_IMG, String gAME_TIT, String gAME_VIDEO, String gAME_MINI) {
 		GAME_IDX = gAME_IDX;
 		GAME_IMG = gAME_IMG;
 		GAME_TIT = gAME_TIT;
 		GAME_VIDEO = gAME_VIDEO;
 		GAME_MINI = gAME_MINI;
-		this.propose = propose;
 	}
 	public int getGAME_IDX() {
 		return GAME_IDX;
@@ -53,16 +50,11 @@ public class GameDto {
 	public void setGAME_MINI(String gAME_MINI) {
 		GAME_MINI = gAME_MINI;
 	}
-	public String getPropose() {
-		return propose;
-	}
-	public void setPropose(String propose) {
-		this.propose = propose;
-	}
+	
 	@Override
 	public String toString() {
-		return "GameDto [GAME_IDX=" + GAME_IDX + ", GAME_IMG=" + GAME_IMG + ", GAME_TIT=" + GAME_TIT + ", GAME_VIDEO="
-				+ GAME_VIDEO + ", GAME_MINI=" + GAME_MINI + ", propose=" + propose + "]";
+		return "[GAME_IDX=" + GAME_IDX + ", GAME_IMG=" + GAME_IMG + ", GAME_TIT=" + GAME_TIT + ", GAME_VIDEO="
+				+ GAME_VIDEO + ", GAME_MINI=" + GAME_MINI + "]";
 	}
 	
 
