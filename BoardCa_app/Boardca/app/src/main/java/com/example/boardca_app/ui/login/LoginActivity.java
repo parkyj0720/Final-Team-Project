@@ -34,6 +34,7 @@ import androidx.lifecycle.ViewModelProviders;
 import com.example.boardca_app.MainActivity;
 import com.example.boardca_app.R;
 import com.example.boardca_app.data.PreferenceManager;
+import com.example.boardca_app.ui.community.MakeActivity;
 import com.example.boardca_app.ui.signup.TermsActivity;
 import com.kakao.auth.ApiErrorCode;
 import com.kakao.auth.ApprovalType;
@@ -48,6 +49,10 @@ import com.kakao.network.ErrorResult;
 import com.kakao.usermgmt.UserManagement;
 import com.kakao.usermgmt.callback.MeV2ResponseCallback;
 import com.kakao.usermgmt.response.MeV2Response;
+import com.kakao.usermgmt.response.model.AgeRange;
+import com.kakao.usermgmt.response.model.Gender;
+import com.kakao.usermgmt.response.model.UserAccount;
+import com.kakao.util.OptionalBoolean;
 import com.kakao.util.exception.KakaoException;
 
 import java.io.BufferedReader;
@@ -301,10 +306,65 @@ public class LoginActivity extends AppCompatActivity {
 
                 @Override
                 public void onSuccess(MeV2Response result) {
+
+                    String nickname = result.getNickname();
+
+                    String email = result.getKakaoAccount().getEmail();
+                    AgeRange ageRange = result.getKakaoAccount().getAgeRange();
+                    String age;
+                    switch (ageRange){
+                        case AGE_20_29:
+                            age = "20대";break;
+                        case AGE_30_39:
+                            age = "30대";break;
+                        case AGE_40_49:
+                            age = "40대";break;
+                        case AGE_50_59:
+                        case AGE_60_69:
+                        case AGE_70_79:
+                        case AGE_80_89:
+                        case AGE_90_ABOVE:
+                            age="50대 이상";break;
+                        case AGE_RANGE_UNKNOWN:
+                            age="비공개";break;
+                        default:
+                            age="음주는 19세부터!!!";
+                    }
+
+                    String gender = result.getKakaoAccount().getGender() + "";
+                    String mf;
+                    if(gender.equals("MALE")){
+                        mf = "남자";
+                    }else if(gender.equals("FEMALE")){
+                        mf = "여자";
+                    }else{
+                        mf = "";
+                    }
+
+//                    UserAccount account =  result.getKakaoAccount();
+//
+//                    System.out.println(account);
+
+                    long id2 = result.getId();
+
+                    String id = id2 + "";
+
+
+                    Log.e("nickname : ", nickname + "");
+                    Log.e("email : ", email + "");
+                    Log.e("id : ", id + "");
+                    Log.e("age : ", age + "");
+                    Log.e("mf : ", mf + "");
+
                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                    intent.putExtra("name", result.getNickname());
-                    intent.putExtra("profile", result.getProfileImagePath());
+                    intent.putExtra("nickname", nickname);
+                    intent.putExtra("email", email);
+                    intent.putExtra("id", id);
+                    intent.putExtra("age", age);
+                    intent.putExtra("mf", mf);
+
                     startActivity(intent);
+                    overridePendingTransition(0, 0);
                     finish();
                 }
             });
@@ -384,7 +444,3 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 }
-
-
-
-

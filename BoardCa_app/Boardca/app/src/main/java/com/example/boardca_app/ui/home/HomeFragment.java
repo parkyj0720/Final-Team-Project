@@ -33,7 +33,7 @@ public class HomeFragment extends Fragment {
     TextView textGame;
     ImageView gameImage;
 
-    int[] imageResources = {R.drawable.game_1, R.drawable.game_2, R.drawable.game_3, R.drawable.game_4, R.drawable.game_5};
+    // int[] imageResources = {R.drawable.game_1, R.drawable.game_2, R.drawable.game_3, R.drawable.game_4, R.drawable.game_5};
     int i = 0;
 
     String[] labels = {"game1", "game2", "game3", "game4", "game5", "game6", "game7", "game8", "game9", "game10"};
