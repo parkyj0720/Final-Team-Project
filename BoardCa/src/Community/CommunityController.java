@@ -79,7 +79,7 @@ public class CommunityController {
 		int num = Integer.parseInt(request.getParameter("num"));
 		dao.view(num);
 		CommunityDto dto = dao.detail(num);
-		int boardnum = dto.getBRD_IDX();
+		int boardnum = dto.getCATEGORY_IDX();
 		mv.addObject("board", dao.one_board(boardnum));
 		mv.addObject("dto", dto);
 		mv.addObject("heart", dao.detail_heart(num));
@@ -152,6 +152,15 @@ public class CommunityController {
 		return mv;
 	}
 	
+	@RequestMapping(value = "/Community_ModifyContent.do", method = RequestMethod.POST)
+
+	@ResponseBody
+	public void community_modify_content(InputDto data, HttpServletRequest request) {
+		System.out.println(data);
+		CommunityDto dto = new CommunityDto(data.getBRD_IDX(), data.getBRD_TIT(), data.getBRD_WRT_ID(), "", data.getBRD_CONTENT(), 0, data.getCATEGORY_IDX());
+		dao.modify(dto);
+	}
+	
 	// delete
 	@RequestMapping(value = "/Community_delete.do", method = RequestMethod.POST)
 
@@ -170,6 +179,14 @@ public class CommunityController {
 	public void community_comment(Comment data, HttpServletRequest request) {
 		System.out.println(data);
 		dao.insert_comment(data); 
+	}
+	
+	
+	@RequestMapping(value = "/Community_delete_comment.do", method = RequestMethod.POST)
+
+	@ResponseBody
+	public void community_delete_comment(String data, HttpServletRequest request) {
+		System.out.println(data);
 	}
 
 }

@@ -58,9 +58,9 @@ public class CoDao {
 		mysqlSession.insert("CoXml.insert_heart", heart);
 	}
 	public List<Comment> detail_comments(int num) {
-		List<Comment> heart = mysqlSession.selectList("CoXml.detail_comments", num);
-		System.out.println(heart);
-		return heart;
+		List<Comment> comments = mysqlSession.selectList("CoXml.detail_comments", num);
+		System.out.println(comments);
+		return comments;
 	}
 	public void view(int num) {
 		mysqlSession.update("CoXml.view", num);
@@ -79,5 +79,9 @@ public class CoDao {
 	}
 	public void insert_comment(Comment dto) {
 		mysqlSession.insert("CoXml.insert_comment", dto);
+	}
+	public void modify(CommunityDto dto) {
+		mysqlSession.update("CoXml.modify", dto);
+		
 	}
 }

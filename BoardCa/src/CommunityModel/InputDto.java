@@ -1,20 +1,37 @@
 package CommunityModel;
 
 public class InputDto {
+	int BRD_IDX;
 	String BRD_TIT;
 	int CATEGORY_IDX;
 	String BRD_WRT_ID;
 	String BRD_CONTENT;
 	
 	public InputDto() {
-		this("",0,"","");
+		this(0,"",0,"","");
 	}
 	
-	public InputDto(String title, int boardnum, String writer_id, String asd) {
+	public InputDto(int BRD_IDX, String title, int boardnum, String writer_id, String asd) {
+		this.BRD_IDX = BRD_IDX;
 		this.BRD_TIT = title;
 		this.CATEGORY_IDX = boardnum;
 		this.BRD_WRT_ID = writer_id;
 		this.BRD_CONTENT = asd;
+	}
+	public InputDto(String title, int boardnum, String writer_id, String asd) {
+		this.BRD_IDX = 0;
+		this.BRD_TIT = title;
+		this.CATEGORY_IDX = boardnum;
+		this.BRD_WRT_ID = writer_id;
+		this.BRD_CONTENT = asd;
+	}
+
+	public int getBRD_IDX() {
+		return BRD_IDX;
+	}
+
+	public void setBRD_IDX(int bRD_IDX) {
+		BRD_IDX = bRD_IDX;
 	}
 
 	public String getBRD_TIT() {
