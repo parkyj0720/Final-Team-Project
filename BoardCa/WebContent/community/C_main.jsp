@@ -98,7 +98,7 @@
 										title += "...";
 											}
 									%>
-									<tr class="list" height="14.2%" width="100%" style="box-sizing: content-box;">
+									<tr class="list" height="14.2%" width="100%" style="box-sizing: content-box; border: 1px ridge;">
 										<td width="10%" height="auto" align="center"
 											style="white-space: normal;"><%=dto.getBRD_IDX()%></td>
 										<td width="10%" height="auto" align="center"
@@ -161,7 +161,7 @@
 										title += "...";
 											}
 									%>
-									<tr class="list" width="14.2%" style="box-sizing: content-box;">
+									<tr class="list" width="14.2%" style="box-sizing: content-box; border: 1px ridge;">
 										<td width="10%" height="auto" align="center"
 											style="white-space: normal;"><%=dto.getBRD_IDX()%></td>
 										<td width="10%" height="auto" align="center"

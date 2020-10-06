@@ -59,12 +59,20 @@ public class CommunityController {
 	public ModelAndView community_list(HttpServletRequest request) {
 		ArrayList<Object> heartList = new ArrayList<Object>();
 		int list_num = Integer.parseInt(request.getParameter("list"));
+		
+		int page = 1;
+		if(request.getParameter("page") != null) {
+			page = Integer.parseInt(request.getParameter("page"));
+		}
+		
 		List<CommunityDto> communityList = dao.List(list_num);
 		for (int i = 0; i < communityList.size(); i++) {
 			int no = communityList.get(i).getBRD_IDX();
 			int num = dao.list_heart(no);
 			heartList.add(num);
 		}
+		
+		mv.addObject("page", page);
 		mv.addObject("heart", heartList);
 		mv.addObject("viewname", dao.one_board(list_num));
 		mv.addObject("list", communityList);
@@ -91,23 +99,26 @@ public class CommunityController {
 	@RequestMapping(value = "/Community_heart.do", method = RequestMethod.POST, produces="application/json")
 	@ResponseBody
 	public void community_heart(Heart dto, HttpServletRequest request, HttpSession session) {
-		
-		System.out.println(dto);
-
+		// 좋아요 정보받아오기
 		List<Heart> hList = dao.detail_heart(dto.getBOARD_IDX());
 		int dataNum = 0;
+		// 중복체크
 		for (int i = 0; i < hList.size(); i++) {
+			// 중복되면 기존에있던 좋아요기록 삭제
 			if (hList.get(i).getMEM_IDX()==dto.getMEM_IDX()) {
 				dao.detail_heart_delete(dto);
 				System.out.println(dto.getBOARD_IDX() + "번글" + dto.getBOARD_IDX() + "좋아요 취소");
 				dataNum = 1;
 			}
 		}
+		// 중복되는 정보가 없으면 좋아요기록 생성
 		if (dataNum == 0) {
 			dao.detail_heart_insert(dto);
 			System.out.println(dto.getBOARD_IDX() + "번글" + dto.getMEM_IDX() + "좋아요");
 		}
 	}
+	
+	// heartList.size리턴
 	@RequestMapping(value = "/Community_heart_count.do", method = RequestMethod.POST, produces="application/json")
 	@ResponseBody
 	public String recCount(int no){
@@ -133,8 +144,8 @@ public class CommunityController {
 		return mv;
 	}
 
+	// 게시글 저장
 	@RequestMapping(value = "/Community_inputContent.do", method = RequestMethod.POST)
-
 	@ResponseBody
 	public void community_input_content(InputDto data, HttpServletRequest request) {
 		System.out.println(data);
@@ -142,6 +153,7 @@ public class CommunityController {
 				data.getCATEGORY_IDX());
 		dao.insert(dto);
 	}
+	
 	// modify 
 	@RequestMapping("/Community_Modify.do")
 	public ModelAndView community_modify(HttpServletRequest request) {
@@ -181,9 +193,8 @@ public class CommunityController {
 		dao.insert_comment(data); 
 	}
 	
-	
+	// 댓글 삭제
 	@RequestMapping(value = "/Community_delete_comment.do", method = RequestMethod.POST)
-
 	@ResponseBody
 	public void community_delete_comment(String data, HttpServletRequest request) {
 		System.out.println(data);
