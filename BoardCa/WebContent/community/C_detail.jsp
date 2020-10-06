@@ -160,6 +160,7 @@
 						usernum=0;
 					}else{
 						usernum = (int)session.getAttribute("userIdx");
+					}
 					boolean tf = false;
 					for (int i = 0; i < heart.size(); i++) {
 						Heart h = heart.get(i);
@@ -186,7 +187,6 @@
 					</div>
 					<%
 							}
-					}
 					%>
 				</div>
 				<div class="card">
@@ -245,7 +245,7 @@
 			var MEM_IDX = " ${sessionScope.userIdx}";
 			
 			$(".heart").on("click",	function() {
-						if (MEM_IDX == null) {
+						if (MEM_IDX == null || MEM_IDX == 0) {
 							alert("로그인후 재시도해주세요")
 						} else {
 							
@@ -267,7 +267,7 @@
 						}
 					});
 			$(".heart1").on("click", function() {
-				if (MEM_IDX ==null) {
+				if (MEM_IDX ==null || MEM_IDX == 0) {
 				alert("로그인후 재시도해주세요")
 			} else {
 				
