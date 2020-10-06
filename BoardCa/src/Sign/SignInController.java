@@ -185,6 +185,9 @@ public class SignInController {
 				sedto.setSess_move("로그인(성공)");
 				sedto.setMem_idx(userIdx);
 				
+				int adgwon= memDao.adminCheck(userId);
+				
+				session.setAttribute("adgwon", adgwon);
 				session.setAttribute("userIdx", userIdx);
 				session.setAttribute("userId", userId);
 				session.setAttribute("userToken2", "0");
