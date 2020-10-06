@@ -116,6 +116,10 @@ dependencies {
     //kakao sdk // 카카오 로그인
     implementation group: 'com.kakao.sdk', name: 'usermgmt', version: '1.30.2'
 
+    implementation group: project.KAKAO_SDK_GROUP, name: 'usermgmt',
+            version: project.KAKAO_SDK_VERSION
+
+
     // 글작성 api
     implementation 'com.github.esafirm.android-image-picker:imagepicker:2.0.0'
     implementation 'com.github.lumyjuwon:Android-Rich-Wysiwyg-Editor:1.0.0'
