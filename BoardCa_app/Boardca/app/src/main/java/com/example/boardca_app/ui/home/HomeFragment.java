@@ -33,8 +33,7 @@ public class HomeFragment extends Fragment {
     TextView textGame;
     ImageView gameImage;
 
-    // int[] imageResources = {R.drawable.game_1, R.drawable.game_2, R.drawable.game_3, R.drawable.game_4, R.drawable.game_5};
-    int i = 0;
+    int[] imageResources = {R.drawable.game_01, R.drawable.game_02, R.drawable.game_03, R.drawable.game_04, R.drawable.game_05};
 
     String[] labels = {"game1", "game2", "game3", "game4", "game5", "game6", "game7", "game8", "game9", "game10"};
 
@@ -86,7 +85,10 @@ public class HomeFragment extends Fragment {
 //                textGame.setVisibility(View.VISIBLE);
 
                 if(tf) {
-                    gameImage.setVisibility(View.GONE);
+                    //gameImage.setVisibility(View.GONE);
+                    int i = (int) (Math.random()*5);
+                    int res = imageResources[i];
+                    gameImage.setImageResource(res);
                     animationView.setVisibility(View.VISIBLE);
                     // 재생할 애니메이션 넣어준다.
                     animationView.setAnimation("click_data.json");
