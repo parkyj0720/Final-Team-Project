@@ -14,5 +14,9 @@
 		MEM_NICKNAME=#{mem_nickname},MEM_PW=#{mem_pw},MEM_GENDER=#{mem_gender},MEM_AGE_GROUP=#{mem_age_group},MEM_EMAIL=#{mem_email},MEM_ROCAL=#{mem_rocal},MEM_STATE=#{mem_state}
 		WHERE MEM_ID=#{mem_id}
 	</update>
-
+	
+	<select id="writeList" resultType="CommunityDto" parameterType="CommunityDto">
+		select * from BOARD_T WHERE BRD_WRT_ID=#{BRD_WRT_ID}
+	</select>
+	
 </mapper>
