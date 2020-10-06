@@ -49,14 +49,14 @@
                     <div class="card">
                         <div class="body">
                             <div class="form-group">
-                                <input type="text" class="form-control" id="title" placeholder="제목을 입력해주세요" maxlength="133"/>
+                                <input type="text" class="form-control" id="title" placeholder="제목을 입력해주세요" maxlength="200"/>
                             </div>
 							<select class="form-control show-tick" id="select">
 								<option>게시판을 선택해주세요.</option>
 								<%
 									for (int i = 0; i < boardList.size(); i++) {
 								%>
-								<option><%=boardList.get(i).getBOARDNAME()%></option>
+								<option><%=boardList.get(i).getCAT_NAME()%></option>
 								<%
 									} // end of for
 								%>
@@ -81,6 +81,7 @@
       $( document ).ready( function() {
     	  $('#submit').click(function() {
     		  var select = $('#select').val();
+    		  console.log(select);
     		  var title = $('#title').val();
     		  var username = "${userId}";
     		  var content = $( '.note-editable' ).html();
@@ -88,8 +89,8 @@
     		  var content_sub;
     		  var boardnum;
   			<%for (int i = 0; i < boardList.size(); i++) {%>
-  				if((select)=="<%=boardList.get(i).getBOARDNAME()%>"){
-  					boardnum=<%=boardList.get(i).getBOARDNUM()%>
+  				if((select)=="<%=boardList.get(i).getCAT_NAME()%>"){
+  					boardnum=<%=boardList.get(i).getBRD_CAT_IDX()%>
   					console.log(boardnum)
   				}
   				<%}%>
@@ -102,10 +103,10 @@
     			  }
     			  else{
  					var dto = {
-							title: title,
-							boardnum: boardnum,
-							writer_id: username,
-							asd: content
+ 							BRD_TIT: title,
+ 							CATEGORY_IDX: boardnum,
+ 							BRD_WRT_ID: username,
+ 							BRD_CONTENT: content
 							};
 					
 					$.ajax({

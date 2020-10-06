@@ -93,6 +93,12 @@ public class MainActivity extends AppCompatActivity {
     private Fragment community_fragment;
     private Fragment map_fragment;
 
+    public String nickname = "nickname";
+    public String email = "email";
+    public String id = "id";
+    public String age = "age";
+    public String mf = "mf";
+
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
@@ -115,6 +121,15 @@ public class MainActivity extends AppCompatActivity {
                         return true;
                     }
                     case R.id.action_community: {
+
+                        Bundle bundle = new Bundle();
+                        bundle.putString("nickname", nickname); // Key, Value
+                        bundle.putString("email", email); // Key, Value
+                        bundle.putString("id", id); // Key, Value
+                        bundle.putString("age", age); // Key, Value
+                        bundle.putString("mf", mf); // Key, Value
+                        community_fragment.setArguments(bundle);
+
                         replaceFragment(community_fragment);
                         return true;
                     }
@@ -160,6 +175,22 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        if(getIntent().getStringExtra("nickname") != null)
+            nickname = getIntent().getStringExtra("nickname");
+        if(getIntent().getStringExtra("email") != null)
+            email = getIntent().getStringExtra("email");
+        if(getIntent().getStringExtra("id") != null)
+            id = getIntent().getStringExtra("id");
+        if(getIntent().getStringExtra("age") != null)
+            age = getIntent().getStringExtra("age");
+        if(getIntent().getStringExtra("mf") != null)
+            mf = getIntent().getStringExtra("mf");
+
+        Log.e("nickname : ", nickname + "");
+        Log.e("email : ", email + "");
+        Log.e("id : ", id + "");
+        Log.e("age : ", age + "");
+        Log.e("mf : ", mf + "");
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);

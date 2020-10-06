@@ -94,11 +94,21 @@ public class SignInController {
 			
 		}
 		
+		int mem_idx = memDao.searchIdx(userId);
+		
+		int adgwon= memDao.adminCheck(userId);
+				
+		session.setAttribute("adgwon", adgwon);
+		
+		sedto.setMem_idx(mem_idx);
+		
 		sedto.setSess_move("로그인(성공)");
 		session.setAttribute("userId", userId);
 		session.setAttribute("userToken", userToken);
 		session.setAttribute("userToken2", "1");
-
+		
+		System.out.println(sedto);
+		
 		memDao.sessionInput(sedto);
 
 		mv.setViewName("/main/main.jsp");
@@ -152,6 +162,8 @@ public class SignInController {
 		String userId = req.getParameter("userId");
 		String userPw = req.getParameter("userPw");
 
+		
+		
 		dto.setMem_id(userId);
 		dto.setMem_pw(userPw);
 
@@ -179,6 +191,9 @@ public class SignInController {
 				sedto.setSess_move("로그인(성공)");
 				sedto.setMem_idx(userIdx);
 				
+				int adgwon= memDao.adminCheck(userId);
+				
+				session.setAttribute("adgwon", adgwon);
 				session.setAttribute("userIdx", userIdx);
 				session.setAttribute("userId", userId);
 				session.setAttribute("userToken2", "0");

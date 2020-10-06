@@ -366,7 +366,7 @@ var MEM_BOARD_GWONHAN
 												<%
 													// request를 이용해서 컨트롤러에서 멤버 DB를 가져온다.
 
-												List<Object> list = (List<Object>) request.getAttribute("list");
+												List<Object> list = (List<Object>) request.getAttribute("memlist");
 
 												for (int i = 0; i < list.size(); i++) {
 
@@ -413,7 +413,7 @@ var MEM_BOARD_GWONHAN
 													<p>선택한 유저의 정보가 보여집니다!</p>
 												</div>
 
-	<a id="adminbtn1"
+										<a id="adminbtn1"
 										class="btn btn-primary btn-lg bg-orange waves-effect waves-light float-right">
 										게시판 권한 부여/회수</a>
 										<a id="adminbtn2"

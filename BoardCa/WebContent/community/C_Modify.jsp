@@ -53,21 +53,21 @@
                     <div class="card">
                         <div class="body">
                             <div class="form-group">
-                                <input type="text" class="form-control" id="title" placeholder="제목을 입력해주세요" maxlength="133" value="<%=dto.getTitle()%>"/>
+                                <input type="text" class="form-control" id="title" placeholder="제목을 입력해주세요" maxlength="133" value="<%=dto.getBRD_TIT()%>"/>
                             </div>
 							<select class="form-control show-tick" id="select">
 								<option>게시판을 선택해주세요.</option>
 								<%
 									for (int i = 0; i < boardList.size(); i++) {
-										int  boardnum = dto.getBoardnum();
+										int  boardnum = dto.getCATEGORY_IDX();
 										if(boardnum == i+1){
 											%>
-											<option selected="selected"><%=boardList.get(i).getBOARDNAME()%></option>
+											<option selected="selected"><%=boardList.get(i).getCAT_NAME()%></option>
 											<%
 										}
 										else{
 								%>
-								<option><%=boardList.get(i).getBOARDNAME()%></option>
+								<option><%=boardList.get(i).getCAT_NAME()%></option>
 								<%
 										}
 									} // end of for
@@ -99,17 +99,21 @@
     		  var select = $('#select').val();
     		  var title = $('#title').val();
     		  var username = "${userId}";
-    		  var content = $( '.note-editable' ).html();
+    		  var content = $('.note-editable' ).html();
     		  var title_trim = $.trim($("#title").val());
+    		  var BRD_IDX = <%=dto.getBRD_IDX()%>
     		  var content_sub;
     		  var boardnum;
   			<%for (int i = 0; i < boardList.size(); i++) {%>
-  				if((select)=="<%=boardList.get(i).getBOARDNAME()%>"){
-  					boardnum=<%=boardList.get(i).getBOARDNUM()%>
+  				if((select)=="<%=boardList.get(i).getCAT_NAME()%>"){
+  					boardnum=<%=boardList.get(i).getBRD_CAT_IDX()%>
   					console.log(boardnum)
   				}
   				<%}%>
-    		  
+    		  console.log(select);
+    		  console.log(title);
+    		  console.log(username);
+    		  console.log(content);
     		  if(select == "게시판을 선택해주세요."){
     	 		  alert("게시판을 선택해주세요")
     		  }else{
@@ -118,29 +122,31 @@
     			  }
     			  else{
  					var dto = {
-							title: title,
-							boardnum: boardnum,
-							writer_id: username,
-							asd: content
+ 							BRD_IDX : BRD_IDX,
+ 							BRD_TIT: title,
+ 							CATEGORY_IDX: boardnum,
+ 							BRD_WRT_ID: username,
+ 							BRD_CONTENT: content
 							};
 					
-/* 					$.ajax({
-						url: "Community_inputContent.do",
+ 					$.ajax({
+						url: "Community_ModifyContent.do",
 						type: "POST",
 						datatype: 'application/json',
-						data: dto
+						data: dto,
+						success: function() {
+							alert('수정이 완료되었습니다');
+							/* $(location).attr('href', '${pageContext.request.contextPath}/Community_list.do?list='+boardnum) */
+							
+						}
 					})
-					setTimeout(() => {
-    		 	$(location).attr('href', '${pageContext.request.contextPath}/Community_list.do?list='+boardnum);
-						
-					}, 300); */
     		  }
     			
 		};
       })
       });
       function asdf() {
-    	$('.note-editable').html("<%=dto.getContent()%>")
+    	$('.note-editable').html("<%=dto.getBRD_CONTENT()%>")
     	<%-- console.log("<%=dto.getContent()%>") --%>
 	}
     </script>

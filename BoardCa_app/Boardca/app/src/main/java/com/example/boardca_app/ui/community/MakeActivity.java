@@ -41,12 +41,34 @@ public class MakeActivity extends AppCompatActivity {
 
     private static final int REQUEST_CODE = 0;
 
+    public String nickname = "nickname";
+    public String email = "email";
+    public String id = "id";
+    public String age = "age";
+    public String mf = "mf";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_make);
         wysiwyg = findViewById(R.id.richwysiwygeditor);
 
+        if(getIntent().getStringExtra("nickname") != null)
+            nickname = getIntent().getStringExtra("nickname");
+        if(getIntent().getStringExtra("email") != null)
+            email = getIntent().getStringExtra("email");
+        if(getIntent().getStringExtra("id") != null)
+            id = getIntent().getStringExtra("id");
+        if(getIntent().getStringExtra("age") != null)
+            age = getIntent().getStringExtra("age");
+        if(getIntent().getStringExtra("mf") != null)
+            mf = getIntent().getStringExtra("mf");
+
+        Log.e("nickname : ", nickname + "");
+        Log.e("email : ", email + "");
+        Log.e("id : ", id + "");
+        Log.e("age : ", age + "");
+        Log.e("mf : ", mf + "");
         rg = (RadioGroup) findViewById(R.id.rg1);
 
         wysiwyg.getContent()
@@ -207,7 +229,7 @@ public class MakeActivity extends AppCompatActivity {
         protected String doInBackground(String... strings) {
             try {
                 String str;
-                URL url = new URL("http://192.168.219.101:8088/android1/home.do");
+                URL url = new URL("http://192.168.219.101:8088/BoardCa/data.jsp");
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
                 conn.setRequestMethod("POST");

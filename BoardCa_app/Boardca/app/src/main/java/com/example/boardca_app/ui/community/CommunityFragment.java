@@ -15,6 +15,7 @@ import com.example.boardca_app.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
 
+
 public class CommunityFragment extends Fragment {
 
     private ViewGroup viewGroup;
@@ -22,6 +23,12 @@ public class CommunityFragment extends Fragment {
     private ViewPagerAdapter viewPagerAdapter;
 
     private FloatingActionButton fab_write;
+
+    public String nickname = "nickname";
+    public String email = "email";
+    public String id = "id";
+    public String age = "age";
+    public String mf = "mf";
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -31,7 +38,7 @@ public class CommunityFragment extends Fragment {
         viewPager = viewGroup.findViewById(R.id.viewPager);
 
         // 글 작성 버튼
-        fab_write = (FloatingActionButton)view.findViewById(R.id.fab_write);
+        fab_write = (FloatingActionButton) view.findViewById(R.id.fab_write);
 
         // add your fragments
         viewPagerAdapter.addFrag(new FragmainBoard(), "숙취 게시판"); //메인탭
@@ -76,10 +83,18 @@ public class CommunityFragment extends Fragment {
     }
 
     // 글 작성 액티비티 intent로 열기
-    public void showWrite(){
+    public void showWrite() {
+
         Intent i = new Intent(getActivity(), MakeActivity.class);
+
+        i.putExtra("nickname", nickname);
+        i.putExtra("email", email);
+        i.putExtra("id", id);
+        i.putExtra("age", age);
+        i.putExtra("mf", mf);
+
         startActivity(i);
-        getActivity().overridePendingTransition(0,0);
+        getActivity().overridePendingTransition(0, 0);
     }
 
     @Nullable
@@ -87,6 +102,14 @@ public class CommunityFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         viewGroup = (ViewGroup) inflater.inflate(R.layout.fragment_community, container, false);
+
+        if (getArguments() != null) {
+            nickname = getArguments().getString("nickname");// 전달한 key 값
+            email = getArguments().getString("email"); // 전달한 key 값
+            id = getArguments().getString("id"); // 전달한 key 값
+            age = getArguments().getString("age"); // 전달한 key 값
+            mf = getArguments().getString("mf"); // 전달한 key 값
+        }
 
         return viewGroup;
     }
@@ -105,7 +128,8 @@ public class CommunityFragment extends Fragment {
     private String contents;
     private String views;
 
-    public CommunityFragment(){ }
+    public CommunityFragment() {
+    }
 
     public int getSequence() {
         return sequence;

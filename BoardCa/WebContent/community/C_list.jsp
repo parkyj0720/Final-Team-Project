@@ -31,8 +31,8 @@
 	ArrayList<Object> heartList = (ArrayList<Object>)request.getAttribute("heart");
 	List<CommunityDto> list = (List<CommunityDto>) request.getAttribute("list");
 	BoardList viewname = (BoardList)request.getAttribute("viewname");
-	String community_title = viewname.getBOARDNAME();
-	int boardnum = viewname.getBOARDNUM();
+	String community_title = viewname.getCAT_NAME();
+	int boardnum = viewname.getBRD_CAT_IDX();
 %>
 <jsp:include page="/WEB-INF/header.jsp"></jsp:include>
 	<!-- <section class="content"
@@ -80,25 +80,24 @@
 									class="table table-hover product_item_list c_table theme-color mb-0"
 									style="width: 100%; ">
 									<tbody>
-									<%for(int i = 0; i<list.size(); i++){ 
+									<%
+									for(int i = 0; i<list.size(); i++){ 
 									CommunityDto dto = list.get(i);
 									int heart = (int)heartList.get(i);
 									%>
 										<tr class="list" style="box-sizing: content-box;">
 											<td class="Ctd" width="10%" height="auto" align="center"
-												style="white-space: normal;"><%=dto.getNum()%></td>
+												style="white-space: normal;"><%=dto.getBRD_IDX()%></td>
 											<td width="10%" height="auto" align="center"
-												style="white-space: normal;"><%=dto.getWriter_id()%></td>
+												style="white-space: normal;"><%=dto.getBRD_WRT_ID()%></td>
 											<td width="40%" height="auto" align="center"
-												style="white-space: normal;"><%=dto.getTitle()%></td>
+												style="white-space: normal;"><%=dto.getBRD_TIT()%></td>
 											<td width="10%" height="auto" align="center"
-												style="white-space: normal;"><%=dto.getWritten_date()%></td>
+												style="white-space: normal;"><%=dto.getBRD_SYSDATE()%></td>
 											<td width="10%" height="auto" align="center"
-												style="white-space: normal;"><%=dto.getViews()%></td>
+												style="white-space: normal;"><%=dto.getBRD_VIEWS()%></td>
 											<td width="10%" height="auto" align="center"
 												style="white-space: normal;"><%=heart%></td>
-											<td width="10%" height="auto" align="center"
-												style="white-space: normal;"><i class="zmdi zmdi-hc-fw"></i></td>
 										</tr>
 										<%} %>
 									</tbody>
@@ -112,12 +111,8 @@
 										href="javascript:void(0);"><i class="zmdi zmdi-arrow-left"></i></a></li>
 									<li class="page-item active"><a class="page-link"
 										href="javascript:void(0);">1</a></li>
-									<li class="page-item"><a class="page-link"
-										href="javascript:void(0);">2</a></li>
-									<li class="page-item"><a class="page-link"
-										href="javascript:void(0);">3</a></li>
-									<li class="page-item"><a class="page-link"
-										href="javascript:void(0);">4</a></li>
+									<!-- <li class="page-item"><a class="page-link"
+										href="javascript:void(0);">2</a></li> -->
 									<li class="page-item"><a class="page-link"
 										href="javascript:void(0);"><i
 											class="zmdi zmdi-arrow-right"></i></a></li>
@@ -145,7 +140,11 @@
                 $(location).attr('href', '${pageContext.request.contextPath}/Community_detail.do?num='+num);
             });
             $('#input').click(function() {
-				$(location).attr('href', '${pageContext.request.contextPath}/Community_input.do')
+            	if("${sessionScope.userId}"==null || "${sessionScope.userId}"==""){
+            		alert('로그인후 다시 시도해주세요')
+            	}else{
+            		$(location).attr('href', '${pageContext.request.contextPath}/Community_input.do')
+            	}
 			})
         });
     </script>

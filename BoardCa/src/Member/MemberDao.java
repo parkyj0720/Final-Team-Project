@@ -141,5 +141,15 @@ public class MemberDao {
 
 	}
 	
+	public int adminCheck(String data) {
+		
+		int r = (int)mysqlSession.selectOne("signXml.adminCheck", data);
+		
+		System.out.println("현재 관리자 권한" + r);
+		
+		return r;
+		
+	}
+	
 	
 }

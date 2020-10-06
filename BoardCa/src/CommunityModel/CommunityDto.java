@@ -3,105 +3,75 @@ package CommunityModel;
 import java.util.Date;
 
 public class CommunityDto {
-	int num;
-	String title;
-	String writer_id;
-	String written_date;
-	String content;
-	int views;
-	int boardnum;
+	int BRD_IDX;
+	String BRD_TIT;
+	String BRD_WRT_ID;
+	String BRD_SYSDATE;
+	String BRD_CONTENT;
+	int BRD_VIEWS;
+	int CATEGORY_IDX;
 	
 	
 	public CommunityDto() {
 		this(0,"","","","",0,0);
 	}
-
-
-	public CommunityDto(int num, String title, String writer_id, String written_date, String content, int views, int boardnum) {
-		this.num = num;
-		this.title = title;
-		this.writer_id = writer_id;
-		this.written_date = written_date;
-		this.content = content;
-		this.views = views;
-		this.boardnum = boardnum;
+	public CommunityDto(int BRD_IDX, String BRD_TIT, String BRD_WRT_ID, String BRD_SYSDATE, String BRD_CONTENT, int BRD_VIEWS, int CATEGORY_IDX) {
+		this.BRD_IDX = BRD_IDX;
+		this.BRD_TIT = BRD_TIT;
+		this.BRD_WRT_ID = BRD_WRT_ID;
+		this.BRD_SYSDATE = BRD_SYSDATE;
+		this.BRD_CONTENT = BRD_CONTENT;
+		this.BRD_VIEWS = BRD_VIEWS;
+		this.CATEGORY_IDX = CATEGORY_IDX;
 	}
-
-
-	public int getNum() {
-		return num;
+	public int getBRD_IDX() {
+		return BRD_IDX;
 	}
-
-
-	public void setNum(int num) {
-		this.num = num;
+	public void setBRD_IDX(int bRD_IDX) {
+		BRD_IDX = bRD_IDX;
 	}
-
-
-	public String getTitle() {
-		return title;
+	public String getBRD_TIT() {
+		return BRD_TIT;
 	}
-
-
-	public void setTitle(String title) {
-		this.title = title;
+	public void setBRD_TIT(String bRD_TIT) {
+		BRD_TIT = bRD_TIT;
 	}
-
-
-	public String getWriter_id() {
-		return writer_id;
+	public String getBRD_WRT_ID() {
+		return BRD_WRT_ID;
 	}
-
-
-	public void setWriter_id(String writer_id) {
-		this.writer_id = writer_id;
+	public void setBRD_WRT_ID(String bRD_WRT_ID) {
+		BRD_WRT_ID = bRD_WRT_ID;
 	}
-
-
-	public String getWritten_date() {
-		return written_date;
+	public String getBRD_SYSDATE() {
+		return BRD_SYSDATE;
 	}
-
-
-	public void setWritten_date(String written_date) {
-		this.written_date = written_date;
+	public void setBRD_SYSDATE(String bRD_SYSDATE) {
+		BRD_SYSDATE = bRD_SYSDATE;
 	}
-
-
-	public String getContent() {
-		return content;
+	public String getBRD_CONTENT() {
+		return BRD_CONTENT;
 	}
-
-
-	public void setContent(String content) {
-		this.content = content;
+	public void setBRD_CONTENT(String bRD_CONTENT) {
+		BRD_CONTENT = bRD_CONTENT;
 	}
-
-
-	public int getViews() {
-		return views;
+	public int getBRD_VIEWS() {
+		return BRD_VIEWS;
 	}
-
-
-	public void setViews(int views) {
-		this.views = views;
+	public void setBRD_VIEWS(int bRD_VIEWS) {
+		BRD_VIEWS = bRD_VIEWS;
 	}
-
-
-	public int getBoardnum() {
-		return boardnum;
+	public int getCATEGORY_IDX() {
+		return CATEGORY_IDX;
 	}
-
-
-	public void setBoardnum(int boardnum) {
-		this.boardnum = boardnum;
+	public void setCATEGORY_IDX(int cATEGORY_IDX) {
+		CATEGORY_IDX = cATEGORY_IDX;
 	}
-
-
 	@Override
 	public String toString() {
-		return "CommunityDto [num=" + num + ", title=" + title + ", writer_id=" + writer_id + ", written_date="
-				+ written_date + ", cont=" + content + ", views=" + views + ", boardnum=" + boardnum + "]";
+		return "CommunityDto [BRD_IDX=" + BRD_IDX + ", BRD_TIT=" + BRD_TIT + ", BRD_WRT_ID=" + BRD_WRT_ID
+				+ ", BRD_SYSDATE=" + BRD_SYSDATE + ", BRD_CONTENT=" + BRD_CONTENT + ", BRD_VIEWS=" + BRD_VIEWS
+				+ ", CATEGORY_IDX=" + CATEGORY_IDX + "]";
 	}
+
 
 }

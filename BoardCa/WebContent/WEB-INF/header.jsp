@@ -169,7 +169,7 @@ $(function() {
 										<li><a href="${pageContext.request.contextPath}/signIn.do">로그인</a></li>
 									</c:when>
 									
-									<c:when test="${sessionScope.userId == 'ADMIN'}">
+									<c:when test="${sessionScope.adgwon == 1}">
 										<li class="dropdown"><a href="javascript:void(0);"
 											class="dropdown-toggle" data-toggle="dropdown" role="button"
 											aria-haspopup="true" aria-expanded="false">
