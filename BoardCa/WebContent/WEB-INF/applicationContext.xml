@@ -80,12 +80,14 @@
 	<context:component-scan base-package="Map" />
 	<context:component-scan base-package="Mypage" />
 	<context:component-scan base-package="Sign" />
+	<context:component-scan base-package="App" />
 	
 	 
 	<bean id="ModelAndView" class="org.springframework.web.servlet.ModelAndView"/>
 	<bean id="MemberDao" class="Member.MemberDao"/>
 	<bean id="MemberDto" class="Member.MemberDto"/>
 	<bean id="CoDao" class="CommunityModel.CoDao"/>
+	<bean id="AppDto" class="App.AppDto"/>
 	<bean id="CDao" class="Food.CDao"/>
 
 	<mvc:annotation-driven />

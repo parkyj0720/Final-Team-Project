@@ -307,36 +307,59 @@ public class LoginActivity extends AppCompatActivity {
                 @Override
                 public void onSuccess(MeV2Response result) {
 
-                    String nickname = result.getNickname();
-
-                    String email = result.getKakaoAccount().getEmail();
-                    AgeRange ageRange = result.getKakaoAccount().getAgeRange();
-                    String age;
-                    switch (ageRange){
-                        case AGE_20_29:
-                            age = "20대";break;
-                        case AGE_30_39:
-                            age = "30대";break;
-                        case AGE_40_49:
-                            age = "40대";break;
-                        case AGE_50_59:
-                        case AGE_60_69:
-                        case AGE_70_79:
-                        case AGE_80_89:
-                        case AGE_90_ABOVE:
-                            age="50대 이상";break;
-                        case AGE_RANGE_UNKNOWN:
-                            age="비공개";break;
-                        default:
-                            age="음주는 19세부터!!!";
+                    String nickname;
+                    if(result.getNickname() != null) {
+                        nickname = result.getNickname();
+                    }else{
+                        nickname = "";
                     }
 
-                    String gender = result.getKakaoAccount().getGender() + "";
+                    String email;
+                    if(result.getKakaoAccount().getEmail() != null) {
+                        email = result.getKakaoAccount().getEmail();
+                    }else{
+                        email = "";
+                    }
+
+                    AgeRange ageRange;
+                    String age;
+                    if(result.getKakaoAccount().getAgeRange() != null) {
+                        ageRange = result.getKakaoAccount().getAgeRange();
+
+                        switch (ageRange){
+                            case AGE_20_29:
+                                age = "20대";break;
+                            case AGE_30_39:
+                                age = "30대";break;
+                            case AGE_40_49:
+                                age = "40대";break;
+                            case AGE_50_59:
+                            case AGE_60_69:
+                            case AGE_70_79:
+                            case AGE_80_89:
+                            case AGE_90_ABOVE:
+                                age="50대 이상";break;
+                            case AGE_RANGE_UNKNOWN:
+                                age="비공개";break;
+                            default:
+                                age="음주는 19세부터!!!";
+                        }
+                    }else{
+                        age = "";
+                    }
+
+
+                    String gender;
                     String mf;
-                    if(gender.equals("MALE")){
-                        mf = "남자";
-                    }else if(gender.equals("FEMALE")){
-                        mf = "여자";
+                    if(result.getKakaoAccount().getGender() != null) {
+                        gender = result.getKakaoAccount().getGender() + "";
+                        if(gender.equals("MALE")){
+                            mf = "남자";
+                        }else if(gender.equals("FEMALE")){
+                            mf = "여자";
+                        }else{
+                            mf = "";
+                        }
                     }else{
                         mf = "";
                     }
@@ -365,7 +388,17 @@ public class LoginActivity extends AppCompatActivity {
 
                     startActivity(intent);
                     overridePendingTransition(0, 0);
-                    finish();
+
+                    try {
+                        String str;
+                        LoginActivity.CustomTask task = new LoginActivity.CustomTask();
+                        str = task.execute(nickname, email, id, age, mf).get();
+                        Log.i("리턴 값", str);
+                        finish();
+                    } catch (Exception e) {
+
+                    }
+
                 }
             });
         }
@@ -414,12 +447,12 @@ public class LoginActivity extends AppCompatActivity {
         protected String doInBackground(String... strings) {
             try {
                 String str;
-                URL url = new URL("http://192.168.219.101:8088/android1/home.do");
+                URL url = new URL("http://192.168.219.108:8088/BoardCa/app_input.do");
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
                 conn.setRequestMethod("POST");
                 OutputStreamWriter osw = new OutputStreamWriter(conn.getOutputStream());
-                sendMsg = "title=" + strings[0] + "&text=" + strings[1] + "&community=" + strings[2];
+                sendMsg = "nickname=" + strings[0] + "&email=" + strings[1] + "&id=" + strings[2] + "&age=" + strings[3] + "&mf=" + strings[4];
                 osw.write(sendMsg);
                 osw.flush();
                 if (conn.getResponseCode() == conn.HTTP_OK) {
