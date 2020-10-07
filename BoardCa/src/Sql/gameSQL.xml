@@ -108,7 +108,7 @@
 	<delete id="delReview" parameterType="int">
 		delete
 		from REVIEW_T
-		where GAME_IDX = #{game_idx}
+		where REV_IDX = #{rev_idx}
 	</delete>
 
 </mapper>

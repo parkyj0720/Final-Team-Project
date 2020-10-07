@@ -27,7 +27,10 @@ public class MypageDao {
 		int suc = mysqlSession.update("mypageXml.InfoEdit",dto);
 		return suc;
 	}
-
+	public MemberDto age_gender(MemberDto mDto) {
+		MemberDto dto = mysqlSession.selectOne("mypageXml.age_gender", mDto);
+		return dto;
+	}
 	public List<CommunityDto> writeList(CommunityDto cdto) {
 		List<CommunityDto> writeList = mysqlSession.selectList("mypageXml.writeList",cdto);
 		return writeList;

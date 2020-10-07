@@ -28,18 +28,17 @@
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
-
+<script src="http://code.jquery.com/jquery.js"></script>
 </head>
 
 <body class="ls-closed ls-toggle-menu ">
 	<%
 		GameDto dto = (GameDto) request.getAttribute("dto");
-	
+
 	MemberDto mDto = null;
 	if (request.getAttribute("infocheck") != null) {
 		mDto = (MemberDto) request.getAttribute("infocheck");
 	}
-	System.out.println(mDto);
 
 	List<ReviewAndMember> reviewList = null;
 	if (request.getAttribute("reviewList") != null) {
@@ -62,7 +61,7 @@
 			player = new YT.Player('player', {
 				height : '600',
 				width : '100%',
-				videoId : '<%=dto.getGAME_VIDEO()%>',
+				videoId : '<%=dto.getGAME_VIDEO()%>	',
 				events : {
 					'onReady' : onPlayerReady,
 					'onStateChange' : onPlayerStateChange
@@ -88,17 +87,19 @@
 		function stopVideo() {
 			player.stopVideo();
 		}
-		$('#reviewBtn').on('click', function() {
-			if ($('#review_text').val() == '') {
-				alert('내용을 입력해주세요.');
-			} else if (
+		$(document).ready(function() {
+			$('#reviewBtn').on('click', function() {
+				if ($('#review_text').val() == '') {
+					alert('내용을 입력해주세요.');
+				} else if (
 	<%=session.getAttribute("userIdx")%>
 		!= null) {
-				$('#reviewForm').submit();
-			} else {
-				alert('로그인 후 이용하실 수 있습니다.');
-			}
+					$('#reviewForm').submit();
+				} else {
+					alert('로그인 후 이용하실 수 있습니다.');
+				}
 
+			});
 		});
 	</script>
 
@@ -189,9 +190,11 @@
 					<div class="row clearfix">
 						<div class="col-lg-12">
 							<div class="card">
+
+
 								<div class="body">
 									<form id="reviewForm" class="row comment-form mt-2"
-										action="reviewInsert.do" method="post">
+										action="insertRev.do" method="post">
 										<div class="col-xl-12 col-lg-12	col-md-12">
 											<div class="form-group">
 												<textarea rows="4" class="form-control no-resize"
@@ -236,7 +239,7 @@
 															&& Integer.parseInt(session.getAttribute("userIdx") + "") == reviewDto.getReviewDto().getMem_idx()) {
 													%>
 													<a
-														href="${pageContext.request.contextPath}/deleteReview.do?no=<%=dto.getGAME_IDX()%>&del=<%=reviewDto.getReviewDto().getRev_idx() %>">삭제</a>
+														href="${pageContext.request.contextPath}/delReview.do?no=<%=dto.getGAME_IDX()%>&del=<%=reviewDto.getReviewDto().getRev_idx() %>">삭제</a>
 													<%
 														}
 													%>
@@ -253,9 +256,6 @@
 						</div>
 					</div>
 				</div>
-
-
-
 			</div>
 		</div>
 	</div>

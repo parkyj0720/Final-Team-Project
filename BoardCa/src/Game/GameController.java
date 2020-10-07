@@ -70,7 +70,6 @@ public class GameController {
 		List<GameDto> list = dao.getList();
 		Collections.shuffle(list);
 		mv.addObject("gameList", list);
-
 		mv.setViewName("/game/gameDetail.jsp");
 		return mv;
 	}
@@ -107,9 +106,9 @@ public class GameController {
 		int no = Integer.parseInt(req.getParameter("no"));
 		String review = req.getParameter("review_text");
 		ReviewDto dto = new ReviewDto(0, "G", review, "", 0, no,Integer.parseInt(session.getAttribute("userIdx") + ""));
+		System.out.println(dto);
 		dao.revInsert(dto);
-
-		mv.setViewName("/gameDetail.do?no=" + no);
+		mv.setViewName("redirect:/gameDetail.do?no=" + no);
 		return mv;
 	}
 
@@ -120,9 +119,8 @@ public class GameController {
 		int no = Integer.parseInt(req.getParameter("no"));
 		int del = Integer.parseInt(req.getParameter("del"));
 
-		dao.detail(del);
-
-		mv.setViewName("/gameDetail.do?no=" + no);
+		dao.revDelete(del);
+		mv.setViewName("redirect:/gameDetail.do?no=" + no);
 		return mv;
 	}
 }
