@@ -229,7 +229,7 @@ public class MakeActivity extends AppCompatActivity {
         protected String doInBackground(String... strings) {
             try {
                 String str;
-                URL url = new URL("http://192.168.219.101:8088/BoardCa/data.jsp");
+                URL url = new URL("http://192.168.219.108:8088/BoardCa/app_input.do");
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
                 conn.setRequestMethod("POST");

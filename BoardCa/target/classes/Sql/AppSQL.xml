@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="AppSQL">
+
+	<insert id="insert"
+		parameterType="App.AppDto">
+		
+		insert into MEMBER_T 
+		(MEM_ID, 
+		MEM_NICKNAME, 
+		MEM_PW, 
+		MEM_AGE_GROUP, 
+		MEM_GENDER, 
+		MEM_EMAIL, 
+		MEM_ROCAL, 
+		MEM_STATE, 
+		MEM_MNG_GWONHAN, 
+		MEM_LOGIN_GWONHAN, 
+		MEM_BOARD_GWONHAN
+		) 
+		values(
+		#{mem_id},
+		#{mem_nickname},
+		'',
+		#{mem_age_group},
+		#{mem_gender},
+		#{mem_email},
+		'',
+		'',
+		0,
+		1,
+		1
+		)
+		
+	</insert>
+	
+</mapper>

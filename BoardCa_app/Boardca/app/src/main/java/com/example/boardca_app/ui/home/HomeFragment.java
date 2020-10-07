@@ -127,4 +127,10 @@ public class HomeFragment extends Fragment {
         // 시작
         animationView.playAnimation();
     }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        gameImage.setVisibility(View.GONE);
+    }
 }

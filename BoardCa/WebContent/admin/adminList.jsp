@@ -33,30 +33,42 @@
 <script src="http://code.jquery.com/jquery.js"></script>
 </head>
 <script>
+
+var tr
+var td
 	$(function() {
 		$(".clickBtn").click(function() {
 			var str = ""
 			var tdArr = new Array(); // 배열 선언
 
 			// 현재 클릭된 Row(<tr>)
-			var tr = $(this);
-			var td = tr.children();
+			tr = $(this);
+			td = tr.children();
 
+			console.log(tr);
+			
 			// tr.text()는 클릭된 Row 즉 tr에 있는 모든 값을 가져온다.
 			console.log("클릭한 Row의 모든 데이터 : " + tr.text());
 
+			
+			/*
 			// 반복문을 이용해서 배열에 값을 담아 사용할 수 도 있다.
 			td.each(function(i) {
 				tdArr.push(td.eq(i).text());
 			});
+			*/
 
 			// td.eq(index)를 통해 값을 가져올 수도 있다.
 			
-			var date = td.eq(1).text();
+			var date = td.eq(0).text();
+			var id = td.eq(1).text();
 			var title = td.eq(2).text();
-			var reply = td.eq(3).text();
 
-			$("#ex1_Result1").html("<p>" + tr.text() + "<p>");
+			var cont = td.eq(3).text();
+			
+			
+			
+			$("#ex1_Result1").html("<p>" + cont + "<p>");
 
 		})
 	});
@@ -153,13 +165,16 @@
 															<tr role="row">
 																<th class="sorting" tabindex="0"
 																	aria-controls="DataTables_Table_0" rowspan="1"
-																	colspan="1" aria-label="No" style="width: 61px;">신고자 ID</th>
+																	colspan="1" aria-label="Date" style="width: 60px;">글쓴 시간</th>
 																<th class="sorting" tabindex="0"
 																	aria-controls="DataTables_Table_0" rowspan="1"
-																	colspan="1" aria-label="Date" style="width: 83px;">글 제목</th>
+																	colspan="1" aria-label="Id" style="width: 61px;">신고자 ID</th>
 																<th class="sorting" tabindex="0"
 																	aria-controls="DataTables_Table_0" rowspan="1"
-																	colspan="1" aria-label="Title" style="width: 60px;">글쓴 시간</th>
+																	colspan="1" aria-label="Title" style="width: 83px;">글 제목</th>
+																<th class="sorting" tabindex="0"
+																	aria-controls="DataTables_Table_0" rowspan="1"
+																	colspan="1" aria-label="Content" style="display: none;">글 내용</th>
 																
 
 															</tr>
@@ -183,9 +198,10 @@
 														
 															<tr class="clickBtn ">
 
+																<td><%=report.getBRD_SYSDATE()%></td>
 																<td><%=report.getBRD_WRT_ID()%></td>
 																<td><%=report.getBRD_TIT()%></td>
-																<td><%=report.getBRD_SYSDATE()%></td>
+																<td style="display: none;"><%=report.getBRD_CONTENT()%></td>
 																
 
 															</tr>

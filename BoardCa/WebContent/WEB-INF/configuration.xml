@@ -18,6 +18,7 @@
 		<typeAlias alias="Community_Heart" type="CommunityModel.Heart"></typeAlias>
 		<typeAlias alias="Community_Comment" type="CommunityModel.Comment"></typeAlias>
 		<typeAlias alias="GameDto" type="Game.GameDto"></typeAlias>
+		<typeAlias alias="AppDto" type="App.AppDto"></typeAlias>
 	</typeAliases>
 	<!-- 오라클에서 Long타입 가져오기 위한 핸들러 -->
 	<typeHandlers>
@@ -32,6 +33,7 @@
 		<mapper resource="Sql/gameSQL.xml"/>
     	<mapper resource="Sql/mypageSQL.xml"/>
     	<mapper resource="Sql/MemberSQL.xml"/>
+    	<mapper resource="Sql/AppSQL.xml"/>
     	
 	</mappers>
 
