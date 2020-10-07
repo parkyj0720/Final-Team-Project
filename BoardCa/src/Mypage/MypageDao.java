@@ -21,7 +21,6 @@ public class MypageDao {
 		MemberDto newDto = mysqlSession.selectOne("mypageXml.MemberInfo", dto);
 		return newDto;
 	}
-
 	public int memEdit(MemberDto dto) {
 		System.out.println("dao.memEdit");
 		int suc = mysqlSession.update("mypageXml.InfoEdit",dto);
@@ -46,5 +45,4 @@ public class MypageDao {
 		mysqlSession.insert("mypageXml.FaQinsert", dto);
 		System.out.println("입력끝");
 	}
-	
 }

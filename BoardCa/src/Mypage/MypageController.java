@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import CommunityModel.CommunityDto;
 import CommunityModel.InputDto;
+import Member.MemberDao;
 import Member.MemberDto;
 
 @Controller
@@ -21,7 +22,6 @@ public class MypageController {
 
 	@Autowired
 	private ModelAndView mv;
-
 	@Autowired
 	private MypageDao dao;
 
@@ -46,10 +46,6 @@ public class MypageController {
 
 	@RequestMapping("/EditSus.do")
 	public ModelAndView EditSus(HttpSession session) {
-		MemberDto dto = new MemberDto();
-		dto.setMem_id(session.getAttribute("userId") + "");
-		mv.addObject("memInfo", dao.memInfo(dto));
-		mv.addObject("userGender", dto.getMem_gender());
 		mv.setViewName("/mypage/EditSus.jsp");
 		return mv;
 	}
@@ -87,7 +83,7 @@ public class MypageController {
 		if (req.getParameter("gender").equals(newdto.getMem_gender())) {
 			dto.setMem_gender(newdto.getMem_gender());
 		}
-		if (req.getParameter("ageRange").equals(newdto.getMem_age_group()) || req.getParameter("ageRange").equals("")) {
+		if (req.getParameter("ageRange").equals(newdto.getMem_age_group())) {
 			dto.setMem_age_group(newdto.getMem_age_group());
 		}
 		dao.memEdit(dto);

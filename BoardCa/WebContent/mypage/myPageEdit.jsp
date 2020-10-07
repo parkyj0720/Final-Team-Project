@@ -78,8 +78,24 @@ function nickNameCheck(){
 		}
 	});		
 }
+//현재 비밀번호 체크
 
-
+function nowPwCheck(){
+	$.ajax({
+		type : "post",
+		url : "/BoardCa/equalPwCk.do",
+		data :{
+			pw1 : $( "<%=dto.getMem_pw()%>" ).val(),
+			pw2 : $("#nowPw").val()
+		},
+		success : function test(a){ 
+			$("#nowPwCheck").html(a); 
+		},
+		error : function error(){ 
+			alert("error"); 
+		}
+	});
+}
 	
 
 // 바꿀 비밀번호가 일치한지 체크
@@ -200,7 +216,6 @@ function nickNameCheck(){
             return false;
         return true;
 	}
-
 </script>
 </head>
 
@@ -272,7 +287,7 @@ function nickNameCheck(){
 								</h2>
 							</div>
 							<div class="body">
-								<form action="${pageContext.request.contextPath}/Edit.do"
+								<form name="Editform"action="${pageContext.request.contextPath}/Edit.do"
 									method="POST">
 									<div class="row">
 										<div class="col-lg-12 col-md-12">
@@ -282,6 +297,15 @@ function nickNameCheck(){
 													placeholder="NickName">
 											</div>
 											<div class="form-group col-lg-3 col-md-12" id="checkNickName"></div>
+										</div>
+										
+										<div class="col-lg-12 col-md-12">
+											<div class="form-group">
+												<input type="password" class="form-control" id="nowPw"
+													name="nowPw" onblur="nowPwCheck()"
+													placeholder="nowPw">
+											</div>
+											<div class="form-group col-lg-3 col-md-12" id="nowPwCheck"></div>
 										</div>
 
 
@@ -378,42 +402,27 @@ function nickNameCheck(){
 										<!-- 성별 체크 라디오 버튼  -->
 										<div class="form-group col-sm-12 margin-auto"
 											style="text-align: left;">
-											<c:choose>
-												<c:when test="${userGender == null or userGender == 'male'}">
-													<div class="form-group">
-														<div class="radio inlineblock m-r-20" style="margin: 0;">
-															<input type="radio" name="gender" id="male"
-																class="with-gap" value="남" checked> <label
-																for="male">남성</label>
-														</div>
-														<div class="radio inlineblock" style="margin: 0;">
-															<input type="radio" name="gender" id="Female"
-																class="with-gap" value="여"> <label for="Female">여성</label>
-														</div>
-														<div class="radio inlineblock" style="margin: 0;">
-															<input type="radio" name="gender" id="secret"
-																class="with-gap" value=""> <label for="secret">비공개</label>
-														</div>
-													</div>
-												</c:when>
-												<c:when test="${userGender == 'female'}">
-													<div class="form-group">
-														<div class="radio inlineblock m-r-20" style="margin: 0;">
-															<input type="radio" name="gender" id="male"
-																class="with-gap" value="남"> <label for="male">남성</label>
-														</div>
-														<div class="radio inlineblock" style="margin: 0;">
-															<input type="radio" name="gender" id="Female"
-																class="with-gap" value="여" checked> <label
-																for="Female">여성</label>
-														</div>
-														<div class="radio inlineblock" style="margin: 0;">
-															<input type="radio" name="gender" id="secret"
-																class="with-gap" value=""> <label for="secret">비공개</label>
-														</div>
-													</div>
-												</c:when>
-											</c:choose>
+											<%
+												String gender = dto.getMem_gender();
+												String Age = dto.getMem_age_group();
+												System.out.println(gender);
+											%>
+											<div class="form-group">
+												<div class="radio inlineblock m-r-20" style="margin: 0;">
+													<input type="radio" name="gender" id="male"
+														class="with-gap" value="남" <%if(gender.equals("남")){ %>checked<%}%>> <label
+														for="male">남성</label>
+												</div>
+												<div class="radio inlineblock" style="margin: 0;">
+													<input type="radio" name="gender" id="Female"
+														class="with-gap" value="여"<%if(gender.equals("여")){ %>checked<%} %>> <label for="Female">여성</label>
+												</div>
+												<div class="radio inlineblock" style="margin: 0;">
+													<input type="radio" name="gender" id="secret"
+														class="with-gap" value=""<%if(gender.equals("")){ %>checked<%} %>> <label for="secret">비공개</label>
+												</div>
+											</div>
+
 										</div>
 
 										<!-- 연령대 -->
@@ -422,30 +431,30 @@ function nickNameCheck(){
 											<div class="form-group">
 												<div class="radio inlineblock m-r-20" style="margin: 0;">
 													<input type="radio" name="ageRange" id="one"
-														class="with-gap" value="20대"> <label for="one">20대</label>
+														class="with-gap" value="20대"<%if(Age.equals("20대")){ %>checked<%} %>> <label for="one">20대</label>
 												</div>
 												<div class="radio inlineblock m-r-20" style="margin: 0;">
 													<input type="radio" name="ageRange" id="two"
-														class="with-gap" value="30대" checked> <label
+														class="with-gap" value="30대" <%if(Age.equals("30대")){ %>checked<%} %>> <label
 														for="two">30대</label>
 												</div>
 												<div class="radio inlineblock" style="margin: 0;">
 													<input type="radio" name="ageRange" id="three"
-														class="with-gap" value="40대"> <label for="three">40대</label>
+														class="with-gap" value="40대"<%if(Age.equals("40대")){ %>checked<%} %>> <label for="three">40대</label>
 												</div>
 												<div class="radio inlineblock" style="margin: 0;">
 													<input type="radio" name="ageRange" id="four"
-														class="with-gap" value="50대 이상"> <label for="four">50대
+														class="with-gap" value="50대 이상"<%if(Age.equals("50대이사")){ %>checked<%} %>> <label for="four">50대
 														이상</label>
 												</div>
 												<div class="radio inlineblock" style="margin: 0;">
 													<input type="radio" name="ageRange" id="five"
-														class="with-gap" value=""> <label for="five">비공개</label>
+														class="with-gap" value="비공개"<%if(Age.equals("비공개")){ %>checked<%} %>> <label for="five">비공개</label>
 												</div>
 											</div>
 										</div>
 										<div class="col-md-12" style="margin-top: 15px;">
-											<button type="submit" class="btn btn-primary bg-orange">Save
+											<button type="submit" class="btn btn-primary bg-orange"id="saveBtn">Save
 												Changes</button>
 										</div>
 									</div>
