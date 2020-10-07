@@ -157,7 +157,7 @@ public class AdminController {
 		int num = 4;
 		
 		List<CommunityDto> rplist = CoDao.List(num);
-		System.out.println(rplist); 
+		/* System.out.println(rplist); */
 		 
 		request.setAttribute("rplist", rplist);		
 		
