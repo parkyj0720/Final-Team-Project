@@ -90,7 +90,6 @@ public class MypageController {
 		if (req.getParameter("ageRange").equals(newdto.getMem_age_group()) || req.getParameter("ageRange").equals("")) {
 			dto.setMem_age_group(newdto.getMem_age_group());
 		}
-
 		dao.memEdit(dto);
 		mv.setViewName("/mypage/EditSus.jsp");
 		return mv;

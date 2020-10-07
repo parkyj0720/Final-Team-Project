@@ -40,6 +40,7 @@ select {
 // pw 정규식 
 // 8-20자리 , 영문,숫자,특수문자 포함, 공백x 
 function chkPW(){	
+
 	 var pw = $("#inputPw").val();
 	 var num = pw.search(/[0-9]/g);
 	 var eng = pw.search(/[a-z]/ig);
@@ -189,7 +190,7 @@ function nickNameCheck(){
 		$('#rocal').val(mem_rocal);
 		
 	}
-
+	
 	function checkPassword(inputPw, inputPwCk) {
         //비밀번호가 입력되었는지 확인하기
         if (!checkExistData(inputPw, "비밀번호를"))
