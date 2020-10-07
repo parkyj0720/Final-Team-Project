@@ -61,12 +61,12 @@ white-space: nowrap;
 		search = request.getParameter("inputSearch");
 	}
 
-	// 최대 보일 리스트 개수
-	int maxList = 10;
+	// 최대 보일 페이지 개수
+	int maxList = 5;
 	request.setAttribute("maxList", maxList);
 
 	// 페이지당 리스트 개수
-	int listNum = 8;
+	int listNum = 16;
 	
 	int now_page = 1;
 
@@ -299,7 +299,7 @@ request.getParameter("test");
             </div>
             <div class="num_btn_div">
             	<ul class="pagination pagination-primary m-b-0">
-                     <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/<%=(search.equals(""))?"cListAll":"cSearch"%>.do?page=<%=(startList-10>0)?startList-10:1 %>&inputSearch=<%=search%>"><i class="zmdi zmdi-arrow-left"></i></a></li>
+                     <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/<%=(search.equals(""))?"cListAll":"cSearch"%>.do?page=<%=(startList-maxList>0)?startList-maxList:1 %>&inputSearch=<%=search%>"><i class="zmdi zmdi-arrow-left"></i></a></li>
                      <!-- class = "active" -->
                      <% for(int i=startList;i<=endList;i++){
                      	if(i>listCount)
