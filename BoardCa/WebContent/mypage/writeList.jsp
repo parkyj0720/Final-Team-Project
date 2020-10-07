@@ -15,7 +15,7 @@
 <meta name="description"
 	content="Responsive Bootstrap 4 and web Application ui kit.">
 
-<title></title>
+<title>:: BoardCa :: MY WRITE LIST</title>
 <link rel="icon"
 	href="${pageContext.request.contextPath}/stylesheet/favicon.ico"
 	type="image/x-icon">

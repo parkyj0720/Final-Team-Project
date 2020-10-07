@@ -123,4 +123,6 @@ public class GameController {
 		mv.setViewName("redirect:/gameDetail.do?no=" + no);
 		return mv;
 	}
+	
+	
 }

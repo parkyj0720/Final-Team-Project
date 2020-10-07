@@ -15,7 +15,7 @@
 <meta name="description"
 	content="Responsive Bootstrap 4 and web Application ui kit.">
 
-<title></title>
+<title>:: BoardCa :: MYPAGE EDIT</title>
 <link rel="icon" href="/BoardCa/stylesheet/favicon.ico"
 	type="image/x-icon">
 <!-- Favicon-->

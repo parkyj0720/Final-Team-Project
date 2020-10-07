@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+<meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=Edge">
 <meta
 	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
@@ -11,23 +11,18 @@
 <meta name="description"
 	content="Responsive Bootstrap 4 and web Application ui kit.">
 
-<title></title>
-<link rel="icon" href="/BoardCa/stylesheet/favicon.ico"
-	type="image/x-icon">
+<title>:: BoardCa :: MYSAVED</title>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
 <!-- Favicon-->
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/stylesheet/assets/plugins/bootstrap/css/bootstrap.min.css">
-<!-- Custom Css -->
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/stylesheet/assets/css/style.min.css">
-<link
-	href="${pageContext.request.contextPath}/stylesheet/assets/plugins/bootstrap-select/css/bootstrap-select.css"
-	rel="stylesheet">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/stylesheet/assets/plugins/footable-bootstrap/css/footable.bootstrap.min.css">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/stylesheet/assets/plugins/footable-bootstrap/css/footable.standalone.min.css">
-</head>
+<!-- Custom Css -->
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/stylesheet/assets/css/style.min.css">
 <body class="ls-closed ls-toggle-menu ">
 	<!-- header -->
 	<jsp:include page="/WEB-INF/header.jsp"></jsp:include>
@@ -133,27 +128,6 @@
 																	<td style="display: table-cell;">가나다</td>
 
 																</tr>
-															</tbody>
-															<tfoot>
-																<tr class="footable-paging">
-																	<td colspan="2"><ul class="pagination">
-
-																			<li class="footable-page-nav disabled"
-																				data-page="prev"><a class="footable-page-link"
-																				href="#">‹</a></li>
-																			<li class="footable-page visible active"
-																				data-page="1"><a class="footable-page-link"
-																				href="#">1</a></li>
-																			<li class="footable-page visible" data-page="2"><a
-																				class="footable-page-link" href="#">2</a></li>
-																			<li class="footable-page-nav" data-page="next"><a
-																				class="footable-page-link" href="#">›</a></li>
-
-																		</ul>
-																		<div class="divider"></div> <span
-																		class="label label-default">1 of 2</span></td>
-																</tr>
-															</tfoot>
 														</table>
 													</div>
 												</div>
