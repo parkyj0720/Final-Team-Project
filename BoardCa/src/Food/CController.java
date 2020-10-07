@@ -152,7 +152,7 @@ public class CController {
 		
 		int cnt = dao.deleteRecipe(Integer.parseInt(req.getParameter("no")));
 		
-		mv.setViewName("/cListAll.do?page=1");
+		mv.setViewName("redirect:/cListAll.do?page=1");
 		return mv;
 	}
 	
@@ -166,7 +166,7 @@ public class CController {
 		
 		dao.insertReview(dto);
 		
-		mv.setViewName("/cDetail.do?no="+no);
+		mv.setViewName("redirect:/cDetail.do?no="+no);
 		return mv;
 	}
 	
@@ -179,11 +179,11 @@ public class CController {
 		
 		dao.deleteReview(del);
 		
-		mv.setViewName("/cDetail.do?no="+no);
+		mv.setViewName("redirect:/cDetail.do?no="+no);
 		return mv;
 	}
 
-	// 즐겨찾기추가
+	// 즐겨찾기추가 ajax
 	@RequestMapping("/starInsert.do")
 	public ModelAndView starInsert(HttpServletRequest req, HttpSession session) {
 		int no = Integer.parseInt(req.getParameter("no"));
@@ -193,7 +193,7 @@ public class CController {
 		return mv;
 	}
 	
-	// 즐겨찾기삭제
+	// 즐겨찾기삭제 ajax
 	@RequestMapping("/starDelete.do")
 	public ModelAndView starDelete(HttpServletRequest req, HttpSession session) {
 		int no = Integer.parseInt(req.getParameter("no"));
@@ -255,7 +255,7 @@ public class CController {
 			System.out.println("일반 전송 form 입니다.");
 		}
 		
-		mv.setViewName("food/food.jsp?page=1");
+		mv.setViewName("redirect:/food/food.jsp?page=1");
 		return mv;
 	}
 	

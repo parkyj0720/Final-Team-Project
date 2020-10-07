@@ -247,7 +247,7 @@
 			</div>
 		</div>
 		<form action="" method="post" id="btnForm" style="margin-top:-10px; padding-left: 15px; padding-right:15px; padding-bottom:15px; visibility: <%=(mDto != null && mDto.getMem_mng_gwonhan() == 1)?"visible":"hidden"%>;">
-			<button type="button" id="modifyBtn">글 수정</button>
+			<!-- <button type="button" id="modifyBtn">글 수정</button> -->
 			<button type="button" id="deleteBtn">글 삭제</button>
 		</form>
 
