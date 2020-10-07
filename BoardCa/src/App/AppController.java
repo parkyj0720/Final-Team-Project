@@ -25,12 +25,12 @@ public class AppController  {
 		return mv;
 	}
 
-	@RequestMapping(value = "/app_member.do", method = RequestMethod.POST)
-	@ResponseBody
-	public void app_input_content(AppDto data, HttpServletRequest request) {
-		System.out.println(data);
-		
-		AppDto dto = new AppDto(0, data.getMem_id(), data.getMem_nickname(), "", data.getMem_gender(), data.getMem_age_group(), data.getMem_email(), "", "", 0, 1, 1, null);
-		dao.insert(dto);
-	}
+//	@RequestMapping(value = "/app_member.do", method = RequestMethod.POST)
+//	@ResponseBody
+//	public void app_input_content(AppDto data, HttpServletRequest request) {
+//		System.out.println(data);
+//			
+//		AppDto dto = new AppDto(0, data.getMem_id(), data.getMem_nickname(), "", data.getMem_gender(), data.getMem_age_group(), data.getMem_email(), "", "", 0, 1, 1, null);
+//		dao.insert(dto);
+//	}
 }

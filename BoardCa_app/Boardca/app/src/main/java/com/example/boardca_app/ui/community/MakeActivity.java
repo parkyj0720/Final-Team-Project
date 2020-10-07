@@ -53,15 +53,15 @@ public class MakeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_make);
         wysiwyg = findViewById(R.id.richwysiwygeditor);
 
-        if(getIntent().getStringExtra("nickname") != null)
+        if (getIntent().getStringExtra("nickname") != null)
             nickname = getIntent().getStringExtra("nickname");
-        if(getIntent().getStringExtra("email") != null)
+        if (getIntent().getStringExtra("email") != null)
             email = getIntent().getStringExtra("email");
-        if(getIntent().getStringExtra("id") != null)
+        if (getIntent().getStringExtra("id") != null)
             id = getIntent().getStringExtra("id");
-        if(getIntent().getStringExtra("age") != null)
+        if (getIntent().getStringExtra("age") != null)
             age = getIntent().getStringExtra("age");
-        if(getIntent().getStringExtra("mf") != null)
+        if (getIntent().getStringExtra("mf") != null)
             mf = getIntent().getStringExtra("mf");
 
         Log.e("nickname : ", nickname + "");
@@ -120,17 +120,31 @@ public class MakeActivity extends AppCompatActivity {
                     // 선택한 게시판 받아오기
                     community = rb.getText().toString();
 
+                    switch (community) {
+                        case "숙취 게시판":
+                            community = 1 + "";
+                            break;
+                        case "정보 공유":
+                            community = 2 + "";
+                            break;
+                        case "질문하기":
+                            community = 3 + "";
+                            break;
+                        case "신고하기":
+                            community = 4 + "";
+                            break;
+                    }
+
                     // 제목 받아오기
                     title = wysiwyg.getHeadlineEditText().getText().toString();
 
                     // 내용 받아오기 (HTML 형식으로)
                     text = wysiwyg.getContent().getHtml();
 
-
                     try {
                         String result;
                         CustomTask task = new CustomTask();
-                        result = task.execute(title, text, community).get();
+                        result = task.execute(title, text, community, nickname, email, id, age, mf).get();
                         Log.i("리턴 값", result);
                         finish();
                     } catch (Exception e) {
@@ -181,13 +195,13 @@ public class MakeActivity extends AppCompatActivity {
 
 //                    imageView.setImageBitmap(img);
                     String p = BitmapToString(img);
-                    String photo = URLEncoder.encode(p,"utf-8");
+                    String photo = URLEncoder.encode(p, "utf-8");
 
                     String str = wysiwyg.getContent().getHtml();
-                    if(str == null){
+                    if (str == null) {
                         str = "";
                     }
-                    wysiwyg.getContent().setHtml(str + "<br><br>" +"<img width=\"400px\" height=\"400px\" src=\"data:image/png;base64,"+photo+"\" alt=\"photo\" />" + "<br><br><br>");
+                    wysiwyg.getContent().setHtml(str + "<br><br>" + "<img width=\"400px\" height=\"400px\" src=\"data:image/png;base64," + photo + "\" alt=\"photo\" />" + "<br><br><br>");
                 } catch (Exception e) {
 
                 }
@@ -234,7 +248,8 @@ public class MakeActivity extends AppCompatActivity {
                 conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
                 conn.setRequestMethod("POST");
                 OutputStreamWriter osw = new OutputStreamWriter(conn.getOutputStream());
-                sendMsg = "title=" + strings[0] + "&text=" + strings[1] + "&community=" + strings[2];
+                sendMsg = "title=" + strings[0] + "&text=" + strings[1] + "&community=" + strings[2] + "&nickname=" + strings[3] + "&email=" + strings[4] + "&id=" + strings[5] + "&age=" + strings[6] + "&mf=" + strings[7];
+
                 osw.write(sendMsg);
                 osw.flush();
                 if (conn.getResponseCode() == conn.HTTP_OK) {
