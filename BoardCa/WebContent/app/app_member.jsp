@@ -4,7 +4,7 @@
 
 <%
 	request.setCharacterEncoding("UTF-8");
-
+if(request.getParameter("nickname") != null){
 String MEM_NICKNAME = (String) request.getParameter("nickname");
 String MEM_EMAIL = (String) request.getParameter("email");
 String MEM_ID = (String) request.getParameter("id");
@@ -12,6 +12,25 @@ String MEM_AGE_GROUP = (String) request.getParameter("age");
 String MEM_GENDER = (String) request.getParameter("mf");
 
 System.out.println(MEM_NICKNAME);
+System.out.println(MEM_EMAIL);
+System.out.println(MEM_ID);
+System.out.println(MEM_AGE_GROUP);
+System.out.println(MEM_GENDER);
+
+}
+
+if(request.getParameter("title") != null){
+String title = (String) request.getParameter("title");
+String text = (String) request.getParameter("text");
+String community = (String) request.getParameter("community");
+
+System.out.println(title);
+System.out.println(text);
+System.out.println(community);
+
+}
+
+
 %>
 <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
 <script>
