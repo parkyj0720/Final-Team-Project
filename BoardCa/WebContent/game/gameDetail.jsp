@@ -189,8 +189,6 @@
 					<div class="row clearfix">
 						<div class="col-lg-12">
 							<div class="card">
-
-
 								<div class="body">
 									<form id="reviewForm" class="row comment-form mt-2"
 										action="reviewInsert.do" method="post">

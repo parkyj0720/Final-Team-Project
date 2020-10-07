@@ -40,7 +40,7 @@
 		#{rev_content},
 		sysdate(),
 		null,
-		#{GAME_IDX},
+		#{game_idx},
 		#{mem_idx})
 	</insert>
 	<resultMap type="Member.MemberDto" id="memberInfo">
@@ -108,7 +108,7 @@
 	<delete id="delReview" parameterType="int">
 		delete
 		from REVIEW_T
-		where GAME_IDX = #{GAME_IDX}
+		where GAME_IDX = #{game_idx}
 	</delete>
 
 </mapper>

@@ -8,15 +8,107 @@
 	<select id="gameListAll" resultType="Game.GameDto">
 		select * from GAME_T
 	</select>
-
-
 	<select id="gameDetail" resultType="Game.GameDto">
-		select * from GAME_T where GAME_IDX = #{GAME_IDX}
+		select * from GAME_T where
+		GAME_IDX = #{GAME_IDX}
 	</select>
-	<select id="gameSearchList" resultType="Game.GameDto" parameterType="String">
-		select * from GAME_T where GAME_TIT like CONCAT('%',#{keyword},'%')
-
-
+	<select id="gameSearchList" resultType="Game.GameDto"
+		parameterType="String">
+		select * from GAME_T where GAME_TIT like
+		CONCAT('%',#{keyword},'%')
 	</select>
- 
+	
+	<select id="membInfo" resultType="Member.MemberDto"
+		parameterType="String">
+		select *
+		from MEMBER_T
+		where MEM_ID = #{userId}
+	</select>
+	
+	<insert id="revInsert" parameterType="Food.ReviewDto">
+		insert into REVIEW_T
+		(REV_IDX,
+		REV_CATEGORY,
+		REV_CONTENT,
+		REV_SYSDATE,
+		REC_IDX,
+		GAME_IDX,
+		MEM_IDX)
+
+		values(0,
+		#{rev_category},
+		#{rev_content},
+		sysdate(),
+		null,
+		#{game_idx},
+		#{mem_idx})
+	</insert>
+	<resultMap type="Member.MemberDto" id="memberInfo">
+		<result property="mem_idx" column="MEM_IDX" />
+		<result property="mem_id" column="MEM_ID" />
+		<result property="mem_nickname" column="MEM_NICKNAME" />
+		<result property="mem_pw" column="MEM_PW" />
+		<result property="mem_age_group" column="MEM_AGE_GROUP" />
+		<result property="mem_email" column="MEM_EMAIL" />
+		<result property="mem_rocal" column="MEM_ROCAL" />
+		<result property="mem_state" column="MEM_STATE" />
+		<result property="mem_mng_gwonhan" column="MEM_MNG_GWONHAN" />
+		<result property="mem_login_gwonhan" column="MEM_LOGIN_GWONHAN" />
+		<result property="mem_board_gwonhan" column="MEM_BOARD_GWONHAN" />
+		<result property="MEM_SYSDATE" column="MEM_SYSDATE" />
+		<collection property="reviewList" ofType="Food.ReviewDto">
+			<result property="rev_idx" column="REV_IDX" />
+			<result property="rev_category" column="REV_CATEGORY" />
+			<result property="rev_content" column="REV_CONTENT" />
+			<result property="rev_sysdate" column="REV_SYSDATE" />
+			<result property="rec_idx" column="REC_IDX" />
+			<result property="game_idx" column="GAME_IDX" />
+			<result property="mem_idx" column="MEM_IDX" />
+		</collection>
+	</resultMap>
+
+	<resultMap type="Food.ReviewAndMember" id="reviewAndMember">
+		<association property="reviewDto"
+			javaType="Food.ReviewDto">
+			<result property="rev_idx" column="REV_IDX" />
+			<result property="rev_category" column="REV_CATEGORY" />
+			<result property="rev_content" column="REV_CONTENT" />
+			<result property="rev_sysdate" column="REV_SYSDATE" />
+			<result property="rec_idx" column="REC_IDX" />
+			<result property="game_idx" column="GAME_IDX" />
+			<result property="mem_idx" column="MEM_IDX" />
+		</association>
+		<association property="memberDto"
+			javaType="Member.MemberDto">
+			<result property="mem_idx" column="MEM_IDX" />
+			<result property="mem_id" column="MEM_ID" />
+			<result property="mem_nickname" column="MEM_NICKNAME" />
+			<result property="mem_pw" column="MEM_PW" />
+			<result property="mem_age_group" column="MEM_AGE_GROUP" />
+			<result property="mem_email" column="MEM_EMAIL" />
+			<result property="mem_rocal" column="MEM_ROCAL" />
+			<result property="mem_state" column="MEM_STATE" />
+			<result property="mem_mng_gwonhan" column="MEM_MNG_GWONHAN" />
+			<result property="mem_login_gwonhan"
+				column="MEM_LOGIN_GWONHAN" />
+			<result property="mem_board_gwonhan"
+				column="MEM_BOARD_GWONHAN" />
+			<result property="MEM_SYSDATE" column="MEM_SYSDATE" />
+		</association>
+	</resultMap>
+	<select id="revListAll" resultMap="reviewAndMember"
+		parameterType="int">
+		SELECT G.REV_IDX, G.REV_CATEGORY, G.REV_CONTENT, G.REV_SYSDATE, G.GAME_IDX,
+		G.MEM_IDX, M.MEM_NICKNAME
+		FROM REVIEW_T AS G INNER JOIN MEMBER_T AS M
+		ON G.MEM_IDX = M.MEM_IDX
+		WHERE G.REV_CATEGORY = 'G' and G.GAME_IDX= #{no}
+	</select>
+
+	<delete id="delReview" parameterType="int">
+		delete
+		from REVIEW_T
+		where GAME_IDX = #{game_idx}
+	</delete>
+
 </mapper>

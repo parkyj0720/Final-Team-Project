@@ -99,9 +99,6 @@ endList = endList * maxList + maxList;
 		}
 	}
 </script>
-<script>
-	
-</script>
 
 <body class="ls-closed ls-toggle-menu ">
 	<jsp:include page="/WEB-INF/header.jsp"></jsp:include>

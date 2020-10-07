@@ -43,18 +43,18 @@ public class GameDao {
 		return mdto;
 	}
 	// 한줄평 추가
-	public int Revinsert(ReviewDto dto) {
+	public int revInsert(ReviewDto dto) {
 		System.out.println(dto);
 		int cnt = mysqlSession.insert("gameXml.revInsert", dto);
 		return cnt;
 	}
 	//한줄평 리스트
-	public List<ReviewAndMember> RevList(int no) {
+	public List<ReviewAndMember> revList(int no) {
 		System.out.println(no);
 		return mysqlSession.selectList("gameXml.revListAll", no);
 	}
 	// 한줄평 삭제
-	public int delReview(int del) {
+	public int revDelete(int del) {
 		System.out.println("delete : "+del);
 		int cnt = mysqlSession.delete("gameXml.delReview", del);
 		return cnt;

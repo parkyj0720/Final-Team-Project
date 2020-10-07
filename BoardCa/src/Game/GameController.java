@@ -34,7 +34,7 @@ public class GameController {
 		}
 
 		// 관리자 확인을 위한 멤버정보 확인
-		if(session.getAttribute("userId") != null) {
+		if (session.getAttribute("userId") != null) {
 			String userId = (String) session.getAttribute("userId");
 			MemberDto mDto = dao.memInfo(userId);
 			System.out.println(mDto);
@@ -56,7 +56,7 @@ public class GameController {
 		mv.addObject("dto", dto);
 
 		// 댓글 리스트
-		List<ReviewAndMember> reviewList = dao.RevList(GameNo);
+		List<ReviewAndMember> reviewList = dao.revList(GameNo);
 		mv.addObject("reviewList", reviewList);
 
 		// 관리자 확인을 위한 멤버정보 확인
@@ -66,7 +66,7 @@ public class GameController {
 			System.out.println(mDto);
 			mv.addObject("detailCheck", mDto);
 		}
-		
+
 		List<GameDto> list = dao.getList();
 		Collections.shuffle(list);
 		mv.addObject("gameList", list);
@@ -101,28 +101,26 @@ public class GameController {
 	}
 
 	// 한줄평 등록
-	@RequestMapping("/reviewInsert.do")
+	@RequestMapping("/insertRev.do")
 	public ModelAndView review(HttpServletRequest req, HttpSession session) {
 
 		int no = Integer.parseInt(req.getParameter("no"));
 		String review = req.getParameter("review_text");
-		ReviewDto dto = new ReviewDto(0, "R", review, "", no, 0,
-				Integer.parseInt(session.getAttribute("userIdx") + ""));
-
-		dao.Revinsert(dto);
+		ReviewDto dto = new ReviewDto(0, "G", review, "", 0, no,Integer.parseInt(session.getAttribute("userIdx") + ""));
+		dao.revInsert(dto);
 
 		mv.setViewName("/gameDetail.do?no=" + no);
 		return mv;
 	}
 
 	// 한줄평 삭제
-	@RequestMapping("/deleteReview.do")
+	@RequestMapping("/delReview.do")
 	public ModelAndView deleteReview(HttpServletRequest req, HttpSession session) {
 
 		int no = Integer.parseInt(req.getParameter("no"));
 		int del = Integer.parseInt(req.getParameter("del"));
 
-		dao.delReview(del);
+		dao.detail(del);
 
 		mv.setViewName("/gameDetail.do?no=" + no);
 		return mv;
