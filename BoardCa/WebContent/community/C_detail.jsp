@@ -198,7 +198,7 @@
 							<div class="col-sm-12">
 								<div class="form-group">
 									<textarea id="comment_area" rows="4"
-										class="form-control no-resize" placeholder="댓글을 작성해주세요"></textarea>
+										class="form-control no-resize" placeholder="댓글을 작성해주세요" maxlength="300"></textarea>
 								</div>
 								<div id="comment_submit" class="btn btn btn-primary"
 									style="float: right;">SUBMIT</div>

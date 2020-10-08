@@ -42,6 +42,10 @@
 	
 	int pageCount = leng / showCount + 1;
 	
+	if(leng % showCount == 0){
+		pageCount -=1;
+	}
+	
 	int maxPage = 5;
 	
 	int pages = 1;
@@ -55,9 +59,7 @@
 	int a = (pages-1)/maxPage;
 	
 	int startPage = (a==0)?1:a*maxPage+1;
-	System.out.println(startPage);
 	int endPage = startPage + maxPage -1;
-	System.out.println(endPage);
 %>
 <jsp:include page="/WEB-INF/header.jsp"></jsp:include>
 	<!-- <section class="content"
@@ -137,7 +139,8 @@
 									<li class="page-item"><a class="page-link"
 										href="${pageContext.request.contextPath}/Community_list.do?list=<%=list.get(0).getCATEGORY_IDX() %>&page=<%=(startPage-maxPage>0)?startPage-maxPage:1%>"><i class="zmdi zmdi-arrow-left"></i></a></li>
 										
-										<% for(int i=startPage-1;i<endPage;i++){ 
+										<% 
+										for(int i=startPage-1;i<endPage;i++){ 
 										if(i>=pageCount) break; 
 										
 										if(pages == i+1){

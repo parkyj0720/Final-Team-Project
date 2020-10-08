@@ -53,7 +53,7 @@
                     <div class="card">
                         <div class="body">
                             <div class="form-group">
-                                <input type="text" class="form-control" id="title" placeholder="제목을 입력해주세요" maxlength="133" value="<%=dto.getBRD_TIT()%>"/>
+                                <input type="text" class="form-control" id="title" placeholder="제목을 입력해주세요" maxlength="200" value="<%=dto.getBRD_TIT()%>"/>
                             </div>
 							<select class="form-control show-tick" id="select">
 								<option>게시판을 선택해주세요.</option>
@@ -136,7 +136,7 @@
 						data: dto,
 						success: function() {
 							alert('수정이 완료되었습니다');
-							/* $(location).attr('href', '${pageContext.request.contextPath}/Community_list.do?list='+boardnum) */
+							$(location).attr('href', '${pageContext.request.contextPath}/Community_list.do?list='+boardnum)
 							
 						}
 					})
@@ -146,8 +146,25 @@
       })
       });
       function asdf() {
-    	$('.note-editable').html("<%=dto.getBRD_CONTENT()%>")
-    	<%-- console.log("<%=dto.getContent()%>") --%>
+<%-- 		  var entityMap = {
+				  '&': '&amp;',
+				  '<': '&lt;',
+				  '>': '&gt;',
+				  '"': '&quot;',
+				  "'": '&#39;',
+				  '/': '&#x2F;',
+				  '`': '&#x60;',
+				  '=': '%#x3D;'
+		  }
+		  function escapeHtml(text) {
+			return text.replace(/[&<>"'`=\/]/g, function (s) {
+				return entityMap[s];
+			});
+		}
+		  var content = escapeHtml('<%=dto.getBRD_CONTENT()%>'); --%>
+		  var content = '<%=dto.getBRD_CONTENT()%>';
+    	console.log(content);
+    	$('.note-editable').html(content);
 	}
     </script>
 
