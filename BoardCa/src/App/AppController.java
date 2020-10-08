@@ -32,6 +32,13 @@ public class AppController  {
 		return mv;
 	}
 	
+	@RequestMapping("/app_write_go.do")
+	public ModelAndView app_write_go(HttpServletRequest request) {
+		System.out.println("app_write_go");
+		mv.setViewName("/app/app_write_go.jsp");
+		return mv;
+	}
+	
 	@RequestMapping("/app_sign.do")
 	public ModelAndView app_sign(HttpServletRequest request) {
 		System.out.println("app_sign");

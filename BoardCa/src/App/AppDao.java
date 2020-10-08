@@ -38,7 +38,8 @@ public class AppDao {
 	String returns2 = "";
 
 	// 안드로이드 카카오 로그인시 회원가입
-	public String joindb(String MEM_ID, String MEM_NICKNAME, String MEM_PW, String MEM_EMAIL, String MEM_ROCAL, String MEM_STATE, String MEM_GENDER, String MEM_AGE_GROUP) {
+	public String joindb(String MEM_ID, String MEM_NICKNAME, String MEM_PW, String MEM_EMAIL, String MEM_ROCAL,
+			String MEM_STATE, String MEM_GENDER, String MEM_AGE_GROUP) {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			conn = DriverManager.getConnection(jdbcUrl, dbId, dbPw);
@@ -69,6 +70,55 @@ public class AppDao {
 
 				returns = "회원 가입 완료!";
 			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (pstmt != null)
+				try {
+					pstmt.close();
+				} catch (SQLException ex) {
+				}
+			if (conn != null)
+				try {
+					conn.close();
+				} catch (SQLException ex) {
+				}
+			if (pstmt2 != null)
+				try {
+					pstmt2.close();
+				} catch (SQLException ex) {
+				}
+			if (rs != null)
+				try {
+					rs.close();
+				} catch (SQLException ex) {
+				}
+		}
+		return returns;
+	}
+
+	// 글쓰기 입력
+	public String writeDb(String BRD_TIT, String BRD_CONTENT, String CATEGORY_IDX, String BRD_WRT_ID) {
+
+		returns = "false";
+		int cnt = Integer.parseInt(CATEGORY_IDX);
+
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			conn = DriverManager.getConnection(jdbcUrl, dbId, dbPw);
+
+			sql2 = "insert into BOARD_T(BRD_TIT,BRD_WRT_ID,BRD_VIEWS,CATEGORY_IDX,BRD_CONTENT)values(?,?,?,?,?)";
+
+			pstmt2 = conn.prepareStatement(sql2);
+			pstmt2.setString(1, BRD_TIT);
+			pstmt2.setString(2, BRD_WRT_ID);
+			pstmt2.setInt(3, 0);
+			pstmt2.setInt(4, cnt);
+			pstmt2.setString(5, BRD_CONTENT);
+			pstmt2.executeUpdate();
+
+			returns = "true";
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -173,7 +223,7 @@ public class AppDao {
 				if (rs.next()) {
 					if (rs.getString("MEM_NICKNAME").equals(MEM_NICKNAME)) { // 이미 닉네임이 있는 경우
 						returns = "false2";
-						if(MEM_NICKNAME.equals("")) {
+						if (MEM_NICKNAME.equals("")) {
 							returns = "true";
 						}
 					}
@@ -205,7 +255,7 @@ public class AppDao {
 		}
 		return returns;
 	}
-	
+
 	// 로그인시 아이디 비밀번호 체크
 	public String idpw(String MEM_ID, String MEM_PW) {
 
@@ -221,7 +271,7 @@ public class AppDao {
 			if (rs.next()) {
 				if (rs.getString("MEM_PW").equals(MEM_PW)) { // 이미 아이디가 있는 경우
 					returns = "true";
-				}else {
+				} else {
 					returns = "false";
 				}
 			}

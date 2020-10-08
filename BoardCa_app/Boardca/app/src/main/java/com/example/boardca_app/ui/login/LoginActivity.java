@@ -465,7 +465,7 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-
+// 카카오 로그인
     class CustomTask extends AsyncTask<String, Void, String> {
         String sendMsg, receiveMsg;
 

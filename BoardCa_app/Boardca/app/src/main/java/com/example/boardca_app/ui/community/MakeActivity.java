@@ -41,11 +41,11 @@ public class MakeActivity extends AppCompatActivity {
 
     private static final int REQUEST_CODE = 0;
 
-    public String nickname = "nickname";
-    public String email = "email";
-    public String id = "id";
-    public String age = "age";
-    public String mf = "mf";
+    public String MEM_NICKNAME = "MEM_NICKNAME";
+    public String MEM_EMAIL = "MEM_EMAIL";
+    public String BRD_WRT_ID = "BRD_WRT_ID";
+    public String MEM_AGE_GROUP = "MEM_AGE_GROUP";
+    public String MEM_GENDER = "MEM_GENDER";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,21 +54,21 @@ public class MakeActivity extends AppCompatActivity {
         wysiwyg = findViewById(R.id.richwysiwygeditor);
 
         if (getIntent().getStringExtra("nickname") != null)
-            nickname = getIntent().getStringExtra("nickname");
+            MEM_NICKNAME = getIntent().getStringExtra("nickname");
         if (getIntent().getStringExtra("email") != null)
-            email = getIntent().getStringExtra("email");
+            MEM_EMAIL = getIntent().getStringExtra("email");
         if (getIntent().getStringExtra("id") != null)
-            id = getIntent().getStringExtra("id");
+            BRD_WRT_ID = getIntent().getStringExtra("id");
         if (getIntent().getStringExtra("age") != null)
-            age = getIntent().getStringExtra("age");
+            MEM_AGE_GROUP = getIntent().getStringExtra("age");
         if (getIntent().getStringExtra("mf") != null)
-            mf = getIntent().getStringExtra("mf");
+            MEM_GENDER = getIntent().getStringExtra("mf");
 
-        Log.e("nickname : ", nickname + "");
-        Log.e("email : ", email + "");
-        Log.e("id : ", id + "");
-        Log.e("age : ", age + "");
-        Log.e("mf : ", mf + "");
+        Log.e("MEM_NICKNAME : ", MEM_NICKNAME + "");
+        Log.e("MEM_EMAIL : ", MEM_EMAIL + "");
+        Log.e("BRD_WRT_ID : ", BRD_WRT_ID + "");
+        Log.e("MEM_AGE_GROUP : ", MEM_AGE_GROUP + "");
+        Log.e("MEM_GENDER : ", MEM_GENDER + "");
         rg = (RadioGroup) findViewById(R.id.rg1);
 
         wysiwyg.getContent()
@@ -97,9 +97,9 @@ public class MakeActivity extends AppCompatActivity {
                 rb = (RadioButton) findViewById(rg.getCheckedRadioButtonId());
 
                 boolean tf = false;
-                String title = "";
-                String text = "";
-                String community = "";
+                String BRD_TIT = "";
+                String BRD_CONTENT = "";
+                String CATEGORY_IDX = "";
 
                 // 유효성 체크 ( 빈 칸이면 write 기능 작동 X )
                 if (rb == null) {
@@ -118,37 +118,41 @@ public class MakeActivity extends AppCompatActivity {
 
                 if (tf) {
                     // 선택한 게시판 받아오기
-                    community = rb.getText().toString();
+                    CATEGORY_IDX = rb.getText().toString();
 
-                    switch (community) {
+                    switch (CATEGORY_IDX) {
                         case "숙취 게시판":
-                            community = 1 + "";
+                            CATEGORY_IDX = 1 + "";
                             break;
                         case "정보 공유":
-                            community = 2 + "";
+                            CATEGORY_IDX = 2 + "";
                             break;
                         case "질문하기":
-                            community = 3 + "";
+                            CATEGORY_IDX = 3 + "";
                             break;
                         case "신고하기":
-                            community = 4 + "";
+                            CATEGORY_IDX = 4 + "";
                             break;
                     }
 
                     // 제목 받아오기
-                    title = wysiwyg.getHeadlineEditText().getText().toString();
+                    BRD_TIT = wysiwyg.getHeadlineEditText().getText().toString();
 
                     // 내용 받아오기 (HTML 형식으로)
-                    text = wysiwyg.getContent().getHtml();
+                    BRD_CONTENT = wysiwyg.getContent().getHtml();
 
                     try {
                         String result;
                         CustomTask task = new CustomTask();
-                        result = task.execute(title, text, community, nickname, email, id, age, mf).get();
+                        result = task.execute(BRD_TIT, BRD_CONTENT, CATEGORY_IDX, MEM_NICKNAME, MEM_EMAIL, BRD_WRT_ID, MEM_AGE_GROUP, MEM_GENDER).get();
                         Log.i("리턴 값", result);
+
+                        if(result.equals("true")){
+                            Toast.makeText(MakeActivity.this, "글쓰기 성공!.", Toast.LENGTH_SHORT).show();
+                        }
                         finish();
                     } catch (Exception e) {
-
+                        Toast.makeText(MakeActivity.this, "오류!.", Toast.LENGTH_SHORT).show();
                     }
                     tf = false;
                 }
@@ -243,12 +247,12 @@ public class MakeActivity extends AppCompatActivity {
         protected String doInBackground(String... strings) {
             try {
                 String str;
-                URL url = new URL("http://192.168.219.108:8088/BoardCa/app_input.do");
+                URL url = new URL("http://192.168.219.108:8088/BoardCa/app_write_go.do");
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
                 conn.setRequestMethod("POST");
                 OutputStreamWriter osw = new OutputStreamWriter(conn.getOutputStream());
-                sendMsg = "title=" + strings[0] + "&text=" + strings[1] + "&community=" + strings[2] + "&nickname=" + strings[3] + "&email=" + strings[4] + "&id=" + strings[5] + "&age=" + strings[6] + "&mf=" + strings[7];
+                sendMsg = "BRD_TIT=" + strings[0] + "&BRD_CONTENT=" + strings[1] + "&CATEGORY_IDX=" + strings[2] + "&MEM_NICKNAME=" + strings[3] + "&MEM_EMAIL=" + strings[4] + "&BRD_WRT_ID=" + strings[5] + "&MEM_AGE_GROUP=" + strings[6] + "&MEM_GENDER=" + strings[7];
 
                 osw.write(sendMsg);
                 osw.flush();

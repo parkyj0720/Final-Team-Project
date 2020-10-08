@@ -109,11 +109,6 @@ public class SignUpActivity extends AppCompatActivity {
 
                     switch (result) {
                         case "true":
-
-                            if (MEM_PW.length() < 8) {
-
-                            }
-
                             if (MEM_PW.equals(pw2)) {
                                 if (MEM_EMAIL.contains("@")) {
                                     if (redred.getVisibility() == View.VISIBLE) {
@@ -156,22 +151,18 @@ public class SignUpActivity extends AppCompatActivity {
                             break;
                     }
                 } else {
-                    if (MEM_NICKNAME.equals("")) {
+                    Toast.makeText(SignUpActivity.this, "빈 부분을 적어주세요.", Toast.LENGTH_SHORT).show();
+                    if (MEM_ID.equals("")) {
+                        sign_id.requestFocus();
                     } else {
-                        Toast.makeText(SignUpActivity.this, "빈 부분을 적어주세요.", Toast.LENGTH_SHORT).show();
-
-                        if (MEM_ID.equals("")) {
-                            sign_id.requestFocus();
+                        if (MEM_PW.equals("")) {
+                            password01.requestFocus();
                         } else {
-                            if (MEM_PW.equals("")) {
-                                password01.requestFocus();
+                            if (pw2.equals("")) {
+                                password02.requestFocus();
                             } else {
-                                if (pw2.equals("")) {
-                                    password02.requestFocus();
-                                } else {
-                                    if (MEM_EMAIL.equals("")) {
-                                        sign_email.requestFocus();
-                                    }
+                                if (MEM_EMAIL.equals("")) {
+                                    sign_email.requestFocus();
                                 }
                             }
                         }
@@ -252,9 +243,9 @@ public class SignUpActivity extends AppCompatActivity {
                 } catch (Exception e) {
 
                 }
-                if(result.equals("true")){
+                if (result.equals("true")) {
                     Toast.makeText(SignUpActivity.this, "아이디 사용가능", Toast.LENGTH_SHORT).show();
-                }else{
+                } else {
                     Toast.makeText(SignUpActivity.this, "아이디 중복!!!!", Toast.LENGTH_SHORT).show();
                 }
             }
