@@ -1,0 +1,17 @@
+<Context path="/BoardCa" docBase="www">
+<Resource 
+	name="jdbc/BoardCa"
+	auth="Container"
+	type="javax.sql.DataSource"
+	driverClassName="com.mysql.jdbc.Driver"
+	loginTimeout="10"
+	validationQuery="SELECT 1 FROM DUAL"
+	maxWait="5000"
+	username="admin"
+	password="comstudy03"
+	testOnBorrow="true"
+	url="jdbc:mysql://board-1.cqff4lw7mwyx.ap-northeast-2.rds.amazonaws.com:3306/boardCa?useSSL=false&amp;serverTimezone=UTC"/>
+<ResourceLink type="javax.sql.data.DataSource"
+	name="jdbc/BoardCa"
+	global="jdbc/BoardCa"/>	
+</Context>
