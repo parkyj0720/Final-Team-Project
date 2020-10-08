@@ -101,16 +101,6 @@
 												<input type="text" class="form-control" id="title"
 													placeholder="제목을 입력해주세요" maxlength="200" />
 											</div>
-											<select class="form-control show-tick" id="select">
-												<option>게시판을 선택해주세요.</option>
-												<%
-													for (int i = 0; i < boardList.size(); i++) {
-												%>
-												<option><%=boardList.get(i).getCAT_NAME()%></option>
-												<%
-													} // end of for
-												%>
-											</select>
 										</div>
 									</div>
 									<div class="card">
@@ -131,30 +121,19 @@
 	<script>
 	  $( document ).ready( function() {
     	  $('#submit').click(function() {
-    		  var select = $('#select').val(); // 게시판
     		  var title = $('#title').val(); // 제목
     		  var username = "${userId}"; // 작성자 아이디
     		  var content = $( '.note-editable' ).html(); // 내용
     		  var title_trim = $.trim($("#title").val());
     		  var content_sub;
-    		  var boardnum;
-  			<%for (int i = 0; i < boardList.size(); i++) {%>
-  				if((select)=="<%=boardList.get(i).getCAT_NAME()%>"){
-  					boardnum=<%=boardList.get(i).getBRD_CAT_IDX()%>
-  					console.log(boardnum)
-  				}
-  				<%}%>
     		  
-    		  if(select == "게시판을 선택해주세요."){
-    	 		  alert("게시판을 선택해주세요")
-    		  }else{
     			  if(title == "" || title_trim == ""){
     				  alert("제목을 입력해주세요")  
     			  }
     			  else{
  					var dto = {
  							BRD_TIT: title,
- 							CATEGORY_IDX: boardnum,
+ 							CATEGORY_IDX: 5,
  							BRD_WRT_ID: username,
  							BRD_CONTENT: content
 							};
@@ -172,8 +151,7 @@
 					})
 
     		  }
-    			
-		};
+    		
       })
       });
 	</script>

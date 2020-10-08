@@ -62,6 +62,7 @@ $(function() {
 					<div class="card">
 						<div class="header">
 							<ul class="header-dropdown">
+							<!-- 
 								<li class="dropdown"><a href="javascript:void(0);"
 									class="dropdown-toggle" title="Notifications"
 									data-toggle="dropdown" role="button"> <i
@@ -69,7 +70,7 @@ $(function() {
 										<div class="notify">
 											<span class="heartbit"></span><span class="point"></span>
 										</div>
-								</a> <!-- 알림페이지 안에 목록 list -->
+								</a> 알림페이지 안에 목록 list
 									<ul class="dropdown-menu slideUp2">
 										<li class="header">Notifications</li>
 										<li class="body">
@@ -163,7 +164,7 @@ $(function() {
 										</li>
 										<li class="footer"><a href="javascript:void(0);">View
 												All Notifications</a></li>
-									</ul></li>
+									</ul></li> -->
 								<c:choose>
 									<c:when test="${sessionScope.userId == null}">
 										<li><a href="${pageContext.request.contextPath}/signIn.do">로그인</a></li>

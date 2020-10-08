@@ -98,7 +98,7 @@ public class MemberDao {
 // 회원들의 나잇대 정보 리스트
 	
 	public List<Object> AgeRange(){
-		
+				
 		List<Object> list = mysqlSession.selectList("MemberSQL.AgeRange");
 		
 		/*
@@ -118,6 +118,7 @@ public class MemberDao {
 	}
 	
 	public void GwonhanModify(GwonhanDto data) {
+		
 		
 		int r = mysqlSession.update("MemberSQL.GwonhanModify", data);
 		

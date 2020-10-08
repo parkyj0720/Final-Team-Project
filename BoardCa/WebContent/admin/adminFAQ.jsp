@@ -1,3 +1,5 @@
+<%@page import="CommunityModel.CommunityDto"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -11,49 +13,99 @@
 <meta name="description"
 	content="Responsive Bootstrap 4 and web Application ui kit.">
 
+<title>문의 답변</title>
+<link rel="icon"
+	href="${pageContext.request.contextPath}/stylesheet/favicon.ico"
+	type="image/x-icon">
 <!-- Favicon-->
-<link rel="icon" href="favicon.ico" type="image/x-icon">
-<!-- Custom Css -->
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/stylesheet/assets/plugins/bootstrap/css/bootstrap.min.css">
+<!-- Custom Css -->
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/stylesheet/assets/css/style.min.css">
 <link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/stylesheet/assets/plugins/bootstrap-select/css/bootstrap-select.css">
-<link rel="stylesheet"
 	href="${pageContext.request.contextPath}/stylesheet/assets/plugins/sweetalert/sweetalert.css">
-<script src="http://code.jquery.com/jquery.js"></script>
+<!-- JQuery DataTable Css -->
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/stylesheet/assets/plugins/jquery-datatable/dataTables.bootstrap4.min.css">
 
+
+<script src="http://code.jquery.com/jquery.js"></script>
 </head>
-<body class="ls-closed ls-toggle-menu ">
+<script>
+
+var tr
+var td
+	$(function() {
+		$(".clickBtn").click(function() {
+			var str = ""
+			var tdArr = new Array(); // 배열 선언
+
+			// 현재 클릭된 Row(<tr>)
+			tr = $(this);
+			td = tr.children();
+
+			console.log(tr);
+			
+			// tr.text()는 클릭된 Row 즉 tr에 있는 모든 값을 가져온다.
+			console.log("클릭한 Row의 모든 데이터 : " + tr.text());
+
+			
+			/*
+			// 반복문을 이용해서 배열에 값을 담아 사용할 수 도 있다.
+			td.each(function(i) {
+				tdArr.push(td.eq(i).text());
+			});
+			*/
+
+			// td.eq(index)를 통해 값을 가져올 수도 있다.
+			
+			var date = td.eq(0).text();
+			var id = td.eq(1).text();
+			var title = td.eq(2).text();
+
+			var cont = td.eq(3).text();
+			
+			
+			
+			$("#ex1_Result1").html("<p>" + cont + "<p>");
+
+		})
+	});
+</script>
+<body class="ls-toggle-menu ls-closed ">
 	<!-- header -->
 	<jsp:include page="/WEB-INF/header.jsp"></jsp:include>
 	<!-- body -->
 	<div class="body_scroll">
 		<div class="block-header">
-			<div class="row clearfix js-sweetalert">
+			<div class="row">
 				<div class="card">
 					<div class="col-lg-12 col-md-12 col-sm-12">
-						<h2>AdminFAQ</h2>
-
+						<h2>writeList</h2>
 						<ul class="breadcrumb">
 							<li class="breadcrumb-item"><a
 								href="${pageContext.request.contextPath}/main.do"><i
 									class="zmdi zmdi-home"></i> BoardCa</a></li>
 							<li class="breadcrumb-item"><a
 								href="${pageContext.request.contextPath}/myPage.do">myPage</a></li>
-							<li class="breadcrumb-item active">FAQ</li>
+							<li class="breadcrumb-item active">Writted</li>
 
 						</ul>
+
 					</div>
 				</div>
+			</div>
+		</div>
+
+		<div class="body_scroll">
+			<div class="block-header">
 
 				<div class="container-fluid">
-					<div class="row clearfix">
+					<!-- Basic Examples -->
 
-						<div class="col-lg-12 col-md-12 col-sm-12">
+					<div class="row clearfix">
+						<div class="col-md-12">
 							<div class="d-flex">
 								<div class="mobile-left">
 									<a class="btn btn-info btn-icon toggle-email-nav collapsed"
@@ -84,18 +136,16 @@
 											<li><a
 												href="${pageContext.request.contextPath}/adminFAQ.do"><i
 													class="zmdi zmdi-comments"></i>문의 답변</a></li>
-											<li><a
-												href="${pageContext.request.contextPath}/myFAQ.do"><i
-													class="zmdi zmdi-comments"></i>FAQ 답변</a></li>
+											
 
 										</ul>
 									</div>
 								</div>
 
-<div class=" inbox right">
+								<div class=" inbox right">
 									<div class="header">
 										<h2>
-											<strong>문의 답변</strong>
+											<strong>문의 확인</strong>
 										</h2>
 									</div>
 
@@ -113,59 +163,53 @@
 															<tr role="row">
 																<th class="sorting" tabindex="0"
 																	aria-controls="DataTables_Table_0" rowspan="1"
-																	colspan="1" aria-label="No" style="width: 61px;">No</th>
+																	colspan="1" aria-label="Date" style="width: 60px;">글쓴 시간</th>
 																<th class="sorting" tabindex="0"
 																	aria-controls="DataTables_Table_0" rowspan="1"
-																	colspan="1" aria-label="Date" style="width: 83px;">Date</th>
+																	colspan="1" aria-label="Id" style="width: 61px;">신고자 ID</th>
 																<th class="sorting" tabindex="0"
 																	aria-controls="DataTables_Table_0" rowspan="1"
-																	colspan="1" aria-label="Title" style="width: 60px;">Title</th>
+																	colspan="1" aria-label="Title" style="width: 83px;">글 제목</th>
 																<th class="sorting" tabindex="0"
 																	aria-controls="DataTables_Table_0" rowspan="1"
-																	colspan="1" aria-label="reply" style="width: 28px;">reply</th>
+																	colspan="1" aria-label="Content" style="display: none;">글 내용</th>
+																
 
 															</tr>
 														</thead>
 
 														<tbody>
+														
+														<%
+														
+														
+														List<CommunityDto> rplist = (List<CommunityDto>)request.getAttribute("rplist");
+														
+														for(int i=0; i<rplist.size(); i++){
+															
+															CommunityDto report = rplist.get(i);
+															
+														
+														
+														%>
+														
+														
 															<tr class="clickBtn ">
 
-																<td>1</td>
-																<td>2020/08/20</td>
-																<td>하이</td>
-																<td>답변대기</td>
+																<td><%=report.getBRD_SYSDATE()%></td>
+																<td><%=report.getBRD_WRT_ID()%></td>
+																<td><%=report.getBRD_TIT()%></td>
+																<td style="display: none;"><%=report.getBRD_CONTENT()%></td>
+																
 
 															</tr>
-															<tr>
-																<td>2</td>
-																<td>2020/08/21</td>
-																<td>가나다</td>
-																<td>답변대기</td>
-															</tr>
-															<tr>
-																<td>3</td>
-																<td>2020/08/23</td>
-																<td>가나다</td>
-																<td>답변완료</td>
-															</tr>
-															<tr>
-																<td>4</td>
-																<td>2020/08/24</td>
-																<td>가나다</td>
-																<td>답변완료</td>
-															</tr>
-															<tr>
-																<td>5</td>
-																<td>2020/08/25</td>
-																<td>가나다</td>
-																<td>답변완료</td>
-															</tr>
-															<tr>
-																<td>6</td>
-																<td>2020/08/21</td>
-																<td>가나다</td>
-																<td>답변완료</td>
-															</tr>
+														
+														<%
+														
+															}
+														
+														%>
+															
 														</tbody>
 													</table>
 												</div>
@@ -180,9 +224,7 @@
 															<div class="body" id="ex1_Result1">
 																<p>선택한 글이 보여집니다!</p>
 															</div>
-															<a href="${pageContext.request.contextPath}/myFAQ.do"
-																class="btn btn-primary btn-lg bg-orange waves-effect waves-light float-right">
-																문의 답변</a>
+															
 														</div>
 													</div>
 												</div>
@@ -190,10 +232,10 @@
 										</div>
 									</div>
 								</div>
-
 							</div>
 						</div>
 					</div>
+
 				</div>
 			</div>
 		</div>
@@ -203,20 +245,34 @@
 
 	<jsp:include page="/WEB-INF/footer.jsp"></jsp:include>
 
-
 	<!-- Jquery Core Js -->
-	<script
-		src="${pageContext.request.contextPath}/stylesheet/assets/bundles/libscripts.bundle.js"></script>
+
+	<script src="/BoardCa/stylesheet/assets/bundles/libscripts.bundle.js"></script>
 	<!-- Lib Scripts Plugin Js -->
 	<script
-		src="${pageContext.request.contextPath}/stylesheet/assets/bundles/vendorscripts.bundle.js"></script>
+		src="/BoardCa/stylesheet/assets/bundles/vendorscripts.bundle.js"></script>
 	<!-- Lib Scripts Plugin Js -->
 
+	<!-- Jquery DataTable Plugin Js -->
 	<script
-		src="${pageContext.request.contextPath}/stylesheet/assets/plugins/summernote/dist/summernote.js"></script>
+		src="/BoardCa/stylesheet/assets/bundles/datatablescripts.bundle.js"></script>
 	<script
-		src="${pageContext.request.contextPath}/stylesheet/assets/bundles/mainscripts.bundle.js"></script>
+		src="/BoardCa/stylesheet/assets/plugins/jquery-datatable/buttons/dataTables.buttons.min.js"></script>
+	<script
+		src="/BoardCa/stylesheet/assets/plugins/jquery-datatable/buttons/buttons.bootstrap4.min.js"></script>
+	<script
+		src="/BoardCa/stylesheet/assets/plugins/jquery-datatable/buttons/buttons.colVis.min.js"></script>
+	<script
+		src="/BoardCa/stylesheet/assets/plugins/jquery-datatable/buttons/buttons.flash.min.js"></script>
+	<script
+		src="/BoardCa/stylesheet/assets/plugins/jquery-datatable/buttons/buttons.html5.min.js"></script>
+	<script
+		src="/BoardCa/stylesheet/assets/plugins/jquery-datatable/buttons/buttons.print.min.js"></script>
 
+	<script src="/BoardCa/stylesheet/assets/bundles/mainscripts.bundle.js"></script>
+	<!-- Custom Js -->
+	<script
+		src="/BoardCa/stylesheet/assets/js/pages/tables/jquery-datatable.js"></script>
 
 </body>
 </html>

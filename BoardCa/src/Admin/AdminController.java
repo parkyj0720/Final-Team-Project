@@ -167,6 +167,14 @@ public class AdminController {
 	@RequestMapping("/adminFAQ.do")
 	public ModelAndView adminFAQ(HttpServletRequest request) {
 		mv.setViewName("/admin/adminFAQ.jsp");
+		
+		int num = 5;
+		
+		List<CommunityDto> rplist = CoDao.List(num);
+		/* System.out.println(rplist); */
+		 
+		request.setAttribute("rplist", rplist);		
+		
 		return mv;
 	}
 	  
