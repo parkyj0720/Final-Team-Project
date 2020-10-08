@@ -183,11 +183,11 @@ var td
 														<%
 														
 														
-														List<CommunityDto> rplist = (List<CommunityDto>)request.getAttribute("rplist");
+														List<CommunityDto> faqlist = (List<CommunityDto>)request.getAttribute("faqlist");
 														
-														for(int i=0; i<rplist.size(); i++){
+														for(int i=0; i<faqlist.size(); i++){
 															
-															CommunityDto report = rplist.get(i);
+															CommunityDto faq = faqlist.get(i);
 															
 														
 														
@@ -196,10 +196,10 @@ var td
 														
 															<tr class="clickBtn ">
 
-																<td><%=report.getBRD_SYSDATE()%></td>
-																<td><%=report.getBRD_WRT_ID()%></td>
-																<td><%=report.getBRD_TIT()%></td>
-																<td style="display: none;"><%=report.getBRD_CONTENT()%></td>
+																<td><%=faq.getBRD_SYSDATE()%></td>
+																<td><%=faq.getBRD_WRT_ID()%></td>
+																<td><%=faq.getBRD_TIT()%></td>
+																<td style="display: none;"><%=faq.getBRD_CONTENT()%></td>
 																
 
 															</tr>

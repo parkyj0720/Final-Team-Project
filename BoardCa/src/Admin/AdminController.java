@@ -170,10 +170,10 @@ public class AdminController {
 		
 		int num = 5;
 		
-		List<CommunityDto> rplist = CoDao.List(num);
+		List<CommunityDto> faqlist = CoDao.List(num);
 		/* System.out.println(rplist); */
 		 
-		request.setAttribute("rplist", rplist);		
+		request.setAttribute("faqlist", faqlist);		
 		
 		return mv;
 	}
