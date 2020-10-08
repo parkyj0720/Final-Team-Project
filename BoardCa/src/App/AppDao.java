@@ -173,7 +173,56 @@ public class AppDao {
 				if (rs.next()) {
 					if (rs.getString("MEM_NICKNAME").equals(MEM_NICKNAME)) { // 이미 닉네임이 있는 경우
 						returns = "false2";
+						if(MEM_NICKNAME.equals("")) {
+							returns = "true";
+						}
 					}
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (pstmt != null)
+				try {
+					pstmt.close();
+				} catch (SQLException ex) {
+				}
+			if (conn != null)
+				try {
+					conn.close();
+				} catch (SQLException ex) {
+				}
+			if (pstmt2 != null)
+				try {
+					pstmt2.close();
+				} catch (SQLException ex) {
+				}
+			if (rs != null)
+				try {
+					rs.close();
+				} catch (SQLException ex) {
+				}
+		}
+		return returns;
+	}
+	
+	// 로그인시 아이디 비밀번호 체크
+	public String idpw(String MEM_ID, String MEM_PW) {
+
+		returns = "false";
+
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			conn = DriverManager.getConnection(jdbcUrl, dbId, dbPw);
+			sql = "select MEM_PW from MEMBER_T where MEM_ID=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, MEM_ID);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				if (rs.getString("MEM_PW").equals(MEM_PW)) { // 이미 아이디가 있는 경우
+					returns = "true";
+				}else {
+					returns = "false";
 				}
 			}
 		} catch (Exception e) {

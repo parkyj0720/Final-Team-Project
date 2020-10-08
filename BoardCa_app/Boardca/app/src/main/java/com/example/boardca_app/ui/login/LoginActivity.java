@@ -101,7 +101,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 // TODO Auto-generated method stub
-                if(event.getAction() == KeyEvent.ACTION_DOWN){
+                if (event.getAction() == KeyEvent.ACTION_DOWN) {
                     if (keyCode == event.KEYCODE_ENTER) {
                         return true;
                     }
@@ -247,10 +247,31 @@ public class LoginActivity extends AppCompatActivity {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String id = usernameEditText.getText() + "";
+                String pw = passwordEditText.getText() + "";
 
-                loadingProgressBar.setVisibility(View.VISIBLE);
-                loginViewModel.login(usernameEditText.getText().toString(),
-                        passwordEditText.getText().toString());
+                String result = "false";
+                try {
+                    IdPw idpw = new IdPw();
+                    result = idpw.execute(id, pw).get();
+                    Log.i("리턴 값", result);
+                } catch (Exception e) {
+
+                }
+
+                if (result.equals("true")) {
+                    Toast.makeText(LoginActivity.this, id + "님! 로그인 성공!", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                    //intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK); //새로운 테스크에 작동시키기.
+                    startActivity(intent);
+                    overridePendingTransition(0, 0);
+                    finish();
+                } else {
+                    Toast.makeText(LoginActivity.this, "로그인 실패! 입력하신 정보를 확인해주세요.", Toast.LENGTH_SHORT).show();
+                }
+//                loadingProgressBar.setVisibility(View.VISIBLE);
+//                loginViewModel.login(usernameEditText.getText().toString(),
+//                        passwordEditText.getText().toString());
             }
         });
 
@@ -270,7 +291,7 @@ public class LoginActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if(Session.getCurrentSession().handleActivityResult(requestCode, resultCode, data)) {
+        if (Session.getCurrentSession().handleActivityResult(requestCode, resultCode, data)) {
             super.onActivityResult(requestCode, resultCode, data);
             return;
         }
@@ -292,75 +313,81 @@ public class LoginActivity extends AppCompatActivity {
                 public void onFailure(ErrorResult errorResult) {
                     int result = errorResult.getErrorCode();
 
-                    if(result == ApiErrorCode.CLIENT_ERROR_CODE) {
+                    if (result == ApiErrorCode.CLIENT_ERROR_CODE) {
                         Toast.makeText(getApplicationContext(), "네트워크 연결이 불안정합니다. 다시 시도해 주세요.", Toast.LENGTH_SHORT).show();
                         finish();
                     } else {
-                        Toast.makeText(getApplicationContext(),"로그인 도중 오류가 발생했습니다: "+errorResult.getErrorMessage(),Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "로그인 도중 오류가 발생했습니다: " + errorResult.getErrorMessage(), Toast.LENGTH_SHORT).show();
                     }
                 }
+
                 @Override
                 public void onSessionClosed(ErrorResult errorResult) {
-                    Toast.makeText(getApplicationContext(),"세션이 닫혔습니다. 다시 시도해 주세요: "+errorResult.getErrorMessage(),Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "세션이 닫혔습니다. 다시 시도해 주세요: " + errorResult.getErrorMessage(), Toast.LENGTH_SHORT).show();
                 }
 
                 @Override
                 public void onSuccess(MeV2Response result) {
 
                     String MEM_NICKNAME;
-                    if(result.getNickname() != null) {
+                    if (result.getNickname() != null) {
                         MEM_NICKNAME = result.getNickname();
-                    }else{
+                    } else {
                         MEM_NICKNAME = "";
                     }
 
                     String MEM_EMAIL;
-                    if(result.getKakaoAccount().getEmail() != null) {
+                    if (result.getKakaoAccount().getEmail() != null) {
                         MEM_EMAIL = result.getKakaoAccount().getEmail();
-                    }else{
+                    } else {
                         MEM_EMAIL = "";
                     }
 
                     AgeRange ageRange;
                     String MEM_AGE_GROUP;
-                    if(result.getKakaoAccount().getAgeRange() != null) {
+                    if (result.getKakaoAccount().getAgeRange() != null) {
                         ageRange = result.getKakaoAccount().getAgeRange();
 
-                        switch (ageRange){
+                        switch (ageRange) {
                             case AGE_20_29:
-                                MEM_AGE_GROUP = "20대";break;
+                                MEM_AGE_GROUP = "20대";
+                                break;
                             case AGE_30_39:
-                                MEM_AGE_GROUP = "30대";break;
+                                MEM_AGE_GROUP = "30대";
+                                break;
                             case AGE_40_49:
-                                MEM_AGE_GROUP = "40대";break;
+                                MEM_AGE_GROUP = "40대";
+                                break;
                             case AGE_50_59:
                             case AGE_60_69:
                             case AGE_70_79:
                             case AGE_80_89:
                             case AGE_90_ABOVE:
-                                MEM_AGE_GROUP="50대 이상";break;
+                                MEM_AGE_GROUP = "50대 이상";
+                                break;
                             case AGE_RANGE_UNKNOWN:
-                                MEM_AGE_GROUP="비공개";break;
+                                MEM_AGE_GROUP = "비공개";
+                                break;
                             default:
-                                MEM_AGE_GROUP="음주는 19세부터!!!";
+                                MEM_AGE_GROUP = "음주는 19세부터!!!";
                         }
-                    }else{
+                    } else {
                         MEM_AGE_GROUP = "";
                     }
 
 
                     String gender;
                     String MEM_GENDER;
-                    if(result.getKakaoAccount().getGender() != null) {
+                    if (result.getKakaoAccount().getGender() != null) {
                         gender = result.getKakaoAccount().getGender() + "";
-                        if(gender.equals("MALE")){
+                        if (gender.equals("MALE")) {
                             MEM_GENDER = "남자";
-                        }else if(gender.equals("FEMALE")){
+                        } else if (gender.equals("FEMALE")) {
                             MEM_GENDER = "여자";
-                        }else{
+                        } else {
                             MEM_GENDER = "비공개";
                         }
-                    }else{
+                    } else {
                         MEM_GENDER = "";
                     }
 
@@ -406,7 +433,7 @@ public class LoginActivity extends AppCompatActivity {
         @Override
         public void onSessionOpenFailed(KakaoException exception) {
             //로그인 세션이 정상적으로 열리지 않았을 때.
-            Toast.makeText(getApplicationContext(), "로그인 도중 오류가 발생했습니다. 인터넷 연결을 확인해주세요: "+exception.toString(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "로그인 도중 오류가 발생했습니다. 인터넷 연결을 확인해주세요: " + exception.toString(), Toast.LENGTH_SHORT).show();
         }
 
         private void getAppKeyHash() {
@@ -428,11 +455,11 @@ public class LoginActivity extends AppCompatActivity {
         public void onFailure(ErrorResult errorResult) {
             int result = errorResult.getErrorCode();
 
-            if(result == ApiErrorCode.CLIENT_ERROR_CODE) {
+            if (result == ApiErrorCode.CLIENT_ERROR_CODE) {
                 Toast.makeText(getApplicationContext(), "네트워크 연결이 불안정합니다. 다시 시도해 주세요.", Toast.LENGTH_SHORT).show();
                 finish();
             } else {
-                Toast.makeText(getApplicationContext(),"로그인 도중 오류가 발생했습니다: "+errorResult.getErrorMessage(),Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "로그인 도중 오류가 발생했습니다: " + errorResult.getErrorMessage(), Toast.LENGTH_SHORT).show();
             }
         }
 
@@ -453,6 +480,46 @@ public class LoginActivity extends AppCompatActivity {
                 conn.setRequestMethod("POST");
                 OutputStreamWriter osw = new OutputStreamWriter(conn.getOutputStream());
                 sendMsg = "MEM_NICKNAME=" + strings[0] + "&MEM_EMAIL=" + strings[1] + "&MEM_ID=" + strings[2] + "&MEM_AGE_GROUP=" + strings[3] + "&MEM_GENDER=" + strings[4];
+                osw.write(sendMsg);
+                osw.flush();
+                if (conn.getResponseCode() == conn.HTTP_OK) {
+                    InputStreamReader tmp = new InputStreamReader(conn.getInputStream(), "UTF-8");
+                    BufferedReader reader = new BufferedReader(tmp);
+                    StringBuffer buffer = new StringBuffer();
+                    while ((str = reader.readLine()) != null) {
+                        buffer.append(str);
+                    }
+                    receiveMsg = buffer.toString();
+
+                } else {
+                    Log.i("통신 결과", conn.getResponseCode() + "에러");
+                }
+                osw.close();
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return receiveMsg;
+        }
+    }
+
+    // id pw 체크
+    class IdPw extends AsyncTask<String, Void, String> {
+        String sendMsg, receiveMsg;
+
+        // JSP로 값을 넘긴 후, MySQL로 데이터 저장
+        @Override
+        protected String doInBackground(String... strings) {
+            try {
+                String str;
+                URL url = new URL("http://192.168.219.108:8088/BoardCa/app_idpw.do");
+                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+                conn.setRequestMethod("POST");
+                OutputStreamWriter osw = new OutputStreamWriter(conn.getOutputStream());
+                sendMsg = "MEM_ID=" + strings[0] + "&MEM_PW=" + strings[1];
+
                 osw.write(sendMsg);
                 osw.flush();
                 if (conn.getResponseCode() == conn.HTTP_OK) {

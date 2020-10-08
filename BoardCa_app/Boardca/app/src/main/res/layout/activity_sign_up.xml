@@ -129,15 +129,27 @@
                     android:layout_marginBottom="5dp"
                     android:text="아이디" />
 
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
                 <EditText
                     android:id="@+id/sign_id"
-                    android:layout_width="match_parent"
+                    android:layout_width="280dp"
                     android:layout_height="40dp"
                     android:layout_marginBottom="10dp"
                     android:background="@drawable/stroke"
                     android:hint="아이디"
                     android:padding="10dp"
                     android:textSize="15dp" />
+
+                <Button
+                    android:padding="10dp"
+                    android:id="@+id/doubleCheck"
+                    android:layout_toRightOf="@+id/sign_id"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:text="중복 체크" />
+                </RelativeLayout>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -165,12 +177,19 @@
                     android:id="@+id/password01"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
-                    android:layout_marginBottom="10dp"
                     android:background="@drawable/stroke"
-                    android:hint="비밀번호"
+                    android:hint="비밀번호는 특수문자 포함 최소 8자리 이상"
                     android:inputType="textWebPassword"
                     android:padding="10dp"
                     android:textSize="15dp" />
+                <TextView
+                    android:id="@+id/redred"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:textColor="@color/red"
+                    android:visibility="invisible"
+                    android:text="@string/hide_red_text" />
 
                 <EditText
                     android:id="@+id/password02"

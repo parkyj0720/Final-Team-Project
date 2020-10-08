@@ -25,6 +25,13 @@ public class AppController  {
 		return mv;
 	}
 	
+	@RequestMapping("/app_idpw.do")
+	public ModelAndView app_idpw(HttpServletRequest request) {
+		System.out.println("app_idpw");
+		mv.setViewName("/app/app_idpw.jsp");
+		return mv;
+	}
+	
 	@RequestMapping("/app_sign.do")
 	public ModelAndView app_sign(HttpServletRequest request) {
 		System.out.println("app_sign");

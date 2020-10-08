@@ -267,4 +267,5 @@
     <string name="map_search_detail_title">&lt; 주변 주요 시설 &gt;</string>
     <string name="max_cnt">( 최대 15개 )</string>
 
+    <string name="hide_red_text">비밀번호는 특수문자를 포함하여 8자리 이상</string>
 </resources>
