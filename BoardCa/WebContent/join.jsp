@@ -48,8 +48,8 @@
 <body>
 	<%
 		String userID = null;
-		if(session.getAttribute("userID") != null) {
-			userID = (String) session.getAttribute("userID");
+		if(session.getAttribute("userId") != null) {
+			userID = (String) session.getAttribute("userId");
 		}
 		// userID가 null값이 아닐경우 오류메시지 출력
 		if(userID != null){

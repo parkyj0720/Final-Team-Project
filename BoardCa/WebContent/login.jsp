@@ -15,8 +15,8 @@
 <body>
 	<%
 		String userID = null;
-		if(session.getAttribute("userID") != null) {
-			userID = (String) session.getAttribute("userID");
+		if(session.getAttribute("userId") != null) {
+			userID = (String) session.getAttribute("userId");
 		}
 		if(userID != null){
 			session.setAttribute("messageType", "오류 메시지");

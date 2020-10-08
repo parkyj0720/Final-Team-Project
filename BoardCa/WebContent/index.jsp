@@ -4,8 +4,8 @@
 <html>
 <%
 	String userID = null;
-	if(session.getAttribute("userID") != null) {
-		userID = (String) session.getAttribute("userID");
+	if(session.getAttribute("userId") != null) {
+		userID = (String) session.getAttribute("userId");
 	}
 %>
 <head>
