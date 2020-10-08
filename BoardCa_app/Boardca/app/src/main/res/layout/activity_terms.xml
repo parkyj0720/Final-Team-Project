@@ -54,20 +54,12 @@
         android:layout_marginTop="140dp"
         android:background="@drawable/signin_check" />
 
-    <ImageView
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:layout_marginLeft="145dp"
-        android:layout_marginTop="140dp"
-        android:background="@drawable/trumpet2"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+
 
     <ImageView
         android:layout_width="20dp"
         android:layout_height="20dp"
-        android:layout_marginLeft="250dp"
+        android:layout_marginLeft="200dp"
         android:layout_marginTop="140dp"
         android:background="@drawable/trumpet2"
         app:layout_constraintBottom_toBottomOf="parent"

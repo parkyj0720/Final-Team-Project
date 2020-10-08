@@ -307,61 +307,61 @@ public class LoginActivity extends AppCompatActivity {
                 @Override
                 public void onSuccess(MeV2Response result) {
 
-                    String nickname;
+                    String MEM_NICKNAME;
                     if(result.getNickname() != null) {
-                        nickname = result.getNickname();
+                        MEM_NICKNAME = result.getNickname();
                     }else{
-                        nickname = "";
+                        MEM_NICKNAME = "";
                     }
 
-                    String email;
+                    String MEM_EMAIL;
                     if(result.getKakaoAccount().getEmail() != null) {
-                        email = result.getKakaoAccount().getEmail();
+                        MEM_EMAIL = result.getKakaoAccount().getEmail();
                     }else{
-                        email = "";
+                        MEM_EMAIL = "";
                     }
 
                     AgeRange ageRange;
-                    String age;
+                    String MEM_AGE_GROUP;
                     if(result.getKakaoAccount().getAgeRange() != null) {
                         ageRange = result.getKakaoAccount().getAgeRange();
 
                         switch (ageRange){
                             case AGE_20_29:
-                                age = "20대";break;
+                                MEM_AGE_GROUP = "20대";break;
                             case AGE_30_39:
-                                age = "30대";break;
+                                MEM_AGE_GROUP = "30대";break;
                             case AGE_40_49:
-                                age = "40대";break;
+                                MEM_AGE_GROUP = "40대";break;
                             case AGE_50_59:
                             case AGE_60_69:
                             case AGE_70_79:
                             case AGE_80_89:
                             case AGE_90_ABOVE:
-                                age="50대 이상";break;
+                                MEM_AGE_GROUP="50대 이상";break;
                             case AGE_RANGE_UNKNOWN:
-                                age="비공개";break;
+                                MEM_AGE_GROUP="비공개";break;
                             default:
-                                age="음주는 19세부터!!!";
+                                MEM_AGE_GROUP="음주는 19세부터!!!";
                         }
                     }else{
-                        age = "";
+                        MEM_AGE_GROUP = "";
                     }
 
 
                     String gender;
-                    String mf;
+                    String MEM_GENDER;
                     if(result.getKakaoAccount().getGender() != null) {
                         gender = result.getKakaoAccount().getGender() + "";
                         if(gender.equals("MALE")){
-                            mf = "남자";
+                            MEM_GENDER = "남자";
                         }else if(gender.equals("FEMALE")){
-                            mf = "여자";
+                            MEM_GENDER = "여자";
                         }else{
-                            mf = "";
+                            MEM_GENDER = "비공개";
                         }
                     }else{
-                        mf = "";
+                        MEM_GENDER = "";
                     }
 
 //                    UserAccount account =  result.getKakaoAccount();
@@ -370,21 +370,21 @@ public class LoginActivity extends AppCompatActivity {
 
                     long id2 = result.getId();
 
-                    String id = id2 + "";
+                    String MEM_ID = id2 + "";
 
 
-                    Log.e("nickname : ", nickname + "");
-                    Log.e("email : ", email + "");
-                    Log.e("id : ", id + "");
-                    Log.e("age : ", age + "");
-                    Log.e("mf : ", mf + "");
+                    Log.e("MEM_NICKNAME : ", MEM_NICKNAME + "");
+                    Log.e("MEM_EMAIL : ", MEM_EMAIL + "");
+                    Log.e("MEM_ID : ", MEM_ID + "");
+                    Log.e("MEM_AGE_GROUP : ", MEM_AGE_GROUP + "");
+                    Log.e("MEM_GENDER : ", MEM_GENDER + "");
 
                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                    intent.putExtra("nickname", nickname);
-                    intent.putExtra("email", email);
-                    intent.putExtra("id", id);
-                    intent.putExtra("age", age);
-                    intent.putExtra("mf", mf);
+                    intent.putExtra("MEM_NICKNAME", MEM_NICKNAME);
+                    intent.putExtra("MEM_EMAIL", MEM_EMAIL);
+                    intent.putExtra("MEM_ID", MEM_ID);
+                    intent.putExtra("MEM_AGE_GROUP", MEM_AGE_GROUP);
+                    intent.putExtra("MEM_GENDER", MEM_GENDER);
 
                     startActivity(intent);
                     overridePendingTransition(0, 0);
@@ -392,7 +392,7 @@ public class LoginActivity extends AppCompatActivity {
                     try {
                         String str;
                         LoginActivity.CustomTask task = new LoginActivity.CustomTask();
-                        str = task.execute(nickname, email, id, age, mf).get();
+                        str = task.execute(MEM_NICKNAME, MEM_EMAIL, MEM_ID, MEM_AGE_GROUP, MEM_GENDER).get();
                         Log.i("리턴 값", str);
                         finish();
                     } catch (Exception e) {
@@ -452,7 +452,7 @@ public class LoginActivity extends AppCompatActivity {
                 conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
                 conn.setRequestMethod("POST");
                 OutputStreamWriter osw = new OutputStreamWriter(conn.getOutputStream());
-                sendMsg = "nickname=" + strings[0] + "&email=" + strings[1] + "&id=" + strings[2] + "&age=" + strings[3] + "&mf=" + strings[4];
+                sendMsg = "MEM_NICKNAME=" + strings[0] + "&MEM_EMAIL=" + strings[1] + "&MEM_ID=" + strings[2] + "&MEM_AGE_GROUP=" + strings[3] + "&MEM_GENDER=" + strings[4];
                 osw.write(sendMsg);
                 osw.flush();
                 if (conn.getResponseCode() == conn.HTTP_OK) {

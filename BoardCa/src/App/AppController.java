@@ -24,6 +24,20 @@ public class AppController  {
 		mv.setViewName("/app/app_member.jsp");
 		return mv;
 	}
+	
+	@RequestMapping("/app_sign.do")
+	public ModelAndView app_sign(HttpServletRequest request) {
+		System.out.println("app_sign");
+		mv.setViewName("/app/app_sign.jsp");
+		return mv;
+	}
+	
+	@RequestMapping("/app_nomal_sign.do")
+	public ModelAndView app_nomal_sign(HttpServletRequest request) {
+		System.out.println("app_nomal_sign");
+		mv.setViewName("/app/app_nomal_sign.jsp");
+		return mv;
+	}
 
 //	@RequestMapping(value = "/app_member.do", method = RequestMethod.POST)
 //	@ResponseBody

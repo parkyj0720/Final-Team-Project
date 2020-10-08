@@ -21,12 +21,21 @@
             android:orientation="vertical">
 
             <TextView
-                android:layout_width="match_parent"
+                android:id="@+id/qweqweqwe"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
                 android:layout_marginBottom="30dp"
                 android:text="가\n입"
                 android:textSize="25sp" />
+
+            <TextView
+                android:id="@+id/back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="300dp"
+                android:layout_toRightOf="@+id/qweqweqwe"
+                android:text="돌\n아\n가\n기" />
 
             <View
                 android:layout_width="300dp"
@@ -56,32 +65,12 @@
                 android:layout_marginTop="110dp"
                 android:background="@drawable/signin_check" />
 
-            <!-- 두번째 -->
-
-            <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_marginLeft="145dp"
-                android:layout_marginTop="110dp"
-                android:background="@drawable/trumpet"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
-
-            <ImageView
-                android:layout_width="21dp"
-                android:layout_height="20dp"
-                android:layout_marginStart="145dp"
-                android:layout_marginLeft="145dp"
-                android:layout_marginTop="110dp"
-                android:background="@drawable/signin_check" />
-
             <!-- 세번째 -->
 
             <ImageView
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:layout_marginLeft="250dp"
+                android:layout_marginLeft="200dp"
                 android:layout_marginTop="110dp"
                 android:background="@drawable/trumpet"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -92,7 +81,7 @@
                 android:layout_width="21dp"
                 android:layout_height="20dp"
                 android:layout_marginStart="250dp"
-                android:layout_marginLeft="250dp"
+                android:layout_marginLeft="200dp"
                 android:layout_marginTop="110dp"
                 android:background="@drawable/signin_check" />
 
@@ -141,6 +130,7 @@
                     android:text="아이디" />
 
                 <EditText
+                    android:id="@+id/sign_id"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:layout_marginBottom="10dp"
@@ -156,6 +146,7 @@
                     android:text="닉네임" />
 
                 <EditText
+                    android:id="@+id/sign_nick"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:layout_marginBottom="10dp"
@@ -196,16 +187,81 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="5dp"
-                    android:text="이름" />
+                    android:text="성별" />
 
-                <EditText
+                <RadioGroup
+                    android:id="@+id/rg_gender"
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:layout_marginBottom="10dp"
-                    android:background="@drawable/stroke"
-                    android:hint="이름"
-                    android:padding="10dp"
-                    android:textSize="15dp" />
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="15dp"
+                    android:orientation="horizontal">
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="30dp"
+                        android:text="남성"/>
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="30dp"
+                        android:text="여성"/>
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/rb_check1"
+                        android:text="비공개"/>
+
+                </RadioGroup>
+
+<!--                <EditText-->
+<!--                    android:id="@+id/sign_name"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="40dp"-->
+<!--                    android:layout_marginBottom="10dp"-->
+<!--                    android:background="@drawable/stroke"-->
+<!--                    android:hint="이름"-->
+<!--                    android:padding="10dp"-->
+<!--                    android:textSize="15dp" />-->
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:text="연령대" />
+
+                <RadioGroup
+                    android:id="@+id/rg_age"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="15dp"
+                    android:orientation="horizontal">
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"
+                        android:text="20대"/>
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"
+                        android:text="30대"/>
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"
+                        android:text="40대"/>
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"
+                        android:text="50대"/>
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/rb_check2"
+                        android:text="비공개"/>
+
+                </RadioGroup>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -214,6 +270,7 @@
                     android:text="이메일" />
 
                 <EditText
+                    android:id="@+id/sign_email"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:layout_marginBottom="10dp"
@@ -244,11 +301,11 @@
                         android:layout_width="130dp"
                         android:layout_height="40dp"
                         android:entries="@array/spinner_region_seoul"/>
-                    <Spinner
-                        android:id="@+id/spinner_region_3"
-                        android:layout_width="110dp"
-                        android:layout_height="40dp"
-                        android:entries="@array/spinner_region_seoul_mapo"/>
+<!--                    <Spinner-->
+<!--                        android:id="@+id/spinner_region_3"-->
+<!--                        android:layout_width="110dp"-->
+<!--                        android:layout_height="40dp"-->
+<!--                        android:entries="@array/spinner_region_seoul_mapo"/>-->
                 </LinearLayout>
 
 

@@ -54,33 +54,11 @@
         android:layout_marginTop="140dp"
         android:background="@drawable/signin_check" />
 
-    <!-- 두번째 -->
-    <ImageView
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:layout_marginLeft="145dp"
-        android:layout_marginTop="140dp"
-        android:background="@drawable/trumpet"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <ImageView
-        android:layout_width="21dp"
-        android:layout_height="20dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="145dp"
-        android:layout_marginLeft="145dp"
-        android:layout_marginTop="140dp"
-        android:background="@drawable/signin_check" />
-
     <!-- 세번째 -->
     <ImageView
         android:layout_width="20dp"
         android:layout_height="20dp"
-        android:layout_marginLeft="250dp"
+        android:layout_marginLeft="200dp"
         android:layout_marginTop="140dp"
         android:background="@drawable/trumpet2"
         app:layout_constraintBottom_toBottomOf="parent"
