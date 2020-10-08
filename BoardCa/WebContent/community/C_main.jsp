@@ -66,6 +66,11 @@
 					<div class="col-lg-6" style="float: left;">
 					<%
 					for(int i = 0; i<boardList.size(); i+=2){
+										
+						if(i==4){
+							continue;
+						}
+						
 						String listname = "list"+(i+1);
 						List<CommunityDto> list = (List<CommunityDto>)request.getAttribute(listname);
 						BoardList blist = boardList.get(i); 
@@ -129,6 +134,8 @@
 					<div class="col-lg-6" style="float: right;">
 					<%
 					for(int i = 1; i<boardList.size(); i+=2){
+												
+						
 						String listname = "list"+(i+1);
 						List<CommunityDto> list = (List<CommunityDto>)request.getAttribute(listname);
 						BoardList blist = boardList.get(i);
