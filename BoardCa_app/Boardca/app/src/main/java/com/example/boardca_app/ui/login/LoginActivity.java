@@ -47,6 +47,7 @@ import com.kakao.auth.KakaoSDK;
 import com.kakao.auth.Session;
 import com.kakao.network.ErrorResult;
 import com.kakao.usermgmt.UserManagement;
+import com.kakao.usermgmt.callback.LogoutResponseCallback;
 import com.kakao.usermgmt.callback.MeV2ResponseCallback;
 import com.kakao.usermgmt.response.MeV2Response;
 import com.kakao.usermgmt.response.model.AgeRange;
@@ -427,6 +428,7 @@ public class LoginActivity extends AppCompatActivity {
                     }
 
                 }
+
             });
         }
 
@@ -543,4 +545,7 @@ public class LoginActivity extends AppCompatActivity {
             return receiveMsg;
         }
     }
+
+
+
 }

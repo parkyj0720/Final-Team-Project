@@ -6,7 +6,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.content.res.Configuration;
 import android.graphics.Color;
 import android.location.Address;
 import android.location.Geocoder;
@@ -17,12 +16,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.WebView;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -39,23 +35,21 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
-import com.example.boardca_app.data.Result;
-import com.example.boardca_app.data.model.LoggedInUser;
 import com.example.boardca_app.ui.Map.GpsTracker;
 import com.example.boardca_app.ui.Map.MapFragment;
 import com.example.boardca_app.ui.Map.MapsActivity;
 import com.example.boardca_app.ui.community.CommunityFragment;
 import com.example.boardca_app.ui.game.GameFragment;
 import com.example.boardca_app.ui.home.HomeFragment;
-import com.example.boardca_app.ui.mypage.MypageFragment;
+
+import com.example.boardca_app.ui.login.LoginActivity;
 import com.example.boardca_app.ui.recipe.RecipeFragment;
-import com.example.boardca_app.ui.setting.SettingsActivity;
 import com.example.boardca_app.ui.web_view.Web_Fragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
-
-import org.jetbrains.annotations.NotNull;
+import com.kakao.usermgmt.UserManagement;
+import com.kakao.usermgmt.callback.LogoutResponseCallback;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -151,29 +145,22 @@ public class MainActivity extends AppCompatActivity {
         overridePendingTransition(0, 0);
     }
 
-    //위에 설정 메뉴 아이콘 생성
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
-
-    //설정 아이콘
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            Intent settingIntent = new Intent(this, SettingsActivity.class);
-            startActivity(settingIntent);
-        }
-        return super.onOptionsItemSelected(item);
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Button logoutbtn = findViewById(R.id.logoutbtn);
+
+
+        logoutbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                onClickLogout();
+            }
+        });
 
         if(getIntent().getStringExtra("nickname") != null)
             nickname = getIntent().getStringExtra("nickname");
@@ -627,5 +614,22 @@ public class MainActivity extends AppCompatActivity {
 
         return loca;
     }
+
+
+    // 카카오 로그아웃 기능
+
+    private void onClickLogout() {
+        UserManagement.getInstance().requestLogout(new LogoutResponseCallback() {
+            @Override
+            public void onCompleteLogout() {
+                Intent intent = new Intent(MainActivity.this , LoginActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+                finish();
+            }
+        });
+    }
+
+
 
 }

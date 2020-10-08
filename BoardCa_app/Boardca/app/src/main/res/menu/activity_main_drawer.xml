@@ -9,7 +9,7 @@
             android:id="@+id/mypage"
             android:icon="@drawable/ic_person_black_24dp"
             android:title="@string/menu_mypage" />
-        <item
+<!--        <item
             android:id="@+id/inquiries"
             android:icon="@drawable/ic_menu_gallery"
             android:title="문의하기 / 문의 내역 확인" />
@@ -20,6 +20,9 @@
         <item
             android:id="@+id/coupons"
             android:icon="@drawable/ic_menu_slideshow"
-            android:title="쿠폰함" />
+            android:title="쿠폰함" />-->
     </group>
+
+
+
 </menu>
