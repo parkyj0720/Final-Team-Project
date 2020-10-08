@@ -3,6 +3,8 @@ package Community;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,6 +12,7 @@ import java.util.List;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,27 +67,84 @@ public class CommunityController {
 			page = Integer.parseInt(request.getParameter("page"));
 		}
 		
-		List<CommunityDto> communityList = dao.List(list_num);
-		for (int i = 0; i < communityList.size(); i++) {
-			int no = communityList.get(i).getBRD_IDX();
-			int num = dao.list_heart(no);
-			heartList.add(num);
-		}
-		
 		mv.addObject("page", page);
-		mv.addObject("heart", heartList);
 		mv.addObject("viewname", dao.one_board(list_num));
-		mv.addObject("list", communityList);
+		mv.addObject("list",  dao.List(list_num));
 		mv.setViewName("community/C_list.jsp");
 		return mv;
 	}
-		 
+
 	  
 	// detail
 	@RequestMapping("/Community_detail.do")
-	public ModelAndView community_detail(HttpServletRequest request, HttpSession session) {
-		int num = Integer.parseInt(request.getParameter("num"));
-		dao.view(num);
+	public ModelAndView community_detail(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+		 Cookie[] cookies = request.getCookies();
+		 String memberNo = "";
+		try {
+			memberNo = InetAddress.getLocalHost().getHostAddress();
+		} catch (UnknownHostException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+			int num = Integer.parseInt(request.getParameter("num"));
+	        // 비교하기 위해 새로운 쿠키
+	        Cookie viewCookie = null;
+	        // 쿠키가 있을 경우 
+	        if (cookies != null && cookies.length > 0){
+	            for (int i = 0; i < cookies.length; i++){
+	                // Cookie의 name이 cookie + memberNo와 일치하는 쿠키를 viewCookie에 넣어줌 
+	                if (cookies[i].getName().equals("cookie"+memberNo)){ 
+	                    System.out.println("처음 쿠키가 생성한 뒤 들어옴.");
+	                    viewCookie = cookies[i];
+	                }
+	            }
+	        }
+	        if (memberNo != null) {
+	            System.out.println("System - 해당 상세 리뷰페이지로 넘어감");
+	            mv.addObject("memberNo", memberNo);
+	            // 만일 viewCookie가 null일 경우 쿠키를 생성해서 조회수 증가 로직을 처리함.
+	            if (viewCookie == null) {    
+	                System.out.println("cookie 없음");
+	                // 쿠키 생성(이름, 값)
+	                Cookie newCookie = new Cookie("cookie"+memberNo, "|" + memberNo + "|" + "num=" + num);
+	                
+	                newCookie.setMaxAge(60*60);
+	                // 쿠키 추가
+	                response.addCookie(newCookie);
+	                // 쿠키를 추가 시키고 조회수 증가시킴
+	                dao.view(num);
+	            }
+	            // viewCookie가 null이 아닐경우 쿠키가 있으므로 조회수 증가 로직을 처리하지 않음.
+	            else {
+	                System.out.println("cookie 있음");
+	                // 쿠키 값 받아옴.
+	                String value = viewCookie.getValue();
+	                System.out.println("cookie 값 : " + value);
+	                String val = "|" + memberNo + "|" + "num=" + num;
+	                System.out.println("비교 쿠키 값 : " + val);
+	                if(value.equals(val)){
+	                	System.out.println("쿠키값 같음");
+	                }else {
+	                	System.out.println("쿠키값 다름");
+		                Cookie newCookie = new Cookie("cookie"+memberNo, "|" + memberNo + "|" + "num=" + num);
+		                
+		                newCookie.setMaxAge(60*60);
+		                newCookie.setPath("http://localhost:8088/BoardCa/Community_detail.do?num=" + num);
+		                // 쿠키 추가
+		                response.addCookie(newCookie);
+		                // 쿠키를 추가 시키고 조회수 증가시킴
+		                dao.view(num);
+	                }
+	                }
+	    		CommunityDto dto = dao.detail(num);
+	    		int boardnum = dto.getCATEGORY_IDX();
+	    		mv.addObject("board", dao.one_board(boardnum));
+	    		mv.addObject("dto", dto);
+	    		mv.addObject("heart", dao.detail_heart(num));
+	    		mv.addObject("comment", dao.detail_comments(num));
+	    		mv.setViewName("community/C_detail.jsp");
+	    		return mv;
+	        }
 		CommunityDto dto = dao.detail(num);
 		int boardnum = dto.getCATEGORY_IDX();
 		mv.addObject("board", dao.one_board(boardnum));

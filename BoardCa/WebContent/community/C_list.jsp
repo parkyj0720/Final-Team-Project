@@ -28,7 +28,6 @@
 </head>
 <body>
 <%
-	ArrayList<Object> heartList = (ArrayList<Object>)request.getAttribute("heart");
 	List<CommunityDto> list = (List<CommunityDto>) request.getAttribute("list");
 	BoardList viewname = (BoardList)request.getAttribute("viewname");
 	String community_title = viewname.getCAT_NAME();
@@ -111,8 +110,7 @@
 									for(int i = startNum; i<endNum; i++){ 
 										if(i >= list.size())
 											break;
-									CommunityDto dto = list.get(i);
-									int heart = (int)heartList.get(i);
+										CommunityDto dto = list.get(i);
 									%>
 										<tr class="list" style="box-sizing: content-box;">
 											<td class="Ctd" width="10%" height="auto" align="center"
@@ -126,7 +124,7 @@
 											<td width="10%" height="auto" align="center"
 												style="white-space: normal;"><%=dto.getBRD_VIEWS()%></td>
 											<td width="10%" height="auto" align="center"
-												style="white-space: normal;"><%=heart%></td>
+												style="white-space: normal;"><%=dto.getCOUNT()%></td>
 										</tr>
 										<%} %>
 									</tbody>

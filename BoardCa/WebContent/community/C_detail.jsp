@@ -1,3 +1,5 @@
+<%@page import="java.net.UnknownHostException"%>
+<%@page import="java.net.InetAddress"%>
 <%@page import="java.util.List"%>
 <%@page import="CommunityModel.BoardList"%>
 <%@page import="CommunityModel.Heart"%>
@@ -64,7 +66,7 @@
 </head>
 <body>
 	<%
-		
+
 	
 		CommunityDto dto = (CommunityDto) request.getAttribute("dto");
 	ArrayList<Heart> heart = (ArrayList<Heart>) request.getAttribute("heart");
@@ -321,7 +323,6 @@
 				} else {
 					var dto = {
 						MEM_IDX : MEM_IDX,
-						COMT_SYSDATE : "",
 						COMT_CONTENT : comment_content,
 						BRD_IDX : BOARD_IDX
 					};

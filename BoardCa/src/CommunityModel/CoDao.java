@@ -27,18 +27,13 @@ public class CoDao {
 	}
 	public List<CommunityDto> List(int num) {
 		List<CommunityDto> list = mysqlSession.selectList("CoXml.List", num);
-		 System.out.println(list); 
+		System.out.println(list);
 		return list;
 	}
 	public BoardList one_board(int num) {
 		BoardList board = mysqlSession.selectOne("CoXml.one_board", num);
 		System.out.println(board);
 		return board;
-	}
-	public int list_heart(int num) {
-		List<Heart> heart = mysqlSession.selectList("CoXml.list_heart", num);
-		System.out.println(heart);
-		return heart.size();
 	}
 	public CommunityDto detail(int num) {
 		CommunityDto dto = mysqlSession.selectOne("CoXml.detail", num);

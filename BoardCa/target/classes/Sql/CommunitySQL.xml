@@ -39,22 +39,21 @@
 		ORDER BY BRD_IDX DESC
 		limit 7
 	</select>
-
-	<!-- 리스트 -->
+	
+	<!-- 좋아요 포함한 리스트 전체 -->
 	<select id="List" parameterType="int"
 		resultType="CommunityModel.CommunityDto">
-		select BRD_IDX,
-		BRD_TIT,
-		BRD_WRT_ID,
-		BRD_SYSDATE,
-		
-		BRD_CONTENT,
-
-		BRD_VIEWS,
-		CATEGORY_IDX
-		from BOARD_T 
+		SELECT b.BRD_IDX,
+		b.BRD_TIT,
+		b.BRD_WRT_ID,
+		b.BRD_SYSDATE,
+		b.BRD_VIEWS,
+		b.CATEGORY_IDX,
+		h.board_idx,
+		h.count
+		from BOARD_T b left OUTER JOIN (SELECT board_idx, COUNT(mem_idx) AS count FROM HEART_T GROUP BY board_idx) h ON b.brd_idx = h.board_idx
 		where
-		CATEGORY_IDX = #{num}
+		CATEGORY_IDX =  #{num}
 		ORDER BY BRD_IDX DESC
 	</select>
 
@@ -65,14 +64,6 @@
 		*
 		from BOARD_CAT_T 
 		where BRD_CAT_IDX = #{num}
-	</select>
-	
-	<!-- 좋아요 -->
-	<select id="list_heart" parameterType="int"
-		resultType="CommunityModel.Heart">
-		select *
-		from HEART_T 
-		where BOARD_IDX = #{num}
 	</select>
 
 	<!-- 디테일 게시글 -->

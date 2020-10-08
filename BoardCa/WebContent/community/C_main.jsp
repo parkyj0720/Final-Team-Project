@@ -93,7 +93,15 @@
 												아직 게시글이 없습니다.
 											</div>
 											<%
-										}else{
+										}else{%>
+									<tr height="14.2%" width="100%" style="box-sizing: content-box; border: 1px ridge; background-color: #f8f9fa">
+										<th width="10%" height="auto" style="text-align: center">번호</th>
+										<th width="10%" height="auto" style="text-align: center">글쓴이</th>
+										<th width="50%" height="auto" style="text-align: center">제목</th>
+										<th width="10%" height="auto" style="text-align: center">시간</th>
+										<th width="10%" height="auto" style="text-align: center">조회수</th>
+									</tr>
+										<%
 										for (int j = 0; j < list.size(); j++) {
 											CommunityDto dto = list.get(j);
 											String title = dto.getBRD_TIT();
@@ -158,7 +166,15 @@
 												아직 게시글이 없습니다.
 											</div>
 											<%
-										}else{
+										}else{%>
+									<tr height="14.2%" width="100%" style="box-sizing: content-box; border: 1px ridge;">
+										<th width="10%" height="auto" style="text-align: center">번호</th>
+										<th width="10%" height="auto" style="text-align: center">글쓴이</th>
+										<th width="50%" height="auto" style="text-align: center">제목</th>
+										<th width="10%" height="auto" style="text-align: center">시간</th>
+										<th width="10%" height="auto" style="text-align: center">조회수</th>
+									</tr>
+									<%
 										for (int j = 0; j < list.size(); j++) {
 											CommunityDto dto = list.get(j);
 											String title = dto.getBRD_TIT();
