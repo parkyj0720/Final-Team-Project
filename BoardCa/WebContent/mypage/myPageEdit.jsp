@@ -207,11 +207,11 @@ function nickNameCheck(){
 	})
 	$(document).ready(function () {
 		$("#chageBtn").on('click', function(){
-			if($('#nowPw').val == ''){
+			if($('#nowPw').val() == ''){
 				alert('현재 비밀번호를 입력해주세요.');
-			}else if(<%=dto.getMem_pw()%> == $('#nowPw').val){
+			}else if($('#nowPw').val() == <%=dto.getMem_pw()%>){
 				$('Editform').submit();
-			}else {
+			}else if( $('#nowPw').val() != <%=dto.getMem_pw()%> ) {
 				alert('현재 비밀번호와 같지 않습니다.');
 				location.replace("${pageContext.request.contextPath}/myPageEdit.do")
 			}
@@ -454,7 +454,7 @@ function nickNameCheck(){
 										<div class="col-md-12 center" style="padding: 0;">
 											<button class="btn btn-primary bg-orange" type="button"
 												style="width: inherit;" data-toggle="modal"
-												data-target=".bd-example-modal-lg">Chage</button>
+												data-target=".bd-example-modal-lg">EDIT BUTTON</button>
 											<div class="modal fade bd-example-modal-lg " tabindex="-1"
 												role="dialog" aria-labelledby="myLargeModalLabel"
 												data-backdrop="static" aria-hidden="true">
@@ -468,7 +468,8 @@ function nickNameCheck(){
 															</button>
 														</div>
 														<div class="modal-body">
-															<label>비밀번호를 입력해주세요</label> <input type="password"
+															<h3>정보를 변경하시겠습니까?</h3>
+															<label>현재 비밀번호를 입력해주세요</label> <input type="password"
 																class="form-control" id="nowPw">
 
 														</div>
