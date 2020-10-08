@@ -30,6 +30,7 @@
         android:layout_width="315dp"
         android:layout_height="420dp"
         android:background="@color/colorDivision"
+        android:src="@drawable/bg_splash"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

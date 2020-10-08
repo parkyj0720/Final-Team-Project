@@ -1,7 +1,9 @@
 package com.example.boardca_app.ui.home;
 
 import android.animation.Animator;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
+import android.opengl.Visibility;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
@@ -58,7 +60,7 @@ public class HomeFragment extends Fragment {
 
             @Override
             public void onAnimationEnd(Animator animation) {
-                animationView.setVisibility(View.GONE);
+//                animationView.setVisibility(View.GONE);
                 gameImage.setVisibility(View.VISIBLE);
             }
 
@@ -126,11 +128,5 @@ public class HomeFragment extends Fragment {
         animationView.setRepeatCount(LottieDrawable.INFINITE);
         // 시작
         animationView.playAnimation();
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        gameImage.setVisibility(View.GONE);
     }
 }
