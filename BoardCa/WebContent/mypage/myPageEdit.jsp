@@ -79,6 +79,7 @@ function nickNameCheck(){
 	});		
 }
 
+
 // 바꿀 비밀번호가 일치한지 체크
 	function equalPwCk(){
 		$.ajax({
@@ -197,14 +198,32 @@ function nickNameCheck(){
         if (!checkExistData(inputPwCk, "비밀번호 확인을"))
             return false;
         return true;
-	}
+	}	
+	$(function() {
+		$("#close").click(function() {
+			alert("작성 취소")
+			location.replace("${pageContext.request.contextPath}/myPage.do");
+		})
+	})
+	$(document).ready(function () {
+		$("#chageBtn").on('click', function(){
+			if($('#nowPw').val == ''){
+				alert('현재 비밀번호를 입력해주세요.');
+			}else if(<%=dto.getMem_pw()%> == $('#nowPw').val){
+				$('Editform').submit();
+			}else {
+				alert('현재 비밀번호와 같지 않습니다.');
+				location.replace("${pageContext.request.contextPath}/myPageEdit.do")
+			}
+		})
+	})
 </script>
+
 </head>
-
-
 <body class="ls-closed ls-toggle-menu ">
 	<!-- header -->
 	<jsp:include page="/WEB-INF/header.jsp"></jsp:include>
+
 
 
 	<!-- body -->
@@ -432,10 +451,38 @@ function nickNameCheck(){
 												</div>
 											</div>
 										</div>
-										<div class="col-md-12" style="margin-top: 15px;">
-											<button type="submit" class="btn btn-primary bg-orange"
-												id="saveBtn">Save Changes</button>
+										<div class="col-md-12 center" style="padding: 0;">
+											<button class="btn btn-primary bg-orange" type="button"
+												style="width: inherit;" data-toggle="modal"
+												data-target=".bd-example-modal-lg">Chage</button>
+											<div class="modal fade bd-example-modal-lg " tabindex="-1"
+												role="dialog" aria-labelledby="myLargeModalLabel"
+												data-backdrop="static" aria-hidden="true">
+												<div class="modal-dialog">
+													<div class="modal-content">
+														<div class="modal-header">
+															<h3 class="modal-title" id="exampleModalLabel">정보 변경</h3>
+															<button type="button" class="close" data-dismiss="modal"
+																aria-label="Close">
+																<span aria-hidden="true">x</span>
+															</button>
+														</div>
+														<div class="modal-body">
+															<label>비밀번호를 입력해주세요</label> <input type="password"
+																class="form-control" id="nowPw">
+
+														</div>
+														<div class="modal-footer">
+															<button type="button" class="btn btn-secondary"
+																id="close">NO</button>
+															<button type="submit" class="btn btn-primary"
+																id="chageBtn">YES</button>
+														</div>
+													</div>
+												</div>
+											</div>
 										</div>
+
 									</div>
 								</form>
 							</div>

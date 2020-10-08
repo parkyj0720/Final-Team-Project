@@ -375,101 +375,22 @@ select {
 											<span aria-hidden="true">x</span>
 										</button>
 									</div>
-									<div class="modal-body">설문조사를 하시겠습니까?</div>
+									<div class="modal-body">
+										<label>가입 목적</label> <input type="text" class="form-control"
+											id="recipient-name">
+									</div>
 									<div class="modal-footer">
-										<button type="submit" class="btn btn-secondary">NO</button>
-										<button type="button" class="btn btn-primary"
-											data-toggle="modal" data-target="#exampleModal">YES</button>
-										<!-- Modal -->
-										<div class="modal fade" id="exampleModal" tabindex="-1"
-											role="dialog" aria-labelledby="exampleModalLabel"
-											aria-hidden="true">
-											<div class="modal-dialog">
-												<div class="modal-content">
-													<div class="modal-header">
-														<h3 class="modal-title" id="exampleModalLabel">설문조사</h3>
-														<button type="button" class="close" data-dismiss="modal"
-															aria-label="Close">
-															<span aria-hidden="true">x</span>
-														</button>
-													</div>
-													<div class="modal-body">
-														<label>주종</label> <select class="form-control">
-															<option>소주</option>
-															<option>맥주</option>
-															<option>양주</option>
-															<option>막걸리</option>
-															<option>와인</option>
-														</select> <label>관심지역 선택</label> <select
-															onchange="categoryChange(this)" class="form-control">
-															<option>광역시·도 선택</option>
-															<option value="area1">서울특별시</option>
-															<option value="area2">인천광역시</option>
-															<option value="area3">대전광역시</option>
-															<option value="area4">광주광역시</option>
-															<option value="area5">대구광역시</option>
-															<option value="area6">울산광역시</option>
-															<option value="area7">부산광역시</option>
-															<option value="area8">경기도</option>
-															<option value="area9">강원도</option>
-															<option value="area10">충청북도</option>
-															<option value="area11">충청남도</option>
-															<option value="area12">전라북도</option>
-															<option value="area13">전라남도</option>
-															<option value="area14">경상북도</option>
-															<option value="area15">경상남도</option>
-															<option value="area16">제주도</option>
-														</select> <select id="area" class="form-control">
-															<option>시·군·구 선택</option>
-														</select>
-														<div>
-															<label>가입 경로</label>
-															<div>
-																<label class="radio-inline"> <input type="radio"
-																	name="inlineRadioOptions" id="inlineRadio1"
-																	value="option1"> 인터넷
-																</label> <label class="radio-inline"> <input
-																	type="radio" name="inlineRadioOptions"
-																	id="inlineRadio2" value="option2"> 지인소개
-																</label> <label class="radio-inline"> <input
-																	type="radio" name="inlineRadioOptions"
-																	id="inlineRadio3" value="option3"> 이벤트
-																</label>
-															</div>
-														</div>
-														<div>
-															<label>가입 목적</label>
-															<div>
-																<label class="checkbox-inline"> <input
-																	type="checkbox" id="inlineCheckbox1" value="option1">
-																	술 게임
-																</label> <label class="checkbox-inline"> <input
-																	type="checkbox" id="inlineCheckbox2" value="option2">
-																	술 안주 레시피
-																</label> <label class="checkbox-inline"> <input
-																	type="checkbox" id="inlineCheckbox3" value="option3">
-																	친목도모
-																</label>
-															</div>
-														</div>
-													</div>
-													<div class="modal-footer">
-														<button type="submit" class="btn btn-secondary" id="close">Close</button>
-														<button type="submit" class="btn btn-primary"
-															id="complete">OK</button>
-													</div>
-												</div>
-											</div>
-										</div>
+										<button type="button" class="btn btn-secondary" id="close">NO</button>
+										<button type="submit" class="btn btn-primary">YES</button>
 									</div>
 								</div>
 							</div>
 						</div>
-						<div class="col-sm-6 center" style="padding: 0">
-							<a class="link"
-								href="${pageContext.request.contextPath}/signIn.do">이미
-								회원이신가요?</a>
-						</div>
+					</div>
+					<div class="col-sm-6 center" style="padding: 0">
+						<a class="link"
+							href="${pageContext.request.contextPath}/signIn.do">이미
+							회원이신가요?</a>
 					</div>
 				</form>
 			</div>

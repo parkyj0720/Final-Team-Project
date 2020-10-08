@@ -1,9 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@page import="Member.MemberDto"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
+
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=Edge">
 <meta
@@ -12,48 +15,91 @@
 <meta name="description"
 	content="Responsive Bootstrap 4 and web Application ui kit.">
 
-<title>:: BoardCa :: Sign Up</title>
+<title>:: BoardCa :: MYPAGE EDIT</title>
+<link rel="icon" href="/BoardCa/stylesheet/favicon.ico"
+	type="image/x-icon">
 <!-- Favicon-->
-<link rel="icon" href="favicon.ico" type="image/x-icon">
-<!-- Custom Css -->
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/stylesheet/assets/plugins/bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/stylesheet/assets/css/style.min.css">
-
-
-<style type="text/css">
-.container {
-	text-align: center;
-}
-
-.checkBtn {
-	margin: 0;
-}
-
-.center {
-	margin: auto;
-}
-
-.inputForm {
-	width: 70%;
-	height: auto;
-	padding: .375rem .75rem;
-	margin-right: 5%;
-	font-weight: 400;
-	line-height: 1.5;
-	color: #495057;
-	border: 1px solid #ced4da;
-	border-radius: .25rem;
-	transition: border-color .15s;
-	font-size: 14px;
-	background: rgba(0, 0, 0, 0);
+<style>
+select {
+	margin-bottom: 5em;
+	padding: 10px;
 }
 </style>
+
+<%
+	MemberDto dto = (MemberDto) request.getAttribute("memInfo");
+%>
+
 <script src="http://code.jquery.com/jquery.js"></script>
 <script>
-	function categoryChange(e) {
 
+// pw 정규식 
+// 8-20자리 , 영문,숫자,특수문자 포함, 공백x 
+function chkPW(){	
+
+	 var pw = $("#inputPw").val();
+	 var num = pw.search(/[0-9]/g);
+	 var eng = pw.search(/[a-z]/ig);
+	 var spe = pw.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi);
+
+	 if(pw.length < 8 || pw.length > 20){
+
+	  alert("8자리 ~ 20자리 이내로 입력해주세요.");
+	  return false;
+	 }else if(pw.search(/\s/) != -1){
+	  alert("비밀번호는 공백 없이 입력해주세요.");
+	  return false;
+	 }else if(num < 0 || eng < 0 || spe < 0 ){
+	  alert("영문,숫자, 특수문자를 혼합하여 입력해주세요.");
+	  return false;
+	 }else {
+		console.log("통과"); 
+	    return true;
+	 }
+}
+
+// nickname 중복 체크  
+function nickNameCheck(){
+	$.ajax({
+		type : "post",
+		url : "/BoardCa/nickNameCheck.do",
+		data :{
+			nickName : $("#nickname").val()
+		},
+		success : function test(a){ 
+			$("#checkNickName").html(a); 
+		},
+		error : function error(){ 
+			alert("error"); 
+		}
+	});		
+}
+
+// 바꿀 비밀번호가 일치한지 체크
+	function equalPwCk(){
+		$.ajax({
+			type : "post",
+			url : "/BoardCa/equalPwCk.do",
+			data :{
+				pw1 : $("#inputPw").val(),
+				pw2 : $("#inputPwCk").val()
+			},
+			success : function test(a){ 
+				$("#checkPwd").html(a); 
+			},
+			error : function error(){ 
+				alert("error"); 
+			}
+		});
+	}
+	
+
+	function categoryChange(e) {
+		
 		var area1 = [ "강남구", "강동구", "강북구", "강서구", "관악구", "광진구", "구로구", "금천구",
 				"노원구", "도봉구", "동대문구", "동작구", "마포구", "서대문구", "서초구", "성동구",
 				"성북구", "송파구", "양천구", "영등포구", "용산구", "은평구", "종로구", "중구", "중랑구" ];
@@ -91,9 +137,9 @@
 		var a = [ area1, area2, area3, area4, area5, area6, area7, area8,
 				area9, area10, area11, area12, area13, area14, area15, area16 ];
 		// 시/도 선택 박스 초기화
-
-		var target = document.getElementById("area");
-
+	
+		var target = document.getElementById("state");
+	
 		if (e.value == "area1")
 			var d = area1;
 		else if (e.value == "area2")
@@ -126,172 +172,302 @@
 			var d = area15;
 		else if (e.value == "area16")
 			var d = area16;
-
+		else if (e.value == "areas")
+			var d = areas;
+	
 		target.options.length = 0;
-
+	
 		for (x in d) {
 			var opt = document.createElement("option");
 			opt.value = d[x];
 			opt.innerHTML = d[x];
 			target.appendChild(opt);
 		}
+		var mem_rocal = $('#area0 option:selected').text();
+		
+		$('#rocal').val(mem_rocal);
+		
+	}
+	
+	function checkPassword(inputPw, inputPwCk) {
+        //비밀번호가 입력되었는지 확인하기
+        if (!checkExistData(inputPw, "비밀번호를"))
+            return false;
+        //비밀번호 확인이 입력되었는지 확인하기
+        if (!checkExistData(inputPwCk, "비밀번호 확인을"))
+            return false;
+        return true;
 	}
 </script>
-<style type="text/css">
-.modal-body {
-	margin: 7%;
-	padding: 0;
-	text-align: left;
-}
-
-label {
-	display: inline-block;
-	margin-bottom: .5rem;
-	margin-top: .5rem;
-}
-
-select {
-	word-wrap: normal;
-	margin-top: .5rem;
-}
-</style>
 </head>
 
-<body class="theme-blush">
 
-	<div class="authentication">
-		<div class="container">
-			<img src="${pageContext.request.contextPath}/imgs/logo1.png"
-				alt="logo" style="width: 50%" />
-			<div class="body">
-				<!-- Large modal -->
-				<button type="button" class="btn btn-primary" data-toggle="modal"
-					data-target=".bd-example-modal-lg">Large modal</button>
+<body class="ls-closed ls-toggle-menu ">
+	<!-- header -->
+	<jsp:include page="/WEB-INF/header.jsp"></jsp:include>
 
-				<div class="modal fade bd-example-modal-lg " tabindex="-1"
-					role="dialog" aria-labelledby="myLargeModalLabel"
-					data-backdrop="static" aria-hidden="true">
-					<div class="modal-dialog">
-						<div class="modal-content">
 
-							<div class="modal-header">
-								<h1 class="modal-title" id="exampleModalLabel">설문조사요</h1>
-								<button type="button" class="close" data-dismiss="modal"
-									aria-label="Close">
-									<span aria-hidden="true"></span>
-								</button>
+	<!-- body -->
+	<div class="body_scroll">
+		<div class="block-header">
+			<div class="row">
+				<div class="card">
+					<div class="col-lg-12 col-md-12 col-sm-12">
+						<h2>myPageEdit</h2>
+						<ul class="breadcrumb">
+							<li class="breadcrumb-item"><a
+								href="${pageContext.request.contextPath}/main/main.jsp"><i
+									class="zmdi zmdi-home"></i> BoardCa</a></li>
+							<li class="breadcrumb-item"><a
+								href="${pageContext.request.contextPath}/myPage.do">myPage</a></li>
+							<li class="breadcrumb-item active">Edit</li>
+						</ul>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+	<div class="container-fluid">
+		<div class="row clearfix">
+
+			<div class="col-md-12">
+				<div class="d-flex">
+					<div class="mobile-left">
+						<a class="btn btn-info btn-icon toggle-email-nav collapsed"
+							data-toggle="collapse" href="#mypage-nav" role="button"
+							aria-expanded="false" aria-controls="email-nav"> <span
+							class="btn-label"><i class="zmdi zmdi-account"></i></span>
+						</a>
+					</div>
+					<div class="inbox left collapse" id="mypage-nav" style="">
+						<div class="mail-side">
+							<a href="${pageContext.request.contextPath}/myPage.do"><h5>MYPAGE</h5></a>
+							<ul class="nav">
+								<li><a
+									href="${pageContext.request.contextPath}/myPageEdit.do"><i
+										class="zmdi zmdi-edit"></i>Edit</a></li>
+								<li><a
+									href="${pageContext.request.contextPath}/myWriteList.do"><i
+										class="zmdi zmdi-file"></i>Writted</a></li>
+								<li><a href="${pageContext.request.contextPath}/myFAQ.do"><i
+										class="zmdi zmdi-comments"></i>FAQ</a></li>
+								<li><a
+									href="${pageContext.request.contextPath}/myFavorite.do"><i
+										class="zmdi zmdi-favorite"></i>Favorite</a></li>
+								<li><a href="${pageContext.request.contextPath}/mySaved.do"><i
+										class="zmdi zmdi-folder-star"></i>Saved</a></li>
+							</ul>
+						</div>
+					</div>
+
+					<div class="col-lg-11 col-md-11 col-sm-11 inbox right">
+						<div class="card">
+							<div class="header">
+								<h2>
+									<strong>EditPage</strong>
+								</h2>
 							</div>
-							<div class="modal-body">
-								<label>주종</label> <select class="form-control">
-									<option>소주</option>
-									<option>맥주</option>
-									<option>양주</option>
-									<option>막걸리</option>
-									<option>와인</option>
-								</select> <label>관심지역 선택</label> <select onchange="categoryChange(this)"
-									class="form-control">
-									<option>광역시·도 선택</option>
-									<option value="area1">서울특별시</option>
-									<option value="area2">인천광역시</option>
-									<option value="area3">대전광역시</option>
-									<option value="area4">광주광역시</option>
-									<option value="area5">대구광역시</option>
-									<option value="area6">울산광역시</option>
-									<option value="area7">부산광역시</option>
-									<option value="area8">경기도</option>
-									<option value="area9">강원도</option>
-									<option value="area10">충청북도</option>
-									<option value="area11">충청남도</option>
-									<option value="area12">전라북도</option>
-									<option value="area13">전라남도</option>
-									<option value="area14">경상북도</option>
-									<option value="area15">경상남도</option>
-									<option value="area16">제주도</option>
-								</select> <select id="area" class="form-control">
-									<option>시·군·구 선택</option>
-								</select>
-								<div>
-									<label>가입 경로</label>
-									<div>
-										<label class="radio-inline"> <input type="radio"
-											name="inlineRadioOptions" id="inlineRadio1" value="option1">
-											인터넷
-										</label> <label class="radio-inline"> <input type="radio"
-											name="inlineRadioOptions" id="inlineRadio2" value="option2">
-											지인소개
-										</label> <label class="radio-inline"> <input type="radio"
-											name="inlineRadioOptions" id="inlineRadio3" value="option3">
-											이벤트
-										</label>
-									</div>
-								</div>
-								<div>
-									<label>가입 목적</label>
-									<div>
-										<label class="checkbox-inline"> <input type="checkbox"
-											id="inlineCheckbox1" value="option1"> 술 게임
-										</label> <label class="checkbox-inline"> <input
-											type="checkbox" id="inlineCheckbox2" value="option2">
-											술 안주 레시피
-										</label> <label class="checkbox-inline"> <input
-											type="checkbox" id="inlineCheckbox3" value="option3">
-											친목도모
-										</label>
-									</div>
-								</div>
-							</div>
-							<div class="modal-footer">
-								<button type="button" class="btn btn-secondary"
-									data-dismiss="modal" id="close">Close</button>
-								<button type="button" class="btn btn-primary"
-									data-toggle="modal" data-target="#exampleModal">
-									Launch demo modal</button>
-
-								<!-- Modal -->
-								<div class="modal " id="exampleModal" tabindex="-1"
-									role="dialog" aria-labelledby="exampleModalLabel"
-									aria-hidden="true">
-									<div class="modal-dialog" role="document">
-										<div class="modal-content">
-											<div class="modal-header">
-												<h5 class="modal-title" id="exampleModalLabel">Modal
-													title</h5>
-												<button type="button" class="close" data-dismiss="modal"
-													aria-label="Close">
-													<span aria-hidden="true">&times;</span>
-												</button>
+							<div class="body">
+								<form name="Editform"
+									action="${pageContext.request.contextPath}/Edit.do"
+									method="POST">
+									<div class="row">
+										<div class="col-lg-12 col-md-12">
+											<div class="form-group">
+												<input type="text" class="form-control" id="nickname"
+													name="nickname" onblur="nickNameCheck()"
+													placeholder="NickName">
 											</div>
-											<div class="modal-body">...</div>
-											<div class="modal-footer">
-												<button type="button" class="btn btn-secondary"
-													data-dismiss="modal">Close</button>
-												<button type="submit" class="btn btn-primary">Save
-													changes</button>
+											<div class="form-group col-lg-3 col-md-12" id="checkNickName"></div>
+										</div>
+
+										<div class="col-lg-6 col-md-12">
+											<div class="form-group">
+												<input type="password" class="form-control"
+													placeholder="New Password" name="inputPw" id="inputPw"
+													onblur="chkPW()">
+											</div>
+											<div class="form-group col-lg-6 col-md-12" id="checkPwd"></div>
+										</div>
+
+
+										<div class="col-lg-6 col-md-12">
+											<div class="form-group">
+												<input type="password" class="form-control"
+													placeholder="Password Chcek" name="newPwck" id="inputPwCk"
+													onblur="equalPwCk()">
 											</div>
 										</div>
+										<div class="form-group col-lg-6 col-md-12" id="checkPwd"></div>
 									</div>
-								</div>
+
+
+
+									<div class="row">
+										<c:if test="${email1 == null}">
+											<div class="form-group col-lg-12 col-md-12">
+												<input type="text" class="form-control" placeholder="이메일"
+													value="" name="email1">
+											</div>
+										</c:if>
+										<c:if test="${email1 != null}">
+											<div class="form-group col-lg-12 col-md-12">
+												<input type="text" class="form-control" placeholder="이메일"
+													value="${email1}" name="email1" readonly>
+											</div>
+										</c:if>
+										<p style="margin-left: 50%;">@</p>
+										<c:if test="${email1 == null}">
+											<div class="form-group  col-lg-12 col-md-12">
+												<select class="form-control show-tick ms select2"
+													data-placeholder="Select" name=email2>
+													<option value="" selected>선택하세요</option>
+													<option value="naver.com">naver.com</option>
+													<option value="nate.com">nate.com</option>
+													<option value="kakao.com">kakao.com</option>
+													<option value="gmail.com">gmail.com</option>
+													<option value="hanmail.com">hanmail.com</option>
+												</select>
+											</div>
+										</c:if>
+										<c:if test="${email1 != null}">
+											<div class="form-group  col-lg-12 col-md-12">
+												<input type="text" class="form-control " placeholder="이메일"
+													value="${email2}" name="email2" readonly>
+											</div>
+										</c:if>
+
+
+										<div class="col-lg-6 col-md-12">
+											<div>
+												<select onchange="categoryChange(this)" class="form-control"
+													id="area0">
+													<option>광역시·도 선택</option>
+													<option value="area1">서울특별시</option>
+													<option value="area2">인천광역시</option>
+													<option value="area3">대전광역시</option>
+													<option value="area4">광주광역시</option>
+													<option value="area5">대구광역시</option>
+													<option value="area6">울산광역시</option>
+													<option value="area7">부산광역시</option>
+													<option value="area8">경기도</option>
+													<option value="area9">강원도</option>
+													<option value="area10">충청북도</option>
+													<option value="area11">충청남도</option>
+													<option value="area12">전라북도</option>
+													<option value="area13">전라남도</option>
+													<option value="area14">경상북도</option>
+													<option value="area15">경상남도</option>
+													<option value="area16">제주도</option>
+												</select>
+											</div>
+										</div>
+										<div class="col-lg-6 col-md-12">
+											<div>
+												<select id="state" class="form-control" name="state">
+													<option>시·군·구 선택</option>
+												</select>
+											</div>
+											<input type="text" id="rocal" name="rocal"
+												style="visibility: hidden;">
+										</div>
+										<!-- 성별 체크 라디오 버튼  -->
+										<div class="form-group col-sm-12 margin-auto"
+											style="text-align: left;">
+											<%
+												String gender = dto.getMem_gender();
+											String Age = dto.getMem_age_group();
+											System.out.println(gender);
+											%>
+											<div class="form-group">
+												<div class="radio inlineblock m-r-20" style="margin: 0;">
+													<input type="radio" name="gender" id="male"
+														class="with-gap" value="남" <%if (gender.equals("남")) {%>
+														checked <%}%>> <label for="male">남성</label>
+												</div>
+												<div class="radio inlineblock" style="margin: 0;">
+													<input type="radio" name="gender" id="Female"
+														class="with-gap" value="여" <%if (gender.equals("여")) {%>
+														checked <%}%>> <label for="Female">여성</label>
+												</div>
+												<div class="radio inlineblock" style="margin: 0;">
+													<input type="radio" name="gender" id="secret"
+														class="with-gap" value="" <%if (gender.equals("")) {%>
+														checked <%}%>> <label for="secret">비공개</label>
+												</div>
+											</div>
+
+										</div>
+
+										<!-- 연령대 -->
+										<div class="form-group  col-sm-9 margin-auto"
+											style="text-align: left;">
+											<div class="form-group">
+												<div class="radio inlineblock m-r-20" style="margin: 0;">
+													<input type="radio" name="ageRange" id="one"
+														class="with-gap" value="20대" <%if (Age.equals("20대")) {%>
+														checked <%}%>> <label for="one">20대</label>
+												</div>
+												<div class="radio inlineblock m-r-20" style="margin: 0;">
+													<input type="radio" name="ageRange" id="two"
+														class="with-gap" value="30대" <%if (Age.equals("30대")) {%>
+														checked <%}%>> <label for="two">30대</label>
+												</div>
+												<div class="radio inlineblock" style="margin: 0;">
+													<input type="radio" name="ageRange" id="three"
+														class="with-gap" value="40대" <%if (Age.equals("40대")) {%>
+														checked <%}%>> <label for="three">40대</label>
+												</div>
+												<div class="radio inlineblock" style="margin: 0;">
+													<input type="radio" name="ageRange" id="four"
+														class="with-gap" value="50대 이상"
+														<%if (Age.equals("50대이사")) {%> checked <%}%>> <label
+														for="four">50대 이상</label>
+												</div>
+												<div class="radio inlineblock" style="margin: 0;">
+													<input type="radio" name="ageRange" id="five"
+														class="with-gap" value="비공개" <%if (Age.equals("비공개")) {%>
+														checked <%}%>> <label for="five">비공개</label>
+												</div>
+											</div>
+										</div>
+										<div class="col-md-12" style="margin-top: 15px;">
+											<button type="submit" class="btn btn-primary bg-orange"
+												id="saveBtn">Save Changes</button>
+										</div>
+									</div>
+								</form>
 							</div>
 						</div>
 					</div>
 				</div>
+			</div>
+		</div>
+	</div>
 
 
-				<!-- Jquery Core Js -->
-				<script
-					src="${pageContext.request.contextPath}/stylesheet/assets/bundles/libscripts.bundle.js"></script>
-				<!-- Lib Scripts Plugin Js -->
 
-				<script
-					src="${pageContext.request.contextPath}/stylesheet/assets/plugins/jquery-validation/jquery.validate.js"></script>
-				<!-- Jquery Validation Plugin Css -->
-				<script
-					src="${pageContext.request.contextPath}/stylesheet/assets/plugins/jquery-steps/jquery.steps.js"></script>
-				<!-- JQuery Steps Plugin Js -->
-				<script
-					src="${pageContext.request.contextPath}/stylesheet/assets/bundles/mainscripts.bundle.js"></script>
-				<!-- Custom Js -->
-				<script
-					src="${pageContext.request.contextPath}/stylesheet/assets/js/pages/forms/form-validation.js"></script>
+
+
+	<jsp:include page="/WEB-INF/footer.jsp"></jsp:include>
+	<!-- Jquery Core Js -->
+	<script
+		src="${pageContext.request.contextPath}/stylesheet/assets/bundles/vendorscripts.bundle.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/stylesheet/assets/bundles/libscripts.bundle.js"></script>
+	<!-- Lib Scripts Plugin Js -->
+
+	<script
+		src="${pageContext.request.contextPath}/stylesheet/assets/plugins/jquery-validation/jquery.validate.js"></script>
+	<!-- Jquery Validation Plugin Css -->
+	<script
+		src="${pageContext.request.contextPath}/stylesheet/assets/plugins/jquery-steps/jquery.steps.js"></script>
+	<!-- JQuery Steps Plugin Js -->
+	<script
+		src="${pageContext.request.contextPath}/stylesheet/assets/bundles/mainscripts.bundle.js"></script>
+	<!-- Custom Js -->
+	<script
+		src="${pageContext.request.contextPath}/stylesheet/assets/js/pages/forms/form-validation.js"></script>
 </body>
 </html>
