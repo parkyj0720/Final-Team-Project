@@ -56,6 +56,7 @@ public class HomeFragment extends Fragment {
         animationView.addAnimatorListener(new Animator.AnimatorListener() {
             @Override
             public void onAnimationStart(Animator animation) {
+
             }
 
             @Override
