@@ -304,7 +304,7 @@
 					data: dto,
 					success: function () {
 						alert('삭제성공');
-						delete_success()
+						delete_success();
 			           }
 				})
 			});
