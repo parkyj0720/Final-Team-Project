@@ -89,8 +89,7 @@
 									class="zmdi zmdi-alert-circle"></i>신고 관리</a></li>
 							<li><a href="${pageContext.request.contextPath}/adminFAQ.do"><i
 									class="zmdi zmdi-comments"></i>문의 답변</a></li>
-							<li><a href="${pageContext.request.contextPath}/myFAQ.do"><i
-									class="zmdi zmdi-comments"></i>FAQ 답변</a></li>
+							
 
 						</ul>
 					</div>
