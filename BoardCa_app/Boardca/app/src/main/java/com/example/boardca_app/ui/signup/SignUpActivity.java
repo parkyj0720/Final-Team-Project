@@ -33,6 +33,19 @@ import java.net.URL;
 
 public class SignUpActivity extends AppCompatActivity {
 
+    String MEM_ID = "";
+    String MEM_NICKNAME = "";
+    String MEM_PW = "";
+    String pw2 = "";
+//    String name = "";
+    String MEM_EMAIL = "";
+    String MEM_ROCAL = "";
+    String MEM_STATE = "";
+//    String region3 = "";
+
+    String MEM_GENDER = "";
+    String MEM_AGE_GROUP = "";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,20 +75,71 @@ public class SignUpActivity extends AppCompatActivity {
         RadioGroup rg_gender = findViewById(R.id.rg_gender);
         RadioGroup rg_age = findViewById(R.id.rg_age);
 
+        if(getIntent().getStringExtra("MEM_NICKNAME") != null) {
+            MEM_NICKNAME = getIntent().getStringExtra("MEM_NICKNAME");
+        }
+        if(getIntent().getStringExtra("MEM_EMAIL") != null) {
+            MEM_EMAIL = getIntent().getStringExtra("MEM_EMAIL");
+        }
+        if(getIntent().getStringExtra("MEM_ID") != null) {
+            MEM_ID = getIntent().getStringExtra("MEM_ID");
+            if(!(MEM_ID.equals(""))) {
+                sign_id.setText(MEM_ID);
+                sign_id.setClickable(false);
+                sign_id.setFocusable(false);
+            }
+        }
+        if(getIntent().getStringExtra("MEM_AGE_GROUP") != null) {
+            MEM_AGE_GROUP = getIntent().getStringExtra("MEM_AGE_GROUP");
+        }
+        if(getIntent().getStringExtra("MEM_GENDER") != null) {
+            MEM_GENDER = getIntent().getStringExtra("MEM_GENDER");
+        }
+
         ImageButton button = findViewById(R.id.finish_next_btn);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                String MEM_ID = sign_id.getText() + "";
-                String MEM_NICKNAME = sign_nick.getText() + "";
-                String MEM_PW = password01.getText() + "";
-                String pw2 = password02.getText() + "";
-//                String name = sign_name.getText() + "";
-                String MEM_EMAIL = sign_email.getText() + "";
-                String MEM_ROCAL = spinner_region_1.getSelectedItem().toString();
-                String MEM_STATE = spinner_region_2.getSelectedItem().toString();
-//                String region3 = spinner_region_3.getSelectedItem().toString();
+                if (sign_id.getText() != null) {
+                    MEM_ID = sign_id.getText() + "";
+                } else {
+                    MEM_ID = "";
+                }
+
+                if (sign_nick.getText() != null) {
+                    MEM_NICKNAME = sign_nick.getText() + "";
+                } else {
+                    MEM_NICKNAME = "";
+                }
+
+                if (password01.getText() != null) {
+                    MEM_PW = password01.getText() + "";
+                } else {
+                    MEM_PW = "";
+                }
+                if (password02.getText() != null) {
+                    pw2 = password02.getText() + "";
+                } else {
+                    pw2 = "";
+                }
+
+                if (sign_email.getText() != null) {
+                    MEM_EMAIL = sign_email.getText() + "";
+                } else {
+                    MEM_EMAIL = "";
+                }
+
+                if (spinner_region_1.getSelectedItem().toString() != null) {
+                    MEM_ROCAL = spinner_region_1.getSelectedItem().toString() + "";
+                } else {
+                    MEM_ROCAL = "";
+                }
+                if (spinner_region_2.getSelectedItem().toString() != null) {
+                    MEM_STATE = spinner_region_2.getSelectedItem().toString() + "";
+                } else {
+                    MEM_STATE = "";
+                }
 
                 RadioButton rb_gender = findViewById(rg_gender.getCheckedRadioButtonId());
                 RadioButton rb_age = findViewById(rg_age.getCheckedRadioButtonId());
@@ -236,8 +300,17 @@ public class SignUpActivity extends AppCompatActivity {
         doubleCheck.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String MEM_ID = sign_id.getText() + "";
-                String MEM_NICKNAME = sign_nick.getText() + "";
+                if(sign_id.getText() != null) {
+                    MEM_ID = sign_id.getText() + "";
+                }else{
+                    MEM_ID = "";
+                }
+
+                if(sign_nick.getText() != null) {
+                    MEM_NICKNAME = sign_nick.getText() + "";
+                }else{
+                    MEM_NICKNAME = "";
+                }
 
                 String result = "";
                 try {
@@ -277,7 +350,7 @@ public class SignUpActivity extends AppCompatActivity {
         protected String doInBackground(String... strings) {
             try {
                 String str;
-                URL url = new URL("http://192.168.219.100:8088/BoardCa/app_sign.do");
+                URL url = new URL("http://175.211.105.136:8088/BoardCa/app_sign.do");
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
                 conn.setRequestMethod("POST");
@@ -317,7 +390,7 @@ public class SignUpActivity extends AppCompatActivity {
         protected String doInBackground(String... strings) {
             try {
                 String str;
-                URL url = new URL("http://192.168.219.100:8088/BoardCa/app_nomal_sign.do");
+                URL url = new URL("http://175.211.105.136:8088/BoardCa/app_nomal_sign.do");
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
                 conn.setRequestMethod("POST");

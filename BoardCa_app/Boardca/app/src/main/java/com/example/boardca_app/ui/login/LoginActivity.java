@@ -248,8 +248,15 @@ public class LoginActivity extends AppCompatActivity {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String id = usernameEditText.getText() + "";
-                String pw = passwordEditText.getText() + "";
+
+                String id = "";
+                String pw = "";
+                if(usernameEditText.getText() != null) {
+                    id = usernameEditText.getText() + "";
+                }
+                if(passwordEditText.getText() != null) {
+                    pw = passwordEditText.getText() + "";
+                }
 
                 String result = "false";
                 try {
@@ -264,6 +271,7 @@ public class LoginActivity extends AppCompatActivity {
                     Toast.makeText(LoginActivity.this, id + "님! 로그인 성공!", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                     intent.putExtra("BRD_WRT_ID", usernameEditText.getText() + "");
+
                     //intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK); //새로운 테스크에 작동시키기.
                     startActivity(intent);
                     overridePendingTransition(0, 0);
@@ -408,7 +416,7 @@ public class LoginActivity extends AppCompatActivity {
                     Log.e("MEM_AGE_GROUP : ", MEM_AGE_GROUP + "");
                     Log.e("MEM_GENDER : ", MEM_GENDER + "");
 
-                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                    Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                     intent.putExtra("MEM_NICKNAME", MEM_NICKNAME);
                     intent.putExtra("MEM_EMAIL", MEM_EMAIL);
                     intent.putExtra("MEM_ID", MEM_ID);
@@ -477,7 +485,7 @@ public class LoginActivity extends AppCompatActivity {
         protected String doInBackground(String... strings) {
             try {
                 String str;
-                URL url = new URL("http://192.168.219.100:8088/BoardCa/app_input.do");
+                URL url = new URL("http://175.211.105.136:8088/BoardCa/app_input.do");
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
                 conn.setRequestMethod("POST");
@@ -516,7 +524,7 @@ public class LoginActivity extends AppCompatActivity {
         protected String doInBackground(String... strings) {
             try {
                 String str;
-                URL url = new URL("http://192.168.219.100:8088/BoardCa/app_idpw.do");
+                URL url = new URL("http://175.211.105.136:8088/BoardCa/app_idpw.do");
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
                 conn.setRequestMethod("POST");

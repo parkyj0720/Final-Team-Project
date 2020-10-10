@@ -22,7 +22,7 @@
     <application
         android:name=".ui.login.App"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/bee"
         android:label="@string/app_name"
         android:roundIcon="@drawable/bee"
         android:supportsRtl="true"
