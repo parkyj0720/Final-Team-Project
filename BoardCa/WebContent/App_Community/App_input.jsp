@@ -29,7 +29,7 @@
 	%>
 <script src="http://code.jquery.com/jquery.js"></script>
 
-	<jsp:include page="/WEB-INF/header.jsp" />
+<section class="content">
     <div class="body_scroll">
         <div class="block-header">
 			<div class="col-lg-7 col-md-6 col-sm-12">
@@ -78,7 +78,7 @@
             </div>
         </div>
     </div>
-    	<jsp:include page="/WEB-INF/footer.jsp" />
+</section>
 
 	<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
 	<script>

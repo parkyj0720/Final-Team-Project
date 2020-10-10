@@ -62,7 +62,7 @@
 	int startPage = (a == 0) ? 1 : a * maxPage + 1;
 	int endPage = startPage + maxPage - 1;
 	%>
-	<jsp:include page="/WEB-INF/header.jsp"></jsp:include>
+<section class="content">
 	<!-- <section class="content"
 		style="margin-left: auto; margin-right: auto; padding-left: 10%; padding-right: 10%;"> -->
 	<%-- <div class="row">
@@ -164,7 +164,7 @@
 						<div class="body">
 							<ul class="pagination pagination-primary m-b-0">
 								<li class="page-item"><a class="page-link"
-									href="${pageContext.request.contextPath}/Community_list.do?list=<%=list.get(0).getCATEGORY_IDX() %>&page=<%=(startPage-maxPage>0)?startPage-maxPage:1%>"><i
+									href="${pageContext.request.contextPath}/Community_list.do?list=<%=list.get(0).getCATEGORY_IDX() %>&page=<%=(startPage-maxPage>0)?startPage-maxPage:1%>"><%-- 수정 --%><i
 										class="zmdi zmdi-arrow-left"></i></a></li>
 
 								<%
@@ -177,7 +177,7 @@
 
 
 								<li class="page-item active"><a class="page-link"
-									href="${pageContext.request.contextPath}/Community_list.do?list=<%=list.get(i).getCATEGORY_IDX() %>&page=<%=i+1%>"><%=i + 1%></a></li>
+									href="${pageContext.request.contextPath}/Community_list.do?list=<%=list.get(i).getCATEGORY_IDX() %>&page=<%=i+1%>"><%-- 수정 --%><%=i + 1%></a></li>
 								<%
 									} else {
 								%>
@@ -204,8 +204,8 @@
 			</div>
 		</div>
 	</div>
-	<!-- </section> -->
-	<jsp:include page="/WEB-INF/footer.jsp"></jsp:include>
+</section>
+
 	<script src="http://code.jquery.com/jquery.js"></script>
 	<script>
 		$(document)
@@ -217,7 +217,7 @@
 												.text();
 										$(location).attr(
 												'href',
-												'${pageContext.request.contextPath}/Community_detail.do?num='
+												'${pageContext.request.contextPath}/Community_detail.do?num=' // 수정
 														+ num);
 									});
 							$('#input')
@@ -229,7 +229,7 @@
 												} else {
 													$(location)
 															.attr('href',
-																	'${pageContext.request.contextPath}/Community_input.do')
+																	'${pageContext.request.contextPath}/Community_input.do') // 수정
 												}
 											})
 						});

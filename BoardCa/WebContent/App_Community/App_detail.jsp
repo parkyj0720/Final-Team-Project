@@ -68,7 +68,7 @@
 	<%
 
 	
-		CommunityDto dto = (CommunityDto) request.getAttribute("dto");
+	CommunityDto dto = (CommunityDto) request.getAttribute("dto"); //
 	ArrayList<Heart> heart = (ArrayList<Heart>) request.getAttribute("heart");
 	List<Comment> comment = (List<Comment>) request.getAttribute("comment");
 	BoardList viewname = (BoardList) request.getAttribute("board");
@@ -86,10 +86,9 @@
 	}
 	%>
 
-	<jsp:include page="/WEB-INF/header.jsp"></jsp:include>
 
-	<!-- <section class="content"
-		style="margin-left: auto; margin-right: auto; padding-left: 10%; padding-right: 10%;"> -->
+	 <section class="content">
+		<!-- style="margin-left: auto; margin-right: auto; padding-left: 10%; padding-right: 10%;"> -->
 	<div class="body_scroll" style="max-width: none;">
 		<%-- <div class="row">
 				<div>
@@ -237,7 +236,7 @@
 			</div>
 		</div>
 	</div>
-	<!-- </section>   -->
+</section>  
 
 	<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
 

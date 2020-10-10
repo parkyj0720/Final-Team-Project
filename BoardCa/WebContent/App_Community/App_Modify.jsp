@@ -1,7 +1,10 @@
+<%@page import="javax.xml.crypto.Data"%>
+<%@page import="CommunityModel.CommunityDto"%>
 <%@page import="CommunityModel.BoardList"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html class="no-js " lang="en">
 <head>
@@ -18,18 +21,15 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/stylesheet/assets/plugins/bootstrap-select/css/bootstrap-select.css" />
 <!-- Custom Css -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/stylesheet/assets/css/style.min.css">
-
-<link rel="stylesheet"
-   href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css">
-
 </head>
 <body class="theme-blush">
 	<%
 		ArrayList<BoardList> boardList = (ArrayList<BoardList>) request.getAttribute("boardList");
+		CommunityDto dto = (CommunityDto) request.getAttribute("data");
 	%>
 <script src="http://code.jquery.com/jquery.js"></script>
 
-	<jsp:include page="/WEB-INF/header.jsp" />
+<section class="content">
     <div class="body_scroll">
         <div class="block-header">
 			<div class="col-lg-7 col-md-6 col-sm-12">
@@ -39,7 +39,7 @@
 							class="zmdi zmdi-home"></i> BoardCa</a></li>
 					<li class="breadcrumb-item"><a
 						href="${pageContext.request.contextPath}/Community_main.do">Community</a></li>
-					<li class="breadcrumb-item active">글올리기</li>
+					<li class="breadcrumb-item active">수정하기</li>
 				</ul>
 				<button class="btn btn-primary btn-icon mobile_menu" type="button">
 					<i class="zmdi zmdi-sort-amount-desc"></i>
@@ -53,15 +53,23 @@
                     <div class="card">
                         <div class="body">
                             <div class="form-group">
-                                <input type="text" class="form-control" id="title" placeholder="제목을 입력해주세요" maxlength="200"/>
+                                <input type="text" class="form-control" id="title" placeholder="제목을 입력해주세요" maxlength="200" value="<%=dto.getBRD_TIT()%>"/>
                             </div>
 							<select class="form-control show-tick" id="select">
 								<option>게시판을 선택해주세요.</option>
 								<%
 									for (int i = 0; i < boardList.size(); i++) {
+										int  boardnum = dto.getCATEGORY_IDX();
+										if(boardnum == i+1){
+											%>
+											<option selected="selected"><%=boardList.get(i).getCAT_NAME()%></option>
+											<%
+										}
+										else{
 								%>
 								<option><%=boardList.get(i).getCAT_NAME()%></option>
 								<%
+										}
 									} // end of for
 								%>
 							</select>
@@ -78,19 +86,22 @@
             </div>
         </div>
     </div>
-    	<jsp:include page="/WEB-INF/footer.jsp" />
+</section>
 
 	<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
 	<script>
       $( document ).ready( function() {
+    	  setTimeout(() => {
+    	  asdf();
+			
+		}, 50);
     	  $('#submit').click(function() {
-    		  var select = $('#select').val(); // 게시판
-    		  var title = $('#title').val(); // 제목
-    		  var username = "${userId}"; // 작성자 아이디
-    		  var content = $( '.note-editable' ).html(); // 내용
-   
-    		  
+    		  var select = $('#select').val();
+    		  var title = $('#title').val();
+    		  var username = "${userId}";
+    		  var content = $('.note-editable' ).html();
     		  var title_trim = $.trim($("#title").val());
+    		  var BRD_IDX = <%=dto.getBRD_IDX()%>
     		  var content_sub;
     		  var boardnum;
   			<%for (int i = 0; i < boardList.size(); i++) {%>
@@ -99,7 +110,10 @@
   					console.log(boardnum)
   				}
   				<%}%>
-    		  
+    		  console.log(select);
+    		  console.log(title);
+    		  console.log(username);
+    		  console.log(content);
     		  if(select == "게시판을 선택해주세요."){
     	 		  alert("게시판을 선택해주세요")
     		  }else{
@@ -108,29 +122,50 @@
     			  }
     			  else{
  					var dto = {
+ 							BRD_IDX : BRD_IDX,
  							BRD_TIT: title,
  							CATEGORY_IDX: boardnum,
  							BRD_WRT_ID: username,
  							BRD_CONTENT: content
 							};
 					
-					$.ajax({
-						url: "Community_inputContent.do",
+ 					$.ajax({
+						url: "Community_ModifyContent.do", // 수정
 						type: "POST",
 						datatype: 'application/json',
 						data: dto,
 						success: function() {
-							alert('게시글 작성이 완료되었습니다!');
-							// 게시글 작성후 해당 리스트로
-							$(location).attr('href', '${pageContext.request.contextPath}/Community_list.do?list='+boardnum);
+							alert('수정이 완료되었습니다');
+							$(location).attr('href', '${pageContext.request.contextPath}/Community_list.do?list='+boardnum) // 수정
+							
 						}
 					})
-
     		  }
     			
 		};
       })
       });
+      function asdf() {
+<%-- 		  var entityMap = {
+				  '&': '&amp;',
+				  '<': '&lt;',
+				  '>': '&gt;',
+				  '"': '&quot;',
+				  "'": '&#39;',
+				  '/': '&#x2F;',
+				  '`': '&#x60;',
+				  '=': '%#x3D;'
+		  }
+		  function escapeHtml(text) {
+			return text.replace(/[&<>"'`=\/]/g, function (s) {
+				return entityMap[s];
+			});
+		}
+		  var content = escapeHtml('<%=dto.getBRD_CONTENT()%>'); --%>
+		  var content = '<%=dto.getBRD_CONTENT()%>';
+    	console.log(content);
+    	$('.note-editable').html(content);
+	}
     </script>
 
 
