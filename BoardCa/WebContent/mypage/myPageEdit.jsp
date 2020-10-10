@@ -31,7 +31,10 @@ select {
 </style>
 
 <%
-	MemberDto dto = (MemberDto) request.getAttribute("memInfo");
+MemberDto dto = (MemberDto) request.getAttribute("memInfo");
+String now_pw = dto.getMem_pw();
+String gender = dto.getMem_gender();
+String Age = dto.getMem_age_group();
 %>
 
 <script src="http://code.jquery.com/jquery.js"></script>
@@ -79,7 +82,6 @@ function nickNameCheck(){
 	});		
 }
 
-
 // 바꿀 비밀번호가 일치한지 체크
 	function equalPwCk(){
 		$.ajax({
@@ -97,7 +99,6 @@ function nickNameCheck(){
 			}
 		});
 	}
-	
 
 	function categoryChange(e) {
 		
@@ -207,16 +208,18 @@ function nickNameCheck(){
 	})
 	$(document).ready(function () {
 		$("#chageBtn").on('click', function(){
-			if($('#nowPw').val() == ''){
-				alert('현재 비밀번호를 입력해주세요.');
-			}else if($('#nowPw').val() == <%=dto.getMem_pw()%>){
-				$('Editform').submit();
-			}else if( $('#nowPw').val() != <%=dto.getMem_pw()%> ) {
-				alert('현재 비밀번호와 같지 않습니다.');
-				location.replace("${pageContext.request.contextPath}/myPageEdit.do")
+			if (!$("#nowPw").val()) {
+				event.preventDefault();
+				alert("현재 비밀번호를 입력해주세요.");
+				$("#nowPw").focus();
+				return;
+			}else if($("#nowPw").val()!="<%=now_pw%>"){
+				event.preventDefault();
+				alert("현재 비밀번호가 틀렸습니다. 다시입력해주세요.");
+				$("#nowPw").focus();
 			}
 		})
-	})
+	})	
 </script>
 
 </head>
@@ -394,11 +397,7 @@ function nickNameCheck(){
 										<!-- 성별 체크 라디오 버튼  -->
 										<div class="form-group col-sm-12 margin-auto"
 											style="text-align: left;">
-											<%
-												String gender = dto.getMem_gender();
-											String Age = dto.getMem_age_group();
-											System.out.println(gender);
-											%>
+											
 											<div class="form-group">
 												<div class="radio inlineblock m-r-20" style="margin: 0;">
 													<input type="radio" name="gender" id="male"
@@ -441,7 +440,7 @@ function nickNameCheck(){
 												<div class="radio inlineblock" style="margin: 0;">
 													<input type="radio" name="ageRange" id="four"
 														class="with-gap" value="50대 이상"
-														<%if (Age.equals("50대이사")) {%> checked <%}%>> <label
+														<%if (Age.equals("50대이상")) {%> checked <%}%>> <label
 														for="four">50대 이상</label>
 												</div>
 												<div class="radio inlineblock" style="margin: 0;">
@@ -451,6 +450,7 @@ function nickNameCheck(){
 												</div>
 											</div>
 										</div>
+
 										<div class="col-md-12 center" style="padding: 0;">
 											<button class="btn btn-primary bg-orange" type="button"
 												style="width: inherit;" data-toggle="modal"
@@ -469,9 +469,8 @@ function nickNameCheck(){
 														</div>
 														<div class="modal-body">
 															<h3>정보를 변경하시겠습니까?</h3>
-															<label>현재 비밀번호를 입력해주세요</label> <input type="password"
-																class="form-control" id="nowPw">
-
+															<label>현재 비밀번호를 입력해주세요</label> 
+															<input type="password" class="form-control" name="nowPw" id="nowPw">
 														</div>
 														<div class="modal-footer">
 															<button type="button" class="btn btn-secondary"
