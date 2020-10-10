@@ -166,8 +166,8 @@ public class MainActivity extends AppCompatActivity {
             nickname = getIntent().getStringExtra("nickname");
         if(getIntent().getStringExtra("email") != null)
             email = getIntent().getStringExtra("email");
-        if(getIntent().getStringExtra("id") != null)
-            id = getIntent().getStringExtra("id");
+        if(getIntent().getStringExtra("BRD_WRT_ID") != null)
+            id = getIntent().getStringExtra("BRD_WRT_ID");
         if(getIntent().getStringExtra("age") != null)
             age = getIntent().getStringExtra("age");
         if(getIntent().getStringExtra("mf") != null)
@@ -175,7 +175,7 @@ public class MainActivity extends AppCompatActivity {
 
         Log.e("nickname : ", nickname + "");
         Log.e("email : ", email + "");
-        Log.e("id : ", id + "");
+        Log.e("MEM_NICKNAME : ", id + "");
         Log.e("age : ", age + "");
         Log.e("mf : ", mf + "");
 

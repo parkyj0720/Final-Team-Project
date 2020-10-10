@@ -1,6 +1,6 @@
 <resources>
 
-    <string name="app_name">BoardCa_App</string>
+    <string name="app_name">BoardCa</string>
     <string name="title_activity_login">Sign in</string>
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
@@ -268,4 +268,5 @@
     <string name="max_cnt">( 최대 15개 )</string>
 
     <string name="hide_red_text">비밀번호는 특수문자를 포함하여 8자리 이상</string>
+    <string name="red_nick">닉네임 중복!!!</string>
 </resources>

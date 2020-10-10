@@ -95,7 +95,7 @@ public class SignUpActivity extends AppCompatActivity {
                 Log.v("MEM_GENDER", MEM_GENDER);
                 Log.v("MEM_AGE_GROUP", MEM_AGE_GROUP);
 
-                if (MEM_ID != "" && MEM_PW != "" && pw2 != "" && MEM_EMAIL != "") {
+                if (MEM_ID != "" && MEM_PW != "" && pw2 != "" && MEM_EMAIL != "" && MEM_NICKNAME != "") {
 
                     // 아이디, 닉네임 db와 비교해서 일치 여부 확인
                     String result = "";
@@ -152,17 +152,21 @@ public class SignUpActivity extends AppCompatActivity {
                     }
                 } else {
                     Toast.makeText(SignUpActivity.this, "빈 부분을 적어주세요.", Toast.LENGTH_SHORT).show();
-                    if (MEM_ID.equals("")) {
-                        sign_id.requestFocus();
+                    if (MEM_NICKNAME.equals("")) {
+                        sign_nick.requestFocus();
                     } else {
-                        if (MEM_PW.equals("")) {
-                            password01.requestFocus();
+                        if (MEM_ID.equals("")) {
+                            sign_id.requestFocus();
                         } else {
-                            if (pw2.equals("")) {
-                                password02.requestFocus();
+                            if (MEM_PW.equals("")) {
+                                password01.requestFocus();
                             } else {
-                                if (MEM_EMAIL.equals("")) {
-                                    sign_email.requestFocus();
+                                if (pw2.equals("")) {
+                                    password02.requestFocus();
+                                } else {
+                                    if (MEM_EMAIL.equals("")) {
+                                        sign_email.requestFocus();
+                                    }
                                 }
                             }
                         }
@@ -246,7 +250,18 @@ public class SignUpActivity extends AppCompatActivity {
                 if (result.equals("true")) {
                     Toast.makeText(SignUpActivity.this, "아이디 사용가능", Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(SignUpActivity.this, "아이디 중복!!!!", Toast.LENGTH_SHORT).show();
+                    switch (result) {
+                        case "false1":
+                            Toast.makeText(SignUpActivity.this, "아이디 중복!!!!", Toast.LENGTH_SHORT).show();
+                            break;
+                        case "false2":
+                            if (MEM_NICKNAME.equals("")) {
+                                Toast.makeText(SignUpActivity.this, "닉네임을 입력하세요.", Toast.LENGTH_SHORT).show();
+                            } else {
+                                Toast.makeText(SignUpActivity.this, "닉네임 중복!!!!", Toast.LENGTH_SHORT).show();
+                            }
+                            break;
+                    }
                 }
             }
         });
@@ -262,7 +277,7 @@ public class SignUpActivity extends AppCompatActivity {
         protected String doInBackground(String... strings) {
             try {
                 String str;
-                URL url = new URL("http://192.168.219.108:8088/BoardCa/app_sign.do");
+                URL url = new URL("http://192.168.219.100:8088/BoardCa/app_sign.do");
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
                 conn.setRequestMethod("POST");
@@ -302,7 +317,7 @@ public class SignUpActivity extends AppCompatActivity {
         protected String doInBackground(String... strings) {
             try {
                 String str;
-                URL url = new URL("http://192.168.219.108:8088/BoardCa/app_nomal_sign.do");
+                URL url = new URL("http://192.168.219.100:8088/BoardCa/app_nomal_sign.do");
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
                 conn.setRequestMethod("POST");

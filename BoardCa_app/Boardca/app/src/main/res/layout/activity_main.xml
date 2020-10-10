@@ -25,6 +25,7 @@
         android:layout_width="10dp"
         android:layout_height="10dp"
         android:id="@+id/logoutbtn"
+        android:visibility="gone"
         tools:ignore="MissingConstraints"
         android:text="로그아웃용">
 

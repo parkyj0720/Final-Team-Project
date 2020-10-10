@@ -223,9 +223,9 @@ public class AppDao {
 				if (rs.next()) {
 					if (rs.getString("MEM_NICKNAME").equals(MEM_NICKNAME)) { // 이미 닉네임이 있는 경우
 						returns = "false2";
-						if (MEM_NICKNAME.equals("")) {
-							returns = "true";
-						}
+//						if (MEM_NICKNAME.equals("")) {
+//							returns = "true";
+//						}
 					}
 				}
 			}

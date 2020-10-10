@@ -263,6 +263,7 @@ public class LoginActivity extends AppCompatActivity {
                 if (result.equals("true")) {
                     Toast.makeText(LoginActivity.this, id + "님! 로그인 성공!", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                    intent.putExtra("BRD_WRT_ID", usernameEditText.getText() + "");
                     //intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK); //새로운 테스크에 작동시키기.
                     startActivity(intent);
                     overridePendingTransition(0, 0);
@@ -476,7 +477,7 @@ public class LoginActivity extends AppCompatActivity {
         protected String doInBackground(String... strings) {
             try {
                 String str;
-                URL url = new URL("http://192.168.219.108:8088/BoardCa/app_input.do");
+                URL url = new URL("http://192.168.219.100:8088/BoardCa/app_input.do");
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
                 conn.setRequestMethod("POST");
@@ -515,7 +516,7 @@ public class LoginActivity extends AppCompatActivity {
         protected String doInBackground(String... strings) {
             try {
                 String str;
-                URL url = new URL("http://192.168.219.108:8088/BoardCa/app_idpw.do");
+                URL url = new URL("http://192.168.219.100:8088/BoardCa/app_idpw.do");
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
                 conn.setRequestMethod("POST");
