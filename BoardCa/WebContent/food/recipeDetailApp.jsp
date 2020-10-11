@@ -31,8 +31,6 @@
 <script src="http://code.jquery.com/jquery.js"></script>
 
 <% 
-	request.setAttribute("App", "App");
-
 	CDto dto = (CDto)request.getAttribute("dto");
 	MemberDto mDto = null;
 	if(request.getAttribute("detailCheck") != null){
@@ -65,14 +63,14 @@
 	$(document).ready(function(){
 		
 		$('#modifyBtn').on('click',function(){
-			$('#btnForm').attr('action','${pageContext.request.contextPath}/cModify.do?no='+<%=dto.getREC_IDX()%>);
+			$('#btnForm').attr('action','${pageContext.request.contextPath}/cModifyApp.do?no='+<%=dto.getREC_IDX()%>);
 
 			$('#btnForm').submit();
 		});
 		
 
 		$('#deleteBtn').on('click',function(){
-			$('#btnForm').attr('action','${pageContext.request.contextPath}/cDelete.do?no='+<%=dto.getREC_IDX()%>);
+			$('#btnForm').attr('action','${pageContext.request.contextPath}/cDeleteApp.do?no='+<%=dto.getREC_IDX()%>);
 			yesno = window.confirm("정말 삭제하시겠습니까?");
 			if(yesno == 1){
 				$('#btnForm').submit();				
@@ -122,10 +120,10 @@
 					<h2>RecipeDetail</h2>
 					<ul class="breadcrumb">
 						<li class="breadcrumb-item"><a
-							href="${pageContext.request.contextPath}/main.do"><i
+							href="${pageContext.request.contextPath}/mainApp.do"><i
 								class="zmdi zmdi-home"></i> BoardCa</a></li>
 						<li class="breadcrumb-item"><a
-							href="${pageContext.request.contextPath}/cListAll.do">RecipeDetail</a></li>
+							href="${pageContext.request.contextPath}/cListAllApp.do">RecipeDetail</a></li>
 						<li class="breadcrumb-item active">RecipeDetail</li>
 					</ul>
 				</div>
@@ -261,7 +259,7 @@
 
 
 						<div class="body">
-							<form id="reviewForm" class="row comment-form mt-2" action="reviewInsert.do" method="post">
+							<form id="reviewForm" class="row comment-form mt-2" action="reviewInsertApp.do" method="post">
 								<div class="col-xl-12 col-lg-12	col-md-12">
 									<div class="form-group">
 										<textarea rows="4" class="form-control no-resize"
@@ -297,7 +295,7 @@
 										<div class="text-box " style="width: auto;">
 											<h5 style="display:inline-block;"><%=reviewDto.getMemberDto().getMem_nickname() %></h5><span style="margin-left:10px;" class="comment-date">작성 <%=reviewDto.getReviewDto().getRev_sysdate() %></span>
 											<%if(session.getAttribute("userIdx")!=null && Integer.parseInt(session.getAttribute("userIdx")+"") == reviewDto.getReviewDto().getMem_idx()){ %>
-											<a href="${pageContext.request.contextPath}/deleteReview.do?no=<%=dto.getREC_IDX()%>&del=<%=reviewDto.getReviewDto().getRev_idx() %>">삭제</a>
+											<a href="${pageContext.request.contextPath}/deleteReviewApp.do?no=<%=dto.getREC_IDX()%>&del=<%=reviewDto.getReviewDto().getRev_idx() %>">삭제</a>
 											<%} %>
 											<p><%=reviewDto.getReviewDto().getRev_content() %></p>
 										</div>

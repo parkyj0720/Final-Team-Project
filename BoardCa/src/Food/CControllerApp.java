@@ -27,7 +27,7 @@ import com.oreilly.servlet.multipart.FileRenamePolicy;
 import Member.MemberDto;
 
 @Controller
-public class CController {
+public class CControllerApp {
 	@Autowired
 	private ModelAndView mv;
 	 
@@ -35,7 +35,7 @@ public class CController {
 	private CDao dao;
 	
 	// 레시피 전체 목록 맵핑
-	@RequestMapping("/cListAll.do")
+	@RequestMapping("/cListAllApp.do")
 	public ModelAndView getList(HttpServletRequest req, HttpSession session) {
 		// 페이지 기본값
 		int page= 1;
@@ -65,12 +65,12 @@ public class CController {
 		
 		// 레시피 목록 받아오기
 		mv.addObject("cList",dao.getList());
-		mv.setViewName("/food/food.jsp?page="+page);
+		mv.setViewName("/food/foodApp.jsp?page="+page);
 		return mv;
 	}
 	
 	// 상세 페이지 맵핑
-	@RequestMapping("/cDetail.do")
+	@RequestMapping("/cDetailApp.do")
 	public ModelAndView detail(HttpServletRequest req, HttpSession session) {
 		
 		// 레시피 게시글 번호 받아오기
@@ -93,12 +93,12 @@ public class CController {
 		}
 		
 		// 레시피 상세정보 페이지
-		mv.setViewName("/food/recipeDetail.jsp");
+		mv.setViewName("/food/recipeDetailApp.jsp");
 		return mv;
 	}
 	
 	// 검색 기능
-	@RequestMapping("/cSearch.do")
+	@RequestMapping("/cSearchApp.do")
 	public ModelAndView search(HttpServletRequest req, HttpSession session) {
 		int page= 1;
 		if(req.getParameter("page") != null)
@@ -121,7 +121,7 @@ public class CController {
 		// 검색한 단어에 해당하는 목록 받아서 저장
 		mv.addObject("cList",dao.getSearchList(search));
 		mv.addObject("inputSearch",search);
-		mv.setViewName("/food/food.jsp?page="+page);
+		mv.setViewName("/food/foodApp.jsp?page="+page);
 		return mv;
 	}
 	
@@ -133,7 +133,7 @@ public class CController {
 	}
 	
 	// 레시피 수정 페이지 이동
-	@RequestMapping("/cModify.do")
+	@RequestMapping("/cModifyApp.do")
 	public ModelAndView modify(HttpServletRequest req) {
 		// 레시피 글 번호
 		int no = Integer.parseInt(req.getParameter("no"));
@@ -142,22 +142,22 @@ public class CController {
 		CDto dto = dao.detail(no);
 		
 		mv.addObject("dto", dto);
-		mv.setViewName("/food/modify_recipe.jsp?no="+no);
+		mv.setViewName("/food/modify_recipeApp.jsp?no="+no);
 		return mv;
 	}
 	
 	// 삭제 기능
-	@RequestMapping("/cDelete.do")
+	@RequestMapping("/cDeleteApp.do")
 	public ModelAndView delete(HttpServletRequest req) {
 		
 		int cnt = dao.deleteRecipe(Integer.parseInt(req.getParameter("no")));
 		
-		mv.setViewName("redirect:/cListAll.do?page=1");
+		mv.setViewName("redirect:/cListAllApp.do?page=1");
 		return mv;
 	}
 	
 	// 한줄평 등록
-	@RequestMapping("/reviewInsert.do")
+	@RequestMapping("/reviewInsertApp.do")
 	public ModelAndView review(HttpServletRequest req, HttpSession session) {
 		
 		int no = Integer.parseInt(req.getParameter("no"));
@@ -166,12 +166,12 @@ public class CController {
 		
 		dao.insertReview(dto);
 		
-		mv.setViewName("redirect:/cDetail.do?no="+no);
+		mv.setViewName("redirect:/cDetailApp.do?no="+no);
 		return mv;
 	}
 	
 	// 한줄평 삭제
-	@RequestMapping("/deleteReview.do")
+	@RequestMapping("/deleteReviewApp.do")
 	public ModelAndView deleteReview(HttpServletRequest req, HttpSession session) {
 		
 		int no = Integer.parseInt(req.getParameter("no"));
@@ -179,12 +179,12 @@ public class CController {
 		
 		dao.deleteReview(del);
 		
-		mv.setViewName("redirect:/cDetail.do?no="+no);
+		mv.setViewName("redirect:/cDetailApp.do?no="+no);
 		return mv;
 	}
 
 	// 즐겨찾기추가 ajax
-	@RequestMapping("/starInsert.do")
+	@RequestMapping("/starInsertApp.do")
 	public ModelAndView starInsert(HttpServletRequest req, HttpSession session) {
 		int no = Integer.parseInt(req.getParameter("no"));
 		StarDto dto = new StarDto(0, "R", no, 0, Integer.parseInt(session.getAttribute("userIdx")+""));
@@ -194,7 +194,7 @@ public class CController {
 	}
 	
 	// 즐겨찾기삭제 ajax
-	@RequestMapping("/starDelete.do")
+	@RequestMapping("/starDeleteApp.do")
 	public ModelAndView starDelete(HttpServletRequest req, HttpSession session) {
 		int no = Integer.parseInt(req.getParameter("no"));
 		StarDto dto = new StarDto(0, "R", no, 0, Integer.parseInt(session.getAttribute("userIdx")+""));
@@ -204,7 +204,7 @@ public class CController {
 	}
 		
 	// 글 썼을때 정보 저장 form에서 multipart/form-data 형식으로 데이터를 보내줌
-	@RequestMapping("/cUpload.do")
+	@RequestMapping("/cUploadApp.do")
 	public ModelAndView upload(HttpServletRequest req, HttpServletResponse res) throws IOException {
 		
 		// 글쓰기시 크롤링으로 받아오는게 아니라 크롤링관련 정보 공백
@@ -255,12 +255,12 @@ public class CController {
 			System.out.println("일반 전송 form 입니다.");
 		}
 		
-		mv.setViewName("redirect:/food/food.jsp?page=1");
+		mv.setViewName("redirect:/food/foodApp.jsp?page=1");
 		return mv;
 	}
 	
 	// 글쓰기중 이미지이름 중복 검사 ajax로 호출
-	@RequestMapping("/cFileNameCheck.do")
+	@RequestMapping("/cFileNameCheckApp.do")
 	public ModelAndView fileNameCheck(HttpServletRequest req, HttpServletResponse res) throws IOException {
 		
 		ServletContext context = req.getServletContext();
@@ -284,7 +284,7 @@ public class CController {
 	// 파이썬 파일 실행을 위한 객체
 	private static PythonInterpreter intPre;
 	
-	@RequestMapping("/crawling.do")
+	@RequestMapping("/crawlingApp.do")
 	public ModelAndView crawling(HttpServletRequest req, HttpServletResponse res) throws IOException {
 	    try{
 	    		// 파이썬 관련 경로 설정 등
@@ -313,7 +313,7 @@ public class CController {
 		PyObject pyobj = pyFunction.__call__(new PyInteger(a), new PyInteger(b));
 		//System.out.println(pyobj.toString());
 		
-		mv.setViewName("/cListAll.do?page=1");
+		mv.setViewName("/cListAllApp.do?page=1");
 		return mv;
 	}
 }

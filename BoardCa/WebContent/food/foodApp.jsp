@@ -48,8 +48,6 @@ white-space: nowrap;
 </head>
 
 <%
-	request.setAttribute("App", "App");
-
 	// 관리자인지 확인하기 위한 멤버정보
 	MemberDto mDto = null;
 	if(request.getAttribute("detailCheck") != null){
@@ -83,7 +81,7 @@ white-space: nowrap;
 	if(request.getParameter("page") != null){
 		now_page = Integer.parseInt(request.getParameter("page"));
 		if(now_page <= 0)
-			response.sendRedirect("${pageContext.request.contextPath}/cListAll.do?page=1");
+			response.sendRedirect("${pageContext.request.contextPath}/cListAllApp.do?page=1");
 		itemCount = (Integer.parseInt(request.getParameter("page")) -1) * listNum;
 	}
 	
@@ -179,7 +177,7 @@ request.getParameter("test");
 				$(btn).removeClass('bg-red');
 				$.ajax({
 					type : "get",
-					url : "/BoardCa/starDelete.do",
+					url : "/BoardCa/starDeleteApp.do",
 					data : {no : no},
 					success : function test(a){
 						
@@ -197,7 +195,7 @@ request.getParameter("test");
 				$(btn).parent().css('visibility','visible');
 				$.ajax({
 					type : "get",
-					url : "/BoardCa/starInsert.do",
+					url : "/BoardCa/starInsertApp.do",
 					data : {no : no},
 					success : function test(a){
 						
@@ -227,11 +225,11 @@ request.getParameter("test");
 	
 <section class="content file_manager"style="margin: auto;">
 	<div class="search_div" style="position:relative;">
-	<form action="${pageContext.request.contextPath}/cSearch.do" method="POST" style="display:inline-block">
+	<form action="${pageContext.request.contextPath}/cSearchApp.do" method="POST" style="display:inline-block">
 		<input type="text" size="34" name="inputSearch">
 		<input type="submit" value="검색" name="inputSearchButton" style="margin-left:-15px">
 	</form>
-	<form action="${pageContext.request.contextPath}/cWrite.do" method="POST" style="display:inline-block; position:absolute; right:16px; visibility: <%=(mDto != null && mDto.getMem_mng_gwonhan() == 1)?"visible":"hidden"%>;">
+	<form action="${pageContext.request.contextPath}/cWriteApp.do" method="POST" style="display:inline-block; position:absolute; right:16px; visibility: <%=(mDto != null && mDto.getMem_mng_gwonhan() == 1)?"visible":"hidden"%>;">
 		<input type="submit" value="레시피추가" name="inputRecipe">
 	</form>
 	</div>
@@ -279,7 +277,7 @@ request.getParameter("test");
                                                     </button>
                                                 </div>
                                                 <%} %>
-                                                <a href="${pageContext.request.contextPath}/cDetail.do?no=<%=dto.getREC_IDX() %>">
+                                                <a href="${pageContext.request.contextPath}/cDetailApp.do?no=<%=dto.getREC_IDX() %>">
                                                     <div class="icon" >
                                                         <img src="<%=(!dto.getREC_MAIN_IMG().equals(""))?dto.getREC_MAIN_IMG():request.getContextPath()+"/upload/"+dto.getREC_IMG_NAME() %>" height="150" >
                                                     </div>
@@ -299,15 +297,15 @@ request.getParameter("test");
             </div>
             <div class="num_btn_div">
             	<ul class="pagination pagination-primary m-b-0">
-                     <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/<%=(search.equals(""))?"cListAll":"cSearch"%>.do?page=<%=(startList-maxList>0)?startList-maxList:1 %>&inputSearch=<%=search%>"><i class="zmdi zmdi-arrow-left"></i></a></li>
+                     <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/<%=(search.equals(""))?"cListAll":"cSearch"%>App.do?page=<%=(startList-maxList>0)?startList-maxList:1 %>&inputSearch=<%=search%>"><i class="zmdi zmdi-arrow-left"></i></a></li>
                      <!-- class = "active" -->
                      <% for(int i=startList;i<=endList;i++){
                      	if(i>listCount)
                      		break;
                      %>
-                     <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/<%=(search.equals(""))?"cListAll":"cSearch"%>.do?page=<%=i%>&inputSearch=<%=search%>"><%=i %></a></li>
+                     <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/<%=(search.equals(""))?"cListAll":"cSearch"%>App.do?page=<%=i%>&inputSearch=<%=search%>"><%=i %></a></li>
                      <%} %>
-                     <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/<%=(search.equals(""))?"cListAll":"cSearch"%>.do?page=<%=(endList+1>listCount)?listCount:endList+1%>&inputSearch=<%=search%>"><i class="zmdi zmdi-arrow-right"></i></a></li>
+                     <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/<%=(search.equals(""))?"cListAll":"cSearch"%>App.do?page=<%=(endList+1>listCount)?listCount:endList+1%>&inputSearch=<%=search%>"><i class="zmdi zmdi-arrow-right"></i></a></li>
                   </ul>
             </div>
         </div>

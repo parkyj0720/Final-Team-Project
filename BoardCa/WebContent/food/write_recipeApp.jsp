@@ -25,10 +25,7 @@
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
-
-<%
-	request.setAttribute("App", "App");
-%>
+	
 <script src="http://code.jquery.com/jquery.js"></script>
 <script>
 	$('#like').text();
@@ -75,7 +72,7 @@
 		var formData = new FormData($('#file_form')[0]);
 		$.ajax({
 			type : "post",
-			url : "/BoardCa/cFileNameCheck.do",
+			url : "/BoardCa/cFileNameCheckApp.do",
 			data : formData,
 			contentType:false,
 			processData:false,
@@ -380,17 +377,17 @@
 					<h2>RecipeDetail</h2>
 					<ul class="breadcrumb">
 						<li class="breadcrumb-item"><a
-							href="${pageContext.request.contextPath}/main.do"><i
+							href="${pageContext.request.contextPath}/mainApp.do"><i
 								class="zmdi zmdi-home"></i> BoardCa</a></li>
 						<li class="breadcrumb-item"><a
-							href="${pageContext.request.contextPath}/cListAll.do">RecipeDetail</a></li>
+							href="${pageContext.request.contextPath}/cListAllApp.do">RecipeDetail</a></li>
 						<li class="breadcrumb-item active">RecipeDetail</li>
 					</ul>
 				</div>
 			</div>
 		</div>
 	</div>
-	<form id="write_form" name="form" action="${pageContext.request.contextPath}/cUpload.do" method="post" enctype="multipart/form-data">
+	<form id="write_form" name="form" action="${pageContext.request.contextPath}/cUploadApp.do" method="post" enctype="multipart/form-data">
 		<div class="container-fluid">
 			<div class="row clearfix">
 				<div class="col-lg-12">
@@ -482,7 +479,7 @@
 		</div>
 		<input id="write_btn" type="button" value="글쓰기">
 	</form>
-	<form id="file_form" action="${pageContext.request.contextPath}/cFileNameCheck.do" method="post" enctype="multipart/form-data" style="visibility: hidden;">
+	<form id="file_form" action="${pageContext.request.contextPath}/cFileNameCheckApp.do" method="post" enctype="multipart/form-data" style="visibility: hidden;">
 	</form>
 
 
