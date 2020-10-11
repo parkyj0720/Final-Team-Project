@@ -35,9 +35,11 @@
 if (request.getParameter("inputSearch") != null) {
 	search = request.getParameter("inputSearch");
 }
+// 리스트 목록
+List<GameDto> list = (List<GameDto>) request.getAttribute("gameList");
 
-// 최대 보일 리스트 개수
-int maxList = 10;
+//최대 보일 페이지 개수
+int maxList = 5;
 request.setAttribute("maxList", maxList);
 
 // 페이지당 리스트 개수
@@ -49,13 +51,13 @@ int now_page = 1;
 int itemCount = 0;
 
 // 리스트 목록
-List<GameDto> list = (List<GameDto>) request.getAttribute("gameList");
+System.out.println("리스트 개수: " + list.size());
 
 // 보여줄 리스트 배열 번호 (페이지번호 * 페이지에 보여주는 리스트 개수)
 if (request.getParameter("page") != null) {
 	now_page = Integer.parseInt(request.getParameter("page"));
 	if (now_page <= 0)
-		response.sendRedirect("${pageContext.request.contextPath}/gameMain.do?page=1");
+		response.sendRedirect("${pageContext.request.contextPath}/cListAll.do?page=1");
 	itemCount = (Integer.parseInt(request.getParameter("page")) - 1) * listNum;
 }
 
@@ -71,10 +73,7 @@ int endList = (now_page % maxList == 0) ? ((now_page / maxList) - 1) : (now_page
 endList = endList * maxList + maxList;
 %>
 
-
-
 <script>
-
 	function Request() {
 		var requestParam = "";
 
@@ -98,6 +97,31 @@ endList = endList * maxList + maxList;
 			return requestParam;
 		}
 	}
+	var request = new Request();
+	var page = request.getParameter("page");
+	var maxList = <%=request.getAttribute("maxList") %>
+	$('document').ready(function(){
+		if(page <= 0)
+			page = 1;
+		if(page >= maxList+1)
+		{
+			page = page % maxList;
+			if(page == 0)
+				page = 10;
+		}
+		// 하단 목록 버튼 사이즈 조절 및 위치조정 
+		var wd = 0;
+		if($('.page-item').length >= maxList+2)
+		{
+			wd = 40 * (maxList+2) - 40;
+		}else{
+			wd = 40 * $('.page-item').length - 40;
+		}
+		$('.num_btn_div').css('width',wd+'px');
+		
+		// 버튼 눌림 효과클래스 추가
+		$('.page-item').eq(page).addClass('active');
+	});
 </script>
 
 <body class="ls-closed ls-toggle-menu ">
@@ -137,22 +161,22 @@ endList = endList * maxList + maxList;
 									</div>
 								</div>
 								<div class="row clearfix">
-									<%
-										
-									%>
 
 									<%
-										for (int i = 0; i < list.size(); i++) {
+										for (int i = itemCount; i <list.size(); i++) {
+										if (i > itemCount+listNum-1)
+											break;
 										GameDto dto = list.get(i);
 									%>
 									<div class="col-lg-3 col-md-4 col-sm-12">
 										<div class="card">
 											<div class="file">
 
-												<a href="${pageContext.request.contextPath}/gameDetail.do?no=<%=dto.getGAME_IDX() %>">
+												<a
+													href="${pageContext.request.contextPath}/gameDetail.do?no=<%=dto.getGAME_IDX() %>">
 													<div class="icon">
 														<img src="<%=dto.getGAME_IMG()%>">
-													</div >
+													</div>
 													<div class="file-name">
 														<h5 class="m-b-5 text-muted"><%=dto.getGAME_TIT()%></h5>
 													</div>
@@ -168,6 +192,30 @@ endList = endList * maxList + maxList;
 						</div>
 					</div>
 				</div>
+			</div>
+		</div>
+		<div class="card">
+			<div class="body">
+				<ul class="pagination pagination-primary m-b-0">
+					<li class="page-item"><a class="page-link"
+						href="${pageContext.request.contextPath}/<%=(search.equals(""))?"cListAll":"cSearch"%>.do?page=<%=(startList-maxList>0)?startList-maxList:1 %>&inputSearch=<%=search%>"><i
+							class="zmdi zmdi-arrow-left"></i></a></li>
+					<!-- class = "active" -->
+
+					<%
+						for (int i = startList - 1; i < endList; i++) {
+						if (i >= listCount)
+							break;
+					%>
+					<li class="page-item"><a class="page-link"
+						href="${pageContext.request.contextPath}/<%=(search.equals(""))?"gameMain":"gameSearch"%>.do?page=<%=i%>&inputSearch=<%=search%>"><%=i%></a></li>
+					<%
+						}
+					%>
+					<li class="page-item"><a class="page-link"
+						href="${pageContext.request.contextPath}/<%=(search.equals(""))?"gameMain":"gameSearch"%>.do?page=<%=(endList+1>listCount)?listCount:endList+1%>&inputSearch=<%=search%>"><i
+							class="zmdi zmdi-arrow-right"></i></a></li>
+				</ul>
 			</div>
 		</div>
 	</div>
