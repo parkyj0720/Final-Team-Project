@@ -44,6 +44,7 @@ import com.example.boardca_app.ui.home.HomeFragment;
 
 import com.example.boardca_app.ui.login.LoginActivity;
 import com.example.boardca_app.ui.recipe.RecipeFragment;
+import com.example.boardca_app.ui.setting.SettingsActivity;
 import com.example.boardca_app.ui.web_view.Web_Fragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -145,22 +146,56 @@ public class MainActivity extends AppCompatActivity {
         overridePendingTransition(0, 0);
     }
 
+    //위에 설정 메뉴 아이콘 생성
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.setting_main, menu);
+        return true;
+    }
+    //설정 아이콘
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.action_settings) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(context);
+            builder.setTitle("로그아웃 하시겠습니까?");
+
+
+            builder.setPositiveButton("네", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    onClickLogout();
+                }
+            });
+            builder.setNegativeButton("아니요", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    builder.setCancelable(false);
+                }
+            });
+            builder.show();
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button logoutbtn = findViewById(R.id.logoutbtn);
+//
+//        Button logoutbtn = findViewById(R.id.logoutbtn);
+//        logoutbtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                onClickLogout();
+//            }
+//        });
 
 
-        logoutbtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-                onClickLogout();
-            }
-        });
 
         if(getIntent().getStringExtra("nickname") != null)
             nickname = getIntent().getStringExtra("nickname");
@@ -260,14 +295,13 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public boolean onNavigationItemSelected(MenuItem item){
+    public boolean monNavigationItemSelected(MenuItem item){
 
         int id = item.getItemId();
 
         if (id == R.id.nav_inquiries) {
-            Toast.makeText(this, "문의하기", Toast.LENGTH_LONG).show();
-//            Intent Intent = new Intent(this, Web_Fragment.class);
-//            startActivity(Intent);
+            Toast.makeText(this, "버튼", Toast.LENGTH_LONG).show();
+
         } else if (id == R.id.nav_mypage) {
             Toast.makeText(this, "마이페이지", Toast.LENGTH_LONG).show();
         } else if (id == R.id.nav_hearts) {
