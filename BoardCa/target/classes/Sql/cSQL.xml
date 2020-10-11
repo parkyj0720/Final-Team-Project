@@ -148,6 +148,15 @@
 	select * from STAR_T where MEM_IDX = #{mem_idx}
 </select>
 
+<select id="starDetail" resultType="Food.StarDto" parameterType="Food.StarDto">
+	select * from STAR_T
+	where MEM_IDX = #{mem_idx} and REC_IDX = #{rec_idx}
+</select>
+
+<select id="starSize" resultType="Food.StarDto" parameterType="Food.StarDto">
+	select * from STAR_T where REC_IDX = #{rec_idx}
+</select>
+
 <insert id="starInsert" parameterType="Food.StarDto">
 	insert into STAR_T (STAR_IDX,
 	STAR_CATEGORY,

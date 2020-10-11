@@ -83,6 +83,20 @@ public class CDao {
 		return list;
 	}
 	
+	// 즐겨찾기 상세페이지
+	public StarDto starDetail(StarDto dto){
+		System.out.println("starDetail>> ");
+		StarDto newDto = mysqlSession.selectOne("cXml.starDetail", dto);
+		return newDto;
+	}
+	
+	// 즐겨찾기한 유저 수
+		public List<StarDto> starSize(StarDto dto){
+			System.out.println("starList>> ");
+			List<StarDto> list = mysqlSession.selectList("cXml.starSize", dto);
+			return list;
+		}
+	
 	// 즐겨찾기추가
 	public int starInsert(StarDto dto){
 		System.out.println("starInsert>> ");

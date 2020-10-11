@@ -78,7 +78,20 @@ public class CController {
 		
 		// 가져온 번호에 대한 레시피 상세정보
 		CDto dto = dao.detail(r_board_no);
-		mv.addObject("dto",dto);
+		mv.addObject("dto", dto);
+		
+		
+		int userIdx = 0;
+		if(session.getAttribute("userIdx") != null) {
+			userIdx = Integer.parseInt(session.getAttribute("userIdx")+"");
+		}
+		
+		StarDto sDto = new StarDto(0, "R", r_board_no, 0, userIdx);
+		StarDto starDto = dao.starDetail(sDto);
+		mv.addObject("starDto", starDto);
+		
+		List<StarDto> starList = dao.starSize(sDto);
+		mv.addObject("starList", starList);
 		
 		// 댓글 리스트
 		List<ReviewAndMember> reviewList = dao.reviewList(r_board_no);
@@ -89,7 +102,7 @@ public class CController {
 			String userId = (String) session.getAttribute("userId");
 			MemberDto mDto = dao.memberInfo(userId);
 			System.out.println(mDto);
-			mv.addObject("detailCheck",mDto);
+			mv.addObject("detailCheck", mDto);
 		}
 		
 		// 레시피 상세정보 페이지
