@@ -292,6 +292,7 @@ public class LoginActivity extends AppCompatActivity {
                     Toast.makeText(LoginActivity.this, id + "님! 로그인 성공!", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                     intent.putExtra("BRD_WRT_ID", usernameEditText.getText() + "");
+                    intent.putExtra("MEM_ID", usernameEditText.getText() + "");
 
                     //intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK); //새로운 테스크에 작동시키기.
                     startActivity(intent);

@@ -66,7 +66,6 @@
 </head>
 <body>
 	<%
-
 	
 	CommunityDto dto = (CommunityDto) request.getAttribute("dto"); //
 	ArrayList<Heart> heart = (ArrayList<Heart>) request.getAttribute("heart");
@@ -147,8 +146,9 @@
 					if(session.getAttribute("userIdx")==null){
 						usernum=0;
 					}else{
-						usernum = (int)session.getAttribute("userIdx");
+						usernum = (int)session.getAttribute("userIdx");						
 					}
+					
 					boolean tf = false;
 					for (int i = 0; i < heart.size(); i++) {
 						Heart h = heart.get(i);

@@ -18,7 +18,7 @@ import com.example.boardca_app.R;
 public class FragtipBoard extends Fragment {
 
     private ViewGroup viewGroup;
-
+    public String MEM_ID = "MEM_ID";
 
     @Nullable
     @Override
@@ -29,9 +29,14 @@ public class FragtipBoard extends Fragment {
 
         webView.getSettings().setJavaScriptEnabled(true);
 
+        if(getArguments().getString("id") != null) {
+            MEM_ID = getArguments().getString("id");// 전달한 key 값
+            Log.e("bbbbbbbb", MEM_ID);
+        }
+
         webView.setWebChromeClient(new WebChromeClient());
         webView.setWebViewClient(new FragtipBoard.WebViewClientClass());
-        webView.loadUrl("http://192.168.219.100:8088/BoardCa/App_list.do?list=2");
+        webView.loadUrl("http://192.168.219.100:8088/BoardCa/App_list.do?list=2&MEM_ID=" + MEM_ID);
 
         return viewGroup;
 
