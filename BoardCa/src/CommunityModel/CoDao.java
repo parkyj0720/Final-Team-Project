@@ -94,7 +94,7 @@ public class CoDao {
 	}
 	
 	public void delete_comment(int num) {
-		mysqlSession.delete("CoXml.delete_content_heart", num);
+		mysqlSession.delete("CoXml.delete_content_comments", num);
 	}
 
 	public void modify(CommunityDto dto) {

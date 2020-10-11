@@ -292,7 +292,6 @@ public class CommunityController {
 		
 		dao.delete_comment(a);
 		
-		
 	}
 	
 	

@@ -153,7 +153,7 @@
 							
 							System.out.println(ad);
 						
-							if (username.equals((String)session.getAttribute("userId")) || ad==1 ) {
+							if (username.equals((String)session.getAttribute("userNickname")) || ad==1 ) {
 
 						%>
 						<a
@@ -226,9 +226,12 @@
 								<h5><%=Comm.getMEM_NICKNAME()%></h5>
 								<span class="comment-date"><%=Comm.getCOMT_SYSDATE()%></span>
 								<%
+								username = dto.getBRD_WRT_NICKNAME();
 								
+								String commname = Comm.getMEM_NICKNAME();
 								System.out.println(username);
-							if (username.equals((String)session.getAttribute("userId")) || ad == 1) {
+								System.out.println(session.getAttribute("userNickname"));
+							if (username.equals((String)session.getAttribute("userNickname")) || ad == 1 || commname.equals((String)session.getAttribute("userNickname")) ) {
 						%>
 								<span class="delete_comment" style="cursor: pointer;" id="<%=Comm.getCOMT_IDX()%>">
 								<strong	style="margin-left: 20px; color: gray">삭제</strong></span>
