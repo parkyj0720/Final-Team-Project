@@ -40,11 +40,49 @@ public class CommunityFragment extends Fragment {
         // 글 작성 버튼
         fab_write = (FloatingActionButton) view.findViewById(R.id.fab_write);
 
+        FragmainBoard b_main = new FragmainBoard();
+        FragtipBoard b_tip = new FragtipBoard();
+        FragAskBoard b_ask = new FragAskBoard();
+        FragReportBoard b_report = new FragReportBoard();
+
         // add your fragments
-        viewPagerAdapter.addFrag(new FragmainBoard(), "숙취 게시판"); //메인탭
-        viewPagerAdapter.addFrag(new FragtipBoard(), "나만의 팁"); //나만의 팁
-        viewPagerAdapter.addFrag(new FragAskBoard(), "묻고 답하기"); //묻고 답하기
-        viewPagerAdapter.addFrag(new FragReportBoard(), "신고하기"); //신고하기
+        viewPagerAdapter.addFrag(b_main, "숙취 게시판"); //메인탭
+        viewPagerAdapter.addFrag(b_tip, "나만의 팁"); //나만의 팁
+        viewPagerAdapter.addFrag(b_ask, "묻고 답하기"); //묻고 답하기
+        viewPagerAdapter.addFrag(b_report, "신고하기"); //신고하기
+
+        Bundle bundle = new Bundle();
+        bundle.putString("nickname", nickname); // Key, Value
+        bundle.putString("email", email); // Key, Value
+        bundle.putString("id", id); // Key, Value
+        bundle.putString("age", age); // Key, Value
+        bundle.putString("mf", mf); // Key, Value
+        b_main.setArguments(bundle);
+
+        Bundle bundle1 = new Bundle();
+        bundle1.putString("nickname", nickname); // Key, Value
+        bundle1.putString("email", email); // Key, Value
+        bundle1.putString("id", id); // Key, Value
+        bundle1.putString("age", age); // Key, Value
+        bundle1.putString("mf", mf); // Key, Value
+        b_tip.setArguments(bundle1);
+
+        Bundle bundle2 = new Bundle();
+        bundle2.putString("nickname", nickname); // Key, Value
+        bundle2.putString("email", email); // Key, Value
+        bundle2.putString("id", id); // Key, Value
+        bundle2.putString("age", age); // Key, Value
+        bundle2.putString("mf", mf); // Key, Value
+        b_ask.setArguments(bundle2);
+
+        Bundle bundle3 = new Bundle();
+        bundle3.putString("nickname", nickname); // Key, Value
+        bundle3.putString("email", email); // Key, Value
+        bundle3.putString("id", id); // Key, Value
+        bundle3.putString("age", age); // Key, Value
+        bundle3.putString("mf", mf); // Key, Value
+        b_report.setArguments(bundle3);
+
 
         viewPager.setAdapter(viewPagerAdapter);
 

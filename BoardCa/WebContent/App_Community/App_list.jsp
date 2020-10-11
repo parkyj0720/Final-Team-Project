@@ -82,23 +82,6 @@
 			</ul>
 		</div> --%>
 	<div class="body_scroll">
-		<div class="block-header">
-			<div class="col-lg-7 col-md-6 col-sm-12">
-				<h2>List</h2>
-				<ul class="breadcrumb">
-					<li class="breadcrumb-item"><a href="index.html"><i
-							class="zmdi zmdi-home"></i> BoardCa</a></li>
-					<li class="breadcrumb-item"><a
-						href="${pageContext.request.contextPath}/Community_main.do">Community</a></li>
-					<li id="listname" class="breadcrumb-item active"><a
-						href="${pageContext.request.contextPath}/Community_list.do?list=<%=boardnum%>"><%=community_title%></a></li>
-				</ul>
-				<button class="btn btn-primary btn-icon mobile_menu" type="button">
-					<i class="zmdi zmdi-sort-amount-desc"></i>
-				</button>
-			</div>
-			<div class="col-lg-5 col-md-6 col-sm-12"></div>
-		</div>
 		<div class="container-fluid">
 			<div class="row clearfix">
 				<div class="col-lg-12">
@@ -164,7 +147,7 @@
 						<div class="body">
 							<ul class="pagination pagination-primary m-b-0">
 								<li class="page-item"><a class="page-link"
-									href="${pageContext.request.contextPath}/Community_list.do?list=<%=list.get(0).getCATEGORY_IDX() %>&page=<%=(startPage-maxPage>0)?startPage-maxPage:1%>"><%-- 수정 --%><i
+									href="${pageContext.request.contextPath}/App_list.do?list=<%=list.get(0).getCATEGORY_IDX() %>&page=<%=(startPage-maxPage>0)?startPage-maxPage:1%>"><%-- 수정 --%><i
 										class="zmdi zmdi-arrow-left"></i></a></li>
 
 								<%
@@ -177,26 +160,23 @@
 
 
 								<li class="page-item active"><a class="page-link"
-									href="${pageContext.request.contextPath}/Community_list.do?list=<%=list.get(i).getCATEGORY_IDX() %>&page=<%=i+1%>"><%-- 수정 --%><%=i + 1%></a></li>
+									href="${pageContext.request.contextPath}/App_list.do?list=<%=list.get(i).getCATEGORY_IDX() %>&page=<%=i+1%>"><%-- 수정 --%><%=i + 1%></a></li>
 								<%
 									} else {
 								%>
 
 								<li class="page-item"><a class="page-link"
-									href="${pageContext.request.contextPath}/Community_list.do?list=<%=list.get(i).getCATEGORY_IDX() %>&page=<%=i+1%>"><%=i + 1%></a></li>
+									href="${pageContext.request.contextPath}/App_list.do?list=<%=list.get(i).getCATEGORY_IDX() %>&page=<%=i+1%>"><%=i + 1%></a></li>
 								<%
 									}
 								}
 								%>
 
 								<li class="page-item"><a class="page-link"
-									href="${pageContext.request.contextPath}/Community_list.do?list=<%=list.get(0).getCATEGORY_IDX() %>&page=<%=(endPage+maxPage>=pageCount)?pageCount:endPage+1%>"><i
+									href="${pageContext.request.contextPath}/App_list.do?list=<%=list.get(0).getCATEGORY_IDX() %>&page=<%=(endPage+maxPage>=pageCount)?pageCount:endPage+1%>"><i
 										class="zmdi zmdi-arrow-right"></i></a></li>
 								<div style="width: 100%"></div>
-								<button class="btn btn-primary float-right" type="button"
-									id="input">
-									<i class="zmdi zmdi-hc-fw"></i>
-								</button>
+								
 							</ul>
 						</div>
 					</div>
@@ -217,21 +197,9 @@
 												.text();
 										$(location).attr(
 												'href',
-												'${pageContext.request.contextPath}/Community_detail.do?num=' // 수정
+												'${pageContext.request.contextPath}/App_detail.do?num=' // 수정
 														+ num);
 									});
-							$('#input')
-									.click(
-											function() {
-												if ("${sessionScope.userId}" == null
-														|| "${sessionScope.userId}" == "") {
-													alert('로그인후 다시 시도해주세요')
-												} else {
-													$(location)
-															.attr('href',
-																	'${pageContext.request.contextPath}/Community_input.do') // 수정
-												}
-											})
 						});
 	</script>
 	<script

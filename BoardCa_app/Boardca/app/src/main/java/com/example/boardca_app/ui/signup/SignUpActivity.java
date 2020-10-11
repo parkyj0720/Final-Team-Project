@@ -37,7 +37,7 @@ public class SignUpActivity extends AppCompatActivity {
     String MEM_NICKNAME = "";
     String MEM_PW = "";
     String pw2 = "";
-//    String name = "";
+    //    String name = "";
     String MEM_EMAIL = "";
     String MEM_ROCAL = "";
     String MEM_STATE = "";
@@ -75,24 +75,30 @@ public class SignUpActivity extends AppCompatActivity {
         RadioGroup rg_gender = findViewById(R.id.rg_gender);
         RadioGroup rg_age = findViewById(R.id.rg_age);
 
-        if(getIntent().getStringExtra("MEM_NICKNAME") != null) {
+        if (getIntent().getStringExtra("MEM_NICKNAME") != null) {
             MEM_NICKNAME = getIntent().getStringExtra("MEM_NICKNAME");
+            if (!(MEM_NICKNAME.equals(""))) {
+                sign_nick.setText(MEM_NICKNAME);
+            }
         }
-        if(getIntent().getStringExtra("MEM_EMAIL") != null) {
+        if (getIntent().getStringExtra("MEM_EMAIL") != null) {
             MEM_EMAIL = getIntent().getStringExtra("MEM_EMAIL");
+            if (!(MEM_EMAIL.equals(""))) {
+                sign_email.setText(MEM_EMAIL);
+            }
         }
-        if(getIntent().getStringExtra("MEM_ID") != null) {
+        if (getIntent().getStringExtra("MEM_ID") != null) {
             MEM_ID = getIntent().getStringExtra("MEM_ID");
-            if(!(MEM_ID.equals(""))) {
+            if (!(MEM_ID.equals(""))) {
                 sign_id.setText(MEM_ID);
                 sign_id.setClickable(false);
                 sign_id.setFocusable(false);
             }
         }
-        if(getIntent().getStringExtra("MEM_AGE_GROUP") != null) {
+        if (getIntent().getStringExtra("MEM_AGE_GROUP") != null) {
             MEM_AGE_GROUP = getIntent().getStringExtra("MEM_AGE_GROUP");
         }
-        if(getIntent().getStringExtra("MEM_GENDER") != null) {
+        if (getIntent().getStringExtra("MEM_GENDER") != null) {
             MEM_GENDER = getIntent().getStringExtra("MEM_GENDER");
         }
 
@@ -300,15 +306,15 @@ public class SignUpActivity extends AppCompatActivity {
         doubleCheck.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(sign_id.getText() != null) {
+                if (sign_id.getText() != null) {
                     MEM_ID = sign_id.getText() + "";
-                }else{
+                } else {
                     MEM_ID = "";
                 }
 
-                if(sign_nick.getText() != null) {
+                if (sign_nick.getText() != null) {
                     MEM_NICKNAME = sign_nick.getText() + "";
-                }else{
+                } else {
                     MEM_NICKNAME = "";
                 }
 
@@ -321,7 +327,7 @@ public class SignUpActivity extends AppCompatActivity {
 
                 }
                 if (result.equals("true")) {
-                    Toast.makeText(SignUpActivity.this, "아이디 사용가능", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SignUpActivity.this, "아이디 사용가능!", Toast.LENGTH_SHORT).show();
                 } else {
                     switch (result) {
                         case "false1":
@@ -329,9 +335,10 @@ public class SignUpActivity extends AppCompatActivity {
                             break;
                         case "false2":
                             if (MEM_NICKNAME.equals("")) {
-                                Toast.makeText(SignUpActivity.this, "닉네임을 입력하세요.", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(SignUpActivity.this, "아이디 사용가능! 닉네임을 입력하세요.", Toast.LENGTH_SHORT).show();
+                                sign_nick.requestFocus();
                             } else {
-                                Toast.makeText(SignUpActivity.this, "닉네임 중복!!!!", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(SignUpActivity.this, "아이디 사용가능!", Toast.LENGTH_SHORT).show();
                             }
                             break;
                     }
@@ -350,7 +357,7 @@ public class SignUpActivity extends AppCompatActivity {
         protected String doInBackground(String... strings) {
             try {
                 String str;
-                URL url = new URL("http://175.211.105.136:8088/BoardCa/app_sign.do");
+                URL url = new URL("http://192.168.219.100:8088/BoardCa/app_sign.do");
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
                 conn.setRequestMethod("POST");
@@ -390,7 +397,7 @@ public class SignUpActivity extends AppCompatActivity {
         protected String doInBackground(String... strings) {
             try {
                 String str;
-                URL url = new URL("http://175.211.105.136:8088/BoardCa/app_nomal_sign.do");
+                URL url = new URL("http://192.168.219.100:8088/BoardCa/app_nomal_sign.do");
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
                 conn.setRequestMethod("POST");

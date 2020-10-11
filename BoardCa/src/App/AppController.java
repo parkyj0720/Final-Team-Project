@@ -32,6 +32,13 @@ public class AppController  {
 		return mv;
 	}
 	
+	@RequestMapping("/app_nick.do")
+	public ModelAndView app_nick(HttpServletRequest request) {
+		System.out.println("app_nick");
+		mv.setViewName("/app/app_nick.jsp");
+		return mv;
+	}
+	
 	@RequestMapping("/app_write_go.do")
 	public ModelAndView app_write_go(HttpServletRequest request) {
 		System.out.println("app_write_go");
@@ -61,4 +68,5 @@ public class AppController  {
 //		AppDto dto = new AppDto(0, data.getMem_id(), data.getMem_nickname(), "", data.getMem_gender(), data.getMem_age_group(), data.getMem_email(), "", "", 0, 1, 1, null);
 //		dao.insert(dto);
 //	}
+	
 }

@@ -30,7 +30,7 @@ public class FragReportBoard extends Fragment {
 
         webView.setWebChromeClient(new WebChromeClient());
         webView.setWebViewClient(new FragReportBoard .WebViewClientClass());
-        webView.loadUrl("http://192.168.219.100:8088/BoardCa/Community_list.do?list=4");
+        webView.loadUrl("http://192.168.219.100:8088/BoardCa/App_list.do?list=4");
 
         return viewGroup;
 

@@ -107,22 +107,7 @@
 					<li style="width: 25%; float: left; text-align: center;">근처 술집</li>
 				</ul>
 			</div>  --%>
-		<div class="block-header">
-			<div class="col-lg-7 col-md-6 col-sm-12">
-				<ul class="breadcrumb">
-					<li class="breadcrumb-item"><a href="index.html"><i
-							class="zmdi zmdi-home"></i> BoardCa</a></li>
-					<li class="breadcrumb-item"><a
-						href="${pageContext.request.contextPath}/Community_main.do">Community</a></li>
-					<li id="listname" class="breadcrumb-item active"><a
-						href="${pageContext.request.contextPath}/Community_list.do?list=<%=viewname.getBRD_CAT_IDX()%>"><%=community_title%></a></li>
-				</ul>
-				<button class="btn btn-primary btn-icon mobile_menu" type="button">
-					<i class="zmdi zmdi-sort-amount-desc"></i>
-				</button>
-			</div>
-			<div class="col-lg-5 col-md-6 col-sm-12"></div>
-		</div>
+
 		<div class="col-lg-8 col-md-12" style="max-width: none;">
 			<div class="card" style="">
 				<div class="blogitem mb-5">

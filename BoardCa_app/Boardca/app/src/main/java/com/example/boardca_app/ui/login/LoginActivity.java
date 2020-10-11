@@ -35,6 +35,8 @@ import com.example.boardca_app.MainActivity;
 import com.example.boardca_app.R;
 import com.example.boardca_app.data.PreferenceManager;
 import com.example.boardca_app.ui.community.MakeActivity;
+import com.example.boardca_app.ui.home.HomeFragment;
+import com.example.boardca_app.ui.signup.SignUpActivity;
 import com.example.boardca_app.ui.signup.TermsActivity;
 import com.kakao.auth.ApiErrorCode;
 import com.kakao.auth.ApprovalType;
@@ -93,9 +95,9 @@ public class LoginActivity extends AppCompatActivity {
         sessionCallback.getAppKeyHash();
 
         //자동로그인
-        SharedPreferences auto = getSharedPreferences("auto", Activity.MODE_PRIVATE); //자동고르인
-        String loginId = auto.getString("inputId", null);
-        String loginPwd = auto.getString("inputPwd", null);
+//        SharedPreferences auto = getSharedPreferences("auto", Activity.MODE_PRIVATE); //자동고르인
+//        String loginId = auto.getString("inputId", null);
+//        String loginPwd = auto.getString("inputPwd", null);
 
         //ID창내 엔터방지.
         usernameEditText.setOnKeyListener(new View.OnKeyListener() {
@@ -134,6 +136,15 @@ public class LoginActivity extends AppCompatActivity {
             cb_save.setChecked(true); //체크박스는 고정셋팅
         }
 
+        // 자동 로그인 체크
+        boolean boo1 = PreferenceManager.getBoolean(mContext, "auto");
+        if (boo1) {
+            //저장된 유저네임과 비밀번호를 계속 세팅
+            usernameEditText.setText(PreferenceManager.getString(mContext, "username"));
+            passwordEditText.setText(PreferenceManager.getString(mContext, "password"));
+            auto_save.setChecked(true); //체크박스는 고정셋팅
+        }
+
         //로그인 버튼을 눌렀을때 입력된 데이터 저장.
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -164,12 +175,22 @@ public class LoginActivity extends AppCompatActivity {
         auto_save.setOnClickListener(new CheckBox.OnClickListener() {
             @Override
             public void onClick(View view) {
-                SharedPreferences auto = getSharedPreferences("auto", Activity.MODE_PRIVATE);
-                SharedPreferences.Editor autoLogin = auto.edit();
-                autoLogin.putString("inputUsername", usernameEditText.getText().toString());
-                autoLogin.putString("inputPwd", passwordEditText.getText().toString());
+//                SharedPreferences auto = getSharedPreferences("auto", Activity.MODE_PRIVATE);
+//                SharedPreferences.Editor autoLogin = auto.edit();
+//                autoLogin.putString("inputUsername", usernameEditText.getText().toString());
+//                autoLogin.putString("inputPwd", passwordEditText.getText().toString());
+//
+//                autoLogin.commit();
 
-                autoLogin.commit();
+                if (((CheckBox) view).isChecked()) { //체크박스에 체크가 되어있다면,
+                    PreferenceManager.setString(mContext, "username", usernameEditText.getText().toString());
+                    PreferenceManager.setString(mContext, "password", passwordEditText.getText().toString());
+                    PreferenceManager.setBoolean(mContext, "auto", auto_save.isChecked());
+                } else { //체크박스가 해제 되어있다면.
+                    PreferenceManager.setBoolean(mContext, "auto", auto_save.isChecked());
+                    PreferenceManager.clear(mContext);
+                }
+
             }
         });
 
@@ -248,13 +269,13 @@ public class LoginActivity extends AppCompatActivity {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 String id = "";
                 String pw = "";
-                if(usernameEditText.getText() != null) {
+
+                if (usernameEditText.getText() != null) {
                     id = usernameEditText.getText() + "";
                 }
-                if(passwordEditText.getText() != null) {
+                if (passwordEditText.getText() != null) {
                     pw = passwordEditText.getText() + "";
                 }
 
@@ -285,6 +306,14 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+
+        if (auto_save.isChecked()) {
+            if (usernameEditText.getText() != null && !(usernameEditText.getText().equals(""))) {
+                if (passwordEditText.getText() != null && !(passwordEditText.getText().equals(""))) {
+                    loginButton.callOnClick();
+                }
+            }
+        }
     }
 
     private void updateUiWithUser(LoggedInUserView model) {
@@ -416,26 +445,75 @@ public class LoginActivity extends AppCompatActivity {
                     Log.e("MEM_AGE_GROUP : ", MEM_AGE_GROUP + "");
                     Log.e("MEM_GENDER : ", MEM_GENDER + "");
 
-                    Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
-                    intent.putExtra("MEM_NICKNAME", MEM_NICKNAME);
-                    intent.putExtra("MEM_EMAIL", MEM_EMAIL);
-                    intent.putExtra("MEM_ID", MEM_ID);
-                    intent.putExtra("MEM_AGE_GROUP", MEM_AGE_GROUP);
-                    intent.putExtra("MEM_GENDER", MEM_GENDER);
 
-                    startActivity(intent);
-                    overridePendingTransition(0, 0);
+                    if (!(MEM_NICKNAME.equals(""))) {
+                        // 카카오 닉네임이 있는 경우, 홈으로 이동
 
-                    try {
-                        String str;
-                        LoginActivity.CustomTask task = new LoginActivity.CustomTask();
-                        str = task.execute(MEM_NICKNAME, MEM_EMAIL, MEM_ID, MEM_AGE_GROUP, MEM_GENDER).get();
-                        Log.i("리턴 값", str);
-                        finish();
-                    } catch (Exception e) {
+                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                        intent.putExtra("MEM_NICKNAME", MEM_NICKNAME);
+                        intent.putExtra("MEM_EMAIL", MEM_EMAIL);
+                        intent.putExtra("MEM_ID", MEM_ID);
+                        intent.putExtra("MEM_AGE_GROUP", MEM_AGE_GROUP);
+                        intent.putExtra("MEM_GENDER", MEM_GENDER);
 
+                        startActivity(intent);
+                        overridePendingTransition(0, 0);
+
+                        try {
+                            String str;
+                            LoginActivity.CustomTask task = new LoginActivity.CustomTask();
+                            str = task.execute(MEM_NICKNAME, MEM_EMAIL, MEM_ID, MEM_AGE_GROUP, MEM_GENDER).get();
+                            Log.i("리턴 값", str);
+                            finish();
+                        } catch (Exception e) {
+
+                        }
+
+                    } else {
+                        // 카카오 닉네임은 없지만, 등록한 닉네임이 있는 경우
+                        String str = "";
+                        try {
+                            LoginActivity.CustomTask task = new LoginActivity.CustomTask();
+                            str = task.execute(MEM_ID).get();
+                            Log.i("리턴 값", str);
+                            finish();
+                        } catch (Exception e) {
+
+                        }
+                        if (str.equals("")) {
+
+                            // 카카오 닉네임이 없는 경우, 회원가입 페이지로 이동
+
+                            Intent intent = new Intent(getApplicationContext(), SignUpActivity.class);
+                            intent.putExtra("MEM_NICKNAME", MEM_NICKNAME);
+                            intent.putExtra("MEM_EMAIL", MEM_EMAIL);
+                            intent.putExtra("MEM_ID", MEM_ID);
+                            intent.putExtra("MEM_AGE_GROUP", MEM_AGE_GROUP);
+                            intent.putExtra("MEM_GENDER", MEM_GENDER);
+
+                            startActivity(intent);
+                            overridePendingTransition(0, 0);
+
+                            try {
+                                LoginActivity.Nick nick = new LoginActivity.Nick();
+                                str = nick.execute(MEM_ID).get();
+                                Log.i("리턴 값", str);
+                                finish();
+                            } catch (Exception e) {
+
+                            }
+                        } else {
+                            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                            intent.putExtra("MEM_NICKNAME", MEM_NICKNAME);
+                            intent.putExtra("MEM_EMAIL", MEM_EMAIL);
+                            intent.putExtra("MEM_ID", MEM_ID);
+                            intent.putExtra("MEM_AGE_GROUP", MEM_AGE_GROUP);
+                            intent.putExtra("MEM_GENDER", MEM_GENDER);
+
+                            startActivity(intent);
+                            overridePendingTransition(0, 0);
+                        }
                     }
-
                 }
 
             });
@@ -476,7 +554,7 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-// 카카오 로그인
+    // 카카오 로그인
     class CustomTask extends AsyncTask<String, Void, String> {
         String sendMsg, receiveMsg;
 
@@ -485,7 +563,7 @@ public class LoginActivity extends AppCompatActivity {
         protected String doInBackground(String... strings) {
             try {
                 String str;
-                URL url = new URL("http://175.211.105.136:8088/BoardCa/app_input.do");
+                URL url = new URL("http://192.168.219.100:8088/BoardCa/app_input.do");
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
                 conn.setRequestMethod("POST");
@@ -524,7 +602,7 @@ public class LoginActivity extends AppCompatActivity {
         protected String doInBackground(String... strings) {
             try {
                 String str;
-                URL url = new URL("http://175.211.105.136:8088/BoardCa/app_idpw.do");
+                URL url = new URL("http://192.168.219.100:8088/BoardCa/app_idpw.do");
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
                 conn.setRequestMethod("POST");
@@ -556,5 +634,43 @@ public class LoginActivity extends AppCompatActivity {
     }
 
 
+    // nick 체크
+    class Nick extends AsyncTask<String, Void, String> {
+        String sendMsg, receiveMsg;
 
+        // JSP로 값을 넘긴 후, MySQL로 데이터 저장
+        @Override
+        protected String doInBackground(String... strings) {
+            try {
+                String str;
+                URL url = new URL("http://192.168.219.100:8088/BoardCa/app_nick.do");
+                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+                conn.setRequestMethod("POST");
+                OutputStreamWriter osw = new OutputStreamWriter(conn.getOutputStream());
+                sendMsg = "MEM_ID=" + strings[0];
+
+                osw.write(sendMsg);
+                osw.flush();
+                if (conn.getResponseCode() == conn.HTTP_OK) {
+                    InputStreamReader tmp = new InputStreamReader(conn.getInputStream(), "UTF-8");
+                    BufferedReader reader = new BufferedReader(tmp);
+                    StringBuffer buffer = new StringBuffer();
+                    while ((str = reader.readLine()) != null) {
+                        buffer.append(str);
+                    }
+                    receiveMsg = buffer.toString();
+
+                } else {
+                    Log.i("통신 결과", conn.getResponseCode() + "에러");
+                }
+                osw.close();
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return receiveMsg;
+        }
+    }
 }

@@ -7,6 +7,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import org.springframework.stereotype.Repository;
 
+import CommunityModel.BoardList;
+
 @Repository
 public class AppDao {
 	// 싱글톤 패턴으로 사용 하기위 한 코드들
@@ -274,6 +276,48 @@ public class AppDao {
 				} else {
 					returns = "false";
 				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (pstmt != null)
+				try {
+					pstmt.close();
+				} catch (SQLException ex) {
+				}
+			if (conn != null)
+				try {
+					conn.close();
+				} catch (SQLException ex) {
+				}
+			if (pstmt2 != null)
+				try {
+					pstmt2.close();
+				} catch (SQLException ex) {
+				}
+			if (rs != null)
+				try {
+					rs.close();
+				} catch (SQLException ex) {
+				}
+		}
+		return returns;
+	}
+
+	// 아이디 , 닉네임 비교하기
+	public String findNick(String MEM_ID) {
+
+		returns = "true";
+
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			conn = DriverManager.getConnection(jdbcUrl, dbId, dbPw);
+			sql = "select MEM_NICKNAME from MEMBER_T where MEM_ID=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, MEM_ID);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				returns = rs.getString("MEM_NICKNAME");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
