@@ -200,7 +200,7 @@ $(function() {
 										<li class="dropdown"><a href="javascript:void(0);"
 											class="dropdown-toggle" data-toggle="dropdown" role="button"
 											aria-haspopup="true" aria-expanded="false">
-												<p>${sessionScope.userId}님반갑습니다.
+												<p>${sessionScope.userNickname}님반갑습니다.
 												</p>
 										</a>
 											<ul class="dropdown-menu dropdown-menu-right">

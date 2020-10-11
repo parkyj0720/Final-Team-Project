@@ -83,6 +83,7 @@ public class SignInController {
 		sedto.setSess_field(country);
 
 		String userId = req.getParameter("userId");
+		
 		String userToken = req.getParameter("userToken");
 
 		int gwonhan = memDao.GwonhanCheck(userId);
@@ -98,12 +99,16 @@ public class SignInController {
 		
 		int adgwon= memDao.adminCheck(userId);
 				
-		session.setAttribute("adgwon", adgwon);
+		
+		String userNickname = memDao.searchNickname(mem_idx);
 		
 		sedto.setMem_idx(mem_idx);
-		
 		sedto.setSess_move("로그인(성공)");
+		
+		System.out.println("!!!!!!!!!!"+userNickname);
+		session.setAttribute("adgwon", adgwon);
 		session.setAttribute("userId", userId);
+		session.setAttribute("userNickname", userNickname);
 		session.setAttribute("userToken", userToken);
 		session.setAttribute("userToken2", "1");
 		
@@ -192,13 +197,15 @@ public class SignInController {
 				sedto.setMem_idx(userIdx);
 				
 				int adgwon= memDao.adminCheck(userId);
+				String userNickname = memDao.searchNickname(userIdx);
 				
+				session.setAttribute("userNickname", userNickname);
 				session.setAttribute("adgwon", adgwon);
 				session.setAttribute("userIdx", userIdx);
 				session.setAttribute("userId", userId);
 				session.setAttribute("userToken2", "0");
 
-				System.out.println("@@@@@@@@@" + sedto);
+				System.out.println("@@@@@@@@@" + userNickname);
 				memDao.sessionInput(sedto);
 				mv.setViewName("/main/main.jsp");
 			} else {

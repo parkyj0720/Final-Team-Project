@@ -31,6 +31,12 @@
 		WHERE MEM_ID = #{userId}	
 	</select>
 	
+	<select id="searchNickname" resultType="String" parameterType="int">
+		SELECT MEM_NICKNAME
+		FROM MEMBER_T 
+		WHERE MEM_IDX = #{mem_idx}	
+	</select>
+	
 	<select id="adminCheck" resultType="int" parameterType="MemberDto">
 	
 		SELECT MEM_MNG_GWONHAN

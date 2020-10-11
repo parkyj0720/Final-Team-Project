@@ -37,7 +37,10 @@ public class MemberDao {
 	public int searchIdx(String userId) {
 		return mysqlSession.selectOne("signXml.searchIdx",userId);
 	}
-	
+// 해당회원번호의 닉네임 가져오기
+	public String searchNickname(int mem_idx) {
+		return mysqlSession.selectOne("signXml.searchNickname",mem_idx);
+	}
 	
 // 세션 입력 
 	public void sessionInput(SessionDto sedto) {
