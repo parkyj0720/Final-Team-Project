@@ -1,3 +1,5 @@
+<%@page import="CommunityModel.CommunityDto"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -16,14 +18,20 @@
 	type="image/x-icon">
 <!-- Favicon-->
 <link rel="stylesheet"
-	href="/BoardCa/stylesheet/assets/plugins/bootstrap/css/bootstrap.min.css">
-<link rel="stylesheet"
 	href="${pageContext.request.contextPath}/stylesheet/assets/plugins/sweetalert/sweetalert.css">
 <!-- Custom Css -->
 <link rel="stylesheet"
 	href="/BoardCa/stylesheet/assets/css/style.min.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/stylesheet/assets/plugins/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/stylesheet/assets/plugins/footable-bootstrap/css/footable.bootstrap.min.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/stylesheet/assets/plugins/footable-bootstrap/css/footable.standalone.min.css">
 </head>
-
+<%
+	List<CommunityDto> myList = (List<CommunityDto>) request.getAttribute("myList");
+%>
 <body class="theme-blush ls-closed ls-toggle-menu ">
 	<!-- header -->
 	<jsp:include page="/WEB-INF/header.jsp"></jsp:include>
@@ -46,9 +54,7 @@
 						</ul>
 					</div>
 				</div>
-
 			</div>
-
 
 			<div class="container-fluid">
 				<div class="row clearfix">
@@ -99,39 +105,37 @@
 														<thead>
 															<tr class="footable-header">
 																<th class="footable-sortable footable-first-visible"
-																	style="display: table-cell;">First Name<span
+																	style="display: table-cell;">게시글 번호<span
 																	class="fooicon fooicon-sort"></span></th>
 																<th data-breakpoints="xs" class="footable-sortable"
-																	style="display: table-cell;">Last Name<span
+																	style="display: table-cell;">제목<span
+																	class="fooicon fooicon-sort"></span></th>
+																<th data-breakpoints="xs" class="footable-sortable"
+																	style="display: table-cell;">시간<span
 																	class="fooicon fooicon-sort"></span></th>
 																<th
 																	class="footable-sortable footable-last-visible footable-desc"
-																	style="display: table-cell;">Status<span
+																	style="display: table-cell;">좋아요<span
 																	class="fooicon fooicon-sort-desc"></span></th>
 															</tr>
 														</thead>
 														<tbody>
+															<%
+																for (int i = 0; i < myList.size(); i++) {
+																CommunityDto dto = myList.get(i);
+																System.out.println(dto.getBRD_WRT_NICKNAME());
+															%>
 															<tr>
 																<td class="footable-first-visible"
-																	style="display: table-cell;">가나다</td>
-																<td style="display: table-cell;">Brielle</td>
-																<td style="display: table-cell;">하하하</td>
-
+																	style="display: table-cell;"><%=dto.getBRD_IDX()%></td>
+																<td style="display: table-cell;"><%=dto.getBRD_TIT()%></td>
+																<td style="display: table-cell;"><%=dto.getBRD_SYSDATE()%></td>
+																<td style="display: table-cell;"><%=dto.getCOUNT()%></td>
 															</tr>
-															<tr>
-																<td class="footable-first-visible"
-																	style="display: table-cell;">가하나</td>
-																<td style="display: table-cell;">Brielle</td>
-																<td style="display: table-cell;">하나가</td>
-
-															</tr>
-															<tr>
-																<td class="footable-first-visible"
-																	style="display: table-cell;">하하하</td>
-																<td style="display: table-cell;">Accountant</td>
-																<td style="display: table-cell;">가나다</td>
-
-															</tr>
+															<%
+																}
+															%>
+														</tbody>
 													</table>
 												</div>
 											</div>

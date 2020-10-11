@@ -27,11 +27,11 @@ public class GameController {
 	@RequestMapping("/gameMain.do")
 	public ModelAndView gameMain(HttpServletRequest req, HttpSession session) {
 		int page = 1;
-		if (req.getParameter("page") != null) {
+		if(req.getParameter("page") != null) {
 			page = Integer.parseInt(req.getParameter("page"));
-			if (page <= 0)
-				page = 1;
 		}
+		
+		mv.addObject("page", page);
 
 		// 관리자 확인을 위한 멤버정보 확인
 		if (session.getAttribute("userId") != null) {

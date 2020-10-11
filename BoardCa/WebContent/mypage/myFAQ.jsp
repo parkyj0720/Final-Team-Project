@@ -101,8 +101,19 @@
 												<input type="text" class="form-control" id="title"
 													placeholder="제목을 입력해주세요" maxlength="200" />
 											</div>
+											<select class="form-control show-tick" id="select">
+												<option>게시판을 선택해주세요.</option>
+												<%
+													for (int i = 0; i < boardList.size(); i++) {
+												%>
+												<option><%=boardList.get(i).getCAT_NAME()%></option>
+												<%
+													} // end of for
+												%>
+											</select>
 										</div>
 									</div>
+
 									<div class="card">
 										<div class="body">
 											<div class="summernote" id="content"></div>
@@ -119,41 +130,52 @@
 		</div>
 	</div>
 	<script>
-	  $( document ).ready( function() {
-    	  $('#submit').click(function() {
-    		  var title = $('#title').val(); // 제목
-    		  var username = "${userId}"; // 작성자 아이디
-    		  var content = $( '.note-editable' ).html(); // 내용
-    		  var title_trim = $.trim($("#title").val());
-    		  var content_sub;
-    		  
-    			  if(title == "" || title_trim == ""){
-    				  alert("제목을 입력해주세요")  
-    			  }
-    			  else{
- 					var dto = {
- 							BRD_TIT: title,
- 							CATEGORY_IDX: 5,
- 							BRD_WRT_ID: username,
- 							BRD_CONTENT: content
-							};
-					
-					$.ajax({
-						url: "myPageFaQinsert.do",
-						type: "POST",
-						datatype: 'application/json',
-						data: dto,
-						success: function() {
-							alert('게시글 작성이 완료되었습니다!');
-							// 게시글 작성후 해당 리스트로
-							$(location).attr('href', '${pageContext.request.contextPath}/myPage.do');
-						}
-					})
+		$(document)
+				.ready(
+						function() {
+							$('#submit')
+									.click(
+											function() {
+												var title = $('#title').val(); // 제목
+												var username = "${userId}"; // 작성자 아이디
+												var content = $(
+														'.note-editable')
+														.html(); // 내용
+												var title_trim = $.trim($(
+														"#title").val());
+												var content_sub;
 
-    		  }
-    		
-      })
-      });
+												if (title == ""
+														|| title_trim == "") {
+													alert("제목을 입력해주세요")
+												} else {
+													var dto = {
+														BRD_TIT : title,
+														CATEGORY_IDX : 5,
+														BRD_WRT_ID : username,
+														BRD_CONTENT : content
+													};
+
+													$
+															.ajax({
+																url : "myPageFaQinsert.do",
+																type : "POST",
+																datatype : 'application/json',
+																data : dto,
+																success : function() {
+																	alert('게시글 작성이 완료되었습니다!');
+																	// 게시글 작성후 해당 리스트로
+																	$(location)
+																			.attr(
+																					'href',
+																					'${pageContext.request.contextPath}/myPage.do');
+																}
+															})
+
+												}
+
+											})
+						});
 	</script>
 
 
