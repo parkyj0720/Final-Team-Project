@@ -36,7 +36,7 @@ public class CControllerApp {
 	
 	// 레시피 전체 목록 맵핑
 	@RequestMapping("/cListAllApp.do")
-	public ModelAndView getList(HttpServletRequest req, HttpSession session) {
+	public ModelAndView getListApp(HttpServletRequest req, HttpSession session) {
 		// 페이지 기본값
 		int page= 1;
 		if(req.getParameter("page") != null)
@@ -71,7 +71,7 @@ public class CControllerApp {
 	
 	// 상세 페이지 맵핑
 	@RequestMapping("/cDetailApp.do")
-	public ModelAndView detail(HttpServletRequest req, HttpSession session) {
+	public ModelAndView detailApp(HttpServletRequest req, HttpSession session) {
 		
 		// 레시피 게시글 번호 받아오기
 		int r_board_no = Integer.parseInt(req.getParameter("no"));
@@ -99,7 +99,7 @@ public class CControllerApp {
 	
 	// 검색 기능
 	@RequestMapping("/cSearchApp.do")
-	public ModelAndView search(HttpServletRequest req, HttpSession session) {
+	public ModelAndView searchApp(HttpServletRequest req, HttpSession session) {
 		int page= 1;
 		if(req.getParameter("page") != null)
 		{
@@ -126,9 +126,9 @@ public class CControllerApp {
 	}
 	
 	// 레시피 글쓰기 페이지로 이동
-	@RequestMapping("/cWrite.do")
-	public ModelAndView write(HttpServletRequest req) {
-		mv.setViewName("/food/write_recipe.jsp");
+	@RequestMapping("/cWriteApp.do")
+	public ModelAndView writeApp(HttpServletRequest req) {
+		mv.setViewName("/food/write_recipeApp.jsp");
 		return mv;
 	}
 	
@@ -148,7 +148,7 @@ public class CControllerApp {
 	
 	// 삭제 기능
 	@RequestMapping("/cDeleteApp.do")
-	public ModelAndView delete(HttpServletRequest req) {
+	public ModelAndView deleteApp(HttpServletRequest req) {
 		
 		int cnt = dao.deleteRecipe(Integer.parseInt(req.getParameter("no")));
 		
@@ -158,7 +158,7 @@ public class CControllerApp {
 	
 	// 한줄평 등록
 	@RequestMapping("/reviewInsertApp.do")
-	public ModelAndView review(HttpServletRequest req, HttpSession session) {
+	public ModelAndView reviewApp(HttpServletRequest req, HttpSession session) {
 		
 		int no = Integer.parseInt(req.getParameter("no"));
 		String review = req.getParameter("review_text");
@@ -172,7 +172,7 @@ public class CControllerApp {
 	
 	// 한줄평 삭제
 	@RequestMapping("/deleteReviewApp.do")
-	public ModelAndView deleteReview(HttpServletRequest req, HttpSession session) {
+	public ModelAndView deleteReviewApp(HttpServletRequest req, HttpSession session) {
 		
 		int no = Integer.parseInt(req.getParameter("no"));
 		int del = Integer.parseInt(req.getParameter("del"));
@@ -185,7 +185,7 @@ public class CControllerApp {
 
 	// 즐겨찾기추가 ajax
 	@RequestMapping("/starInsertApp.do")
-	public ModelAndView starInsert(HttpServletRequest req, HttpSession session) {
+	public ModelAndView starInsertApp(HttpServletRequest req, HttpSession session) {
 		int no = Integer.parseInt(req.getParameter("no"));
 		StarDto dto = new StarDto(0, "R", no, 0, Integer.parseInt(session.getAttribute("userIdx")+""));
 		dao.starInsert(dto);
@@ -195,7 +195,7 @@ public class CControllerApp {
 	
 	// 즐겨찾기삭제 ajax
 	@RequestMapping("/starDeleteApp.do")
-	public ModelAndView starDelete(HttpServletRequest req, HttpSession session) {
+	public ModelAndView starDeleteApp(HttpServletRequest req, HttpSession session) {
 		int no = Integer.parseInt(req.getParameter("no"));
 		StarDto dto = new StarDto(0, "R", no, 0, Integer.parseInt(session.getAttribute("userIdx")+""));
 		dao.starDelete(dto);
@@ -205,7 +205,7 @@ public class CControllerApp {
 		
 	// 글 썼을때 정보 저장 form에서 multipart/form-data 형식으로 데이터를 보내줌
 	@RequestMapping("/cUploadApp.do")
-	public ModelAndView upload(HttpServletRequest req, HttpServletResponse res) throws IOException {
+	public ModelAndView uploadApp(HttpServletRequest req, HttpServletResponse res) throws IOException {
 		
 		// 글쓰기시 크롤링으로 받아오는게 아니라 크롤링관련 정보 공백
 		String r_crawling_addr = "";
@@ -261,7 +261,7 @@ public class CControllerApp {
 	
 	// 글쓰기중 이미지이름 중복 검사 ajax로 호출
 	@RequestMapping("/cFileNameCheckApp.do")
-	public ModelAndView fileNameCheck(HttpServletRequest req, HttpServletResponse res) throws IOException {
+	public ModelAndView fileNameCheckApp(HttpServletRequest req, HttpServletResponse res) throws IOException {
 		
 		ServletContext context = req.getServletContext();
 		String saveDir = context.getRealPath("upload"); // 절대경로를 가져옴
@@ -285,7 +285,7 @@ public class CControllerApp {
 	private static PythonInterpreter intPre;
 	
 	@RequestMapping("/crawlingApp.do")
-	public ModelAndView crawling(HttpServletRequest req, HttpServletResponse res) throws IOException {
+	public ModelAndView crawlingApp(HttpServletRequest req, HttpServletResponse res) throws IOException {
 	    try{
 	    		// 파이썬 관련 경로 설정 등
 	            Properties p = new Properties();
