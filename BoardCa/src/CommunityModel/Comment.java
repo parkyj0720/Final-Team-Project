@@ -5,7 +5,7 @@ import java.sql.Timestamp;
 public class Comment {
 	int COMT_IDX;
 	int MEM_IDX;
-	String BRD_WRT_ID;
+	String MEM_NICKNAME;
 	Timestamp COMT_SYSDATE;
 	String COMT_CONTENT;
 	int BRD_IDX;
@@ -14,11 +14,11 @@ public class Comment {
 		this(0, 0, "", new Timestamp((System.currentTimeMillis()/1000L)*1000L), "", 0);
 	}
 	
-	public Comment(int cOMT_IDX, int mEM_IDX, String bRD_WRT_ID, Timestamp cOMT_SYSDATE, String cOMT_CONTENT,
+	public Comment(int cOMT_IDX, int mEM_IDX, String MEM_NICKNAME, Timestamp cOMT_SYSDATE, String cOMT_CONTENT,
 			int bRD_IDX) {
 		COMT_IDX = cOMT_IDX;
 		MEM_IDX = mEM_IDX;
-		BRD_WRT_ID = bRD_WRT_ID;
+		MEM_NICKNAME = MEM_NICKNAME;
 		COMT_SYSDATE = cOMT_SYSDATE;
 		COMT_CONTENT = cOMT_CONTENT;
 		BRD_IDX = bRD_IDX;
@@ -40,12 +40,12 @@ public class Comment {
 		MEM_IDX = mEM_IDX;
 	}
 
-	public String getBRD_WRT_ID() {
-		return BRD_WRT_ID;
+	public String getMEM_NICKNAME() {
+		return MEM_NICKNAME;
 	}
 
-	public void setBRD_WRT_ID(String bRD_WRT_ID) {
-		BRD_WRT_ID = bRD_WRT_ID;
+	public void setMEM_NICKNAME(String mEM_NICKNAME) {
+		MEM_NICKNAME = mEM_NICKNAME;
 	}
 
 	public Timestamp getCOMT_SYSDATE() {
@@ -74,8 +74,8 @@ public class Comment {
 
 	@Override
 	public String toString() {
-		return "Comment [COMT_IDX=" + COMT_IDX + ", MEM_IDX=" + MEM_IDX + ", BRD_WRT_ID=" + BRD_WRT_ID
+		return "Comment [COMT_IDX=" + COMT_IDX + ", MEM_IDX=" + MEM_IDX + ", MEM_NICKNAME=" + MEM_NICKNAME
 				+ ", COMT_SYSDATE=" + COMT_SYSDATE + ", COMT_CONTENT=" + COMT_CONTENT + ", BRD_IDX=" + BRD_IDX + "]";
 	}
-	
+
 }

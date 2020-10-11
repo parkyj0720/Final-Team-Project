@@ -86,7 +86,7 @@
     	  $('#submit').click(function() {
     		  var select = $('#select').val(); // 게시판
     		  var title = $('#title').val(); // 제목
-    		  var username = "${userId}"; // 작성자 아이디
+    		  var username = "${sessionScope.userNickname}"; // 작성자 아이디
     		  var content = $( '.note-editable' ).html(); // 내용
    
     		  

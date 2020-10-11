@@ -108,6 +108,7 @@ public class SignInController {
 		System.out.println("!!!!!!!!!!"+userNickname);
 		session.setAttribute("adgwon", adgwon);
 		session.setAttribute("userId", userId);
+		session.setAttribute("userIdx", mem_idx);
 		session.setAttribute("userNickname", userNickname);
 		session.setAttribute("userToken", userToken);
 		session.setAttribute("userToken2", "1");

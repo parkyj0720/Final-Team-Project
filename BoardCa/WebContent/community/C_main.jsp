@@ -123,7 +123,7 @@
 									<td width="10%" height="auto" align="center"
 										style="white-space: normal;"><%=dto.getBRD_IDX()%></td>
 									<td width="10%" height="auto" align="center"
-										style="white-space: normal;"><%=dto.getBRD_WRT_ID()%></td>
+										style="white-space: normal;"><%=dto.getBRD_WRT_NICKNAME()%></td>
 									<td width="50%" height="auto" align="center"
 										style="white-space: normal;"><%=title%></td>
 									<%
@@ -212,7 +212,7 @@
 									<td width="10%" height="auto" align="center"
 										style="white-space: normal;"><%=dto.getBRD_IDX()%></td>
 									<td width="10%" height="auto" align="center"
-										style="white-space: normal;"><%=dto.getBRD_WRT_ID()%></td>
+										style="white-space: normal;"><%=dto.getBRD_WRT_NICKNAME()%></td>
 									<td width="50%" height="auto" align="center"
 										style="white-space: normal;"><%=title%></td>
 									<%

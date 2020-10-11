@@ -129,7 +129,7 @@
 										<td class="Ctd" width="10%" height="auto" align="center"
 											style="white-space: normal;"><%=dto.getBRD_IDX()%></td>
 										<td width="10%" height="auto" align="center"
-											style="white-space: normal;"><%=dto.getBRD_WRT_ID()%></td>
+											style="white-space: normal;"><%=dto.getBRD_WRT_NICKNAME()%></td>
 										<td width="40%" height="auto" align="center"
 											style="white-space: normal;"><%=dto.getBRD_TIT()%></td>
 										<%

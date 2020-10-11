@@ -28,7 +28,7 @@
 		resultType="CommunityModel.CommunityDto">
 		select BRD_IDX,
 		BRD_TIT,
-		BRD_WRT_ID,
+		BRD_WRT_NICKNAME,
 		BRD_SYSDATE,
 
 		BRD_VIEWS,
@@ -45,7 +45,7 @@
 		resultType="CommunityModel.CommunityDto">
 		SELECT b.BRD_IDX,
 		b.BRD_TIT,
-		b.BRD_WRT_ID,
+		b.BRD_WRT_NICKNAME,
 		b.BRD_SYSDATE,
 		b.BRD_VIEWS,
 		b.BRD_CONTENT,
@@ -73,7 +73,7 @@
 		select
 		BRD_IDX,
 		BRD_TIT,
-		BRD_WRT_ID,
+		BRD_WRT_NICKNAME,
 		BRD_SYSDATE,
 		BRD_VIEWS,
 		CATEGORY_IDX,
@@ -110,7 +110,7 @@
 	<select id="detail_comments" parameterType="int"
 		resultType="CommunityModel.Comment" resultMap="nity">
 		select
-		m.MEM_ID as BRD_WRT_ID,
+		m.MEM_NICKNAME as MEM_NICKNAME,
 		f.COMT_IDX,
 		f.COMT_SYSDATE,
 		f.BRD_IDX,
@@ -135,14 +135,14 @@
 		insert into BOARD_T
 		(
 		BRD_TIT,
-		BRD_WRT_ID,
+		BRD_WRT_NICKNAME,
 		BRD_VIEWS,
 		CATEGORY_IDX,
 		BRD_CONTENT)
 
 		values(
 		#{BRD_TIT},
-		#{BRD_WRT_ID},
+		#{BRD_WRT_NICKNAME},
 		0,
 		#{CATEGORY_IDX},
 		#{BRD_CONTENT})

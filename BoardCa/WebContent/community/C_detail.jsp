@@ -132,7 +132,7 @@
 						<h5>
 							<%=dto.getBRD_TIT()%>(<%=dto.getBRD_VIEWS()%>)
 							<div class="blogitem-meta" style="float: right;">
-								<span><i class="zmdi zmdi-account"></i><%=dto.getBRD_WRT_ID()%></a></span>
+								<span><i class="zmdi zmdi-account"></i><%=dto.getBRD_WRT_NICKNAME()%></a></span>
 							</div>
 						</h5>
 						<div style="margin-top: 50px;">
@@ -146,7 +146,7 @@
 					<h2>
 						<i class="zmdi zmdi-comments"></i><strong>댓글</strong> (<%=comment.size()%>)
 						<%
-							String username = dto.getBRD_WRT_ID();
+							String username = dto.getBRD_WRT_NICKNAME();
 							if (username.equals((String) session.getAttribute("userId"))) {
 						%>
 						<a
@@ -216,7 +216,7 @@
 						%>
 						<li>
 							<div class="text-box" style="padding-left: 10px">
-								<h5><%=Comm.getBRD_WRT_ID()%></h5>
+								<h5><%=Comm.getMEM_NICKNAME()%></h5>
 								<span class="comment-date"><%=Comm.getCOMT_SYSDATE()%></span>
 								<%
 							if (username.equals((String) session.getAttribute("userId"))) {
