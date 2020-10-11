@@ -22,7 +22,7 @@
 
 .map_wrap {position: relative;width: 100%;height: 969px;}
 
-#menu_wrap {position: absolute;top: -10px;left: -10px;bottom: 0;width: 400px;height: 969px;margin: 10px 0 30px 10px;padding: 5px;overflow-y: auto;background: rgba(255, 255, 255, 1);z-index: 1;font-size: 12px;}
+#menu_wrap {position: absolute;top: -10px;left: -10px;bottom: 0;width: 350px;height: 969px;margin: 10px 0 30px 10px;padding: 5px;overflow-y: auto;background: rgba(255, 255, 255, 1);z-index: 1;font-size: 12px;}
 
 .bg_white {background: #fff;}
 
@@ -34,7 +34,7 @@
 
 #menu_wrap .option button {margin-left: 5px;}
 
-#menu_wrap .option input {width:350px;height: 40px;position: absolute;top: 70px;left: 25px;}
+#menu_wrap .option input {width:300px;height: 40px;position: absolute;top: 70px;left: 25px;}
 
 #placesList li {list-style: none;}
 
@@ -84,29 +84,29 @@
 
 #placesList .item .marker_15 {background-position: 0 -654px;}
 
-#pagination {position: relative; top: 1600px; margin: 10px auto;text-align: center;}
+#pagination {position: absolute; top: 172%; left: 45%; margin: 10px auto;text-align: center;}
 
 #pagination a {display: inline-block;margin-right: 10px;}
 
 #pagination .on {font-weight: bold;cursor: default;color: #777;}
 
-#hide {width: 30px;height: 80px;text-align: center;padding-top: 30px;display: relative;position: absolute;left: 400px;top: 450px;background: rgba(255, 255, 255, 1);z-index: 1;font-size: 12px;border-radius: 2px;}
+#hide {width: 20px;height: 50px;text-align: center;padding-top: 15px;display: relative;position: absolute;left: 350px;top: 450px;background: rgba(255, 255, 255, 1);z-index: 1;font-size: 12px;border-radius: 2px;}
 
-#show {width: 30px;height: 80px;text-align: center;padding-top: 30px;display: relative;position: absolute;left: 0px;top: 450px;background: rgba(255, 255, 255, 1);z-index: 1;font-size: 12px;border-radius: 2px;}
+#show {width: 20px;height: 50px;text-align: center;padding-top: 15px;display: relative;position: absolute;left: 0px;top: 450px;background: rgba(255, 255, 255, 1);z-index: 1;font-size: 12px;border-radius: 2px;}
 
 .h_white {background: rgba(255, 255, 255, 1);}
 
 .s_white {background: rgba(255, 255, 255, 1);}
 
-#submit {background: none;width: 45px;height: 37px;position: absolute;left: 325px;top: 72px;}
+#submit {background: none;width: 45px;height: 37px;position: absolute;left: 275px;top: 72px;}
 
 #keyword {border-style: none;border-radius: 2px;font-size: 15px;}
 
 #BoardCa_title {font-weight: bold;font-size: 20px;position: absolute;top: 25px;left: 25px;color: white;}
 
-#map_title {width: 400px;height: 150px;background-color: #0099FF;position: absolute;left: 0px;top: -10px;} 
+#map_title {width: 350px;height: 150px;background-color: #0099FF;position: absolute;left: 0px;top: -10px;} 
 
-#placesList {position:absolute; top: 150px; width: 370px;} 
+#placesList {position:absolute; top: 150px; width: 320px;} 
 
 .zmdi zmdi-search {width: 30px; height: 30px; position: absolute;}
 
@@ -152,19 +152,15 @@
 
 .distanceInfo:after {content: none;}
 
-<%-- 채팅css --%>
-#followChat { position: absolute; display: none; z-index: 99; left: 75%; top: 0%; }
-#chatBtn { position: absolute; display: inline-block; z-index: 99; left: 94%; top: 88%; background-color: white; border-radius: 50px; width: 100px; height: 100px;}
-#chatBtnImg { width: 70px; height: 70px; z-index: 99; position: absolute; left: 15%; top: 15%;}
 </style>
 <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
-<script>
+<!-- <script>
 	$(document).ready( function() {
 		$( '#chatBtn' ).click( function() {
 			$( '#followChat' ).toggle( 'slow' );
 		});
 	});
-</script>
+</script> -->
 <script>
 	window.onload = function() {
 		var h = document.getElementById('hide');
@@ -206,12 +202,12 @@
 			<ul id="placesList"></ul>
 			<div id="pagination"></div>
 		</div>
-		<div id="followChat">
+		<%-- <div id="followChat">
 			<iframe id="chatFrame" src="${pageContext.request.contextPath}/index.jsp" width=500px; height=840px; frameborder=0 scrolling=no></iframe>
 		</div>	
 		<div id="chatBtn">
 			<img id="chatBtnImg" src="${pageContext.request.contextPath}/imgs/chatBtn.png">
-		</div>	
+		</div>	 --%>
 	</div>
 <script type="text/javascript"src="//dapi.kakao.com/v2/maps/sdk.js?appkey=7be0492e9a9dc8262e242b9d862de462&libraries=services"></script>
 <script>

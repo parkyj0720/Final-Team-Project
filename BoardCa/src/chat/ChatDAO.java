@@ -23,21 +23,21 @@ public class ChatDAO {
 			e.printStackTrace();
 		}
 	}
-	
+	// 특정 아이디에 따라서 채팅 내용을 가지고 오는 함수 
 	public ArrayList<ChatDTO> getChatListByID(String fromID, String toID, String chatID) {
-		ArrayList<ChatDTO> chatList = null;
+		ArrayList<ChatDTO> chatList = null; // 채팅 내용을 리스트에 담는다. 
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String SQL = "SELECT * FROM CHAT WHERE ((fromID = ? AND toID = ?) OR (fromID = ? AND toID = ?)) AND chatID > ? ORDER BY chatTime";
+		String SQL = "SELECT * FROM CHAT WHERE ((fromID = ? AND toID = ?) OR (fromID = ? AND toID = ?)) AND chatID > ? ORDER BY chatTime"; // 자신이 채팅을 보낸 사람인지 받은사람인지 상관없이 채팅 내용을 가지고 오는 쿼리문
 		try {
 			conn = dataSource.getConnection();
 			pstmt = conn.prepareStatement(SQL);
-			pstmt.setString(1, fromID);
-			pstmt.setString(2, toID);
-			pstmt.setString(3, toID);
+			pstmt.setString(1, fromID); // 채팅 보내는 사람 아이디 
+			pstmt.setString(2, toID); // 채팅 받는 사람 아이디 
+			pstmt.setString(3, toID); 
 			pstmt.setString(4, fromID);
-			pstmt.setInt(5, Integer.parseInt(chatID));
+			pstmt.setInt(5, Integer.parseInt(chatID)); // 채팅 아이디 숫자 형태로 변환 
 			rs = pstmt.executeQuery();
 			chatList = new ArrayList<ChatDTO>();
 			while(rs.next()) {
@@ -47,12 +47,24 @@ public class ChatDAO {
 				chat.setToID(rs.getString("toID").replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>"));
 				chat.setChatContent(rs.getString("chatContent").replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>"));
 				int chatTime = Integer.parseInt(rs.getString("chatTime").substring(11, 13));
-				String timeType = "오전";
-				if(Integer.parseInt(rs.getString("chatTime").substring(11, 13)) >= 12) {
-					timeType = "오후";
-					chatTime -= 12;
+				chatTime += 9;
+				String hourStr = "";
+				if(chatTime < 10) {
+					hourStr = "0" + chatTime;
+				}else {
+					hourStr = chatTime+"";
 				}
-				chat.setChatTime(rs.getString("chatTime").substring(0, 11) + " " + timeType + " " + chatTime + ":" + rs.getString("chatTime").substring(14, 16)+ "");
+				
+				 //int chatTime = Integer.parseInt(rs.getString("chatTime").substring(11, 13));
+				 String timeType = " 오전 ";
+				 if(Integer.parseInt(hourStr) >= 12) {
+				 timeType = " 오후 "; 
+				 chatTime -= 12; 
+				 }
+				 String[] oldChatTime = rs.getString("chatTime").split(" ");
+				 String newTime = oldChatTime[0] + timeType + chatTime + oldChatTime[1].substring(2,oldChatTime[1].length()-2);
+				 
+				chat.setChatTime(newTime);
 				chatList.add(chat);
 			}
 		} catch (Exception e) {
@@ -66,7 +78,7 @@ public class ChatDAO {
 				e.printStackTrace();
 			}
 		}
-		return chatList; // 리스트 반환
+		return chatList; // 채팅 리스트 반환
 	}
 	
 	public ArrayList<ChatDTO> getChatListByRecent(String fromID, String toID, int number) {
@@ -74,6 +86,7 @@ public class ChatDAO {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
+		// 채팅 내용 중 최근 채팅 내용을 가지고 오는 쿼리문 
 		String SQL = "SELECT * FROM CHAT WHERE ((fromID = ? AND toID = ?) OR (fromID = ? AND toID = ?)) AND chatID > (SELECT MAX(chatID) - ? FROM CHAT WHERE (fromID = ? AND toID = ?) OR (fromID = ? AND toID = ?)) ORDER BY chatTime";
 		try {
 			conn = dataSource.getConnection();
@@ -96,12 +109,24 @@ public class ChatDAO {
 				chat.setToID(rs.getString("toID").replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>"));
 				chat.setChatContent(rs.getString("chatContent").replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>"));
 				int chatTime = Integer.parseInt(rs.getString("chatTime").substring(11, 13));
-				String timeType = "오전";
-				if(Integer.parseInt(rs.getString("chatTime").substring(11, 13)) >= 12) {
-					timeType = "오후";
-					chatTime -= 12;
+				chatTime += 9;
+				String hourStr = "";
+				if(chatTime < 10) {
+					hourStr = "0" + chatTime;
+				}else {
+					hourStr = chatTime+"";
 				}
-				chat.setChatTime(rs.getString("chatTime").substring(0, 11) + " " + timeType + " " + chatTime + ":" + rs.getString("chatTime").substring(14, 16)+ "");
+				
+				 //int chatTime = Integer.parseInt(rs.getString("chatTime").substring(11, 13));
+				 String timeType = " 오전 ";
+				 if(Integer.parseInt(hourStr) >= 12) {
+				 timeType = " 오후 "; 
+				 chatTime -= 12; 
+				 }
+				 String[] oldChatTime = rs.getString("chatTime").split(" ");
+				 String newTime = oldChatTime[0] + timeType + chatTime + oldChatTime[1].substring(2,oldChatTime[1].length()-2);
+				 
+				chat.setChatTime(newTime);
 				chatList.add(chat);
 			}
 		} catch (Exception e) {
@@ -137,13 +162,27 @@ public class ChatDAO {
 				chat.setFromID(rs.getString("fromID").replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>"));
 				chat.setToID(rs.getString("toID").replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>"));
 				chat.setChatContent(rs.getString("chatContent").replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>"));
+				
 				int chatTime = Integer.parseInt(rs.getString("chatTime").substring(11, 13));
-				String timeType = "오전";
-				if(Integer.parseInt(rs.getString("chatTime").substring(11, 13)) >= 12) {
-					timeType = "오후";
-					chatTime -= 12;
+				chatTime += 9;
+				String hourStr = "";
+				if(chatTime < 10) {
+					hourStr = "0" + chatTime;
+				}else {
+					hourStr = chatTime+"";
 				}
-				chat.setChatTime(rs.getString("chatTime").substring(0, 11) + " " + timeType + " " + chatTime + ":" + rs.getString("chatTime").substring(14, 16)+ "");
+				
+				 //int chatTime = Integer.parseInt(rs.getString("chatTime").substring(11, 13));
+				 String timeType = " 오전 ";
+				 if(Integer.parseInt(hourStr) >= 12) {
+				 timeType = " 오후 "; 
+				 chatTime -= 12; 
+				 }
+				
+				 String[] oldChatTime = rs.getString("chatTime").split(" ");
+				 String newTime = oldChatTime[0] + timeType + chatTime + oldChatTime[1].substring(2,oldChatTime[1].length()-2);
+				 
+				chat.setChatTime(newTime);
 				chatList.add(chat);
 			}
 			for(int i = 0; i< chatList.size(); i++) {
@@ -201,7 +240,7 @@ public class ChatDAO {
 		}
 		return -1; // 데이터베이스 오류
 	}
-	
+	// 채팅을 읽었는지 체크하는 함수 
 	public int readCheck(String fromID, String toID) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -254,7 +293,7 @@ public class ChatDAO {
 		}
 		return -1; // 데이터베이스 오류 
 	}
-	
+	// 채팅 읽음 여부 확인 함수 
 	public int getUnreadCheck(String fromID, String toID) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;

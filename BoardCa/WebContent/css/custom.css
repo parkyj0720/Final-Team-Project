@@ -20,6 +20,7 @@ h2 {
 h1 {
 	font-family: 'Hanna';
 }
+
 /* 테이블 관련 양식 */
 thead th {
 	background-color: #006DCC;
@@ -300,6 +301,7 @@ a:hover {
 	padding-bottom: 0px;
 	line-height: 70px;	
 }
+
 @media (max-width: 767px) {
 	.navbar-default .navbar-brand {
 		padding-top: 15px;

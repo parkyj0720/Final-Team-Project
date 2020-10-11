@@ -3,6 +3,7 @@
 <%@ page import="java.net.URLDecoder" %>
 <!DOCTYPE html>
 <html>
+
 <head>
 	<%
 		String userID = null;
@@ -36,7 +37,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="css/bootstrap.css">
 	<link rel="stylesheet" href="css/custom.css">
-	<title>BoardCa 실시간 채팅</title>
+	<title>BoardCa 채팅</title>
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<script src="js/bootstrap.js"></script>
 	<script type="text/javascript">
@@ -87,7 +88,7 @@
 					var result = parsed.result;
 					for(var i = 0; i < result.length; i++) {
 						if(result[i][0].value == fromID) {
-							result[i][0].value = '나';
+							result[i][0].value = 'Me';
 						}
 						addChat(result[i][0].value, result[i][2].value, result[i][3].value);
 					}
@@ -160,15 +161,15 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-				<a class="navbar-brand" href="index.jsp">BoardCa 실시간 채팅</a>
+				<a class="navbar-brand" href="index.jsp">BoardCa 채팅</a>
 		</div>
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">
-				<li><a href="index.jsp">메인</a>
+				<!-- <li><a href="index.jsp">메인</a> -->
 				<li><a href="find.jsp">친구찾기</a></li>
 				<li><a href="box.jsp">메시지함<span id="unread" class="label label-info"></span></a></li>
 			</ul>
-			<%
+			<%-- <%
 				if(userID != null) {
 			%>
 			<ul class="nav navbar-nav navbar-right">
@@ -184,7 +185,7 @@
 			</ul>
 			<%
 				}
-			%>
+			%> --%>
 		</div>
 	</nav>
 	<div class="container bootstrap snippet">
@@ -193,12 +194,12 @@
 					<div class="portlet portlet-default">
 						<div class="portlet-heading">
 							<div class="portlet-title">
-								<h4><i class="fa fa-circle text-green"></i>BoardCa 실시간 채팅</h4>
+								<h4><i class="fa fa-circle text-green"></i>BoardCa 채팅</h4>
 							</div>
 							<div class="clearfix"></div>
 						</div>
 						<div id="chat" class="panel-collapse collapse in">
-							<div id="chatList" class="portlet-body chat-widget" style="overflow-y: auto; width: auto; height: 600px;">	
+							<div id="chatList" class="portlet-body chat-widget" style="overflow-y: auto; width: auto; height: 350px;">	
 							</div>
 							<div class="portlet-footer">
 								<div class="row" style="height: 90px;">

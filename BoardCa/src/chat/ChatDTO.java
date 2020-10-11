@@ -1,5 +1,7 @@
 package chat;
 
+import java.sql.Timestamp;
+
 public class ChatDTO {
 
 	int chatID;

@@ -7,7 +7,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="css/bootstrap.css">
 	<link rel="stylesheet" href="css/custom.css">
-	<title>BoardCa 실시간 채팅</title>
+	<title>BoardCa 채팅</title>
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<script src="js/bootstrap.js"></script>
 	
@@ -34,7 +34,7 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-				<a class="navbar-brand" href="index.jsp">BoardCa 실시간 채팅</a>
+				<a class="navbar-brand" href="index.jsp">BoardCa 채팅</a>
 		</div>
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">
@@ -42,7 +42,7 @@
 				<li><a href="find.jsp">친구찾기</a></li>
 				<li><a href="box.jsp">메시지함</a></li>
 			</ul>
-			<%
+			<%-- <%
 				if(userID == null) {
 			%>
 			<ul class="nav navbar-nav navbar-right">
@@ -59,7 +59,7 @@
 			</ul>
 			<%
 				}
-			%>
+			%> --%>
 		</div>
 	</nav>
 	<div class="container">
