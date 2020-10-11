@@ -271,13 +271,11 @@ public class CommunityController {
 			
 			String MEM_ID = "";
 			if(request.getParameter("MEM_ID") != null) {
-				MEM_ID = request.getParameter("MEM_ID");
+				MEM_ID = (String)request.getParameter("MEM_ID");
 			}
-			System.out.println("MEM_ID >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>" + MEM_ID);
 			
 			int MEM_IDX = dao.getIdx(MEM_ID);
-			session.setAttribute("userIdx", MEM_IDX);
-			
+			mv.addObject("MEM_IDX", MEM_IDX);
 			
 			 Cookie[] cookies = request.getCookies();
 			 String memberNo = "";
@@ -373,6 +371,9 @@ public class CommunityController {
 				MEM_ID = request.getParameter("MEM_ID");
 			}
 			System.out.println("MEM_ID >>> " + MEM_ID);
+			
+//			int MEM_IDX = dao.getIdx(MEM_ID);
+//			System.out.println(MEM_IDX);
 			
 			ArrayList<Object> heartList = new ArrayList<Object>();
 			int list_num = Integer.parseInt(request.getParameter("list"));

@@ -203,7 +203,7 @@
 										$(location).attr(
 												'href',
 												'${pageContext.request.contextPath}/App_detail.do?num=' // 수정
-														+ num);
+														+ num+"&MEM_ID=<%=MEM_ID%>");
 									});
 						});
 	</script>

@@ -101,10 +101,11 @@ public class CoDao {
 	////////////////////////////////
 
 	public int getIdx(String userID) {
+		
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String SQL = "SELECT * FROM MEMBER_T WHERE MEM_ID = ?";
+		String SQL = "SELECT MEM_IDX FROM MEMBER_T WHERE MEM_ID = ?";
 		try {
 
 			String jdbcUrl = "jdbc:mysql://board-1.cqff4lw7mwyx.ap-northeast-2.rds.amazonaws.com:3306/boardCa?serverTimezone=Asia/Seoul";
@@ -113,7 +114,7 @@ public class CoDao {
 
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			conn = DriverManager.getConnection(jdbcUrl, dbId, dbPw);
-			pstmt = conn.prepareStatement("select MEM_IDX from MEMBER_T where MEM_ID=?");
+			pstmt = conn.prepareStatement(SQL);
 			pstmt.setString(1, userID);
 			rs = pstmt.executeQuery();
 
@@ -123,7 +124,7 @@ public class CoDao {
 					return idx; // 로그인 성공
 				}
 			} else {
-				return -1; // 해당 사용자가 존재하지 않음
+				return -100; // 해당 사용자가 존재하지 않음
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

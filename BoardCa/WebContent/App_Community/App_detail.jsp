@@ -66,6 +66,8 @@
 </head>
 <body>
 	<%
+	int MEM_IDX = Integer.parseInt(request.getAttribute("MEM_IDX")+"");
+	System.out.println(MEM_IDX);
 	
 	CommunityDto dto = (CommunityDto) request.getAttribute("dto"); //
 	ArrayList<Heart> heart = (ArrayList<Heart>) request.getAttribute("heart");
@@ -228,7 +230,7 @@
 	<script>
 		$(function() {
 			var BOARD_IDX = <%=dto.getBRD_IDX()%>
-			var MEM_IDX = " ${sessionScope.userIdx}";
+			var MEM_IDX = "<%=MEM_IDX%>";
 			
 			$(".heart").on("click",	function() {
 						if (MEM_IDX == null || MEM_IDX == 0) {
@@ -293,7 +295,7 @@
 				})
 			});
 			function delete_success() {
-    		 	$(location).attr('href', '${pageContext.request.contextPath}/Community_list.do?list=<%=viewname.getBRD_CAT_IDX()%>');
+    		 	$(location).attr('href', '${pageContext.request.contextPath}/App_list.do?list=<%=viewname.getBRD_CAT_IDX()%>');
 			}
 
 			$("#comment_submit").on("click", function() {
