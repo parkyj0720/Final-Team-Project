@@ -226,11 +226,10 @@
 								<h5><%=Comm.getMEM_NICKNAME()%></h5>
 								<span class="comment-date"><%=Comm.getCOMT_SYSDATE()%></span>
 								<%
-								username = dto.getBRD_WRT_NICKNAME();
-								
+																
 								String commname = Comm.getMEM_NICKNAME();
-								System.out.println(username);
-								System.out.println(session.getAttribute("userNickname"));
+								System.out.println("글쓴이 >> "+username);
+								System.out.println("댓글 쓴이 >> "+commname);
 							if (username.equals((String)session.getAttribute("userNickname")) || ad == 1 || commname.equals((String)session.getAttribute("userNickname")) ) {
 						%>
 								<span class="delete_comment" style="cursor: pointer;" id="<%=Comm.getCOMT_IDX()%>">
