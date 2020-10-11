@@ -20,7 +20,8 @@ public class FragmainBoard extends Fragment {
 
     private ViewGroup viewGroup;
     private WebView webView;
-    public String MEM_ID = "MEM_ID";
+    public String id = "id";
+    public String nickname = "nickname";
 
     @Nullable
     @Override
@@ -30,15 +31,19 @@ public class FragmainBoard extends Fragment {
         webView = (viewGroup).findViewById(R.id.comm_main_webView);
 
         if(getArguments().getString("id") != null) {
-            MEM_ID = getArguments().getString("id");// 전달한 key 값
-            Log.e("bbbbbbbb", MEM_ID);
+            id = getArguments().getString("id");// 전달한 key 값
+            Log.e("bbbbbbbb", id);
+        }
+        if(getArguments().getString("nickname") != null) {
+            nickname = getArguments().getString("nickname");// 전달한 key 값
+            Log.e("bbbbbbbb", id);
         }
 
         webView.getSettings().setJavaScriptEnabled(true);
         webView.setWebChromeClient(new WebChromeClient());
         webView.setWebViewClient(new WebViewClientClass());
 
-        webView.loadUrl("http://192.168.219.100:8088/BoardCa/App_list.do?list=1&MEM_ID=" + MEM_ID); //주소는 임시, 차후에 바꿀것.
+        webView.loadUrl("http://175.211.48.98:8088/BoardCa/App_list.do?list=1&id=" + id+"&nickname="+nickname); //주소는 임시, 차후에 바꿀것.
 
         return viewGroup;
 

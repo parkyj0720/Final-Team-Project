@@ -33,7 +33,7 @@ public class GameFragment extends DialogFragment {
         webView.getSettings().setJavaScriptEnabled(true);
         webView.setWebChromeClient(new WebChromeClient());
         webView.setWebViewClient(new WebViewClientClass());
-        webView.loadUrl("http://192.168.219.100:8088/BoardCa/gameMain.do"); //주소는 임시, 차후에 바꿀것.
+        webView.loadUrl("http://175.211.48.98:8088/BoardCa/gameMain.do"); //주소는 임시, 차후에 바꿀것.
 
 //        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://172.30.1.17:8088/BoardCa/signIn.do"));
 //        startActivity(intent);

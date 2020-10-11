@@ -65,31 +65,14 @@ public class CommunityFragment extends Fragment {
         bundle.putString("id", id); // Key, Value
         bundle.putString("age", age); // Key, Value
         bundle.putString("mf", mf); // Key, Value
+
         b_main.setArguments(bundle);
 
-        Bundle bundle1 = new Bundle();
-        bundle1.putString("nickname", nickname); // Key, Value
-        bundle1.putString("email", email); // Key, Value
-        bundle1.putString("id", id); // Key, Value
-        bundle1.putString("age", age); // Key, Value
-        bundle1.putString("mf", mf); // Key, Value
-        b_tip.setArguments(bundle1);
+        b_tip.setArguments(bundle);
 
-        Bundle bundle2 = new Bundle();
-        bundle2.putString("nickname", nickname); // Key, Value
-        bundle2.putString("email", email); // Key, Value
-        bundle2.putString("id", id); // Key, Value
-        bundle2.putString("age", age); // Key, Value
-        bundle2.putString("mf", mf); // Key, Value
-        b_ask.setArguments(bundle2);
+        b_ask.setArguments(bundle);
 
-        Bundle bundle3 = new Bundle();
-        bundle3.putString("nickname", nickname); // Key, Value
-        bundle3.putString("email", email); // Key, Value
-        bundle3.putString("id", id); // Key, Value
-        bundle3.putString("age", age); // Key, Value
-        bundle3.putString("mf", mf); // Key, Value
-        b_report.setArguments(bundle3);
+        b_report.setArguments(bundle);
 
 
         viewPager.setAdapter(viewPagerAdapter);

@@ -12,9 +12,9 @@ request.setCharacterEncoding("UTF-8");
 
 AppDao appDao = AppDao.getInstance();
 
-if(request.getParameter("MEM_ID") != null){
-String MEM_ID = (String) request.getParameter("MEM_ID");
-String MEM_PW = (String) request.getParameter("MEM_PW");
+if(request.getParameter("id") != null){
+String MEM_ID = (String) request.getParameter("id");
+String MEM_PW = (String) request.getParameter("pw");
 
 System.out.println(MEM_ID);
 System.out.println(MEM_PW);

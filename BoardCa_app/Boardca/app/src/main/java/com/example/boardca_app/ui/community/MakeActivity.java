@@ -41,11 +41,11 @@ public class MakeActivity extends AppCompatActivity {
 
     private static final int REQUEST_CODE = 0;
 
-    public String MEM_NICKNAME = "MEM_NICKNAME";
-    public String MEM_EMAIL = "MEM_EMAIL";
-    public String BRD_WRT_ID = "BRD_WRT_ID";
-    public String MEM_AGE_GROUP = "MEM_AGE_GROUP";
-    public String MEM_GENDER = "MEM_GENDER";
+    public String nickname = "nickname";
+    public String email = "email";
+    public String id = "id";
+    public String age = "age";
+    public String mf = "mf";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,21 +54,21 @@ public class MakeActivity extends AppCompatActivity {
         wysiwyg = findViewById(R.id.richwysiwygeditor);
 
         if (getIntent().getStringExtra("nickname") != null)
-            MEM_NICKNAME = getIntent().getStringExtra("nickname");
+            nickname = getIntent().getStringExtra("nickname");
         if (getIntent().getStringExtra("email") != null)
-            MEM_EMAIL = getIntent().getStringExtra("email");
+            email = getIntent().getStringExtra("email");
         if (getIntent().getStringExtra("id") != null)
-            BRD_WRT_ID = getIntent().getStringExtra("id");
+            id = getIntent().getStringExtra("id");
         if (getIntent().getStringExtra("age") != null)
-            MEM_AGE_GROUP = getIntent().getStringExtra("age");
+            age = getIntent().getStringExtra("age");
         if (getIntent().getStringExtra("mf") != null)
-            MEM_GENDER = getIntent().getStringExtra("mf");
+            mf = getIntent().getStringExtra("mf");
 
-        Log.e("MEM_NICKNAME : ", MEM_NICKNAME + "");
-        Log.e("MEM_EMAIL : ", MEM_EMAIL + "");
-        Log.e("BRD_WRT_ID : ", BRD_WRT_ID + "");
-        Log.e("MEM_AGE_GROUP : ", MEM_AGE_GROUP + "");
-        Log.e("MEM_GENDER : ", MEM_GENDER + "");
+        Log.e("nickname : ", nickname + "");
+        Log.e("email : ", email + "");
+        Log.e("id : ", id + "");
+        Log.e("age : ", age + "");
+        Log.e("mf : ", mf + "");
         rg = (RadioGroup) findViewById(R.id.rg1);
 
         wysiwyg.getContent()
@@ -144,7 +144,7 @@ public class MakeActivity extends AppCompatActivity {
                     try {
                         String result;
                         CustomTask task = new CustomTask();
-                        result = task.execute(BRD_TIT, BRD_CONTENT, CATEGORY_IDX, MEM_NICKNAME, MEM_EMAIL, BRD_WRT_ID, MEM_AGE_GROUP, MEM_GENDER).get();
+                        result = task.execute(BRD_TIT, BRD_CONTENT, CATEGORY_IDX, nickname, email, id, age, mf).get();
                         Log.i("리턴 값", result);
 
                         if(result.equals("true")){
@@ -247,12 +247,12 @@ public class MakeActivity extends AppCompatActivity {
         protected String doInBackground(String... strings) {
             try {
                 String str;
-                URL url = new URL("http://192.168.219.100:8088/BoardCa/app_write_go.do");
+                URL url = new URL("http://175.211.48.98:8088/BoardCa/app_write_go.do");
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
                 conn.setRequestMethod("POST");
                 OutputStreamWriter osw = new OutputStreamWriter(conn.getOutputStream());
-                sendMsg = "BRD_TIT=" + strings[0] + "&BRD_CONTENT=" + strings[1] + "&CATEGORY_IDX=" + strings[2] + "&MEM_NICKNAME=" + strings[3] + "&MEM_EMAIL=" + strings[4] + "&BRD_WRT_ID=" + strings[5] + "&MEM_AGE_GROUP=" + strings[6] + "&MEM_GENDER=" + strings[7];
+                sendMsg = "BRD_TIT=" + strings[0] + "&BRD_CONTENT=" + strings[1] + "&CATEGORY_IDX=" + strings[2] + "&nickname=" + strings[3] + "&email=" + strings[4] + "&id=" + strings[5] + "&age=" + strings[6] + "&mf=" + strings[7];
 
                 osw.write(sendMsg);
                 osw.flush();

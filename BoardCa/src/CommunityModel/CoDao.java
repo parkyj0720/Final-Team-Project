@@ -87,12 +87,11 @@ public class CoDao {
 		mysqlSession.delete("CoXml.delete_content_comments", num);
 		mysqlSession.delete("CoXml.delete_content", num);
 	}
-	
 
 	public void insert_comment(Comment dto) {
 		mysqlSession.insert("CoXml.insert_comment", dto);
 	}
-	
+
 	public void delete_comment(int num) {
 		mysqlSession.delete("CoXml.delete_content_comments", num);
 	}
@@ -105,7 +104,7 @@ public class CoDao {
 	////////////////////////////////
 
 	public int getIdx(String userID) {
-		
+
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -123,7 +122,7 @@ public class CoDao {
 			rs = pstmt.executeQuery();
 
 			if (rs.next()) {
-				if (rs.getString("MEM_IDX")!= null) {
+				if (rs.getString("MEM_IDX") != null) {
 					int idx = Integer.parseInt(rs.getString("MEM_IDX"));
 					return idx; // 로그인 성공
 				}
@@ -145,5 +144,48 @@ public class CoDao {
 			}
 		}
 		return -1; // 데이터베이스 오류
+	}
+
+	public String getNick(String userID) {
+
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String SQL = "SELECT MEM_NICKNAME FROM MEMBER_T WHERE MEM_ID = ?";
+		try {
+
+			String jdbcUrl = "jdbc:mysql://board-1.cqff4lw7mwyx.ap-northeast-2.rds.amazonaws.com:3306/boardCa?serverTimezone=Asia/Seoul";
+			String dbId = "admin";
+			String dbPw = "comstudy03";
+
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			conn = DriverManager.getConnection(jdbcUrl, dbId, dbPw);
+			pstmt = conn.prepareStatement(SQL);
+			pstmt.setString(1, userID);
+			rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				if (rs.getString("MEM_NICKNAME") != null) {
+					String nick = rs.getString("MEM_NICKNAME");
+					return nick; // 로그인 성공
+				}
+			} else {
+				return ""; // 해당 사용자가 존재하지 않음
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (rs != null)
+					rs.close();
+				if (pstmt != null)
+					pstmt.close();
+				if (conn != null)
+					conn.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return ""; // 데이터베이스 오류
 	}
 }

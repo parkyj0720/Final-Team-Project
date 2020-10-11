@@ -9,13 +9,13 @@ request.setCharacterEncoding("UTF-8");
 
 AppDao appDao = AppDao.getInstance();
 
-if(request.getParameter("MEM_ID") != null){
-String MEM_NICKNAME = (String) request.getParameter("MEM_NICKNAME");
-String MEM_EMAIL = (String) request.getParameter("MEM_EMAIL");
-String MEM_ID = (String) request.getParameter("MEM_ID");
-String MEM_AGE_GROUP = (String) request.getParameter("MEM_AGE_GROUP");
-String MEM_GENDER = (String) request.getParameter("MEM_GENDER");
-String MEM_PW = (String) request.getParameter("MEM_PW");
+if(request.getParameter("id") != null){
+String MEM_NICKNAME = (String) request.getParameter("nickname");
+String MEM_EMAIL = (String) request.getParameter("email");
+String MEM_ID = (String) request.getParameter("id");
+String MEM_AGE_GROUP = (String) request.getParameter("age");
+String MEM_GENDER = (String) request.getParameter("mf");
+String MEM_PW = (String) request.getParameter("pw");
 String MEM_ROCAL = (String) request.getParameter("MEM_ROCAL");
 String MEM_STATE = (String) request.getParameter("MEM_STATE");
 

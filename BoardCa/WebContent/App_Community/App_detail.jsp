@@ -1,3 +1,4 @@
+<%@page import="App.AppDto"%>
 <%@page import="java.net.UnknownHostException"%>
 <%@page import="java.net.InetAddress"%>
 <%@page import="java.util.List"%>
@@ -66,9 +67,29 @@
 </head>
 <body>
 	<%
-	int MEM_IDX = Integer.parseInt(request.getAttribute("MEM_IDX")+"");
+		String app_id = "";
+	if (request.getAttribute("MEM_ID") != null) {
+		app_id = request.getAttribute("MEM_ID") + "";
+	}
+
+	int MEM_IDX = 0;
+	if (request.getAttribute("MEM_IDX") != null) {
+		MEM_IDX = Integer.parseInt(request.getAttribute("MEM_IDX") + "");
+	}
 	System.out.println(MEM_IDX);
-	
+
+	String MEM_NICKNAME = "";
+	if (request.getAttribute("MEM_NICKNAME") != null) {
+		MEM_NICKNAME = request.getAttribute("MEM_NICKNAME") + "";
+	}
+	System.out.println(MEM_NICKNAME);
+
+	int list_num = 0;
+	if (request.getAttribute("list_num") != null) {
+		list_num = Integer.parseInt(request.getAttribute("list_num") + "");
+	}
+	System.out.println(list_num);
+
 	CommunityDto dto = (CommunityDto) request.getAttribute("dto"); //
 	ArrayList<Heart> heart = (ArrayList<Heart>) request.getAttribute("heart");
 	List<Comment> comment = (List<Comment>) request.getAttribute("comment");
@@ -88,10 +109,10 @@
 	%>
 
 
-	 <section class="content">
+	<section class="content">
 		<!-- style="margin-left: auto; margin-right: auto; padding-left: 10%; padding-right: 10%;"> -->
-	<div class="body_scroll" style="max-width: none;">
-		<%-- <div class="row">
+		<div class="body_scroll" style="max-width: none;">
+			<%-- <div class="row">
 				<div>
 					<img src="${pageContext.request.contextPath}/imgs/logo1.png"
 						height="250em" />
@@ -109,128 +130,134 @@
 				</ul>
 			</div>  --%>
 
-		<div class="col-lg-8 col-md-12" style="max-width: none;">
-			<div class="card" style="">
-				<div class="blogitem mb-5">
-					<div class="blogitem-content">
-						<div id="content_num" style="visibility: hidden;"><%=dto.getBRD_IDX()%></div>
-						<h5>
-							<%=dto.getBRD_TIT()%>(<%=dto.getBRD_VIEWS()%>)
-							<div class="blogitem-meta" style="float: right;">
-								<span><i class="zmdi zmdi-account"></i><%=dto.getBRD_WRT_ID()%></a></span>
+			<div class="col-lg-8 col-md-12" style="max-width: none;">
+				<div id="back_list" class="btn btn btn-primary"
+					style="float: right;"
+					onclick="location='App_list.do?list=<%=list_num%>&id=<%=app_id%>'">목록으로</div>
+				<div class="card" style="">
+					<div class="blogitem mb-5">
+						<div class="blogitem-content">
+							<div id="content_num" style="visibility: hidden;"><%=dto.getBRD_IDX()%></div>
+							<h5>
+								<%=dto.getBRD_TIT()%>(<%=dto.getBRD_VIEWS()%>)
+								<div class="blogitem-meta" style="float: right;">
+									<span><i class="zmdi zmdi-account"></i><%=dto.getBRD_WRT_NICKNAME()%></span>
+								</div>
+							</h5>
+							<div style="margin-top: 50px;">
+								<%=dto.getBRD_CONTENT()%>
 							</div>
-						</h5>
-						<div style="margin-top: 50px;">
-							<%=dto.getBRD_CONTENT()%>
 						</div>
 					</div>
 				</div>
-			</div>
-			<div class="card">
-				<div class="header">
-					<h2>
-						<i class="zmdi zmdi-comments"></i><strong>댓글</strong> (<%=comment.size()%>)
-						<%
-							String username = dto.getBRD_WRT_ID();
-							if (username.equals((String) session.getAttribute("userId"))) {
-						%>
-						<a
-							href="${pageContext.request.contextPath}/Community_Modify.do?num=<%=dto.getBRD_IDX()%>"><strong
-							style="margin-left: 80px; color: gray">수정</strong></a> <span
-							id="delete" style="cursor: pointer;"><strong
-							style="margin-left: 20px; color: gray">삭제</strong></span>
-						<%
-							}
-						%>
-					</h2>
-					<%
-					int usernum;
-					if(session.getAttribute("userIdx")==null){
-						usernum=0;
-					}else{
-						usernum = (int)session.getAttribute("userIdx");						
-					}
-					
-					boolean tf = false;
-					for (int i = 0; i < heart.size(); i++) {
-						Heart h = heart.get(i);
-					if (h.getMEM_IDX()==(usernum)) {
-							tf = true;
-						}
-					}
-					if (tf == false) {
-					%>
-					<div class="heart">
-						<div id="heart_size"
-							style="margin-top: 40%; text-align: center; margin-left: 70%; position: absolute;"
-							oncontextmenu="return false" ondragstart="return false"
-							onselectstart="return false"><%=heart_size%></div>
-					</div>
-					<%
-						} else {
-					%>
-					<div class="heart1">
-						<div id="heart_size"
-							style="margin-top: 40%; text-align: center; margin-left: 70%; position: absolute;"
-							oncontextmenu="return false" ondragstart="return false"
-							onselectstart="return false"><%=heart_size%></div>
-					</div>
-					<%
-							}
-					%>
-				</div>
 				<div class="card">
-					<div class="header"></div>
-					<div>
-						<form class="row comment-form mt-2">
-							<div class="col-sm-12">
-								<div class="form-group">
-									<textarea id="comment_area" rows="4"
-										class="form-control no-resize" placeholder="댓글을 작성해주세요" maxlength="300"></textarea>
-								</div>
-								<div id="comment_submit" class="btn btn btn-primary"
-									style="float: right;">SUBMIT</div>
-							</div>
-						</form>
+					<div class="header">
+						<h2>
+							<i class="zmdi zmdi-comments"></i><strong>댓글</strong> (<%=comment.size()%>)
+							<%
+								String nickname = dto.getBRD_WRT_NICKNAME();
+							if (nickname.equals(MEM_NICKNAME)) {
+							%>
+							<a
+								href="${pageContext.request.contextPath}/Community_Modify.do?num=<%=dto.getBRD_IDX()%>"><strong
+								style="margin-left: 80px; color: gray">수정</strong></a> <span
+								id="delete" style="cursor: pointer;"><strong
+								style="margin-left: 20px; color: gray">삭제</strong></span>
+							<%
+								}
+							%>
+						</h2>
+						<%
+							int usernum;
+						if (session.getAttribute("userIdx") == null) {
+							usernum = 0;
+						} else {
+							usernum = (int) session.getAttribute("userIdx");
+						}
+
+						boolean tf = false;
+						for (int i = 0; i < heart.size(); i++) {
+							Heart h = heart.get(i);
+							if (h.getMEM_IDX() == (usernum)) {
+								tf = true;
+							}
+						}
+						if (tf == false) {
+						%>
+						<div class="heart">
+							<div id="heart_size"
+								style="margin-top: 40%; text-align: center; margin-left: 70%; position: absolute;"
+								oncontextmenu="return false" ondragstart="return false"
+								onselectstart="return false"><%=heart_size%></div>
+						</div>
+						<%
+							} else {
+						%>
+						<div class="heart1">
+							<div id="heart_size"
+								style="margin-top: 40%; text-align: center; margin-left: 70%; position: absolute;"
+								oncontextmenu="return false" ondragstart="return false"
+								onselectstart="return false"><%=heart_size%></div>
+						</div>
+						<%
+							}
+						%>
 					</div>
-				</div>
-				<div>
-					<ul class="comment-reply list-unstyled">
-						<%
-							for (int i = 0; i < comment.size(); i++) {
-							Comment Comm = comment.get(i);
-						%>
-						<li>
-							<div class="text-box" style="padding-left: 10px">
-								<h5><%=Comm.getBRD_WRT_ID()%></h5>
-								<span class="comment-date"><%=Comm.getCOMT_SYSDATE()%></span>
-								<%
-							if (username.equals((String) session.getAttribute("userId"))) {
-						%>
-								<span class="delete_comment" style="cursor: pointer;" id="<%=Comm.getCOMT_IDX()%>">
-								<strong	style="margin-left: 20px; color: gray">삭제</strong></span>
-								<%
-							}
-						%>
-								<p><%=Comm.getCOMT_CONTENT()%></p>
-							</div>
-						</li>
-						<%
-							}
-						%>
-					</ul>
+					<div class="card">
+						<div class="header"></div>
+						<div>
+							<form class="row comment-form mt-2">
+								<div class="col-sm-12">
+									<div class="form-group">
+										<textarea id="comment_area" rows="4"
+											class="form-control no-resize" placeholder="댓글을 작성해주세요"
+											maxlength="300"></textarea>
+									</div>
+									<div id="comment_submit" class="btn btn btn-primary"
+										style="float: right;">SUBMIT</div>
+								</div>
+							</form>
+						</div>
+					</div>
+					<div>
+						<ul class="comment-reply list-unstyled">
+							<%
+								for (int i = 0; i < comment.size(); i++) {
+								Comment Comm = comment.get(i);
+							%>
+							<li>
+								<div class="text-box" style="padding-left: 10px">
+									<h5><%=Comm.getMEM_NICKNAME()%></h5>
+									<span class="comment-date"><%=Comm.getCOMT_SYSDATE()%></span>
+									<%
+										if (nickname.equals(MEM_NICKNAME)) {
+									%>
+									<span class="delete_comment" style="cursor: pointer;"
+										id="<%=Comm.getCOMT_IDX()%>"> <strong
+										style="margin-left: 20px; color: gray">삭제</strong></span>
+									<%
+										}
+									%>
+									<p><%=Comm.getCOMT_CONTENT()%></p>
+								</div>
+							</li>
+							<%
+								}
+							%>
+						</ul>
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-</section>  
+	</section>
 
 	<script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
 
 	<script>
 		$(function() {
 			var BOARD_IDX = <%=dto.getBRD_IDX()%>
-			var MEM_IDX = "<%=MEM_IDX%>";
+			<%-- var MEM_IDX = "<%=MEM_IDX%>"; --%>
+			var MEM_IDX = " ${sessionScope.userIdx}";
 			
 			$(".heart").on("click",	function() {
 						if (MEM_IDX == null || MEM_IDX == 0) {
@@ -295,7 +322,8 @@
 				})
 			});
 			function delete_success() {
-    		 	$(location).attr('href', '${pageContext.request.contextPath}/App_list.do?list=<%=viewname.getBRD_CAT_IDX()%>');
+				$(location).attr('href', '${pageContext.request.contextPath}/Community_list.do?list=<%=viewname.getBRD_CAT_IDX()%>');
+		');
 			}
 
 			$("#comment_submit").on("click", function() {
@@ -326,17 +354,17 @@
 				console.log('댓글삭제버튼')
 				var COMT_IDX = $(this).attr('id');
 				console.log(COMT_IDX)
- 				var dto = {
+				var dto = {
 					COMT_IDX : COMT_IDX,
-					};
+				};
 				$.ajax({
-					url: "Community_delete_comment.do",
-					type: "POST",
-					data: dto,
-					success: function () {
+					url : "Community_delete_comment.do",
+					type : "POST",
+					data : dto,
+					success : function() {
 						alert('삭제성공');
 						location.reload();
-			           }
+					}
 				})
 			});
 			function recCount() {

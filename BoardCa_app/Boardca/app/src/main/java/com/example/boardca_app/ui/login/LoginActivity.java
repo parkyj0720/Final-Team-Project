@@ -289,10 +289,19 @@ public class LoginActivity extends AppCompatActivity {
                 }
 
                 if (result.equals("true")) {
+                    String nickname = "";
+                    try {
+                        Nick task = new Nick();
+                        nickname = task.execute(id).get();
+                        Log.i("리턴 값", nickname);
+                        finish();
+                    } catch (Exception e) {
+                    }
+
                     Toast.makeText(LoginActivity.this, id + "님! 로그인 성공!", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                    intent.putExtra("BRD_WRT_ID", usernameEditText.getText() + "");
-                    intent.putExtra("MEM_ID", usernameEditText.getText() + "");
+                    intent.putExtra("id", usernameEditText.getText() + "");
+                    intent.putExtra("nickname", nickname);
 
                     //intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK); //새로운 테스크에 작동시키기.
                     startActivity(intent);
@@ -440,22 +449,22 @@ public class LoginActivity extends AppCompatActivity {
                     String MEM_ID = id2 + "";
 
 
-                    Log.e("MEM_NICKNAME : ", MEM_NICKNAME + "");
-                    Log.e("MEM_EMAIL : ", MEM_EMAIL + "");
-                    Log.e("MEM_ID : ", MEM_ID + "");
-                    Log.e("MEM_AGE_GROUP : ", MEM_AGE_GROUP + "");
-                    Log.e("MEM_GENDER : ", MEM_GENDER + "");
+                    Log.e("nickname : ", MEM_NICKNAME + "");
+                    Log.e("email : ", MEM_EMAIL + "");
+                    Log.e("id : ", MEM_ID + "");
+                    Log.e("age : ", MEM_AGE_GROUP + "");
+                    Log.e("mf : ", MEM_GENDER + "");
 
 
                     if (!(MEM_NICKNAME.equals(""))) {
                         // 카카오 닉네임이 있는 경우, 홈으로 이동
 
                         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                        intent.putExtra("MEM_NICKNAME", MEM_NICKNAME);
-                        intent.putExtra("MEM_EMAIL", MEM_EMAIL);
-                        intent.putExtra("MEM_ID", MEM_ID);
-                        intent.putExtra("MEM_AGE_GROUP", MEM_AGE_GROUP);
-                        intent.putExtra("MEM_GENDER", MEM_GENDER);
+                        intent.putExtra("nickname", MEM_NICKNAME);
+                        intent.putExtra("email", MEM_EMAIL);
+                        intent.putExtra("id", MEM_ID);
+                        intent.putExtra("age", MEM_AGE_GROUP);
+                        intent.putExtra("mf", MEM_GENDER);
 
                         startActivity(intent);
                         overridePendingTransition(0, 0);
@@ -486,11 +495,11 @@ public class LoginActivity extends AppCompatActivity {
                             // 카카오 닉네임이 없는 경우, 회원가입 페이지로 이동
 
                             Intent intent = new Intent(getApplicationContext(), SignUpActivity.class);
-                            intent.putExtra("MEM_NICKNAME", MEM_NICKNAME);
-                            intent.putExtra("MEM_EMAIL", MEM_EMAIL);
-                            intent.putExtra("MEM_ID", MEM_ID);
-                            intent.putExtra("MEM_AGE_GROUP", MEM_AGE_GROUP);
-                            intent.putExtra("MEM_GENDER", MEM_GENDER);
+                            intent.putExtra("nickname", MEM_NICKNAME);
+                            intent.putExtra("email", MEM_EMAIL);
+                            intent.putExtra("id", MEM_ID);
+                            intent.putExtra("age", MEM_AGE_GROUP);
+                            intent.putExtra("mf", MEM_GENDER);
 
                             startActivity(intent);
                             overridePendingTransition(0, 0);
@@ -505,11 +514,11 @@ public class LoginActivity extends AppCompatActivity {
                             }
                         } else {
                             Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                            intent.putExtra("MEM_NICKNAME", MEM_NICKNAME);
-                            intent.putExtra("MEM_EMAIL", MEM_EMAIL);
-                            intent.putExtra("MEM_ID", MEM_ID);
-                            intent.putExtra("MEM_AGE_GROUP", MEM_AGE_GROUP);
-                            intent.putExtra("MEM_GENDER", MEM_GENDER);
+                            intent.putExtra("nickname", MEM_NICKNAME);
+                            intent.putExtra("email", MEM_EMAIL);
+                            intent.putExtra("id", MEM_ID);
+                            intent.putExtra("age", MEM_AGE_GROUP);
+                            intent.putExtra("mf", MEM_GENDER);
 
                             startActivity(intent);
                             overridePendingTransition(0, 0);
@@ -564,12 +573,12 @@ public class LoginActivity extends AppCompatActivity {
         protected String doInBackground(String... strings) {
             try {
                 String str;
-                URL url = new URL("http://192.168.219.100:8088/BoardCa/app_input.do");
+                URL url = new URL("http://175.211.48.98:8088/BoardCa/app_input.do");
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
                 conn.setRequestMethod("POST");
                 OutputStreamWriter osw = new OutputStreamWriter(conn.getOutputStream());
-                sendMsg = "MEM_NICKNAME=" + strings[0] + "&MEM_EMAIL=" + strings[1] + "&MEM_ID=" + strings[2] + "&MEM_AGE_GROUP=" + strings[3] + "&MEM_GENDER=" + strings[4];
+                sendMsg = "nickname=" + strings[0] + "&email=" + strings[1] + "&id=" + strings[2] + "&age=" + strings[3] + "&mf=" + strings[4];
                 osw.write(sendMsg);
                 osw.flush();
                 if (conn.getResponseCode() == conn.HTTP_OK) {
@@ -603,12 +612,12 @@ public class LoginActivity extends AppCompatActivity {
         protected String doInBackground(String... strings) {
             try {
                 String str;
-                URL url = new URL("http://192.168.219.100:8088/BoardCa/app_idpw.do");
+                URL url = new URL("http://175.211.48.98:8088/BoardCa/app_idpw.do");
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
                 conn.setRequestMethod("POST");
                 OutputStreamWriter osw = new OutputStreamWriter(conn.getOutputStream());
-                sendMsg = "MEM_ID=" + strings[0] + "&MEM_PW=" + strings[1];
+                sendMsg = "id=" + strings[0] + "&pw=" + strings[1];
 
                 osw.write(sendMsg);
                 osw.flush();
@@ -644,12 +653,12 @@ public class LoginActivity extends AppCompatActivity {
         protected String doInBackground(String... strings) {
             try {
                 String str;
-                URL url = new URL("http://192.168.219.100:8088/BoardCa/app_nick.do");
+                URL url = new URL("http://175.211.48.98:8088/BoardCa/app_nick.do");
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
                 conn.setRequestMethod("POST");
                 OutputStreamWriter osw = new OutputStreamWriter(conn.getOutputStream());
-                sendMsg = "MEM_ID=" + strings[0];
+                sendMsg = "id=" + strings[0];
 
                 osw.write(sendMsg);
                 osw.flush();

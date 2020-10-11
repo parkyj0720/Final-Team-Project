@@ -100,7 +100,7 @@ public class AppDao {
 	}
 
 	// 글쓰기 입력
-	public String writeDb(String BRD_TIT, String BRD_CONTENT, String CATEGORY_IDX, String BRD_WRT_ID) {
+	public String writeDb(String BRD_TIT, String BRD_CONTENT, String CATEGORY_IDX, String BRD_WRT_NICKNAME) {
 
 		returns = "false";
 		int cnt = Integer.parseInt(CATEGORY_IDX);
@@ -109,11 +109,11 @@ public class AppDao {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			conn = DriverManager.getConnection(jdbcUrl, dbId, dbPw);
 
-			sql2 = "insert into BOARD_T(BRD_TIT,BRD_WRT_ID,BRD_VIEWS,CATEGORY_IDX,BRD_CONTENT)values(?,?,?,?,?)";
+			sql2 = "insert into BOARD_T(BRD_TIT,BRD_WRT_NICKNAME,BRD_VIEWS,CATEGORY_IDX,BRD_CONTENT)values(?,?,?,?,?)";
 
 			pstmt2 = conn.prepareStatement(sql2);
 			pstmt2.setString(1, BRD_TIT);
-			pstmt2.setString(2, BRD_WRT_ID);
+			pstmt2.setString(2, BRD_WRT_NICKNAME);
 			pstmt2.setInt(3, 0);
 			pstmt2.setInt(4, cnt);
 			pstmt2.setString(5, BRD_CONTENT);

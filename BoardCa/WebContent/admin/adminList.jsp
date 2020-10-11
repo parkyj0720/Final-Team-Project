@@ -197,7 +197,7 @@ var td
 															<tr class="clickBtn ">
 
 																<td><%=report.getBRD_SYSDATE()%></td>
-																<td><%=report.getBRD_WRT_ID()%></td>
+																<td><%=report.getBRD_WRT_NICKNAME()%></td>
 																<td><%=report.getBRD_TIT()%></td>
 																<td style="display: none;"><%=report.getBRD_CONTENT()%></td>
 																

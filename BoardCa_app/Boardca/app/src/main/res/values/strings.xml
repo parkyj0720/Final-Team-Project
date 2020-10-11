@@ -242,7 +242,7 @@
     <string name="attachment_summary_on">오후 9시부터 아침 7시 사이에도 알람이 갑니다.</string>
     <string name="attachment_summary_off">오후 9시부터 아침 7시 사이엔 알람이 오지 않습니다.</string>
 
-    <string name="daummap_key">d022756896e9fe8eb68361967f2c1fa3</string>
+    <string name="daummap_key">8415a241a4db83e840a892351e689128</string>
     <string name="restapi_key">KakaoAK ce66d8c92e35e66226b4bf725b24d781</string>
     <!-- Ted Permission -->
     <string name="permission_1">[설정] > [권한] 에서 권한을 허용할 수 있습니다.</string>

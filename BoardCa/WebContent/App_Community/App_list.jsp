@@ -32,10 +32,15 @@
 <body>
 	<%
 	String MEM_ID = "";
-	if(request.getParameter("MEM_ID") != null) {
-		MEM_ID = request.getParameter("MEM_ID");
+	if(request.getParameter("id") != null) {
+		MEM_ID = request.getParameter("id");
+	}
+	int list_num = 0;
+	if(request.getParameter("list") !=null){
+		list_num = Integer.parseInt(request.getParameter("list"));
 	}
 	System.out.println(MEM_ID);
+	System.out.println(list_num);
 		List<CommunityDto> list = (List<CommunityDto>) request.getAttribute("list");
 	BoardList viewname = (BoardList) request.getAttribute("viewname");
 	String community_title = viewname.getCAT_NAME();
@@ -117,7 +122,7 @@
 										<td class="Ctd" width="10%" height="auto" align="center"
 											style="white-space: normal;"><%=dto.getBRD_IDX()%></td>
 										<td width="10%" height="auto" align="center"
-											style="white-space: normal;"><%=dto.getBRD_WRT_ID()%></td>
+											style="white-space: normal;"><%=dto.getBRD_WRT_NICKNAME()%></td>
 										<td width="40%" height="auto" align="center"
 											style="white-space: normal;"><%=dto.getBRD_TIT()%></td>
 										<%
@@ -203,7 +208,7 @@
 										$(location).attr(
 												'href',
 												'${pageContext.request.contextPath}/App_detail.do?num=' // 수정
-														+ num+"&MEM_ID=<%=MEM_ID%>");
+														+ num+"&MEM_ID=<%=MEM_ID%>&list_num=<%=list_num%>");
 									});
 						});
 	</script>

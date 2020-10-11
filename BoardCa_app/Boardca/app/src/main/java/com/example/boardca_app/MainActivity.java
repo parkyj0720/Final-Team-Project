@@ -9,6 +9,7 @@ import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.LocationManager;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -48,7 +49,13 @@ import com.google.android.material.navigation.NavigationView;
 import com.kakao.usermgmt.UserManagement;
 import com.kakao.usermgmt.callback.LogoutResponseCallback;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -93,8 +100,20 @@ public class MainActivity extends AppCompatActivity {
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             try {
 
-                if(getIntent().getStringExtra("MEM_ID") != null) {
-                    id = getIntent().getStringExtra("MEM_ID");
+                if(getIntent().getStringExtra("id") != null) {
+                    id = getIntent().getStringExtra("id");
+                }
+                if(getIntent().getStringExtra("nickname") != null) {
+                    nickname = getIntent().getStringExtra("nickname");
+                }
+                if(getIntent().getStringExtra("email") != null) {
+                    email = getIntent().getStringExtra("email");
+                }
+                if(getIntent().getStringExtra("age") != null) {
+                    age = getIntent().getStringExtra("age");
+                }
+                if(getIntent().getStringExtra("mf") != null) {
+                    mf = getIntent().getStringExtra("mf");
                 }
 
                 Bundle bundle = new Bundle();
@@ -205,8 +224,8 @@ public class MainActivity extends AppCompatActivity {
             nickname = getIntent().getStringExtra("nickname");
         if(getIntent().getStringExtra("email") != null)
             email = getIntent().getStringExtra("email");
-        if(getIntent().getStringExtra("BRD_WRT_ID") != null)
-            id = getIntent().getStringExtra("BRD_WRT_ID");
+        if(getIntent().getStringExtra("id") != null)
+            id = getIntent().getStringExtra("id");
         if(getIntent().getStringExtra("age") != null)
             age = getIntent().getStringExtra("age");
         if(getIntent().getStringExtra("mf") != null)
@@ -214,7 +233,7 @@ public class MainActivity extends AppCompatActivity {
 
         Log.e("nickname : ", nickname + "");
         Log.e("email : ", email + "");
-        Log.e("MEM_NICKNAME : ", id + "");
+        Log.e("id : ", id + "");
         Log.e("age : ", age + "");
         Log.e("mf : ", mf + "");
 
@@ -337,7 +356,6 @@ public class MainActivity extends AppCompatActivity {
         //NavigationUI.onNavDestinationSelected(navItems, navController);
 
     }
-
 
 
 

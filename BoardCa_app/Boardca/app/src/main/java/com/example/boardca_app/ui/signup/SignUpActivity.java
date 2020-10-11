@@ -33,18 +33,18 @@ import java.net.URL;
 
 public class SignUpActivity extends AppCompatActivity {
 
-    String MEM_ID = "";
-    String MEM_NICKNAME = "";
-    String MEM_PW = "";
+    String id = "";
+    String nickname = "";
+    String pw = "";
     String pw2 = "";
     //    String name = "";
-    String MEM_EMAIL = "";
+    String email = "";
     String MEM_ROCAL = "";
     String MEM_STATE = "";
 //    String region3 = "";
 
-    String MEM_GENDER = "";
-    String MEM_AGE_GROUP = "";
+    String mf = "";
+    String age = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,31 +75,31 @@ public class SignUpActivity extends AppCompatActivity {
         RadioGroup rg_gender = findViewById(R.id.rg_gender);
         RadioGroup rg_age = findViewById(R.id.rg_age);
 
-        if (getIntent().getStringExtra("MEM_NICKNAME") != null) {
-            MEM_NICKNAME = getIntent().getStringExtra("MEM_NICKNAME");
-            if (!(MEM_NICKNAME.equals(""))) {
-                sign_nick.setText(MEM_NICKNAME);
+        if (getIntent().getStringExtra("nickname") != null) {
+            nickname = getIntent().getStringExtra("nickname");
+            if (!(nickname.equals(""))) {
+                sign_nick.setText(nickname);
             }
         }
-        if (getIntent().getStringExtra("MEM_EMAIL") != null) {
-            MEM_EMAIL = getIntent().getStringExtra("MEM_EMAIL");
-            if (!(MEM_EMAIL.equals(""))) {
-                sign_email.setText(MEM_EMAIL);
+        if (getIntent().getStringExtra("email") != null) {
+            email = getIntent().getStringExtra("email");
+            if (!(email.equals(""))) {
+                sign_email.setText(email);
             }
         }
-        if (getIntent().getStringExtra("MEM_ID") != null) {
-            MEM_ID = getIntent().getStringExtra("MEM_ID");
-            if (!(MEM_ID.equals(""))) {
-                sign_id.setText(MEM_ID);
+        if (getIntent().getStringExtra("id") != null) {
+            id = getIntent().getStringExtra("id");
+            if (!(id.equals(""))) {
+                sign_id.setText(id);
                 sign_id.setClickable(false);
                 sign_id.setFocusable(false);
             }
         }
-        if (getIntent().getStringExtra("MEM_AGE_GROUP") != null) {
-            MEM_AGE_GROUP = getIntent().getStringExtra("MEM_AGE_GROUP");
+        if (getIntent().getStringExtra("age") != null) {
+            age = getIntent().getStringExtra("age");
         }
-        if (getIntent().getStringExtra("MEM_GENDER") != null) {
-            MEM_GENDER = getIntent().getStringExtra("MEM_GENDER");
+        if (getIntent().getStringExtra("mf") != null) {
+            mf = getIntent().getStringExtra("mf");
         }
 
         ImageButton button = findViewById(R.id.finish_next_btn);
@@ -108,21 +108,21 @@ public class SignUpActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 if (sign_id.getText() != null) {
-                    MEM_ID = sign_id.getText() + "";
+                    id = sign_id.getText() + "";
                 } else {
-                    MEM_ID = "";
+                    id = "";
                 }
 
                 if (sign_nick.getText() != null) {
-                    MEM_NICKNAME = sign_nick.getText() + "";
+                    nickname = sign_nick.getText() + "";
                 } else {
-                    MEM_NICKNAME = "";
+                    nickname = "";
                 }
 
                 if (password01.getText() != null) {
-                    MEM_PW = password01.getText() + "";
+                    pw = password01.getText() + "";
                 } else {
-                    MEM_PW = "";
+                    pw = "";
                 }
                 if (password02.getText() != null) {
                     pw2 = password02.getText() + "";
@@ -131,9 +131,9 @@ public class SignUpActivity extends AppCompatActivity {
                 }
 
                 if (sign_email.getText() != null) {
-                    MEM_EMAIL = sign_email.getText() + "";
+                    email = sign_email.getText() + "";
                 } else {
-                    MEM_EMAIL = "";
+                    email = "";
                 }
 
                 if (spinner_region_1.getSelectedItem().toString() != null) {
@@ -150,28 +150,28 @@ public class SignUpActivity extends AppCompatActivity {
                 RadioButton rb_gender = findViewById(rg_gender.getCheckedRadioButtonId());
                 RadioButton rb_age = findViewById(rg_age.getCheckedRadioButtonId());
 
-                String MEM_GENDER = rb_gender.getText().toString();
-                String MEM_AGE_GROUP = rb_age.getText().toString();
+                mf = rb_gender.getText().toString();
+                age = rb_age.getText().toString();
 
-                Log.v("MEM_ID", MEM_ID);
-                Log.v("MEM_NICKNAME", MEM_NICKNAME);
-                Log.v("MEM_PW", MEM_PW);
+                Log.v("id", id);
+                Log.v("nickname", nickname);
+                Log.v("pw", pw);
                 Log.v("pw2", pw2);
 //                Log.v("name", name);
-                Log.v("MEM_EMAIL", MEM_EMAIL);
+                Log.v("email", email);
                 Log.v("MEM_ROCAL", MEM_ROCAL);
                 Log.v("MEM_STATE", MEM_STATE);
 //                Log.v("region3", region3);
-                Log.v("MEM_GENDER", MEM_GENDER);
-                Log.v("MEM_AGE_GROUP", MEM_AGE_GROUP);
+                Log.v("mf", mf);
+                Log.v("age", age);
 
-                if (MEM_ID != "" && MEM_PW != "" && pw2 != "" && MEM_EMAIL != "" && MEM_NICKNAME != "") {
+                if (id != "" && pw != "" && pw2 != "" && email != "" && nickname != "") {
 
                     // 아이디, 닉네임 db와 비교해서 일치 여부 확인
                     String result = "";
                     try {
                         CustomTask task = new CustomTask();
-                        result = task.execute(MEM_ID, MEM_NICKNAME).get();
+                        result = task.execute(id, nickname).get();
                         Log.i("리턴 값", result);
                     } catch (Exception e) {
 
@@ -179,16 +179,15 @@ public class SignUpActivity extends AppCompatActivity {
 
                     switch (result) {
                         case "true":
-                            if (MEM_PW.equals(pw2)) {
-                                if (MEM_EMAIL.contains("@")) {
+                            if (pw.equals(pw2)) {
+                                if (email.contains("@")) {
                                     if (redred.getVisibility() == View.VISIBLE) {
-                                        Log.e("aaaaaaaa", "aaaaaaaaaaaaaaaaaaaaaaaaaaaa");
                                         password01.requestFocus();
                                     } else {
                                         // db에 넣기
                                         try {
                                             Qweqwe qweqwe = new Qweqwe();
-                                            result = qweqwe.execute(MEM_ID, MEM_NICKNAME, MEM_PW, MEM_EMAIL, MEM_ROCAL, MEM_STATE, MEM_GENDER, MEM_AGE_GROUP).get();
+                                            result = qweqwe.execute(id, nickname, pw, email, MEM_ROCAL, MEM_STATE, mf, age).get();
                                             Log.i("리턴 값", result);
                                         } catch (Exception e) {
 
@@ -222,19 +221,19 @@ public class SignUpActivity extends AppCompatActivity {
                     }
                 } else {
                     Toast.makeText(SignUpActivity.this, "빈 부분을 적어주세요.", Toast.LENGTH_SHORT).show();
-                    if (MEM_NICKNAME.equals("")) {
+                    if (nickname.equals("")) {
                         sign_nick.requestFocus();
                     } else {
-                        if (MEM_ID.equals("")) {
+                        if (id.equals("")) {
                             sign_id.requestFocus();
                         } else {
-                            if (MEM_PW.equals("")) {
+                            if (pw.equals("")) {
                                 password01.requestFocus();
                             } else {
                                 if (pw2.equals("")) {
                                     password02.requestFocus();
                                 } else {
-                                    if (MEM_EMAIL.equals("")) {
+                                    if (email.equals("")) {
                                         sign_email.requestFocus();
                                     }
                                 }
@@ -307,21 +306,21 @@ public class SignUpActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (sign_id.getText() != null) {
-                    MEM_ID = sign_id.getText() + "";
+                    id = sign_id.getText() + "";
                 } else {
-                    MEM_ID = "";
+                    id = "";
                 }
 
                 if (sign_nick.getText() != null) {
-                    MEM_NICKNAME = sign_nick.getText() + "";
+                    nickname = sign_nick.getText() + "";
                 } else {
-                    MEM_NICKNAME = "";
+                    nickname = "";
                 }
 
                 String result = "";
                 try {
                     CustomTask task = new CustomTask();
-                    result = task.execute(MEM_ID, MEM_NICKNAME).get();
+                    result = task.execute(id, nickname).get();
                     Log.i("리턴 값", result);
                 } catch (Exception e) {
 
@@ -334,7 +333,7 @@ public class SignUpActivity extends AppCompatActivity {
                             Toast.makeText(SignUpActivity.this, "아이디 중복!!!!", Toast.LENGTH_SHORT).show();
                             break;
                         case "false2":
-                            if (MEM_NICKNAME.equals("")) {
+                            if (nickname.equals("")) {
                                 Toast.makeText(SignUpActivity.this, "아이디 사용가능! 닉네임을 입력하세요.", Toast.LENGTH_SHORT).show();
                                 sign_nick.requestFocus();
                             } else {
@@ -362,7 +361,7 @@ public class SignUpActivity extends AppCompatActivity {
                 conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
                 conn.setRequestMethod("POST");
                 OutputStreamWriter osw = new OutputStreamWriter(conn.getOutputStream());
-                sendMsg = "MEM_ID=" + strings[0] + "&MEM_NICKNAME=" + strings[1];
+                sendMsg = "id=" + strings[0] + "&nickname=" + strings[1];
 
                 osw.write(sendMsg);
                 osw.flush();
@@ -402,7 +401,7 @@ public class SignUpActivity extends AppCompatActivity {
                 conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
                 conn.setRequestMethod("POST");
                 OutputStreamWriter osw = new OutputStreamWriter(conn.getOutputStream());
-                sendMsg = "MEM_ID=" + strings[0] + "&MEM_NICKNAME=" + strings[1] + "&MEM_PW=" + strings[2] + "&MEM_EMAIL=" + strings[3] + "&MEM_ROCAL=" + strings[4] + "&MEM_STATE=" + strings[5] + "&MEM_GENDER=" + strings[6] + "&MEM_AGE_GROUP=" + strings[7];
+                sendMsg = "id=" + strings[0] + "&nickname=" + strings[1] + "&pw=" + strings[2] + "&email=" + strings[3] + "&MEM_ROCAL=" + strings[4] + "&MEM_STATE=" + strings[5] + "&mf=" + strings[6] + "&age=" + strings[7];
                 osw.write(sendMsg);
                 osw.flush();
                 if (conn.getResponseCode() == conn.HTTP_OK) {
