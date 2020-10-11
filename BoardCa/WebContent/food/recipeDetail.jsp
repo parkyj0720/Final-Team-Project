@@ -30,6 +30,37 @@
 	href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
 <script src="http://code.jquery.com/jquery.js"></script>
 
+<style>
+.heart {
+	width: 100px;
+	height: 100px;
+	background: url(http://imagizer.imageshack.com/img923/4545/XdJDuY.png)
+		no-repeat;
+	background-size: 1000px 1000px'
+  cursor: pointer;
+}
+
+.heart-blast {
+	background-position: -2800px 0;
+	transition: background 1s steps(28);
+}
+
+.heart1 {
+	width: 100px;
+	height: 100px;
+	background: url(http://imagizer.imageshack.com/img923/4545/XdJDuY.png)
+		no-repeat;
+	cursor: pointer;
+	background-position: -2800px 0;
+	transition: background 1s steps(28);
+}
+
+.heart-blast1 {
+	background-position: 0px 0;
+	transition: none;
+}
+</style>
+
 <% CDto dto = (CDto)request.getAttribute("dto");
 	MemberDto mDto = null;
 	if(request.getAttribute("detailCheck") != null){
@@ -230,10 +261,10 @@
 												<td style="padding-left: 20px;"><%=cnt %></td>
 												<td style="padding-left: 100px;"><%=order_arr[i] %></td>
 												<% i++; %>
-												<% if(i < order_arr.length || order_arr[i].indexOf("jpg") != -1 || order_arr[i].indexOf("png") != -1 || order_arr[i].indexOf("gif") != -1){ %>
+												<% if(i < order_arr.length && (order_arr[i].indexOf("jpg") != -1 || order_arr[i].indexOf("png") != -1 || order_arr[i].indexOf("gif") != -1)){ %>
 												<td style="padding-left: 150px; padding-bottom:20px; width:400px; height:200px;">
 												<img src="<%=(order_arr[i].indexOf("http") != -1)?order_arr[i]:request.getContextPath()+"/upload/"+order_arr[i]%>"></td>
-												<% } %>
+												<% }else{ i--;} %>
 											</tr>
 											<% cnt++;} %>
 										</table>
@@ -283,6 +314,27 @@
 								<h5 style="margin: 0;">
 									<strong>한줄평</strong> (<%=reviewList.size() %>)
 								</h5>
+								<%
+								if (true) {
+								%>
+								<div class="heart">
+									<div id="heart_size"
+										style="text-align: center;"
+										oncontextmenu="return false" ondragstart="return false"
+										onselectstart="return false"></div>
+								</div>
+								<%
+									} else {
+								%>
+								<div class="heart1">
+									<div id="heart_size"
+										style="text-align: center;"
+										oncontextmenu="return false" ondragstart="return false"
+										onselectstart="return false"></div>
+								</div>
+								<%
+										}
+								%>
 							</div>
 							<div class="col-xl-12 col-lg-12	col-md-12">
 								<ul class="comment-reply " style="padding: 5px;">
