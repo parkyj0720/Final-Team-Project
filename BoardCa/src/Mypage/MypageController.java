@@ -115,13 +115,14 @@ public class MypageController {
 	@ResponseBody
 	public void community_input_content(InputDto data, HttpServletRequest request) {
 		System.out.println(data);
-		CommunityDto dto = new CommunityDto(0, data.getBRD_TIT(), data.getBRD_WRT_ID(), new Timestamp((System.currentTimeMillis()/1000L)*1000L), data.getBRD_CONTENT(), 0,
+		CommunityDto dto = new CommunityDto(0, data.getBRD_TIT(), data.getBRD_WRT_ID(),
+				new Timestamp((System.currentTimeMillis() / 1000L) * 1000L), data.getBRD_CONTENT(), 0,
 				data.getCATEGORY_IDX());
 		dao.write(dto);
 	}
 
 	@RequestMapping("/myFavorite.do")
-	public ModelAndView myFavoriteList() {
+	public ModelAndView myFavoriteList(HttpSession session) {
 		mv.setViewName("/mypage/myfavorite.jsp");
 		return mv;
 	}

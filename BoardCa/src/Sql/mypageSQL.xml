@@ -29,7 +29,7 @@
 		select *
 		from BOARD_CAT_T
 	</select>
-	<select id="heart" resultType="CommunityModel.Heart" parameterType="CommunityModel.Heart">
-		select * from HEART_T WHERE =#{MEM_IDX}
+	<select id="heart" resultType="CommunityModel.Heart" parameterType="MemberDto">
+		select * from HEART_T WHERE MEM_IDX =#{MEM_IDX}
 	</select>
 </mapper>

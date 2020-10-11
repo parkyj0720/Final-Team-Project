@@ -20,6 +20,10 @@
 <!-- Favicon-->
 <link rel="stylesheet"
 	href="/BoardCa/stylesheet/assets/plugins/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="/BoardCa/stylesheet/assets/plugins/light-gallery/css/lightgallery.css">
+<link rel="stylesheet"
+	href="/BoardCa/stylesheet/assets/plugins/fullcalendar/fullcalendar.min.css">
 <!-- Custom Css -->
 <link rel="stylesheet"
 	href="/BoardCa/stylesheet/assets/css/style.min.css">
@@ -27,16 +31,27 @@
 <script src="http://code.jquery.com/jquery.js"></script>
 
 <style>
+.num_btn_div {
+	width: 230px;
+	margin: 0 auto;
+}
+
+.search_div {
+	margin-top: 10px;
+	margin-left: 15px;
+	margin-bottom: 20px;
+	white-space: nowrap;
+}
 </style>
 </head>
 <%
-	String search = "";
+	String keyword = "";
 // 검색 했는지 체크
 if (request.getParameter("inputSearch") != null) {
-	search = request.getParameter("inputSearch");
+	keyword = request.getParameter("inputSearch");
 }
 // 리스트 목록
-List<GameDto> list = (List<GameDto>) request.getAttribute("gameList");
+List<GameDto> gameList = (List<GameDto>) request.getAttribute("gameList");
 
 //최대 보일 페이지 개수
 int maxList = 5;
@@ -48,21 +63,23 @@ int listNum = 12;
 int now_page = 1;
 
 //보여줄 리스트 배열 번호 선언
-int itemCount = 0;
+int itemCount = 1;
 
 // 리스트 목록
-System.out.println("리스트 개수: " + list.size());
+System.out.println("리스트 개수: " + gameList.size());
 
 // 보여줄 리스트 배열 번호 (페이지번호 * 페이지에 보여주는 리스트 개수)
 if (request.getParameter("page") != null) {
 	now_page = Integer.parseInt(request.getParameter("page"));
 	if (now_page <= 0)
-		response.sendRedirect("${pageContext.request.contextPath}/cListAll.do?page=1");
+		response.sendRedirect("${pageContext.request.contextPath}/gameMain.do?page=1");
 	itemCount = (Integer.parseInt(request.getParameter("page")) - 1) * listNum;
 }
 
 // 리스트 개수
-int listCount = (list.size() % listNum == 0 && list.size() != 0) ? list.size() / listNum : list.size() / listNum + 1;
+int listCount = (gameList.size() % listNum == 0 && gameList.size() != 0)
+		? gameList.size() / listNum
+		: gameList.size() / listNum + 1;
 
 // 시작 페이지
 int startList = (now_page % maxList == 0) ? ((now_page / maxList) - 1) : (now_page / maxList);
@@ -73,61 +90,36 @@ int endList = (now_page % maxList == 0) ? ((now_page / maxList) - 1) : (now_page
 endList = endList * maxList + maxList;
 %>
 
-<script>
-	function Request() {
-		var requestParam = "";
 
-		//getParameter 펑션
-		this.getParameter = function(param) {
-			//현재 주소를 decoding
-			var url = unescape(location.href);
-			//파라미터만 자르고, 다시 &그분자를 잘라서 배열에 넣는다. 
-			var paramArr = (url.substring(url.indexOf("?") + 1, url.length))
-					.split("&");
 
-			for (var i = 0; i < paramArr.length; i++) {
-				var temp = paramArr[i].split("="); //파라미터 변수명을 담음
-
-				if (temp[0].toUpperCase() == param.toUpperCase()) {
-					// 변수명과 일치할 경우 데이터 삽입
-					requestParam = paramArr[i].split("=")[1];
-					break;
-				}
+	<script>
+		var request = new Request();
+		var page = request.getParameter("page");
+		var maxList = <%= request.getAttribute("maxList") %>
+		$('document').ready(function() {
+			if (page <= 0)
+				page = 1;
+			if (page >= maxList + 1) {
+				page = page % maxList;
+				if (page == 0)
+					page = 10;
 			}
-			return requestParam;
-		}
-	}
-	var request = new Request();
-	var page = request.getParameter("page");
-	var maxList = <%=request.getAttribute("maxList") %>
-	$('document').ready(function(){
-		if(page <= 0)
-			page = 1;
-		if(page >= maxList+1)
-		{
-			page = page % maxList;
-			if(page == 0)
-				page = 10;
-		}
-		// 하단 목록 버튼 사이즈 조절 및 위치조정 
-		var wd = 0;
-		if($('.page-item').length >= maxList+2)
-		{
-			wd = 40 * (maxList+2) - 40;
-		}else{
-			wd = 40 * $('.page-item').length - 40;
-		}
-		$('.num_btn_div').css('width',wd+'px');
-		
-		// 버튼 눌림 효과클래스 추가
-		$('.page-item').eq(page).addClass('active');
-	});
-</script>
+			// 하단 목록 버튼 사이즈 조절 및 위치조정 
+			var wd = 0;
+			if ($('.page-item').length >= maxList + 2) {
+				wd = 40 * (maxList + 2) - 40;
+			} else {
+				wd = 40 * $('.page-item').length - 40;
+			}
+			$('.num_btn_div').css('width', wd + 'px');
+
+			// 버튼 눌림 효과클래스 추가
+			$('.page-item').eq(page).addClass('active');
+		});
+	</script>
 
 <body class="ls-closed ls-toggle-menu ">
 	<jsp:include page="/WEB-INF/header.jsp"></jsp:include>
-
-
 	<!-- body -->
 	<div class="body_scroll">
 		<div class="block-header">
@@ -163,10 +155,10 @@ endList = endList * maxList + maxList;
 								<div class="row clearfix">
 
 									<%
-										for (int i = itemCount; i <list.size(); i++) {
-										if (i > itemCount+listNum-1)
+										for (int i = itemCount; i < gameList.size(); i++) {
+										if (i > itemCount + listNum - 1)
 											break;
-										GameDto dto = list.get(i);
+										GameDto dto = gameList.get(i);
 									%>
 									<div class="col-lg-3 col-md-4 col-sm-12">
 										<div class="card">
@@ -194,29 +186,26 @@ endList = endList * maxList + maxList;
 				</div>
 			</div>
 		</div>
-		<div class="card">
-			<div class="body">
-				<ul class="pagination pagination-primary m-b-0">
-					<li class="page-item"><a class="page-link"
-						href="${pageContext.request.contextPath}/<%=(search.equals(""))?"cListAll":"cSearch"%>.do?page=<%=(startList-maxList>0)?startList-maxList:1 %>&inputSearch=<%=search%>"><i
-							class="zmdi zmdi-arrow-left"></i></a></li>
-					<!-- class = "active" -->
-
-					<%
-						for (int i = startList - 1; i < endList; i++) {
-						if (i >= listCount)
-							break;
-					%>
-					<li class="page-item"><a class="page-link"
-						href="${pageContext.request.contextPath}/<%=(search.equals(""))?"gameMain":"gameSearch"%>.do?page=<%=i%>&inputSearch=<%=search%>"><%=i%></a></li>
-					<%
-						}
-					%>
-					<li class="page-item"><a class="page-link"
-						href="${pageContext.request.contextPath}/<%=(search.equals(""))?"gameMain":"gameSearch"%>.do?page=<%=(endList+1>listCount)?listCount:endList+1%>&inputSearch=<%=search%>"><i
-							class="zmdi zmdi-arrow-right"></i></a></li>
-				</ul>
-			</div>
+		<div class="num_btn_div">
+			<ul class="pagination pagination-primary m-b-0">
+				<li class="page-item"><a class="page-link"
+					href="${pageContext.request.contextPath}/<%=(keyword.equals(""))?"gameMain":"gameSearch"%>.do?page=<%=(startList-maxList>0)?startList-maxList:1 %>&inputSearch=<%=keyword%>"><i
+						class="zmdi zmdi-arrow-left"></i></a></li>
+				<!-- class = "active" -->
+				<%
+					for (int i = startList; i <= endList; i++) {
+					if (i > listCount)
+						break;
+				%>
+				<li class="page-item"><a class="page-link"
+					href="${pageContext.request.contextPath}/<%=(keyword.equals(""))?"gameMain":"gameSearch"%>.do?page=<%=i%>&inputSearch=<%=keyword%>"><%=i%></a></li>
+				<%
+					}
+				%>
+				<li class="page-item"><a class="page-link"
+					href="${pageContext.request.contextPath}/<%=(keyword.equals(""))?"gameMain":"gameSearch"%>.do?page=<%=(endList+1>listCount)?listCount:endList+1%>&inputSearch=<%=keyword%>"><i
+						class="zmdi zmdi-arrow-right"></i></a></li>
+			</ul>
 		</div>
 	</div>
 
@@ -225,15 +214,19 @@ endList = endList * maxList + maxList;
 
 	<jsp:include page="/WEB-INF/footer.jsp"></jsp:include>
 	<!-- Jquery Core Js -->
-	<script
-		src="${pageContext.request.contextPath}/stylesheet/assets/bundles/libscripts.bundle.js"></script>
+	<script src="/BoardCa/stylesheet/assets/bundles/libscripts.bundle.js"></script>
 	<!-- Lib Scripts Plugin Js -->
 	<script
-		src="${pageContext.request.contextPath}/stylesheet/assets/bundles/vendorscripts.bundle.js"></script>
+		src="/BoardCa/stylesheet/assets/bundles/vendorscripts.bundle.js"></script>
 	<!-- Lib Scripts Plugin Js -->
 
 	<script
-		src="${pageContext.request.contextPath}/stylesheet/assets/bundles/mainscripts.bundle.js"></script>
+		src="/BoardCa/stylesheet/assets/plugins/light-gallery/js/lightgallery-all.min.js"></script>
+	<!-- Light Gallery Plugin Js -->
+
+	<script src="/BoardCa/stylesheet/assets/bundles/mainscripts.bundle.js"></script>
 	<!-- Custom Js -->
+	<script
+		src="/BoardCa/stylesheet/assets/js/pages/medias/image-gallery.js"></script>
 </body>
 </html>

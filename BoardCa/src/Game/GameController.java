@@ -31,7 +31,6 @@ public class GameController {
 			page = Integer.parseInt(req.getParameter("page"));
 		}
 		
-		mv.addObject("page", page);
 
 		// 관리자 확인을 위한 멤버정보 확인
 		if (session.getAttribute("userId") != null) {
@@ -41,7 +40,6 @@ public class GameController {
 			mv.addObject("infocheck", mDto);
 		}
 		List<GameDto> list = dao.getList();
-		Collections.shuffle(list);
 		mv.addObject("gameList", list);
 		mv.setViewName("/game/gameMain.jsp?page=" + page);
 		return mv;
@@ -92,10 +90,10 @@ public class GameController {
 			System.out.println(mDto);
 			mv.addObject("detailCheck", mDto);
 		}
-
+		mv.addObject("page", page);
 		mv.addObject("gameList", dao.getSearchList(keyword));
 		mv.addObject("inputSearch", keyword);
-		mv.setViewName("/game/gameMain.jsp?page=" + page);
+		mv.setViewName("/game/gameMain.jsp?page="+ page);
 		return mv;
 	}
 

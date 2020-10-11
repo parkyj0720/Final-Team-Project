@@ -1,3 +1,4 @@
+<%@page import="CommunityModel.Heart"%>
 <%@page import="CommunityModel.CommunityDto"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -30,7 +31,7 @@
 	href="${pageContext.request.contextPath}/stylesheet/assets/plugins/footable-bootstrap/css/footable.standalone.min.css">
 </head>
 <%
-	List<CommunityDto> myList = (List<CommunityDto>) request.getAttribute("myList");
+	List<Heart> myList = (List<Heart>) request.getAttribute("myList");
 %>
 <body class="theme-blush ls-closed ls-toggle-menu ">
 	<!-- header -->
@@ -113,24 +114,23 @@
 																<th data-breakpoints="xs" class="footable-sortable"
 																	style="display: table-cell;">시간<span
 																	class="fooicon fooicon-sort"></span></th>
-																<th
-																	class="footable-sortable footable-last-visible footable-desc"
+																<th class="footable-sortable "
 																	style="display: table-cell;">좋아요<span
-																	class="fooicon fooicon-sort-desc"></span></th>
+																	class="fooicon fooicon-sort"></span></th>
 															</tr>
 														</thead>
 														<tbody>
 															<%
 																for (int i = 0; i < myList.size(); i++) {
-																CommunityDto dto = myList.get(i);
-																System.out.println(dto.getBRD_WRT_NICKNAME());
+																Heart dto = myList.get(i);
+																System.out.println(dto.getMEM_IDX());
+																
 															%>
 															<tr>
 																<td class="footable-first-visible"
-																	style="display: table-cell;"><%=dto.getBRD_IDX()%></td>
-																<td style="display: table-cell;"><%=dto.getBRD_TIT()%></td>
-																<td style="display: table-cell;"><%=dto.getBRD_SYSDATE()%></td>
-																<td style="display: table-cell;"><%=dto.getCOUNT()%></td>
+																	style="display: table-cell;"><%=dto.getBOARD_IDX()%></td>
+																<td style="display: table-cell;"><%=dto.getHEART_IDX()%></td>
+																<td style="display: table-cell;"><%=dto.getMEM_IDX()%></td>
 															</tr>
 															<%
 																}

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import CommunityModel.BoardList;
 import CommunityModel.CommunityDto;
+import CommunityModel.Heart;
 import Member.MemberDto;
 
 @Repository
@@ -44,5 +45,9 @@ public class MypageDao {
 		System.out.println(dto);
 		mysqlSession.insert("mypageXml.FaQinsert", dto);
 		System.out.println("입력끝");
+	}
+	public List<Heart> heart(int mem_idx) {
+		List<Heart>list = mysqlSession.selectList("mypageXml.heart",mem_idx);
+		return list;
 	}
 }
