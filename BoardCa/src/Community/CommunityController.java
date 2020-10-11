@@ -29,6 +29,7 @@ import CommunityModel.Comment;
 import CommunityModel.CommunityDto;
 import CommunityModel.Heart;
 import CommunityModel.InputDto;
+import Member.MemberDao;
 import Member.MemberDto;
 import user.UserDAO;
 
@@ -40,10 +41,13 @@ public class CommunityController {
 	
 	@Autowired
 	private ModelAndView mv;
+	
+	@Autowired
+	private MemberDao MemberDao; 
 
 	// Main
 	@RequestMapping("/Community_main.do")
-	public ModelAndView community_main() {
+	public ModelAndView community_main(HttpServletRequest request, HttpSession session) {
 		// 게시판 번호, 이름 정보 가져오기
 		List<BoardList> boardlist = dao.Get_boardlist();
 		for(int i = 1; i<=boardlist.size(); i++) {
@@ -52,6 +56,16 @@ public class CommunityController {
 			mv.addObject(list, dao.main(i));
 		}
 		// 게시판 번호, 이름정보 넘겨줌
+		
+		
+		String userid = (String)session.getAttribute("userId");
+		
+		int ad = MemberDao.adminCheck(userid);
+		
+		
+		mv.addObject("ad", ad);
+		
+				
 		mv.addObject("boardList", boardlist);
 		mv.setViewName("community/C_main.jsp");
 		return mv;
@@ -60,7 +74,7 @@ public class CommunityController {
 	
 	 // List
 	@RequestMapping("/Community_list.do")
-	public ModelAndView community_list(HttpServletRequest request) {
+	public ModelAndView community_list(HttpServletRequest request, HttpSession session) {
 		ArrayList<Object> heartList = new ArrayList<Object>();
 		int list_num = Integer.parseInt(request.getParameter("list"));
 		
@@ -68,6 +82,14 @@ public class CommunityController {
 		if(request.getParameter("page") != null) {
 			page = Integer.parseInt(request.getParameter("page"));
 		}
+		
+		String userid = (String)session.getAttribute("userId");
+		
+		int ad = MemberDao.adminCheck(userid);
+		
+		
+		mv.addObject("ad", ad);
+		
 		
 		mv.addObject("page", page);
 		mv.addObject("viewname", dao.one_board(list_num));
@@ -140,6 +162,13 @@ public class CommunityController {
 	                }
 	    		CommunityDto dto = dao.detail(num);
 	    		int boardnum = dto.getCATEGORY_IDX();
+	    		
+	    		String id = (String)session.getAttribute("userId");
+	    		
+	    		int ad = MemberDao.adminCheck(id);
+	    		
+	    		mv.addObject("ad", ad);
+	    		
 	    		mv.addObject("board", dao.one_board(boardnum));
 	    		mv.addObject("dto", dto);
 	    		mv.addObject("heart", dao.detail_heart(num));
@@ -257,8 +286,13 @@ public class CommunityController {
 	// 댓글 삭제
 	@RequestMapping(value = "/Community_delete_comment.do", method = RequestMethod.POST)
 	@ResponseBody
-	public void community_delete_comment(String data, HttpServletRequest request) {
-		System.out.println(data);
+	public void community_delete_comment(Comment data, HttpServletRequest request) {
+		
+		int a = data.getCOMT_IDX();
+		
+		dao.delete_comment(a);
+		
+		
 	}
 	
 	

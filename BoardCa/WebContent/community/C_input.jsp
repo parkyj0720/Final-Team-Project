@@ -59,6 +59,11 @@
 								<option>게시판을 선택해주세요.</option>
 								<%
 									for (int i = 0; i < boardList.size(); i++) {
+										
+										if(i==4){
+											continue;
+										}
+										
 								%>
 								<option><%=boardList.get(i).getCAT_NAME()%></option>
 								<%

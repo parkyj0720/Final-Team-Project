@@ -13,7 +13,7 @@
 <meta charset="UTF-8">
 <title>BoardCa :: Community</title>
 <!-- Favicon-->
-<link rel="icon" href="favicon.ico" type="image/x-icon">
+<link rel="icon" href="${pageContext.request.contextPath}/stylesheet/favicon.ico" type="image/x-icon">
 <!-- Custom Css -->
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/stylesheet/assets/plugins/bootstrap/css/bootstrap.min.css"
@@ -128,13 +128,13 @@
 										style="white-space: normal;"><%=title%></td>
 									<%
 										if ((format1.format(semple)).equals(format1.format(dto.getBRD_SYSDATE()))) {
-											SimpleDateFormat format2 = new SimpleDateFormat("HH시 mm분");
+										SimpleDateFormat format2 = new SimpleDateFormat("HH시 mm분");
 									%>
 									<td width="10%" height="auto" align="center"
 										style="white-space: normal;"><%=format2.format(dto.getBRD_SYSDATE())%></td>
 									<%
 										} else {
-											SimpleDateFormat format3 = new SimpleDateFormat("MM-dd HH:mm");
+									SimpleDateFormat format3 = new SimpleDateFormat("MM-dd HH:mm");
 									%>
 									<td width="10%" height="auto" align="center"
 										style="white-space: normal;"><%=format3.format(dto.getBRD_SYSDATE())%></td>
@@ -170,6 +170,89 @@
 						List<CommunityDto> list = (List<CommunityDto>) request.getAttribute(listname);
 						BoardList blist = boardList.get(i);
 						int nel = 7 - list.size();
+
+						if (blist.getCAT_NAME().equals("신고합니다")) {
+					%>
+					<div class="card">
+						<div class="header" align="center">
+							<a
+								href="${pageContext.request.contextPath}/Community_list.do?list=<%=i+1%>"><h2
+									id="listname1"><%=blist.getCAT_NAME()%></h2></a>
+						</div>
+						<div class="body" style="height: 30em;">
+							<table
+								class="table-hover product_item_list c_table theme-color mb-0"
+								style="height: 100%; width: 100%">
+								<%
+									if (list.size() == 0) {
+								%>
+								<div align="center" style="margin-top: 14em;">아직 게시글이
+									없습니다.</div>
+								<%
+									} else {
+								%>
+								<tr height="40px" width="100%"
+									style="box-sizing: content-box; border: 1px ridge; background-color: #f8f9fa">
+									<th width="10%" height="auto" style="text-align: center">번호</th>
+									<th width="10%" height="auto" style="text-align: center">글쓴이</th>
+									<th width="50%" height="auto" style="text-align: center">제목</th>
+									<th width="10%" height="auto" style="text-align: center">시간</th>
+									<th width="10%" height="auto" style="text-align: center">조회수</th>
+								</tr>
+								<%
+									for (int j = 0; j < list.size(); j++) {
+									CommunityDto dto = list.get(j);
+									String title = dto.getBRD_TIT();
+									int endidx = title.length();
+									if (endidx > 20) {
+										title = title.substring(0, 20);
+										title += "...";
+									}
+								%>
+								<tr class="eventlist" width="40px"
+									style="box-sizing: content-box; border: 1px ridge;">
+									<td width="10%" height="auto" align="center"
+										style="white-space: normal;"><%=dto.getBRD_IDX()%></td>
+									<td width="10%" height="auto" align="center"
+										style="white-space: normal;"><%=dto.getBRD_WRT_NICKNAME()%></td>
+									<td width="50%" height="auto" align="center"
+										style="white-space: normal;"><%=title%></td>
+									<%
+										if ((format1.format(semple)).equals(format1.format(dto.getBRD_SYSDATE()))) {
+										SimpleDateFormat format2 = new SimpleDateFormat("HH시mm분");
+									%>
+									<td width="10%" height="auto" align="center"
+										style="white-space: normal;"><%=format2.format(dto.getBRD_SYSDATE())%></td>
+									<%
+										} else {
+									SimpleDateFormat format3 = new SimpleDateFormat("MM-dd HH:mm");
+									%>
+									<td width="10%" height="auto" align="center"
+										style="white-space: normal;"><%=format3.format(dto.getBRD_SYSDATE())%></td>
+
+									<%
+										}
+									%>
+									<td width="10%" height="auto" align="center"
+										style="white-space: normal;"><%=dto.getBRD_VIEWS()%></td>
+
+								</tr>
+								<%
+									}
+								for (int j = 0; j < nel; j++) {
+								%>
+								<tr>
+								</tr>
+								<%
+									}
+								}
+								%>
+							</table>
+						</div>
+					</div>
+
+					<%
+						} else {
 					%>
 					<div class="card">
 						<div class="header" align="center">
@@ -251,6 +334,9 @@
 					<%
 						}
 					%>
+					<%
+						}
+					%>
 				</div>
 
 			</div>
@@ -272,6 +358,48 @@
 												+ num);
 
 							});
+					
+					$('.eventlist').click(function(){
+						
+						
+						var username = <%=session.getAttribute("userId")%>;
+						console.log(username);
+						
+						var ad = <%=request.getAttribute("ad")%>
+						
+						console.log(ad);
+						
+						var tr = $(this);
+						var td = tr.children();
+												
+						console.log("클릭한 Row의 모든 데이터 : " + tr.text());
+						
+						var writeid = td.eq(1).text();
+						
+						console.log(writeid);
+							
+						
+						if(ad==1 || writeid==username){
+							
+							
+							 
+							var num = $(this).children(0).eq(0).text();
+							var viewname = $('#listname1').text();
+							$(location).attr(
+									'href',
+									'${pageContext.request.contextPath}/Community_detail.do?num='
+											+ num);
+							 
+							}
+							else{
+								
+								alert("관리자 혹은 신고자만 읽을 수 있습니다.");
+								
+							}
+						
+						
+					});
+					
 
 				});
 	</script>

@@ -84,13 +84,17 @@ public class CoDao {
 	}
 
 	public void delete_content(int num) {
-		mysqlSession.delete("CoXml.delete_content_heart", num);
 		mysqlSession.delete("CoXml.delete_content_comments", num);
 		mysqlSession.delete("CoXml.delete_content", num);
 	}
+	
 
 	public void insert_comment(Comment dto) {
 		mysqlSession.insert("CoXml.insert_comment", dto);
+	}
+	
+	public void delete_comment(int num) {
+		mysqlSession.delete("CoXml.delete_content_heart", num);
 	}
 
 	public void modify(CommunityDto dto) {

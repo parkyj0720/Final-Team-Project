@@ -162,7 +162,7 @@
 			});
 		}
 		  var content = escapeHtml('<%=dto.getBRD_CONTENT()%>'); --%>
-		  var content = '<%=dto.getBRD_CONTENT()%>';
+		  <%-- var content = '<%=dto.getBRD_CONTENT()%>'; --%>
     	console.log(content);
     	$('.note-editable').html(content);
 	}

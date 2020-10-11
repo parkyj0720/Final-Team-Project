@@ -28,7 +28,9 @@
 		resultType="CommunityModel.CommunityDto">
 		select BRD_IDX,
 		BRD_TIT,
+
 		BRD_WRT_NICKNAME,
+
 		BRD_SYSDATE,
 
 		BRD_VIEWS,
@@ -45,6 +47,7 @@
 		resultType="CommunityModel.CommunityDto">
 		SELECT b.BRD_IDX,
 		b.BRD_TIT,
+
 		b.BRD_WRT_NICKNAME,
 		b.BRD_SYSDATE,
 		b.BRD_VIEWS,
@@ -73,6 +76,7 @@
 		select
 		BRD_IDX,
 		BRD_TIT,
+
 		BRD_WRT_NICKNAME,
 		BRD_SYSDATE,
 		BRD_VIEWS,
@@ -110,7 +114,9 @@
 	<select id="detail_comments" parameterType="int"
 		resultType="CommunityModel.Comment" resultMap="nity">
 		select
+
 		m.MEM_NICKNAME as MEM_NICKNAME,
+
 		f.COMT_IDX,
 		f.COMT_SYSDATE,
 		f.BRD_IDX,
@@ -149,7 +155,7 @@
 	</insert>
 	
 	<delete id="delete_content_comments" parameterType="int">
-		delete from COMMENT_T where BRD_IDX = #{num}
+		delete from COMMENT_T where COMT_IDX = #{num}
 	</delete>
 	<delete id="delete_content_heart" parameterType="int">
 		delete from HEART_T where BOARD_IDX = #{num}

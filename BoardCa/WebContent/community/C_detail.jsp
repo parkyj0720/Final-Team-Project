@@ -146,8 +146,15 @@
 					<h2>
 						<i class="zmdi zmdi-comments"></i><strong>댓글</strong> (<%=comment.size()%>)
 						<%
+
 							String username = dto.getBRD_WRT_NICKNAME();
-							if (username.equals((String) session.getAttribute("userId"))) {
+						
+							int ad = (int)request.getAttribute("ad");
+							
+							System.out.println(ad);
+						
+							if (username.equals((String)session.getAttribute("userId")) || ad==1 ) {
+
 						%>
 						<a
 							href="${pageContext.request.contextPath}/Community_Modify.do?num=<%=dto.getBRD_IDX()%>"><strong
@@ -219,7 +226,9 @@
 								<h5><%=Comm.getMEM_NICKNAME()%></h5>
 								<span class="comment-date"><%=Comm.getCOMT_SYSDATE()%></span>
 								<%
-							if (username.equals((String) session.getAttribute("userId"))) {
+								
+								System.out.println(username);
+							if (username.equals((String)session.getAttribute("userId")) || ad == 1) {
 						%>
 								<span class="delete_comment" style="cursor: pointer;" id="<%=Comm.getCOMT_IDX()%>">
 								<strong	style="margin-left: 20px; color: gray">삭제</strong></span>
