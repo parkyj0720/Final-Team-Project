@@ -121,7 +121,7 @@ $(function() {
 			<img alt="logo"
 				src="${pageContext.request.contextPath}/imgs/logo1.png" style="">
 		</div>
-		<h2 style="text-align: center;">BoardCa는 건전한 음주문화를 지향합니다.</h2>
+		<h3 style="text-align: center;">BoardCa는 건전한 음주문화를 지향합니다.</h3>
 		<div class="body_scroll">
 			<!-- Nav tabs -->
 			<!-- data-tab에 탭경로 주기 -->

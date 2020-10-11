@@ -4,27 +4,43 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <head>
+<style>
+#followChat {position: absolute; display: none; z-index: 99; top: 0%; left: 0%; opacity: 0.9;}
+#chatBtn {position: absolute; display:inline; z-index: 99; bottom: 0%; right: 3%; border-radius: 50px; width:85px; height:85px; background-color: none;}
+#chatBtnImg{position: absolute; width:80px; height:80px; z-index: 99;}
+</style> 
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>Insert title here</title>
 <script src="http://code.jquery.com/jquery.js"></script>
 <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
 <script>
+	 $(document).ready( function() {
+	 		$( '#chatBtn' ).click( function() {
+	 			$( '#followChat' ).toggle( 'slow' );
+	 	});
+	 });
 
-$(function() {
-	var userToken = '${userToken2}';
-	
-	$('#logoutBtn').click(function() {
-		if(userToken == '1'){
-			window.location.href="kakaoLogout.do";
-		}else{
-			window.location.href="logout.do";
-		}
-		
+	 $(window).scroll(function(){
+	 	$('#followChat').animate({top:$(window).scrollTop()+$(window).height()/2.5+"px"},{queue: false, duration: 500});
+	 });
+
+	 $(window).scroll(function(){
+	 	$('#chatBtn').animate({top:$(window).scrollTop()+$(window).height()/1.2+"px"},{queue: false, duration: 0});
+	 }); 
+
+	$(function() {
+		var userToken = '${userToken2}';
+
+		$('#logoutBtn').click(function() {
+			if (userToken == '1') {
+				window.location.href = "kakaoLogout.do";
+			} else {
+				window.location.href = "logout.do";
+			}
+
+		})
 	})
-})
-	
-	
 </script>
 </head>
 
@@ -62,7 +78,7 @@ $(function() {
 					<div class="card">
 						<div class="header">
 							<ul class="header-dropdown">
-							<!-- 
+								<!-- 
 								<li class="dropdown"><a href="javascript:void(0);"
 									class="dropdown-toggle" title="Notifications"
 									data-toggle="dropdown" role="button"> <i
@@ -165,17 +181,21 @@ $(function() {
 										<li class="footer"><a href="javascript:void(0);">View
 												All Notifications</a></li>
 									</ul></li> -->
+								<div id="chatBtn">
+									<img id="chatBtnImg"
+										src="${pageContext.request.contextPath}/imgs/chatBtn.png">
+								</div>
 								<c:choose>
 									<c:when test="${sessionScope.userId == null}">
-										<li><a href="${pageContext.request.contextPath}/signIn.do">로그인</a></li>
+										<li><a
+											href="${pageContext.request.contextPath}/signIn.do">로그인</a></li>
 									</c:when>
-									
+
 									<c:when test="${sessionScope.adgwon == 1}">
 										<li class="dropdown"><a href="javascript:void(0);"
 											class="dropdown-toggle" data-toggle="dropdown" role="button"
 											aria-haspopup="true" aria-expanded="false">
-												<p>${sessionScope.userId}님반갑습니다.
-												</p>
+												<p>${sessionScope.userId}님반갑습니다.</p>
 										</a>
 											<ul class="dropdown-menu dropdown-menu-right">
 												<li><a
@@ -190,18 +210,16 @@ $(function() {
 												<li><a
 													href="${pageContext.request.contextPath}/adminFAQ.do"><i
 														class="zmdi zmdi-comments"></i>문의 답변</a></li>
-												<li><a id="logoutBtn" href=#><i class="zmdi zmdi-flight-takeoff"></i>로그 아웃</a>
-												</li>
-											</ul>
-											</li>
+												<li><a id="logoutBtn" href=#><i
+														class="zmdi zmdi-flight-takeoff"></i>로그 아웃</a></li>
+											</ul></li>
 									</c:when>
-									
+
 									<c:otherwise>
 										<li class="dropdown"><a href="javascript:void(0);"
 											class="dropdown-toggle" data-toggle="dropdown" role="button"
 											aria-haspopup="true" aria-expanded="false">
-												<p>${sessionScope.userNickname}님 반갑습니다.
-												</p>
+												<p>${sessionScope.userNickname}님반갑습니다.</p>
 										</a>
 											<ul class="dropdown-menu dropdown-menu-right">
 												<li><a
@@ -211,8 +229,7 @@ $(function() {
 												<li><a
 													href="${pageContext.request.contextPath}/myFAQ.do">1:1문의</a></li>
 												<li><a id="logoutBtn" href=#>로그아웃</a></li>
-											</ul>
-											</li>
+											</ul></li>
 									</c:otherwise>
 								</c:choose>
 							</ul>
@@ -249,3 +266,7 @@ $(function() {
 			</div>
 		</div>
 	</div>
+
+	<div id="followChat">
+		<iframe id="chatFrame" src="${pageContext.request.contextPath}/index.jsp" width=400px; height=600px; frameborder=0 scrolling=yes></iframe>
+	</div> 
