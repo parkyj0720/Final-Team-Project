@@ -31,6 +31,11 @@
 </head>
 <body>
 	<%
+	String MEM_ID = "";
+	if(request.getParameter("MEM_ID") != null) {
+		MEM_ID = request.getParameter("MEM_ID");
+	}
+	System.out.println(MEM_ID);
 		List<CommunityDto> list = (List<CommunityDto>) request.getAttribute("list");
 	BoardList viewname = (BoardList) request.getAttribute("viewname");
 	String community_title = viewname.getCAT_NAME();

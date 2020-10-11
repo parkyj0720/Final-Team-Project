@@ -6,7 +6,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.Color;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.LocationManager;
@@ -16,7 +15,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -44,8 +42,6 @@ import com.example.boardca_app.ui.home.HomeFragment;
 
 import com.example.boardca_app.ui.login.LoginActivity;
 import com.example.boardca_app.ui.recipe.RecipeFragment;
-import com.example.boardca_app.ui.setting.SettingsActivity;
-import com.example.boardca_app.ui.web_view.Web_Fragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
@@ -56,10 +52,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
-
-import static com.example.boardca_app.R.drawable.baseline_format_align_right_black_48;
-import static com.example.boardca_app.R.string.navigation_drawer_close;
-import static com.example.boardca_app.R.string.navigation_drawer_open;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -101,34 +93,49 @@ public class MainActivity extends AppCompatActivity {
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             try {
 
+                if(getIntent().getStringExtra("MEM_ID") != null) {
+                    id = getIntent().getStringExtra("MEM_ID");
+                }
+
+                Bundle bundle = new Bundle();
+                bundle.putString("nickname", nickname); // Key, Value
+                bundle.putString("email", email); // Key, Value
+                bundle.putString("id", id); // Key, Value
+                bundle.putString("age", age); // Key, Value
+                bundle.putString("mf", mf); // Key, Value
+
                 switch (item.getItemId()) {
                     //menu.xml에 저장해뒀던 아이디 값을 받아와 swich문으로 선택 프래그먼트에 각자 다른 이벤트를 발생
                     case R.id.action_home: {
+
+                        home_fragment.setArguments(bundle);
+
                         replaceFragment(home_fragment);
                         return true;
                     }
                     case R.id.action_recipe: {
+
+                        recipe_fragment.setArguments(bundle);
+
                         replaceFragment(recipe_fragment);
                         return true;
                     }
                     case R.id.action_game: {
+
+                        game_fragment.setArguments(bundle);
+
                         replaceFragment(game_fragment);
                         return true;
                     }
                     case R.id.action_community: {
 
-                        Bundle bundle = new Bundle();
-                        bundle.putString("nickname", nickname); // Key, Value
-                        bundle.putString("email", email); // Key, Value
-                        bundle.putString("id", id); // Key, Value
-                        bundle.putString("age", age); // Key, Value
-                        bundle.putString("mf", mf); // Key, Value
                         community_fragment.setArguments(bundle);
 
                         replaceFragment(community_fragment);
                         return true;
                     }
                     case R.id.action_map: {
+
                         showMap();
                         return true;
                     }
@@ -193,9 +200,6 @@ public class MainActivity extends AppCompatActivity {
 //                onClickLogout();
 //            }
 //        });
-
-
-
 
         if(getIntent().getStringExtra("nickname") != null)
             nickname = getIntent().getStringExtra("nickname");

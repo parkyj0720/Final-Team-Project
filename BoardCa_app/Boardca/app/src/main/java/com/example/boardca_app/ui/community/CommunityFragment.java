@@ -51,6 +51,14 @@ public class CommunityFragment extends Fragment {
         viewPagerAdapter.addFrag(b_ask, "묻고 답하기"); //묻고 답하기
         viewPagerAdapter.addFrag(b_report, "신고하기"); //신고하기
 
+        if (getArguments() != null) {
+            nickname = getArguments().getString("nickname");// 전달한 key 값
+            email = getArguments().getString("email"); // 전달한 key 값
+            id = getArguments().getString("id"); // 전달한 key 값
+            age = getArguments().getString("age"); // 전달한 key 값
+            mf = getArguments().getString("mf"); // 전달한 key 값
+        }
+
         Bundle bundle = new Bundle();
         bundle.putString("nickname", nickname); // Key, Value
         bundle.putString("email", email); // Key, Value

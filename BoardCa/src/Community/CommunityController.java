@@ -29,6 +29,8 @@ import CommunityModel.Comment;
 import CommunityModel.CommunityDto;
 import CommunityModel.Heart;
 import CommunityModel.InputDto;
+import Member.MemberDto;
+import user.UserDAO;
 
 @Controller
 public class CommunityController {
@@ -267,6 +269,16 @@ public class CommunityController {
 		public ModelAndView App_detail(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
 			System.out.println("App_detail");
 			
+			String MEM_ID = "";
+			if(request.getParameter("MEM_ID") != null) {
+				MEM_ID = request.getParameter("MEM_ID");
+			}
+			System.out.println("MEM_ID >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>" + MEM_ID);
+			
+			int MEM_IDX = dao.getIdx(MEM_ID);
+			session.setAttribute("userIdx", MEM_IDX);
+			
+			
 			 Cookie[] cookies = request.getCookies();
 			 String memberNo = "";
 			try {
@@ -318,7 +330,7 @@ public class CommunityController {
 			                Cookie newCookie = new Cookie("cookie"+memberNo, "|" + memberNo + "|" + "num=" + num);
 			                
 			                newCookie.setMaxAge(60*60);
-			                newCookie.setPath("http://localhost:8088/BoardCa/App_detail.do?num=" + num);
+			                newCookie.setPath("http://localhost:8088/BoardCa/App_detail.do?num=" + num );
 			                // 쿠키 추가
 			                response.addCookie(newCookie);
 			                // 쿠키를 추가 시키고 조회수 증가시킴
@@ -355,6 +367,12 @@ public class CommunityController {
 		@RequestMapping("/App_list.do")
 		public ModelAndView App_list(HttpServletRequest request) {
 			System.out.println("App_list");
+			
+			String MEM_ID = "";
+			if(request.getParameter("MEM_ID") != null) {
+				MEM_ID = request.getParameter("MEM_ID");
+			}
+			System.out.println("MEM_ID >>> " + MEM_ID);
 			
 			ArrayList<Object> heartList = new ArrayList<Object>();
 			int list_num = Integer.parseInt(request.getParameter("list"));

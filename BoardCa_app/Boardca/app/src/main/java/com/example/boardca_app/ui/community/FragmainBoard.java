@@ -30,7 +30,7 @@ public class FragmainBoard extends Fragment {
         webView = (viewGroup).findViewById(R.id.comm_main_webView);
 
         if(getArguments().getString("id") != null) {
-            MEM_ID = getArguments().getString("id");
+            MEM_ID = getArguments().getString("id");// 전달한 key 값
             Log.e("bbbbbbbb", MEM_ID);
         }
 
@@ -38,8 +38,6 @@ public class FragmainBoard extends Fragment {
         webView.setWebChromeClient(new WebChromeClient());
         webView.setWebViewClient(new WebViewClientClass());
 
-        String MEM_ID = getArguments().getString("id"); // 전달한 key 값
-        Log.e("aaaaaaaa",MEM_ID);
         webView.loadUrl("http://192.168.219.100:8088/BoardCa/App_list.do?list=1&MEM_ID=" + MEM_ID); //주소는 임시, 차후에 바꿀것.
 
         return viewGroup;
