@@ -78,7 +78,7 @@ var MEM_BOARD_GWONHAN
 
 			MEM_BOARD_GWONHAN = td.eq(5).text()
 
-			$("#adminbtn1").on("click", function() {
+			$("#adminbtn1").unbind("click").bind("click", function() {
 
 				console.log("게시판 권한")
 
@@ -130,7 +130,7 @@ var MEM_BOARD_GWONHAN
 
 			})
 
-			$("#adminbtn2").on("click",function() {
+			$("#adminbtn2").unbind("click").bind("click",function() {
 
 				console.log("로그인 권한")
 
@@ -181,7 +181,7 @@ var MEM_BOARD_GWONHAN
 
 			})
 
-			$("#adminbtn3").on("click",function() {
+			$("#adminbtn3").unbind("click").bind("click",function() {
 
 				console.log("관리자 권한")
 
