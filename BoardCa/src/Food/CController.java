@@ -65,6 +65,14 @@ public class CController {
 		
 		// 레시피 목록 받아오기
 		mv.addObject("cList",dao.getList());
+		
+		// 어플인지 확인
+		String app = (String) req.getAttribute("App");
+		if(app != null && app.equals("App")) {
+			mv.setViewName("/food/foodApp.jsp?page="+page);
+			return mv;
+		}
+		
 		mv.setViewName("/food/food.jsp?page="+page);
 		return mv;
 	}
@@ -90,6 +98,13 @@ public class CController {
 			MemberDto mDto = dao.memberInfo(userId);
 			System.out.println(mDto);
 			mv.addObject("detailCheck",mDto);
+		}
+		
+		// 어플인지 확인
+		String app = (String) req.getAttribute("App");
+		if(app != null && app.equals("App")) {
+			mv.setViewName("/food/recipeDetailApp.jsp");
+			return mv;
 		}
 		
 		// 레시피 상세정보 페이지
@@ -121,6 +136,14 @@ public class CController {
 		// 검색한 단어에 해당하는 목록 받아서 저장
 		mv.addObject("cList",dao.getSearchList(search));
 		mv.addObject("inputSearch",search);
+		
+		// 어플인지 확인
+		String app = (String) req.getAttribute("App");
+		if(app != null && app.equals("App")) {
+			mv.setViewName("/food/foodApp.jsp?page="+page);
+			return mv;
+		}
+		
 		mv.setViewName("/food/food.jsp?page="+page);
 		return mv;
 	}
@@ -128,6 +151,14 @@ public class CController {
 	// 레시피 글쓰기 페이지로 이동
 	@RequestMapping("/cWrite.do")
 	public ModelAndView write(HttpServletRequest req) {
+		
+		// 어플인지 확인
+		String app = (String) req.getAttribute("App");
+		if(app != null && app.equals("App")) {
+			mv.setViewName("/food/write_recipeApp.jsp");
+			return mv;
+		}
+		
 		mv.setViewName("/food/write_recipe.jsp");
 		return mv;
 	}
@@ -142,6 +173,14 @@ public class CController {
 		CDto dto = dao.detail(no);
 		
 		mv.addObject("dto", dto);
+		
+		// 어플인지 확인
+		String app = (String) req.getAttribute("App");
+		if(app != null && app.equals("App")) {
+			mv.setViewName("/food/modify_recipe.jsp?no="+no);
+			return mv;
+		}
+		
 		mv.setViewName("/food/modify_recipe.jsp?no="+no);
 		return mv;
 	}
