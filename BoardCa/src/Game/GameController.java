@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 import Food.ReviewAndMember;
 import Food.ReviewDto;
 import Member.MemberDto;
+import Mypage.StarDto;
 
 @Controller
 public class GameController {
@@ -53,6 +54,19 @@ public class GameController {
 		GameDto dto = GameDao.detail(GameNo);
 		mv.addObject("dto", dto);
 
+		
+		int userIdx = 0;
+		if(session.getAttribute("userIdx") != null) {
+			userIdx = Integer.parseInt(session.getAttribute("userIdx")+"");
+		}
+		
+		StarDto sDto = new StarDto(0, "G", userIdx, 0, GameNo);
+		StarDto starDto = GameDao.starDetail(sDto);
+		mv.addObject("starDto", starDto);
+		
+		List<StarDto> starList = GameDao.starSize(sDto);
+		mv.addObject("starList", starList);
+		
 		// 댓글 리스트
 		List<ReviewAndMember> reviewList = GameDao.revList(GameNo);
 		mv.addObject("reviewList", reviewList);
@@ -122,5 +136,23 @@ public class GameController {
 		return mv;
 	}
 	
+	// 즐겨찾기추가 ajax
+	@RequestMapping("/starInsertG.do")
+	public ModelAndView starInsertG(HttpServletRequest req, HttpSession session) {
+		int no = Integer.parseInt(req.getParameter("no"));
+		StarDto dto = new StarDto(0, "G", Integer.parseInt(session.getAttribute("userIdx")+""), 0, no);
+		GameDao.starInsert(dto);
+		
+		return mv;
+	}
 	
+	// 즐겨찾기삭제 ajax
+	@RequestMapping("/starDeleteG.do")
+	public ModelAndView starDeleteG(HttpServletRequest req, HttpSession session) {
+		int no = Integer.parseInt(req.getParameter("no"));
+		StarDto dto = new StarDto(0, "G", Integer.parseInt(session.getAttribute("userIdx")+""), 0, no);
+		GameDao.starDelete(dto);
+		
+		return mv;
+	}
 }

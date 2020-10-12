@@ -111,4 +111,33 @@
 		where REV_IDX = #{rev_idx}
 	</delete>
 
+	<select id="starDetail" resultType="Mypage.StarDto" parameterType="Mypage.StarDto">
+	select * from STAR_T
+	where MEM_IDX = #{MEM_IDX} and GAME_IDX = #{GAME_IDX}
+	</select>
+	
+	<select id="starSize" resultType="Mypage.StarDto" parameterType="Mypage.StarDto">
+		select * from STAR_T where GAME_IDX = #{GAME_IDX}
+	</select>
+	
+	<insert id="starInsert" parameterType="Mypage.StarDto">
+		insert into STAR_T (STAR_IDX,
+		STAR_CATEGORY,
+		REC_IDX,
+		GAME_IDX,
+		MEM_IDX)
+	
+		values(0,
+		#{STAR_CATEGORY},
+		null,
+		#{GAME_IDX},
+		#{MEM_IDX})
+	</insert>
+	
+	<delete id="starDelete" parameterType="Mypage.StarDto">
+		delete
+		from STAR_T
+		where STAR_CATEGORY = 'G' and GAME_IDX = #{GAME_IDX} and MEM_IDX = #{MEM_IDX} 
+	</delete>
+
 </mapper>

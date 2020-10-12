@@ -8,7 +8,9 @@ import org.springframework.stereotype.Repository;
 
 import Food.ReviewAndMember;
 import Food.ReviewDto;
+
 import Member.MemberDto;
+import Mypage.StarDto;
 
 @Repository
 public class GameDao {
@@ -57,6 +59,34 @@ public class GameDao {
 	public int revDelete(int del) {
 		System.out.println("delete : "+del);
 		int cnt = mysqlSession.delete("gameXml.delReview", del);
+		return cnt;
+	}
+	
+	// 즐겨찾기 상세페이지
+	public StarDto starDetail(StarDto dto){
+		System.out.println("starDetail>> ");
+		StarDto newDto = mysqlSession.selectOne("gameXml.starDetail", dto);
+		return newDto;
+	}
+	
+	// 즐겨찾기한 유저 수
+		public List<StarDto> starSize(StarDto dto){
+			System.out.println("starList>> ");
+			List<StarDto> list = mysqlSession.selectList("gameXml.starSize", dto);
+			return list;
+		}
+	
+	// 즐겨찾기추가
+	public int starInsert(StarDto dto){
+		System.out.println("starInsert>> ");
+		int cnt = mysqlSession.insert("gameXml.starInsert", dto);
+		return cnt;
+	}
+	
+	// 즐겨찾기삭제
+	public int starDelete(StarDto dto){
+		System.out.println("starDelete>> ");
+		int cnt = mysqlSession.delete("gameXml.starDelete", dto);
 		return cnt;
 	}
 }

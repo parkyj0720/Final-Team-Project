@@ -17,7 +17,6 @@ public class StarDto {
 	}
 
 	public StarDto(int sTAR_IDX, String sTAR_CATEGORY, int mEM_IDX, int rEC_IDX, int gAME_IDX) {
-		super();
 		STAR_IDX = sTAR_IDX;
 		STAR_CATEGORY = sTAR_CATEGORY;
 		MEM_IDX = mEM_IDX;

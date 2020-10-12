@@ -1,3 +1,4 @@
+<%@page import="Mypage.StarDto"%>
 <%@page import="Food.ReviewAndMember"%>
 <%@page import="Food.ReviewDto"%>
 <%@page import="java.util.List"%>
@@ -29,6 +30,50 @@
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
 <script src="http://code.jquery.com/jquery.js"></script>
+
+<style>
+.heart {
+	width: 100px;
+	height: 100px;
+	position: absolute;
+	top: -36px;
+	left: 80px;
+	background: url(http://imagizer.imageshack.com/img923/4545/XdJDuY.png)
+		no-repeat;
+	background-size: 1000px 1000px'
+  cursor: pointer;
+}
+
+.heart-blast {
+	background-position: -2800px 0;
+	transition: background 1s steps(28);
+}
+
+.heart1 {
+	width: 100px;
+	height: 100px;
+	position: absolute;
+	top: -36px;
+	left: 80px;
+	background: url(http://imagizer.imageshack.com/img923/4545/XdJDuY.png)
+		no-repeat;
+	cursor: pointer;
+	background-position: -2800px 0;
+	transition: background 1s steps(28);
+}
+
+.heart-blast1 {
+	background-position: 0px 0;
+	transition: none;
+}
+
+#heart_size{
+	position: absolute;
+	top: 40px;
+	left: 80px;
+}
+</style>
+
 </head>
 
 <body class="ls-closed ls-toggle-menu ">
@@ -45,6 +90,17 @@
 		reviewList = (List<ReviewAndMember>) request.getAttribute("reviewList");
 	}
 	System.out.println(reviewList);
+	
+	StarDto starDto = null;
+	if(request.getAttribute("starDto") != null){
+		starDto = (StarDto)request.getAttribute("starDto");
+	}
+	
+	int starSize = 0;
+	if(request.getAttribute("starList") != null){
+		List<StarDto> starList = (List<StarDto>)request.getAttribute("starList");
+		starSize = starList.size();
+	}
 	%>
 	<script>
 		// 2. This code loads the IFrame Player API code asynchronously.
@@ -101,6 +157,130 @@
 
 			});
 		});
+		
+		var MEM_IDX = "{sessionScope.userIdx}";
+		var GAME_IDX = <%=dto.getGAME_IDX()%>
+		
+		function heartClick() {
+			if (MEM_IDX == null || MEM_IDX == 0) {
+				alert("로그인후 재시도해주세요")
+			} else {
+				
+				$(this).toggleClass("heart-blast");
+				$(this).toggleClass("heart-blast1");
+				$(this).addClass("heart1");
+				$(this).removeClass("heart");
+				$(this).off("click");
+				$(this).on("click", heartClick1);
+				
+				var starSize = parseInt($('#starSize').text());
+				starSize += 1;
+				$('#starSize').text(starSize);
+				
+				$.ajax({
+					url: "/BoardCa/starInsertG.do",
+					type: "get",
+					data: data = {
+							MEM_IDX : MEM_IDX,
+							no : GAME_IDX
+						},
+					success: function () {
+						
+			           }
+				});
+				
+			}
+		};
+		
+		function heartClick1() {
+			if (MEM_IDX ==null || MEM_IDX == 0) {
+			alert("로그인후 재시도해주세요")
+		} else {
+			
+			$(this).toggleClass("heart-blast");
+			$(this).toggleClass("heart-blast1");
+			$(this).addClass("heart");
+			$(this).removeClass("heart1");
+			$(this).off("click");
+			$(this).on("click", heartClick);
+			
+			var starSize = parseInt($('#starSize').text());
+			starSize -= 1;
+			$('#starSize').text(starSize);
+			
+			$.ajax({
+				url: "/BoardCa/starDeleteG.do",
+				type: "get",
+				data: data = {
+						MEM_IDX : MEM_IDX,
+						no : GAME_IDX
+					},
+				success: function () {
+					
+		           	}
+				});
+			}	
+		}
+		
+		$(function(){
+			$('.heart').on("click", function() {
+				if (MEM_IDX == null || MEM_IDX == 0) {
+					alert("로그인후 재시도해주세요")
+				} else {
+					
+					$(this).toggleClass("heart-blast");
+					$(this).addClass("heart1");
+					$(this).removeClass("heart");
+					$(this).off("click");
+					$(this).on("click", heartClick1);
+					var starSize = parseInt($('#starSize').text());
+					starSize += 1;
+					$('#starSize').text(starSize);
+					
+					$.ajax({
+						url: "/BoardCa/starInsertG.do",
+						type: "get",
+						data: data = {
+								MEM_IDX : MEM_IDX,
+								no : GAME_IDX
+							},
+						success: function () {
+							
+				           }
+					});
+					
+				}
+			});
+			
+			$('.heart1').on("click", function() {
+				if (MEM_IDX ==null || MEM_IDX == 0) {
+				alert("로그인후 재시도해주세요")
+			} else {
+				
+				$(this).toggleClass("heart-blast1");
+				$(this).addClass("heart");
+				$(this).removeClass("heart1");
+				$(this).off("click");
+				$(this).on("click", heartClick);
+				
+				var starSize = parseInt($('#starSize').text());
+				starSize -= 1;
+				$('#starSize').text(starSize);
+				
+				$.ajax({
+					url: "/BoardCa/starDeleteG.do",
+					type: "get",
+					data: data = {
+							MEM_IDX : MEM_IDX,
+							no : GAME_IDX
+						},
+					success: function () {
+						
+			           	}
+					});
+				}	
+			});
+		})
 	</script>
 
 	<jsp:include page="/WEB-INF/header.jsp"></jsp:include>
@@ -217,10 +397,31 @@
 						<div class="col-lg-12">
 							<div class="card">
 								<div class="body">
-									<div class="col-xl-9 col-lg-8 col-md-12">
-										<h5 style="margin: 0;">
-											<strong>한줄평</strong> (<%=reviewList.size()%>)
-										</h5>
+									<div class="col-xl-9 col-lg-8 col-md-12" style="position:relative;">
+									<h5 style="margin: 0; display:inline-block;">
+										<strong>한줄평</strong> (<%=reviewList.size() %>)
+									</h5>
+									<%
+									if (starDto == null) {
+									%>
+									<div class="heart" style="display:inline-block;" >
+										<div id="heart_size"
+											style="text-align: center; display:inline-block"
+											oncontextmenu="return false" ondragstart="return false"
+											onselectstart="return false"><p id="starSize"><%=starSize %><p></div>
+									</div>
+									<%
+										} else {
+									%>
+									<div class="heart1" style="display:inline-block;" >
+										<div id="heart_size"
+											style="text-align: center; display:inline-block"
+											oncontextmenu="return false" ondragstart="return false"
+											onselectstart="return false"><p id="starSize"><%=starSize %><p></div>
+									</div>
+									<%
+										}
+									%>
 									</div>
 									<div class="col-xl-12 col-lg-12	col-md-12">
 										<ul class="comment-reply " style="padding: 5px;">
