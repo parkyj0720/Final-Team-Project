@@ -11,19 +11,19 @@ public class InputDto {
 		this(0,"",0,"","");
 	}
 	
-	public InputDto(int BRD_IDX, String title, int boardnum, String writer_id, String asd) {
+	public InputDto(int BRD_IDX, String title, int boardnum, String writer_id, String BRD_CONTENT) {
 		this.BRD_IDX = BRD_IDX;
 		this.BRD_TIT = title;
 		this.CATEGORY_IDX = boardnum;
 		this.BRD_WRT_ID = writer_id;
-		this.BRD_CONTENT = asd;
+		this.BRD_CONTENT = BRD_CONTENT;
 	}
-	public InputDto(String title, int boardnum, String writer_id, String asd) {
+	public InputDto(String title, int boardnum, String writer_id, String BRD_CONTENT) {
 		this.BRD_IDX = 0;
 		this.BRD_TIT = title;
 		this.CATEGORY_IDX = boardnum;
 		this.BRD_WRT_ID = writer_id;
-		this.BRD_CONTENT = asd;
+		this.BRD_CONTENT = BRD_CONTENT;
 	}
 
 	public int getBRD_IDX() {

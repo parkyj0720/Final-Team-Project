@@ -22,8 +22,19 @@
 	<insert id="FaQinsert"
 		parameterType="CommunityModel.CommunityDto">
 		insert into BOARD_T
-		(BRD_TIT,BRD_WRT_NICKNAME,BRD_VIEWS,CATEGORY_IDX,BRD_CONTENT)values(
-		#{BRD_TIT}, #{BRD_WRT_ID}, 0, #{CATEGORY_IDX},#{BRD_CONTENT})
+		(
+		BRD_TIT,
+		BRD_WRT_NICKNAME,
+		BRD_VIEWS,
+		CATEGORY_IDX,
+		BRD_CONTENT)
+
+		values(
+		#{BRD_TIT},
+		#{BRD_WRT_NICKNAME},
+		0,
+		#{CATEGORY_IDX},
+		#{BRD_CONTENT})
 	</insert>
 	<select id="boardlist" resultType="CommunityModel.BoardList">
 		select *
