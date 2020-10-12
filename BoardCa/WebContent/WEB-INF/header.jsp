@@ -242,20 +242,20 @@
 									src="${pageContext.request.contextPath}/imgs/logo2.png">
 							</a></li>
 							<li class="nav-item col-md-3" role="presentation"><a
-								href="${pageContext.request.contextPath}/cListAll.do"> <i
-									class="zmdi zmdi-email"></i>안주레시피
+								href="${pageContext.request.contextPath}/cListAll.do"> <h5><i
+									class="zmdi zmdi-email"></i>안주레시피</h5>
 							</a></li>
 							<li class="nav-item col-md-3" role="presentation"><a
-								href="${pageContext.request.contextPath}/gameMain.do"> <i
-									class="zmdi zmdi-email"></i>술게임
+								href="${pageContext.request.contextPath}/gameMain.do"> <h5><i
+									class="zmdi zmdi-email"></i>술게임</h5>
 							</a></li>
 							<li class="nav-item col-md-3" role="presentation"><a
 								href="${pageContext.request.contextPath}/Community_main.do">
-									<i class="zmdi zmdi-email"></i>커뮤니티
+									<h5><i class="zmdi zmdi-email"></i>커뮤니티</h5>
 							</a></li>
 							<li class="nav-item col-md-3" role="presentation"><a
-								href="${pageContext.request.contextPath}/search_list.do"> <i
-									class="zmdi zmdi-email"></i>술집찾기
+								href="${pageContext.request.contextPath}/search_list.do"> <h5><i
+									class="zmdi zmdi-email"></i>술집찾기</h5>
 							</a></li>
 						</ul>
 					</div>

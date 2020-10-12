@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
-<head>
+<head> 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
@@ -39,12 +39,21 @@
 .font-col {
 	color: #915def;
 }
+
+#followChat {position: absolute; display: none; z-index: 99; top: 30%; left: 10%; opacity: 0.9; border: 1px solid #006DCC; }
+#chatBtn {position: absolute; display:inline-block; z-index: 99; top: 0%; left: 100%; border-radius: 50px; width:35px; height:35px; background-color: none;}
+#chatBtnImg{position: absolute; width:30px; height:30px; z-index: 99;}  
 </style>
 
 
 </head>
 
 <script>
+$(document).ready( function() {
+		$( '#chatBtn' ).click( function() {
+			$( '#followChat' ).toggle( 'slow' );
+	});
+});
 
 $(function() {
 	var userToken = '${userToken2}';
@@ -69,6 +78,9 @@ $(function() {
 			<div class="header">
 				<ul class="header-dropdown">
 
+					<div id="chatBtn">
+						<img id="chatBtnImg" src="${pageContext.request.contextPath}/imgs/chatBtn.png">
+					</div> 
 					<c:choose>
 						<c:when test="${sessionScope.userId == null}">
 							<li><a href="${pageContext.request.contextPath}/signIn.do">로그인</a></li>
@@ -142,5 +154,9 @@ $(function() {
 			</ul>
 		</div>
 	</div>
+	
+	<div id="followChat">
+		<iframe id="chatFrame" src="${pageContext.request.contextPath}/index.jsp" width=400px; height=600px; frameborder=0 scrolling=yes></iframe>
+	</div>  
 </body>
 </html>
