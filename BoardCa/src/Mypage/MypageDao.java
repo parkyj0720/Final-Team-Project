@@ -50,4 +50,11 @@ public class MypageDao {
 		List<Heart>list = mysqlSession.selectList("mypageXml.heart",mem_idx);
 		return list;
 	}
+	
+	public List<StarDto> star(int mem_idx) {
+		List<StarDto>list = mysqlSession.selectList("mypageXml.star",mem_idx);
+		return list;
+	}
+
+	
 }

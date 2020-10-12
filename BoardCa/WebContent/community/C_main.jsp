@@ -365,10 +365,20 @@
 						var username = <%=session.getAttribute("userId")%>;
 						console.log(username);
 						
-						var ad = <%=request.getAttribute("ad")%>
+						var ad = 0;
+						
+						if(<%=request.getAttribute("ad")%>!=null){
+						
+							ad = <%=request.getAttribute("ad")%>
+						}
+						
 						
 						console.log(ad);
+<%-- 						
+						var nick = <%=session.getAttribute("userNickname")%>
 						
+						console.log(nick);
+ --%>						
 						var tr = $(this);
 						var td = tr.children();
 												
@@ -381,8 +391,7 @@
 						
 						if(ad==1 || writeid==username){
 							
-							
-							 
+						
 							var num = $(this).children(0).eq(0).text();
 							var viewname = $('#listname1').text();
 							$(location).attr(

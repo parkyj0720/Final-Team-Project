@@ -90,45 +90,55 @@
 												<div class="body">
 													<div class="table-responsive">
 														<table
-															class="table table-striped m-b-0 footable footable-1 footable-paging footable-paging-center breakpoint-md"
-															style="">
-															<thead>
-																<tr class="footable-header">
-																	<th class="footable-sortable footable-first-visible"
-																		style="display: table-cell;">First Name<span
-																		class="fooicon fooicon-sort"></span></th>
-																	<th data-breakpoints="xs" class="footable-sortable"
-																		style="display: table-cell;">Last Name<span
-																		class="fooicon fooicon-sort"></span></th>
-																	<th
-																		class="footable-sortable footable-last-visible footable-desc"
-																		style="display: table-cell;">Status<span
-																		class="fooicon fooicon-sort-desc"></span></th>
-																</tr>
-															</thead>
-															<tbody>
-																<tr>
-																	<td class="footable-first-visible"
-																		style="display: table-cell;">가나다</td>
-																	<td style="display: table-cell;">Brielle</td>
-																	<td style="display: table-cell;">하하하</td>
-
-																</tr>
-																<tr>
-																	<td class="footable-first-visible"
-																		style="display: table-cell;">가하나</td>
-																	<td style="display: table-cell;">Brielle</td>
-																	<td style="display: table-cell;">하나가</td>
-
-																</tr>
-																<tr>
-																	<td class="footable-first-visible"
-																		style="display: table-cell;">하하하</td>
-																	<td style="display: table-cell;">Accountant</td>
-																	<td style="display: table-cell;">가나다</td>
-
-																</tr>
-														</table>
+																class="table table-bordered table-striped table-hover js-basic-example dataTable"
+																id="DataTables_Table_0" role="grid"
+																aria-describedby="DataTables_Table_0_info">
+																<thead>
+																	<tr role="row">
+																		<th class="sorting" tabindex="0"
+																			aria-controls="DataTables_Table_0" rowspan="1"
+																			colspan="1" aria-label="No" style="width: 61px;">Title</th>
+																		<th class="sorting" tabindex="0"
+																			aria-controls="DataTables_Table_0" rowspan="1"
+																			colspan="1" aria-label="Title" style="width: 83px;">Date</th>
+																		<th class="sorting" tabindex="0"
+																			aria-controls="DataTables_Table_0" rowspan="1"
+																			colspan="1" aria-label="Date" style="width: 60px;">Cateory</th>
+																	</tr>
+																</thead>
+																<tbody>
+																	<%
+																	
+																	
+																		for (int i = 0; i < writeList.size(); i++) {
+																			
+																			CommunityDto dto = writeList.get(i);
+																			String boardname="";
+																			for (int y = 0; y < boardList.size(); y++) {
+																				System.out.println(boardList);
+																				if(y==4){
+																					continue;
+																				}
+																				else{
+																				if(boardList.get(y).getBRD_CAT_IDX() == dto.getCATEGORY_IDX()){
+																					boardname = boardList.get(y).getCAT_NAME();
+																				}
+																				}
+																			}
+																	%>
+																	<tr>
+																		<td><a class="text-muted"
+																			href="${pageContext.request.contextPath}/Community_detail.do?num=<%=dto.getBRD_IDX()%>"><%=dto.getBRD_TIT()%></a>
+																		</td>
+																		<td><%=dto.getBRD_SYSDATE()%></td>
+																		<td><%=boardname%></td>
+																	</tr>
+																	<%
+																		
+																	}
+																	%>
+																</tbody>
+															</table>
 													</div>
 												</div>
 											</div>
