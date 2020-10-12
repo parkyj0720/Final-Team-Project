@@ -5,9 +5,13 @@
 <!DOCTYPE html>
 <head>
 <style>
-#followChat {position: absolute; display: none; z-index: 99; top: 0%; right: 3%; opacity: 0.9;}
-#chatBtn {position: absolute; display:inline; z-index: 99; bottom: 0%; right: 3%; border-radius: 50px; width:85px; height:85px; background-color: none;}
+#followChat {position: absolute; display: none; z-index: 99; top: 0%; right: 2%; opacity: 0.9;}
+#chatBtn {position: absolute; display:inline; z-index: 99; bottom: 0%; right: 1%; border-radius: 50px; width:85px; height:85px; background-color: none;}
 #chatBtnImg{position: absolute; width:80px; height:80px; z-index: 99;}
+
+.nav-item col-md-3 {display: inline-block; float: none;}
+
+.navbar-collapse {text-align:center;}
 </style> 
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
@@ -19,14 +23,18 @@
 	 		$( '#chatBtn' ).click( function() {
 	 			$( '#followChat' ).toggle( 'slow' );
 	 	});
+	 		
+	 		$('#chatBtn').animate({top:$(window).scrollTop()+$(window).height()/1.3+"px"},{queue: false, duration: 0});
+	 		$('#followChat').animate({top:$(window).scrollTop()+$(window).height()/7 +"px"},{queue: false, duration: 0});
+	 	
 	 });
 
 	 $(window).scroll(function(){
-	 	$('#followChat').animate({top:$(window).scrollTop()+$(window).height()/4.5 +"px"},{queue: false, duration: 500});
+	 	$('#followChat').animate({top:$(window).scrollTop()+$(window).height()/7 +"px"},{queue: false, duration: 500});
 	 });
 
 	 $(window).scroll(function(){
-	 	$('#chatBtn').animate({top:$(window).scrollTop()+$(window).height()/1.2+"px"},{queue: false, duration: 0});
+	 	$('#chatBtn').animate({top:$(window).scrollTop()+$(window).height()/1.3+"px"},{queue: false, duration: 0});
 	 }); 
 
 	$(function() {
@@ -232,7 +240,7 @@
 							</ul>
 						</div>
 					</div>
-					<div>
+					<div class="navbar-collapse">
 						<!-- Nav tabs -->
 						<ul class="nav col-md-12 col-xs-12 nav-tabs">
 							<li class="nav-item col-md-12 col-xs-1" role="presentation"
@@ -242,20 +250,20 @@
 									src="${pageContext.request.contextPath}/imgs/logo2.png">
 							</a></li>
 							<li class="nav-item col-md-3" role="presentation"><a
-								href="${pageContext.request.contextPath}/cListAll.do"> <h5><i
-									class="zmdi zmdi-email"></i>안주레시피</h5>
+								href="${pageContext.request.contextPath}/cListAll.do"> <h4><i
+									class="zmdi zmdi-email"></i>안주레시피</h4>
 							</a></li>
 							<li class="nav-item col-md-3" role="presentation"><a
-								href="${pageContext.request.contextPath}/gameMain.do"> <h5><i
-									class="zmdi zmdi-email"></i>술게임</h5>
+								href="${pageContext.request.contextPath}/gameMain.do"> <h4><i
+									class="zmdi zmdi-email"></i>술게임</h4>
 							</a></li>
 							<li class="nav-item col-md-3" role="presentation"><a
 								href="${pageContext.request.contextPath}/Community_main.do">
-									<h5><i class="zmdi zmdi-email"></i>커뮤니티</h5>
+									<h4><i class="zmdi zmdi-email"></i>커뮤니티</h4>
 							</a></li>
 							<li class="nav-item col-md-3" role="presentation"><a
-								href="${pageContext.request.contextPath}/search_list.do"> <h5><i
-									class="zmdi zmdi-email"></i>술집찾기</h5>
+								href="${pageContext.request.contextPath}/search_list.do"> <h4><i
+									class="zmdi zmdi-email"></i>술집찾기</h4>
 							</a></li>
 						</ul>
 					</div>

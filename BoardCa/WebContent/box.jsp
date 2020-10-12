@@ -4,8 +4,8 @@
 <html>
 <%
 	String userID = null;
-	if(session.getAttribute("userId") != null) {
-		userID = (String) session.getAttribute("userId");
+	if(session.getAttribute("userNickname") != null) {
+		userID = (String) session.getAttribute("userNickname");
 	} 
 	if(userID == null){
 		session.setAttribute("messageType", "오류 메시지");

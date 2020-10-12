@@ -25,7 +25,7 @@ public class UserDAO {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String SQL = "SELECT * FROM MEMBER_T WHERE MEM_ID = ?";
+		String SQL = "SELECT * FROM MEMBER_T WHERE MEM_NICKNAME = ?";
 		try {
 			conn = dataSource.getConnection();
 			pstmt = conn.prepareStatement(SQL);
@@ -57,7 +57,7 @@ public class UserDAO {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String SQL = "SELECT * FROM MEMBER_T WHERE MEM_ID = ?";
+		String SQL = "SELECT * FROM MEMBER_T WHERE MEM_NICKNAME = ?";
 		try {
 			conn = dataSource.getConnection();
 			pstmt = conn.prepareStatement(SQL);
