@@ -1,3 +1,8 @@
+<%@page import="Game.GameDto"%>
+<%@page import="Food.CDto"%>
+<%@page import="Mypage.StarDto"%>
+<%@page import="java.util.List"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -109,29 +114,32 @@
 																<tbody>
 																	<%
 																	
+																	List<StarDto> starlist = (List<StarDto>)request.getAttribute("starlist");
 																	
-																		for (int i = 0; i < writeList.size(); i++) {
+																	ArrayList<CDto> foodlist = (ArrayList<CDto>)request.getAttribute("foodlist");
+																	ArrayList<GameDto> gamelist = (ArrayList<GameDto>)request.getAttribute("gamelist");
+																	
+																	
+																	System.out.println(starlist);
+																	System.out.println(foodlist);
+																	System.out.println(gamelist);
+																	
+																	
+																		for (int i = 0; i < starlist.size(); i++) {
 																			
-																			CommunityDto dto = writeList.get(i);
-																			String boardname="";
-																			for (int y = 0; y < boardList.size(); y++) {
-																				System.out.println(boardList);
-																				if(y==4){
-																					continue;
-																				}
-																				else{
-																				if(boardList.get(y).getBRD_CAT_IDX() == dto.getCATEGORY_IDX()){
-																					boardname = boardList.get(y).getCAT_NAME();
-																				}
-																				}
-																			}
+																			StarDto dto = starlist.get(i);
+																			/* if(dto.getSTAR_CATEGORY().equals("R")){
+																				
+																			} */
+																			
 																	%>
 																	<tr>
 																		<td><a class="text-muted"
-																			href="${pageContext.request.contextPath}/Community_detail.do?num=<%=dto.getBRD_IDX()%>"><%=dto.getBRD_TIT()%></a>
+																			href="${pageContext.request.contextPath}/Community_detail.do?num=<%=dto%>">
+																			<%=%></a>
 																		</td>
-																		<td><%=dto.getBRD_SYSDATE()%></td>
-																		<td><%=boardname%></td>
+																		<td></td>
+																		<td></td>
 																	</tr>
 																	<%
 																		

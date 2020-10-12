@@ -36,7 +36,7 @@ public class FragmainBoard extends Fragment {
         }
         if(getArguments().getString("nickname") != null) {
             nickname = getArguments().getString("nickname");// 전달한 key 값
-            Log.e("bbbbbbbb", id);
+            Log.e("bbbbbbbb", nickname);
         }
 
         webView.getSettings().setJavaScriptEnabled(true);
