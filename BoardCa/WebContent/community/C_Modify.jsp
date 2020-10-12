@@ -98,7 +98,7 @@
     	  $('#submit').click(function() {
     		  var select = $('#select').val();
     		  var title = $('#title').val();
-    		  var username = "${userId}";
+    		  var username = "${userNickname}";
     		  var content = $('.note-editable' ).html();
     		  var title_trim = $.trim($("#title").val());
     		  var BRD_IDX = <%=dto.getBRD_IDX()%>
@@ -162,7 +162,8 @@
 			});
 		}
 		  var content = escapeHtml('<%=dto.getBRD_CONTENT()%>'); --%>
-		  <%-- var content = '<%=dto.getBRD_CONTENT()%>'; --%>
+		 
+		  var content = '<%=dto.getBRD_CONTENT()%>'
     	console.log(content);
     	$('.note-editable').html(content);
 	}

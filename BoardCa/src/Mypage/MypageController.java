@@ -214,10 +214,6 @@ public class MypageController {
 			
 		}
 		
-		System.out.println(starlist);
-		System.out.println(foodlist);
-		System.out.println(gamelist);
-		
 		mv.addObject("starlist", starlist);
 		mv.addObject("foodlist", foodlist);
 		mv.addObject("gamelist", gamelist);

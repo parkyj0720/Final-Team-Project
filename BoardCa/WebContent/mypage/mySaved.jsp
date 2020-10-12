@@ -113,10 +113,13 @@
 																	
 																	List<StarDto> starlist = (List<StarDto>)request.getAttribute("starlist");
 																	
+																	if(starlist.size()!=0){
+																	
 																	ArrayList<CDto> foodlist = (ArrayList<CDto>)request.getAttribute("foodlist");
 																	ArrayList<GameDto> gamelist = (ArrayList<GameDto>)request.getAttribute("gamelist");
 																	
-																																		
+																	int j=0;
+																	int k=0;																
 																	
 																		for (int i = 0; i < starlist.size(); i++) {
 																			
@@ -124,34 +127,61 @@
 																			String title="";
 																			
 																			String category = "";
+																																						
 																			
 																			if(dto.getSTAR_CATEGORY().equals("R")){
 																				
-																				CDto food = foodlist.get(i);
+																				CDto food = foodlist.get(j);
+																				
+																				
 																				
 																				title = food.getREC_TIT();
 																				
 																				category = "레시피";
+																				
+																				j++;
+																				System.out.println(j);
 																																								
 																			}
 																			else if(dto.getSTAR_CATEGORY().equals("G")){
 																				
-																				GameDto game = gamelist.get(i);
+																																						
+																				GameDto game = gamelist.get(k);
 																				
 																				title = game.getGAME_TIT();
 																				
 																				category = "술게임";
-																																								
+																				
+																				k++;
 																			}
 																			
 																	%>
 																	<tr>
-																		<td><%=title %></td>
+																		<td>
+																		<%
 																		
+																		if(dto.getSTAR_CATEGORY().equals("R")){
+																		
+																		%>
+																		<a class="text-muted" href="${pageContext.request.contextPath}/cDetail.do?no=<%=dto.getREC_IDX()%>">
+																		<%=title %>
+																		
+																		<%
+																		}else if(dto.getSTAR_CATEGORY().equals("G")){
+																			%>
+																			<a class="text-muted" href="${pageContext.request.contextPath}/gameDetail.do?no=<%=dto.getGAME_IDX()%>">
+																			<%=title %>
+																			<%
+																		}
+																		%>
+																		</td>
 																		<td><%=category %></td>
 																	</tr>
 																	<%
 																		
+																	}
+																	}else{
+																		out.print("즐겨찾기를 눌러주세요!");
 																	}
 																	%>
 																</tbody>

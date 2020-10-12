@@ -149,9 +149,13 @@
 
 							String username = dto.getBRD_WRT_NICKNAME();
 						
+							System.out.println(username);
+						
 							int ad = (int)request.getAttribute("ad");
 							
 							System.out.println(ad);
+
+							System.out.println((String)session.getAttribute("userNickname"));
 						
 							if (username.equals((String)session.getAttribute("userNickname")) || ad==1 ) {
 
