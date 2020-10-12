@@ -41,7 +41,7 @@ public class FragtipBoard extends Fragment {
 
         webView.setWebChromeClient(new WebChromeClient());
         webView.setWebViewClient(new FragtipBoard.WebViewClientClass());
-        webView.loadUrl("http://175.211.48.98:8088/BoardCa/App_list.do?list=2&id=" + id+"&nickname="+nickname);
+        webView.loadUrl("http://192.168.219.100:8088/BoardCa/App_list.do?list=2&id=" + id+"&nickname="+nickname);
 
         return viewGroup;
 

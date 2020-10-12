@@ -323,7 +323,6 @@
 			});
 			function delete_success() {
 				$(location).attr('href', '${pageContext.request.contextPath}/Community_list.do?list=<%=viewname.getBRD_CAT_IDX()%>');
-		');
 			}
 
 			$("#comment_submit").on("click", function() {
