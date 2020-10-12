@@ -251,13 +251,11 @@
 		switch(ageRange){
 			case 20:
 				$("input:radio[id='two']").prop("checked", true);
-				$("input:radio[id='three']").prop("checked", false);
 				break;
 			case 30:
 				break;
 			case 40:
 				$("input:radio[id='four']").prop("checked", true);
-				$("input:radio[id='three']").prop("checked", false);
 				break;
 			case 50:
 			case 60:
@@ -265,11 +263,9 @@
 			case 80:
 			case 90:
 				$("input:radio[id='five']").prop("checked", true);
-				$("input:radio[id='three']").prop("checked", false);
 				break;	
 			default:
-				$("input:radio[id='private']").prop("checked", true);
-				$("input:radio[id='three']").prop("checked", false);			
+				$("input:radio[id='private']").prop("checked", true);	
 		}		
 		
 		$('#submitBtn').click(function() {					
@@ -481,7 +477,7 @@
 							</div>
 							<div class="radio inlineblock m-r-20" style="margin: 0;">
 								<input type="radio" name="ageRange" id="three" class="with-gap"
-									value="30대" checked > <label for="three">30대</label>
+									value="30대" > <label for="three">30대</label>
 							</div>
 							<div class="radio inlineblock" style="margin: 0;">
 								<input type="radio" name="ageRange" id="four" class="with-gap"
