@@ -138,10 +138,6 @@ ArrayList<BoardList> boardList = (ArrayList<BoardList>) request.getAttribute("wr
 																		CommunityDto dto = writeList.get(i);
 																		String boardname = "";
 																		
-																		if(dto.getCATEGORY_IDX()==5){
-																			continue;
-																		}
-																		
 																		for (int y = 0; y < boardList.size(); y++) {
 
 																			if (boardList.get(y).getBRD_CAT_IDX() == dto.getCATEGORY_IDX()) {
