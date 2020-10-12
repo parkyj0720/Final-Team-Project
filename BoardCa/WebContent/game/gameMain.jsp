@@ -194,21 +194,21 @@ endList = endList * maxList + maxList;
 				<!-- class = "active" -->
 								<%
 									for (int i = startList - 1; i < endList; i++) {
-									if (i >= listNum)
+									if (i > listNum)
 										break;
 
-									if (pages == i + 1) {
+									if (now_page == i + 1) {
 								%>
 
 
 								<li class="page-item active"><a class="page-link"
-									href="${pageContext.request.contextPath}/<%=(keyword.equals(""))?"gameMain":"gameSearch"%>.do?page=<%=i%>&inputSearch=<%=keyword%>"><%=i + 1%></a></li>
+									href="${pageContext.request.contextPath}/<%=(keyword.equals(""))?"gameMain":"gameSearch"%>.do?page=<%=i+1%>&inputSearch=<%=keyword%>"><%=i + 1%></a></li>
 								<%
 									} else {
 								%>
 
 								<li class="page-item"><a class="page-link"
-									href="${pageContext.request.contextPath}/<%=(keyword.equals(""))?"gameMain":"gameSearch"%>.do?page=<%=i%>&inputSearch=<%=keyword%>"><%=i + 1%></a></li>
+									href="${pageContext.request.contextPath}/<%=(keyword.equals(""))?"gameMain":"gameSearch"%>.do?page=<%=i+1%>&inputSearch=<%=keyword%>"><%=i + 1%></a></li>
 								<%
 									}
 								}
