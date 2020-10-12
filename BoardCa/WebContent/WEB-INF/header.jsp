@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <head>
 <style>
-#followChat {position: absolute; display: none; z-index: 99; top: 0%; left: 0%; opacity: 0.9;}
+#followChat {position: absolute; display: none; z-index: 99; top: 0%; right: 3%; opacity: 0.9;}
 #chatBtn {position: absolute; display:inline; z-index: 99; bottom: 0%; right: 3%; border-radius: 50px; width:85px; height:85px; background-color: none;}
 #chatBtnImg{position: absolute; width:80px; height:80px; z-index: 99;}
 </style> 
@@ -22,7 +22,7 @@
 	 });
 
 	 $(window).scroll(function(){
-	 	$('#followChat').animate({top:$(window).scrollTop()+$(window).height()/2.5+"px"},{queue: false, duration: 500});
+	 	$('#followChat').animate({top:$(window).scrollTop()+$(window).height()/4.5 +"px"},{queue: false, duration: 500});
 	 });
 
 	 $(window).scroll(function(){

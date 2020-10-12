@@ -80,6 +80,18 @@ public class CControllerApp {
 		CDto dto = dao.detail(r_board_no);
 		mv.addObject("dto",dto);
 		
+		int userIdx = 0;
+		if(session.getAttribute("userIdx") != null) {
+			userIdx = Integer.parseInt(session.getAttribute("userIdx")+"");
+		}
+		
+		StarDto sDto = new StarDto(0, "R", r_board_no, 0, userIdx);
+		StarDto starDto = dao.starDetail(sDto);
+		mv.addObject("starDto", starDto);
+		
+		List<StarDto> starList = dao.starSize(sDto);
+		mv.addObject("starList", starList);
+		
 		// 댓글 리스트
 		List<ReviewAndMember> reviewList = dao.reviewList(r_board_no);
 		mv.addObject("reviewList", reviewList);

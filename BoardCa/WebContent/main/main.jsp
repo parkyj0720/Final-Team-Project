@@ -40,7 +40,7 @@
 	color: #915def;
 }
 
-#followChat {position: absolute; display: none; z-index: 99; top: 30%; left: 10%; opacity: 0.9; border: 1px solid #006DCC; }
+#followChat {position: absolute; display: none; z-index: 99; top: 30%; left: 11%; opacity: 0.9; border: 1px solid #006DCC; }
 #chatBtn {position: absolute; display:inline-block; z-index: 99; top: 0%; left: 100%; border-radius: 50px; width:35px; height:35px; background-color: none;}
 #chatBtnImg{position: absolute; width:30px; height:30px; z-index: 99;}  
 </style>

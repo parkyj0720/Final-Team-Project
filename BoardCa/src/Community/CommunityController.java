@@ -80,7 +80,6 @@ public class CommunityController {
 	public ModelAndView community_list(HttpServletRequest request, HttpSession session) {
 		ArrayList<Object> heartList = new ArrayList<Object>();
 		int list_num = Integer.parseInt(request.getParameter("list"));
-
 		int page = 1;
 		if (request.getParameter("page") != null) {
 			page = Integer.parseInt(request.getParameter("page"));
@@ -289,11 +288,12 @@ public class CommunityController {
 		dao.delete_content(num);
 	}
 
-	// delete
+	// 댓글 작성
 	@RequestMapping(value = "/Community_comment.do", method = RequestMethod.POST)
 
 	@ResponseBody
 	public void community_comment(Comment data, HttpServletRequest request) {
+		System.out.println("댓글작성");
 		System.out.println(data);
 		dao.insert_comment(data);
 	}

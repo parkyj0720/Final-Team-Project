@@ -35,12 +35,12 @@ public class FragReportBoard extends Fragment {
         }
         if(getArguments().getString("nickname") != null) {
             nickname = getArguments().getString("nickname");// 전달한 key 값
-            Log.e("bbbbbbbb", id);
+            Log.e("bbbbbbbb", nickname);
         }
 
         webView.setWebChromeClient(new WebChromeClient());
         webView.setWebViewClient(new FragReportBoard .WebViewClientClass());
-        webView.loadUrl("http://175.211.48.98:8088/BoardCa/App_list.do?list=4&id="+ id+"&nickname="+nickname);
+        webView.loadUrl("http:// 192.168.219.100:8088/BoardCa/App_list.do?list=4&id="+ id+"&nickname="+nickname);
 
         return viewGroup;
 

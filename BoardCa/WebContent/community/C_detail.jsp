@@ -327,23 +327,27 @@
 				console.log('댓글입력버튼');
 				var comment_content = $('#comment_area').val()
 				console.log(comment_content);
-				if (comment_content == "" || comment_content == null) {
-					alert('댓글 내용을 입력해주세요');
-				} else {
-					var dto = {
-						MEM_IDX : MEM_IDX,
-						COMT_CONTENT : comment_content,
-						BRD_IDX : BOARD_IDX
-					};
-					$.ajax({
-						url : "Community_comment.do",
-						type : "POST",
-						data : dto,
-						success : function() {
-							alert('댓글 입력완료')
-							location.reload();
-						}
-					})
+				if(MEM_IDX == null || MEM_IDX == 0){
+					alert('로그인후 사용해주세요');
+				}else{
+					if (comment_content == "" || comment_content == null) {
+						alert('댓글 내용을 입력해주세요');
+					} else {
+						var dto = {
+							MEM_IDX : MEM_IDX,
+							COMT_CONTENT : comment_content,
+							BRD_IDX : BOARD_IDX
+						};
+						$.ajax({
+							url : "Community_comment.do",
+							type : "POST",
+							data : dto,
+							success : function() {
+								alert('댓글 입력완료')
+								location.reload();
+							}
+						})
+					}
 				}
 
 			});

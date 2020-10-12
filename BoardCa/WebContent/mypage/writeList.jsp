@@ -134,20 +134,21 @@ ArrayList<BoardList> boardList = (ArrayList<BoardList>) request.getAttribute("wr
 																<tbody>
 																	<%
 																		for (int i = 0; i < writeList.size(); i++) {
-																			
-																			CommunityDto dto = writeList.get(i);
-																			String boardname="";
-																			for (int y = 0; y < boardList.size(); y++) {
-																				System.out.println(boardList);
-																				if(y==4){
-																					continue;
-																				}
-																				else{
-																				if(boardList.get(y).getBRD_CAT_IDX() == dto.getCATEGORY_IDX()){
-																					boardname = boardList.get(y).getCAT_NAME();
-																				}
-																				}
+
+																		CommunityDto dto = writeList.get(i);
+																		String boardname = "";
+																		
+																		if(dto.getCATEGORY_IDX()==5){
+																			continue;
+																		}
+																		
+																		for (int y = 0; y < boardList.size(); y++) {
+
+																			if (boardList.get(y).getBRD_CAT_IDX() == dto.getCATEGORY_IDX()) {
+																		boardname = boardList.get(y).getCAT_NAME();
 																			}
+																		}
+																		System.out.println(boardList);
 																	%>
 																	<tr>
 																		<td><a class="text-muted"
@@ -157,16 +158,13 @@ ArrayList<BoardList> boardList = (ArrayList<BoardList>) request.getAttribute("wr
 																		<td><%=boardname%></td>
 																	</tr>
 																	<%
-																		
-																	}
+																		}
 																	%>
 																</tbody>
 															</table>
 														</div>
 													</div>
-													<a href="${pageContext.request.contextPath}/myFAQ.do"
-														class="btn btn-primary btn-lg bg-orange waves-effect waves-light float-right">
-														1:1문의하기</a>
+													
 												</div>
 											</div>
 										</div>

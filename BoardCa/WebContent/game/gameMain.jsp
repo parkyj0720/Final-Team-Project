@@ -192,16 +192,28 @@ endList = endList * maxList + maxList;
 					href="${pageContext.request.contextPath}/<%=(keyword.equals(""))?"gameMain":"gameSearch"%>.do?page=<%=(startList-maxList>0)?startList-maxList:1 %>&inputSearch=<%=keyword%>"><i
 						class="zmdi zmdi-arrow-left"></i></a></li>
 				<!-- class = "active" -->
-				<%
-					for (int i = startList; i <= endList; i++) {
-					if (i > listCount)
-						break;
-				%>
-				<li class="page-item"><a class="page-link"
-					href="${pageContext.request.contextPath}/<%=(keyword.equals(""))?"gameMain":"gameSearch"%>.do?page=<%=i%>&inputSearch=<%=keyword%>"><%=i%></a></li>
-				<%
-					}
-				%>
+								<%
+									for (int i = startList - 1; i < endList; i++) {
+									if (i > listNum)
+										break;
+
+									if (now_page == i + 1) {
+								%>
+
+
+								<li class="page-item active"><a class="page-link"
+									href="${pageContext.request.contextPath}/<%=(keyword.equals(""))?"gameMain":"gameSearch"%>.do?page=<%=i+1%>&inputSearch=<%=keyword%>"><%=i + 1%></a></li>
+								<%
+									} else {
+								%>
+
+								<li class="page-item"><a class="page-link"
+									href="${pageContext.request.contextPath}/<%=(keyword.equals(""))?"gameMain":"gameSearch"%>.do?page=<%=i+1%>&inputSearch=<%=keyword%>"><%=i + 1%></a></li>
+								<%
+									}
+								}
+								%>
+
 				<li class="page-item"><a class="page-link"
 					href="${pageContext.request.contextPath}/<%=(keyword.equals(""))?"gameMain":"gameSearch"%>.do?page=<%=(endList+1>listCount)?listCount:endList+1%>&inputSearch=<%=keyword%>"><i
 						class="zmdi zmdi-arrow-right"></i></a></li>
@@ -210,10 +222,9 @@ endList = endList * maxList + maxList;
 	</div>
 
 
-
-
 	<jsp:include page="/WEB-INF/footer.jsp"></jsp:include>
 	<!-- Jquery Core Js -->
+	
 	<script src="/BoardCa/stylesheet/assets/bundles/libscripts.bundle.js"></script>
 	<!-- Lib Scripts Plugin Js -->
 	<script

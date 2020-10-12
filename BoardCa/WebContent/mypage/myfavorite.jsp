@@ -31,7 +31,7 @@
 	href="${pageContext.request.contextPath}/stylesheet/assets/plugins/footable-bootstrap/css/footable.standalone.min.css">
 </head>
 <%
-	List<Heart> myList = (List<Heart>) request.getAttribute("myList");
+	List<CommunityDto> colist = (List<CommunityDto>) request.getAttribute("colist");
 %>
 <body class="theme-blush ls-closed ls-toggle-menu ">
 	<!-- header -->
@@ -106,7 +106,7 @@
 														<thead>
 															<tr class="footable-header">
 																<th class="footable-sortable footable-first-visible"
-																	style="display: table-cell;">게시글 번호<span
+																	style="display: table-cell;">글쓴이<span
 																	class="fooicon fooicon-sort"></span></th>
 																<th data-breakpoints="xs" class="footable-sortable"
 																	style="display: table-cell;">제목<span
@@ -114,23 +114,23 @@
 																<th data-breakpoints="xs" class="footable-sortable"
 																	style="display: table-cell;">시간<span
 																	class="fooicon fooicon-sort"></span></th>
-																<th class="footable-sortable "
-																	style="display: table-cell;">좋아요<span
-																	class="fooicon fooicon-sort"></span></th>
+																
 															</tr>
 														</thead>
 														<tbody>
 															<%
-																for (int i = 0; i < myList.size(); i++) {
-																Heart dto = myList.get(i);
-																System.out.println(dto.getMEM_IDX());
-																
+																for (int i = 0; i < colist.size(); i++) {
+																CommunityDto dto = colist.get(i);
+																																
 															%>
 															<tr>
 																<td class="footable-first-visible"
-																	style="display: table-cell;"><%=dto.getBOARD_IDX()%></td>
-																<td style="display: table-cell;"><%=dto.getHEART_IDX()%></td>
-																<td style="display: table-cell;"><%=dto.getMEM_IDX()%></td>
+																	style="display: table-cell;"><%=dto.getBRD_WRT_NICKNAME()%></td>
+																<td style="display: table-cell;">
+																<a class="text-muted"
+																			href="${pageContext.request.contextPath}/Community_detail.do?num=<%=dto.getBRD_IDX()%>">
+																<%=dto.getBRD_TIT()%></a></td>
+																<td style="display: table-cell;"><%=dto.getBRD_SYSDATE()%></td>
 															</tr>
 															<%
 																}
