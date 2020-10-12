@@ -33,9 +33,7 @@
 
 </head>
 <body class="ls-closed ls-toggle-menu ">
-	<%
-		ArrayList<BoardList> boardList = (ArrayList<BoardList>) request.getAttribute("write");
-	%>
+
 	<!-- header -->
 	<jsp:include page="/WEB-INF/header.jsp"></jsp:include>
 	<!-- body -->
@@ -101,16 +99,7 @@
 												<input type="text" class="form-control" id="title"
 													placeholder="제목을 입력해주세요" maxlength="200" />
 											</div>
-											<select class="form-control show-tick" id="select">
-												<option>게시판을 선택해주세요.</option>
-												<%
-													for (int i = 0; i < boardList.size(); i++) {
-												%>
-												<option><%=boardList.get(i).getCAT_NAME()%></option>
-												<%
-													} // end of for
-												%>
-											</select>
+											
 										</div>
 									</div>
 

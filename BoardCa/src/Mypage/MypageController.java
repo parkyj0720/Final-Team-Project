@@ -1,6 +1,7 @@
 package Mypage;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -15,8 +16,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import CommunityModel.CoDao;
 import CommunityModel.CommunityDto;
+import CommunityModel.Heart;
 import CommunityModel.InputDto;
+import Food.CDao;
+import Food.CDto;
+import Game.GameDao;
+import Game.GameDto;
 import Member.MemberDao;
 import Member.MemberDto;
 
@@ -29,8 +36,18 @@ public class MypageController {
 	private MypageDao dao;
 	
 	@Autowired
-	private SqlSession mysqlSession;
-
+	private MemberDao MemberDao;
+	
+	@Autowired
+	private CoDao Codao;
+	
+	@Autowired
+	private CDao CDao;
+	
+	@Autowired
+	private GameDao GameDao;
+		
+	
 	@RequestMapping("/myPage.do")
 	public ModelAndView myPage(HttpSession session) {
 		MemberDto dto = new MemberDto();
@@ -127,7 +144,29 @@ public class MypageController {
 	}
 
 	@RequestMapping("/myFavorite.do")
-	public ModelAndView myFavoriteList(HttpSession session) {
+	public ModelAndView myFavoriteList(HttpServletRequest request, HttpSession session) {
+		
+		String userId = (String)session.getAttribute("userId");
+		
+		int num = MemberDao.searchIdx(userId);
+		
+		List<Heart> heartlist = dao.heart(num);
+		
+		ArrayList<CommunityDto> colist = new ArrayList<CommunityDto>();
+		
+		for(int i =0; i<heartlist.size();i++) {
+
+			Heart heart = heartlist.get(i);
+			int board = heart.getBOARD_IDX();
+			CommunityDto co = Codao.detail(board);
+					
+			colist.add(co);
+			
+		}
+		
+		mv.addObject("colist", colist);
+		
+		
 		mv.setViewName("/mypage/myfavorite.jsp");
 		return mv;
 	}
@@ -135,10 +174,46 @@ public class MypageController {
 	@RequestMapping("/mySaved.do")
 	public ModelAndView mySaved(HttpServletRequest request, HttpSession session) {
 		
+		
+		String userId = (String)session.getAttribute("userId");
+		
+		int num = MemberDao.searchIdx(userId);
+		
 		List<StarDto> starlist = dao.star(num);
 		
+		ArrayList<CDto> foodlist = new ArrayList<CDto>();
+		ArrayList<GameDto> gamelist = new ArrayList<GameDto>();
+		
+		for(int i=0; i<starlist.size();i++) {
+			
+			StarDto star = starlist.get(i);
+			
+			String check = star.getSTAR_CATEGORY();
+			
+			if(check.equals("R")) {
+				
+				int recnum = star.getREC_IDX();
+				
+				CDto food = CDao.detail(recnum);
+				
+				foodlist.add(food);
+				
+			}
+			else if(check.equals("G")) {
+				
+				int gamenum = star.getGAME_IDX();
+				
+				GameDto game = GameDao.detail(gamenum);
+				
+				gamelist.add(game);
+				
+			}
+			
+		}
 		
 		mv.addObject("starlist", starlist);
+		mv.addObject("foodlist", foodlist);
+		mv.addObject("gamelist", gamelist);
 		mv.setViewName("/mypage/mySaved.jsp");
 		return mv;
 	}
