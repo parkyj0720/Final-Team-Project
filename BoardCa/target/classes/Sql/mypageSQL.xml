@@ -44,7 +44,7 @@
 		select * from HEART_T WHERE MEM_IDX =#{MEM_IDX}
 	</select>
 	
-	<select id="star" parameterType="MemberDto" resultType="StarDto">
-		select * from STAR_T WHERE MEM_IDX =#{MEM_IDX}
+	<select id="star" parameterType="Member.MemberDto" resultType="Mypage.StarDto">
+		select * from STAR_T WHERE MEM_IDX =#{mem_idx}
 	</select>
 </mapper>

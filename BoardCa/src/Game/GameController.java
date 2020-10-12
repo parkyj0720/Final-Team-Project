@@ -21,7 +21,7 @@ public class GameController {
 	@Autowired
 	private ModelAndView mv;
 	@Autowired
-	private GameDao dao;
+	private GameDao GameDao;
 
 	// 게임 메인 페이지
 	@RequestMapping("/gameMain.do")
@@ -35,11 +35,11 @@ public class GameController {
 		// 관리자 확인을 위한 멤버정보 확인
 		if (session.getAttribute("userId") != null) {
 			String userId = (String) session.getAttribute("userId");
-			MemberDto mDto = dao.memInfo(userId);
+			MemberDto mDto = GameDao.memInfo(userId);
 			System.out.println(mDto);
 			mv.addObject("infocheck", mDto);
 		}
-		List<GameDto> list = dao.getList();
+		List<GameDto> list = GameDao.getList();
 		mv.addObject("gameList", list);
 		mv.setViewName("/game/gameMain.jsp?page=" + page);
 		return mv;
@@ -50,22 +50,22 @@ public class GameController {
 	public ModelAndView gameDetail(HttpServletRequest req, HttpSession session) {
 
 		int GameNo = Integer.parseInt(req.getParameter("no"));
-		GameDto dto = dao.detail(GameNo);
+		GameDto dto = GameDao.detail(GameNo);
 		mv.addObject("dto", dto);
 
 		// 댓글 리스트
-		List<ReviewAndMember> reviewList = dao.revList(GameNo);
+		List<ReviewAndMember> reviewList = GameDao.revList(GameNo);
 		mv.addObject("reviewList", reviewList);
 
 		// 관리자 확인을 위한 멤버정보 확인
 		if (session.getAttribute("userId") != null) {
 			String userId = (String) session.getAttribute("userId");
-			MemberDto mDto = dao.memInfo(userId);
+			MemberDto mDto = GameDao.memInfo(userId);
 			System.out.println(mDto);
 			mv.addObject("detailCheck", mDto);
 		}
 
-		List<GameDto> list = dao.getList();
+		List<GameDto> list = GameDao.getList();
 		Collections.shuffle(list);
 		mv.addObject("gameList", list);
 		mv.setViewName("/game/gameDetail.jsp");
@@ -86,12 +86,12 @@ public class GameController {
 		// 관리자 확인을 위한 멤버정보 확인
 		if (session.getAttribute("userId") != null) {
 			String userId = (String) session.getAttribute("userId");
-			MemberDto mDto = dao.memInfo(userId);
+			MemberDto mDto = GameDao.memInfo(userId);
 			System.out.println(mDto);
 			mv.addObject("detailCheck", mDto);
 		}
 		mv.addObject("page", page);
-		mv.addObject("gameList", dao.getSearchList(keyword));
+		mv.addObject("gameList", GameDao.getSearchList(keyword));
 		mv.addObject("inputSearch", keyword);
 		mv.setViewName("/game/gameMain.jsp?page="+ page);
 		return mv;
@@ -105,7 +105,7 @@ public class GameController {
 		String review = req.getParameter("review_text");
 		ReviewDto dto = new ReviewDto(0, "G", review, "", 0, no,Integer.parseInt(session.getAttribute("userIdx") + ""));
 		System.out.println(dto);
-		dao.revInsert(dto);
+		GameDao.revInsert(dto);
 		mv.setViewName("redirect:/gameDetail.do?no=" + no);
 		return mv;
 	}
@@ -117,7 +117,7 @@ public class GameController {
 		int no = Integer.parseInt(req.getParameter("no"));
 		int del = Integer.parseInt(req.getParameter("del"));
 
-		dao.revDelete(del);
+		GameDao.revDelete(del);
 		mv.setViewName("redirect:/gameDetail.do?no=" + no);
 		return mv;
 	}

@@ -179,10 +179,13 @@ public class MypageController {
 		
 		int num = MemberDao.searchIdx(userId);
 		
+				
 		List<StarDto> starlist = dao.star(num);
 		
 		ArrayList<CDto> foodlist = new ArrayList<CDto>();
 		ArrayList<GameDto> gamelist = new ArrayList<GameDto>();
+		
+
 		
 		for(int i=0; i<starlist.size();i++) {
 			
@@ -210,6 +213,10 @@ public class MypageController {
 			}
 			
 		}
+		
+		System.out.println(starlist);
+		System.out.println(foodlist);
+		System.out.println(gamelist);
 		
 		mv.addObject("starlist", starlist);
 		mv.addObject("foodlist", foodlist);

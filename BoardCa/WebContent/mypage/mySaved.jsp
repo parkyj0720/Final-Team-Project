@@ -134,12 +134,9 @@
 																			
 																	%>
 																	<tr>
-																		<td><a class="text-muted"
-																			href="${pageContext.request.contextPath}/Community_detail.do?num=<%=dto%>">
-																			<%=%></a>
-																		</td>
 																		<td></td>
 																		<td></td>
+																		<td><%=dto.getSTAR_CATEGORY() %></td>
 																	</tr>
 																	<%
 																		
