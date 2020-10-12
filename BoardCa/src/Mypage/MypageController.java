@@ -1,10 +1,12 @@
 package Mypage;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.ibatis.session.SqlSession;
 import org.python.objectweb.asm.util.CheckAnnotationAdapter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,6 +27,9 @@ public class MypageController {
 	private ModelAndView mv;
 	@Autowired
 	private MypageDao dao;
+	
+	@Autowired
+	private SqlSession mysqlSession;
 
 	@RequestMapping("/myPage.do")
 	public ModelAndView myPage(HttpSession session) {
@@ -128,7 +133,12 @@ public class MypageController {
 	}
 
 	@RequestMapping("/mySaved.do")
-	public ModelAndView mySaved() {
+	public ModelAndView mySaved(HttpServletRequest request, HttpSession session) {
+		
+		List<StarDto> starlist = dao.star(num);
+		
+		
+		mv.addObject("starlist", starlist);
 		mv.setViewName("/mypage/mySaved.jsp");
 		return mv;
 	}

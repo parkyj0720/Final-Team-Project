@@ -134,11 +134,18 @@ ArrayList<BoardList> boardList = (ArrayList<BoardList>) request.getAttribute("wr
 																<tbody>
 																	<%
 																		for (int i = 0; i < writeList.size(); i++) {
+																			
 																			CommunityDto dto = writeList.get(i);
 																			String boardname="";
 																			for (int y = 0; y < boardList.size(); y++) {
+																				System.out.println(boardList);
+																				if(y==4){
+																					continue;
+																				}
+																				else{
 																				if(boardList.get(y).getBRD_CAT_IDX() == dto.getCATEGORY_IDX()){
 																					boardname = boardList.get(y).getCAT_NAME();
+																				}
 																				}
 																			}
 																	%>
