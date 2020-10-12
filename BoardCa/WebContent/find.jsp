@@ -4,8 +4,8 @@
 <html>
 	<%
 		String userID = null;
-		if(session.getAttribute("userId") != null) {
-			userID = (String) session.getAttribute("userId");
+		if(session.getAttribute("userNickname") != null) {
+			userID = (String) session.getAttribute("userNickname");
 		}
 		if(userID == null) {
 			session.setAttribute("messageType", "오류 메시지");
@@ -125,7 +125,7 @@
 			</thead>
 			<tbody>
 				<tr>
-					<td style="width: 110px;"><h5>친구 아이디</h5></td>
+					<td style="width: 110px;"><h5>친구 닉네임</h5></td>
 					<td><input class="form-control" type="text" id="findID" maxlength="20" placeholder="찾을 아이디를 입력해주세요."></td>
 				</tr>
 				<tr>

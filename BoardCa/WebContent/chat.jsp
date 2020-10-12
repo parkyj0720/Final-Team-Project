@@ -7,8 +7,8 @@
 <head>
 	<%
 		String userID = null;
-		if(session.getAttribute("userId") != null) {
-			userID = (String) session.getAttribute("userId");
+		if(session.getAttribute("userNickname") != null) {
+			userID = (String) session.getAttribute("userNickname");
 		}
 		String toID = null;
 		if(request.getParameter("toID") != null) {
