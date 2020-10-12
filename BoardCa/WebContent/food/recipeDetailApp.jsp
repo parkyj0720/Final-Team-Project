@@ -1,3 +1,4 @@
+<%@page import="org.omg.PortableInterceptor.USER_EXCEPTION"%>
 <%@page import="Food.StarDto"%>
 <%@page import="Food.ReviewAndMember"%>
 <%@page import="Food.ReviewDto"%>
@@ -76,18 +77,37 @@
 <script src="http://code.jquery.com/jquery.js"></script>
 
 <% 
+int userIdx = 0;
+if(request.getParameter("userIdx")!=null){
+	userIdx = Integer.parseInt(request.getParameter("userIdx"));
+	System.out.println("aaaaaaaaaa" + userIdx);
+}
+
+String id = "";
+if (request.getParameter("id") != null) {
+	id = request.getParameter("id") + "";
+}
+
+String nickname = "";
+if (request.getParameter("nickname") != null) {
+	nickname = request.getParameter("nickname") + "";
+}
+
 	CDto dto = (CDto)request.getAttribute("dto");
 	MemberDto mDto = null;
 	if(request.getAttribute("detailCheck") != null){
 		mDto = (MemberDto)request.getAttribute("detailCheck");
 	}
-	System.out.println(mDto);
+	
+	int user_num = 0;
+	if(request.getAttribute("userIdx")!=null){
+		user_num = Integer.parseInt(request.getAttribute("userIdx")+"");
+	}
 	
 	List<ReviewAndMember> reviewList = null;
 	if(request.getAttribute("reviewList") != null){
 		reviewList =(List<ReviewAndMember>) request.getAttribute("reviewList");
 	}
-	System.out.println(reviewList);
 	
 	StarDto starDto = null;
 	if(request.getAttribute("starDto") != null){
@@ -99,6 +119,7 @@
 		List<StarDto> starList = (List<StarDto>)request.getAttribute("starList");
 		starSize = starList.size();
 	}
+	
 %>
 
 <script>
@@ -115,7 +136,7 @@
 				})
 	});
 	
-	var MEM_IDX = "{sessionScope.userIdx}";
+	var MEM_IDX = <%=user_num%>;
 	var REC_IDX = <%=dto.getREC_IDX()%>
 	
 	function heartClick() {
@@ -138,7 +159,7 @@
 				url: "/BoardCa/starInsertApp.do",
 				type: "get",
 				data: data = {
-						MEM_IDX : MEM_IDX,
+						user_num : MEM_IDX,
 						no : REC_IDX
 					},
 				success: function () {
@@ -169,7 +190,7 @@
 			url: "/BoardCa/starDeleteApp.do",
 			type: "get",
 			data: data = {
-					MEM_IDX : MEM_IDX,
+					user_num : MEM_IDX,
 					no : REC_IDX
 				},
 			success: function () {
@@ -201,8 +222,10 @@
 		$('#reviewBtn').on('click',function(){
 			if($('#review_text').val() ==''){
 				alert('내용을 입력해주세요.');
-			}else if(<%=session.getAttribute("userIdx")%> != null){
+			}else if(<%=user_num%> != null){
 				$('#reviewForm').submit();				
+			}else if(<%=user_num%> != null){
+				$('#reviewForm').submit();	
 			}else{
 				alert('로그인 후 이용하실 수 있습니다.');
 			}
@@ -227,7 +250,7 @@
 					url: "/BoardCa/starInsertApp.do",
 					type: "get",
 					data: data = {
-							MEM_IDX : MEM_IDX,
+							user_num : MEM_IDX,
 							no : REC_IDX
 						},
 					success: function () {
@@ -257,7 +280,7 @@
 				url: "/BoardCa/starDeleteApp.do",
 				type: "get",
 				data: data = {
-						MEM_IDX : MEM_IDX,
+						user_num : MEM_IDX,
 						no : REC_IDX
 					},
 				success: function () {
@@ -405,20 +428,14 @@
 										<table>
 											<% for(int i=0;i<order_arr.length;i++){ %>
 											<tr>
-												<%
-												i++;
-												if(i < order_arr.length || order_arr[i].indexOf("jpg") != -1 || order_arr[i].indexOf("png") != -1 || order_arr[i].indexOf("gif") != -1){ %>
-												<td style="padding-bottom:10px; width:400px; height:200px;">
-												<img src="<%=(order_arr[i].indexOf("http") != -1)?order_arr[i]:request.getContextPath()+"/upload/"+order_arr[i]%>"></td>
-												<% } %>
-											</tr>
-											<tr>
-												<% i--; %>
-												<%-- <td style="width:50px"><%=cnt %></td> --%>
-												<td style="width:150px; padding-bottom:40px;"><%=cnt%>. <%=order_arr[i] %></td>
+												<td style="padding-left: 20px;"><%=cnt %></td>
+												<td style="padding-left: 100px;"><%=order_arr[i] %></td>
 												<% i++; %>
+												<% if(i < order_arr.length && (order_arr[i].indexOf("jpg") != -1 || order_arr[i].indexOf("png") != -1 || order_arr[i].indexOf("gif") != -1)){ %>
+												<td style="padding-left: 150px; padding-bottom:20px; width:400px; height:200px;">
+												<img src="<%=(order_arr[i].indexOf("http") != -1)?order_arr[i]:request.getContextPath()+"/upload/"+order_arr[i]%>"></td>
+												<% }else{ i--;} %>
 											</tr>
-											
 											<% cnt++;} %>
 										</table>
 									</div>
@@ -450,6 +467,7 @@
 									</div>
 									<button id="reviewBtn" type="button" class="btn btn btn-primary">한줄평 등록</button>
 									<input type="text" value="<%=dto.getREC_IDX() %>" name="no" style="visibility: hidden;">
+									<input type="text" value="<%=user_num %>" name="user_num" style="visibility: hidden;">
 								</div>
 							</form>
 						</div>
@@ -498,7 +516,7 @@
 									<li>
 										<div class="text-box " style="width: auto;">
 											<h5 style="display:inline-block;"><%=reviewDto.getMemberDto().getMem_nickname() %></h5><span style="margin-left:10px;" class="comment-date">작성 <%=reviewDto.getReviewDto().getRev_sysdate() %></span>
-											<%if(session.getAttribute("userIdx")!=null && Integer.parseInt(session.getAttribute("userIdx")+"") == reviewDto.getReviewDto().getMem_idx()){ %>
+											<%if(user_num != 0 && user_num == reviewDto.getReviewDto().getMem_idx()){ %>
 											<a href="${pageContext.request.contextPath}/deleteReviewApp.do?no=<%=dto.getREC_IDX()%>&del=<%=reviewDto.getReviewDto().getRev_idx() %>">삭제</a>
 											<%} %>
 											<p><%=reviewDto.getReviewDto().getRev_content() %></p>

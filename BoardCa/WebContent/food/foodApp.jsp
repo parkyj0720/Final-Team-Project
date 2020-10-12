@@ -34,79 +34,92 @@
 	type="text/css">
 <script src="http://code.jquery.com/jquery.js"></script>
 <style>
-.num_btn_div{
-width: 230px;
-margin: 0 auto;
+.num_btn_div {
+	width: 230px;
+	margin: 0 auto;
 }
-.search_div{
-margin-top: 10px;
-margin-left: 15px;
-margin-bottom: 20px;
-white-space: nowrap;
+
+.search_div {
+	margin-top: 10px;
+	margin-left: 15px;
+	margin-bottom: 20px;
+	white-space: nowrap;
 }
 </style>
 </head>
 
 <%
-	// 관리자인지 확인하기 위한 멤버정보
-	MemberDto mDto = null;
-	if(request.getAttribute("detailCheck") != null){
-		mDto = (MemberDto)request.getAttribute("detailCheck");
-	}
-	System.out.println(mDto);
+	String id = "";
+if (request.getParameter("id") != null) {
+	id = request.getParameter("id") + "";
+}
+System.out.println("id >>>>>>>"+id);
 
-	String search = "";
-	// 검색 했는지 체크
-	if(request.getParameter("inputSearch") != null){
-		search = request.getParameter("inputSearch");
-	}
+String nickname = "";
+if (request.getParameter("nickname") != null) {
+	nickname = request.getParameter("nickname") + "";
+}
+System.out.println("nickname >>>>>>>"+nickname);
 
-	// 최대 보일 페이지 개수
-	int maxList = 5;
-	request.setAttribute("maxList", maxList);
+// 관리자인지 확인하기 위한 멤버정보
+MemberDto mDto = null;
+if (request.getAttribute("detailCheck") != null) {
+	mDto = (MemberDto) request.getAttribute("detailCheck");
+}
+System.out.println(mDto);
 
-	// 페이지당 리스트 개수
-	int listNum = 16;
-	
-	int now_page = 1;
+String search = "";
+// 검색 했는지 체크
+if (request.getParameter("inputSearch") != null) {
+	search = request.getParameter("inputSearch");
+}
 
-	//보여줄 리스트 배열 번호 선언
-	int itemCount = 0;
+// 최대 보일 페이지 개수
+int maxList = 5;
+request.setAttribute("maxList", maxList);
 
-	// 리스트 목록
-	List<CDto> list = (List<CDto>)request.getAttribute("cList");
-	System.out.println("리스트 개수: " + list.size());
-	
-	// 보여줄 리스트 배열 번호 (페이지번호 * 페이지에 보여주는 리스트 개수)
-	if(request.getParameter("page") != null){
-		now_page = Integer.parseInt(request.getParameter("page"));
-		if(now_page <= 0)
-			response.sendRedirect("${pageContext.request.contextPath}/cListAllApp.do?page=1");
-		itemCount = (Integer.parseInt(request.getParameter("page")) -1) * listNum;
-	}
-	
-	// 리스트 개수
-	int listCount = (list.size()%listNum==0 && list.size()!=0)?list.size()/listNum:list.size()/listNum+1;
-	
-	// 시작 페이지
-	int startList = (now_page%maxList==0)?((now_page/maxList)-1):(now_page/maxList);
-	startList = startList * maxList + 1;
+// 페이지당 리스트 개수
+int listNum = 16;
 
-	// 최대 페이지
-	int endList = (now_page%maxList==0)?((now_page/maxList)-1):(now_page/maxList);
-	endList = endList * maxList + maxList;
-	
-	// 즐겨찾기목록 받아오기
-	List<StarDto> starList = null;
-	if(request.getAttribute("starList") != null){
-		starList = (List<StarDto>)request.getAttribute("starList");
-	}
-	
-	// 로그인 확인
-	int userIdx = 0;
-	if(session.getAttribute("userIdx") != null){
-		userIdx = Integer.parseInt(session.getAttribute("userIdx")+"");
-	}
+int now_page = 1;
+
+//보여줄 리스트 배열 번호 선언
+int itemCount = 0;
+
+// 리스트 목록
+List<CDto> list = (List<CDto>) request.getAttribute("cList");
+System.out.println("리스트 개수: " + list.size());
+
+// 보여줄 리스트 배열 번호 (페이지번호 * 페이지에 보여주는 리스트 개수)
+if (request.getParameter("page") != null) {
+	now_page = Integer.parseInt(request.getParameter("page"));
+	if (now_page <= 0)
+		response.sendRedirect("${pageContext.request.contextPath}/cListAllApp.do?page=1");
+	itemCount = (Integer.parseInt(request.getParameter("page")) - 1) * listNum;
+}
+
+// 리스트 개수
+int listCount = (list.size() % listNum == 0 && list.size() != 0) ? list.size() / listNum : list.size() / listNum + 1;
+
+// 시작 페이지
+int startList = (now_page % maxList == 0) ? ((now_page / maxList) - 1) : (now_page / maxList);
+startList = startList * maxList + 1;
+
+// 최대 페이지
+int endList = (now_page % maxList == 0) ? ((now_page / maxList) - 1) : (now_page / maxList);
+endList = endList * maxList + maxList;
+
+// 즐겨찾기목록 받아오기
+List<StarDto> starList = null;
+if (request.getAttribute("starList") != null) {
+	starList = (List<StarDto>) request.getAttribute("starList");
+}
+
+// 로그인 확인
+int userIdx = 0;
+if (session.getAttribute("userIdx") != null) {
+	userIdx = Integer.parseInt(session.getAttribute("userIdx") + "");
+}
 %>
 
 <script>
@@ -144,7 +157,7 @@ request.getParameter("test");
 	<script>
 		var request = new Request();
 		var page = request.getParameter("page");
-		var maxList = <%= request.getAttribute("maxList") %>
+		var maxList = <%=request.getAttribute("maxList")%>
 		$('document').ready(function(){
 			if(page <= 0)
 				page = 1;
@@ -209,7 +222,7 @@ request.getParameter("test");
 			
 		}
 	</script>
-	
+
 	<!-- Loding Page -->
 	<div class="page-loader-wrapper">
 		<div class="loader">
@@ -222,95 +235,125 @@ request.getParameter("test");
 		</div>
 	</div>
 
-	
-<section class="content file_manager"style="margin: auto;">
-	<div class="search_div" style="position:relative;">
-	<form action="${pageContext.request.contextPath}/cSearchApp.do" method="POST" style="display:inline-block">
-		<input type="text" size="34" name="inputSearch">
-		<input type="submit" value="검색" name="inputSearchButton" style="margin-left:-15px">
-	</form>
-	<form action="${pageContext.request.contextPath}/cWriteApp.do" method="POST" style="display:inline-block; position:absolute; right:16px; visibility: <%=(mDto != null && mDto.getMem_mng_gwonhan() == 1)?"visible":"hidden"%>;">
-		<input type="submit" value="레시피추가" name="inputRecipe">
-	</form>
-	</div>
-    <div class="body_scroll">
-        <div class="container-fluid">
-            <div class="row clearfix">
-                <div class="col-lg-12">
-                    <div class="card">
-                        <div class="tab-content">
-                            <div class="tab-pane active" id="2019">
-                                <div class="row clearfix">
-                                <% for(int i=itemCount;i<list.size();i++) {
-                                	if(i>itemCount+listNum-1)
-                                		break;
-                                	CDto dto = list.get(i);
-                                	boolean check = false;
-                                	String img_src = "";
-                                	if(dto.getREC_MAIN_IMG().equals("")){
-                                		img_src = dto.getREC_MAIN_IMG();
-                                	}else{
-                                		img_src = dto.getREC_IMG_NAME();
-                                	}
-                                %> 
-                                    <div class="col-lg-3 col-md-4 col-sm-12">
-                                        <div class="card">
-                                            <div class="file">
-                                            <!-- 수정해야 됨 주소랑 썸네일 없을 수 있음 -->
-                                                <%-- <a href="<%=dto.getR_crawling_addr()%>"> --%>
-                                                <%for(int j=0;j<starList.size();j++){
-                                                	StarDto starDto = starList.get(j);
-                                                	
-                                                	if(starDto.getRec_idx() == dto.getREC_IDX()){
-                                                		check = true;
-                                                	} }
-                                                	if(check){%>
-                                                <div class="hover">
-                                                    <button type="button" class="btn btn-icon btn-icon-mini btn-round bg-red" onclick="starCheck(this, <%=dto.getREC_IDX()%>)">
-                                                        <i class="ti-heart"></i>
-                                                    </button>
-                                                </div>
-                                                <%} else{%>
-                                                <div class="hover">
-                                                    <button type="button" class="btn btn-icon btn-icon-mini btn-round" onclick="starCheck(this, <%=dto.getREC_IDX()%>)">
-                                                        <i class="ti-heart"></i>
-                                                    </button>
-                                                </div>
-                                                <%} %>
-                                                <a href="${pageContext.request.contextPath}/cDetailApp.do?no=<%=dto.getREC_IDX() %>">
-                                                    <div class="icon" >
-                                                        <img src="<%=(!dto.getREC_MAIN_IMG().equals(""))?dto.getREC_MAIN_IMG():request.getContextPath()+"/upload/"+dto.getREC_IMG_NAME() %>" height="150" >
-                                                    </div>
-                                                    <div class="file-name" style="height:100px">
-                                                        <p class="m-b-5 text-muted"><%=dto.getREC_TIT() %></p>
-                                                    </div>
-                                               	 </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <% }%>
-                                </div>
-                            </div>     
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="num_btn_div">
-            	<ul class="pagination pagination-primary m-b-0">
-                     <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/<%=(search.equals(""))?"cListAll":"cSearch"%>App.do?page=<%=(startList-maxList>0)?startList-maxList:1 %>&inputSearch=<%=search%>"><i class="zmdi zmdi-arrow-left"></i></a></li>
-                     <!-- class = "active" -->
-                     <% for(int i=startList;i<=endList;i++){
-                     	if(i>listCount)
-                     		break;
-                     %>
-                     <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/<%=(search.equals(""))?"cListAll":"cSearch"%>App.do?page=<%=i%>&inputSearch=<%=search%>"><%=i %></a></li>
-                     <%} %>
-                     <li class="page-item"><a class="page-link" href="${pageContext.request.contextPath}/<%=(search.equals(""))?"cListAll":"cSearch"%>App.do?page=<%=(endList+1>listCount)?listCount:endList+1%>&inputSearch=<%=search%>"><i class="zmdi zmdi-arrow-right"></i></a></li>
-                  </ul>
-            </div>
-        </div>
-    </div>
-</section>
+
+	<section class="content file_manager" style="margin: auto;">
+		<div class="search_div" style="position: relative;">
+			<form action="${pageContext.request.contextPath}/cSearchApp.do"
+				method="POST" style="display: inline-block">
+				<input type="text" size="34" name="inputSearch"> <input
+					type="submit" value="검색" name="inputSearchButton"
+					style="margin-left: -15px">
+			</form>
+			<form action="${pageContext.request.contextPath}/cWriteApp.do"
+				method="POST"
+				style="display:inline-block; position:absolute; right:16px; visibility: <%=(mDto != null && mDto.getMem_mng_gwonhan() == 1)?"visible":"hidden"%>;">
+				<input type="submit" value="레시피추가" name="inputRecipe">
+			</form>
+		</div>
+		<div class="body_scroll">
+			<div class="container-fluid">
+				<div class="row clearfix">
+					<div class="col-lg-12">
+						<div class="card">
+							<div class="tab-content">
+								<div class="tab-pane active" id="2019">
+									<div class="row clearfix">
+										<%
+											for (int i = itemCount; i < list.size(); i++) {
+											if (i > itemCount + listNum - 1)
+												break;
+											CDto dto = list.get(i);
+											boolean check = false;
+											String img_src = "";
+											if (dto.getREC_MAIN_IMG().equals("")) {
+												img_src = dto.getREC_MAIN_IMG();
+											} else {
+												img_src = dto.getREC_IMG_NAME();
+											}
+										%>
+										<div class="col-lg-3 col-md-4 col-sm-12">
+											<div class="card">
+												<div class="file">
+													<!-- 수정해야 됨 주소랑 썸네일 없을 수 있음 -->
+													<%-- <a href="<%=dto.getR_crawling_addr()%>"> --%>
+													<%
+														for (int j = 0; j < starList.size(); j++) {
+														StarDto starDto = starList.get(j);
+
+														if (starDto.getRec_idx() == dto.getREC_IDX()) {
+															check = true;
+														}
+													}
+													if (check) {
+													%>
+													<div class="hover">
+														<button type="button"
+															class="btn btn-icon btn-icon-mini btn-round bg-red"
+															onclick="starCheck(this, <%=dto.getREC_IDX()%>)">
+															<i class="ti-heart"></i>
+														</button>
+													</div>
+													<%
+														} else {
+													%>
+													<div class="hover">
+														<button type="button"
+															class="btn btn-icon btn-icon-mini btn-round"
+															onclick="starCheck(this, <%=dto.getREC_IDX()%>)">
+															<i class="ti-heart"></i>
+														</button>
+													</div>
+													<%
+														}
+													%>
+													<a
+														href="${pageContext.request.contextPath}/cDetailApp.do?no=<%=dto.getREC_IDX() %>&id=<%=id%>&nickname=<%=nickname%>">
+														<div class="icon">
+															<img
+																src="<%=(!dto.getREC_MAIN_IMG().equals("")) ? dto.getREC_MAIN_IMG()
+		: request.getContextPath() + "/upload/" + dto.getREC_IMG_NAME()%>"
+																height="150">
+														</div>
+														<div class="file-name" style="height: 100px">
+															<p class="m-b-5 text-muted"><%=dto.getREC_TIT()%></p>
+														</div>
+													</a>
+												</div>
+											</div>
+										</div>
+										<%
+											}
+										%>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="num_btn_div">
+					<ul class="pagination pagination-primary m-b-0">
+						<li class="page-item"><a class="page-link"
+							href="${pageContext.request.contextPath}/<%=(search.equals(""))?"cListAll":"cSearch"%>App.do?page=<%=(startList-maxList>0)?startList-maxList:1 %>&inputSearch=<%=search%>"><i
+								class="zmdi zmdi-arrow-left"></i></a></li>
+						<!-- class = "active" -->
+						<%
+							for (int i = startList; i <= endList; i++) {
+							if (i > listCount)
+								break;
+						%>
+						<li class="page-item"><a class="page-link"
+							href="${pageContext.request.contextPath}/<%=(search.equals(""))?"cListAll":"cSearch"%>App.do?page=<%=i%>&inputSearch=<%=search%>"><%=i%></a></li>
+						<%
+							}
+						%>
+						<li class="page-item"><a class="page-link"
+							href="${pageContext.request.contextPath}/<%=(search.equals(""))?"cListAll":"cSearch"%>App.do?page=<%=(endList+1>listCount)?listCount:endList+1%>&inputSearch=<%=search%>"><i
+								class="zmdi zmdi-arrow-right"></i></a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</section>
 
 	<!-- Jquery Core Js -->
 	<script
