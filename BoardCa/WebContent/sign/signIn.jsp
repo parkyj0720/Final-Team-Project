@@ -217,7 +217,7 @@
 						</div>
 						<div class="body">
 							<div class="input-group mb-3">
-								<input type="text" class="form-control" placeholder="UserId"
+								<input type="text" class="form-control" placeholder="아이디"
 									name="userId" id="userId">
 								<div class="input-group-append">
 									<span class="input-group-text"><i
@@ -225,7 +225,7 @@
 								</div>
 							</div>
 							<div class="input-group mb-3">
-								<input type="password" class="form-control" placeholder="Password"
+								<input type="password" class="form-control" placeholder="비밀번호"
 									name="userPw" id="userPw">
 								<div class="input-group-append">
 									<span class="input-group-text"><a
@@ -235,15 +235,15 @@
 							</div>
 							<div class="checkbox">
 								<input id="remember_me" type="checkbox"> <label
-									for="remember_me">Remember Me</label>
+									for="remember_me">아이디 저장</label>
 							</div>
 							<a href="${pageContext.request.contextPath}/signUp.do"
-								class="btn btn-primary btn-block waves-effect waves-light">JOIN</a>
+								class="btn btn-primary btn-block waves-effect waves-light">회원가입</a>
 							<%-- <a href="${pageContext.request.contextPath}/signPro.do" class="btn btn-primary btn-block waves-effect waves-light" type="submit" >SIGN IN</a>     --%>
 							<input class="btn btn-primary btn-block waves-effect waves-light"
-								type="submit" value="SIGN IN" id="submitBtn">
+								type="submit" value="로그인" id="submitBtn">
 							<div class="signin_with mt-3">
-								<p class="mb-0">or Sign Up using</p>
+								<!-- <p class="mb-0">kakao login</p> -->
 								<!-- <button
 									class="btn btn-primary btn-icon btn-icon-mini btn-round facebook">
 									<i class="zmdi zmdi-facebook"></i>
