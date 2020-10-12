@@ -38,7 +38,7 @@
 		values(0,
 		#{rev_category},
 		#{rev_content},
-		sysdate(),
+		DATE_ADD(NOW(), INTERVAL 9 HOUR),
 		null,
 		#{game_idx},
 		#{mem_idx})
