@@ -23,10 +23,14 @@
 	 		$( '#chatBtn' ).click( function() {
 	 			$( '#followChat' ).toggle( 'slow' );
 	 	});
+	 		
+	 		$('#chatBtn').animate({top:$(window).scrollTop()+$(window).height()/1.3+"px"},{queue: false, duration: 0});
+	 		$('#followChat').animate({top:$(window).scrollTop()+$(window).height()/7 +"px"},{queue: false, duration: 0});
+	 	
 	 });
 
 	 $(window).scroll(function(){
-	 	$('#followChat').animate({top:$(window).scrollTop()+$(window).height()/6 +"px"},{queue: false, duration: 500});
+	 	$('#followChat').animate({top:$(window).scrollTop()+$(window).height()/7 +"px"},{queue: false, duration: 500});
 	 });
 
 	 $(window).scroll(function(){
