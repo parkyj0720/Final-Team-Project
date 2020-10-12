@@ -122,13 +122,13 @@ ArrayList<BoardList> boardList = (ArrayList<BoardList>) request.getAttribute("wr
 																	<tr role="row">
 																		<th class="sorting" tabindex="0"
 																			aria-controls="DataTables_Table_0" rowspan="1"
-																			colspan="1" aria-label="No" style="width: 61px;">Title</th>
+																			colspan="1" aria-label="Title" style="width: 83px;">글 쓴 시간</th>
 																		<th class="sorting" tabindex="0"
 																			aria-controls="DataTables_Table_0" rowspan="1"
-																			colspan="1" aria-label="Title" style="width: 83px;">Date</th>
+																			colspan="1" aria-label="No" style="width: 61px;">제목</th>
 																		<th class="sorting" tabindex="0"
 																			aria-controls="DataTables_Table_0" rowspan="1"
-																			colspan="1" aria-label="Date" style="width: 60px;">Cateory</th>
+																			colspan="1" aria-label="Date" style="width: 60px;">카테고리</th>
 																	</tr>
 																</thead>
 																<tbody>
@@ -136,6 +136,8 @@ ArrayList<BoardList> boardList = (ArrayList<BoardList>) request.getAttribute("wr
 																		for (int i = 0; i < writeList.size(); i++) {
 
 																		CommunityDto dto = writeList.get(i);
+																		
+																		
 																		String boardname = "";
 																		
 																		for (int y = 0; y < boardList.size(); y++) {
@@ -144,13 +146,13 @@ ArrayList<BoardList> boardList = (ArrayList<BoardList>) request.getAttribute("wr
 																		boardname = boardList.get(y).getCAT_NAME();
 																			}
 																		}
-																		System.out.println(boardList);
+																		
 																	%>
 																	<tr>
+																		<td><%=dto.getBRD_SYSDATE()%></td>
 																		<td><a class="text-muted"
 																			href="${pageContext.request.contextPath}/Community_detail.do?num=<%=dto.getBRD_IDX()%>"><%=dto.getBRD_TIT()%></a>
 																		</td>
-																		<td><%=dto.getBRD_SYSDATE()%></td>
 																		<td><%=boardname%></td>
 																	</tr>
 																	<%

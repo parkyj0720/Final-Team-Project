@@ -45,6 +45,30 @@ public class GameController {
 		mv.setViewName("/game/gameMain.jsp?page=" + page);
 		return mv;
 	}
+	
+	// 앱용 게임 메인 페이지
+	
+	@RequestMapping("/gameMainApp.do")
+	public ModelAndView gameMainApp(HttpServletRequest req, HttpSession session) {
+		int page = 1;
+		if(req.getParameter("page") != null) {
+			page = Integer.parseInt(req.getParameter("page"));
+		}
+		
+
+		// 관리자 확인을 위한 멤버정보 확인
+		if (session.getAttribute("userId") != null) {
+			String userId = (String) session.getAttribute("userId");
+			MemberDto mDto = GameDao.memInfo(userId);
+			System.out.println(mDto);
+			mv.addObject("infocheck", mDto);
+		}
+		List<GameDto> list = GameDao.getList();
+		mv.addObject("gameList", list);
+		mv.setViewName("/game/gameMainApp.jsp?page=" + page);
+		return mv;
+	}
+	
 
 	// 상세페이지
 	@RequestMapping("/gameDetail.do")
@@ -85,6 +109,48 @@ public class GameController {
 		mv.setViewName("/game/gameDetail.jsp");
 		return mv;
 	}
+	
+	// 상세페이지 앱용
+		@RequestMapping("/gameDetailApp.do")
+		public ModelAndView gameDetailApp(HttpServletRequest req, HttpSession session) {
+
+			int GameNo = Integer.parseInt(req.getParameter("no"));
+			GameDto dto = GameDao.detail(GameNo);
+			mv.addObject("dto", dto);
+
+			
+			int userIdx = 0;
+			if(session.getAttribute("userIdx") != null) {
+				userIdx = Integer.parseInt(session.getAttribute("userIdx")+"");
+			}
+			
+			StarDto sDto = new StarDto(0, "G", userIdx, 0, GameNo);
+			StarDto starDto = GameDao.starDetail(sDto);
+			mv.addObject("starDto", starDto);
+			
+			List<StarDto> starList = GameDao.starSize(sDto);
+			mv.addObject("starList", starList);
+			
+			// 댓글 리스트
+			List<ReviewAndMember> reviewList = GameDao.revList(GameNo);
+			mv.addObject("reviewList", reviewList);
+
+			// 관리자 확인을 위한 멤버정보 확인
+			if (session.getAttribute("userId") != null) {
+				String userId = (String) session.getAttribute("userId");
+				MemberDto mDto = GameDao.memInfo(userId);
+				System.out.println(mDto);
+				mv.addObject("detailCheck", mDto);
+			}
+
+			List<GameDto> list = GameDao.getList();
+			Collections.shuffle(list);
+			mv.addObject("gameList", list);
+			mv.setViewName("/game/gameDetailApp.jsp");
+			return mv;
+		}
+	
+	
 
 	// 게임 검색
 	@RequestMapping("/gameSearch.do")

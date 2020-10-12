@@ -103,10 +103,7 @@
 																		<th class="sorting" tabindex="0"
 																			aria-controls="DataTables_Table_0" rowspan="1"
 																			colspan="1" aria-label="No" style="width: 61px;">Title</th>
-																		<th class="sorting" tabindex="0"
-																			aria-controls="DataTables_Table_0" rowspan="1"
-																			colspan="1" aria-label="Title" style="width: 83px;">Date</th>
-																		<th class="sorting" tabindex="0"
+																																				<th class="sorting" tabindex="0"
 																			aria-controls="DataTables_Table_0" rowspan="1"
 																			colspan="1" aria-label="Date" style="width: 60px;">Cateory</th>
 																	</tr>
@@ -119,24 +116,39 @@
 																	ArrayList<CDto> foodlist = (ArrayList<CDto>)request.getAttribute("foodlist");
 																	ArrayList<GameDto> gamelist = (ArrayList<GameDto>)request.getAttribute("gamelist");
 																	
-																	
-																	System.out.println(starlist);
-																	System.out.println(foodlist);
-																	System.out.println(gamelist);
-																	
+																																		
 																	
 																		for (int i = 0; i < starlist.size(); i++) {
 																			
 																			StarDto dto = starlist.get(i);
-																			/* if(dto.getSTAR_CATEGORY().equals("R")){
+																			String title="";
+																			
+																			String category = "";
+																			
+																			if(dto.getSTAR_CATEGORY().equals("R")){
 																				
-																			} */
+																				CDto food = foodlist.get(i);
+																				
+																				title = food.getREC_TIT();
+																				
+																				category = "레시피";
+																																								
+																			}
+																			else if(dto.getSTAR_CATEGORY().equals("G")){
+																				
+																				GameDto game = gamelist.get(i);
+																				
+																				title = game.getGAME_TIT();
+																				
+																				category = "술게임";
+																																								
+																			}
 																			
 																	%>
 																	<tr>
-																		<td></td>
-																		<td></td>
-																		<td><%=dto.getSTAR_CATEGORY() %></td>
+																		<td><%=title %></td>
+																		
+																		<td><%=category %></td>
 																	</tr>
 																	<%
 																		

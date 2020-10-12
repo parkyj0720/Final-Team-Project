@@ -33,6 +33,7 @@ public class MypageDao {
 	}
 	public List<CommunityDto> writeList(CommunityDto cdto) {
 		List<CommunityDto> writeList = mysqlSession.selectList("mypageXml.writeList",cdto);
+				
 		return writeList;
 		
 	}

@@ -118,7 +118,7 @@ public class MypageController {
 	@RequestMapping("/myWriteList.do")
 	public ModelAndView myWriteList(HttpSession session) {
 		CommunityDto Cdto = new CommunityDto();
-		Cdto.setBRD_WRT_NICKNAME(session.getAttribute("userId") + "");
+		Cdto.setBRD_WRT_NICKNAME((String)session.getAttribute("userNickname"));
 		mv.addObject("writeList", dao.writeList(Cdto));
 		mv.addObject("write", dao.Category());
 		mv.setViewName("/mypage/writeList.jsp");
