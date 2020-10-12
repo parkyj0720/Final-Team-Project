@@ -101,11 +101,13 @@ public class CControllerApp {
 		if (req.getParameter("id") != null) {
 			id = req.getParameter("id");
 			System.out.println("detail id>>>>>>>> "+id);
-
+ 
 			MemberDto mDto = dao.memberInfo(id);
 			System.out.println(mDto);
-			user_num = mDto.getMem_idx();
-			mv.addObject("userIdx", mDto.getMem_idx());
+			if(mDto != null) {
+				user_num = mDto.getMem_idx();
+				mv.addObject("userIdx", mDto.getMem_idx());
+			}
 		}
 		String nickname = "";
 		if (req.getParameter("nickname") != null) {
