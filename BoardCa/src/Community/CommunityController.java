@@ -57,10 +57,17 @@ public class CommunityController {
 		}
 		// 게시판 번호, 이름정보 넘겨줌
 
-		String userid = (String) session.getAttribute("userId");
+		String userid ="";
+		int ad=0;
 
-		int ad = MemberDao.adminCheck(userid);
-
+		if(session.getAttribute("userId")!=null) {
+			
+			userid = (String) session.getAttribute("userId");
+			
+			ad = MemberDao.adminCheck(userid);
+		}
+					
+		
 		mv.addObject("ad", ad);
 
 		mv.addObject("boardList", boardlist);
@@ -79,9 +86,15 @@ public class CommunityController {
 			page = Integer.parseInt(request.getParameter("page"));
 		}
 
-		String userid = (String) session.getAttribute("userId");
+		String userid ="";
+		int ad=0;
 
-		int ad = MemberDao.adminCheck(userid);
+		if(session.getAttribute("userId")!=null) {
+			
+			userid = (String) session.getAttribute("userId");
+			
+			ad = MemberDao.adminCheck(userid);
+		}
 
 		mv.addObject("ad", ad);
 
@@ -157,10 +170,15 @@ public class CommunityController {
 			CommunityDto dto = dao.detail(num);
 			int boardnum = dto.getCATEGORY_IDX();
 
-			String id = (String) session.getAttribute("userId");
+			String userid ="";
+			int ad=0;
 
-			int ad = MemberDao.adminCheck(id);
-
+			if(session.getAttribute("userId")!=null) {
+				
+				userid = (String) session.getAttribute("userId");
+				
+				ad = MemberDao.adminCheck(userid);
+			}
 			mv.addObject("ad", ad);
 
 			mv.addObject("board", dao.one_board(boardnum));

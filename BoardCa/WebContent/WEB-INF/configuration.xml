@@ -18,6 +18,9 @@
 		<typeAlias alias="Community_Heart" type="CommunityModel.Heart"></typeAlias>
 		<typeAlias alias="Community_Comment" type="CommunityModel.Comment"></typeAlias>
 		<typeAlias alias="GameDto" type="Game.GameDto"></typeAlias>
+
+		<typeAlias alias="StarDto" type="Mypage.StarDto"></typeAlias>
+				
 		<typeAlias alias="AppDto" type="App.AppDto"></typeAlias>
 	</typeAliases>
 	<!-- 오라클에서 Long타입 가져오기 위한 핸들러 -->
