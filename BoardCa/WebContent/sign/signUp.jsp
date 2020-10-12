@@ -249,19 +249,27 @@
 		var ageRange = <%= request.getAttribute("userAgeRange")%>
 		
 		switch(ageRange){
-			case 10:
-				$("input:radio[id='one']").prop("checked", true);
-				$("input:radio[id='two']").prop("checked", false);
-				break;
 			case 20:
+				$("input:radio[id='two']").prop("checked", true);
+				$("input:radio[id='three']").prop("checked", false);
 				break;
 			case 30:
-				$("input:radio[id='three']").prop("checked", true);
-				$("input:radio[id='two']").prop("checked", false);
 				break;
-			default:
+			case 40:
 				$("input:radio[id='four']").prop("checked", true);
-				$("input:radio[id='two']").prop("checked", false);			
+				$("input:radio[id='three']").prop("checked", false);
+				break;
+			case 50:
+			case 60:
+			case 70:
+			case 80:
+			case 90:
+				$("input:radio[id='five']").prop("checked", true);
+				$("input:radio[id='three']").prop("checked", false);
+				break;	
+			default:
+				$("input:radio[id='private']").prop("checked", true);
+				$("input:radio[id='three']").prop("checked", false);			
 		}		
 		
 		$('#submitBtn').click(function() {					
@@ -468,24 +476,24 @@
 						style="text-align: left;">
 						<div class="form-group">
 							<div class="radio inlineblock m-r-20" style="margin: 0;">
-								<input type="radio" name="ageRange" id="one" class="with-gap"
-									value="20대" > <label for="one">20대</label>
+								<input type="radio" name="ageRange" id="two" class="with-gap"
+									value="20대"  > <label for="two">20대</label>
 							</div>
 							<div class="radio inlineblock m-r-20" style="margin: 0;">
-								<input type="radio" name="ageRange" id="two" class="with-gap"
-									value="30대" checked> <label for="two">30대</label>
-							</div>
-							<div class="radio inlineblock" style="margin: 0;">
 								<input type="radio" name="ageRange" id="three" class="with-gap"
-									value="40대"> <label for="three">40대</label>
+									value="30대" checked > <label for="three">30대</label>
 							</div>
 							<div class="radio inlineblock" style="margin: 0;">
 								<input type="radio" name="ageRange" id="four" class="with-gap"
-									value="50대 이상"> <label for="four">50대 이상</label>
+									value="40대"> <label for="four">40대</label>
 							</div>
 							<div class="radio inlineblock" style="margin: 0;">
 								<input type="radio" name="ageRange" id="five" class="with-gap"
-									value=""> <label for="five">비공개</label>
+									value="50대 이상"> <label for="five">50대 이상</label>
+							</div>
+							<div class="radio inlineblock" style="margin: 0;">
+								<input type="radio" name="ageRange" id="private" class="with-gap"
+									value=""> <label for="">비공개</label>
 							</div>
 						</div>
 					</div>
