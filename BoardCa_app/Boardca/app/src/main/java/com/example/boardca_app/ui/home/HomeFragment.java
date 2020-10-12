@@ -3,6 +3,7 @@ package com.example.boardca_app.ui.home;
 import android.animation.Animator;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.opengl.Visibility;
 import android.os.Bundle;
 import android.os.Handler;
@@ -31,7 +32,7 @@ public class HomeFragment extends Fragment {
 
     private View viewGroup;
 
-    ImageButton btnGame;
+    ImageButton btnGame, btnGame2, btnlink;
     TextView textGame;
     ImageView gameImage;
 
@@ -77,6 +78,8 @@ public class HomeFragment extends Fragment {
         });
 
         btnGame = (ImageButton) viewGroup.findViewById(R.id.btn_game);
+        btnGame2 = (ImageButton) viewGroup.findViewById(R.id.btn_game2);
+        btnlink = (ImageButton) viewGroup.findViewById(R.id.btn_game_link);
         textGame = (TextView) viewGroup.findViewById(R.id.textview_game);
 
         btnGame.setOnClickListener(new View.OnClickListener() {
@@ -101,13 +104,57 @@ public class HomeFragment extends Fragment {
                     // 시작
                     animationView.playAnimation();
 
-                    btnGame.setImageResource(R.drawable.back_btn);
+                    btnGame.setVisibility(View.GONE);
+                    btnGame2.setVisibility(View.VISIBLE);
+                    btnlink.setVisibility(View.VISIBLE);
+
+                    btnGame2.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            btnGame.setVisibility(View.VISIBLE);
+                            btnGame2.setVisibility(View.GONE);
+                            btnlink.setVisibility(View.GONE);
+                            setUpAnimation(animationView);
+                            tf = true;
+                        }
+                    });
+                    Uri uri;
+                    btnlink.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            if(imageResources[i] == imageResources[0]){
+                                //더게임오브데스
+                                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://youtu.be/YClMYxpmNpw"));
+                                startActivity(intent);
+                            }
+                            if(imageResources[i] == imageResources[1]){
+                                //훈민정음
+                                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://youtu.be/XgI2-r1oEuU"));
+                                startActivity(intent);
+                            }
+                            if(imageResources[i] == imageResources[2]){
+                                //아파트
+                                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://youtu.be/10Z0SvSjBdU"));
+                                startActivity(intent);
+                            }
+                            if(imageResources[i] == imageResources[3]){
+                                //지하철
+                                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://youtu.be/YClMYxpmNpw"));
+                                startActivity(intent);
+                            }
+                            if(imageResources[i] == imageResources[4]){
+                                //만두만두
+                                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://youtu.be/yalkgWUuYU0"));
+                                startActivity(intent);
+
+                            }
+                        }
+                    });
 
                     tf = false;
                 } else{
-                    btnGame.setImageResource(R.drawable.start_btn);
+                    btnGame2.setImageResource(R.drawable.start_btn);
                     setUpAnimation(animationView);
-
                     tf = true;
                 }
 
