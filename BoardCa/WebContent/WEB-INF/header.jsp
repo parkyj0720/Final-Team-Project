@@ -181,10 +181,7 @@
 										<li class="footer"><a href="javascript:void(0);">View
 												All Notifications</a></li>
 									</ul></li> -->
-								<div id="chatBtn">
-									<img id="chatBtnImg"
-										src="${pageContext.request.contextPath}/imgs/chatBtn.png">
-								</div>
+								
 								<c:choose>
 									<c:when test="${sessionScope.userId == null}">
 										<li><a
@@ -266,7 +263,10 @@
 			</div>
 		</div>
 	</div>
-
+	<div id="chatBtn">
+		<img id="chatBtnImg" src="${pageContext.request.contextPath}/imgs/chatBtn.png">
+	</div>
+								
 	<div id="followChat">
 		<iframe id="chatFrame" src="${pageContext.request.contextPath}/index.jsp" width=400px; height=600px; frameborder=0 scrolling=yes></iframe>
 	</div> 
