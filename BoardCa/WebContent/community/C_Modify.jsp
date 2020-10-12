@@ -155,6 +155,7 @@
 				  '/': '&#x2F;',
 				  '`': '&#x60;',
 				  '=': '%#x3D;'
+				  
 		  }
 		  function escapeHtml(text) {
 			return text.replace(/[&<>"'`=\/]/g, function (s) {
