@@ -23,7 +23,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tab_layout" />
 
-        <!-- 챗봇 예정 핑크 버튼 -->
+        <!-- 작성용 버튼 -->
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab_write"
             android:layout_width="wrap_content"
