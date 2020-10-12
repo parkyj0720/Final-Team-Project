@@ -22,6 +22,8 @@ public class chatActivity extends AppCompatActivity {
         setContentView(R.layout.activity_chat);
 
         webView = findViewById(R.id.chat_web);
+        webView.getSettings().setJavaScriptEnabled(true);
+        webView.setWebChromeClient(new WebChromeClient());
         webView.loadUrl("http://192.168.219.107:8088/BoardCa/index.jsp");
 
     }

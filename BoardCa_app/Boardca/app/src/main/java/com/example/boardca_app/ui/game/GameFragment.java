@@ -46,7 +46,6 @@ public class GameFragment extends DialogFragment {
                 //Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://192.168.219.107:8088/BoardCa/index.jsp"));
                 Intent intent = new Intent(getActivity(), chatActivity.class);
                 startActivity(intent);
-                getActivity().overridePendingTransition(0, 0);
             }
         });
 
