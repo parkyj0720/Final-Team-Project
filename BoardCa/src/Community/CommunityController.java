@@ -86,9 +86,15 @@ public class CommunityController {
 			page = Integer.parseInt(request.getParameter("page"));
 		}
 
-		String userid = (String) session.getAttribute("userId");
+		String userid ="";
+		int ad=0;
 
-		int ad = MemberDao.adminCheck(userid);
+		if(session.getAttribute("userId")!=null) {
+			
+			userid = (String) session.getAttribute("userId");
+			
+			ad = MemberDao.adminCheck(userid);
+		}
 
 		mv.addObject("ad", ad);
 
