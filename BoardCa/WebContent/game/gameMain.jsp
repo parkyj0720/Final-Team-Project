@@ -92,31 +92,32 @@ endList = endList * maxList + maxList;
 
 
 
-	<script>
-		var request = new Request();
-		var page = request.getParameter("page");
-		var maxList = <%= request.getAttribute("maxList") %>
-		$('document').ready(function() {
-			if (page <= 0)
-				page = 1;
-			if (page >= maxList + 1) {
-				page = page % maxList;
-				if (page == 0)
-					page = 10;
-			}
-			// 하단 목록 버튼 사이즈 조절 및 위치조정 
-			var wd = 0;
-			if ($('.page-item').length >= maxList + 2) {
-				wd = 40 * (maxList + 2) - 40;
-			} else {
-				wd = 40 * $('.page-item').length - 40;
-			}
-			$('.num_btn_div').css('width', wd + 'px');
+<script>
+	var request = new Request();
+	var page = request.getParameter("page");
+	var maxList =
+<%=request.getAttribute("maxList")%>
+	$('document').ready(function() {
+		if (page <= 0)
+			page = 1;
+		if (page >= maxList + 1) {
+			page = page % maxList;
+			if (page == 0)
+				page = 10;
+		}
+		// 하단 목록 버튼 사이즈 조절 및 위치조정 
+		var wd = 0;
+		if ($('.page-item').length >= maxList + 2) {
+			wd = 40 * (maxList + 2) - 40;
+		} else {
+			wd = 40 * $('.page-item').length - 40;
+		}
+		$('.num_btn_div').css('width', wd + 'px');
 
-			// 버튼 눌림 효과클래스 추가
-			$('.page-item').eq(page).addClass('active');
-		});
-	</script>
+		// 버튼 눌림 효과클래스 추가
+		$('.page-item').eq(page).addClass('active');
+	});
+</script>
 
 <body class="ls-closed ls-toggle-menu ">
 	<jsp:include page="/WEB-INF/header.jsp"></jsp:include>
@@ -136,6 +137,7 @@ endList = endList * maxList + maxList;
 				</div>
 			</div>
 		</div>
+		
 		<div class="container-fluid">
 			<div class="row clearfix">
 				<div class="col-lg-12">
@@ -160,19 +162,22 @@ endList = endList * maxList + maxList;
 											break;
 										GameDto dto = gameList.get(i);
 									%>
+
 									<div class="col-lg-3 col-md-4 col-sm-12">
 										<div class="card">
-											<div class="file">
+											<div class="body">
+												<div class="file">
 
-												<a
-													href="${pageContext.request.contextPath}/gameDetail.do?no=<%=dto.getGAME_IDX() %>">
-													<div class="icon">
-														<img src="<%=dto.getGAME_IMG()%>">
-													</div>
-													<div class="file-name">
-														<h5 class="m-b-5 text-muted"><%=dto.getGAME_TIT()%></h5>
-													</div>
-												</a>
+													<a
+														href="${pageContext.request.contextPath}/gameDetail.do?no=<%=dto.getGAME_IDX() %>">
+														<div class="icon">
+															<img src="<%=dto.getGAME_IMG()%>">
+														</div>
+														<div class="file-name">
+															<h5 class="m-b-5 text-muted"><%=dto.getGAME_TIT()%></h5>
+														</div>
+													</a>
+												</div>
 											</div>
 										</div>
 									</div>
@@ -186,45 +191,45 @@ endList = endList * maxList + maxList;
 				</div>
 			</div>
 		</div>
-		<div class="num_btn_div">
-			<ul class="pagination pagination-primary m-b-0">
-				<li class="page-item"><a class="page-link"
-					href="${pageContext.request.contextPath}/<%=(keyword.equals(""))?"gameMain":"gameSearch"%>.do?page=<%=(startList-maxList>0)?startList-maxList:1 %>&inputSearch=<%=keyword%>"><i
-						class="zmdi zmdi-arrow-left"></i></a></li>
-				<!-- class = "active" -->
-								<%
-									for (int i = startList - 1; i < endList; i++) {
-									if (i > listCount)
-										break;
+	</div>
+	<div class="num_btn_div">
+		<ul class="pagination pagination-primary m-b-0">
+			<li class="page-item"><a class="page-link"
+				href="${pageContext.request.contextPath}/<%=(keyword.equals(""))?"gameMain":"gameSearch"%>.do?page=<%=(startList-maxList>0)?startList-maxList:1 %>&inputSearch=<%=keyword%>"><i
+					class="zmdi zmdi-arrow-left"></i></a></li>
+			<!-- class = "active" -->
+			<%
+				for (int i = startList - 1; i < endList; i++) {
+				if (i > listCount)
+					break;
 
-									if (now_page == i + 1) {
-								%>
+				if (now_page == i + 1) {
+			%>
 
 
-								<li class="page-item active"><a class="page-link"
-									href="${pageContext.request.contextPath}/<%=(keyword.equals(""))?"gameMain":"gameSearch"%>.do?page=<%=i+1%>&inputSearch=<%=keyword%>"><%=i + 1%></a></li>
-								<%
-									} else {
-								%>
+			<li class="page-item active"><a class="page-link"
+				href="${pageContext.request.contextPath}/<%=(keyword.equals(""))?"gameMain":"gameSearch"%>.do?page=<%=i+1%>&inputSearch=<%=keyword%>"><%=i + 1%></a></li>
+			<%
+				} else {
+			%>
 
-								<li class="page-item"><a class="page-link"
-									href="${pageContext.request.contextPath}/<%=(keyword.equals(""))?"gameMain":"gameSearch"%>.do?page=<%=i+1%>&inputSearch=<%=keyword%>"><%=i + 1%></a></li>
-								<%
-									}
-								}
-								%>
+			<li class="page-item"><a class="page-link"
+				href="${pageContext.request.contextPath}/<%=(keyword.equals(""))?"gameMain":"gameSearch"%>.do?page=<%=i+1%>&inputSearch=<%=keyword%>"><%=i + 1%></a></li>
+			<%
+				}
+			}
+			%>
 
-				<li class="page-item"><a class="page-link"
-					href="${pageContext.request.contextPath}/<%=(keyword.equals(""))?"gameMain":"gameSearch"%>.do?page=<%=(endList+1>listCount)?listCount:endList+1%>&inputSearch=<%=keyword%>"><i
-						class="zmdi zmdi-arrow-right"></i></a></li>
-			</ul>
-		</div>
+			<li class="page-item"><a class="page-link"
+				href="${pageContext.request.contextPath}/<%=(keyword.equals(""))?"gameMain":"gameSearch"%>.do?page=<%=(endList+1>listCount)?listCount:endList+1%>&inputSearch=<%=keyword%>"><i
+					class="zmdi zmdi-arrow-right"></i></a></li>
+		</ul>
 	</div>
 
 
 	<jsp:include page="/WEB-INF/footer.jsp"></jsp:include>
 	<!-- Jquery Core Js -->
-	
+
 	<script src="/BoardCa/stylesheet/assets/bundles/libscripts.bundle.js"></script>
 	<!-- Lib Scripts Plugin Js -->
 	<script
