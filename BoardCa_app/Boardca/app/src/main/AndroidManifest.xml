@@ -76,9 +76,10 @@
         <activity android:name=".ui.signup.CertifiedActivity" />
         <activity android:name=".ui.signup.SignUpActivity" />
         <activity android:name=".ui.signup.FinishActivity" />
-        <activity android:name=".ui.loading.loadingActivity">
+        <activity android:name=".ui.loading.loadingActivity"/>
+        <activity android:name=".ui.game.chatActivity"/>
 
-        </activity>
+
         <activity android:name=".ui.setting.SettingsActivity"></activity>
         <service android:name=".ui.setting.Notification_service"
             android:exported="false">
