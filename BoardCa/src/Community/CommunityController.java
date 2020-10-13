@@ -96,14 +96,66 @@ public class CommunityController {
 		}
 
 		mv.addObject("ad", ad);
-
+		mv.addObject("inputSearch", null);
 		mv.addObject("page", page);
 		mv.addObject("viewname", dao.one_board(list_num));
 		mv.addObject("list", dao.List(list_num));
 		mv.setViewName("community/C_list.jsp");
 		return mv;
 	}
+	
+	// 검색 기능
+	@RequestMapping("/Community_search.do")
+	public ModelAndView search(HttpServletRequest request, HttpSession session) {
+		int page= 1;
+		if(request.getParameter("page") != null)
+		{
+			page = Integer.parseInt(request.getParameter("page"));
+			if(page<=0)
+				page = 1;
+		}
+		// 검색어 받아오기
+		String search = request.getParameter("inputSearch");
+		
+		// 관리자 확인을 위한 멤버정보 확인
+		String userid ="";
+		int ad=0;
 
+		if(session.getAttribute("userId")!=null) {
+			
+			userid = (String) session.getAttribute("userId");
+			
+			ad = MemberDao.adminCheck(userid);
+		}
+		
+		int list_num = Integer.parseInt(request.getParameter("list"));
+		System.out.println("검색어 => "+search);
+		System.out.println("페이지 => " + page);
+		System.out.println("게시판번호 => " + list_num);
+		
+		ArrayList<CommunityDto> list = (ArrayList<CommunityDto>) dao.List(list_num);
+		ArrayList<CommunityDto> searchList = new ArrayList<CommunityDto>();
+		for(int i = 0; i<list.size(); i++) {
+			CommunityDto dto = list.get(i);
+			String title = dto.getBRD_TIT();
+			if(title.indexOf(search)!=-1) {
+				System.out.println("검색어가 포함됨");
+				searchList.add(dto);
+			}else {
+				System.out.println("검색어가 포함되지않음");
+			}
+		}
+		
+		
+		mv.addObject("list", searchList);
+		mv.addObject("inputSearch",search);
+		mv.addObject("ad", ad);
+		mv.addObject("page", page);
+		mv.addObject("viewname", dao.one_board(list_num));
+		mv.setViewName("community/C_list.jsp");
+		return mv;
+	}
+	
 	// detail
 	@RequestMapping("/Community_detail.do")
 	public ModelAndView community_detail(HttpServletRequest request, HttpServletResponse response,
@@ -219,6 +271,7 @@ public class CommunityController {
 			System.out.println(dto.getBOARD_IDX() + "번글" + dto.getMEM_IDX() + "좋아요");
 		}
 	}
+	
 
 	// heartList.size리턴
 	@RequestMapping(value = "/Community_heart_count.do", method = RequestMethod.POST, produces = "application/json")

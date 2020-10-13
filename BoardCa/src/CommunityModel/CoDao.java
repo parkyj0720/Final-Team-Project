@@ -5,12 +5,16 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import Food.CDto;
+import Member.MemberDto;
 
 public class CoDao {
 
@@ -29,16 +33,17 @@ public class CoDao {
 
 	public List<CommunityDto> main(int num) {
 		List<CommunityDto> list = mysqlSession.selectList("CoXml.Main", num);
-		/* System.out.println(list); */
 		return list;
 	}
 
 	public List<CommunityDto> List(int num) {
 		List<CommunityDto> list = mysqlSession.selectList("CoXml.List", num);
-		System.out.println(list);
-		return list;
+		ArrayList<CommunityDto> List = new ArrayList<CommunityDto>();
+		List.addAll(list);
+		return List;
 	}
-
+	 
+	
 	public BoardList one_board(int num) {
 		BoardList board = mysqlSession.selectOne("CoXml.one_board", num);
 		System.out.println(board);

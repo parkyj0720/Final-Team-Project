@@ -6,14 +6,12 @@
 <mapper namespace="CoXml">
 
 	<resultMap type="CommunityModel.CommunityDto" id="Comm">
-		<result property="asd" column="asd"
-			jdbcType="LONGVARCHAR" javaType="java.lang.String"
-			typeHandler="LongHandler.CLOBHandler" />
+		<result property="asd" column="asd" jdbcType="LONGVARCHAR"
+			javaType="java.lang.String" typeHandler="LongHandler.CLOBHandler" />
 	</resultMap>
 	<resultMap type="CommunityModel.Comment" id="nity">
-		<result property="asd" column="asd"
-			jdbcType="LONGVARCHAR" javaType="java.lang.String"
-			typeHandler="LongHandler.CLOBHandler" />
+		<result property="asd" column="asd" jdbcType="LONGVARCHAR"
+			javaType="java.lang.String" typeHandler="LongHandler.CLOBHandler" />
 	</resultMap>
 
 
@@ -24,8 +22,7 @@
 	</select>
 
 	<!-- 메인화면 리스트 -->
-	<select id="Main" parameterType="int"
-		resultType="CommunityModel.CommunityDto">
+	<select id="Main" parameterType="int" resultType="CommunityModel.CommunityDto">
 		select BRD_IDX,
 		BRD_TIT,
 
@@ -35,13 +32,14 @@
 
 		BRD_VIEWS,
 		CATEGORY_IDX
-		from BOARD_T 
+		from BOARD_T
 		where
 		CATEGORY_IDX = #{num}
-		ORDER BY BRD_IDX DESC
+		ORDER BY
+		BRD_IDX DESC
 		limit 7
 	</select>
-	
+
 	<!-- 좋아요 포함한 리스트 전체 -->
 	<select id="List" parameterType="int"
 		resultType="CommunityModel.CommunityDto">
@@ -55,9 +53,11 @@
 		b.CATEGORY_IDX,
 		h.board_idx,
 		h.count
-		from BOARD_T b left OUTER JOIN (SELECT board_idx, COUNT(mem_idx) AS count FROM HEART_T GROUP BY board_idx) h ON b.brd_idx = h.board_idx
+		from BOARD_T b left OUTER JOIN (SELECT board_idx,
+		COUNT(mem_idx) AS count FROM HEART_T GROUP BY board_idx) h ON
+		b.brd_idx = h.board_idx
 		where
-		CATEGORY_IDX =  #{num}
+		CATEGORY_IDX = #{num}
 		ORDER BY BRD_IDX DESC
 	</select>
 
@@ -66,7 +66,7 @@
 		resultType="CommunityModel.BoardList">
 		select
 		*
-		from BOARD_CAT_T 
+		from BOARD_CAT_T
 		where BRD_CAT_IDX = #{num}
 	</select>
 
@@ -82,22 +82,23 @@
 		BRD_VIEWS,
 		CATEGORY_IDX,
 		BRD_CONTENT
-		from BOARD_T 
+		from BOARD_T
 		where (BRD_IDX = #{num})
 	</select>
-	
+
 	<!-- 디테일 좋아요 -->
 	<select id="detail_heart" parameterType="int"
 		resultType="CommunityModel.Heart">
-		select 
+		select
 		*
 		from HEART_T
 		where BOARD_IDX = #{num}
 	</select>
 	<select id="delete_heart" parameterType="CommunityModel.Heart">
 		delete
-		from HEART_T 
-		where BOARD_IDX = #{BOARD_IDX}
+		from HEART_T
+		where
+		BOARD_IDX = #{BOARD_IDX}
 		and MEM_IDX = #{MEM_IDX}
 	</select>
 	<select id="insert_heart" parameterType="CommunityModel.Heart">
@@ -109,30 +110,34 @@
 		#{BOARD_IDX},
 		#{MEM_IDX})
 	</select>
-	
+
 	<!-- 디테일 댓글 -->
 	<select id="detail_comments" parameterType="int"
 		resultType="CommunityModel.Comment" resultMap="nity">
 		select
 
-		m.MEM_NICKNAME as MEM_NICKNAME,
+		m.MEM_NICKNAME as
+		MEM_NICKNAME,
 
 		f.COMT_IDX,
 		f.COMT_SYSDATE,
 		f.BRD_IDX,
 		f.COMT_CONTENT
-		
-		from COMMENT_T as f
+
+		from
+		COMMENT_T as f
 		join MEMBER_T as m
 		on f.MEM_IDX = m.MEM_IDX
-		
-		where BRD_IDX = #{num}
-		
+
+		where BRD_IDX
+		= #{num}
+
 	</select>
-	
+
 	<!-- 디테일 조회수 증가 -->
 	<update id="view" parameterType="int">
-		update BOARD_T set BRD_VIEWS = BRD_VIEWS + 1 where BRD_IDX = #{num}
+		update BOARD_T set BRD_VIEWS =
+		BRD_VIEWS + 1 where BRD_IDX = #{num}
 	</update>
 
 
@@ -153,17 +158,21 @@
 		#{CATEGORY_IDX},
 		#{BRD_CONTENT})
 	</insert>
-	
+
 	<delete id="delete_content_comments" parameterType="int">
-		delete from COMMENT_T where COMT_IDX = #{num}
+		delete from
+		COMMENT_T where COMT_IDX = #{num}
 	</delete>
 	<delete id="delete_content_heart" parameterType="int">
-		delete from HEART_T where BOARD_IDX = #{num}
+		delete from
+		HEART_T where BOARD_IDX = #{num}
 	</delete>
 	<delete id="delete_content" parameterType="int">
-		delete from BOARD_T where BRD_IDX = #{num}
+		delete from BOARD_T
+		where BRD_IDX = #{num}
 	</delete>
-	<insert id="insert_comment" parameterType="CommunityModel.Comment">
+	<insert id="insert_comment"
+		parameterType="CommunityModel.Comment">
 		insert into COMMENT_T
 		(COMT_CONTENT,
 		BRD_IDX,
@@ -174,15 +183,17 @@
 		#{MEM_IDX}
 		)
 	</insert>
-	<select id="detail_comments_BRD_WRT_ID" parameterType="int" resultType="String">
+	<select id="detail_comments_BRD_WRT_ID" parameterType="int"
+		resultType="String">
 		select MEM_ID from
 		MEMBER_T
 		where MEM_IDX = #{usernum}
 	</select>
-	
+
 	<update id="modify" parameterType="CommunityModel.CommunityDto">
 		update BOARD_T set
-		BRD_TIT = #{BRD_TIT},
+		BRD_TIT =
+		#{BRD_TIT},
 		BRD_CONTENT = #{BRD_CONTENT},
 		CATEGORY_IDX = #{CATEGORY_IDX}
 		where BRD_IDX = #{BRD_IDX}
