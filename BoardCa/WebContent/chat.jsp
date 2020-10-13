@@ -6,10 +6,25 @@
 
 <head>
 	<%
+		String app_id = null;
+		if(request.getParameter("id") != null) {
+			app_id = request.getParameter("id")+"";
+		}
+		
+		String app_nick = null;
+		if(request.getParameter("app_nick") != null) {
+			app_nick = request.getParameter("app_nick")+"";
+		}
+	
 		String userID = null;
 		if(session.getAttribute("userNickname") != null) {
 			userID = (String) session.getAttribute("userNickname");
 		}
+		
+		if(app_id != null){
+			userID = app_id;
+		}
+		
 		String toID = null;
 		if(request.getParameter("toID") != null) {
 			toID = (String) request.getParameter("toID");
