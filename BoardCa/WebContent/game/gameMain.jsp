@@ -77,7 +77,7 @@ if (request.getParameter("page") != null) {
 }
 
 // 리스트 개수
-int listCount = (gameList.size() % listNum == 0 && gameList.size() != 0)
+int listCount = (gameList.size() / listNum == 0 && gameList.size() != 0)
 		? gameList.size() / listNum
 		: gameList.size() / listNum + 1;
 
@@ -194,7 +194,7 @@ endList = endList * maxList + maxList;
 				<!-- class = "active" -->
 								<%
 									for (int i = startList - 1; i < endList; i++) {
-									if (i > listNum)
+									if (i > listCount)
 										break;
 
 									if (now_page == i + 1) {
