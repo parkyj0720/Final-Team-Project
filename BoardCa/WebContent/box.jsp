@@ -75,7 +75,7 @@
 			});
 		}
 		function addBox(lastID, toID, chatContent, chatTime, unread) {
-			$('#boxTable').append('<tr onclick="location.href=\'chat.jsp?userID=<%=userID%>&ID=' + encodeURIComponent(toID) + '\'">' +
+			$('#boxTable').append('<tr onclick="location.href=\'chat.jsp?userID=<%=userID%>&toID=' + encodeURIComponent(toID) + '\'">' +
 					'<td style="width: 150px;"><h5>' + lastID + '</h5></td>' +
 					'<td>' +
 					'<h5>' + chatContent +
