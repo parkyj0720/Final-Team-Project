@@ -421,7 +421,7 @@ public class CommunityController {
 	}
 
 	@RequestMapping("/App_list.do")
-	public ModelAndView App_list(HttpServletRequest request) {
+	public ModelAndView App_list(HttpServletRequest request, HttpSession session) {
 		System.out.println("App_list");
 
 		String MEM_ID = "";
@@ -440,6 +440,19 @@ public class CommunityController {
 		if (request.getParameter("page") != null) {
 			page = Integer.parseInt(request.getParameter("page"));
 		}
+		
+		
+		String userid ="";
+		int ad=0;
+
+		if(session.getAttribute("userId")!=null) {
+			
+			userid = (String) session.getAttribute("userId");
+			
+			ad = MemberDao.adminCheck(userid);
+		}
+		mv.addObject("ad", ad);
+		
 
 		mv.addObject("page", page);
 		mv.addObject("viewname", dao.one_board(list_num));
