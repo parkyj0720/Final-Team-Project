@@ -91,7 +91,7 @@
 		var area16 = [ "서귀포시", "제주시", "남제주군", "북제주군" ];
 		var areas = ["비공개"];
 		var a = [ area1, area2, area3, area4, area5, area6, area7, area8,
-				area9, area10, area11, area12, area13, area14, area15, area16 ];
+				area9, area10, area11, area12, area13, area14, area15, area16, areas ];
 		// 시/도 선택 박스 초기화
 	
 		var target = document.getElementById("mem_state");
@@ -140,6 +140,10 @@
 			target.appendChild(opt);
 		}
 		var mem_rocal = $('#area0 option:selected').text();
+		
+		if(mem_rocal=="비공개"){
+			mem_rocal="";
+		}
 		
 		$('#mem_rocal').val(mem_rocal);
 		
@@ -265,7 +269,8 @@
 				$("input:radio[id='five']").prop("checked", true);
 				break;	
 			default:
-				$("input:radio[id='private']").prop("checked", true);	
+				$("input:radio[id='private']").prop("checked", true);
+			
 		}		
 		
 		$('#submitBtn').click(function() {					
@@ -321,20 +326,27 @@
 			return true;
 		}
 		/* 광역시.도 선택 확인 */
-		function checkRocal(email2) {
-			if (!checkExistData(email2, "지역을"))
+		function checkRocal(mem_state) {
+			if (!checkExistData(mem_state, "지역을"))
 	            return false;
 			return true;
 		}
 		/* 시.군.구 선택 확인 */
-		function checkState(mem_state) {
-			if (!checkExistData(mem_state, "지역을"))
+		function checkState(mem_rocal) {
+			if (!checkExistData(mem_rocal, "지역을"))
 	            return false;
 			return true;
 		}
 		// 공백확인 함수
 	    function checkExistData(value, dataName) {
+			
+			
 	        if (value == "") {
+	        	
+	        	if(dataName=="지역을"){
+					return true;
+				}
+	        	
 	            alert(dataName + " 입력해주세요!");
 	            return false;
 	        }
@@ -473,11 +485,11 @@
 						<div class="form-group">
 							<div class="radio inlineblock m-r-20" style="margin: 0;">
 								<input type="radio" name="ageRange" id="two" class="with-gap"
-									value="20대"  > <label for="two">20대</label>
+									value="20대"> <label for="two">20대</label>
 							</div>
 							<div class="radio inlineblock m-r-20" style="margin: 0;">
 								<input type="radio" name="ageRange" id="three" class="with-gap"
-									value="30대" > <label for="three">30대</label>
+									value="30대"> <label for="three">30대</label>
 							</div>
 							<div class="radio inlineblock" style="margin: 0;">
 								<input type="radio" name="ageRange" id="four" class="with-gap"
@@ -489,7 +501,7 @@
 							</div>
 							<div class="radio inlineblock" style="margin: 0;">
 								<input type="radio" name="ageRange" id="private" class="with-gap"
-									value=""> <label for="">비공개</label>
+									value=""> <label for="private">비공개</label>
 							</div>
 						</div>
 					</div>

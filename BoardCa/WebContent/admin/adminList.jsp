@@ -65,7 +65,25 @@ var td
 			var title = td.eq(2).text();
 
 			var cont = td.eq(3).text();
+
 			
+			
+			var num = td.eq(4).text();
+			
+			
+			$("#adminbtn").unbind("click").bind("click", function() {
+			
+				<%
+				
+				
+				
+				RequestDispatcher dispatcher = request.getRequestDispatcher("${pageContext.request.contextPath}/Community_detail.do?num=");
+				dispatcher.forward(request, response);
+
+			
+				%>
+				
+			}
 			
 			
 			$("#ex1_Result1").html("<p>" + cont + "<p>");
@@ -173,6 +191,9 @@ var td
 																<th class="sorting" tabindex="0"
 																	aria-controls="DataTables_Table_0" rowspan="1"
 																	colspan="1" aria-label="Content" style="display: none;">글 내용</th>
+																<th class="sorting" tabindex="0"
+																	aria-controls="DataTables_Table_0" rowspan="1"
+																	colspan="1" aria-label="Content" style="display: none;">글 번호</th>
 																
 
 															</tr>
@@ -200,6 +221,7 @@ var td
 																<td><%=report.getBRD_WRT_NICKNAME()%></td>
 																<td><%=report.getBRD_TIT()%></td>
 																<td style="display: none;"><%=report.getBRD_CONTENT()%></td>
+																<td style="display: none;"><%=report.getBRD_IDX()%></td>
 																
 
 															</tr>
@@ -224,6 +246,10 @@ var td
 															<div class="body" id="ex1_Result1">
 																<p>선택한 글이 보여집니다!</p>
 															</div>
+															
+															<a id="adminbtn"
+										class="btn btn-primary btn-lg bg-orange waves-effect waves-light float-right">
+										해당 글로 이동</a>
 															
 														</div>
 													</div>

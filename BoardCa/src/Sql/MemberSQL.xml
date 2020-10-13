@@ -39,7 +39,7 @@
 			COUNT(case when MEM_ROCAL='경상북도' then 1 END)AS area14,
 			COUNT(case when MEM_ROCAL='경상남도' then 1 END)AS area15,
 			COUNT(case when MEM_ROCAL='제주도' then 1 END)AS area16,
-			COUNT(case when MEM_ROCAL='비공개' then 1 END)AS areas
+			COUNT(case when MEM_ROCAL='' then 1 END)AS areas
 
 		FROM MEMBER_T
 	
