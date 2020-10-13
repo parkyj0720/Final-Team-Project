@@ -58,8 +58,7 @@ public class GameFragment extends DialogFragment {
         fab_chat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://192.168.219.107:8088/BoardCa/index.jsp"));
-                Intent i = new Intent(getActivity(), chatActivity.class);
+                Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse("http://192.168.219.100:8088/BoardCa/index.jsp?id=\"+id+\"&nickname=\"+nickname"));
 
                 i.putExtra("nickname", nickname);
                 i.putExtra("email", email);
@@ -70,8 +69,6 @@ public class GameFragment extends DialogFragment {
                 startActivity(i);
             }
         });
-
-
 
         return viewGroup;
     }
