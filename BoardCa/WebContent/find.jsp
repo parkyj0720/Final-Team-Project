@@ -3,16 +3,20 @@
 <!DOCTYPE html>
 <html>
 	<%
-		String userID = null;
-		if(session.getAttribute("userNickname") != null) {
-			userID = (String) session.getAttribute("userNickname");
-		}
-		if(userID == null) {
+	String userID = null;
+	if(session.getAttribute("userNickname") != null) {
+		userID = (String) session.getAttribute("userNickname");
+	}
+	if(userID == null) {
+		if(request.getParameter("userID")!=null){
+			userID = request.getParameter("userID")+"";
+		}else{
 			session.setAttribute("messageType", "오류 메시지");
 			session.setAttribute("messageContent", "현재 로그인이 되어있지 않습니다.");
 			response.sendRedirect("index.jsp");
 			return;
 		}
+	}
 	%>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -51,7 +55,7 @@
 					'</thead>' +
 					'<tbody>' +
 					'<tr>' +
-					'<td style="text-align: center;"><h3>' + findID + '</h3><a href="chat.jsp?toID=' + encodeURIComponent(findID) + '" class="btn btn-primary pull-right">' + '메시지 보내기</a></td>' +
+					'<td style="text-align: center;"><h3>' + findID + '</h3><a href="chat.jsp?userID=<%=userID%>&toID=' + encodeURIComponent(findID) + '" class="btn btn-primary pull-right">' + '메시지 보내기</a></td>' +
 					'</tr>' +
 					'</tbody>');
 		}
@@ -100,7 +104,7 @@
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">
 				<!-- <li><a href="index.jsp">메인</a> -->
-				<li class="active"><a href="find.jsp">친구찾기</a></li>
+				<li class="active"><a href="find.jsp?userID=<%=userID%>">친구찾기</a></li>
 				<li><a href="box.jsp">메시지함<span id="unread" class="label label-info"></span></a></li>
 			</ul>
 			<!-- <ul class="nav navbar-nav navbar-right">

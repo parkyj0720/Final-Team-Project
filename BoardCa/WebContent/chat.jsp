@@ -6,25 +6,14 @@
 
 <head>
 	<%
-		String app_id = null;
-		if(request.getParameter("id") != null) {
-			app_id = request.getParameter("id")+"";
-		}
-		
-		String app_nick = null;
-		if(request.getParameter("app_nick") != null) {
-			app_nick = request.getParameter("app_nick")+"";
-		}
-	
 		String userID = null;
 		if(session.getAttribute("userNickname") != null) {
 			userID = (String) session.getAttribute("userNickname");
 		}
-		
-		if(app_id != null){
-			userID = app_id;
+		if(request.getParameter("userID")!=null){
+			userID = request.getParameter("userID")+"";
 		}
-		
+			
 		String toID = null;
 		if(request.getParameter("toID") != null) {
 			toID = (String) request.getParameter("toID");
@@ -181,8 +170,8 @@
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">
 				<!-- <li><a href="index.jsp">메인</a> -->
-				<li><a href="find.jsp">친구찾기</a></li>
-				<li><a href="box.jsp">메시지함<span id="unread" class="label label-info"></span></a></li>
+				<li><a href="find.jsp?userID=<%=userID%>">친구찾기</a></li>
+				<li><a href="box.jsp?userID=<%=userID%>">메시지함<span id="unread" class="label label-info"></span></a></li>
 			</ul>
 			<%-- <%
 				if(userID != null) {

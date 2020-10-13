@@ -7,6 +7,9 @@
 	if(session.getAttribute("userNickname") != null) {
 		userID = (String) session.getAttribute("userNickname");
 	} 
+	if(request.getParameter("userID")!=null){
+		userID = request.getParameter("userID")+"";
+	}
 	if(userID == null){
 		session.setAttribute("messageType", "오류 메시지");
 		session.setAttribute("messageContent", "현재 로그인이 되어 있지 않습니다.");
@@ -72,7 +75,7 @@
 			});
 		}
 		function addBox(lastID, toID, chatContent, chatTime, unread) {
-			$('#boxTable').append('<tr onclick="location.href=\'chat.jsp?toID=' + encodeURIComponent(toID) + '\'">' +
+			$('#boxTable').append('<tr onclick="location.href=\'chat.jsp?userID=<%=userID%>&ID=' + encodeURIComponent(toID) + '\'">' +
 					'<td style="width: 150px;"><h5>' + lastID + '</h5></td>' +
 					'<td>' +
 					'<h5>' + chatContent +
@@ -103,8 +106,8 @@
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">
 				<!-- <li><a href="index.jsp">메인</a> -->
-				<li><a href="find.jsp">친구찾기</a></li>
-				<li class="active"><a href="box.jsp">메시지함<span id="unread" class="label label-info"></span></a></li>
+				<li><a href="find.jsp?userID=<%=userID%>">친구찾기</a></li>
+				<li class="active"><a href="box.jsp?userID=<%=userID%>">메시지함<span id="unread" class="label label-info"></span></a></li>
 			</ul>
 			<%-- <%
 				if(userID == null) {
