@@ -1,4 +1,3 @@
-<%@page import="org.omg.PortableInterceptor.USER_EXCEPTION"%>
 <%@page import="Food.StarDto"%>
 <%@page import="Food.ReviewAndMember"%>
 <%@page import="Food.ReviewDto"%>
