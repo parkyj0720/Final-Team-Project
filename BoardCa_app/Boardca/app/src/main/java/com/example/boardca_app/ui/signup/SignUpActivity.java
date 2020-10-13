@@ -356,7 +356,7 @@ public class SignUpActivity extends AppCompatActivity {
         protected String doInBackground(String... strings) {
             try {
                 String str;
-                URL url = new URL("http://192.168.219.100:8088/BoardCa/app_sign.do");
+                URL url = new URL("http://182.213.18.164:8088/BoardCa/app_sign.do");
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
                 conn.setRequestMethod("POST");
@@ -396,7 +396,7 @@ public class SignUpActivity extends AppCompatActivity {
         protected String doInBackground(String... strings) {
             try {
                 String str;
-                URL url = new URL("http://192.168.219.100:8088/BoardCa/app_nomal_sign.do");
+                URL url = new URL("http://182.213.18.164:8088/BoardCa/app_nomal_sign.do");
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
                 conn.setRequestMethod("POST");

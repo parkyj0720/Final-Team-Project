@@ -247,7 +247,7 @@ public class MakeActivity extends AppCompatActivity {
         protected String doInBackground(String... strings) {
             try {
                 String str;
-                URL url = new URL("http://192.168.219.100:8088/BoardCa/app_write_go.do");
+                URL url = new URL("http://182.213.18.164:8088/BoardCa/app_write_go.do");
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
                 conn.setRequestMethod("POST");

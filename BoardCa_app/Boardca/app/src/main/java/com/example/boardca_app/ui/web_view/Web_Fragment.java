@@ -36,7 +36,7 @@ public class Web_Fragment extends Fragment {
 
         w.setWebChromeClient(new WebChromeClient());
         w.setWebViewClient(new WebViewClientClass());
-        w.loadUrl("http://192.168.219.113:8088/BoardCa/signIn.do");
+        w.loadUrl("http://182.213.18.164:8088/BoardCa/signIn.do");
         return root;
 
     }
