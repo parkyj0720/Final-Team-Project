@@ -56,7 +56,7 @@ public class GameFragment extends DialogFragment {
         webView.setWebViewClient(new WebViewClientClass());
 
         webView.loadUrl(gameUrl); //주소는 임시, 차후에 바꿀것.
-        str = chatUrl;
+        str = chatUrl + "?nickname=" + nickname;
 
 
         fab_chat = (FloatingActionButton) viewGroup.findViewById(R.id.fab_chat);
@@ -64,9 +64,9 @@ public class GameFragment extends DialogFragment {
             @Override
             public void onClick(View view) {
                 webView.loadUrl(str);
-                if(str.equals(gameUrl)){
-                    str = chatUrl;
-                }else if(str.equals(chatUrl)){
+                if (str.equals(gameUrl)) {
+                    str = chatUrl + "?nickname=" + nickname;
+                } else if (str.equals(chatUrl)) {
                     str = gameUrl;
                 }
             }
@@ -80,7 +80,7 @@ public class GameFragment extends DialogFragment {
         @Override
         public boolean shouldOverrideUrlLoading(WebView view, String url) {
             Log.d("check URL", url);
-            view.loadUrl(url + "?nickname=" + nickname);
+            view.loadUrl(url);
             return true;
         }
     }
