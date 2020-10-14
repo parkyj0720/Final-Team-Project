@@ -44,7 +44,7 @@ public class chatActivity extends AppCompatActivity {
         webView = findViewById(R.id.chat_web);
         webView.getSettings().setJavaScriptEnabled(true);
         webView.setWebChromeClient(new WebChromeClient());
-        webView.loadUrl("http://182.213.18.164:8088/BoardCa/index.jsp?id="+id+"&nickname="+nickname);
+        webView.loadUrl("http://182.213.18.164:8088/BoardCa/app_index.jsp?id="+id+"&nickname="+nickname);
 
     }
 

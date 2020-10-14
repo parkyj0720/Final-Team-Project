@@ -80,7 +80,7 @@ public class GameFragment extends DialogFragment {
         @Override
         public boolean shouldOverrideUrlLoading(WebView view, String url) {
             Log.d("check URL", url);
-            view.loadUrl(url);
+            view.loadUrl(url + "?nickname=" + nickname);
             return true;
         }
     }
