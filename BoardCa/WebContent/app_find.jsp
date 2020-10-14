@@ -17,7 +17,7 @@
 		System.out.println("elseId"+userID);
 			session.setAttribute("messageType", "오류 메시지");
 			session.setAttribute("messageContent", "현재 로그인이 되어있지 않습니다.");
-			response.sendRedirect("index.jsp");
+			response.sendRedirect("app_index.jsp");
 			return;
 		}
 	}
@@ -35,7 +35,7 @@
 			var userID = $('#findID').val();
 			$.ajax({
 				type: "POST",
-				url: './UserRegisterCheckServlet',
+				url: './app_UserRegisterCheckServlet',
 				data: {userID: userID},
 				success: function(result) {
 					if(result == 0) {
@@ -69,7 +69,7 @@
 		function getUnread() {
 			$.ajax({
 				type: "POST",
-				url: "./chatUnread",
+				url: "./app_chatUnread",
 				data: {
 					userID: encodeURIComponent('<%= userID %>'),
 				},
@@ -108,8 +108,8 @@
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">
 				<!-- <li><a href="index.jsp">메인</a> -->
-				<li class="active"><a href="find.jsp?userID=<%=userID%>">친구찾기</a></li>
-				<li><a href="box.jsp">메시지함<span id="unread" class="label label-info"></span></a></li>
+				<li class="active"><a href="app_find.jsp?userID=<%=userID%>">친구찾기</a></li>
+				<li><a href="app_box.jsp?userID=<%=userID%>">메시지함<span id="unread" class="label label-info"></span></a></li>
 			</ul>
 			<!-- <ul class="nav navbar-nav navbar-right">
 				<li class="dropdown">

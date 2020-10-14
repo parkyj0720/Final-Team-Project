@@ -13,7 +13,7 @@
 	if(userID == null){
 		session.setAttribute("messageType", "오류 메시지");
 		session.setAttribute("messageContent", "현재 로그인이 되어 있지 않습니다.");
-		response.sendRedirect("index.jsp");
+		response.sendRedirect("app_index.jsp");
 		return;
 	}
 %>
@@ -29,7 +29,7 @@
 		function getUnread() {
 			$.ajax({
 				type: "POST",
-				url: "./chatUnread",
+				url: "./app_chatUnread",
 				data: {
 					userID: encodeURIComponent('<%= userID %>'),
 				},
@@ -54,7 +54,7 @@
 			var userID = '<%= userID %>'
 			$.ajax({
 				type: "POST",
-				url: "./chatBox",
+				url: "./app_chatBox",
 				data: {
 					userID: encodeURIComponent(userID),
 				},
@@ -106,8 +106,8 @@
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">
 				<!-- <li><a href="index.jsp">메인</a> -->
-				<li><a href="find.jsp?userID=<%=userID%>">친구찾기</a></li>
-				<li class="active"><a href="box.jsp?userID=<%=userID%>">메시지함<span id="unread" class="label label-info"></span></a></li>
+				<li><a href="app_find.jsp?userID=<%=userID%>">친구찾기</a></li>
+				<li class="active"><a href="app_box.jsp?userID=<%=userID%>">메시지함<span id="unread" class="label label-info"></span></a></li>
 			</ul>
 			<%-- <%
 				if(userID == null) {

@@ -90,7 +90,7 @@
 	<bean id="AppDto" class="App.AppDto"/>
 	<bean id="CDao" class="Food.CDao"/>
 	<bean id="GameDao" class="Game.GameDao"/>	
-	
+
 	<mvc:annotation-driven />
 
 </beans>

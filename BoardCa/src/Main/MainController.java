@@ -15,4 +15,5 @@ public class MainController {
 		mv.setViewName("/main/main.jsp");
 		return mv;
 	}
+	
 }

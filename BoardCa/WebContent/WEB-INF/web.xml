@@ -112,5 +112,38 @@
 		<error-code>500</error-code>
 		<location>/error/500.jsp</location>
 	</error-page>
+	
+	<servlet>
+		<servlet-name>app_ChatSubmitServlet</servlet-name>
+		<servlet-class>chat.ChatSubmitServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>app_ChatSubmitServlet</servlet-name>
+		<url-pattern>/app_chatSubmitServlet</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>app_ChatListServlet</servlet-name>
+		<servlet-class>chat.ChatListServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>app_ChatListServlet</servlet-name>
+		<url-pattern>/app_chatListServlet</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>app_hatUnreadServlet</servlet-name>
+		<servlet-class>chat.ChatUnreadServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>app_ChatUnreadServlet</servlet-name>
+		<url-pattern>/app_chatUnread</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>app_ChatBoxServlet</servlet-name>
+		<servlet-class>chat.ChatBoxServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>app_ChatBoxServlet</servlet-name>
+		<url-pattern>/app_chatBox</url-pattern>
+	</servlet-mapping>
 
 </web-app>
