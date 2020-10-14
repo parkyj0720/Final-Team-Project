@@ -101,7 +101,7 @@
 												<input type="text" class="form-control" id="title"
 													placeholder="제목을 입력해주세요" maxlength="200" />
 											</div>
-											<select class="form-control show-tick" id="select">
+<%-- 											<select class="form-control show-tick" id="select">
 												<option>게시판을 선택해주세요.</option>
 												<%
 													for (int i = 0; i < boardList.size(); i++) {
@@ -110,7 +110,7 @@
 												<%
 													} // end of for
 												%>
-											</select>
+											</select> --%>
 										</div>
 									</div>
 
