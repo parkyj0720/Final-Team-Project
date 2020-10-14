@@ -35,7 +35,7 @@
 			var userID = $('#findID').val();
 			$.ajax({
 				type: "POST",
-				url: './app_UserRegisterCheckServlet',
+				url: './UserRegisterCheckServlet',
 				data: {userID: userID},
 				success: function(result) {
 					if(result == 0) {
@@ -69,7 +69,7 @@
 		function getUnread() {
 			$.ajax({
 				type: "POST",
-				url: "./app_chatUnread",
+				url: "./chatUnread",
 				data: {
 					userID: encodeURIComponent('<%= userID %>'),
 				},

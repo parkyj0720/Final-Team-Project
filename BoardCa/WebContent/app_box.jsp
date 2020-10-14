@@ -29,7 +29,7 @@
 		function getUnread() {
 			$.ajax({
 				type: "POST",
-				url: "./app_chatUnread",
+				url: "./chatUnread",
 				data: {
 					userID: encodeURIComponent('<%= userID %>'),
 				},
@@ -54,7 +54,7 @@
 			var userID = '<%= userID %>'
 			$.ajax({
 				type: "POST",
-				url: "./app_chatBox",
+				url: "./chatBox",
 				data: {
 					userID: encodeURIComponent(userID),
 				},

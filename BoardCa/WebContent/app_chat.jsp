@@ -56,7 +56,7 @@
 			var chatContent = $('#chatContent').val();
 			$.ajax({
 					type: "POST",
-					url: "./app_chatSubmitServlet",
+					url: "./chatSubmitServlet",
 					data: {
 						fromID: encodeURIComponent(fromID),
 						toID: encodeURIComponent(toID),
@@ -80,7 +80,7 @@
 			var toID = '<%= toID %>';
 			$.ajax({
 				type: "POST",
-				url: "./app_chatListServlet",
+				url: "./chatListServlet",
 				data : {
 					fromID: encodeURIComponent(fromID),
 					toID: encodeURIComponent(toID),
@@ -132,7 +132,7 @@
 		function getUnread() {
 			$.ajax({
 				type: "POST",
-				url: "./app_chatUnread",
+				url: "./chatUnread",
 				data: {
 					userID: encodeURIComponent('<%= userID %>'),
 				},
