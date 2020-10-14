@@ -72,7 +72,7 @@ System.out.println("리스트 개수: " + gameList.size());
 if (request.getParameter("page") != null) {
 	now_page = Integer.parseInt(request.getParameter("page"));
 	if (now_page <= 0)
-		response.sendRedirect("${pageContext.request.contextPath}/gameMain.do?page=1");
+		response.sendRedirect("${pageContext.request.contextPath}/gameMainApp.do?page=1");
 	itemCount = (Integer.parseInt(request.getParameter("page")) - 1) * listNum;
 }
 
@@ -195,20 +195,20 @@ endList = endList * maxList + maxList;
 
 
 								<li class="page-item active"><a class="page-link"
-									href="${pageContext.request.contextPath}/<%=(keyword.equals(""))?"gameMain":"gameSearch"%>.do?page=<%=i+1%>&inputSearch=<%=keyword%>"><%=i + 1%></a></li>
+									href="${pageContext.request.contextPath}/<%=(keyword.equals(""))?"gameMainApp":"gameSearch"%>.do?page=<%=i+1%>&inputSearch=<%=keyword%>"><%=i + 1%></a></li>
 								<%
 									} else {
 								%>
 
 								<li class="page-item"><a class="page-link"
-									href="${pageContext.request.contextPath}/<%=(keyword.equals(""))?"gameMain":"gameSearch"%>.do?page=<%=i+1%>&inputSearch=<%=keyword%>"><%=i + 1%></a></li>
+									href="${pageContext.request.contextPath}/<%=(keyword.equals(""))?"gameMainApp":"gameSearch"%>.do?page=<%=i+1%>&inputSearch=<%=keyword%>"><%=i + 1%></a></li>
 								<%
 									}
 								}
 								%>
 
 				<li class="page-item"><a class="page-link"
-					href="${pageContext.request.contextPath}/<%=(keyword.equals(""))?"gameMain":"gameSearch"%>.do?page=<%=(endList+1>listCount)?listCount:endList+1%>&inputSearch=<%=keyword%>"><i
+					href="${pageContext.request.contextPath}/<%=(keyword.equals(""))?"gameMainApp":"gameSearch"%>.do?page=<%=(endList+1>listCount)?listCount:endList+1%>&inputSearch=<%=keyword%>"><i
 						class="zmdi zmdi-arrow-right"></i></a></li>
 			</ul>
 		</div>
