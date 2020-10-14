@@ -6,11 +6,15 @@
 	String userID = null;
 	if(session.getAttribute("userNickname") != null) {
 		userID = (String) session.getAttribute("userNickname");
+		System.out.println("sessionId"+userID);
 	}
+	
 	if(userID == null) {
-		if(request.getParameter("userID")!=null){
+		if(request.getParameter("userID")!=null && !request.getParameter("userID").equals("null")){
 			userID = request.getParameter("userID")+"";
+		System.out.println("reqId"+userID);
 		}else{
+		System.out.println("elseId"+userID);
 			session.setAttribute("messageType", "오류 메시지");
 			session.setAttribute("messageContent", "현재 로그인이 되어있지 않습니다.");
 			response.sendRedirect("index.jsp");

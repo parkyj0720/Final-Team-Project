@@ -10,12 +10,12 @@
 		if(session.getAttribute("userNickname") != null) {
 			userID = (String) session.getAttribute("userNickname");
 		}
-		if(request.getParameter("userID")!=null){
+		if(request.getParameter("userID")!=null && !request.getParameter("userID").equals("null")){
 			userID = request.getParameter("userID")+"";
 		}
 			
 		String toID = null;
-		if(request.getParameter("toID") != null) {
+		if(request.getParameter("toID") != null && !request.getParameter("toID").equals("null")) {
 			toID = (String) request.getParameter("toID");
 		}
 		if(userID == null){

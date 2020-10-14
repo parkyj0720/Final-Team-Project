@@ -7,7 +7,7 @@
 	if(session.getAttribute("userNickname") != null) {
 		userID = (String) session.getAttribute("userNickname");
 	} 
-	if(request.getParameter("userID")!=null){
+	if(request.getParameter("userID")!=null && !request.getParameter("userID").equals("null")){
 		userID = request.getParameter("userID")+"";
 	}
 	if(userID == null){
