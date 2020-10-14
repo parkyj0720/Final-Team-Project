@@ -11,6 +11,7 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
+import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
@@ -24,6 +25,7 @@ public class GameFragment extends DialogFragment {
     WebView webView;
     Uri uri;
     private FloatingActionButton fab_chat;
+    private FloatingActionButton fab_chat2;
 
     public String nickname = "nickname";
     public String email = "email";
@@ -60,15 +62,24 @@ public class GameFragment extends DialogFragment {
 
 
         fab_chat = (FloatingActionButton) viewGroup.findViewById(R.id.fab_chat);
+        fab_chat2 = (FloatingActionButton) viewGroup.findViewById(R.id.fab_chat2);
+
         fab_chat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 webView.loadUrl(str);
-                if (str.equals(gameUrl)) {
-                    str = chatUrl + "?nickname=" + nickname;
-                } else if (str.equals(chatUrl + "?nickname=" + nickname)) {
                     str = gameUrl;
-                }
+                    fab_chat.setVisibility(View.GONE);
+                    fab_chat2.setVisibility(View.VISIBLE);
+            }
+        });
+        fab_chat2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                webView.loadUrl(str);
+                str = chatUrl + "?nickname=" + nickname;
+                fab_chat.setVisibility(View.VISIBLE);
+                fab_chat2.setVisibility(View.GONE);
             }
         });
 
