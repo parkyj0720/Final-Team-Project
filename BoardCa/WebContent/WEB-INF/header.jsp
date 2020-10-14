@@ -52,7 +52,7 @@
 </script>
 </head>
 
-<link rel="icon" href="favicon.ico" type="image/x-icon">
+<link rel="icon" href="${pageContext.request.contextPath}/stylesheet/favicon.ico" type="image/x-icon">
 <!-- Favicon-->
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/stylesheet/assets/plugins/bootstrap/css/bootstrap.min.css">
