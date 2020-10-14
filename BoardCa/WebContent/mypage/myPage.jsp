@@ -99,11 +99,30 @@
 				<div class="col-lg-11 col-md-12 col-sm-11 inbox right">
 					<div class="card mcard_3">
 						<div class="body">
-
+							<%
+								if (dto.getMem_gender().equals("")) {
+							%>
 							<a href="${pageContext.request.contextPath}/myPage.do"><img
-								src="${pageContext.request.contextPath}/mypage/imgs/03.png"
+								src="${pageContext.request.contextPath}/mypage/imgs/비공개.png"
 								class="rounded-circle shadow " alt="profile-image"
 								style="width: 20%; height: 20%;"></a>
+							<%
+								} else if (dto.getMem_gender().equals("남")) {
+							%>
+							<a href="${pageContext.request.contextPath}/myPage.do"><img
+								src="${pageContext.request.contextPath}/mypage/imgs/남자.png"
+								class="rounded-circle shadow " alt="profile-image"
+								style="width: 20%; height: 20%;"></a>
+							<%
+								} else if (dto.getMem_gender().equals("여")) {
+							%>
+							<a href="${pageContext.request.contextPath}/myPage.do"><img
+								src="${pageContext.request.contextPath}/mypage/imgs/여자.png"
+								class="rounded-circle shadow " alt="profile-image"
+								style="width: 20%; height: 20%;"></a>
+							<%
+								}
+							%>
 							<h4 class="m-t-10"><%=dto.getMem_nickname()%></h4>
 
 						</div>
@@ -111,7 +130,17 @@
 					<div class="card">
 						<div class="body">
 							<small class="text-muted">Gender: </small>
-							<p><%=dto.getMem_gender()%></p>
+							<%
+								String gender = dto.getMem_gender();
+							if (gender.equals("")) {
+								gender = "비공개";
+							} else if (gender.equals("남")) {
+								gender = "남성";
+							} else if (gender.equals("여")) {
+								gender = "여성";
+							}
+							%>
+							<p><%=gender%></p>
 							<hr>
 							<small class="text-muted">AgeRange: </small>
 							<p><%=dto.getMem_age_group()%></p>
@@ -120,7 +149,7 @@
 							<p><%=dto.getMem_email()%></p>
 							<hr>
 							<small class="text-muted">Address: </small>
-							<p><%=dto.getMem_rocal()+" "+dto.getMem_state()%></p>
+							<p><%=dto.getMem_rocal() + " " + dto.getMem_state()%></p>
 						</div>
 					</div>
 				</div>
