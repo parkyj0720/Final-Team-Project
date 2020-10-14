@@ -101,7 +101,7 @@
 						<div class="body">
 
 							<a href="${pageContext.request.contextPath}/myPage.do"><img
-								src="${pageContext.request.contextPath}/mypage/imgs/01.jpg"
+								src="${pageContext.request.contextPath}/mypage/imgs/03.png"
 								class="rounded-circle shadow " alt="profile-image"
 								style="width: 20%; height: 20%;"></a>
 							<h4 class="m-t-10"><%=dto.getMem_nickname()%></h4>
