@@ -400,12 +400,12 @@
 								<div class="col-xl-9 col-lg-8 col-md-12">
 									<div class="product details detail_header">
 										제목 <input type="text" style="width: 100%;" name="title"
-											value="초간단 맥주안주:모짜렐라치즈없이 콘치즈만들기">
+											value="" placeholder="제목을 입력해 주세요">
 
 										<hr>
 										음식 설명
 										<textarea id="content_area" name="explain"
-											style="width: 100%; height: 200px; resize: none;">맥주는 먹고 싶고 안주는 없어서 간단히 만들어봤어요.</textarea>
+											style="width: 100%; height: 200px; resize: none;" placeholder="설명을 입력해 주세요"></textarea>
 									</div>
 
 								</div>
@@ -421,9 +421,9 @@
 										<h6>레시피정보</h6>
 										<hr>
 										<p>
-											기준인원: <input type="text" value="1" size="10" dir="rtl" name="standard"><br>
-											조리시간: <input type="text" value="10" size="10"dir="rtl" name="cooking_time"><br>
-											난이도: <input type="text" value="쉬움" style="margin-left: 14px" size="10" dir="rtl" name="difficult">
+											기준인원: <input type="text" value="" size="10" dir="rtl" name="standard"><br>
+											조리시간: <input type="text" value="" size="10"dir="rtl" name="cooking_time"><br>
+											난이도: <input type="text" value="" style="margin-left: 14px" size="10" dir="rtl" name="difficult">
 										</p>
 									</div>
 								</div>
