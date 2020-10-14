@@ -113,8 +113,10 @@
 				})
 	});
 	
-	var MEM_IDX = "{sessionScope.userIdx}";
+	var MEM_IDX = "${sessionScope.userIdx}";
 	var REC_IDX = <%=dto.getREC_IDX()%>
+	
+	console.log(MEM_IDX);
 	
 	function heartClick() {
 		if (MEM_IDX == null || MEM_IDX == 0) {
