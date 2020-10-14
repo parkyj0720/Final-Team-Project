@@ -361,10 +361,10 @@
 					
 					$('.eventlist').click(function(){
 						
-						
-						var username = <%=session.getAttribute("userId")%>;
+						var username = '<%=session.getAttribute("userId")%>';
+							
 						console.log(username);
-						
+							
 						var ad = 0;
 						
 						if(<%=request.getAttribute("ad")%>!=null){
@@ -374,22 +374,19 @@
 						
 						
 						console.log(ad);
-<%-- 						
-						var nick = <%=session.getAttribute("userNickname")%>
+ 						
+						var nick = '<%=session.getAttribute("userNickname")%>'
 						
 						console.log(nick);
- --%>						
+						
 						var tr = $(this);
 						var td = tr.children();
 												
-						console.log("클릭한 Row의 모든 데이터 : " + tr.text());
-						
 						var writeid = td.eq(1).text();
-						
-						console.log(writeid);
+								
 							
 						
-						if(ad==1 || writeid==username){
+						if(ad==1 || writeid==nick){
 							
 						
 							var num = $(this).children(0).eq(0).text();
@@ -405,7 +402,7 @@
 								alert("관리자 혹은 신고자만 읽을 수 있습니다.");
 								
 							}
-						
+			
 						
 					});
 					
