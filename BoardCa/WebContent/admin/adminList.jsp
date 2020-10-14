@@ -73,17 +73,11 @@ var td
 			
 			$("#adminbtn").unbind("click").bind("click", function() {
 			
-				<%
+				var path = "/BoardCa/Community_detail.do?num="+num;
+								
+				location.href= path; 
 				
-				
-				
-				RequestDispatcher dispatcher = request.getRequestDispatcher("${pageContext.request.contextPath}/Community_detail.do?num=");
-				dispatcher.forward(request, response);
-
-			
-				%>
-				
-			}
+			});
 			
 			
 			$("#ex1_Result1").html("<p>" + cont + "<p>");
