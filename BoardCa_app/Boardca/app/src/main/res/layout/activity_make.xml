@@ -16,27 +16,33 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/menu_community" />
+            android:text="@string/menu_community"
+            android:layout_marginLeft="5dp"/>
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/rb1"
+            android:textSize="12sp"
             android:text="@string/menu_community_sub1"></RadioButton>
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/rb2"
+            android:textSize="12sp"
             android:text="@string/menu_community_sub2"></RadioButton>
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/rb3"
+            android:textSize="12sp"
             android:text="@string/menu_community_sub3"></RadioButton>
+
         <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:id="@+id/rb4"
-            android:text="@string/menu_community_sub4"></RadioButton>
+            android:layout_width="87dp"
+            android:layout_height="wrap_content"
+            android:text="@string/menu_community_sub4"
+            android:textSize="12sp"></RadioButton>
     </RadioGroup>
 
     <com.lumyjuwon.richwysiwygeditor.RichWysiwyg

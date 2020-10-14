@@ -14,7 +14,7 @@
         android:layout_gravity="bottom|end"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="25dp"
-        app:srcCompat="@drawable/ic_android_white_24dp" />
+        app:srcCompat="@drawable/ic_chat_black_24dp" />
 
     <WebView
         android:layout_width="match_parent"
