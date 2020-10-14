@@ -66,6 +66,9 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/stylesheet/assets/css/style.min.css">
 
+<style>
+ul.nav li.dropdown:hover > ul.dropdown-menu{display:block; margin-top:15px; margin-right:150px; padding:0;}
+</style>
 
 <!-- Page Loader -->
 <div class="page-loader-wrapper">
@@ -257,10 +260,21 @@
 								href="${pageContext.request.contextPath}/gameMain.do"> <h4><i
 									class="zmdi zmdi-email"></i>술게임</h4>
 							</a></li>
-							<li class="nav-item col-md-3" role="presentation"><a
+							<li class="nav-item col-md-3 dropdown" role="presentation" class="community_li"><a
 								href="${pageContext.request.contextPath}/Community_main.do">
 									<h4><i class="zmdi zmdi-email"></i>커뮤니티</h4>
-							</a></li>
+									
+							</a>
+							<ul class="dropdown-menu">
+								<li><a
+									href="${pageContext.request.contextPath}/Community_list.do?list=1">숙취게시판</a></li>
+								<li><a
+									href="${pageContext.request.contextPath}/Community_list.do?list=2">정보공유</a></li>
+								<li><a 
+									href="${pageContext.request.contextPath}/Community_list.do?list=3">QnA</a></li>
+								<li><a id="logoutBtn" href="${pageContext.request.contextPath}/Community_list.do?list=4">신고합니다</a></li>
+							</ul>
+							</li>
 							<li class="nav-item col-md-3" role="presentation"><a
 								href="${pageContext.request.contextPath}/search_list.do"> <h4><i
 									class="zmdi zmdi-email"></i>술집찾기</h4>
