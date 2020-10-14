@@ -427,18 +427,13 @@ if (request.getParameter("nickname") != null) {
 										<table>
 											<% for(int i=0;i<order_arr.length;i++){ %>
 											<tr>
-												<%
-												i++;
-												if(i < order_arr.length || order_arr[i].indexOf("jpg") != -1 || order_arr[i].indexOf("png") != -1 || order_arr[i].indexOf("gif") != -1){ %>
-												<td style="padding-bottom:10px; width:400px; height:200px;">
-												<img src="<%=(order_arr[i].indexOf("http") != -1)?order_arr[i]:request.getContextPath()+"/upload/"+order_arr[i]%>"></td>
-												<% } %>
-											</tr>
-											<tr>
-												<% i--; %>
-												<%-- <td style="width:50px"><%=cnt %></td> --%>
-												<td style="width:150px; padding-bottom:40px;"><%=cnt%>. <%=order_arr[i] %></td>
+												<td style="padding-left: 20px;"><%=cnt %></td>
+												<td style="padding-left: 100px;"><%=order_arr[i] %></td>
 												<% i++; %>
+												<% if(i < order_arr.length && (order_arr[i].indexOf("jpg") != -1 || order_arr[i].indexOf("png") != -1 || order_arr[i].indexOf("gif") != -1)){ %>
+												<td style="padding-left: 150px; padding-bottom:20px; width:400px; height:200px;">
+												<img src="<%=(order_arr[i].indexOf("http") != -1)?order_arr[i]:request.getContextPath()+"/upload/"+order_arr[i]%>"></td>
+												<% }else{ i--;} %>
 											</tr>
 											<% cnt++;} %>
 										</table>
