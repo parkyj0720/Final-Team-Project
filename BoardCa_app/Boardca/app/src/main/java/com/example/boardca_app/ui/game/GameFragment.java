@@ -66,7 +66,7 @@ public class GameFragment extends DialogFragment {
                 webView.loadUrl(str);
                 if (str.equals(gameUrl)) {
                     str = chatUrl + "?nickname=" + nickname;
-                } else if (str.equals(chatUrl)) {
+                } else if (str.equals(chatUrl + "?nickname=" + nickname)) {
                     str = gameUrl;
                 }
             }
