@@ -31,6 +31,10 @@ public class GameFragment extends DialogFragment {
     public String age = "age";
     public String mf = "mf";
 
+    public String gameUrl = "http://182.213.18.164:8088/BoardCa/gameMainApp.do";
+    public String chatUrl = "http://182.213.18.164:8088/BoardCa/index.jsp";
+    public String str = "";
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -51,22 +55,20 @@ public class GameFragment extends DialogFragment {
         webView.setWebChromeClient(new WebChromeClient());
         webView.setWebViewClient(new WebViewClientClass());
 
-        webView.loadUrl("http://182.213.18.164:8088/BoardCa/gameMainApp.do"); //주소는 임시, 차후에 바꿀것.
+        webView.loadUrl(gameUrl); //주소는 임시, 차후에 바꿀것.
+        str = chatUrl;
 
 
         fab_chat = (FloatingActionButton) viewGroup.findViewById(R.id.fab_chat);
         fab_chat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse("http://182.213.18.164:8088/BoardCa/index.jsp?id=\"+id+\"&nickname=\"+nickname"));
-
-                i.putExtra("nickname", nickname);
-                i.putExtra("email", email);
-                i.putExtra("id", id);
-                i.putExtra("age", age);
-                i.putExtra("mf", mf);
-
-                startActivity(i);
+                webView.loadUrl(str);
+                if(str.equals(gameUrl)){
+                    str = chatUrl;
+                }else if(str.equals(chatUrl)){
+                    str = gameUrl;
+                }
             }
         });
 
